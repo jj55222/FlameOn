@@ -1,0 +1,213 @@
+# Tracked agency YouTube channels for the Sunshine-Gated Closed-Case Pipeline
+# Each entry: handle, agency_name, state, city (if known)
+# channel_id will be resolved at runtime via YouTube API
+
+channels:
+  # --- FLORIDA ---
+  - handle: "@miamidadesheriffsoffice"
+    agency_name: "Miami-Dade Police Department"
+    state: "FL"
+    city: "Miami"
+
+  - handle: "@JAXSHERIFF"
+    agency_name: "Jacksonville Sheriff's Office"
+    state: "FL"
+    city: "Jacksonville"
+
+  - handle: "@OrangeCoSheriffFL"
+    agency_name: "Orange County Sheriff's Office"
+    state: "FL"
+    city: "Orlando"
+
+  - handle: "@PBCountySheriff"
+    agency_name: "Palm Beach County Sheriff's Office"
+    state: "FL"
+    city: "West Palm Beach"
+
+  - handle: "@leesheriff"
+    agency_name: "Lee County Sheriff's Office"
+    state: "FL"
+    city: "Fort Myers"
+
+  - handle: "@WaltonCountySheriff"
+    agency_name: "Walton County Sheriff's Office"
+    state: "FL"
+    city: "DeFuniak Springs"
+
+  - handle: "@PolkCountySheriff"
+    agency_name: "Polk County Sheriff's Office"
+    state: "FL"
+    city: "Bartow"
+
+  - handle: "@VolusiaSheriff"
+    agency_name: "Volusia County Sheriff's Office"
+    state: "FL"
+    city: "DeLand"
+
+  - handle: "@PascoSheriff"
+    agency_name: "Pasco Sheriff's Office"
+    state: "FL"
+    city: "New Port Richey"
+
+  - handle: "@TallyPD"
+    agency_name: "Tallahassee Police Department"
+    state: "FL"
+    city: "Tallahassee"
+
+  - handle: "@HCSOSheriff"
+    agency_name: "Hillsborough County Sheriff's Office"
+    state: "FL"
+    city: "Tampa"
+
+  - handle: "@PinellasSheriff"
+    agency_name: "Pinellas County Sheriff's Office"
+    state: "FL"
+    city: "Largo"
+
+  # --- ARIZONA ---
+  - handle: "@phxpd"
+    agency_name: "Phoenix Police Department"
+    state: "AZ"
+    city: "Phoenix"
+
+  - handle: "@MCSOAZ"
+    agency_name: "Maricopa County Sheriff's Office"
+    state: "AZ"
+    city: "Phoenix"
+
+  - handle: "@pinalcountysheriff"
+    agency_name: "Pinal County Sheriff's Office"
+    state: "AZ"
+    city: "Florence"
+
+  - handle: "@TucsonAZPD"
+    agency_name: "Tucson Police Department"
+    state: "AZ"
+    city: "Tucson"
+
+  - handle: "@pimacountysheriff"
+    agency_name: "Pima County Sheriff's Department"
+    state: "AZ"
+    city: "Tucson"
+
+  - handle: "@MesaPD"
+    agency_name: "Mesa Police Department"
+    state: "AZ"
+    city: "Mesa"
+
+  - handle: "@TempePolice"
+    agency_name: "Tempe Police Department"
+    state: "AZ"
+    city: "Tempe"
+
+  - handle: "@GlendaleAZPD"
+    agency_name: "Glendale Police Department"
+    state: "AZ"
+    city: "Glendale"
+
+  - handle: "@ScottsdalePD"
+    agency_name: "Scottsdale Police Department"
+    state: "AZ"
+    city: "Scottsdale"
+
+  - handle: "@ChandlerPolice"
+    agency_name: "Chandler Police Department"
+    state: "AZ"
+    city: "Chandler"
+
+  # --- TEXAS ---
+  - handle: "@houstonpolice"
+    agency_name: "Houston Police Department"
+    state: "TX"
+    city: "Houston"
+
+  - handle: "@DallasPoliceDept"
+    agency_name: "Dallas Police Department"
+    state: "TX"
+    city: "Dallas"
+
+  - handle: "@HarriscountysoOrg"
+    agency_name: "Harris County Sheriff's Office"
+    state: "TX"
+    city: "Houston"
+
+  - handle: "@garlandtx"
+    agency_name: "Garland Police Department"
+    state: "TX"
+    city: "Garland"
+
+  - handle: "@TxDeptPublicSafety"
+    agency_name: "Texas Department of Public Safety"
+    state: "TX"
+    city: ""
+
+  - handle: "@FortWorthPolice"
+    agency_name: "Fort Worth Police Department"
+    state: "TX"
+    city: "Fort Worth"
+
+  - handle: "@Austin_Police"
+    agency_name: "Austin Police Department"
+    state: "TX"
+    city: "Austin"
+
+  - handle: "@SanAntonioPD"
+    agency_name: "San Antonio Police Department"
+    state: "TX"
+    city: "San Antonio"
+
+  - handle: "@ArlingtonPolice"
+    agency_name: "Arlington Police Department"
+    state: "TX"
+    city: "Arlington"
+
+  - handle: "@LubbockPolice"
+    agency_name: "Lubbock Police Department"
+    state: "TX"
+    city: "Lubbock"
+
+  # --- OHIO ---
+  - handle: "@ClevelandDivisionofPolice"
+    agency_name: "Cleveland Division of Police"
+    state: "OH"
+    city: "Cleveland"
+
+  - handle: "@CincinnatiPolice"
+    agency_name: "Cincinnati Police Department"
+    state: "OH"
+    city: "Cincinnati"
+
+  - handle: "@ToledoPolice"
+    agency_name: "Toledo Police Department"
+    state: "OH"
+    city: "Toledo"
+
+  - handle: "@AkronPolice"
+    agency_name: "Akron Police Department"
+    state: "OH"
+    city: "Akron"
+
+  - handle: "@DaytonPolice"
+    agency_name: "Dayton Police Department"
+    state: "OH"
+    city: "Dayton"
+
+  - handle: "@ColumbusPolice"
+    agency_name: "Columbus Division of Police"
+    state: "OH"
+    city: "Columbus"
+
+  - handle: "@CantonPolice"
+    agency_name: "Canton Police Department"
+    state: "OH"
+    city: "Canton"
+
+  - handle: "@SpringfieldPoliceOH"
+    agency_name: "Springfield Police Division"
+    state: "OH"
+    city: "Springfield"
+
+  - handle: "@SummitSheriffOH"
+    agency_name: "Summit County Sheriff's Office"
+    state: "OH"
+    city: "Akron"

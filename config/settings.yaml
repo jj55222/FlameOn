@@ -1,0 +1,37 @@
+# Sunshine-Gated Closed-Case Pipeline — Configuration
+# Copy this file to settings.local.yaml and fill in your API keys.
+# settings.local.yaml is gitignored.
+
+# --- API Keys ---
+youtube_api_key: ""
+brave_api_key: ""
+openrouter_api_key: ""
+
+# Google Sheets service account credentials JSON file path
+google_sheets_credentials_file: ""
+google_sheets_spreadsheet_id: ""
+google_sheets_tab_name: "CaseRegistry"
+
+# --- OpenRouter ---
+openrouter_model_extraction: "google/gemini-flash-1.5"  # cheap model for field extraction
+openrouter_model_validation: "google/gemini-flash-1.5"  # model for validation parsing
+openrouter_base_url: "https://openrouter.ai/api/v1"
+
+# --- Local Storage ---
+pipeline_root: "./CrimeDoc-Pipeline"
+
+# --- Rate Limiting ---
+youtube_requests_per_second: 1
+brave_requests_per_second: 1
+download_requests_per_second: 0.5
+
+# --- Intake ---
+max_videos_per_channel: 50  # max recent uploads to check per run
+
+# --- Validation ---
+max_brave_queries_per_case: 3  # max search queries for validation
+validation_snippet_max_chars: 2000  # max chars sent to LLM for validation parsing
+
+# --- Download ---
+max_download_size_mb: 100  # skip files larger than this
+download_timeout_seconds: 60
