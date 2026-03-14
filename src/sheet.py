@@ -35,13 +35,33 @@ class SheetRegistry:
         self._sheet = None
         self._credentials_file = credentials_file
 
+    @classmethod
+    def from_credentials(cls, credentials, spreadsheet_id: str, tab_name: str = "CaseRegistry"):
+        """Create a SheetRegistry from pre-built credentials (e.g. Colab auth).
+
+        Usage in Colab:
+            from google.colab import auth
+            auth.authenticate_user()
+            import google.auth
+            creds, _ = google.auth.default(scopes=SCOPES)
+            sheet = SheetRegistry.from_credentials(creds, SPREADSHEET_ID)
+        """
+        instance = cls.__new__(cls)
+        instance.spreadsheet_id = spreadsheet_id
+        instance.tab_name = tab_name
+        instance._credentials_file = None
+        instance._client = gspread.authorize(credentials)
+        instance._sheet = None
+        return instance
+
     def _connect(self):
         """Authenticate and open the sheet."""
         if self._sheet is not None:
             return
 
-        creds = Credentials.from_service_account_file(self._credentials_file, scopes=SCOPES)
-        self._client = gspread.authorize(creds)
+        if self._client is None:
+            creds = Credentials.from_service_account_file(self._credentials_file, scopes=SCOPES)
+            self._client = gspread.authorize(creds)
 
         try:
             spreadsheet = self._client.open_by_key(self.spreadsheet_id)

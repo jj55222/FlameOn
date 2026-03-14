@@ -334,6 +334,80 @@ def stage_download(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
     log.info("Stage 3B complete: processed %d cases", len(cases))
 
 
+def run_pipeline(
+    config: dict,
+    stages: list[str] = None,
+    sheet: SheetRegistry = None,
+    channels: list[ChannelConfig] = None,
+    channels_path: str = "config/channels.yaml",
+    pipeline_root: str = None,
+):
+    """Programmatic entry point for running the pipeline (e.g. from Colab).
+
+    Args:
+        config: Settings dict (API keys, tuning knobs).
+        stages: List of stages to run. Options: "intake", "validate", "discover",
+                "download". If None, runs all stages.
+        sheet: Pre-built SheetRegistry (e.g. from Colab auth). If None, builds
+               one from config credentials.
+        channels: Pre-built list of ChannelConfig. If None, loads from channels_path.
+        channels_path: Path to channels.yaml (used only if channels is None).
+        pipeline_root: Override for pipeline storage root directory.
+
+    Returns:
+        dict with keys: candidates, validated, discovered (lists of CaseCandidate)
+    """
+    if stages is None:
+        stages = ["intake", "validate", "discover", "download"]
+
+    root = pipeline_root or config.get("pipeline_root", "./CrimeDoc-Pipeline")
+    setup_logger(root)
+    log = get_logger()
+
+    log.info("Sunshine-Gated Closed-Case Pipeline starting (programmatic)")
+    log.info("Pipeline root: %s", os.path.abspath(root))
+
+    storage = PipelineStorage(root)
+    storage.init_dirs()
+
+    if sheet is None:
+        sheet = SheetRegistry(
+            credentials_file=config["google_sheets_credentials_file"],
+            spreadsheet_id=config["google_sheets_spreadsheet_id"],
+            tab_name=config.get("google_sheets_tab_name", "CaseRegistry"),
+        )
+    sheet.ensure_headers()
+
+    if channels is None:
+        channels = load_channels(channels_path)
+
+    results = {"candidates": None, "validated": None, "discovered": None}
+
+    if "intake" in stages:
+        results["candidates"] = stage_intake(config, channels, sheet, storage)
+
+    if "validate" in stages:
+        results["validated"] = stage_validate(
+            config, sheet, storage,
+            results["candidates"] if "intake" in stages else None,
+        )
+
+    if "discover" in stages:
+        results["discovered"] = stage_discover(
+            config, sheet, storage,
+            results["validated"] if "validate" in stages else None,
+        )
+
+    if "download" in stages:
+        stage_download(
+            config, sheet, storage,
+            results["discovered"] if "discover" in stages else None,
+        )
+
+    log.info("Pipeline complete")
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Sunshine-Gated Closed-Case Pipeline",
