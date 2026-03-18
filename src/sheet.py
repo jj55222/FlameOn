@@ -131,6 +131,18 @@ class SheetRegistry:
         self._sheet.append_row(row, value_input_option="USER_ENTERED")
         log.info("Appended case to sheet: %s", candidate.case_id)
 
+    def append_cases_batch(self, candidates: list[CaseCandidate]):
+        """Append multiple case rows in a single API call to avoid rate limits."""
+        if not candidates:
+            return
+        self._connect()
+        rows = []
+        for c in candidates:
+            c.touch()
+            rows.append(self._candidate_to_row(c))
+        self._sheet.append_rows(rows, value_input_option="USER_ENTERED")
+        log.info("Batch appended %d cases to sheet", len(rows))
+
     def update_case(self, case_id: str, updates: dict):
         """Update specific fields for an existing case row.
 

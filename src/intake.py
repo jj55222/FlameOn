@@ -338,11 +338,17 @@ def run_intake(
         )
         log.info("Fetched %d videos from %s", len(videos), ch.handle)
 
-        # Process each video
+        # Process each video — only keep videos with crime-related signals
+        skipped = 0
         for video in videos:
             candidate = process_video(
                 video, ch, openrouter_api_key, openrouter_model, openrouter_base_url
             )
+            # Filter: must have at least a suspect name OR crime keywords
+            if not candidate.suspect_name and not candidate.case_keywords:
+                skipped += 1
+                log.debug("Skipped (no signals): %s — %s", candidate.video_id, candidate.video_title[:80])
+                continue
             all_candidates.append(candidate)
             log.debug(
                 "Candidate: %s | name=%s | keywords=%s",
@@ -350,6 +356,8 @@ def run_intake(
                 candidate.suspect_name or "(none)",
                 candidate.case_keywords or "(none)",
             )
+        if skipped:
+            log.info("Skipped %d/%d videos from %s (no crime signals)", skipped, len(videos), ch.handle)
 
         time.sleep(rate_limit)
 

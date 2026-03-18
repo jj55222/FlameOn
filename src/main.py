@@ -93,10 +93,12 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
     new_candidates, dupes = deduplicate_candidates(candidates, existing_video_ids, existing_cases)
     log.info("After dedup: %d new candidates, %d duplicates skipped", len(new_candidates), len(dupes))
 
-    # Save raw candidates and add to sheet
+    # Save raw candidates locally
     for c in new_candidates:
         storage.save_raw_candidate(c.case_id, asdict(c))
-        sheet.append_case(c)
+
+    # Batch-write to sheet (single API call avoids Sheets rate limits)
+    sheet.append_cases_batch(new_candidates)
 
     log.info("Stage 1 complete: %d new candidates ingested", len(new_candidates))
     return new_candidates
