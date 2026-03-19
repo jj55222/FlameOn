@@ -208,6 +208,16 @@ class SheetRegistry:
 
         log.debug("Updated case %s in sheet (batch): %s", case_id, list(updates.keys()))
 
+    def clear_all_data(self):
+        """Delete all data rows, keeping the header row intact."""
+        self._connect()
+        row_count = self._sheet.row_count
+        if row_count > 1:
+            self._sheet.delete_rows(2, row_count)
+            log.info("Cleared all %d data rows from sheet", row_count - 1)
+        else:
+            log.info("Sheet already empty, nothing to clear")
+
     def find_cases_by_status(self, status: str) -> list[dict]:
         """Find all cases with a given validation_status."""
         rows = self.get_all_rows()

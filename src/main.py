@@ -343,6 +343,7 @@ def run_pipeline(
     channels: list[ChannelConfig] = None,
     channels_path: str = "config/channels.yaml",
     pipeline_root: str = None,
+    wipe_sheet: bool = False,
 ):
     """Programmatic entry point for running the pipeline (e.g. from Colab).
 
@@ -355,6 +356,7 @@ def run_pipeline(
         channels: Pre-built list of ChannelConfig. If None, loads from channels_path.
         channels_path: Path to channels.yaml (used only if channels is None).
         pipeline_root: Override for pipeline storage root directory.
+        wipe_sheet: If True, clear all data rows before running.
 
     Returns:
         dict with keys: candidates, validated, discovered (lists of CaseCandidate)
@@ -379,6 +381,10 @@ def run_pipeline(
             tab_name=config.get("google_sheets_tab_name", "CaseRegistry"),
         )
     sheet.ensure_headers()
+
+    if wipe_sheet:
+        log.info("Wiping all data from sheet before running")
+        sheet.clear_all_data()
 
     if channels is None:
         channels = load_channels(channels_path)
@@ -421,6 +427,7 @@ def main():
     parser.add_argument("--validate-only", action="store_true", help="Only run validation on new_candidates")
     parser.add_argument("--discover-only", action="store_true", help="Only run link discovery on validated cases")
     parser.add_argument("--download-only", action="store_true", help="Only download from link inventories")
+    parser.add_argument("--wipe", action="store_true", help="Wipe all data rows from the sheet before running")
     args = parser.parse_args()
 
     # Default to --full if no stage specified
@@ -448,6 +455,10 @@ def main():
         tab_name=config.get("google_sheets_tab_name", "CaseRegistry"),
     )
     sheet.ensure_headers()
+
+    if args.wipe:
+        log.info("Wiping all data from sheet before running")
+        sheet.clear_all_data()
 
     # Execute stages
     candidates = None
