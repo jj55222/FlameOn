@@ -290,7 +290,7 @@ def process_video(
         state=channel_config.state,
         city=channel_config.city,
         video_title=title,
-        video_description=description[:500],
+        video_description=description,
         video_url=f"https://www.youtube.com/watch?v={video_id}",
         published_at=video.get("published_at", ""),
         suspect_name=suspect_name,

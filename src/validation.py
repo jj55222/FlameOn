@@ -303,6 +303,20 @@ def validate_case(
 
     Returns a ValidationResult with the disposition.
     """
+    # Skip validation when no suspect name — generic queries match wrong cases
+    if not candidate.suspect_name:
+        log.info(
+            "MANUAL REVIEW (no suspect name): %s — skipping validation to avoid mismatch",
+            candidate.case_id,
+        )
+        return ValidationResult(
+            status=ValidationStatus.MANUAL_REVIEW.value,
+            query_used="(skipped — no suspect name)",
+            note="No suspect name extracted; skipping automated validation to avoid "
+                 "matching unrelated cases. Full video description preserved for manual review.",
+            manual_review_reason="No suspect name — automated validation skipped to prevent mismatch",
+        )
+
     queries = _build_validation_queries(candidate)
 
     if not queries:
