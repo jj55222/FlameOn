@@ -3,6 +3,7 @@
 One tab only. Reads and writes case data to/from the sheet.
 """
 
+import time
 from dataclasses import asdict
 from datetime import datetime
 
@@ -128,7 +129,7 @@ class SheetRegistry:
         self._connect()
         candidate.touch()
         row = self._candidate_to_row(candidate)
-        self._sheet.append_row(row, value_input_option="USER_ENTERED")
+        self._retry_on_quota(self._sheet.append_row, row, value_input_option="USER_ENTERED")
         log.info("Appended case to sheet: %s", candidate.case_id)
 
     def append_cases_batch(self, candidates: list[CaseCandidate]):
@@ -140,11 +141,28 @@ class SheetRegistry:
         for c in candidates:
             c.touch()
             rows.append(self._candidate_to_row(c))
-        self._sheet.append_rows(rows, value_input_option="USER_ENTERED")
+        self._retry_on_quota(self._sheet.append_rows, rows, value_input_option="USER_ENTERED")
         log.info("Batch appended %d cases to sheet", len(rows))
+
+    def _retry_on_quota(self, fn, *args, max_retries=4, **kwargs):
+        """Retry a Sheets API call with exponential backoff on 429 errors."""
+        for attempt in range(max_retries + 1):
+            try:
+                return fn(*args, **kwargs)
+            except gspread.exceptions.APIError as e:
+                if e.response.status_code == 429 and attempt < max_retries:
+                    wait = 2 ** (attempt + 1)  # 2, 4, 8, 16 seconds
+                    log.warning("Sheets quota exceeded, retrying in %ds (attempt %d/%d)",
+                                wait, attempt + 1, max_retries)
+                    time.sleep(wait)
+                else:
+                    raise
 
     def update_case(self, case_id: str, updates: dict):
         """Update specific fields for an existing case row.
+
+        Uses a single batch API call instead of per-cell updates to avoid
+        hitting Sheets write quota limits.
 
         updates: dict of {column_name: new_value}
         """
@@ -166,12 +184,29 @@ class SheetRegistry:
         # Always update updated_at
         updates["updated_at"] = datetime.utcnow().isoformat()
 
+        # Read current row, apply updates, write back as single API call
+        current_row = self._sheet.row_values(row_num)
+        # Pad row to full width if needed
+        while len(current_row) < len(SHEET_COLUMNS):
+            current_row.append("")
+
         for col_name, value in updates.items():
             if col_name in SHEET_COLUMNS:
-                col_idx = SHEET_COLUMNS.index(col_name) + 1
-                self._sheet.update_cell(row_num, col_idx, str(value) if value is not None else "")
+                col_idx = SHEET_COLUMNS.index(col_name)
+                current_row[col_idx] = str(value) if value is not None else ""
 
-        log.debug("Updated case %s in sheet: %s", case_id, list(updates.keys()))
+        # Single API call to update the entire row
+        col_letter = gspread.utils.rowcol_to_a1(1, len(SHEET_COLUMNS)).rstrip("1")
+        cell_range = f"A{row_num}:{col_letter}{row_num}"
+
+        self._retry_on_quota(
+            self._sheet.update,
+            cell_range,
+            [current_row],
+            value_input_option="USER_ENTERED",
+        )
+
+        log.debug("Updated case %s in sheet (batch): %s", case_id, list(updates.keys()))
 
     def find_cases_by_status(self, status: str) -> list[dict]:
         """Find all cases with a given validation_status."""
