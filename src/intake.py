@@ -257,6 +257,43 @@ def fetch_recent_uploads(
     return videos
 
 
+def _hydrate_full_descriptions(youtube, videos: list[dict], rate_limit: float = 1.0) -> None:
+    """Replace truncated descriptions with full ones via videos.list API.
+
+    Both search.list and playlistItems.list return truncated descriptions.
+    This batches video IDs (up to 50 per call) and fetches full snippets.
+    Costs 1 quota unit per call (same as playlistItems).
+    """
+    if not videos:
+        return
+
+    for i in range(0, len(videos), 50):
+        batch = videos[i:i + 50]
+        video_ids = ",".join(v["video_id"] for v in batch)
+        try:
+            resp = youtube.videos().list(
+                part="snippet",
+                id=video_ids,
+            ).execute()
+
+            # Build lookup by video ID
+            full_snippets = {}
+            for item in resp.get("items", []):
+                full_snippets[item["id"]] = item["snippet"]
+
+            # Update descriptions in place
+            for v in batch:
+                snippet = full_snippets.get(v["video_id"])
+                if snippet:
+                    v["description"] = snippet.get("description", v["description"])
+
+            if i + 50 < len(videos):
+                time.sleep(rate_limit)
+
+        except Exception as e:
+            log.error("Error hydrating descriptions: %s", e)
+
+
 def fetch_channel_videos_by_date(
     youtube,
     channel_id: str,
@@ -449,6 +486,9 @@ def run_intake(
 
         total_videos_fetched += len(videos)
         log.info("Fetched %d videos from %s (total fetched: %d)", len(videos), ch.handle, total_videos_fetched)
+
+        # Hydrate full descriptions (search/playlist APIs return truncated ones)
+        _hydrate_full_descriptions(youtube, videos, rate_limit)
 
         # Process each video — only keep videos with crime-related signals
         channel_candidates = []
