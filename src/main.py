@@ -19,7 +19,7 @@ import yaml
 from .dedup import deduplicate_candidates
 from .discovery import run_discovery
 from .download import download_from_inventory
-from .intake import run_intake
+from .intake import run_intake, _extract_name_regex, _extract_name_llm, _generate_case_id
 from .logger import get_logger, setup_logger
 from .models import (
     CaseCandidate,
@@ -352,6 +352,68 @@ def stage_download(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
     log.info("Stage 3B complete: processed %d cases", len(cases))
 
 
+def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineStorage):
+    """Re-run name extraction on all existing rows using improved regex + LLM.
+
+    Uses video_title and video_description already stored in the sheet —
+    zero YouTube API calls. Updates suspect_name and case_id in-place.
+    """
+    log = get_logger()
+    log.info("=" * 60)
+    log.info("RE-EXTRACT NAMES — reprocessing existing rows")
+    log.info("=" * 60)
+
+    rows = sheet.get_all_rows()
+    log.info("Loaded %d rows from sheet", len(rows))
+
+    updated = 0
+    for row in rows:
+        old_name = row.get("suspect_name", "")
+        title = row.get("video_title", "")
+        description = row.get("video_description", "")
+        case_id = row.get("case_id", "")
+
+        if not title and not description:
+            continue
+
+        text = f"{title}\n{description}"
+
+        # Try improved regex first
+        new_name = _extract_name_regex(text)
+
+        # Fall back to LLM if regex still empty
+        if not new_name and config.get("openrouter_api_key"):
+            new_name = _extract_name_llm(
+                title, description,
+                config["openrouter_api_key"],
+                config.get("openrouter_model_extraction", "google/gemini-flash-1.5"),
+                config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
+            )
+
+        if new_name and new_name != old_name:
+            # Regenerate case_id with new name
+            new_case_id = _generate_case_id(
+                row.get("state", ""),
+                new_name,
+                row.get("video_id", ""),
+                row.get("published_at", ""),
+            )
+
+            log.info(
+                "Updated: '%s' -> '%s' (case_id: %s -> %s)",
+                old_name, new_name, case_id, new_case_id,
+            )
+
+            sheet.update_case(case_id, {
+                "suspect_name": new_name,
+                "case_id": new_case_id,
+            })
+            updated += 1
+
+    log.info("Re-extraction complete: %d of %d rows updated", updated, len(rows))
+    return updated
+
+
 def run_pipeline(
     config: dict,
     stages: list[str] = None,
@@ -407,6 +469,9 @@ def run_pipeline(
 
     results = {"candidates": None, "validated": None, "discovered": None}
 
+    if "reextract_names" in stages:
+        stage_reextract_names(config, sheet, storage)
+
     if "intake" in stages:
         results["candidates"] = stage_intake(config, channels, sheet, storage)
 
@@ -443,11 +508,12 @@ def main():
     parser.add_argument("--validate-only", action="store_true", help="Only run validation on new_candidates")
     parser.add_argument("--discover-only", action="store_true", help="Only run link discovery on validated cases")
     parser.add_argument("--download-only", action="store_true", help="Only download from link inventories")
+    parser.add_argument("--reextract-names", action="store_true", help="Re-run name extraction on existing data (no API calls)")
     parser.add_argument("--wipe", action="store_true", help="Wipe all data rows from the sheet before running")
     args = parser.parse_args()
 
     # Default to --full if no stage specified
-    if not any([args.full, args.intake_only, args.validate_only, args.discover_only, args.download_only]):
+    if not any([args.full, args.intake_only, args.validate_only, args.discover_only, args.download_only, args.reextract_names]):
         args.full = True
 
     # Load config
@@ -480,6 +546,11 @@ def main():
     candidates = None
     validated = None
     discovered = None
+
+    if args.reextract_names:
+        stage_reextract_names(config, sheet, storage)
+        log.info("Re-extract names mode — done")
+        return
 
     if args.full or args.intake_only:
         candidates = stage_intake(config, channels, sheet, storage)
