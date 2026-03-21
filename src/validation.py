@@ -264,7 +264,7 @@ def _parse_closure_with_llm(
         resp = requests.post(
             f"{openrouter_base_url}/chat/completions",
             headers={
-                "Authorization": f"Bearer {openrouter_api_key}",
+                "Authorization": f"Bearer {openrouter_api_key.strip()}",
                 "Content-Type": "application/json",
             },
             json={

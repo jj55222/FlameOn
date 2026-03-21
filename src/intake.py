@@ -27,6 +27,10 @@ NAME_PATTERNS = [
     r"(?:State|People|Commonwealth)\s+(?:v\.?|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
     # "Arrest of John Doe" / "Sentencing of John Doe"
     r"(?:Arrest|Sentencing|Conviction|Murder|Shooting|Interrogation)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    # "NN-year-old John Doe" / "NN year old John Doe" (common LE press release style)
+    r"\b\d{1,2}[\s-]+year[\s-]+old\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    # "identified as John Doe" / "identified the suspect as John Doe"
+    r"(?:identified|known)\s+(?:as|the\s+\w+\s+as)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
 ]
 
 # Date patterns
@@ -107,11 +111,14 @@ def _extract_name_llm(
         return ""
 
     prompt = (
-        "Extract the primary suspect or defendant name from this law enforcement video. "
+        "Extract the primary suspect or defendant full name from this law enforcement video. "
+        "The name may appear in the title OR anywhere in the description — look carefully. "
+        "Common patterns: 'NN-year-old [Name]', 'arrested [Name]', 'charged [Name]', "
+        "'identified as [Name]', or just a name mentioned in context of a crime.\n"
         "Return ONLY the full name (first and last), or 'NONE' if no clear suspect name is present. "
         "Do not guess or hallucinate.\n\n"
         f"Title: {title}\n"
-        f"Description: {description[:500]}\n\n"
+        f"Description: {description[:2000]}\n\n"
         "Suspect name:"
     )
 
@@ -119,7 +126,7 @@ def _extract_name_llm(
         resp = requests.post(
             f"{openrouter_base_url}/chat/completions",
             headers={
-                "Authorization": f"Bearer {openrouter_api_key}",
+                "Authorization": f"Bearer {openrouter_api_key.strip()}",
                 "Content-Type": "application/json",
             },
             json={
