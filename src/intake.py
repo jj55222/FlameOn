@@ -28,9 +28,30 @@ NON_CRIME_TITLE_PATTERNS = [
     r"\b(?:memorial|fallen\s+officers?|in\s+memoriam|ultimate\s+sacrifice)\b",
     r"\b(?:swearing[- ]in|graduation|academy|recruit(?:ment|ing)?)\b",
     r"\b(?:community\s+(?:event|outreach|day)|national\s+night\s+out)\b",
-    r"\b(?:ride[- ]along|day\s+in\s+the\s+life|meet\s+your)\b",
+    r"\b(?:ride[- ]along|tweetalong|day\s+in\s+the\s+life|meet\s+your)\b",
     r"\b(?:toy\s+drive|charity|fundraiser|holiday|christmas|thanksgiving)\b",
     r"\b(?:k[- ]?9\s+demo|canine\s+demo|open\s+house)\b",
+    # PSA / awareness campaigns (not individual cases)
+    r"\b(?:awareness\s+(?:month|day|week|press|campaign)|awareness\b.*\bpress\s+conference)\b",
+    # Legislative pushes, policy advocacy
+    r"\b(?:legislative|legislation|lawmakers|proposed\s+law)\b",
+    r"\bfight\s+against\b.*\b(?:driving|racing|clubs?|trafficking)\b",
+    r"\bconfronting\s+the\b",
+    # Awards, scholarships, non-profit spotlights
+    r"\b(?:scholarship|award\s+recipient|crime\s+prevention\s+award)\b",
+    r"\bmake\s+an\s+impact\b",
+    # Dance/social media challenges
+    r"\b(?:challenge\s+accepted|git\s+up|dance)\b",
+    # Mock/training events
+    r"\b(?:mock\s+(?:dui|crash|trial)|presentation\s+at\b)",
+    # "Why did you choose to be a cop" style recruitment
+    r"\bwhy\s+did\s+you\s+choose\b",
+    r"\bwhat\s+makes?\s+(?:me|you)\s+come\s+here\b",
+    # Fundraiser events (Shotgun Shootout, Golf Tournament, etc.)
+    r"\b(?:shootout\s+\d{4}|golf\s+tournament|fun\s*run|5k\s+run|gala)\b",
+    # Podcast / cold case series about victims (The Lead, etc.)
+    r"\bremembering\s+[A-Z]",
+    r"\bthe\s+lead\s*[-–—]\s*",
 ]
 
 # Cold case / unsolved case patterns — these are about VICTIMS, not suspects
@@ -42,6 +63,17 @@ COLD_CASE_PATTERNS = [
     r"\bcrime\s+stoppers?\b",
     r"\b(?:come\s+forward|tip\s+line|anonymous\s+tip)\b",
     r"\bwho\s+(?:killed|shot|murdered)\b",
+]
+
+# Patterns where an extracted name is the VICTIM, not the suspect.
+# These match title structures like "murder of X", "update on missing X".
+VICTIM_TITLE_PATTERNS = [
+    # "murder / death / killing of [Name]" — Name is the victim
+    r"(?:murder|death|killing|disappearance|abduction)\s+of\s+(?:\d+[\s-]+year[\s-]+old\s+)?([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    # "missing [age-year-old] [Name]" — Name is the victim
+    r"missing\s+(?:\d+[\s-]+year[\s-]+old\s+)?([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    # "update on [Name]" / "arrest in [Name] case" — Name is the victim
+    r"(?:update\s+on|arrest\s+in)\s+(?:the\s+)?(?:case\s+of\s+|death\s+of\s+)?(?:\d+[\s-]+year[\s-]+old\s+)?([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
 ]
 
 # Title/description signals that the video is about an OPERATION or STING
@@ -110,6 +142,14 @@ def classify_video_content(title: str, description: str) -> dict:
         if re.search(pattern, title_lower, re.IGNORECASE):
             result["skip"] = True
             result["skip_reason"] = f"Non-crime content: {pattern}"
+            return result
+
+    # Check description for recruitment / hiring content (no crime keywords in title)
+    if not re.search(r"\b(?:shoot|stab|murder|kill|assault|arrest|charged|pursuit|crash)\b", title_lower):
+        desc_lower = description.lower()
+        if re.search(r"\b(?:now\s+hiring|apply\s+today|career\s+opportunit|join\s+(?:our|the)\s+team|bonus\s+for\s+certified)\b", desc_lower):
+            result["skip"] = True
+            result["skip_reason"] = "Recruitment/hiring content in description"
             return result
 
     # Check for officer-involved shooting
@@ -243,7 +283,27 @@ NOT_A_NAME = {
     "arrested", "charged", "sentenced", "convicted",
     "killed", "shot", "wanted", "missing",
     "critical", "incident", "response",
+    # K9 / animal names that look like human names
+    "apprehends", "apprehend", "locates", "tracks",
 }
+
+# Patterns in title/description where the name belongs to a NON-SUSPECT entity
+# (K9 dog, rescued person, reporter, community member, etc.)
+NON_SUSPECT_CONTEXT_PATTERNS = [
+    # "K-9 [Name] Apprehends" / "K9 [Name] Locates" — Name is the dog
+    r"k[- ]?9\s+([A-Z][a-z]+)\s+(?:apprehends?|locates?|tracks?|finds?)",
+    # "[Name] Apprehends Suspect" — Name is probably the K9 or officer
+    r"([A-Z][a-z]+)\s+(?:Apprehends|Locates|Tracks)\s+(?:Suspect|Fugitive)",
+    # Rescued / saved person: "deputies rescue [Name]" / "[Name] survived"
+    r"(?:rescue[ds]?|save[ds]?|pull(?:ed)?\s+from)\s+(?:\w+\s+){0,3}([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    # "proud of [Name]" / "commend [Name]" — award/recognition
+    r"(?:proud\s+of|commend|honoring|congratulat)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+]
+
+
+def _normalize_for_compare(name: str) -> str:
+    """Lowercase and collapse whitespace for name comparison."""
+    return " ".join(name.lower().split())
 
 
 def _is_plausible_name(name: str) -> bool:
@@ -624,6 +684,22 @@ def process_video(
         )
         suspect_name = ""
 
+    # Check if extracted name is a non-suspect entity (K9, rescued person, etc.)
+    if suspect_name:
+        for nsp in NON_SUSPECT_CONTEXT_PATTERNS:
+            ns_match = re.search(nsp, combined_text, re.IGNORECASE)
+            if ns_match:
+                matched_name = ns_match.group(1).strip()
+                if _normalize_for_compare(suspect_name).startswith(
+                    _normalize_for_compare(matched_name)
+                ):
+                    log.info(
+                        "Rejected non-suspect name '%s' for %s (pattern: '%s')",
+                        suspect_name, video_id, nsp,
+                    )
+                    suspect_name = ""
+                    break
+
     # For OIS videos, the first name found is usually the officer — be extra cautious
     if classification["is_ois"] and suspect_name:
         # Check if the name appears near officer-role context
@@ -662,6 +738,21 @@ def process_video(
     if classification["is_cold_case"]:
         log.info("Skipping cold case %s — '%s' is the victim, not a suspect", video_id, suspect_name)
         return None
+
+    # Victim-name detection: if title says "murder of X" / "missing X",
+    # the extracted name is the VICTIM, not the suspect — clear it.
+    if suspect_name:
+        for vp in VICTIM_TITLE_PATTERNS:
+            vmatch = re.search(vp, title)
+            if vmatch:
+                victim_name = vmatch.group(1).strip()
+                if _normalize_for_compare(suspect_name) == _normalize_for_compare(victim_name):
+                    log.info(
+                        "Cleared victim name '%s' for %s (title pattern: '%s')",
+                        suspect_name, video_id, vp,
+                    )
+                    suspect_name = ""
+                    break
 
     # Tag operations/stings in keywords AND use operation name as identifier
     if classification["is_operation"]:

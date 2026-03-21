@@ -3,8 +3,10 @@
 Two levels:
 1. Video-level (hard dedup) — by video_id
 2. Case-level (soft dedup) — likely-duplicate detection by suspect + location + date
+3. Incident-level (content dedup) — same incident covered by multiple videos
 """
 
+import re
 from datetime import datetime, timedelta
 from typing import Optional
 
@@ -98,6 +100,72 @@ def find_likely_duplicate(
     return None
 
 
+def _extract_location_from_description(desc: str) -> str:
+    """Try to extract a street address or landmark from description for incident matching."""
+    # Look for street addresses like "1951 Central Florida Parkway" or "6809 Colony Oaks Lane"
+    match = re.search(r"\b\d{2,5}\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,4}\s+(?:Road|Rd|Street|St|Avenue|Ave|Drive|Dr|Boulevard|Blvd|Lane|Ln|Parkway|Pkwy|Court|Ct|Circle|Way|Trail|Place|Pl)\b", desc)
+    if match:
+        return match.group(0).lower()
+    return ""
+
+
+def find_incident_duplicate(
+    candidate: CaseCandidate,
+    existing_cases: list[dict],
+    date_window_days: int = 7,
+) -> Optional[str]:
+    """Detect same-incident duplicates even when suspect names are unknown.
+
+    Uses: same agency + same city + overlapping incident date (within 7 days) +
+    same primary keyword (shooting, stabbing, etc.).
+    This catches the pattern where an agency posts both a press briefing and a
+    BWC release for the same incident.
+    """
+    c_state = (candidate.state or "").upper()
+    c_city = (candidate.city or "").lower().strip()
+    c_agency = (candidate.agency_name or "").lower().strip()
+    c_date = _parse_date_loose(candidate.incident_date)
+    c_keywords = set((candidate.case_keywords or "").lower().replace(",", " ").split())
+    c_location = _extract_location_from_description(candidate.video_description or "")
+
+    # Primary crime keyword (the most specific one)
+    primary_crimes = {"murder", "homicide", "shooting", "stabbing", "carjacking",
+                      "kidnapping", "robbery", "arson", "sexual assault", "rape"}
+    c_primary = c_keywords & primary_crimes
+
+    for existing in existing_cases:
+        e_state = (existing.get("state", "") or "").upper()
+        e_city = (existing.get("city", "") or "").lower().strip()
+        e_agency = (existing.get("agency_name", "") or "").lower().strip()
+        e_date = _parse_date_loose(existing.get("incident_date", ""))
+        e_keywords = set((existing.get("case_keywords", "") or "").lower().replace(",", " ").split())
+        e_primary = e_keywords & primary_crimes
+
+        # Must be same state
+        if c_state != e_state:
+            continue
+        # Must be same city or same agency
+        if c_city != e_city and c_agency != e_agency:
+            continue
+        # Must have overlapping primary crime type
+        if c_primary and e_primary and not (c_primary & e_primary):
+            continue
+        # Date must be close
+        if c_date and e_date and abs((c_date - e_date).days) > date_window_days:
+            continue
+        # If no date on either side, require stronger match
+        if not c_date or not e_date:
+            # Need matching location string from description
+            e_desc = existing.get("video_description", "") or ""
+            e_location = _extract_location_from_description(e_desc)
+            if not c_location or not e_location or c_location != e_location:
+                continue
+
+        return existing.get("case_id", "unknown")
+
+    return None
+
+
 def deduplicate_candidates(
     candidates: list[CaseCandidate],
     existing_video_ids: set[str],
@@ -117,7 +185,7 @@ def deduplicate_candidates(
             dupes.append(c)
             continue
 
-        # Soft dedup: likely case duplicate
+        # Soft dedup: likely case duplicate (by name + location + date)
         existing_case_id = find_likely_duplicate(c, existing_cases)
         if existing_case_id:
             log.info(
@@ -127,6 +195,17 @@ def deduplicate_candidates(
             )
             c.validation_note = f"Likely duplicate of {existing_case_id}"
             # Still process but flag — per spec, soft dupes are processed with a warning
+
+        # Incident-level dedup: same incident, different video (press briefing + BWC release)
+        if not existing_case_id:
+            incident_match = find_incident_duplicate(c, existing_cases)
+            if incident_match:
+                log.info(
+                    "Likely incident duplicate: %s matches existing %s",
+                    c.case_id,
+                    incident_match,
+                )
+                c.validation_note = f"Likely incident duplicate of {incident_match}"
 
         new.append(c)
         existing_video_ids.add(c.video_id)
