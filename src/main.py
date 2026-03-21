@@ -239,6 +239,8 @@ def stage_discover(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
             candidate=c,
             brave_api_key=config["brave_api_key"],
             rate_limit=1.0 / config.get("brave_requests_per_second", 1),
+            courtlistener_api_key=config.get("courtlistener_api_key", ""),
+            caselaw_api_key=config.get("caselaw_api_key", ""),
         )
 
         # Determine official corroboration
@@ -261,6 +263,9 @@ def stage_discover(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
             c.local_case_folder = storage.relative_path(folder_path)
 
         inv_dict = asdict(inventory)
+        # Persist enrichment metadata (case numbers, citations) if present
+        if hasattr(inventory, "enrichment"):
+            inv_dict["enrichment"] = inventory.enrichment
         storage.write_links_inventory(folder_path, inv_dict)
         storage.copy_links_inventory(c.case_id, inv_dict)
 

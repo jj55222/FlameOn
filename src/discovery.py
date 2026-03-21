@@ -2,6 +2,10 @@
 
 Only runs after validation_status = validated_closed.
 Discovers and inventories links. Does NOT download anything.
+
+Now includes Phase 0 (Case Search Enrichment) which queries
+CourtListener + case.law to extract case numbers, then uses
+those numbers for surgical state-portal artifact queries.
 """
 
 import time
@@ -9,6 +13,10 @@ from dataclasses import asdict
 
 import requests
 
+from .case_search import (
+    build_case_number_queries,
+    enrich_case,
+)
 from .logger import get_logger
 from .models import CaseCandidate, DiscoveredLink, LinkInventory, SourceRank
 
@@ -345,23 +353,119 @@ def discover_bwc_interrogation_links(
     return links
 
 
+def discover_case_number_links(
+    candidate: CaseCandidate,
+    case_numbers: list[str],
+    docket_numbers: list[str],
+    brave_api_key: str,
+    rate_limit: float = 1.0,
+) -> list[DiscoveredLink]:
+    """Run case-number-enhanced Brave queries targeting state portals.
+
+    Uses case numbers extracted from CourtListener/case.law to build
+    surgical queries that hit state court portals directly.
+    """
+    queries = build_case_number_queries(candidate, case_numbers, docket_numbers)
+    if not queries:
+        return []
+
+    links = []
+    seen_urls = set()
+
+    for query in queries:
+        log.debug("Case-number query: %s", query)
+        results = _brave_search(query, brave_api_key)
+
+        for r in results:
+            url = r["url"]
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+
+            source_class, link_type = _classify_link(url, r["title"], r["description"])
+
+            download_rec = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
+            official = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
+
+            links.append(DiscoveredLink(
+                url=url,
+                source_class=source_class,
+                link_type=link_type,
+                notes=f"[case-num] {r['title']}: {r['description'][:200]}",
+                download_recommended=download_rec,
+                official_corroboration=official,
+            ))
+
+        time.sleep(rate_limit)
+
+    return links
+
+
 def run_discovery(
     candidate: CaseCandidate,
     brave_api_key: str,
     rate_limit: float = 1.0,
+    courtlistener_api_key: str = "",
+    caselaw_api_key: str = "",
 ) -> LinkInventory:
     """Run full link discovery for a validated closed case.
+
+    Phases:
+        0. Case Search Enrichment — CourtListener + case.law API queries
+           to extract case numbers, docket numbers, citations, and direct
+           document links from the RECAP archive.
+        1. Court/docket links — state-aware Brave searches (existing).
+        1b. Case-number queries — surgical Brave queries using case numbers
+            from Phase 0 (NEW).
+        2. News articles.
+        3. BWC/interrogation footage.
 
     Returns a LinkInventory with all discovered links.
     """
     log.info("Starting link discovery for %s (%s)", candidate.case_id, candidate.suspect_name)
 
     all_links = []
+    enrichment_links = []
+    case_num_links = []
 
-    # Phase 1: Court/docket links (highest priority)
+    # Phase 0: Case Search Enrichment (CourtListener + case.law)
+    enrichment = {"case_numbers": [], "docket_numbers": [], "citations": []}
+    if courtlistener_api_key or caselaw_api_key:
+        log.info("Phase 0: Case search enrichment (CourtListener + case.law)")
+        enrichment = enrich_case(
+            candidate,
+            courtlistener_api_key=courtlistener_api_key,
+            caselaw_api_key=caselaw_api_key,
+            rate_limit=max(rate_limit, 2.0),  # Be conservative with API limits
+        )
+
+        # Collect all links from enrichment
+        for key in ["cl_opinion_links", "cl_docket_links", "cl_document_links", "cap_links"]:
+            enrichment_links.extend(enrichment.get(key, []))
+
+        all_links.extend(enrichment_links)
+        log.info(
+            "Phase 0 complete: %d links, %d case numbers, %d docket numbers",
+            len(enrichment_links),
+            len(enrichment.get("case_numbers", [])),
+            len(enrichment.get("docket_numbers", [])),
+        )
+
+    # Phase 1: Court/docket links via Brave (highest priority)
     court_links = discover_court_links(candidate, brave_api_key, rate_limit)
     all_links.extend(court_links)
     log.info("Found %d court/docket links", len(court_links))
+
+    # Phase 1b: Case-number-enhanced queries (if we have case numbers)
+    case_numbers = enrichment.get("case_numbers", [])
+    docket_numbers = enrichment.get("docket_numbers", [])
+    if case_numbers or docket_numbers:
+        log.info("Phase 1b: Case-number-enhanced queries (%d numbers)", len(case_numbers) + len(docket_numbers))
+        case_num_links = discover_case_number_links(
+            candidate, case_numbers, docket_numbers, brave_api_key, rate_limit,
+        )
+        all_links.extend(case_num_links)
+        log.info("Found %d case-number links", len(case_num_links))
 
     # Phase 2: News articles
     news_links = discover_news_links(candidate, brave_api_key, rate_limit)
@@ -373,6 +477,16 @@ def run_discovery(
     all_links.extend(bwc_links)
     log.info("Found %d BWC/interrogation links", len(bwc_links))
 
+    # Deduplicate by URL across all phases
+    seen_urls = set()
+    deduped = []
+    for link in all_links:
+        url = link.url if isinstance(link, DiscoveredLink) else link.get("url", "")
+        if url not in seen_urls:
+            seen_urls.add(url)
+            deduped.append(link)
+    all_links = deduped
+
     # Sort by source quality
     rank_order = {
         SourceRank.COURT_GOV.value: 0,
@@ -381,18 +495,30 @@ def run_discovery(
         SourceRank.LE_RELEASE.value: 3,
         SourceRank.OTHER.value: 4,
     }
-    all_links.sort(key=lambda link: rank_order.get(link.source_class, 5))
+    all_links.sort(key=lambda link: rank_order.get(
+        link.source_class if isinstance(link, DiscoveredLink) else link.get("source_class", ""),
+        5,
+    ))
 
     inventory = LinkInventory(
         case_id=candidate.case_id,
-        links=[asdict(link) for link in all_links],
+        links=[asdict(link) if isinstance(link, DiscoveredLink) else link for link in all_links],
     )
 
+    # Store enrichment metadata alongside inventory
+    inventory.enrichment = {
+        "case_numbers": enrichment.get("case_numbers", []),
+        "docket_numbers": enrichment.get("docket_numbers", []),
+        "citations": enrichment.get("citations", []),
+    }
+
     log.info(
-        "Discovery complete for %s: %d total links (%d court, %d news, %d bwc)",
+        "Discovery complete for %s: %d total links (%d enrichment, %d court, %d case-num, %d news, %d bwc)",
         candidate.case_id,
         len(all_links),
+        len(enrichment_links),
         len(court_links),
+        len(case_num_links),
         len(news_links),
         len(bwc_links),
     )
