@@ -24,6 +24,8 @@ log = get_logger()
 NAME_PATTERNS = [
     # "John Doe Arrested" / "John Doe Sentenced" / "John A. Doe ..."
     r"(?:Body\s*Cam|BWC|Bodycam)?[:\s\-|]*([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})(?:\s*,?\s*(?:\d+|Jr\.|Sr\.|III|II))?(?:\s*[-,]?\s*(?:Arrested|Charged|Sentenced|Convicted|Shot|Killed|Suspect|Defendant))",
+    # "John Doe was/were arrested" / "John Doe has been charged" (LE press release body text)
+    r"([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})(?:\s+(?:was|were|has\s+been|is))\s+(?:arrested|charged|sentenced|convicted|indicted|booked)",
     # "State v. John Doe" / "State vs. Doe"
     r"(?:State|People|Commonwealth)\s+(?:v\.?|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
     # "Arrest of John Doe" / "Sentencing of John Doe"
@@ -68,15 +70,49 @@ KEYWORD_PATTERNS = [
 ]
 
 
+# Common words that look like names but aren't (false positive filter)
+NOT_A_NAME = {
+    "teen", "teens", "teenage", "teenager",
+    "man", "woman", "men", "women", "boy", "girl",
+    "suspect", "suspects", "defendant", "defendants",
+    "gunman", "gunmen", "shooter", "shooters",
+    "victim", "victims", "officer", "officers",
+    "deputy", "deputies", "sergeant", "detective",
+    "police", "sheriff", "trooper", "agent",
+    "child", "children", "juvenile", "minor",
+    "year", "old", "male", "female",
+    "body", "cam", "bodycam", "footage",
+    "arrested", "charged", "sentenced", "convicted",
+    "killed", "shot", "wanted", "missing",
+    "critical", "incident", "response",
+}
+
+
+def _is_plausible_name(name: str) -> bool:
+    """Check if extracted text looks like an actual person name, not a descriptor."""
+    parts = name.split()
+    if len(parts) < 2 or len(name) <= 5:
+        return False
+    # Reject if ANY word is a known non-name word
+    for p in parts:
+        if p.lower() in NOT_A_NAME:
+            return False
+    # All parts should start with uppercase
+    if not all(p[0].isupper() for p in parts if p[0].isalpha()):
+        return False
+    return True
+
+
 def _extract_name_regex(text: str) -> str:
-    """Try to extract a suspect name using regex patterns."""
+    """Try to extract a suspect name using regex patterns.
+
+    Scans ALL patterns and ALL matches, returning the first plausible name.
+    This avoids bailing early on false positives like 'Teen Gunmen'.
+    """
     for pattern in NAME_PATTERNS:
-        match = re.search(pattern, text)
-        if match:
+        for match in re.finditer(pattern, text):
             name = match.group(1).strip()
-            # Basic sanity: name should be 2+ words, not a common false positive
-            parts = name.split()
-            if len(parts) >= 2 and len(name) > 5:
+            if _is_plausible_name(name):
                 return name
     return ""
 
