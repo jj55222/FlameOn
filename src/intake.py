@@ -11,6 +11,7 @@ from typing import Optional
 
 import requests
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 from .logger import get_logger
 from .models import CaseCandidate, ChannelConfig
@@ -169,30 +170,44 @@ def _generate_case_id(state: str, suspect_name: str, video_id: str, published_at
 
 
 def resolve_channel_id(youtube, handle: str) -> Optional[str]:
-    """Resolve a YouTube @handle to a channel ID."""
+    """Resolve a YouTube @handle to a channel ID.
+
+    Uses channels.list with forHandle (1 quota unit) first, only falls
+    back to search.list (100 units) if the handle can't be resolved.
+    """
+    clean_handle = handle.lstrip("@")
+
+    # Primary: channels.list with forHandle — 1 quota unit
     try:
-        # Try searching for the channel by handle
-        clean_handle = handle.lstrip("@")
+        resp = youtube.channels().list(
+            part="id,contentDetails",
+            forHandle=clean_handle,
+        ).execute()
+        items = resp.get("items", [])
+        if items:
+            return items[0]["id"]
+    except HttpError as e:
+        if e.resp.status == 403 and "quotaExceeded" in str(e):
+            raise  # Let caller handle quota exhaustion
+        log.debug("channels.list forHandle failed for %s: %s", handle, e)
+    except Exception as e:
+        log.debug("channels.list forHandle failed for %s: %s", handle, e)
+
+    # Fallback: search.list — 100 quota units
+    try:
         resp = youtube.search().list(
             part="snippet",
             q=f"@{clean_handle}",
             type="channel",
             maxResults=1,
         ).execute()
-
         items = resp.get("items", [])
         if items:
             return items[0]["snippet"]["channelId"]
-
-        # Fallback: try channels.list with forHandle (newer API)
-        resp = youtube.channels().list(
-            part="contentDetails",
-            forHandle=clean_handle,
-        ).execute()
-        items = resp.get("items", [])
-        if items:
-            return items[0]["id"]
-
+    except HttpError as e:
+        if e.resp.status == 403 and "quotaExceeded" in str(e):
+            raise
+        log.warning("Failed to resolve channel ID for %s: %s", handle, e)
     except Exception as e:
         log.warning("Failed to resolve channel ID for %s: %s", handle, e)
 
@@ -452,7 +467,13 @@ def run_intake(
 
         # Resolve channel ID if needed
         if not ch.channel_id:
-            ch.channel_id = resolve_channel_id(youtube, ch.handle)
+            try:
+                ch.channel_id = resolve_channel_id(youtube, ch.handle)
+            except HttpError as e:
+                if e.resp.status == 403 and "quotaExceeded" in str(e):
+                    log.error("YouTube API quota exhausted — stopping intake. Quota resets at midnight Pacific.")
+                    break
+                raise
             if not ch.channel_id:
                 log.warning("Could not resolve channel ID for %s, skipping", ch.handle)
                 continue

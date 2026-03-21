@@ -62,6 +62,8 @@ def load_channels(channels_path: str = "config/channels.yaml") -> list[ChannelCo
             agency_name=ch["agency_name"],
             state=ch["state"],
             city=ch.get("city", ""),
+            channel_id=ch.get("channel_id"),
+            uploads_playlist_id=ch.get("uploads_playlist_id"),
         ))
     return channels
 
