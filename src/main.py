@@ -441,10 +441,19 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
                 new_name = ""
 
-        # Cold cases: the extracted name is the VICTIM, not a suspect
-        if classification["is_cold_case"] and new_name and not new_name.startswith("VICTIM:"):
-            log.info("Cold case detected for %s — '%s' is the victim", case_id, new_name)
-            new_name = f"VICTIM: {new_name}"
+        # Cold cases: no suspect — reject entirely
+        if classification["is_cold_case"]:
+            log.info(
+                "Rejecting cold case: '%s' (name '%s' is the victim)",
+                title[:60], new_name,
+            )
+            sheet.update_case(case_id, {
+                "suspect_name": "",
+                "validation_status": "rejected_open_or_unconfirmed",
+                "validation_note": "Auto-rejected: cold case / unsolved — no suspect",
+            })
+            skipped_non_crime += 1
+            continue
 
         # Re-extract date if missing
         old_date = row.get("incident_date", "")
@@ -469,10 +478,6 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
             # Use operation name as the case identifier when no suspect name
             if not new_name and classification["operation_name"]:
                 new_name = classification["operation_name"]
-
-        if classification["is_cold_case"] and "cold_case" not in old_keywords.lower():
-            ck = keyword_update.get("case_keywords", old_keywords)
-            keyword_update["case_keywords"] = f"{ck}, cold_case" if ck else "cold_case"
 
         if new_name != old_name or keyword_update or date_update:
             updates = {**keyword_update, **date_update}

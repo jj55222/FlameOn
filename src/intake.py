@@ -656,13 +656,10 @@ def process_video(
             else:
                 log.debug("LLM extracted name: %s", suspect_name)
 
-    # Cold cases: the extracted name is the VICTIM, not a suspect
-    if classification["is_cold_case"] and suspect_name:
-        log.info("Cold case detected for %s — '%s' is the victim, clearing suspect name", video_id, suspect_name)
-        # Prefix with "VICTIM:" so it's visible in the sheet but clearly not a suspect
-        suspect_name = f"VICTIM: {suspect_name}"
-        if "cold case" not in (keywords or "").lower():
-            keywords = f"{keywords}, cold_case" if keywords else "cold_case"
+    # Cold cases: no suspect exists — skip entirely
+    if classification["is_cold_case"]:
+        log.info("Skipping cold case %s — '%s' is the victim, not a suspect", video_id, suspect_name)
+        return None
 
     # Tag operations/stings in keywords AND use operation name as identifier
     if classification["is_operation"]:
