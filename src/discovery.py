@@ -296,9 +296,9 @@ def discover_news_links(
     city = candidate.city
     state = candidate.state
 
-    if _is_operation_name(name):
-        log.info("Skipping news discovery for operation name: %s (%s)", name, candidate.case_id)
-        return []
+    is_op = _is_operation_name(name)
+    if is_op:
+        log.info("Operation-name news search (not a person): %s (%s)", name, candidate.case_id)
 
     queries = []
     if name and city:
@@ -344,9 +344,9 @@ def discover_bwc_interrogation_links(
     name = candidate.suspect_name
     agency = candidate.agency_name
 
-    if _is_operation_name(name):
-        log.info("Skipping BWC/interrogation discovery for operation name: %s (%s)", name, candidate.case_id)
-        return []
+    is_op = _is_operation_name(name)
+    if is_op:
+        log.info("Operation-name BWC search (not a person): %s (%s)", name, candidate.case_id)
 
     queries = []
     if name:
