@@ -165,6 +165,19 @@ def _brave_search(query: str, api_key: str, count: int = 10) -> list[dict]:
         return []
 
 
+# URLs that should be excluded entirely — never useful for case research
+JUNK_URL_DOMAINS = [
+    "linkedin.com", "instagram.com", "tiktok.com", "pinterest.com",
+    "yelp.com", "glassdoor.com", "indeed.com", "zillow.com",
+]
+
+
+def _is_junk_url(url: str) -> bool:
+    """Check if a URL is from a domain that never has useful case data."""
+    url_lower = url.lower()
+    return any(d in url_lower for d in JUNK_URL_DOMAINS)
+
+
 def _classify_link(url: str, title: str, description: str) -> tuple[str, str]:
     """Classify a discovered link into (source_class, link_type)."""
     url_lower = url.lower()
@@ -177,7 +190,10 @@ def _classify_link(url: str, title: str, description: str) -> tuple[str, str]:
         source_class = SourceRank.COUNTY_CLERK.value
     elif any(d in url_lower for d in ["sheriff", "police", "pd.org"]):
         source_class = SourceRank.LE_RELEASE.value
-    elif any(d in url_lower for d in ["reddit.com", "twitter.com", "facebook.com", "wikipedia.org"]):
+    elif any(d in url_lower for d in [
+        "reddit.com", "twitter.com", "x.com", "facebook.com", "wikipedia.org",
+        "instagram.com", "linkedin.com", "tiktok.com", "youtube.com",
+    ]):
         source_class = SourceRank.OTHER.value
     else:
         source_class = SourceRank.LOCAL_NEWS.value
@@ -240,7 +256,7 @@ def discover_court_links(
 
         for r in results:
             url = r["url"]
-            if url in seen_urls:
+            if url in seen_urls or _is_junk_url(url):
                 continue
             seen_urls.add(url)
 
@@ -290,7 +306,7 @@ def discover_news_links(
 
         for r in results:
             url = r["url"]
-            if url in seen_urls:
+            if url in seen_urls or _is_junk_url(url):
                 continue
             seen_urls.add(url)
 
@@ -334,7 +350,7 @@ def discover_bwc_interrogation_links(
 
         for r in results:
             url = r["url"]
-            if url in seen_urls:
+            if url in seen_urls or _is_junk_url(url):
                 continue
             seen_urls.add(url)
 
@@ -378,7 +394,7 @@ def discover_case_number_links(
 
         for r in results:
             url = r["url"]
-            if url in seen_urls:
+            if url in seen_urls or _is_junk_url(url):
                 continue
             seen_urls.add(url)
 

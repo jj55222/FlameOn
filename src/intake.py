@@ -56,8 +56,8 @@ OPERATION_PATTERNS = [
 
 # Context clues that the name extracted is an OFFICER, not a suspect
 OFFICER_CONTEXT_PATTERNS = [
-    # "Officer X was/responded/arrived/shot" — X is the cop, not the suspect
-    r"(?:Officer|Deputy|Detective|Sergeant|Sgt\.|Cpl\.|Corporal|Lt\.|Lieutenant|Captain|Chief|Trooper|Agent)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    # "Officer/Sheriff/Chief X" — X is law enforcement, not the suspect
+    r"(?:Officer|Deputy|Detective|Sergeant|Sgt\.|Cpl\.|Corporal|Lt\.|Lieutenant|Captain|Chief|Sheriff|Trooper|Agent|Commander|Undersheriff|Marshal)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
     # "Officer X" in a title about OIS
     r"Officer[- ]Involved[- ]Shooting",
 ]
@@ -72,6 +72,8 @@ OFFICER_ROLE_PHRASES = [
     "hang up his helmet", "joining detective", "behind the badge",
     "sacrificed everything", "fallen officers", "etched a new name",
     "passed away", "killed in the line", "line of duty",
+    "held a news conference", "press conference", "shared details about",
+    "provided an update", "announced an arrest", "announced the arrest",
 ]
 
 
