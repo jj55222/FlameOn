@@ -14,6 +14,7 @@ from dataclasses import asdict
 import requests
 
 from .case_search import (
+    _is_operation_name,
     build_case_number_queries,
     build_direct_portal_urls,
     enrich_case,
@@ -241,6 +242,10 @@ def discover_court_links(
         log.warning("No suspect name for court link discovery: %s", candidate.case_id)
         return []
 
+    if _is_operation_name(name):
+        log.info("Skipping court link discovery for operation name: %s (%s)", name, candidate.case_id)
+        return []
+
     county = _get_county(candidate.city) if candidate.city else ""
     city = candidate.city or ""
 
@@ -291,6 +296,10 @@ def discover_news_links(
     city = candidate.city
     state = candidate.state
 
+    if _is_operation_name(name):
+        log.info("Skipping news discovery for operation name: %s (%s)", name, candidate.case_id)
+        return []
+
     queries = []
     if name and city:
         queries.append(f'"{name}" {city} sentenced convicted')
@@ -334,6 +343,10 @@ def discover_bwc_interrogation_links(
     """Discover BWC/interrogation footage links."""
     name = candidate.suspect_name
     agency = candidate.agency_name
+
+    if _is_operation_name(name):
+        log.info("Skipping BWC/interrogation discovery for operation name: %s (%s)", name, candidate.case_id)
+        return []
 
     queries = []
     if name:
