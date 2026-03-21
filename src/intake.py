@@ -315,6 +315,7 @@ def run_intake(
     openrouter_model: str = "google/gemini-flash-1.5",
     openrouter_base_url: str = "https://openrouter.ai/api/v1",
     max_total_videos: int = 0,
+    video_published_before: str = "",
     on_channel_complete: callable = None,
 ) -> list[CaseCandidate]:
     """Run YouTube intake for all configured channels.
@@ -322,12 +323,24 @@ def run_intake(
     Returns a list of CaseCandidates for new uploads.
     If max_total_videos > 0, limits the total number of videos fetched
     across all channels to save YouTube API quota.
+    If video_published_before is set (ISO date like "2025-06-01"), only
+    videos published before that date are processed — skips recent videos
+    that are unlikely to have closed cases.
     If on_channel_complete is provided, it's called with the channel's
     candidates after each channel finishes — enables incremental writes.
     """
     youtube = build("youtube", "v3", developerKey=youtube_api_key)
     all_candidates = []
     total_videos_fetched = 0
+
+    # Parse cutoff date if provided
+    cutoff_date = None
+    if video_published_before:
+        try:
+            cutoff_date = datetime.fromisoformat(video_published_before.replace("Z", "+00:00"))
+            log.info("Filtering videos published before %s", video_published_before)
+        except ValueError:
+            log.warning("Invalid video_published_before date '%s', ignoring", video_published_before)
 
     for ch in channels:
         log.info("Processing channel: %s (%s)", ch.handle, ch.agency_name)
@@ -365,7 +378,20 @@ def run_intake(
         # Process each video — only keep videos with crime-related signals
         channel_candidates = []
         skipped = 0
+        date_filtered = 0
         for video in videos:
+            # Date filter — skip videos published after the cutoff
+            if cutoff_date:
+                pub = video.get("published_at", "")
+                if pub:
+                    try:
+                        pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
+                        if pub_dt >= cutoff_date:
+                            date_filtered += 1
+                            continue
+                    except ValueError:
+                        pass
+
             candidate = process_video(
                 video, ch, openrouter_api_key, openrouter_model, openrouter_base_url
             )
@@ -381,6 +407,8 @@ def run_intake(
                 candidate.suspect_name or "(none)",
                 candidate.case_keywords or "(none)",
             )
+        if date_filtered:
+            log.info("Filtered %d/%d videos from %s (published after cutoff)", date_filtered, len(videos), ch.handle)
         if skipped:
             log.info("Skipped %d/%d videos from %s (no crime signals)", skipped, len(videos), ch.handle)
 
