@@ -22,15 +22,15 @@ log = get_logger()
 # Suspect name patterns (common in LE video titles)
 NAME_PATTERNS = [
     # "John Doe Arrested" / "John Doe Sentenced" / "John A. Doe ..."
-    r"(?:Body\s*Cam|BWC|Bodycam)?[:\s\-|]*([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})(?:\s*,?\s*(?:\d+|Jr\.|Sr\.|III|II))?(?:\s*[-,]?\s*(?:Arrested|Charged|Sentenced|Convicted|Shot|Killed|Suspect|Defendant))",
+    r"(?:Body\s*Cam|BWC|Bodycam)?[:\s\-|]*([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})(?:\s*,?\s*(?:\d+|Jr\.|Sr\.|III|II))?(?:\s*[-,]?\s*(?:Arrested|Charged|Sentenced|Convicted|Shot|Killed|Suspect|Defendant))",
     # "State v. John Doe" / "State vs. Doe"
-    r"(?:State|People|Commonwealth)\s+(?:v\.?|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    r"(?:State|People|Commonwealth)\s+(?:v\.?|vs\.?)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
     # "Arrest of John Doe" / "Sentencing of John Doe"
-    r"(?:Arrest|Sentencing|Conviction|Murder|Shooting|Interrogation)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    r"(?:Arrest|Sentencing|Conviction|Murder|Shooting|Interrogation)\s+of\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
     # "NN-year-old John Doe" / "NN year old John Doe" (common LE press release style)
-    r"\b\d{1,2}[\s-]+year[\s-]+old\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    r"\b\d{1,2}[\s-]+year[\s-]+old\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
     # "identified as John Doe" / "identified the suspect as John Doe"
-    r"(?:identified|known)\s+(?:as|the\s+\w+\s+as)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?)?\s+[A-Z][a-z]{2,})",
+    r"(?:identified|known)\s+(?:as|the\s+\w+\s+as)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
 ]
 
 # Date patterns
