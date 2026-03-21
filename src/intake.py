@@ -598,13 +598,16 @@ def process_video(
             else:
                 log.debug("LLM extracted name: %s", suspect_name)
 
-    # Tag operations/stings in keywords
+    # Tag operations/stings in keywords AND use operation name as identifier
     if classification["is_operation"]:
         op_tag = classification["operation_name"] or "sting_operation"
         if keywords:
             keywords = f"{keywords}, {op_tag}"
         else:
             keywords = op_tag
+        # Use operation name as the case identifier when no suspect name
+        if not suspect_name and classification["operation_name"]:
+            suspect_name = classification["operation_name"]
 
     if classification["is_ois"]:
         if "officer-involved" not in (keywords or ""):

@@ -438,7 +438,8 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
                 new_name = ""
 
-        # Tag operations in keywords
+        # Tag operations in keywords AND use operation name as suspect_name
+        # if no actual suspect name was found
         old_keywords = row.get("case_keywords", "")
         keyword_update = {}
         if classification["is_operation"]:
@@ -446,6 +447,9 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
             if op_tag.lower() not in old_keywords.lower():
                 new_keywords = f"{old_keywords}, {op_tag}" if old_keywords else op_tag
                 keyword_update["case_keywords"] = new_keywords
+            # Use operation name as the case identifier when no suspect name
+            if not new_name and classification["operation_name"]:
+                new_name = classification["operation_name"]
 
         if new_name != old_name or keyword_update:
             updates = dict(keyword_update)
