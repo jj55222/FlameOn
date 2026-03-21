@@ -15,6 +15,7 @@ import requests
 
 from .case_search import (
     build_case_number_queries,
+    build_direct_portal_urls,
     enrich_case,
 )
 from .logger import get_logger
@@ -467,14 +468,33 @@ def run_discovery(
             len(enrichment.get("docket_numbers", [])),
         )
 
+    # Phase 0b: Direct portal URL construction (zero API cost)
+    case_numbers = enrichment.get("case_numbers", [])
+    docket_numbers = enrichment.get("docket_numbers", [])
+    # Extract docket IDs from CL docket links for federal URL construction
+    docket_ids = []
+    for dl in enrichment.get("cl_docket_links", []):
+        url = dl.url if isinstance(dl, DiscoveredLink) else dl.get("url", "")
+        # Extract docket ID from CourtListener URL: /docket/12345/...
+        if "/docket/" in url:
+            parts = url.split("/docket/")
+            if len(parts) > 1:
+                did = parts[1].strip("/").split("/")[0]
+                if did.isdigit():
+                    docket_ids.append(int(did))
+
+    direct_urls = build_direct_portal_urls(
+        candidate, case_numbers, docket_numbers, docket_ids=docket_ids,
+    )
+    all_links.extend(direct_urls)
+    log.info("Phase 0b complete: %d direct portal URLs constructed", len(direct_urls))
+
     # Phase 1: Court/docket links via Brave (highest priority)
     court_links = discover_court_links(candidate, brave_api_key, rate_limit)
     all_links.extend(court_links)
     log.info("Found %d court/docket links", len(court_links))
 
     # Phase 1b: Case-number-enhanced queries (if we have case numbers)
-    case_numbers = enrichment.get("case_numbers", [])
-    docket_numbers = enrichment.get("docket_numbers", [])
     if case_numbers or docket_numbers:
         log.info("Phase 1b: Case-number-enhanced queries (%d numbers)", len(case_numbers) + len(docket_numbers))
         case_num_links = discover_case_number_links(
@@ -529,10 +549,11 @@ def run_discovery(
     }
 
     log.info(
-        "Discovery complete for %s: %d total links (%d enrichment, %d court, %d case-num, %d news, %d bwc)",
+        "Discovery complete for %s: %d total links (%d enrichment, %d direct-url, %d court, %d case-num, %d news, %d bwc)",
         candidate.case_id,
         len(all_links),
         len(enrichment_links),
+        len(direct_urls),
         len(court_links),
         len(case_num_links),
         len(news_links),

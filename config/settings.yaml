@@ -8,6 +8,7 @@ brave_api_key: ""
 openrouter_api_key: ""
 courtlistener_api_key: ""  # Free Law Project — https://www.courtlistener.com/help/api/
 caselaw_api_key: ""         # Harvard CAP — https://case.law/user/register/
+exa_api_key: ""             # Exa semantic search — https://dashboard.exa.ai/ (used in Phase 1b corroboration)
 
 # Google Sheets service account credentials JSON file path
 google_sheets_credentials_file: ""

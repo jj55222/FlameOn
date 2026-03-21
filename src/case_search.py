@@ -519,6 +519,316 @@ STATE_CASE_NUMBER_TARGETS = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Direct portal URL construction (Phase 0b — zero API cost)
+# ---------------------------------------------------------------------------
+
+# County-specific portal URL templates.
+# Each entry: (portal_name, url_template, notes)
+# Templates can use: {case_num}, {case_num_nodash}, {county}, {county_lower}
+#
+# These are best-effort guesses. Some will 404 — that's expected.
+# The download stage validates them. Logging here lets us track hit rates.
+
+COUNTY_PORTAL_URLS = {
+    # --- Florida (per-county clerks) ---
+    "FL": {
+        "Miami-Dade": [
+            ("Miami-Dade Clerk (CJIS)",
+             "https://www2.miami-dadeclerk.com/cjis/CaseSearch/Details/?CaseNo={case_num_nodash}",
+             "Form-based but sometimes accepts direct case number param"),
+        ],
+        "Broward": [
+            ("Broward Clerk of Courts",
+             "https://www.browardclerk.org/Web2/CaseSearch/Details/?caseid={case_num_nodash}",
+             "Broward Web2 portal — case ID format may differ"),
+        ],
+        "Orange": [
+            ("Orange County myeclerk",
+             "https://myeclerk.myorangeclerk.com/Cases/Search?q={case_num}",
+             "Orange County Odyssey-based search"),
+        ],
+        "Hillsborough": [
+            ("Hillsborough Clerk",
+             "https://pubrec10.hillsclerk.com/Unsecured/CaseDetail.aspx?CaseID={case_num_nodash}",
+             "Hillsborough Odyssey portal"),
+        ],
+        "Duval": [
+            ("Duval County Clerk",
+             "https://core.duvalclerk.com/CoreCms.aspx?q={case_num}",
+             "Duval CORE portal — may require session"),
+        ],
+        "Palm Beach": [
+            ("Palm Beach Clerk",
+             "https://applications.mypalmbeachclerk.com/eCaseView/search.do?searchType=CASE&caseNumber={case_num}",
+             "Palm Beach eCaseView"),
+        ],
+        "Pinellas": [
+            ("Pinellas Clerk",
+             "https://ccmspa.pinellascounty.org/PublicAccess/CaseDetail.aspx?CaseID={case_num_nodash}",
+             "Pinellas public access portal"),
+        ],
+    },
+    # --- Arizona ---
+    "AZ": {
+        "Maricopa": [
+            ("Maricopa Superior Court Docket",
+             "https://www.superiorcourt.maricopa.gov/docket/CriminalCourtCases/caseInfo.asp?caseNumber={case_num}",
+             "Direct docket lookup — works for CR-format case numbers"),
+            ("Maricopa Clerk of Court",
+             "https://www.clerkofcourt.maricopa.gov/records/electronic-court-records-ecr",
+             "Landing page — no direct link, but logged for reference"),
+        ],
+        "Pima": [
+            ("Pima County Consolidated Justice Court",
+             "https://www.jp.pima.gov/",
+             "Landing page only — no direct URL construction available"),
+        ],
+    },
+    # --- Texas ---
+    "TX": {
+        "Harris": [
+            ("Harris County District Clerk eDocs",
+             "https://www.hcdistrictclerk.com/edocs/public/search.aspx?CaseNumber={case_num_nodash}",
+             "Requires login — may not resolve directly but worth logging"),
+        ],
+        "Dallas": [
+            ("Dallas County District Clerk",
+             "https://www.dallascounty.org/department/distclerk/casesearch.php?casenumber={case_num_nodash}",
+             "Dallas district clerk search"),
+        ],
+        "Tarrant": [
+            ("Tarrant County District Clerk",
+             "https://apps.tarrantcounty.com/DistrictClerk/CrimCaseSearch/CaseDetail.aspx?caseNumber={case_num_nodash}",
+             "Tarrant Odyssey-based portal"),
+        ],
+        "Bexar": [
+            ("Bexar County District Clerk",
+             "https://www.bexar.org/2852/Search-Court-Records",
+             "Landing page only — no direct URL construction"),
+        ],
+        "Travis": [
+            ("Travis County District Clerk",
+             "https://odyssey.traviscountytx.gov/default.aspx",
+             "Odyssey portal — form-based, no direct URL"),
+        ],
+    },
+    # --- Ohio ---
+    "OH": {
+        "Franklin": [
+            ("Franklin County Common Pleas CIO",
+             "https://fcdcfcjs.co.franklin.oh.us/CaseInformationOnline/caseDetail?caseID={case_num_nodash}",
+             "Franklin County Case Information Online"),
+        ],
+        "Cuyahoga": [
+            ("Cuyahoga County CP Docket",
+             "https://cpdocket.cp.cuyahogacounty.gov/CaseDetail.aspx?CaseID={case_num_nodash}",
+             "Cuyahoga Common Pleas docket — may require session"),
+        ],
+        "Hamilton": [
+            ("Hamilton County Clerk",
+             "https://www.courtclerk.org/records/case-search/?casenumber={case_num_nodash}",
+             "Hamilton County Clerk of Courts"),
+        ],
+        "Summit": [
+            ("Summit County Clerk",
+             "https://www.summitohioprobate.com/",
+             "Landing page only"),
+        ],
+        "Lucas": [
+            ("Lucas County Clerk",
+             "https://co.lucas.oh.us/1061/Online-Records-Search",
+             "Landing page only"),
+        ],
+    },
+}
+
+# Statewide portals that work for any county in the state
+STATEWIDE_PORTAL_URLS = {
+    "AZ": [
+        ("Arizona Judicial Branch (eAccess)",
+         "https://apps.supremecourt.az.gov/publicaccess/caselookup.aspx",
+         "Statewide eAccess — form-based, logged as reference"),
+    ],
+    "OH": [
+        ("Ohio Supreme Court Public Docket",
+         "https://www.supremecourt.ohio.gov/clerk/ecms/",
+         "Supreme Court docket — appellate cases only"),
+    ],
+    "FL": [
+        ("Florida Appellate Case Info (ACIS)",
+         "https://acis.flcourts.gov/",
+         "Appellate docket search — useful for appeals"),
+    ],
+    "TX": [
+        ("Texas Courts Case Search",
+         "https://search.txcourts.gov/CaseSearch.aspx?coa=cossup&s={case_num}",
+         "Statewide appellate search — may accept case numbers"),
+    ],
+}
+
+# Federal court URL templates (work when we have docket_id or case number)
+FEDERAL_URL_TEMPLATES = [
+    ("CourtListener Docket",
+     "https://www.courtlistener.com/docket/{docket_id}/",
+     "Direct link from enrichment docket_id — high confidence"),
+    ("PACER (via RECAP)",
+     "https://www.courtlistener.com/docket/{docket_id}/",
+     "Same as above — RECAP mirrors PACER"),
+]
+
+
+def build_direct_portal_urls(
+    candidate: CaseCandidate,
+    case_numbers: list[str],
+    docket_numbers: list[str],
+    docket_ids: list[int | str] = None,
+) -> list[DiscoveredLink]:
+    """Construct direct court portal URLs from case metadata (Phase 0b).
+
+    Zero API cost — these are URL guesses based on known portal patterns.
+    Each URL is logged with its construction rationale so we can track
+    hit/miss rates when the download stage attempts to fetch them.
+
+    Returns list of DiscoveredLink with source_class=court_gov or county_clerk.
+    """
+    state = candidate.state.upper()
+    city = (candidate.city or "").lower()
+
+    # Resolve county from city
+    from .discovery import _get_county
+    county = _get_county(city) if city else ""
+
+    links = []
+    seen_urls = set()
+
+    all_numbers = list(dict.fromkeys(case_numbers + docket_numbers))
+
+    if not all_numbers and not docket_ids:
+        log.info(
+            "[Phase 0b] No case numbers or docket IDs for %s — skipping direct URL construction",
+            candidate.case_id,
+        )
+        return links
+
+    log.info(
+        "[Phase 0b] Building direct portal URLs for %s: state=%s, county=%s, "
+        "case_numbers=%s, docket_numbers=%s, docket_ids=%s",
+        candidate.case_id, state, county or "(unknown)",
+        case_numbers, docket_numbers, docket_ids or [],
+    )
+
+    # --- County-specific portals ---
+    county_portals = COUNTY_PORTAL_URLS.get(state, {}).get(county, [])
+    if county_portals:
+        log.info("[Phase 0b] Found %d county portal templates for %s County, %s",
+                 len(county_portals), county, state)
+    else:
+        log.info("[Phase 0b] No county portal templates for county=%s, state=%s",
+                 county or "(unknown)", state)
+
+    for case_num in all_numbers[:3]:
+        # Strip dashes/spaces for portals that don't use them
+        case_num_nodash = re.sub(r"[-\s/]", "", case_num)
+
+        for portal_name, url_template, notes in county_portals:
+            try:
+                url = url_template.format(
+                    case_num=case_num,
+                    case_num_nodash=case_num_nodash,
+                    county=county,
+                    county_lower=county.lower().replace(" ", ""),
+                )
+            except (KeyError, IndexError):
+                log.warning("[Phase 0b] Template format error: %s with case_num=%s",
+                            portal_name, case_num)
+                continue
+
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+
+            log.info(
+                "[Phase 0b] CONSTRUCTED: %s | portal=%s | case_num=%s | notes=%s",
+                url, portal_name, case_num, notes,
+            )
+
+            links.append(DiscoveredLink(
+                url=url,
+                source_class=SourceRank.COUNTY_CLERK.value,
+                link_type="court_docket",
+                notes=f"[direct-url] {portal_name}: {case_num} — {notes}",
+                download_recommended=True,
+                official_corroboration=True,
+            ))
+
+        # --- Statewide portals ---
+        for portal_name, url_template, notes in STATEWIDE_PORTAL_URLS.get(state, []):
+            try:
+                url = url_template.format(
+                    case_num=case_num,
+                    case_num_nodash=case_num_nodash,
+                )
+            except (KeyError, IndexError):
+                continue
+
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+
+            log.info(
+                "[Phase 0b] STATEWIDE: %s | portal=%s | case_num=%s | notes=%s",
+                url, portal_name, case_num, notes,
+            )
+
+            links.append(DiscoveredLink(
+                url=url,
+                source_class=SourceRank.COURT_GOV.value,
+                link_type="court_docket",
+                notes=f"[direct-url] {portal_name}: {case_num} — {notes}",
+                download_recommended=False,  # landing pages aren't directly downloadable
+                official_corroboration=False,
+            ))
+
+    # --- Federal docket links from CourtListener docket IDs ---
+    if docket_ids:
+        for did in docket_ids:
+            url = f"https://www.courtlistener.com/docket/{did}/"
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+
+            log.info(
+                "[Phase 0b] FEDERAL: %s | docket_id=%s | source=CourtListener RECAP",
+                url, did,
+            )
+
+            links.append(DiscoveredLink(
+                url=url,
+                source_class=SourceRank.COURT_GOV.value,
+                link_type="court_docket",
+                notes=f"[direct-url] CourtListener RECAP docket #{did}",
+                download_recommended=True,
+                official_corroboration=True,
+            ))
+
+    log.info(
+        "[Phase 0b] Complete for %s: %d direct URLs constructed (%d county, %d state, %d federal)",
+        candidate.case_id,
+        len(links),
+        sum(1 for l in links if l.source_class == SourceRank.COUNTY_CLERK.value),
+        sum(1 for l in links if l.source_class == SourceRank.COURT_GOV.value and "RECAP" not in l.notes),
+        sum(1 for l in links if "RECAP" in l.notes),
+    )
+
+    return links
+
+
+# ---------------------------------------------------------------------------
+# Case-number-enhanced Brave queries
+# ---------------------------------------------------------------------------
+
+
 def build_case_number_queries(
     candidate: CaseCandidate,
     case_numbers: list[str],
