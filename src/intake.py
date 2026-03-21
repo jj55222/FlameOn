@@ -314,10 +314,12 @@ def run_intake(
     openrouter_api_key: str = "",
     openrouter_model: str = "google/gemini-flash-1.5",
     openrouter_base_url: str = "https://openrouter.ai/api/v1",
+    max_total_candidates: int = 0,
 ) -> list[CaseCandidate]:
     """Run YouTube intake for all configured channels.
 
     Returns a list of CaseCandidates for new uploads.
+    If max_total_candidates > 0, stops early once the cap is reached.
     """
     youtube = build("youtube", "v3", developerKey=youtube_api_key)
     all_candidates = []
@@ -363,8 +365,14 @@ def run_intake(
                 candidate.suspect_name or "(none)",
                 candidate.case_keywords or "(none)",
             )
+            if max_total_candidates > 0 and len(all_candidates) >= max_total_candidates:
+                log.info("Reached max_total_candidates cap (%d), stopping intake", max_total_candidates)
+                break
         if skipped:
             log.info("Skipped %d/%d videos from %s (no crime signals)", skipped, len(videos), ch.handle)
+
+        if max_total_candidates > 0 and len(all_candidates) >= max_total_candidates:
+            break
 
         time.sleep(rate_limit)
 

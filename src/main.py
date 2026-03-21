@@ -87,6 +87,7 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
         openrouter_api_key=config.get("openrouter_api_key", ""),
         openrouter_model=config.get("openrouter_model_extraction", "google/gemini-flash-1.5"),
         openrouter_base_url=config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
+        max_total_candidates=config.get("max_total_candidates", 0),
     )
 
     # Dedup
