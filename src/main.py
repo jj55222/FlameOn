@@ -19,7 +19,7 @@ import yaml
 from .dedup import deduplicate_candidates
 from .discovery import run_discovery
 from .download import download_from_inventory
-from .intake import run_intake, _extract_name_regex, _extract_name_llm, _generate_case_id
+from .intake import run_intake, _extract_name_regex, _extract_name_llm, _generate_case_id, classify_video_content
 from .logger import get_logger, setup_logger
 from .models import (
     CaseCandidate,
@@ -367,6 +367,9 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
     log.info("Loaded %d rows from sheet", len(rows))
 
     updated = 0
+    skipped_non_crime = 0
+    officer_rejected = 0
+
     for row in rows:
         old_name = row.get("suspect_name", "")
         title = row.get("video_title", "")
@@ -376,10 +379,51 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
         if not title and not description:
             continue
 
+        # Classify video content first
+        classification = classify_video_content(title, description)
+
+        if classification["skip"]:
+            if old_name:
+                log.info(
+                    "Flagging non-crime video: '%s' (had name '%s') — %s",
+                    title[:60], old_name, classification["skip_reason"],
+                )
+                sheet.update_case(case_id, {
+                    "suspect_name": "",
+                    "validation_status": "rejected_open_or_unconfirmed",
+                    "validation_note": f"Auto-rejected: {classification['skip_reason']}",
+                })
+                skipped_non_crime += 1
+            continue
+
         text = f"{title}\n{description}"
 
         # Try improved regex first
         new_name = _extract_name_regex(text)
+
+        # Check if extracted name is actually an officer
+        officer_names_lower = [n.lower() for n in classification["officer_names"]]
+        if new_name and new_name.lower() in officer_names_lower:
+            log.info("Rejected officer name '%s' for %s", new_name, case_id)
+            new_name = ""
+            officer_rejected += 1
+
+        # For OIS, check name context
+        if classification["is_ois"] and new_name:
+            from .intake import OFFICER_ROLE_PHRASES
+            name_lower = new_name.lower()
+            desc_lower = description.lower()
+            name_pos = desc_lower.find(name_lower)
+            if name_pos >= 0:
+                ctx_start = max(0, name_pos - 100)
+                ctx_end = min(len(desc_lower), name_pos + len(name_lower) + 100)
+                context = desc_lower[ctx_start:ctx_end]
+                for phrase in OFFICER_ROLE_PHRASES:
+                    if phrase in context:
+                        log.info("Rejected OIS officer name '%s' for %s", new_name, case_id)
+                        new_name = ""
+                        officer_rejected += 1
+                        break
 
         # Fall back to LLM if regex still empty
         if not new_name and config.get("openrouter_api_key"):
@@ -389,28 +433,45 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 config.get("openrouter_model_extraction", "google/gemini-flash-1.5"),
                 config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
             )
+            # Double-check LLM result against officer names
+            if new_name and new_name.lower() in officer_names_lower:
+                log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
+                new_name = ""
 
-        if new_name and new_name != old_name:
-            # Regenerate case_id with new name
-            new_case_id = _generate_case_id(
-                row.get("state", ""),
-                new_name,
-                row.get("video_id", ""),
-                row.get("published_at", ""),
-            )
+        # Tag operations in keywords
+        old_keywords = row.get("case_keywords", "")
+        keyword_update = {}
+        if classification["is_operation"]:
+            op_tag = classification["operation_name"] or "sting_operation"
+            if op_tag.lower() not in old_keywords.lower():
+                new_keywords = f"{old_keywords}, {op_tag}" if old_keywords else op_tag
+                keyword_update["case_keywords"] = new_keywords
 
-            log.info(
-                "Updated: '%s' -> '%s' (case_id: %s -> %s)",
-                old_name, new_name, case_id, new_case_id,
-            )
+        if new_name != old_name or keyword_update:
+            updates = dict(keyword_update)
 
-            sheet.update_case(case_id, {
-                "suspect_name": new_name,
-                "case_id": new_case_id,
-            })
+            if new_name != old_name:
+                new_case_id = _generate_case_id(
+                    row.get("state", ""),
+                    new_name,
+                    row.get("video_id", ""),
+                    row.get("published_at", ""),
+                )
+                updates["suspect_name"] = new_name
+                updates["case_id"] = new_case_id
+
+                log.info(
+                    "Updated: '%s' -> '%s' (case_id: %s -> %s)",
+                    old_name, new_name, case_id, new_case_id if new_name != old_name else case_id,
+                )
+
+            sheet.update_case(case_id, updates)
             updated += 1
 
-    log.info("Re-extraction complete: %d of %d rows updated", updated, len(rows))
+    log.info(
+        "Re-extraction complete: %d updated, %d non-crime skipped, %d officer names rejected (of %d rows)",
+        updated, skipped_non_crime, officer_rejected, len(rows),
+    )
     return updated
 
 

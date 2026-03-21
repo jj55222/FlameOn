@@ -18,7 +18,118 @@ from .models import CaseCandidate, ChannelConfig
 
 log = get_logger()
 
-# --- Regex patterns for field extraction ---
+# --- Video content classification ---
+# Detect non-crime content and context that causes name misattribution.
+# Applied BEFORE name extraction so we can skip or adjust behavior.
+
+# Videos matching these title patterns are NOT crime cases — skip entirely
+NON_CRIME_TITLE_PATTERNS = [
+    r"\b(?:behind\s+the\s+badge|meet\s+(?:our|the)\s+(?:officer|detective|sergeant))\b",
+    r"\b(?:memorial|fallen\s+officers?|in\s+memoriam|ultimate\s+sacrifice)\b",
+    r"\b(?:swearing[- ]in|graduation|academy|recruit(?:ment|ing)?)\b",
+    r"\b(?:community\s+(?:event|outreach|day)|national\s+night\s+out)\b",
+    r"\b(?:ride[- ]along|day\s+in\s+the\s+life|meet\s+your)\b",
+    r"\b(?:toy\s+drive|charity|fundraiser|holiday|christmas|thanksgiving)\b",
+    r"\b(?:k[- ]?9\s+demo|canine\s+demo|open\s+house)\b",
+]
+
+# Title/description signals that the video is about an OPERATION or STING
+# These are interesting but have no single named suspect
+OPERATION_PATTERNS = [
+    r"\boperation\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\b",  # "Operation Lucky Charm"
+    r"\b(?:sting|bust|sweep|raid|crackdown|roundup)\b",
+    r"\b(?:\d+\s+(?:arrested|suspects?|individuals?)\s+(?:in|during|after))\b",
+    r"\b(?:arrested?\s+\d+|charged?\s+\d+)\b",  # "arrested 10", "charged 15"
+    r"\b(?:drug\s+bust|prostitution\s+sting|trafficking\s+(?:operation|ring))\b",
+]
+
+# Context clues that the name extracted is an OFFICER, not a suspect
+OFFICER_CONTEXT_PATTERNS = [
+    # "Officer X was/responded/arrived/shot" — X is the cop, not the suspect
+    r"(?:Officer|Deputy|Detective|Sergeant|Sgt\.|Cpl\.|Corporal|Lt\.|Lieutenant|Captain|Chief|Trooper|Agent)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    # "Officer X" in a title about OIS
+    r"Officer[- ]Involved[- ]Shooting",
+]
+
+# Words in description context that indicate the extracted name is an officer
+OFFICER_ROLE_PHRASES = [
+    "was on patrol", "responded to", "arrived on scene", "arrived at the scene",
+    "was in the area", "rendered aid", "the officer shot", "officer was not injured",
+    "officer fired", "returned fire", "officer-involved",
+    "serves jacksonville", "serves our community", "homicide unit",
+    "detective unit", "patrol division", "careers on",
+    "hang up his helmet", "joining detective", "behind the badge",
+    "sacrificed everything", "fallen officers", "etched a new name",
+    "passed away", "killed in the line", "line of duty",
+]
+
+
+def classify_video_content(title: str, description: str) -> dict:
+    """Classify video content to detect non-crime videos and misattribution risks.
+
+    Returns dict with:
+        skip: bool — True if video is not a crime case (memorial, recruitment, etc.)
+        skip_reason: str — Why it was skipped
+        is_operation: bool — True if it's a multi-suspect sting/operation
+        operation_name: str — Extracted operation name if found
+        officer_names: list[str] — Names identified as officers (not suspects)
+        is_ois: bool — True if officer-involved shooting
+    """
+    text = f"{title}\n{description}"
+    title_lower = title.lower()
+    text_lower = text.lower()
+
+    result = {
+        "skip": False,
+        "skip_reason": "",
+        "is_operation": False,
+        "operation_name": "",
+        "officer_names": [],
+        "is_ois": False,
+    }
+
+    # Check non-crime title patterns
+    for pattern in NON_CRIME_TITLE_PATTERNS:
+        if re.search(pattern, title_lower, re.IGNORECASE):
+            result["skip"] = True
+            result["skip_reason"] = f"Non-crime content: {pattern}"
+            return result
+
+    # Check for officer-involved shooting
+    if re.search(r"officer[- ]involved[- ]shoot", text_lower):
+        result["is_ois"] = True
+
+    # Check for operations/stings
+    for pattern in OPERATION_PATTERNS:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            result["is_operation"] = True
+            # Try to extract the operation name
+            op_match = re.search(r"[Oo]peration\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)", text)
+            if op_match:
+                result["operation_name"] = op_match.group(0)
+            break
+
+    # Extract officer names — these should NOT be used as suspect names
+    for pattern in OFFICER_CONTEXT_PATTERNS:
+        for match in re.finditer(pattern, text):
+            if match.lastindex and match.group(1):
+                result["officer_names"].append(match.group(1).strip())
+
+    # Also check if description context indicates the name belongs to an officer
+    # by looking for officer role phrases near any extracted names
+    for phrase in OFFICER_ROLE_PHRASES:
+        if phrase in text_lower:
+            # If behind-the-badge or memorial, skip entirely
+            if any(w in phrase for w in ["sacrificed", "fallen", "behind the badge",
+                                          "careers on", "hang up", "joining detective"]):
+                result["skip"] = True
+                result["skip_reason"] = f"Officer profile/memorial: '{phrase}'"
+                return result
+
+    return result
+
+
 
 # Suspect name patterns (common in LE video titles)
 NAME_PATTERNS = [
@@ -421,17 +532,57 @@ def process_video(
     openrouter_api_key: str = "",
     openrouter_model: str = "google/gemini-flash-1.5",
     openrouter_base_url: str = "https://openrouter.ai/api/v1",
-) -> CaseCandidate:
-    """Extract case signals from a single video and build a CaseCandidate."""
+) -> Optional[CaseCandidate]:
+    """Extract case signals from a single video and build a CaseCandidate.
+
+    Returns None if the video is classified as non-crime content
+    (memorials, officer profiles, recruitment, etc.).
+    """
     title = video.get("title", "")
     description = video.get("description", "")
     combined_text = f"{title} {description}"
     video_id = video["video_id"]
 
+    # Classify video content FIRST to avoid misattribution
+    classification = classify_video_content(title, description)
+
+    if classification["skip"]:
+        log.info("Skipping non-crime video %s: %s", video_id, classification["skip_reason"])
+        return None
+
     # Extract fields with regex first
     suspect_name = _extract_name_regex(combined_text)
     incident_date = _extract_date_regex(combined_text)
     keywords = _extract_keywords(combined_text)
+
+    # Check if extracted name is actually an officer
+    officer_names_lower = [n.lower() for n in classification["officer_names"]]
+    if suspect_name and suspect_name.lower() in officer_names_lower:
+        log.info(
+            "Rejected officer name '%s' for %s (is_ois=%s)",
+            suspect_name, video_id, classification["is_ois"],
+        )
+        suspect_name = ""
+
+    # For OIS videos, the first name found is usually the officer — be extra cautious
+    if classification["is_ois"] and suspect_name:
+        # Check if the name appears near officer-role context
+        name_lower = suspect_name.lower()
+        desc_lower = description.lower()
+        name_pos = desc_lower.find(name_lower)
+        if name_pos >= 0:
+            # Look at 200 chars around the name for officer context
+            context_start = max(0, name_pos - 100)
+            context_end = min(len(desc_lower), name_pos + len(name_lower) + 100)
+            context = desc_lower[context_start:context_end]
+            for phrase in OFFICER_ROLE_PHRASES:
+                if phrase in context:
+                    log.info(
+                        "Rejected OIS officer name '%s' for %s (context: '%s')",
+                        suspect_name, video_id, phrase,
+                    )
+                    suspect_name = ""
+                    break
 
     # If regex missed the name, try LLM
     if not suspect_name and openrouter_api_key:
@@ -440,7 +591,24 @@ def process_video(
             title, description, openrouter_api_key, openrouter_model, openrouter_base_url
         )
         if suspect_name:
-            log.debug("LLM extracted name: %s", suspect_name)
+            # Double-check LLM result against officer names too
+            if suspect_name.lower() in officer_names_lower:
+                log.info("Rejected LLM officer name '%s' for %s", suspect_name, video_id)
+                suspect_name = ""
+            else:
+                log.debug("LLM extracted name: %s", suspect_name)
+
+    # Tag operations/stings in keywords
+    if classification["is_operation"]:
+        op_tag = classification["operation_name"] or "sting_operation"
+        if keywords:
+            keywords = f"{keywords}, {op_tag}"
+        else:
+            keywords = op_tag
+
+    if classification["is_ois"]:
+        if "officer-involved" not in (keywords or ""):
+            keywords = f"{keywords}, officer-involved" if keywords else "officer-involved"
 
     case_id = _generate_case_id(
         channel_config.state, suspect_name, video_id, video.get("published_at", "")
@@ -595,6 +763,10 @@ def run_intake(
             candidate = process_video(
                 video, ch, openrouter_api_key, openrouter_model, openrouter_base_url
             )
+            # Skip non-crime content (memorials, profiles, etc.)
+            if candidate is None:
+                skipped += 1
+                continue
             # Filter: must have at least a suspect name OR crime keywords
             if not candidate.suspect_name and not candidate.case_keywords:
                 skipped += 1
