@@ -8,6 +8,7 @@ CourtListener to extract case numbers, then uses those numbers
 for surgical state-portal artifact queries.
 """
 
+import re
 import time
 from dataclasses import asdict
 
@@ -225,6 +226,141 @@ def _classify_link(url: str, title: str, description: str) -> tuple[str, str]:
     return source_class, link_type
 
 
+# ---------------------------------------------------------------------------
+# State-relevance check for corroboration (prevents wrong-person matches)
+# ---------------------------------------------------------------------------
+
+# Map state abbreviations to identifiers commonly found in .gov URLs and text.
+# Includes abbreviation, full name, and common URL fragments.
+_STATE_IDENTIFIERS: dict[str, list[str]] = {
+    "AL": ["alabama", "/al/", ".al."],
+    "AK": ["alaska", "/ak/", ".ak."],
+    "AZ": ["arizona", "/az/", ".az.", "maricopa", "pima", "coconino"],
+    "AR": ["arkansas", "/ar/", ".ar."],
+    "CA": ["california", "/ca/", ".ca.", "losangeles", "sandiego", "sacramento"],
+    "CO": ["colorado", "/co/", ".co."],
+    "CT": ["connecticut", "/ct/", ".ct."],
+    "DE": ["delaware", "/de/", ".de."],
+    "FL": ["florida", "/fl/", ".fl.", "miami", "broward", "hillsborough", "orange",
+           "duval", "palm beach", "pinellas", "myfloridacounty"],
+    "GA": ["georgia", "/ga/", ".ga."],
+    "HI": ["hawaii", "/hi/", ".hi."],
+    "ID": ["idaho", "/id/", ".id."],
+    "IL": ["illinois", "/il/", ".il.", "cook county"],
+    "IN": ["indiana", "/in/", ".in."],
+    "IA": ["iowa", "/ia/", ".ia."],
+    "KS": ["kansas", "/ks/", ".ks."],
+    "KY": ["kentucky", "/ky/", ".ky."],
+    "LA": ["louisiana", "/la/", ".la."],
+    "ME": ["maine", "/me/", ".me."],
+    "MD": ["maryland", "/md/", ".md."],
+    "MA": ["massachusetts", "/ma/", ".ma."],
+    "MI": ["michigan", "/mi/", ".mi."],
+    "MN": ["minnesota", "/mn/", ".mn."],
+    "MS": ["mississippi", "/ms/", ".ms."],
+    "MO": ["missouri", "/mo/", ".mo."],
+    "MT": ["montana", "/mt/", ".mt."],
+    "NE": ["nebraska", "/ne/", ".ne."],
+    "NV": ["nevada", "/nv/", ".nv."],
+    "NH": ["newhampshire", "new hampshire", "/nh/", ".nh."],
+    "NJ": ["newjersey", "new jersey", "/nj/", ".nj."],
+    "NM": ["newmexico", "new mexico", "/nm/", ".nm."],
+    "NY": ["newyork", "new york", "/ny/", ".ny."],
+    "NC": ["northcarolina", "north carolina", "/nc/", ".nc."],
+    "ND": ["northdakota", "north dakota", "/nd/", ".nd."],
+    "OH": ["ohio", "/oh/", ".oh.", "franklin", "cuyahoga", "hamilton"],
+    "OK": ["oklahoma", "/ok/", ".ok."],
+    "OR": ["oregon", "/or/", ".or."],
+    "PA": ["pennsylvania", "/pa/", ".pa."],
+    "RI": ["rhodeisland", "rhode island", "/ri/", ".ri."],
+    "SC": ["southcarolina", "south carolina", "/sc/", ".sc."],
+    "SD": ["southdakota", "south dakota", "/sd/", ".sd."],
+    "TN": ["tennessee", "/tn/", ".tn."],
+    "TX": ["texas", "/tx/", ".tx.", "harris county", "dallas", "tarrant", "bexar", "travis"],
+    "UT": ["utah", "/ut/", ".ut."],
+    "VT": ["vermont", "/vt/", ".vt."],
+    "VA": ["virginia", "/va/", ".va."],
+    "WA": ["washington", "/wa/", ".wa.", "snohomish", "kingcounty", "pierce"],
+    "WV": ["westvirginia", "west virginia", "/wv/", ".wv."],
+    "WI": ["wisconsin", "/wi/", ".wi."],
+    "WY": ["wyoming", "/wy/", ".wy."],
+}
+
+# Federal domains that are state-neutral (never flag as wrong-state)
+_FEDERAL_DOMAINS = [
+    "justice.gov", "uscourts.gov", "courtlistener.com", "ice.gov",
+    "fbi.gov", "dea.gov", "atf.gov", "bop.gov", "usmarshals.gov",
+    "pacer.gov", "supremecourt.gov",
+]
+
+
+def _check_state_relevance(
+    url: str, title: str, description: str, candidate_state: str,
+) -> tuple[bool, str]:
+    """Check whether a discovered link is relevant to the candidate's state.
+
+    Returns (is_relevant, reason). A link is flagged as irrelevant when it
+    clearly belongs to a DIFFERENT state than the candidate's.
+
+    Federal domains (justice.gov, uscourts.gov, etc.) get additional scrutiny:
+    if the snippet mentions a specific state/city that doesn't match, we flag it.
+    """
+    url_lower = url.lower()
+    text_lower = f"{title} {description}".lower()
+    candidate_state = candidate_state.upper()
+
+    # Non-.gov links don't get official corroboration anyway — skip check
+    is_gov = any(d in url_lower for d in [".gov", "courts.", "judiciary.", "courtlistener.com"])
+    if not is_gov:
+        return True, "non-gov"
+
+    # Get the candidate state's identifiers
+    own_ids = _STATE_IDENTIFIERS.get(candidate_state, [])
+
+    # Check if this is a federal domain
+    is_federal = any(fd in url_lower for fd in _FEDERAL_DOMAINS)
+
+    if not is_federal:
+        # State/county .gov domain — check if URL belongs to a different state
+        for other_state, other_ids in _STATE_IDENTIFIERS.items():
+            if other_state == candidate_state:
+                continue
+            for oid in other_ids:
+                if oid in url_lower:
+                    # URL contains another state's identifier
+                    # But also check if it's a substring match for our state
+                    if not any(mid in url_lower for mid in own_ids):
+                        return False, f"URL belongs to {other_state} ('{oid}' in URL), case is in {candidate_state}"
+        return True, "state-url-ok"
+
+    # Federal domain — also check URL for US Attorney district codes (usao-sdga = GA, usao-ndtx = TX, etc.)
+    # Format: usao-{n|s|m|e|w|c|d}{d|}{state_abbrev}  (e.g., usao-sdga, usao-ndtx, usao-edny)
+    usao_match = re.search(r"usao-[newscdm]{1,2}([a-z]{2})", url_lower)
+    if usao_match:
+        district_state = usao_match.group(1).upper()
+        if district_state != candidate_state and district_state in _STATE_IDENTIFIERS:
+            return False, f"Federal URL is USAO district for {district_state}, case is in {candidate_state}"
+
+    # Check if the snippet text mentions a different state
+    # Only flag if we find ANOTHER state mentioned AND our state is NOT mentioned
+    own_state_mentioned = any(mid in text_lower for mid in own_ids)
+
+    if own_state_mentioned:
+        return True, "federal-own-state-in-text"
+
+    # Check if another state is clearly mentioned in the text
+    for other_state, other_ids in _STATE_IDENTIFIERS.items():
+        if other_state == candidate_state:
+            continue
+        # Only check full state names to avoid false positives from abbreviation fragments
+        state_names = [oid for oid in other_ids if len(oid) > 4 and "/" not in oid and "." not in oid]
+        for sname in state_names:
+            if sname in text_lower:
+                return False, f"Federal source mentions '{sname}' ({other_state}), not {candidate_state}"
+
+    return True, "federal-no-other-state"
+
+
 def discover_court_links(
     candidate: CaseCandidate,
     brave_api_key: str,
@@ -271,6 +407,17 @@ def discover_court_links(
             # Recommend download for court/clerk PDFs and dockets
             download_rec = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
             official = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
+
+            # State-relevance gate: don't mark as official if it's about a different state
+            if official:
+                relevant, reason = _check_state_relevance(url, r["title"], r["description"], state)
+                if not relevant:
+                    log.warning(
+                        "[corroboration-rejected] %s for %s: %s | url=%s",
+                        candidate.case_id, name, reason, url,
+                    )
+                    official = False
+                    download_rec = False
 
             links.append(DiscoveredLink(
                 url=url,
@@ -416,6 +563,19 @@ def discover_case_number_links(
 
             download_rec = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
             official = source_class in [SourceRank.COURT_GOV.value, SourceRank.COUNTY_CLERK.value]
+
+            # State-relevance gate
+            if official:
+                relevant, reason = _check_state_relevance(
+                    url, r["title"], r["description"], candidate.state,
+                )
+                if not relevant:
+                    log.warning(
+                        "[corroboration-rejected] %s: %s | url=%s",
+                        candidate.case_id, reason, url,
+                    )
+                    official = False
+                    download_rec = False
 
             links.append(DiscoveredLink(
                 url=url,
