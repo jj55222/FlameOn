@@ -1,12 +1,14 @@
-"""Case Search — CourtListener + case.law API integration.
+"""Case Search — CourtListener API integration.
 
 Enriches discovery with:
-  1. CourtListener: Federal docket search (RECAP archive), opinion search,
+  1. CourtListener: Federal + state court opinion search, RECAP docket search,
      case-number extraction from docket results.
-  2. case.law (Harvard CAP): Appellate opinion lookup — confirms closure,
-     extracts citations and case numbers.
-  3. Case-number-enhanced Brave queries for surgical artifact retrieval
+  2. Case-number-enhanced Brave queries for surgical artifact retrieval
      from state court portals.
+
+Note: Harvard case.law (CAP) API was wound down in 2024. All CAP data has
+been migrated to CourtListener by the Free Law Project. We now search CL
+for both federal and state opinions, which covers the same corpus.
 
 Designed to slot between Stage 2 (validation) and Stage 3A (discovery)
 as an enrichment layer, or to run as part of Stage 3A itself.
@@ -159,9 +161,17 @@ def search_courtlistener_dockets(
             continue
         seen_ids.add(did)
 
+        docket_number = hit.get("docketNumber", "")
+
+        # Skip civil cases — we only want criminal dockets.
+        # Federal civil cases use "-cv-", criminal use "-cr-".
+        if "-cv-" in docket_number:
+            log.debug("Skipping civil docket: %s (%s)", docket_number, hit.get("caseName", ""))
+            continue
+
         results.append({
             "case_name": hit.get("caseName", ""),
-            "docket_number": hit.get("docketNumber", ""),
+            "docket_number": docket_number,
             "court": hit.get("court", ""),
             "date_filed": hit.get("dateFiled", ""),
             "date_terminated": hit.get("dateTerminated", ""),
@@ -215,74 +225,58 @@ def fetch_docket_documents(
 
 
 # ---------------------------------------------------------------------------
-# case.law (Harvard Caselaw Access Project)
+# Published opinions (replaces deprecated case.law / Harvard CAP API)
 # ---------------------------------------------------------------------------
-
-CAP_BASE = "https://api.case.law/v1"
-
-
-def _cap_headers(api_key: str) -> dict:
-    headers = {"Accept": "application/json"}
-    if api_key:
-        headers["Authorization"] = f"Token {api_key}"
-    return headers
+# Harvard CAP's api.case.law/v1 was wound down in 2024. All CAP data is
+# now hosted in CourtListener. We search CL opinions with a "criminal"
+# filter to find published appellate opinions that confirm case closure.
 
 
-def search_caselaw(
+def search_published_opinions(
     suspect_name: str,
     state: str,
     api_key: str = "",
     rate_limit: float = 2.0,
 ) -> list[dict]:
-    """Search Harvard CAP for published opinions mentioning a suspect.
+    """Search CourtListener for published opinions mentioning a suspect.
+
+    Replaces the old case.law search. CL now contains all CAP data plus
+    court-scraped opinions.
 
     Returns list of dicts with: case_name, citation, court, decision_date,
-    docket_number, cap_id, frontend_url.
+    docket_number, opinion_id, frontend_url.
     """
     if not suspect_name:
         return []
 
-    # Map FlameOn state codes to CAP jurisdiction slugs
-    state_to_cap = {
-        "FL": "fla",
-        "TX": "tex",
-        "OH": "ohio",
-        "AZ": "ariz",
+    # Search state appellate + supreme courts (where published opinions live)
+    courts = STATE_TO_CL_STATE_COURTS.get(state.upper(), [])
+    if not courts:
+        return []
+
+    params = {
+        "q": f'"{suspect_name}" criminal',
+        "type": "o",
+        "court": " ".join(courts),
+        "order_by": "score desc",
+        "page_size": 5,
+        "stat_Published": "on",
     }
-    jurisdiction = state_to_cap.get(state.upper(), state.lower())
+
+    data = _cl_get("search", params, api_key)
+    if not data:
+        return []
 
     results = []
-
-    try:
-        resp = requests.get(
-            f"{CAP_BASE}/cases/",
-            params={
-                "search": f'"{suspect_name}"',
-                "jurisdiction": jurisdiction,
-                "ordering": "-decision_date",
-                "page_size": 5,
-            },
-            headers=_cap_headers(api_key),
-            timeout=15,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-    except Exception as e:
-        log.error("case.law search failed for '%s': %s", suspect_name, e)
-        return results
-
-    for case in data.get("results", []):
-        citations = case.get("citations", [])
-        cite_str = citations[0].get("cite", "") if citations else ""
-
+    for hit in data.get("results", []):
         results.append({
-            "case_name": case.get("name", ""),
-            "citation": cite_str,
-            "court": case.get("court", {}).get("name", ""),
-            "decision_date": case.get("decision_date", ""),
-            "docket_number": case.get("docket_number", ""),
-            "cap_id": case.get("id", ""),
-            "frontend_url": case.get("frontend_url", ""),
+            "case_name": hit.get("caseName", ""),
+            "citation": (hit.get("citation", [""]) or [""])[0] if isinstance(hit.get("citation"), list) else hit.get("citation", ""),
+            "court": hit.get("court", ""),
+            "decision_date": hit.get("dateFiled", ""),
+            "docket_number": hit.get("docketNumber", ""),
+            "opinion_id": hit.get("id", ""),
+            "frontend_url": f"https://www.courtlistener.com{hit['absolute_url']}" if hit.get("absolute_url") else "",
         })
 
     time.sleep(rate_limit)
@@ -315,13 +309,19 @@ CASE_NUMBER_PATTERNS = [
 
 
 def extract_case_numbers(text: str) -> list[str]:
-    """Extract case numbers from text using common patterns."""
+    """Extract case numbers from text using common patterns.
+
+    Filters out civil case numbers (-cv-) since we only want criminal cases.
+    """
     numbers = []
     seen = set()
     for pattern in CASE_NUMBER_PATTERNS:
         for match in re.finditer(pattern, text, re.IGNORECASE):
             # Prefer capture group 1 if present (strips prefix like "Case No.")
             num = (match.group(1) if match.lastindex and match.group(1) else match.group(0)).strip()
+            # Skip civil case numbers — only criminal cases are relevant
+            if "-cv-" in num.lower():
+                continue
             if num.upper() not in seen:
                 seen.add(num.upper())
                 numbers.append(num)
@@ -332,13 +332,18 @@ def extract_case_numbers(text: str) -> list[str]:
 # Enrichment: run all sources, extract case numbers, build enhanced queries
 # ---------------------------------------------------------------------------
 
+def _is_operation_name(name: str) -> bool:
+    """Check if a suspect_name is actually an operation name, not a person."""
+    return bool(re.match(r"(?i)^operation\s+", name))
+
+
 def enrich_case(
     candidate: CaseCandidate,
     courtlistener_api_key: str = "",
     caselaw_api_key: str = "",
     rate_limit: float = 2.0,
 ) -> dict:
-    """Run CourtListener + case.law searches for a candidate.
+    """Run CourtListener searches for a candidate.
 
     Returns enrichment dict with:
       - case_numbers: list of extracted case numbers
@@ -347,7 +352,7 @@ def enrich_case(
       - cl_opinion_links: list of DiscoveredLink from CL opinions
       - cl_docket_links: list of DiscoveredLink from CL dockets
       - cl_document_links: list of DiscoveredLink from RECAP documents
-      - cap_links: list of DiscoveredLink from case.law
+      - cap_links: list of DiscoveredLink from published opinion search (replaces case.law)
     """
     name = candidate.suspect_name
     state = candidate.state
@@ -364,6 +369,12 @@ def enrich_case(
 
     if not name:
         log.warning("No suspect name for case search enrichment: %s", candidate.case_id)
+        return enrichment
+
+    # Operation names (e.g. "Operation Community Shield") are not person names —
+    # CourtListener searches will return noise. Skip API enrichment entirely.
+    if _is_operation_name(name):
+        log.info("Skipping CourtListener enrichment for operation name: %s", name)
         return enrichment
 
     all_text = ""  # Accumulate text for case number extraction
@@ -437,29 +448,29 @@ def enrich_case(
 
     log.info("CourtListener dockets: %d results, %d documents", len(cl_dockets), len(enrichment["cl_document_links"]))
 
-    # --- case.law (Harvard CAP) ---
-    log.info("Searching case.law for '%s' in %s", name, state)
-    cap_results = search_caselaw(name, state, caselaw_api_key, rate_limit)
-    for cap in cap_results:
-        all_text += f" {cap.get('docket_number', '')} {cap.get('case_name', '')}"
+    # --- Published opinions (replaces deprecated case.law / Harvard CAP) ---
+    log.info("Searching published opinions for '%s' in %s", name, state)
+    pub_results = search_published_opinions(name, state, courtlistener_api_key, rate_limit)
+    for pub in pub_results:
+        all_text += f" {pub.get('docket_number', '')} {pub.get('case_name', '')}"
 
-        if cap.get("citation"):
-            enrichment["citations"].append(cap["citation"])
-        if cap.get("docket_number"):
-            enrichment["docket_numbers"].append(cap["docket_number"])
+        if pub.get("citation"):
+            enrichment["citations"].append(pub["citation"])
+        if pub.get("docket_number"):
+            enrichment["docket_numbers"].append(pub["docket_number"])
 
-        url = cap.get("frontend_url", "")
+        url = pub.get("frontend_url", "")
         if url:
             enrichment["cap_links"].append(DiscoveredLink(
                 url=url,
                 source_class=SourceRank.COURT_GOV.value,
                 link_type="court_opinion",
-                notes=f"case.law: {cap.get('case_name', '')} ({cap.get('decision_date', '')})",
+                notes=f"Published opinion: {pub.get('case_name', '')} ({pub.get('decision_date', '')})",
                 download_recommended=True,
                 official_corroboration=True,
             ))
 
-    log.info("case.law: %d results", len(cap_results))
+    log.info("Published opinions: %d results", len(pub_results))
 
     # --- Extract case numbers from all accumulated text ---
     enrichment["case_numbers"] = extract_case_numbers(all_text)

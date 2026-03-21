@@ -4,8 +4,8 @@ Only runs after validation_status = validated_closed.
 Discovers and inventories links. Does NOT download anything.
 
 Now includes Phase 0 (Case Search Enrichment) which queries
-CourtListener + case.law to extract case numbers, then uses
-those numbers for surgical state-portal artifact queries.
+CourtListener to extract case numbers, then uses those numbers
+for surgical state-portal artifact queries.
 """
 
 import time
@@ -378,7 +378,7 @@ def discover_case_number_links(
 ) -> list[DiscoveredLink]:
     """Run case-number-enhanced Brave queries targeting state portals.
 
-    Uses case numbers extracted from CourtListener/case.law to build
+    Uses case numbers extracted from CourtListener to build
     surgical queries that hit state court portals directly.
     """
     queries = build_case_number_queries(candidate, case_numbers, docket_numbers)
@@ -427,9 +427,9 @@ def run_discovery(
     """Run full link discovery for a validated closed case.
 
     Phases:
-        0. Case Search Enrichment — CourtListener + case.law API queries
-           to extract case numbers, docket numbers, citations, and direct
-           document links from the RECAP archive.
+        0. Case Search Enrichment — CourtListener API queries to extract
+           case numbers, docket numbers, citations, and direct document
+           links from the RECAP archive.
         1. Court/docket links — state-aware Brave searches (existing).
         1b. Case-number queries — surgical Brave queries using case numbers
             from Phase 0 (NEW).
@@ -444,10 +444,10 @@ def run_discovery(
     enrichment_links = []
     case_num_links = []
 
-    # Phase 0: Case Search Enrichment (CourtListener + case.law)
+    # Phase 0: Case Search Enrichment (CourtListener)
     enrichment = {"case_numbers": [], "docket_numbers": [], "citations": []}
     if courtlistener_api_key or caselaw_api_key:
-        log.info("Phase 0: Case search enrichment (CourtListener + case.law)")
+        log.info("Phase 0: Case search enrichment (CourtListener)")
         enrichment = enrich_case(
             candidate,
             courtlistener_api_key=courtlistener_api_key,
