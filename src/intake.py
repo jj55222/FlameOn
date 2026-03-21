@@ -455,12 +455,33 @@ def run_intake(
     youtube = build("youtube", "v3", developerKey=youtube_api_key)
     all_candidates = []
     total_videos_fetched = 0
-    use_search_api = bool(video_published_before)
 
-    if use_search_api:
-        log.info("Using search API — filtering videos published before %s", video_published_before)
-    else:
-        log.info("Using playlist API (no date filter)")
+    # Parse cutoff dates for client-side filtering (used with playlist API)
+    cutoff_before = None
+    cutoff_after = None
+    if video_published_before:
+        try:
+            raw = video_published_before.split("T")[0]
+            cutoff_before = datetime.fromisoformat(raw)
+            if cutoff_before.tzinfo is None:
+                from datetime import timezone
+                cutoff_before = cutoff_before.replace(tzinfo=timezone.utc)
+        except ValueError:
+            log.warning("Invalid video_published_before '%s', ignoring", video_published_before)
+    if video_published_after:
+        try:
+            raw = video_published_after.split("T")[0]
+            cutoff_after = datetime.fromisoformat(raw)
+            if cutoff_after.tzinfo is None:
+                from datetime import timezone
+                cutoff_after = cutoff_after.replace(tzinfo=timezone.utc)
+        except ValueError:
+            log.warning("Invalid video_published_after '%s', ignoring", video_published_after)
+
+    if video_published_before:
+        log.info("Date filter: videos published before %s", video_published_before)
+    if video_published_after:
+        log.info("Date filter: videos published after %s", video_published_after)
 
     for ch in channels:
         log.info("Processing channel: %s (%s)", ch.handle, ch.agency_name)
@@ -478,6 +499,10 @@ def run_intake(
                 log.warning("Could not resolve channel ID for %s, skipping", ch.handle)
                 continue
 
+        # Derive uploads playlist ID if not set (UC -> UU swap)
+        if not ch.uploads_playlist_id and ch.channel_id.startswith("UC"):
+            ch.uploads_playlist_id = "UU" + ch.channel_id[2:]
+
         # Cap videos to fetch based on remaining quota
         videos_to_fetch = max_videos_per_channel
         if max_total_videos > 0:
@@ -487,22 +512,38 @@ def run_intake(
                 break
             videos_to_fetch = min(videos_to_fetch, remaining)
 
-        # Fetch videos — use search API with date filter, or playlist API
-        if use_search_api:
+        # Fetch strategy: prefer playlist API (1 unit/page) over search API (100 units/page).
+        # Playlist API doesn't support date filtering, so we filter client-side.
+        # Only fall back to search API if we can't get the uploads playlist.
+        if ch.uploads_playlist_id:
+            videos = fetch_recent_uploads(
+                youtube, ch.uploads_playlist_id, videos_to_fetch, rate_limit
+            )
+            # Client-side date filtering
+            if cutoff_before or cutoff_after:
+                filtered = []
+                for v in videos:
+                    pub = v.get("published_at", "")
+                    if not pub:
+                        filtered.append(v)
+                        continue
+                    try:
+                        pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
+                        if cutoff_before and pub_dt >= cutoff_before:
+                            continue
+                        if cutoff_after and pub_dt < cutoff_after:
+                            continue
+                        filtered.append(v)
+                    except ValueError:
+                        filtered.append(v)
+                log.info("Date-filtered %d -> %d videos from %s", len(videos), len(filtered), ch.handle)
+                videos = filtered
+        else:
+            # Fallback: search API with server-side date filtering
             videos = fetch_channel_videos_by_date(
                 youtube, ch.channel_id, videos_to_fetch, rate_limit,
                 published_before=video_published_before,
                 published_after=video_published_after,
-            )
-        else:
-            # Need uploads playlist for playlist API
-            if not ch.uploads_playlist_id:
-                ch.uploads_playlist_id = get_uploads_playlist_id(youtube, ch.channel_id)
-                if not ch.uploads_playlist_id:
-                    log.warning("Could not get uploads playlist for %s, skipping", ch.handle)
-                    continue
-            videos = fetch_recent_uploads(
-                youtube, ch.uploads_playlist_id, videos_to_fetch, rate_limit
             )
 
         total_videos_fetched += len(videos)

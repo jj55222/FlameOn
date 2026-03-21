@@ -1,6 +1,7 @@
 # Tracked agency YouTube channels for the Sunshine-Gated Closed-Case Pipeline
-# Each entry: handle, agency_name, state, city (if known)
-# channel_id will be resolved at runtime via YouTube API
+# channel_id / uploads_playlist_id: pre-populated where known to avoid API calls.
+# Channels without these will be resolved at runtime (1 API unit each via channels.list).
+# uploads_playlist_id = channel_id with "UC" replaced by "UU".
 
 channels:
   # --- FLORIDA ---
@@ -8,21 +9,29 @@ channels:
     agency_name: "Miami-Dade Police Department"
     state: "FL"
     city: "Miami"
+    channel_id: "UCH8W3L7MP85cfU63LbUNPFQ"
+    uploads_playlist_id: "UUH8W3L7MP85cfU63LbUNPFQ"
 
   - handle: "@JAXSHERIFF"
     agency_name: "Jacksonville Sheriff's Office"
     state: "FL"
     city: "Jacksonville"
+    channel_id: "UCu7DiFkpfeNUGIQNs_czJXg"
+    uploads_playlist_id: "UUu7DiFkpfeNUGIQNs_czJXg"
 
   - handle: "@OrangeCoSheriffFL"
     agency_name: "Orange County Sheriff's Office"
     state: "FL"
     city: "Orlando"
+    channel_id: "UC_rDxhSLCiwHo4jBBdUwd_A"
+    uploads_playlist_id: "UU_rDxhSLCiwHo4jBBdUwd_A"
 
   - handle: "@PBCountySheriff"
     agency_name: "Palm Beach County Sheriff's Office"
     state: "FL"
     city: "West Palm Beach"
+    channel_id: "UCQM-rT6Ao8Y1yegib3Htzmg"
+    uploads_playlist_id: "UUQM-rT6Ao8Y1yegib3Htzmg"
 
   - handle: "@leesheriff"
     agency_name: "Lee County Sheriff's Office"
@@ -43,11 +52,15 @@ channels:
     agency_name: "Volusia County Sheriff's Office"
     state: "FL"
     city: "DeLand"
+    channel_id: "UCf6knOGCVA6bqEB1EwdrYrw"
+    uploads_playlist_id: "UUf6knOGCVA6bqEB1EwdrYrw"
 
   - handle: "@PascoSheriff"
     agency_name: "Pasco Sheriff's Office"
     state: "FL"
     city: "New Port Richey"
+    channel_id: "UCo_Iw5r18go_OArPu07Vfvg"
+    uploads_playlist_id: "UUo_Iw5r18go_OArPu07Vfvg"
 
   - handle: "@TallyPD"
     agency_name: "Tallahassee Police Department"
@@ -69,6 +82,8 @@ channels:
     agency_name: "Phoenix Police Department"
     state: "AZ"
     city: "Phoenix"
+    channel_id: "UCouwSYMDvyp3FhxEElGpjPQ"
+    uploads_playlist_id: "UUouwSYMDvyp3FhxEElGpjPQ"
 
   - handle: "@MCSOAZ"
     agency_name: "Maricopa County Sheriff's Office"
@@ -79,6 +94,8 @@ channels:
     agency_name: "Pinal County Sheriff's Office"
     state: "AZ"
     city: "Florence"
+    channel_id: "UCkQLMKbkhyCDJmY1MEcXnLQ"
+    uploads_playlist_id: "UUkQLMKbkhyCDJmY1MEcXnLQ"
 
   - handle: "@TucsonAZPD"
     agency_name: "Tucson Police Department"
@@ -120,16 +137,22 @@ channels:
     agency_name: "Houston Police Department"
     state: "TX"
     city: "Houston"
+    channel_id: "UCqFuQjTZLorOjmgGD_uhFEg"
+    uploads_playlist_id: "UUqFuQjTZLorOjmgGD_uhFEg"
 
   - handle: "@DallasPoliceDept"
     agency_name: "Dallas Police Department"
     state: "TX"
     city: "Dallas"
+    channel_id: "UCpeNXxzH1oRTWK9JOap1PyQ"
+    uploads_playlist_id: "UUpeNXxzH1oRTWK9JOap1PyQ"
 
   - handle: "@HarriscountysoOrg"
     agency_name: "Harris County Sheriff's Office"
     state: "TX"
     city: "Houston"
+    channel_id: "UCGNZ_R-rK-KwTHJGO7AsXXg"
+    uploads_playlist_id: "UUGNZ_R-rK-KwTHJGO7AsXXg"
 
   - handle: "@garlandtx"
     agency_name: "Garland Police Department"
@@ -140,6 +163,8 @@ channels:
     agency_name: "Texas Department of Public Safety"
     state: "TX"
     city: ""
+    channel_id: "UCeiaG_13oJ-iB9Ev6qqsZzw"
+    uploads_playlist_id: "UUeiaG_13oJ-iB9Ev6qqsZzw"
 
   - handle: "@FortWorthPolice"
     agency_name: "Fort Worth Police Department"
@@ -155,6 +180,8 @@ channels:
     agency_name: "San Antonio Police Department"
     state: "TX"
     city: "San Antonio"
+    channel_id: "UC3-Sd7y6-2eKzSLfS3e-Xdw"
+    uploads_playlist_id: "UU3-Sd7y6-2eKzSLfS3e-Xdw"
 
   - handle: "@ArlingtonPolice"
     agency_name: "Arlington Police Department"
@@ -196,6 +223,8 @@ channels:
     agency_name: "Columbus Division of Police"
     state: "OH"
     city: "Columbus"
+    channel_id: "UCicLmiDw4OQvusPcgRc3T8Q"
+    uploads_playlist_id: "UUicLmiDw4OQvusPcgRc3T8Q"
 
   - handle: "@CantonPolice"
     agency_name: "Canton Police Department"
