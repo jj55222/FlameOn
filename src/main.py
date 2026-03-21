@@ -78,8 +78,24 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
     existing_cases = sheet.get_existing_cases()
     log.info("Existing records: %d video IDs, %d cases", len(existing_video_ids), len(existing_cases))
 
-    # Run intake
-    candidates = run_intake(
+    # Incremental write callback — dedup + save + write per channel
+    all_new_candidates = []
+
+    def _on_channel_complete(channel_candidates):
+        new, dupes = deduplicate_candidates(channel_candidates, existing_video_ids, existing_cases)
+        if dupes:
+            log.info("Dedup: %d new, %d duplicates skipped", len(new), len(dupes))
+        for c in new:
+            storage.save_raw_candidate(c.case_id, asdict(c))
+            # Track video IDs so later channels dedup against earlier ones
+            existing_video_ids.add(c.video_id)
+        if new:
+            sheet.append_cases_batch(new)
+            log.info("Wrote %d candidates to sheet", len(new))
+        all_new_candidates.extend(new)
+
+    # Run intake with incremental writes
+    run_intake(
         youtube_api_key=config["youtube_api_key"],
         channels=channels,
         max_videos_per_channel=config.get("max_videos_per_channel", 50),
@@ -87,22 +103,12 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
         openrouter_api_key=config.get("openrouter_api_key", ""),
         openrouter_model=config.get("openrouter_model_extraction", "google/gemini-flash-1.5"),
         openrouter_base_url=config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
-        max_total_candidates=config.get("max_total_candidates", 0),
+        max_total_videos=config.get("max_total_videos", 100),
+        on_channel_complete=_on_channel_complete,
     )
 
-    # Dedup
-    new_candidates, dupes = deduplicate_candidates(candidates, existing_video_ids, existing_cases)
-    log.info("After dedup: %d new candidates, %d duplicates skipped", len(new_candidates), len(dupes))
-
-    # Save raw candidates locally
-    for c in new_candidates:
-        storage.save_raw_candidate(c.case_id, asdict(c))
-
-    # Batch-write to sheet (single API call avoids Sheets rate limits)
-    sheet.append_cases_batch(new_candidates)
-
-    log.info("Stage 1 complete: %d new candidates ingested", len(new_candidates))
-    return new_candidates
+    log.info("Stage 1 complete: %d new candidates ingested", len(all_new_candidates))
+    return all_new_candidates
 
 
 def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage, candidates: list[CaseCandidate] = None):

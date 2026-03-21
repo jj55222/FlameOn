@@ -314,15 +314,20 @@ def run_intake(
     openrouter_api_key: str = "",
     openrouter_model: str = "google/gemini-flash-1.5",
     openrouter_base_url: str = "https://openrouter.ai/api/v1",
-    max_total_candidates: int = 0,
+    max_total_videos: int = 0,
+    on_channel_complete: callable = None,
 ) -> list[CaseCandidate]:
     """Run YouTube intake for all configured channels.
 
     Returns a list of CaseCandidates for new uploads.
-    If max_total_candidates > 0, stops early once the cap is reached.
+    If max_total_videos > 0, limits the total number of videos fetched
+    across all channels to save YouTube API quota.
+    If on_channel_complete is provided, it's called with the channel's
+    candidates after each channel finishes — enables incremental writes.
     """
     youtube = build("youtube", "v3", developerKey=youtube_api_key)
     all_candidates = []
+    total_videos_fetched = 0
 
     for ch in channels:
         log.info("Processing channel: %s (%s)", ch.handle, ch.agency_name)
@@ -341,13 +346,24 @@ def run_intake(
                 log.warning("Could not get uploads playlist for %s, skipping", ch.handle)
                 continue
 
+        # Cap videos to fetch based on remaining quota
+        videos_to_fetch = max_videos_per_channel
+        if max_total_videos > 0:
+            remaining = max_total_videos - total_videos_fetched
+            if remaining <= 0:
+                log.info("Reached max_total_videos cap (%d), stopping intake", max_total_videos)
+                break
+            videos_to_fetch = min(videos_to_fetch, remaining)
+
         # Fetch recent uploads
         videos = fetch_recent_uploads(
-            youtube, ch.uploads_playlist_id, max_videos_per_channel, rate_limit
+            youtube, ch.uploads_playlist_id, videos_to_fetch, rate_limit
         )
-        log.info("Fetched %d videos from %s", len(videos), ch.handle)
+        total_videos_fetched += len(videos)
+        log.info("Fetched %d videos from %s (total fetched: %d)", len(videos), ch.handle, total_videos_fetched)
 
         # Process each video — only keep videos with crime-related signals
+        channel_candidates = []
         skipped = 0
         for video in videos:
             candidate = process_video(
@@ -358,23 +374,23 @@ def run_intake(
                 skipped += 1
                 log.debug("Skipped (no signals): %s — %s", candidate.video_id, candidate.video_title[:80])
                 continue
-            all_candidates.append(candidate)
+            channel_candidates.append(candidate)
             log.debug(
                 "Candidate: %s | name=%s | keywords=%s",
                 candidate.case_id,
                 candidate.suspect_name or "(none)",
                 candidate.case_keywords or "(none)",
             )
-            if max_total_candidates > 0 and len(all_candidates) >= max_total_candidates:
-                log.info("Reached max_total_candidates cap (%d), stopping intake", max_total_candidates)
-                break
         if skipped:
             log.info("Skipped %d/%d videos from %s (no crime signals)", skipped, len(videos), ch.handle)
 
-        if max_total_candidates > 0 and len(all_candidates) >= max_total_candidates:
-            break
+        all_candidates.extend(channel_candidates)
+
+        # Incremental callback — lets caller write to sheet per-channel
+        if on_channel_complete and channel_candidates:
+            on_channel_complete(channel_candidates)
 
         time.sleep(rate_limit)
 
-    log.info("Intake complete: %d candidates from %d channels", len(all_candidates), len(channels))
+    log.info("Intake complete: %d candidates from %d channels, %d videos fetched", len(all_candidates), len(channels), total_videos_fetched)
     return all_candidates
