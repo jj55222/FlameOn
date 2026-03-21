@@ -33,6 +33,17 @@ NON_CRIME_TITLE_PATTERNS = [
     r"\b(?:k[- ]?9\s+demo|canine\s+demo|open\s+house)\b",
 ]
 
+# Cold case / unsolved case patterns — these are about VICTIMS, not suspects
+COLD_CASE_PATTERNS = [
+    r"\bcold\s+case\b",
+    r"\bunsolved\b",
+    r"\bunidentified\b",
+    r"\b(?:anyone\s+with|if\s+you\s+have)\s+(?:any\s+)?information\b",
+    r"\bcrime\s+stoppers?\b",
+    r"\b(?:come\s+forward|tip\s+line|anonymous\s+tip)\b",
+    r"\bwho\s+(?:killed|shot|murdered)\b",
+]
+
 # Title/description signals that the video is about an OPERATION or STING
 # These are interesting but have no single named suspect
 OPERATION_PATTERNS = [
@@ -72,8 +83,10 @@ def classify_video_content(title: str, description: str) -> dict:
         skip_reason: str — Why it was skipped
         is_operation: bool — True if it's a multi-suspect sting/operation
         operation_name: str — Extracted operation name if found
+        operation_arrest_count: int — Number of arrests if detectable
         officer_names: list[str] — Names identified as officers (not suspects)
         is_ois: bool — True if officer-involved shooting
+        is_cold_case: bool — True if unsolved/cold case (name = victim, not suspect)
     """
     text = f"{title}\n{description}"
     title_lower = title.lower()
@@ -84,8 +97,10 @@ def classify_video_content(title: str, description: str) -> dict:
         "skip_reason": "",
         "is_operation": False,
         "operation_name": "",
+        "operation_arrest_count": 0,
         "officer_names": [],
         "is_ois": False,
+        "is_cold_case": False,
     }
 
     # Check non-crime title patterns
@@ -99,6 +114,14 @@ def classify_video_content(title: str, description: str) -> dict:
     if re.search(r"officer[- ]involved[- ]shoot", text_lower):
         result["is_ois"] = True
 
+    # Check for cold cases / unsolved (name extracted = victim, not suspect)
+    cold_signals = 0
+    for pattern in COLD_CASE_PATTERNS:
+        if re.search(pattern, text_lower):
+            cold_signals += 1
+    if cold_signals >= 2 or "cold case" in title_lower:
+        result["is_cold_case"] = True
+
     # Check for operations/stings
     for pattern in OPERATION_PATTERNS:
         match = re.search(pattern, text, re.IGNORECASE)
@@ -108,6 +131,26 @@ def classify_video_content(title: str, description: str) -> dict:
             op_match = re.search(r"[Oo]peration\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)", text)
             if op_match:
                 result["operation_name"] = op_match.group(0)
+            # Extract arrest count (e.g. "ten individuals were arrested", "15 arrested")
+            count_match = re.search(
+                r"(\d+|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
+                r"thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty"
+                r"(?:[\s-](?:one|two|three|four|five|six|seven|eight|nine))?)\s+"
+                r"(?:individuals?|people|persons?|suspects?|men|women|were)\s+(?:were\s+)?arrested",
+                text_lower,
+            )
+            if count_match:
+                num_word = count_match.group(1)
+                word_to_num = {
+                    "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+                    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+                    "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+                    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+                    "twenty": 20,
+                }
+                result["operation_arrest_count"] = (
+                    int(num_word) if num_word.isdigit() else word_to_num.get(num_word, 0)
+                )
             break
 
     # Extract officer names — these should NOT be used as suspect names
@@ -147,14 +190,16 @@ NAME_PATTERNS = [
     r"(?:identified|known)\s+(?:as|the\s+\w+\s+as)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
 ]
 
-# Date patterns
+# Date patterns — ordered from most specific to least specific
 DATE_PATTERNS = [
+    # YYYY-MM-DD (must be before MM-DD-YYYY to avoid partial matches)
+    r"(\d{4}-\d{2}-\d{2})",
+    # Month DD, YYYY (with optional ordinal suffix)
+    r"((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4})",
     # MM/DD/YYYY or MM-DD-YYYY
     r"(\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4})",
-    # Month DD, YYYY
-    r"((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4})",
-    # YYYY-MM-DD
-    r"(\d{4}-\d{2}-\d{2})",
+    # "Month DDth" without year (common in LE press releases — e.g. "January 24th", "on March 18")
+    r"(?:on\s+)?((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?)",
 ]
 
 # Case keywords that suggest crime/legal context
@@ -228,12 +273,25 @@ def _extract_name_regex(text: str) -> str:
     return ""
 
 
-def _extract_date_regex(text: str) -> str:
-    """Try to extract an incident date from text."""
+def _extract_date_regex(text: str, published_at: str = "") -> str:
+    """Try to extract an incident date from text.
+
+    For month-day-only matches (no year), infers the year from published_at
+    if available (the incident likely occurred the same year or previous year).
+    """
     for pattern in DATE_PATTERNS:
         match = re.search(pattern, text, re.IGNORECASE)
         if match:
-            return match.group(1).strip()
+            date_str = match.group(1).strip()
+            # If this is a month-day-only match (no 4-digit year), try to add one
+            if not re.search(r"\d{4}", date_str) and published_at:
+                try:
+                    pub_year = published_at[:4]
+                    if pub_year.isdigit():
+                        date_str = f"{date_str}, {pub_year}"
+                except (IndexError, TypeError):
+                    pass
+            return date_str
     return ""
 
 
@@ -552,7 +610,7 @@ def process_video(
 
     # Extract fields with regex first
     suspect_name = _extract_name_regex(combined_text)
-    incident_date = _extract_date_regex(combined_text)
+    incident_date = _extract_date_regex(combined_text, video.get("published_at", ""))
     keywords = _extract_keywords(combined_text)
 
     # Check if extracted name is actually an officer
@@ -598,9 +656,19 @@ def process_video(
             else:
                 log.debug("LLM extracted name: %s", suspect_name)
 
+    # Cold cases: the extracted name is the VICTIM, not a suspect
+    if classification["is_cold_case"] and suspect_name:
+        log.info("Cold case detected for %s — '%s' is the victim, clearing suspect name", video_id, suspect_name)
+        # Prefix with "VICTIM:" so it's visible in the sheet but clearly not a suspect
+        suspect_name = f"VICTIM: {suspect_name}"
+        if "cold case" not in (keywords or "").lower():
+            keywords = f"{keywords}, cold_case" if keywords else "cold_case"
+
     # Tag operations/stings in keywords AND use operation name as identifier
     if classification["is_operation"]:
         op_tag = classification["operation_name"] or "sting_operation"
+        if classification["operation_arrest_count"]:
+            op_tag = f"{op_tag} ({classification['operation_arrest_count']} arrests)"
         if keywords:
             keywords = f"{keywords}, {op_tag}"
         else:

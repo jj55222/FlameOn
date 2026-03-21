@@ -19,7 +19,10 @@ import yaml
 from .dedup import deduplicate_candidates
 from .discovery import run_discovery
 from .download import download_from_inventory
-from .intake import run_intake, _extract_name_regex, _extract_name_llm, _generate_case_id, classify_video_content
+from .intake import (
+    run_intake, _extract_name_regex, _extract_name_llm, _extract_date_regex,
+    _generate_case_id, classify_video_content,
+)
 from .logger import get_logger, setup_logger
 from .models import (
     CaseCandidate,
@@ -438,12 +441,28 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
                 new_name = ""
 
+        # Cold cases: the extracted name is the VICTIM, not a suspect
+        if classification["is_cold_case"] and new_name and not new_name.startswith("VICTIM:"):
+            log.info("Cold case detected for %s — '%s' is the victim", case_id, new_name)
+            new_name = f"VICTIM: {new_name}"
+
+        # Re-extract date if missing
+        old_date = row.get("incident_date", "")
+        date_update = {}
+        if not old_date:
+            text = f"{title}\n{description}"
+            new_date = _extract_date_regex(text, row.get("published_at", ""))
+            if new_date:
+                date_update["incident_date"] = new_date
+                log.info("Extracted date for %s: %s", case_id, new_date)
+
         # Tag operations in keywords AND use operation name as suspect_name
-        # if no actual suspect name was found
         old_keywords = row.get("case_keywords", "")
         keyword_update = {}
         if classification["is_operation"]:
             op_tag = classification["operation_name"] or "sting_operation"
+            if classification["operation_arrest_count"]:
+                op_tag = f"{op_tag} ({classification['operation_arrest_count']} arrests)"
             if op_tag.lower() not in old_keywords.lower():
                 new_keywords = f"{old_keywords}, {op_tag}" if old_keywords else op_tag
                 keyword_update["case_keywords"] = new_keywords
@@ -451,8 +470,12 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
             if not new_name and classification["operation_name"]:
                 new_name = classification["operation_name"]
 
-        if new_name != old_name or keyword_update:
-            updates = dict(keyword_update)
+        if classification["is_cold_case"] and "cold_case" not in old_keywords.lower():
+            ck = keyword_update.get("case_keywords", old_keywords)
+            keyword_update["case_keywords"] = f"{ck}, cold_case" if ck else "cold_case"
+
+        if new_name != old_name or keyword_update or date_update:
+            updates = {**keyword_update, **date_update}
 
             if new_name != old_name:
                 new_case_id = _generate_case_id(
