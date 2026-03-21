@@ -105,6 +105,7 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
         openrouter_base_url=config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
         max_total_videos=config.get("max_total_videos", 100),
         video_published_before=config.get("video_published_before", ""),
+        video_published_after=config.get("video_published_after", ""),
         on_channel_complete=_on_channel_complete,
     )
 

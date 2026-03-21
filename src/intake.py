@@ -257,6 +257,76 @@ def fetch_recent_uploads(
     return videos
 
 
+def fetch_channel_videos_by_date(
+    youtube,
+    channel_id: str,
+    max_results: int = 50,
+    rate_limit: float = 1.0,
+    published_before: str = "",
+    published_after: str = "",
+) -> list[dict]:
+    """Fetch videos from a channel using search API with date filtering.
+
+    Uses YouTube's search.list endpoint which supports publishedBefore/After
+    server-side, so only videos in the target date range are returned.
+    More quota-efficient than fetching all uploads and filtering client-side.
+
+    Note: search.list costs 100 quota units vs 1 for playlistItems.list,
+    but avoids fetching hundreds of irrelevant recent videos.
+    """
+    videos = []
+    page_token = None
+
+    # Build search params
+    search_params = {
+        "part": "snippet",
+        "channelId": channel_id,
+        "type": "video",
+        "order": "date",
+        "maxResults": min(50, max_results),
+    }
+    if published_before:
+        # YouTube API requires RFC 3339: "2024-07-01T00:00:00Z"
+        if "T" not in published_before:
+            published_before = f"{published_before}T00:00:00Z"
+        search_params["publishedBefore"] = published_before
+    if published_after:
+        if "T" not in published_after:
+            published_after = f"{published_after}T00:00:00Z"
+        search_params["publishedAfter"] = published_after
+
+    while len(videos) < max_results:
+        try:
+            if page_token:
+                search_params["pageToken"] = page_token
+            search_params["maxResults"] = min(50, max_results - len(videos))
+
+            resp = youtube.search().list(**search_params).execute()
+
+            for item in resp.get("items", []):
+                snippet = item["snippet"]
+                videos.append({
+                    "video_id": item["id"]["videoId"],
+                    "title": snippet.get("title", ""),
+                    "description": snippet.get("description", ""),
+                    "published_at": snippet.get("publishedAt", ""),
+                    "channel_id": snippet.get("channelId", ""),
+                    "channel_title": snippet.get("channelTitle", ""),
+                })
+
+            page_token = resp.get("nextPageToken")
+            if not page_token:
+                break
+
+            time.sleep(rate_limit)
+
+        except Exception as e:
+            log.error("Error searching channel %s: %s", channel_id, e)
+            break
+
+    return videos
+
+
 def process_video(
     video: dict,
     channel_config: ChannelConfig,
@@ -316,6 +386,7 @@ def run_intake(
     openrouter_base_url: str = "https://openrouter.ai/api/v1",
     max_total_videos: int = 0,
     video_published_before: str = "",
+    video_published_after: str = "",
     on_channel_complete: callable = None,
 ) -> list[CaseCandidate]:
     """Run YouTube intake for all configured channels.
@@ -332,20 +403,12 @@ def run_intake(
     youtube = build("youtube", "v3", developerKey=youtube_api_key)
     all_candidates = []
     total_videos_fetched = 0
+    use_search_api = bool(video_published_before)
 
-    # Parse cutoff date if provided
-    cutoff_date = None
-    if video_published_before:
-        try:
-            raw = video_published_before.replace("Z", "+00:00")
-            cutoff_date = datetime.fromisoformat(raw)
-            # Ensure timezone-aware so it compares with YouTube's UTC timestamps
-            if cutoff_date.tzinfo is None:
-                from datetime import timezone
-                cutoff_date = cutoff_date.replace(tzinfo=timezone.utc)
-            log.info("Filtering videos published before %s", video_published_before)
-        except ValueError:
-            log.warning("Invalid video_published_before date '%s', ignoring", video_published_before)
+    if use_search_api:
+        log.info("Using search API — filtering videos published before %s", video_published_before)
+    else:
+        log.info("Using playlist API (no date filter)")
 
     for ch in channels:
         log.info("Processing channel: %s (%s)", ch.handle, ch.agency_name)
@@ -357,13 +420,6 @@ def run_intake(
                 log.warning("Could not resolve channel ID for %s, skipping", ch.handle)
                 continue
 
-        # Get uploads playlist
-        if not ch.uploads_playlist_id:
-            ch.uploads_playlist_id = get_uploads_playlist_id(youtube, ch.channel_id)
-            if not ch.uploads_playlist_id:
-                log.warning("Could not get uploads playlist for %s, skipping", ch.handle)
-                continue
-
         # Cap videos to fetch based on remaining quota
         videos_to_fetch = max_videos_per_channel
         if max_total_videos > 0:
@@ -373,30 +429,31 @@ def run_intake(
                 break
             videos_to_fetch = min(videos_to_fetch, remaining)
 
-        # Fetch recent uploads
-        videos = fetch_recent_uploads(
-            youtube, ch.uploads_playlist_id, videos_to_fetch, rate_limit
-        )
+        # Fetch videos — use search API with date filter, or playlist API
+        if use_search_api:
+            videos = fetch_channel_videos_by_date(
+                youtube, ch.channel_id, videos_to_fetch, rate_limit,
+                published_before=video_published_before,
+                published_after=video_published_after,
+            )
+        else:
+            # Need uploads playlist for playlist API
+            if not ch.uploads_playlist_id:
+                ch.uploads_playlist_id = get_uploads_playlist_id(youtube, ch.channel_id)
+                if not ch.uploads_playlist_id:
+                    log.warning("Could not get uploads playlist for %s, skipping", ch.handle)
+                    continue
+            videos = fetch_recent_uploads(
+                youtube, ch.uploads_playlist_id, videos_to_fetch, rate_limit
+            )
+
         total_videos_fetched += len(videos)
         log.info("Fetched %d videos from %s (total fetched: %d)", len(videos), ch.handle, total_videos_fetched)
 
         # Process each video — only keep videos with crime-related signals
         channel_candidates = []
         skipped = 0
-        date_filtered = 0
         for video in videos:
-            # Date filter — skip videos published after the cutoff
-            if cutoff_date:
-                pub = video.get("published_at", "")
-                if pub:
-                    try:
-                        pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
-                        if pub_dt >= cutoff_date:
-                            date_filtered += 1
-                            continue
-                    except ValueError:
-                        pass
-
             candidate = process_video(
                 video, ch, openrouter_api_key, openrouter_model, openrouter_base_url
             )
@@ -412,8 +469,6 @@ def run_intake(
                 candidate.suspect_name or "(none)",
                 candidate.case_keywords or "(none)",
             )
-        if date_filtered:
-            log.info("Filtered %d/%d videos from %s (published after cutoff)", date_filtered, len(videos), ch.handle)
         if skipped:
             log.info("Skipped %d/%d videos from %s (no crime signals)", skipped, len(videos), ch.handle)
 
