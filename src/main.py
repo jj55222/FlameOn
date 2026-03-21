@@ -464,7 +464,7 @@ def run_pipeline(
         log.info("Wiping all data from sheet before running")
         sheet.clear_all_data()
 
-    if channels is None:
+    if channels is None and "intake" in stages:
         channels = load_channels(channels_path)
 
     results = {"candidates": None, "validated": None, "discovered": None}
