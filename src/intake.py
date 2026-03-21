@@ -337,7 +337,12 @@ def run_intake(
     cutoff_date = None
     if video_published_before:
         try:
-            cutoff_date = datetime.fromisoformat(video_published_before.replace("Z", "+00:00"))
+            raw = video_published_before.replace("Z", "+00:00")
+            cutoff_date = datetime.fromisoformat(raw)
+            # Ensure timezone-aware so it compares with YouTube's UTC timestamps
+            if cutoff_date.tzinfo is None:
+                from datetime import timezone
+                cutoff_date = cutoff_date.replace(tzinfo=timezone.utc)
             log.info("Filtering videos published before %s", video_published_before)
         except ValueError:
             log.warning("Invalid video_published_before date '%s', ignoring", video_published_before)
