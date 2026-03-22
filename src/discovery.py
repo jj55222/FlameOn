@@ -242,7 +242,17 @@ def _classify_link(url: str, title: str, description: str) -> tuple[str, str]:
     elif any(w in text for w in ["interrogation", "interview room", "confession"]):
         link_type = "interrogation"
     elif any(w in text for w in ["body cam", "bodycam", "bwc", "body-worn", "critical incident"]):
-        link_type = "bwc_video"
+        # Only classify as bwc_video if the URL is on a video-hosting domain;
+        # otherwise it's a news article that merely mentions BWC footage.
+        _VIDEO_DOMAINS = ["youtube.com", "youtu.be", "vimeo.com", "dailymotion.com", "rumble.com"]
+        _VIDEO_EXTS = [".mp4", ".m3u8", ".webm", ".avi", ".mov"]
+        _VIDEO_PATHS = ["/video/", "/media/", "/videos/", "/watch/", "/player/"]
+        is_video_url = (
+            any(d in url_lower for d in _VIDEO_DOMAINS)
+            or any(url_lower.endswith(ext) for ext in _VIDEO_EXTS)
+            or (any(d in url_lower for d in [".gov", "sheriff", "police"]) and any(p in url_lower for p in _VIDEO_PATHS))
+        )
+        link_type = "bwc_video" if is_video_url else "news_article"
     elif any(w in text for w in ["foia", "public records"]):
         link_type = "foia"
     elif url_lower.endswith(".pdf"):
