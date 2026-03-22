@@ -139,6 +139,69 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
     rejected = 0
     manual = 0
 
+    # Auto re-extract names for nameless cases before validation
+    reextracted = 0
+    openrouter_key = config.get("openrouter_api_key", "")
+    extraction_model = config.get("openrouter_model_extraction", "google/gemini-flash-1.5")
+    extraction_base_url = config.get("openrouter_base_url", "https://openrouter.ai/api/v1")
+
+    for c in candidates:
+        if not c.suspect_name and (c.video_title or c.video_description):
+            text = f"{c.video_title} {c.video_description}"
+            classification = classify_video_content(c.video_title, c.video_description)
+
+            if classification["skip"] or classification["is_cold_case"]:
+                pass  # Don't try extraction on non-crime / cold case content
+            else:
+                new_name = _extract_name_regex(text)
+
+                # Filter officer names
+                officer_names_lower = [n.lower() for n in classification["officer_names"]]
+                if new_name and new_name.lower() in officer_names_lower:
+                    new_name = ""
+
+                # For OIS, check officer context
+                if classification["is_ois"] and new_name:
+                    from .intake import OFFICER_ROLE_PHRASES
+                    desc_lower = c.video_description.lower()
+                    name_pos = desc_lower.find(new_name.lower())
+                    if name_pos >= 0:
+                        ctx = desc_lower[max(0, name_pos - 100):name_pos + len(new_name) + 100]
+                        for phrase in OFFICER_ROLE_PHRASES:
+                            if phrase in ctx:
+                                new_name = ""
+                                break
+
+                # Fall back to LLM
+                if not new_name and openrouter_key:
+                    new_name = _extract_name_llm(
+                        c.video_title, c.video_description,
+                        openrouter_key, extraction_model, extraction_base_url,
+                    )
+                    if new_name and new_name.lower() in officer_names_lower:
+                        new_name = ""
+
+                # Use operation name as fallback
+                if not new_name and classification["is_operation"] and classification["operation_name"]:
+                    new_name = classification["operation_name"]
+
+                if new_name:
+                    log.info("Re-extracted name '%s' for %s", new_name, c.case_id)
+                    c.suspect_name = new_name
+                    new_case_id = _generate_case_id(
+                        c.state, new_name, c.video_id, c.published_at,
+                    )
+                    old_case_id = c.case_id
+                    c.case_id = new_case_id
+                    sheet.update_case(old_case_id, {
+                        "suspect_name": new_name,
+                        "case_id": new_case_id,
+                    })
+                    reextracted += 1
+
+    if reextracted:
+        log.info("Auto re-extracted %d names before validation", reextracted)
+
     for c in candidates:
         log.info("Validating: %s (name=%s)", c.case_id, c.suspect_name or "(none)")
 
