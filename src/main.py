@@ -11,6 +11,7 @@ Usage:
 import argparse
 import json
 import os
+import re
 import sys
 from dataclasses import asdict
 
@@ -172,6 +173,21 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
                                 new_name = ""
                                 break
 
+                # For OIS, check if suspect was killed (no case to close)
+                if classification["is_ois"] and new_name:
+                    ois_fatal = [
+                        r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
+                        r"(?:was\s+(?:pronounced|declared)\s+dead)",
+                        r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
+                        r"(?:did\s+not\s+survive|succumbed\s+to)",
+                    ]
+                    desc_lower_full = c.video_description.lower()
+                    for fp in ois_fatal:
+                        if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
+                            log.info("Rejected OIS-deceased '%s' for %s", new_name, c.case_id)
+                            new_name = ""
+                            break
+
                 # Fall back to LLM
                 if not new_name and openrouter_key:
                     new_name = _extract_name_llm(
@@ -202,17 +218,30 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
     if reextracted:
         log.info("Auto re-extracted %d names before validation", reextracted)
 
+    # Track operation names already validated to avoid duplicate Brave queries
+    # e.g. 14 "Operation Community Shield" videos all hitting the same ICE page
+    validated_operations = {}  # operation_name -> ValidationResult
+
     for c in candidates:
         log.info("Validating: %s (name=%s)", c.case_id, c.suspect_name or "(none)")
 
-        result = validate_case(
-            candidate=c,
-            brave_api_key=config["brave_api_key"],
-            openrouter_api_key=config.get("openrouter_api_key", ""),
-            openrouter_model=config.get("openrouter_model_validation", "google/gemini-flash-1.5"),
-            openrouter_base_url=config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
-            max_queries=config.get("max_brave_queries_per_case", 3),
-        )
+        # Dedup: if this is an operation name we already validated, reuse the result
+        is_operation_name = c.suspect_name and c.suspect_name.lower().startswith("operation ")
+        if is_operation_name and c.suspect_name in validated_operations:
+            result = validated_operations[c.suspect_name]
+            log.info("Reusing cached validation for operation '%s'", c.suspect_name)
+        else:
+            result = validate_case(
+                candidate=c,
+                brave_api_key=config["brave_api_key"],
+                openrouter_api_key=config.get("openrouter_api_key", ""),
+                openrouter_model=config.get("openrouter_model_validation", "google/gemini-flash-1.5"),
+                openrouter_base_url=config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
+                max_queries=config.get("max_brave_queries_per_case", 3),
+            )
+            # Cache result for operation names
+            if is_operation_name:
+                validated_operations[c.suspect_name] = result
 
         # Update candidate fields
         c.validation_status = result.status
@@ -632,6 +661,21 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                         new_name = ""
                         officer_rejected += 1
                         break
+
+        # For OIS, check if suspect was killed (no case to close)
+        if classification["is_ois"] and new_name:
+            ois_fatal = [
+                r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
+                r"(?:was\s+(?:pronounced|declared)\s+dead)",
+                r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
+                r"(?:did\s+not\s+survive|succumbed\s+to)",
+            ]
+            desc_lower_full = description.lower()
+            for fp in ois_fatal:
+                if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
+                    log.info("Rejected OIS-deceased '%s' for %s", new_name, case_id)
+                    new_name = ""
+                    break
 
         # Fall back to LLM if regex still empty
         if not new_name and config.get("openrouter_api_key"):

@@ -285,6 +285,21 @@ NOT_A_NAME = {
     "critical", "incident", "response",
     # K9 / animal names that look like human names
     "apprehends", "apprehend", "locates", "tracks",
+    # Generic descriptions that regex/LLM sometimes returns as "names"
+    "armed", "robbery", "defense", "attorney", "student",
+    "local", "threats", "unknown", "domestic", "violence",
+    "homicide", "murder", "investigation", "breaking",
+    "update", "press", "conference", "community",
+}
+
+# Full phrases that should never be treated as suspect names.
+# Checked against the full extracted name string (case-insensitive).
+NOT_A_NAME_PHRASES = {
+    "armed robbery", "defense attorney", "local student",
+    "threats students", "press conference", "breaking news",
+    "domestic violence", "unknown suspect", "unknown male",
+    "unknown female", "community shield", "safe summer",
+    "safe passage", "lucky charm", "lasso tabletop",
 }
 
 # Patterns in title/description where the name belongs to a NON-SUSPECT entity
@@ -310,6 +325,9 @@ def _is_plausible_name(name: str) -> bool:
     """Check if extracted text looks like an actual person name, not a descriptor."""
     parts = name.split()
     if len(parts) < 2 or len(name) <= 5:
+        return False
+    # Reject if the full phrase is a known non-name phrase
+    if name.lower().strip() in NOT_A_NAME_PHRASES:
         return False
     # Reject if ANY word is a known non-name word
     for p in parts:
@@ -410,6 +428,8 @@ def _extract_name_llm(
         if result.upper() == "NONE" or len(result) < 3:
             return ""
         # Sanity check: should look like a name
+        if not _is_plausible_name(result):
+            return ""
         parts = result.split()
         if 2 <= len(parts) <= 5 and all(p[0].isupper() for p in parts if p[0].isalpha()):
             return result
@@ -733,6 +753,28 @@ def process_video(
                 suspect_name = ""
             else:
                 log.debug("LLM extracted name: %s", suspect_name)
+
+    # Suspect killed by police (OIS fatality) — no case to close
+    if suspect_name and classification["is_ois"]:
+        ois_fatal_patterns = [
+            r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
+            r"(?:was\s+(?:pronounced|declared)\s+dead)",
+            r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
+            r"(?:did\s+not\s+survive|succumbed\s+to)",
+        ]
+        desc_lower = description.lower()
+        name_lower = suspect_name.lower()
+        for fp in ois_fatal_patterns:
+            if re.search(fp, desc_lower):
+                # Confirm the name is near the fatal language (not about an officer)
+                name_pos = desc_lower.find(name_lower)
+                if name_pos >= 0:
+                    log.info(
+                        "Rejected OIS-deceased suspect '%s' for %s — no case to close",
+                        suspect_name, video_id,
+                    )
+                    suspect_name = ""
+                    break
 
     # Cold cases: no suspect exists — skip entirely
     if classification["is_cold_case"]:
