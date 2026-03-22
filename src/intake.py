@@ -757,7 +757,15 @@ def process_video(
         )
         if suspect_name:
             # Double-check LLM result against officer names and previously rejected names
-            if suspect_name.lower() in officer_names_lower or suspect_name.lower() in rejected_names:
+            # Use substring matching: "Michael Lee Wright" should match rejected "Michael Lee"
+            suspect_lower = suspect_name.lower()
+            is_rejected = suspect_lower in officer_names_lower
+            if not is_rejected:
+                for rn in rejected_names:
+                    if rn in suspect_lower or suspect_lower in rn:
+                        is_rejected = True
+                        break
+            if is_rejected:
                 log.info("Rejected LLM officer name '%s' for %s", suspect_name, video_id)
                 suspect_name = ""
             else:

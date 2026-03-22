@@ -259,12 +259,15 @@ def _parse_closure_with_llm(
     openrouter_api_key: str,
     openrouter_model: str,
     openrouter_base_url: str,
+    location_context: str = "",
 ) -> dict:
     """Use OpenRouter LLM to determine if search snippets indicate case closure.
 
     Returns dict with keys: status, note, best_source_url
     """
     name_context = f' for suspect "{suspect_name}"' if suspect_name else ""
+    if location_context:
+        name_context += f" (case location: {location_context})"
 
     prompt = (
         f"You are analyzing search results{name_context} to determine if a criminal case is CLOSED "
@@ -278,6 +281,11 @@ def _parse_closure_with_llm(
         "Rules:\n"
         "- CLOSED requires clear evidence of sentencing (years imposed, life sentence, etc.)\n"
         "- Arrested, charged, indicted, or in trial = OPEN\n"
+        "- If the suspect was KILLED by police (shot and killed, fatally shot, died at hospital), "
+        "there is NO criminal case to close — respond OPEN with 'suspect deceased'\n"
+        "- The sentencing MUST be for the SAME person and the SAME jurisdiction/case. "
+        "Do NOT count sentencings from a different state, city, or unrelated case number. "
+        "A result about a different person with the same name is NOT a match.\n"
         "- If you're not sure, say AMBIGUOUS\n"
         "- Be conservative — when in doubt, do not mark as CLOSED"
     )
@@ -397,12 +405,21 @@ def validate_case(
     if len(combined) > 2000:
         combined = combined[:2000]
 
+    # Build location context for LLM to verify jurisdiction
+    location_parts = []
+    if getattr(candidate, "agency", ""):
+        location_parts.append(candidate.agency)
+    if getattr(candidate, "state", ""):
+        location_parts.append(candidate.state)
+    location_context = ", ".join(location_parts)
+
     llm_result = _parse_closure_with_llm(
         combined,
         candidate.suspect_name,
         openrouter_api_key,
         openrouter_model,
         openrouter_base_url,
+        location_context=location_context,
     )
 
     query_used = queries[0]

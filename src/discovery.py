@@ -195,6 +195,10 @@ def _brave_search(query: str, api_key: str, count: int = 10) -> list[dict]:
 JUNK_URL_DOMAINS = [
     "linkedin.com", "instagram.com", "tiktok.com", "pinterest.com",
     "yelp.com", "glassdoor.com", "indeed.com", "zillow.com",
+    # Never useful for criminal case research
+    "imdb.com", "gettyimages.com", "wikipedia.org", "legacy.com",
+    "honorstates.org", "pulitzercenter.org", "ancestry.com",
+    "findagrave.com", "whitepages.com", "spokeo.com", "beenverified.com",
 ]
 
 
@@ -380,6 +384,12 @@ def _check_state_relevance(
         for sname in state_names:
             if sname in text_lower:
                 return False, f"Federal source mentions '{sname}' ({other_state}), not {candidate_state}"
+
+    # CourtListener: if neither our state nor any other state is mentioned,
+    # require at least our city/county in the text to accept as relevant.
+    # Generic matches like "Wright v. State" with no location are too ambiguous.
+    if "courtlistener.com" in url_lower:
+        return False, f"CourtListener link does not mention {candidate_state} or any identifiable jurisdiction"
 
     return True, "federal-no-other-state"
 

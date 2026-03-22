@@ -120,6 +120,20 @@ def stage_intake(config: dict, channels: list[ChannelConfig], sheet: SheetRegist
     return all_new_candidates
 
 
+def _name_matches_rejected(name: str, rejected_names: set, officer_names_lower: list) -> bool:
+    """Check if a name matches any rejected or officer name (including substring matches).
+
+    Handles variants like 'Michael Lee' vs 'Michael Lee Wright'.
+    """
+    name_lower = name.lower()
+    if name_lower in officer_names_lower:
+        return True
+    for rn in rejected_names:
+        if rn in name_lower or name_lower in rn:
+            return True
+    return False
+
+
 def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage, candidates: list[CaseCandidate] = None):
     """Stage 2: Cheap validation gate."""
     log = get_logger()
@@ -210,7 +224,7 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
                         c.video_title, c.video_description,
                         openrouter_key, extraction_model, extraction_base_url,
                     )
-                    if new_name and (new_name.lower() in officer_names_lower or new_name.lower() in rejected_names):
+                    if new_name and (_name_matches_rejected(new_name, rejected_names, officer_names_lower)):
                         new_name = ""
                     # LLM results also need OIS-deceased and victim checks
                     if new_name and classification["is_ois"]:
@@ -732,7 +746,7 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
             )
             # Double-check LLM result against officer names and rejected names
-            if new_name and (new_name.lower() in officer_names_lower or new_name.lower() in rejected_names):
+            if new_name and (_name_matches_rejected(new_name, rejected_names, officer_names_lower)):
                 log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
                 new_name = ""
             # LLM results also need OIS-deceased and victim checks
