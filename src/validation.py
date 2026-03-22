@@ -207,6 +207,13 @@ def _brave_search(query: str, api_key: str, count: int = 5) -> list[dict]:
     """Execute a Brave Search API query with retry on rate limits. Returns list of result dicts."""
     import time as _time
 
+    # Global rate limiter: ensure at least 1.1s between calls
+    now = _time.monotonic()
+    last = getattr(_brave_search, "_last_call", 0)
+    if now - last < 1.1:
+        _time.sleep(1.1 - (now - last))
+    _brave_search._last_call = _time.monotonic()
+
     max_retries = 3
     for attempt in range(max_retries + 1):
         try:

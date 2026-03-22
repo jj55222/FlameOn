@@ -142,31 +142,53 @@ def _get_county(city: str) -> str:
 
 
 def _brave_search(query: str, api_key: str, count: int = 10) -> list[dict]:
-    """Execute a Brave Search API query."""
-    try:
-        resp = requests.get(
-            "https://api.search.brave.com/res/v1/web/search",
-            headers={
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip",
-                "X-Subscription-Token": api_key,
-            },
-            params={"q": query, "count": count},
-            timeout=15,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        results = []
-        for item in data.get("web", {}).get("results", []):
-            results.append({
-                "title": item.get("title", ""),
-                "url": item.get("url", ""),
-                "description": item.get("description", ""),
-            })
-        return results
-    except Exception as e:
-        log.error("Brave search failed for query '%s': %s", query, e)
-        return []
+    """Execute a Brave Search API query with retry on rate limits."""
+    import time as _time
+
+    # Global rate limiter: ensure at least 1.1s between calls
+    now = _time.monotonic()
+    last = getattr(_brave_search, "_last_call", 0)
+    if now - last < 1.1:
+        _time.sleep(1.1 - (now - last))
+    _brave_search._last_call = _time.monotonic()
+
+    max_retries = 3
+    for attempt in range(max_retries + 1):
+        try:
+            resp = requests.get(
+                "https://api.search.brave.com/res/v1/web/search",
+                headers={
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip",
+                    "X-Subscription-Token": api_key,
+                },
+                params={"q": query, "count": count},
+                timeout=15,
+            )
+            if resp.status_code == 429 and attempt < max_retries:
+                wait = 2 ** (attempt + 1)  # 2s, 4s, 8s
+                log.warning("Brave rate-limited (429), retrying in %ds...", wait)
+                _time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            results = []
+            for item in data.get("web", {}).get("results", []):
+                results.append({
+                    "title": item.get("title", ""),
+                    "url": item.get("url", ""),
+                    "description": item.get("description", ""),
+                })
+            return results
+        except Exception as e:
+            if attempt < max_retries and "429" in str(e):
+                wait = 2 ** (attempt + 1)
+                log.warning("Brave rate-limited, retrying in %ds...", wait)
+                _time.sleep(wait)
+                continue
+            log.error("Brave search failed for query '%s': %s", query, e)
+            return []
+    return []
 
 
 # URLs that should be excluded entirely — never useful for case research
