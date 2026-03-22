@@ -204,31 +204,46 @@ def _build_validation_queries(candidate: CaseCandidate) -> list[str]:
 
 
 def _brave_search(query: str, api_key: str, count: int = 5) -> list[dict]:
-    """Execute a Brave Search API query. Returns list of result dicts."""
-    try:
-        resp = requests.get(
-            "https://api.search.brave.com/res/v1/web/search",
-            headers={
-                "Accept": "application/json",
-                "Accept-Encoding": "gzip",
-                "X-Subscription-Token": api_key,
-            },
-            params={"q": query, "count": count},
-            timeout=15,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        results = []
-        for item in data.get("web", {}).get("results", []):
-            results.append({
-                "title": item.get("title", ""),
-                "url": item.get("url", ""),
-                "description": item.get("description", ""),
-            })
-        return results
-    except Exception as e:
-        log.error("Brave search failed for query '%s': %s", query, e)
-        return []
+    """Execute a Brave Search API query with retry on rate limits. Returns list of result dicts."""
+    import time as _time
+
+    max_retries = 3
+    for attempt in range(max_retries + 1):
+        try:
+            resp = requests.get(
+                "https://api.search.brave.com/res/v1/web/search",
+                headers={
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip",
+                    "X-Subscription-Token": api_key,
+                },
+                params={"q": query, "count": count},
+                timeout=15,
+            )
+            if resp.status_code == 429 and attempt < max_retries:
+                wait = 2 ** (attempt + 1)  # 2s, 4s, 8s
+                log.warning("Brave rate-limited (429), retrying in %ds...", wait)
+                _time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            results = []
+            for item in data.get("web", {}).get("results", []):
+                results.append({
+                    "title": item.get("title", ""),
+                    "url": item.get("url", ""),
+                    "description": item.get("description", ""),
+                })
+            return results
+        except Exception as e:
+            if attempt < max_retries and "429" in str(e):
+                wait = 2 ** (attempt + 1)
+                log.warning("Brave rate-limited, retrying in %ds...", wait)
+                _time.sleep(wait)
+                continue
+            log.error("Brave search failed for query '%s': %s", query, e)
+            return []
+    return []
 
 
 def _parse_closure_with_llm(

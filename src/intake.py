@@ -106,6 +106,8 @@ OFFICER_ROLE_PHRASES = [
     "passed away", "killed in the line", "line of duty",
     "held a news conference", "press conference", "shared details about",
     "provided an update", "announced an arrest", "announced the arrest",
+    "is retiring", "retiring after", "retirement ceremony",
+    "director of", "interim director", "interim chief",
 ]
 
 
@@ -300,6 +302,9 @@ NOT_A_NAME_PHRASES = {
     "domestic violence", "unknown suspect", "unknown male",
     "unknown female", "community shield", "safe summer",
     "safe passage", "lucky charm", "lasso tabletop",
+    # School / organization names that regex/LLM mistakes for person names
+    "bishop kenny", "bishop moore", "bishop verot",
+    "west orange", "east ridge", "lake nona",
 }
 
 # Patterns in title/description where the name belongs to a NON-SUSPECT entity
@@ -720,6 +725,9 @@ def process_video(
                     suspect_name = ""
                     break
 
+    # Track names explicitly rejected so the LLM can't resurrect them
+    rejected_names = set()
+
     # For OIS videos, the first name found is usually the officer — be extra cautious
     if classification["is_ois"] and suspect_name:
         # Check if the name appears near officer-role context
@@ -737,6 +745,7 @@ def process_video(
                         "Rejected OIS officer name '%s' for %s (context: '%s')",
                         suspect_name, video_id, phrase,
                     )
+                    rejected_names.add(suspect_name.lower())
                     suspect_name = ""
                     break
 
@@ -747,8 +756,8 @@ def process_video(
             title, description, openrouter_api_key, openrouter_model, openrouter_base_url
         )
         if suspect_name:
-            # Double-check LLM result against officer names too
-            if suspect_name.lower() in officer_names_lower:
+            # Double-check LLM result against officer names and previously rejected names
+            if suspect_name.lower() in officer_names_lower or suspect_name.lower() in rejected_names:
                 log.info("Rejected LLM officer name '%s' for %s", suspect_name, video_id)
                 suspect_name = ""
             else:

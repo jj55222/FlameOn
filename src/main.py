@@ -155,10 +155,12 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
                 pass  # Don't try extraction on non-crime / cold case content
             else:
                 new_name = _extract_name_regex(text)
+                rejected_names = set()
 
                 # Filter officer names
                 officer_names_lower = [n.lower() for n in classification["officer_names"]]
                 if new_name and new_name.lower() in officer_names_lower:
+                    rejected_names.add(new_name.lower())
                     new_name = ""
 
                 # For OIS, check officer context
@@ -170,21 +172,34 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
                         ctx = desc_lower[max(0, name_pos - 100):name_pos + len(new_name) + 100]
                         for phrase in OFFICER_ROLE_PHRASES:
                             if phrase in ctx:
+                                rejected_names.add(new_name.lower())
                                 new_name = ""
                                 break
 
                 # For OIS, check if suspect was killed (no case to close)
+                ois_fatal = [
+                    r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
+                    r"(?:was\s+(?:pronounced|declared)\s+dead)",
+                    r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
+                    r"(?:did\s+not\s+survive|succumbed\s+to)",
+                ]
                 if classification["is_ois"] and new_name:
-                    ois_fatal = [
-                        r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
-                        r"(?:was\s+(?:pronounced|declared)\s+dead)",
-                        r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
-                        r"(?:did\s+not\s+survive|succumbed\s+to)",
-                    ]
                     desc_lower_full = c.video_description.lower()
                     for fp in ois_fatal:
                         if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
                             log.info("Rejected OIS-deceased '%s' for %s", new_name, c.case_id)
+                            rejected_names.add(new_name.lower())
+                            new_name = ""
+                            break
+
+                # Check victim title patterns (don't resurrect victim names)
+                from .intake import VICTIM_TITLE_PATTERNS
+                if new_name:
+                    for vp in VICTIM_TITLE_PATTERNS:
+                        vmatch = re.search(vp, c.video_title)
+                        if vmatch and vmatch.group(1).strip().lower() in new_name.lower():
+                            log.info("Rejected victim name '%s' for %s", new_name, c.case_id)
+                            rejected_names.add(new_name.lower())
                             new_name = ""
                             break
 
@@ -194,8 +209,23 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
                         c.video_title, c.video_description,
                         openrouter_key, extraction_model, extraction_base_url,
                     )
-                    if new_name and new_name.lower() in officer_names_lower:
+                    if new_name and (new_name.lower() in officer_names_lower or new_name.lower() in rejected_names):
                         new_name = ""
+                    # LLM results also need OIS-deceased and victim checks
+                    if new_name and classification["is_ois"]:
+                        desc_lower_full = c.video_description.lower()
+                        for fp in ois_fatal:
+                            if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
+                                log.info("Rejected LLM OIS-deceased '%s' for %s", new_name, c.case_id)
+                                new_name = ""
+                                break
+                    if new_name:
+                        for vp in VICTIM_TITLE_PATTERNS:
+                            vmatch = re.search(vp, c.video_title)
+                            if vmatch and vmatch.group(1).strip().lower() in new_name.lower():
+                                log.info("Rejected LLM victim name '%s' for %s", new_name, c.case_id)
+                                new_name = ""
+                                break
 
                 # Use operation name as fallback
                 if not new_name and classification["is_operation"] and classification["operation_name"]:
@@ -640,8 +670,10 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
 
         # Check if extracted name is actually an officer
         officer_names_lower = [n.lower() for n in classification["officer_names"]]
+        rejected_names = set()
         if new_name and new_name.lower() in officer_names_lower:
             log.info("Rejected officer name '%s' for %s", new_name, case_id)
+            rejected_names.add(new_name.lower())
             new_name = ""
             officer_rejected += 1
 
@@ -658,22 +690,35 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 for phrase in OFFICER_ROLE_PHRASES:
                     if phrase in context:
                         log.info("Rejected OIS officer name '%s' for %s", new_name, case_id)
+                        rejected_names.add(new_name.lower())
                         new_name = ""
                         officer_rejected += 1
                         break
 
         # For OIS, check if suspect was killed (no case to close)
+        ois_fatal = [
+            r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
+            r"(?:was\s+(?:pronounced|declared)\s+dead)",
+            r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
+            r"(?:did\s+not\s+survive|succumbed\s+to)",
+        ]
         if classification["is_ois"] and new_name:
-            ois_fatal = [
-                r"(?:shot\s+and\s+killed|fatally\s+shot|died\s+(?:at|after|from|on))",
-                r"(?:was\s+(?:pronounced|declared)\s+dead)",
-                r"(?:killed\s+(?:by|during|in)\s+(?:the\s+)?(?:shooting|incident|confrontation))",
-                r"(?:did\s+not\s+survive|succumbed\s+to)",
-            ]
             desc_lower_full = description.lower()
             for fp in ois_fatal:
                 if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
                     log.info("Rejected OIS-deceased '%s' for %s", new_name, case_id)
+                    rejected_names.add(new_name.lower())
+                    new_name = ""
+                    break
+
+        # Check victim title patterns
+        from .intake import VICTIM_TITLE_PATTERNS
+        if new_name:
+            for vp in VICTIM_TITLE_PATTERNS:
+                vmatch = re.search(vp, title)
+                if vmatch and vmatch.group(1).strip().lower() in new_name.lower():
+                    log.info("Rejected victim name '%s' for %s", new_name, case_id)
+                    rejected_names.add(new_name.lower())
                     new_name = ""
                     break
 
@@ -685,10 +730,25 @@ def stage_reextract_names(config: dict, sheet: SheetRegistry, storage: PipelineS
                 config.get("openrouter_model_extraction", "google/gemini-flash-1.5"),
                 config.get("openrouter_base_url", "https://openrouter.ai/api/v1"),
             )
-            # Double-check LLM result against officer names
-            if new_name and new_name.lower() in officer_names_lower:
+            # Double-check LLM result against officer names and rejected names
+            if new_name and (new_name.lower() in officer_names_lower or new_name.lower() in rejected_names):
                 log.info("Rejected LLM officer name '%s' for %s", new_name, case_id)
                 new_name = ""
+            # LLM results also need OIS-deceased and victim checks
+            if new_name and classification["is_ois"]:
+                desc_lower_full = description.lower()
+                for fp in ois_fatal:
+                    if re.search(fp, desc_lower_full) and desc_lower_full.find(new_name.lower()) >= 0:
+                        log.info("Rejected LLM OIS-deceased '%s' for %s", new_name, case_id)
+                        new_name = ""
+                        break
+            if new_name:
+                for vp in VICTIM_TITLE_PATTERNS:
+                    vmatch = re.search(vp, title)
+                    if vmatch and vmatch.group(1).strip().lower() in new_name.lower():
+                        log.info("Rejected LLM victim name '%s' for %s", new_name, case_id)
+                        new_name = ""
+                        break
 
         # Cold cases: no suspect — reject entirely
         if classification["is_cold_case"]:
