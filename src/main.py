@@ -218,8 +218,122 @@ def stage_validate(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
     return validated
 
 
+# Sentencing keywords used for news-based corroboration
+_SENTENCING_KEYWORDS = [
+    "sentenced to", "was sentenced", "has been sentenced", "years in prison",
+    "life sentence", "life in prison", "found guilty", "guilty verdict",
+    "pleaded guilty", "pled guilty", "convicted and sentenced",
+    "plea deal", "plea agreement", "years to life", "without parole",
+    "judgment of conviction", "prison term",
+]
+
+
+def _check_news_corroboration(links: list[dict]) -> bool:
+    """Check if multiple independent news sources confirm sentencing.
+
+    Returns True if 2+ different news domains have snippets containing
+    sentencing-related keywords. This serves as a secondary corroboration
+    tier for cases where no .gov/clerk URLs were found (e.g. Nelson Odige,
+    Dallas Francis).
+    """
+    from urllib.parse import urlparse
+
+    sentencing_domains = set()
+
+    for link in links:
+        source_class = link.get("source_class", "")
+        # Only consider news articles (not social media, not .gov)
+        if source_class not in (SourceRank.LOCAL_NEWS.value, SourceRank.LE_RELEASE.value):
+            continue
+
+        notes = (link.get("notes", "") or "").lower()
+        url = link.get("url", "")
+
+        # Check if snippet mentions sentencing
+        has_sentencing = any(kw in notes for kw in _SENTENCING_KEYWORDS)
+        if not has_sentencing:
+            continue
+
+        # Extract domain for independence check
+        try:
+            domain = urlparse(url).netloc.lower()
+            # Normalize: strip www., get base domain
+            domain = domain.replace("www.", "")
+            # Get the registrable domain (last 2 parts)
+            parts = domain.split(".")
+            if len(parts) >= 2:
+                domain = ".".join(parts[-2:])
+        except Exception:
+            continue
+
+        if domain:
+            sentencing_domains.add(domain)
+
+    return len(sentencing_domains) >= 2
+
+
+def _suspect_dedup_key(candidate: CaseCandidate) -> str:
+    """Build a dedup key for grouping cases by the same suspect.
+
+    Groups by normalized (suspect_name, state) so that two videos about
+    "Bruce Whitehead" in FL share one discovery run instead of running
+    identical Brave queries twice.
+    """
+    name = (candidate.suspect_name or "").strip().lower()
+    state = (candidate.state or "").strip().upper()
+    return f"{name}|{state}" if name else ""
+
+
+def _save_and_update_case(
+    c: CaseCandidate,
+    inventory,
+    corroboration: str,
+    storage: PipelineStorage,
+    sheet: SheetRegistry,
+):
+    """Persist inventory and update sheet for a single case."""
+    log = get_logger()
+
+    # Save inventory locally
+    if c.local_case_folder:
+        folder_path = os.path.join(storage.root, c.local_case_folder)
+    else:
+        year = c.published_at[:4] if c.published_at else ""
+        folder_name = make_case_folder_name(c.state, c.suspect_name, "Sentenced", year, c.video_id)
+        folder_path = storage.create_validated_folder(folder_name)
+        c.local_case_folder = storage.relative_path(folder_path)
+
+    inv_dict = asdict(inventory)
+    if hasattr(inventory, "enrichment"):
+        inv_dict["enrichment"] = inventory.enrichment
+    storage.write_links_inventory(folder_path, inv_dict)
+    storage.copy_links_inventory(c.case_id, inv_dict)
+
+    # Update sheet
+    c.validation_status = ValidationStatus.LINKS_DISCOVERED.value
+    c.links_discovered = len(inventory.links)
+    c.official_corroboration_status = corroboration
+
+    sheet.update_case(c.case_id, {
+        "validation_status": c.validation_status,
+        "links_discovered": c.links_discovered,
+        "official_corroboration_status": c.official_corroboration_status,
+        "local_case_folder": c.local_case_folder,
+    })
+
+    if corroboration == CorroborationStatus.NOT_FOUND.value:
+        log.warning(
+            "No official corroboration found for %s — logged as edge case", c.case_id
+        )
+
+
 def stage_discover(config: dict, sheet: SheetRegistry, storage: PipelineStorage, validated: list[CaseCandidate] = None):
-    """Stage 3A: Link discovery."""
+    """Stage 3A: Link discovery.
+
+    Groups cases by suspect_name+state to avoid running identical Brave
+    queries for the same person across multiple videos (e.g. Bruce
+    Whitehead with 2 videos would otherwise generate 28 duplicate links).
+    """
     log = get_logger()
     log.info("=" * 60)
     log.info("STAGE 3A — LINK DISCOVERY")
@@ -235,61 +349,89 @@ def stage_discover(config: dict, sheet: SheetRegistry, storage: PipelineStorage,
             }))
         log.info("Loaded %d validated_closed cases from sheet", len(validated))
 
+    # Group cases by suspect to avoid duplicate discovery work.
+    # Cases with no suspect_name get their own group (keyed by case_id).
+    from collections import OrderedDict
+    suspect_groups: dict[str, list[CaseCandidate]] = OrderedDict()
     for c in validated:
-        log.info("Discovering links for: %s", c.case_id)
+        key = _suspect_dedup_key(c)
+        if not key:
+            # No suspect name — can't dedup, run individually
+            key = f"__noname__{c.case_id}"
+        suspect_groups.setdefault(key, []).append(c)
+
+    deduped_count = sum(1 for g in suspect_groups.values() if len(g) > 1)
+    if deduped_count:
+        log.info(
+            "Suspect dedup: %d cases → %d unique suspects (%d groups with multiple videos)",
+            len(validated), len(suspect_groups), deduped_count,
+        )
+
+    for group_key, cases in suspect_groups.items():
+        # Use the first case as the representative for discovery
+        representative = cases[0]
+        log.info(
+            "Discovering links for: %s (%d video(s))",
+            representative.suspect_name or representative.case_id,
+            len(cases),
+        )
+        if len(cases) > 1:
+            log.info(
+                "  Dedup: sharing results across %d cases: %s",
+                len(cases),
+                ", ".join(c.case_id for c in cases),
+            )
 
         inventory = run_discovery(
-            candidate=c,
+            candidate=representative,
             brave_api_key=config["brave_api_key"],
             rate_limit=1.0 / config.get("brave_requests_per_second", 1),
             courtlistener_api_key=config.get("courtlistener_api_key", ""),
             caselaw_api_key=config.get("caselaw_api_key", ""),
         )
 
-        # Determine official corroboration
+        # Determine official corroboration (including news-based tier)
         has_official = any(
             link.get("official_corroboration", False)
             for link in inventory.links
         )
-        corroboration = (
-            CorroborationStatus.CONFIRMED.value if has_official
-            else CorroborationStatus.NOT_FOUND.value
-        )
 
-        # Save inventory locally
-        if c.local_case_folder:
-            folder_path = os.path.join(storage.root, c.local_case_folder)
-        else:
-            year = c.published_at[:4] if c.published_at else ""
-            folder_name = make_case_folder_name(c.state, c.suspect_name, "Sentenced", year, c.video_id)
-            folder_path = storage.create_validated_folder(folder_name)
-            c.local_case_folder = storage.relative_path(folder_path)
+        # News-based corroboration: if no .gov/clerk links found, check if
+        # multiple independent news sources confirm sentencing
+        has_news_corroboration = False
+        if not has_official:
+            has_news_corroboration = _check_news_corroboration(inventory.links)
 
-        inv_dict = asdict(inventory)
-        # Persist enrichment metadata (case numbers, citations) if present
-        if hasattr(inventory, "enrichment"):
-            inv_dict["enrichment"] = inventory.enrichment
-        storage.write_links_inventory(folder_path, inv_dict)
-        storage.copy_links_inventory(c.case_id, inv_dict)
-
-        # Update sheet
-        c.validation_status = ValidationStatus.LINKS_DISCOVERED.value
-        c.links_discovered = len(inventory.links)
-        c.official_corroboration_status = corroboration
-
-        sheet.update_case(c.case_id, {
-            "validation_status": c.validation_status,
-            "links_discovered": c.links_discovered,
-            "official_corroboration_status": c.official_corroboration_status,
-            "local_case_folder": c.local_case_folder,
-        })
-
-        if corroboration == CorroborationStatus.NOT_FOUND.value:
-            log.warning(
-                "No official corroboration found for %s — logged as edge case", c.case_id
+        if has_official:
+            corroboration = CorroborationStatus.CONFIRMED.value
+        elif has_news_corroboration:
+            corroboration = CorroborationStatus.CONFIRMED.value
+            log.info(
+                "News-based corroboration for %s: multiple independent sources confirm sentencing",
+                representative.case_id,
             )
+        else:
+            corroboration = CorroborationStatus.NOT_FOUND.value
 
-    log.info("Stage 3A complete: processed %d cases", len(validated))
+        # Log individual names extracted from operation cases
+        if hasattr(inventory, "enrichment") and inventory.enrichment.get("individual_names"):
+            indiv_names = inventory.enrichment["individual_names"]
+            log.info(
+                "Operation '%s': %d individual defendant names available for sub-case creation: %s",
+                representative.suspect_name, len(indiv_names), indiv_names,
+            )
+            # Store individual names in validation_note for each case
+            names_note = f"Individual defendants from news: {', '.join(indiv_names)}"
+            for c in cases:
+                existing_note = c.validation_note or ""
+                c.validation_note = f"{existing_note}; {names_note}" if existing_note else names_note
+                sheet.update_case(c.case_id, {"validation_note": c.validation_note[:500]})
+
+        # Apply inventory to all cases in the group
+        for c in cases:
+            _save_and_update_case(c, inventory, corroboration, storage, sheet)
+
+    log.info("Stage 3A complete: processed %d cases (%d unique suspects)", len(validated), len(suspect_groups))
     return validated
 
 

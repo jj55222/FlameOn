@@ -19,6 +19,7 @@ from .case_search import (
     build_case_number_queries,
     build_direct_portal_urls,
     enrich_case,
+    extract_case_numbers,
 )
 from .logger import get_logger
 from .models import CaseCandidate, DiscoveredLink, LinkInventory, SourceRank
@@ -591,6 +592,62 @@ def discover_case_number_links(
     return links
 
 
+def extract_individual_names_from_news(
+    news_links: list[DiscoveredLink],
+    operation_name: str,
+) -> list[str]:
+    """Extract individual defendant names from news snippets about an operation.
+
+    News articles about operations like "Operation Community Shield" often
+    mention individual defendants by name. This function scans the snippet
+    text (stored in link.notes) for name patterns.
+
+    Returns deduplicated list of extracted names.
+    """
+    if not news_links:
+        return []
+
+    # Combine all snippet text
+    text = " ".join(
+        link.notes if isinstance(link, DiscoveredLink) else link.get("notes", "")
+        for link in news_links
+    )
+
+    # Patterns for individual names in news about operations/stings
+    name_patterns = [
+        # "John Doe, 34, was charged" / "John Doe, 34, of City"
+        r"([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,}),?\s+\d{1,2},?\s+(?:was|were|of|has|is|charged|arrested|sentenced|convicted|pleaded)",
+        # "arrested John Doe" / "charged John Doe"
+        r"(?:arrested|charged|convicted|sentenced|indicted)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+        # "defendants X, Y, and Z" / "suspects X, Y, and Z"
+        r"(?:defendants?|suspects?|individuals?)\s+([A-Z][a-z]+(?:\s+[A-Z]\.)?\s+[A-Z][a-z]{2,})",
+    ]
+
+    names = []
+    seen = set()
+
+    # Clean the operation name for comparison
+    op_lower = operation_name.lower().strip() if operation_name else ""
+
+    for pattern in name_patterns:
+        for match in re.finditer(pattern, text):
+            name = match.group(1).strip()
+            name_lower = name.lower()
+            # Skip if it matches the operation name
+            if op_lower and name_lower in op_lower:
+                continue
+            # Skip common false positives
+            if name_lower in ("the police", "the sheriff", "the court", "the state",
+                              "the department", "the office", "the suspect"):
+                continue
+            parts = name.split()
+            if len(parts) >= 2 and len(name) > 5 and name_lower not in seen:
+                seen.add(name_lower)
+                names.append(name)
+
+    return names
+
+
 def run_discovery(
     candidate: CaseCandidate,
     brave_api_key: str,
@@ -681,6 +738,36 @@ def run_discovery(
     all_links.extend(news_links)
     log.info("Found %d news links", len(news_links))
 
+    # Phase 2b: Extract case numbers from news snippets and loop back.
+    # This solves the "Phase 0b never fires" problem — most state-level
+    # cases aren't in CourtListener, but news articles often mention
+    # case numbers like "Case No. CR2024-001234".
+    if not case_numbers and not docket_numbers:
+        news_text = " ".join(
+            link.notes if isinstance(link, DiscoveredLink) else link.get("notes", "")
+            for link in news_links
+        )
+        news_case_numbers = extract_case_numbers(news_text)
+        if news_case_numbers:
+            log.info(
+                "Phase 2b: Extracted %d case numbers from news snippets: %s",
+                len(news_case_numbers), news_case_numbers,
+            )
+
+            # Run Phase 0b with news-extracted case numbers
+            news_direct_urls = build_direct_portal_urls(
+                candidate, news_case_numbers, [], docket_ids=[],
+            )
+            all_links.extend(news_direct_urls)
+            log.info("Phase 2b→0b: %d direct portal URLs from news case numbers", len(news_direct_urls))
+
+            # Run Phase 1b with news-extracted case numbers
+            news_case_num_links = discover_case_number_links(
+                candidate, news_case_numbers, [], brave_api_key, rate_limit,
+            )
+            all_links.extend(news_case_num_links)
+            log.info("Phase 2b→1b: %d case-number links from news case numbers", len(news_case_num_links))
+
     # Phase 3: BWC/interrogation footage
     bwc_links = discover_bwc_interrogation_links(candidate, brave_api_key, rate_limit)
     all_links.extend(bwc_links)
@@ -720,6 +807,19 @@ def run_discovery(
         "docket_numbers": enrichment.get("docket_numbers", []),
         "citations": enrichment.get("citations", []),
     }
+
+    # For operation cases, extract individual defendant names from news snippets.
+    # These can be used to spawn sub-cases or update the case record.
+    if _is_operation_name(candidate.suspect_name or ""):
+        individual_names = extract_individual_names_from_news(
+            news_links, candidate.suspect_name,
+        )
+        inventory.enrichment["individual_names"] = individual_names
+        if individual_names:
+            log.info(
+                "Operation '%s': extracted %d individual defendant names from news: %s",
+                candidate.suspect_name, len(individual_names), individual_names,
+            )
 
     log.info(
         "Discovery complete for %s: %d total links (%d enrichment, %d direct-url, %d court, %d case-num, %d news, %d bwc)",
