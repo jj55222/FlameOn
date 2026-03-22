@@ -29,6 +29,7 @@ from .models import (
     CaseCandidate,
     ChannelConfig,
     CorroborationStatus,
+    SourceRank,
     ValidationStatus,
 )
 from .sheet import SheetRegistry
