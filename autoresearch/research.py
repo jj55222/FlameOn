@@ -594,12 +594,12 @@ def research_case(defendant_names, jurisdiction):
     Given a defendant name and jurisdiction, research the case using
     all available structured APIs and return findings.
     """
-    # Re-read API keys from environment at call time so that keys
-    # set after import (e.g. in Colab or via export) are picked up.
+    # Re-read API keys from environment at call time, with hardcoded fallbacks
+    # for development. Rotate these keys after experimentation.
     global BRAVE_API_KEY, COURTLISTENER_API_KEY, MUCKROCK_API_TOKEN
-    BRAVE_API_KEY = os.environ.get("BRAVE_API_KEY", "")
-    COURTLISTENER_API_KEY = os.environ.get("COURTLISTENER_API_KEY", "")
-    MUCKROCK_API_TOKEN = os.environ.get("MUCKROCK_API_TOKEN", "")
+    BRAVE_API_KEY = os.environ.get("BRAVE_API_KEY", "") or "BSAKTfvQ6C4FBD1iaUiXNu8tWkGH8YS"
+    COURTLISTENER_API_KEY = os.environ.get("COURTLISTENER_API_KEY", "") or "2bfda78e15cfc70b4234387fd7802c9655431cf9"
+    MUCKROCK_API_TOKEN = os.environ.get("MUCKROCK_API_TOKEN", "") or "8f9fb6c8619a04cb594674913b0d24bcc032b41e"
 
     all_sources = []
     notes = []
