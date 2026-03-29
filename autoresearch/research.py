@@ -32,9 +32,11 @@ from urllib.parse import quote_plus, urlparse
 # API Configuration
 # ──────────────────────────────────────────────────────────────
 
-BRAVE_API_KEY = os.environ.get("BRAVE_API_KEY", "")
-COURTLISTENER_API_KEY = os.environ.get("COURTLISTENER_API_KEY", "")
-MUCKROCK_API_TOKEN = os.environ.get("MUCKROCK_API_TOKEN", "")
+# API keys are read at call time inside research_case() so that
+# environment variables set after import are picked up correctly.
+BRAVE_API_KEY = ""
+COURTLISTENER_API_KEY = ""
+MUCKROCK_API_TOKEN = ""
 
 MUCKROCK_BASE = "https://www.muckrock.com/api_v2/"
 COURTLISTENER_BASE = "https://www.courtlistener.com/api/rest/v4/"
@@ -592,6 +594,13 @@ def research_case(defendant_names, jurisdiction):
     Given a defendant name and jurisdiction, research the case using
     all available structured APIs and return findings.
     """
+    # Re-read API keys from environment at call time so that keys
+    # set after import (e.g. in Colab or via export) are picked up.
+    global BRAVE_API_KEY, COURTLISTENER_API_KEY, MUCKROCK_API_TOKEN
+    BRAVE_API_KEY = os.environ.get("BRAVE_API_KEY", "")
+    COURTLISTENER_API_KEY = os.environ.get("COURTLISTENER_API_KEY", "")
+    MUCKROCK_API_TOKEN = os.environ.get("MUCKROCK_API_TOKEN", "")
+
     all_sources = []
     notes = []
 
