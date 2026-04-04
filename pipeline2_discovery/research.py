@@ -1003,6 +1003,9 @@ def research_case(defendant_names, jurisdiction):
     Given a defendant name and jurisdiction, research the case using
     all available structured APIs and return findings.
     """
+    global _brave_case_calls
+    _brave_case_calls = 0  # Reset per-case Brave budget
+
     all_sources = []
     notes = []
 
