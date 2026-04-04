@@ -1261,23 +1261,22 @@ def search_portal_cache(names, jurisdiction):
             relevance = 0.5  # high-value page type but no name match
 
         seen_urls.add(url)
-            # Guess type from URL
-            source_type = "agency_portal"
-            url_lower = url.lower()
-            if any(kw in url_lower for kw in ["bodycam", "body-cam", "bwc", "body-worn"]):
-                source_type = "bodycam_footage"
-            elif any(kw in url_lower for kw in ["video", "footage", "youtube"]):
-                source_type = "video_footage"
-            elif any(kw in url_lower for kw in ["report", "document", "pdf"]):
-                source_type = "foia_document"
+        # Guess type from URL
+        source_type = "agency_portal"
+        if any(kw in url_lower for kw in ["bodycam", "body-cam", "bwc", "body-worn"]):
+            source_type = "bodycam_footage"
+        elif any(kw in url_lower for kw in ["video", "footage", "youtube"]):
+            source_type = "video_footage"
+        elif any(kw in url_lower for kw in ["report", "document", "pdf"]):
+            source_type = "foia_document"
 
-            sources.append({
-                "url": url,
-                "type": source_type,
-                "relevance_score": relevance,
-                "description": f"Portal: {entry.get('portal_source', '')}",
-                "api": "firecrawl_cache",
-            })
+        sources.append({
+            "url": url,
+            "type": source_type,
+            "relevance_score": relevance,
+            "description": f"Portal: {entry.get('portal_source', '')}",
+            "api": "firecrawl_cache",
+        })
 
     return sources
 
