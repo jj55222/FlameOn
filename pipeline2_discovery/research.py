@@ -1514,6 +1514,7 @@ def _type_sources_for_p3(sources):
         "video_footage": "other",
         "general_footage": "other",
         "wiki_article": "news_report",
+        "agency_portal": "other",
     }
 
     # Domain → media format
