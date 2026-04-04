@@ -22,7 +22,8 @@
       "Bash(echo \"exit: $?\")",
       "Bash(python -c \"import json; d=json.load\\(open\\(''C:/Users/Diner/.claude/settings.json''\\)\\); hooks=d[''hooks''][''PostToolUse'']; h=next\\(x for x in hooks if x[''matcher'']==''Write|Edit''\\)[''hooks''][0]; print\\(h[''command'']\\)\")",
       "Bash(ls -la \"C:/FlameON/FlameOn-main/autoresearch/\"gdoc_credentials*)",
-      "Bash(python -c \"import zipfile; zipfile.ZipFile\\(''FlameOn-blitz.zip''\\).extractall\\(''FlameOn-blitz''\\)\")"
+      "Bash(python -c \"import zipfile; zipfile.ZipFile\\(''FlameOn-blitz.zip''\\).extractall\\(''FlameOn-blitz''\\)\")",
+      "Bash(python -c \"import research; print\\(''OK — parsed successfully''\\)\")"
     ]
   }
 }

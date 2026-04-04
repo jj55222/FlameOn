@@ -984,8 +984,23 @@ def assess_confidence(sources, evidence):
     evidence_count = sum(1 for v in evidence.values() if v)
     high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
 
-    # High: requires 3+ evidence types AND 3+ high-relevance sources
-    if high_relevance >= 3 and evidence_count >= 3:
+    # Count directly-typed evidence sources (PATH 1 — source type mapping, high signal)
+    # These are sources where yt-dlp or domain mapping assigned a specific evidence type,
+    # not just keyword matches in descriptions. Much more reliable than keyword detection.
+    typed_evidence_types = {"bodycam_footage", "interrogation_footage", "court_footage",
+                           "dispatch_audio", "court_docket", "court_opinion"}
+    typed_evidence = sum(1 for s in sources if s.get("type", "") in typed_evidence_types)
+
+    # Count distinct APIs contributing high-relevance sources (diversity signal)
+    api_set = set(s.get("api", "") for s in sources if s.get("relevance_score", 0) >= 0.5)
+    api_diversity = len(api_set - {""})
+
+    # High: requires evidence breadth + directly-typed evidence (not just keyword matches)
+    # This prevents INSUFFICIENT cases with only news articles from getting HIGH
+    if high_relevance >= 3 and evidence_count >= 3 and typed_evidence >= 2:
+        return "high"
+    # High fallback: strong API diversity compensates for fewer typed sources
+    if high_relevance >= 4 and evidence_count >= 3 and api_diversity >= 3:
         return "high"
     # Medium: requires at least 1 evidence type + 1 high-confidence source + 2+ sources total
     elif evidence_count >= 1 and high_relevance >= 1 and len(sources) >= 2:
