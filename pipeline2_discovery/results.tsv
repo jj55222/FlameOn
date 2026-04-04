@@ -23,3 +23,4 @@ experiment_id	timestamp	research_score	evidence_recall	source_discovery	precisio
 21	2026-04-04T03:16:15Z	62.66	73.33	55.41	51.94	63.16	38	38	1470.0	april_rerun_v2	even brave budget + typed_evidence HIGH threshold + API diversity fallback	
 22	2026-04-04T03:46:37Z	60.66	69.33	54.05	51.97	63.16	38	36	1626.2	april_v3	footage-only typed_evidence for HIGH, oral args search, reset quota	
 23	2026-04-04T04:16:28Z	63.62	73.33	58.11	52.05	64.47	38	38	1511.4	april_v4	v2 config + footage-only HIGH, no CL oral args, reset quota	
+24	2026-04-04T04:47:17Z	61.91	69.33	58.11	51.50	64.47	38	38	1479.3	april_v5	v4 + YouTube jurisdiction cross-check penalty for name-only matches	
