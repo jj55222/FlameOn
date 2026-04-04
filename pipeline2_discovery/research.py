@@ -1346,48 +1346,38 @@ def discover_new_cases(portal_url, jurisdiction="", max_cases=20):
         FIRECRAWL_EXTRACT_DISABLED = True
         return []
 
+    # Use simpler flat schema — deep nesting caused 0 extractions
     schema = {
         "type": "object",
         "properties": {
             "cases": {
                 "type": "array",
-                "description": f"List of up to {max_cases} most recent cases on this page, in order",
                 "items": {
                     "type": "object",
                     "properties": {
-                        "position": {"type": "integer", "description": "1-indexed position on page"},
-                        "title": {"type": "string", "description": "Case or incident title"},
-                        "defendant_name": {"type": "string", "description": "Defendant or suspect name if shown"},
-                        "victim_name": {"type": "string", "description": "Victim name if shown"},
-                        "incident_date": {"type": "string", "description": "Incident date in YYYY-MM-DD if available"},
-                        "location": {"type": "string", "description": "Location of incident"},
-                        "case_url": {"type": "string", "description": "Link to case detail page or report"},
-                        "summary": {"type": "string", "description": "One-sentence description"},
-                        "evidence_types": {
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "description": "Evidence types mentioned: bodycam, interrogation, court_video, 911, docket, etc.",
-                        },
+                        "title": {"type": "string"},
+                        "defendants": {"type": "string"},
+                        "date": {"type": "string"},
+                        "location": {"type": "string"},
+                        "url": {"type": "string"},
+                        "summary": {"type": "string"},
                     },
                 },
             }
         },
     }
 
-    prompt = f"""Extract the {max_cases} most recent cases, incidents, or press releases from this law enforcement portal page.
+    prompt = f"""Extract every case, incident, or press release listed on this law enforcement portal page, in the order they appear.
 
-For each case return:
-- position: 1-indexed position on the page (1 = topmost/most recent)
-- title: exact case or incident title
-- defendant_name: suspect or defendant name if shown (may be empty on some portals)
-- victim_name: victim name if shown
-- incident_date: date in YYYY-MM-DD format if available
-- location: city or specific location
-- case_url: direct URL to case detail or report page (if linked)
-- summary: one-sentence description
-- evidence_types: any evidence types mentioned (bodycam, interrogation, 911, court video, etc.)
+For each case include:
+- title (full case title or incident name)
+- defendants (suspect/defendant names if shown, or empty string)
+- date (incident or case date in any format shown)
+- location (city or specific location)
+- url (link to the case detail page if any)
+- summary (one-sentence description)
 
-Return cases in the order they appear on the page. If the page has fewer than {max_cases} cases, return all of them."""
+Return up to {max_cases} cases."""
 
     rate_limit("firecrawl", 2.0)
     print(f"  [Firecrawl discover] {portal_url[:60]}...")
