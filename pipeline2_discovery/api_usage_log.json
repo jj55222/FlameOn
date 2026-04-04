@@ -206,5 +206,797 @@
   "credits_used": 1,
   "results_found": 1,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:01.135353",
+  "api": "exa",
+  "query": "\"Keonte Gathron\" San Francisco case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:02.551027",
+  "api": "exa",
+  "query": "\"Keonte Gathron\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:04.150498",
+  "api": "exa",
+  "query": "\"Keonte Gathron\" CA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:50.869697",
+  "api": "exa",
+  "query": "\"Min Jian Guan\" San Francisco case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:52.415454",
+  "api": "exa",
+  "query": "\"Min Jian Guan\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:33:53.827901",
+  "api": "exa",
+  "query": "\"Min Jian Guan\" CA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:34:35.821045",
+  "api": "exa",
+  "query": "\"Roger Dale Boshers\" San Francisco case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:34:37.121644",
+  "api": "exa",
+  "query": "\"Roger Dale Boshers\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:34:38.685872",
+  "api": "exa",
+  "query": "\"Roger Dale Boshers\" CA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:35:22.140746",
+  "api": "exa",
+  "query": "\"Kitt Crenshaw\" San Francisco case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:35:23.441705",
+  "api": "exa",
+  "query": "\"Kitt Crenshaw\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:35:25.089501",
+  "api": "exa",
+  "query": "\"Kitt Crenshaw\" CA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:07.069549",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" Knoxville case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:07.713458",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:08.399154",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" TN court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:51.900874",
+  "api": "exa",
+  "query": "\"Manuel Marin\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:53.351987",
+  "api": "exa",
+  "query": "\"Manuel Marin\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:36:55.373832",
+  "api": "exa",
+  "query": "\"Manuel Marin\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:37:38.941783",
+  "api": "exa",
+  "query": "\"Braulio Gonzalez\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:37:40.523074",
+  "api": "exa",
+  "query": "\"Braulio Gonzalez\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:37:42.269906",
+  "api": "exa",
+  "query": "\"Braulio Gonzalez\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:38:24.468105",
+  "api": "exa",
+  "query": "\"Armando Botell\" Sweetwater case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:38:25.826437",
+  "api": "exa",
+  "query": "\"Armando Botell\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:38:27.394947",
+  "api": "exa",
+  "query": "\"Armando Botell\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:39:09.800950",
+  "api": "exa",
+  "query": "\"Jorge Barahona\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:39:11.281563",
+  "api": "exa",
+  "query": "\"Jorge Barahona\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:39:12.711159",
+  "api": "exa",
+  "query": "\"Jorge Barahona\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:39:54.701416",
+  "api": "exa",
+  "query": "\"Julius Dwight Mozie\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:39:57.488792",
+  "api": "exa",
+  "query": "\"Julius Dwight Mozie\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:40:00.074450",
+  "api": "exa",
+  "query": "\"Julius Dwight Mozie\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:40:52.182055",
+  "api": "exa",
+  "query": "\"Keivon McBride\" Fort Lauderdale case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:40:53.542499",
+  "api": "exa",
+  "query": "\"Keivon McBride\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:40:55.999148",
+  "api": "exa",
+  "query": "\"Keivon McBride\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:41:37.561759",
+  "api": "exa",
+  "query": "\"Steven Dexter Gangoo\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:41:38.837588",
+  "api": "exa",
+  "query": "\"Steven Dexter Gangoo\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:41:40.716926",
+  "api": "exa",
+  "query": "\"Steven Dexter Gangoo\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:42:22.077221",
+  "api": "exa",
+  "query": "\"Antonio Glass\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:42:23.675874",
+  "api": "exa",
+  "query": "\"Antonio Glass\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:42:25.076526",
+  "api": "exa",
+  "query": "\"Antonio Glass\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:06.111786",
+  "api": "exa",
+  "query": "\"Carmen Barahona\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:07.704364",
+  "api": "exa",
+  "query": "\"Carmen Barahona\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:09.092602",
+  "api": "exa",
+  "query": "\"Carmen Barahona\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:56.391281",
+  "api": "exa",
+  "query": "\"Prentiss Madden\" Aventura case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:58.280108",
+  "api": "exa",
+  "query": "\"Prentiss Madden\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:43:59.788999",
+  "api": "exa",
+  "query": "\"Prentiss Madden\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:44:47.935131",
+  "api": "exa",
+  "query": "\"William D. Foster\" Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:44:49.690692",
+  "api": "exa",
+  "query": "\"William D. Foster\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:44:51.835863",
+  "api": "exa",
+  "query": "\"William D. Foster\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:45:39.446855",
+  "api": "exa",
+  "query": "\"Mariam Coulibaly\" North Miami case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:45:41.192854",
+  "api": "exa",
+  "query": "\"Mariam Coulibaly\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:45:42.638198",
+  "api": "exa",
+  "query": "\"Mariam Coulibaly\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:46:27.860384",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" Palm Beach case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:46:29.764371",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:46:31.490747",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:47:14.148642",
+  "api": "exa",
+  "query": "\"Michael Edwin Harding\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:47:16.978972",
+  "api": "exa",
+  "query": "\"Michael Edwin Harding\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:47:59.652953",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" Palm Beach case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:48:00.488779",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:48:01.555310",
+  "api": "exa",
+  "query": "\"Jeffrey Epstein\" FL court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:48:45.205740",
+  "api": "exa",
+  "query": "\"Joseph Concialdi\" Phoenix case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:48:46.703573",
+  "api": "exa",
+  "query": "\"Joseph Concialdi\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:48:48.677692",
+  "api": "exa",
+  "query": "\"Joseph Concialdi\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:49:38.387303",
+  "api": "exa",
+  "query": "\"William James McElroy\" Phoenix case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:49:40.041803",
+  "api": "exa",
+  "query": "\"William James McElroy\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:49:42.318457",
+  "api": "exa",
+  "query": "\"William James McElroy\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:50:27.515078",
+  "api": "exa",
+  "query": "\"Robert Hood\" Phoenix case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:50:29.326159",
+  "api": "exa",
+  "query": "\"Robert Hood\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:50:31.144834",
+  "api": "exa",
+  "query": "\"Robert Hood\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:51:16.455678",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" Spokane case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:51:18.207272",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:51:20.238851",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" WA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:52:07.161827",
+  "api": "exa",
+  "query": "\"Louis Broadway-Phillips\" Mesa case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:52:09.755645",
+  "api": "exa",
+  "query": "\"Louis Broadway-Phillips\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:52:12.538943",
+  "api": "exa",
+  "query": "\"Louis Broadway-Phillips\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:00.725983",
+  "api": "exa",
+  "query": "\"Kyle Matthew Thompson\" Mohave Valley case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:02.662993",
+  "api": "exa",
+  "query": "\"Kyle Matthew Thompson\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:05.420773",
+  "api": "exa",
+  "query": "\"Kyle Matthew Thompson\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:54.545552",
+  "api": "exa",
+  "query": "\"William Bracy\" Phoenix/Scottsdale case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:56.249644",
+  "api": "exa",
+  "query": "\"William Bracy\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:53:58.120619",
+  "api": "exa",
+  "query": "\"William Bracy\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:54:40.318454",
+  "api": "exa",
+  "query": "\"Alan Matthew Champagne\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:54:43.277507",
+  "api": "exa",
+  "query": "\"Alan Matthew Champagne\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:55:27.879870",
+  "api": "exa",
+  "query": "\"Thomas Michael Riley\" Buckeye case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:55:29.771282",
+  "api": "exa",
+  "query": "\"Thomas Michael Riley\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:55:31.650899",
+  "api": "exa",
+  "query": "\"Thomas Michael Riley\" AZ court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:56:14.163395",
+  "api": "exa",
+  "query": "\"Angela D. McAnulty\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:56:16.166128",
+  "api": "exa",
+  "query": "\"Angela D. McAnulty\" OR court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:56:58.490025",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" Spokane case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:56:59.537440",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:57:00.707683",
+  "api": "exa",
+  "query": "\"Miguel Antonio Mondaca\" WA court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:57:48.853441",
+  "api": "exa",
+  "query": "\"Marvin G. Johnson\" Cambridge case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:57:50.633158",
+  "api": "exa",
+  "query": "\"Marvin G. Johnson\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:57:52.989814",
+  "api": "exa",
+  "query": "\"Marvin G. Johnson\" OH court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:58:37.664888",
+  "api": "exa",
+  "query": "\"Letecia Stauch\" Colorado Springs case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:58:39.521274",
+  "api": "exa",
+  "query": "\"Letecia Stauch\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:58:41.332207",
+  "api": "exa",
+  "query": "\"Letecia Stauch\" CO court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:59:27.639278",
+  "api": "exa",
+  "query": "\"Carla Marie Faith\" Colorado Springs case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:59:29.159516",
+  "api": "exa",
+  "query": "\"Carla Marie Faith\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:59:31.158882",
+  "api": "exa",
+  "query": "\"Carla Marie Faith\" CO court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
  }
 ]

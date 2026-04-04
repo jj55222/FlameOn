@@ -24,3 +24,4 @@ experiment_id	timestamp	research_score	evidence_recall	source_discovery	precisio
 22	2026-04-04T03:46:37Z	60.66	69.33	54.05	51.97	63.16	38	36	1626.2	april_v3	footage-only typed_evidence for HIGH, oral args search, reset quota	
 23	2026-04-04T04:16:28Z	63.62	73.33	58.11	52.05	64.47	38	38	1511.4	april_v4	v2 config + footage-only HIGH, no CL oral args, reset quota	
 24	2026-04-04T04:47:17Z	61.91	69.33	58.11	51.50	64.47	38	38	1479.3	april_v5	v4 + YouTube jurisdiction cross-check penalty for name-only matches	
+25	2026-04-04T17:59:49Z	51.36	61.33	31.08	54.62	65.79	38	34	1638.6	phase2_exa	added Exa search (free), Brave paid key, portal cache (empty)	
