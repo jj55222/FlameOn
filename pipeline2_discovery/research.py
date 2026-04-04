@@ -225,8 +225,9 @@ BRAVE_MAX_CALLS_PER_RUN = 450        # 11 queries × 38 cases + headroom; billin
 COURTLISTENER_MAX_CALLS_PER_RUN = 160 # free but slow (5/min); raised for full 38-case coverage
 BRAVE_MAX_PER_CASE = 11              # max Brave queries per individual case (matches queries[:11])
 
-_api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+_api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0, "exa": 0, "firecrawl": 0}
 _brave_case_calls = 0                 # reset per case in research_case()
+_exa_case_calls = 0                   # reset per case in research_case()
 
 def check_budget(api):
     """Returns True if we're within budget for this API."""
