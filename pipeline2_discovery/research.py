@@ -811,10 +811,8 @@ def query_brave(search_term, count=5):
 
     # ── Hard billing quota check ──────────────────────────────
     quota = _load_brave_quota()
-    # Block if monthly quota header says exhausted
-    if quota.get("monthly_remaining") is not None and quota["monthly_remaining"] <= 0:
-        print(f"[Brave] BLOCKED — monthly quota exhausted (0 requests remaining)")
-        return []
+    # NOTE: monthly_remaining=0 from Brave headers means free tier exhausted,
+    # but paid tier still works. Only the dollar cap blocks paid calls.
     # Block if estimated spend would exceed the dollar cap
     projected = quota.get("estimated_spend", 0.0) + BRAVE_COST_PER_REQUEST
     if projected > BRAVE_SPEND_LIMIT_USD:
