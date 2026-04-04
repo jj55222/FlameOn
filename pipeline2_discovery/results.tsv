@@ -21,3 +21,4 @@ experiment_id	timestamp	research_score	evidence_recall	source_discovery	precisio
 19	2026-03-29T10:00:00Z	n/a	n/a	n/a	n/a	n/a	38	30	1200+	remove DailyMotion; CL page_size=8 (too slow)	removed DailyMotion; page_size=8 caused ~40s/case; hit time budget at case 30	reverted page_size to 5
 20	2026-03-29T10:30:00Z	n/a	n/a	n/a	n/a	n/a	38	32	1231	Reddit PRAW 4 subreddits (no Brave)	Reddit added ~20s/case overhead; hit budget at 32/38	combined subreddits into 1 call; time budget raised to 1600s
 21	2026-04-04T03:16:15Z	62.66	73.33	55.41	51.94	63.16	38	38	1470.0	april_rerun_v2	even brave budget + typed_evidence HIGH threshold + API diversity fallback	
+22	2026-04-04T03:46:37Z	60.66	69.33	54.05	51.97	63.16	38	36	1626.2	april_v3	footage-only typed_evidence for HIGH, oral args search, reset quota	
