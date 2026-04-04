@@ -1,16 +1,36 @@
 # FlameOn Pipeline 1 — Winner Video URLs
-# One YouTube URL per line. Lines starting with # are ignored.
-# Curated from Dr Insanity and Explore With Us channels.
+# 30 videos: 15 Dr Insanity + 15 Explore With Us
 #
-# DR INSANITY — bodycam + interrogation documentary style (30-60 min)
-# Channel: https://www.youtube.com/@DrInsanity
+# DR INSANITY — bodycam + interrogation documentary style
+https://www.youtube.com/watch?v=t6h8Uae2Q_E
+https://www.youtube.com/watch?v=Vn2Wqccg05w
+https://www.youtube.com/watch?v=fuw2eQynYzo
+https://www.youtube.com/watch?v=CF1jUulbh98
+https://www.youtube.com/watch?v=FpsNfrkwC_c
+https://www.youtube.com/watch?v=lyCBPKiSOIQ
+https://www.youtube.com/watch?v=bVGJpVbp9tE
+https://www.youtube.com/watch?v=8PyJNey15gU
+https://www.youtube.com/watch?v=ERnwhw5VFCg
+https://www.youtube.com/watch?v=A23EctG7Kg8
+https://www.youtube.com/watch?v=gSdASEOnItY
+https://www.youtube.com/watch?v=H3G8fwIU9v4
+https://www.youtube.com/watch?v=06qi89GfjaE
+https://www.youtube.com/watch?v=Yg7XL-B9wMU
+https://www.youtube.com/watch?v=Lx-aUBgwhM0
 #
-# EXPLORE WITH US — long-form true crime documentaries (1-2+ hours)
-# Channel: https://www.youtube.com/@ExploreWithUs
-#
-# Add URLs below. Target: 20-25 videos for initial calibration.
-# Watch each video yourself before adding — confirm it represents
-# the quality target for your content.
-#
-# FORMAT: paste full YouTube URL, one per line
-# Example: https://www.youtube.com/watch?v=XXXXXXXXXXX
+# EXPLORE WITH US — long-form true crime documentaries
+https://www.youtube.com/watch?v=6Ghe55PHc58
+https://www.youtube.com/watch?v=cgCYon_kKno
+https://www.youtube.com/watch?v=JBRHS5vErpg
+https://www.youtube.com/watch?v=fsL0ag9ySao
+https://www.youtube.com/watch?v=29PVkF6hcnw
+https://www.youtube.com/watch?v=4LKh8DTwvQc
+https://www.youtube.com/watch?v=vXlt7HT74SE
+https://www.youtube.com/watch?v=jbCwSShlMHs
+https://www.youtube.com/watch?v=C7n1QhP0Lqg
+https://www.youtube.com/watch?v=q5kITpYMwUE
+https://www.youtube.com/watch?v=lkAEZnAnAyw
+https://www.youtube.com/watch?v=7xboEsXt_a0
+https://www.youtube.com/watch?v=rL9jt9zEhAc
+https://www.youtube.com/watch?v=V4pEJXHvSjo
+https://www.youtube.com/watch?v=MgITC-rOAVs
