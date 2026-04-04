@@ -114,11 +114,13 @@ def _update_quota_from_response(state, resp):
 # Set max searches per run to stay under budget.
 # NOTE: youtube-search-python is free/unlimited, but we still cap
 # to avoid hammering YouTube and getting rate-limited.
-YOUTUBE_MAX_CALLS_PER_RUN = 200      # free but be polite
-BRAVE_MAX_CALLS_PER_RUN = 150        # local per-run cap (billing enforced by quota tracker)
-COURTLISTENER_MAX_CALLS_PER_RUN = 80 # free but slow (5/min)
+YOUTUBE_MAX_CALLS_PER_RUN = 400      # free but be polite
+BRAVE_MAX_CALLS_PER_RUN = 450        # 11 queries × 38 cases + headroom; billing guard enforces real $ cap
+COURTLISTENER_MAX_CALLS_PER_RUN = 160 # free but slow (5/min); raised for full 38-case coverage
+BRAVE_MAX_PER_CASE = 11              # max Brave queries per individual case (matches queries[:11])
 
 _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+_brave_case_calls = 0                 # reset per case in research_case()
 
 def check_budget(api):
     """Returns True if we're within budget for this API."""
