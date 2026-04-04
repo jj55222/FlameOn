@@ -1234,17 +1234,33 @@ def search_portal_cache(names, jurisdiction):
             continue
         cache_jurisdiction = entry.get("jurisdiction", "").lower()
 
-        # Match by jurisdiction
-        if j["city"] and j["city"].lower() in cache_jurisdiction:
-            relevance = 0.4
-            # Boost if defendant name appears in URL
-            url_lower = url.lower()
-            if n["last_name"].lower() in url_lower and len(n["last_name"]) > 3:
-                relevance = 0.7
-            if n["clean_primary"].lower().replace(" ", "") in url_lower.replace(" ", ""):
-                relevance = 0.8
+        # Must match jurisdiction first
+        if not (j["city"] and j["city"].lower() in cache_jurisdiction):
+            continue
 
-            seen_urls.add(url)
+        url_lower = url.lower()
+
+        # Only include if defendant name appears in URL OR it's a high-value page type
+        # (bodycam, video, shooting, case). Generic portal links are noise.
+        name_in_url = (
+            (n["last_name"].lower() in url_lower and len(n["last_name"]) > 3) or
+            (n["clean_primary"].lower().replace(" ", "-") in url_lower) or
+            (n["clean_primary"].lower().replace(" ", "") in url_lower.replace(" ", ""))
+        )
+        high_value_url = any(kw in url_lower for kw in [
+            "bodycam", "body-cam", "bwc", "shooting", "critical-incident",
+            "critical_incident", "case-file", "video-library",
+        ])
+
+        if not name_in_url and not high_value_url:
+            continue
+
+        if name_in_url:
+            relevance = 0.8
+        else:
+            relevance = 0.5  # high-value page type but no name match
+
+        seen_urls.add(url)
             # Guess type from URL
             source_type = "agency_portal"
             url_lower = url.lower()
