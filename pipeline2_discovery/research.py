@@ -368,17 +368,22 @@ def query_muckrock(search_term, status=None, page_size=10, has_files=False):
         return []
 
 def search_muckrock(names, jurisdiction):
-    """Build and execute MuckRock queries. Returns source list."""
+    """
+    Build and execute MuckRock queries. Returns source list.
+    FOIA requests are indexed by REQUEST title, not by defendant name.
+    Better strategy: search jurisdiction + evidence type, then filter by name.
+    """
     sources = []
     n = parse_names(names)
     j = parse_jurisdiction(jurisdiction)
     queries = []
-    if j["city"] and n["clean_primary"]:
-        queries.append(f"{n['clean_primary']} {j['city']}")
-    if j["state_abbrev"] and n["clean_primary"]:
-        queries.append(f"{n['clean_primary']} {j['state_abbrev']}")
+    # Name-based queries (rarely hit since defendants aren't in FOIA titles)
     if n["clean_primary"]:
         queries.append(n["clean_primary"])
+    # Jurisdiction + evidence type queries (much higher hit rate)
+    if j["city"]:
+        queries.append(f"{j['city']} bodycam")
+        queries.append(f"{j['city']} police shooting")
 
     seen_urls = set()
     for query in queries[:3]:
