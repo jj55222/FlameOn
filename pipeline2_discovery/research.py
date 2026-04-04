@@ -694,9 +694,12 @@ def _build_youtube_source(video_id, title, channel, combined, relevance):
 
 def query_brave(search_term, count=5):
     """Search Brave Web Search API."""
+    global _brave_case_calls
     if not BRAVE_API_KEY:
         return []
     if not check_budget("brave"):
+        return []
+    if _brave_case_calls >= BRAVE_MAX_PER_CASE:
         return []
 
     # ── Hard billing quota check ──────────────────────────────
