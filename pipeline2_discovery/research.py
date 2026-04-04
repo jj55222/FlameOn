@@ -74,8 +74,8 @@ def _load_brave_quota():
         with open(BRAVE_QUOTA_FILE, "r") as f:
             data = json.load(f)
         if data.get("month_key") != month_key:
-            # New month — reset spend counter but keep monthly_remaining from header if known
-            data = {**default, "monthly_remaining": data.get("monthly_remaining")}
+            # New month — full reset (don't carry over stale monthly_remaining from old month)
+            data = default
         return data
     except (FileNotFoundError, json.JSONDecodeError):
         return default
