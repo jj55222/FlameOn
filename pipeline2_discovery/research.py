@@ -1408,11 +1408,18 @@ def research_case(defendant_names, jurisdiction):
     Given a defendant name and jurisdiction, research the case using
     all available structured APIs and return findings.
     """
-    global _brave_case_calls
+    global _brave_case_calls, _exa_case_calls
     _brave_case_calls = 0  # Reset per-case Brave budget
+    _exa_case_calls = 0    # Reset per-case Exa budget
 
     all_sources = []
     notes = []
+
+    # Portal cache (zero API cost — reads from pre-built cache)
+    notes.append("=== Portal Cache ===")
+    portal_sources = search_portal_cache(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(portal_sources)} cached portal results")
+    all_sources.extend(portal_sources)
 
     notes.append("=== MuckRock FOIA ===")
     mr_sources = search_muckrock(defendant_names, jurisdiction)
@@ -1428,6 +1435,11 @@ def research_case(defendant_names, jurisdiction):
     brave_sources = search_brave(defendant_names, jurisdiction)
     notes.append(f"  Found {len(brave_sources)} web results")
     all_sources.extend(brave_sources)
+
+    notes.append("=== Exa Search ===")
+    exa_sources = search_exa(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(exa_sources)} Exa results")
+    all_sources.extend(exa_sources)
 
     notes.append("=== YouTube (yt-dlp) ===")
     yt_sources = search_youtube(defendant_names, jurisdiction)
