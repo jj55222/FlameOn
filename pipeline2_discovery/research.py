@@ -1122,7 +1122,7 @@ def scrape_portal_page(url):
     rate_limit("firecrawl", 2.0)
     try:
         app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
-        result = app.scrape_url(url, params={"formats": ["markdown", "links"]})
+        result = app.scrape(url, formats=["markdown", "links"])
         quota["lifetime_credits_used"] += 1
         quota["pages_scraped"] = quota.get("pages_scraped", 0) + 1
         _save_firecrawl_quota(quota)
@@ -1130,10 +1130,7 @@ def scrape_portal_page(url):
         return result
     except Exception as e:
         print(f"  [WARN] Firecrawl scrape failed for {url}: {e}")
-        _log_api_usage("firecrawl", url, 1, 0, cost_usd=0.0)
-        # Still count the credit (it was attempted)
-        quota["lifetime_credits_used"] += 1
-        _save_firecrawl_quota(quota)
+        _log_api_usage("firecrawl", url, 0, 0, cost_usd=0.0)
         return None
 
 

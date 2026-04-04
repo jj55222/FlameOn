@@ -26,7 +26,11 @@
       "Bash(python -c \"import research; print\\(''OK — parsed successfully''\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python -c \":*)",
       "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 14 --verbose)",
-      "Bash(PYTHONIOENCODING=utf-8 python analyze_winner.py --batch video_urls.txt --output winners/)"
+      "Bash(PYTHONIOENCODING=utf-8 python analyze_winner.py --batch video_urls.txt --output winners/)",
+      "Bash(python -c \"import research; print\\(''OK — all imports work''\\)\")",
+      "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 4 --verbose)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c \"from research import build_portal_cache; build_portal_cache\\(\\)\")",
+      "Bash(python -c \"from firecrawl import FirecrawlApp; app = FirecrawlApp\\(api_key=''test''\\); print\\(dir\\(app\\)\\)\")"
     ]
   }
 }
