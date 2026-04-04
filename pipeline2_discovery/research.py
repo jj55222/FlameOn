@@ -59,6 +59,9 @@ REDDIT_CLIENT_ID = os.environ.get("REDDIT_CLIENT_ID", "")
 REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET", "")
 REDDIT_USER_AGENT = os.environ.get("REDDIT_USER_AGENT", "FlameOn-Research/1.0")
 
+EXA_API_KEY = os.environ.get("EXA_API_KEY", "")
+FIRECRAWL_API_KEY = os.environ.get("FIRECRAWL_API_KEY", "")
+
 MUCKROCK_BASE = "https://www.muckrock.com/api_v2/"
 COURTLISTENER_BASE = "https://www.courtlistener.com/api/rest/v4/"
 BRAVE_BASE = "https://api.search.brave.com/res/v1/web/search"
