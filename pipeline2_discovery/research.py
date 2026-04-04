@@ -124,7 +124,7 @@ def _update_quota_from_response(state, resp):
 # Exa quota — monthly credit tracking (free tier: 1K/month)
 # ──────────────────────────────────────────────────────────────
 EXA_MONTHLY_LIMIT = int(os.environ.get("EXA_MONTHLY_LIMIT", "1000"))
-EXA_MAX_PER_CASE = 3
+EXA_MAX_PER_CASE = 2
 EXA_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exa_quota.json")
 
 def _load_exa_quota():
