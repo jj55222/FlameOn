@@ -1526,5 +1526,13 @@
   "credits_used": 21,
   "results_found": 0,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:30:08.062155",
+  "api": "firecrawl_discover",
+  "query": "discover @ https://coloradosprings.gov/police-department/page/cases-interest",
+  "credits_used": 97,
+  "results_found": 15,
+  "cost_usd": 0.0
  }
 ]
