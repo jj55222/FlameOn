@@ -1029,6 +1029,16 @@ def research_case(defendant_names, jurisdiction):
     notes.append(f"  Found {len(yt_sources)} videos")
     all_sources.extend(yt_sources)
 
+    notes.append("=== Wikipedia ===")
+    wiki_sources = search_wikipedia(defendant_names)
+    notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
+    all_sources.extend(wiki_sources)
+
+    notes.append("=== DailyMotion ===")
+    dm_sources = search_dailymotion(defendant_names)
+    notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
+    all_sources.extend(dm_sources)
+
     notes.append("=== Reddit (PRAW) ===")
     if len(all_sources) < 20:
         reddit_sources = search_reddit(defendant_names, jurisdiction)
