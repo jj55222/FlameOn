@@ -1,0 +1,81 @@
+{
+  "video_id": "lyCBPKiSOIQ",
+  "channel": "Dr Insanity",
+  "title": "When The Suspect Is Smarter Than The Detective",
+  "view_count": 31428452,
+  "duration_sec": 950,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.014,
+        "description": "Cold open snippet of suspect refusing to sign documents or confess, establishing immediate tension."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.014,
+        "end_pct": 0.066,
+        "description": "Narrator introduces the 2011 7-Eleven robbery, police response, and the arrest of a known heroin addict experiencing withdrawal."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.066,
+        "end_pct": 0.135,
+        "description": "Explains the footage's origin (suspect's own YouTube channel), legal stakes in Georgia, and frames the interrogation as a 'master class' in self-defense."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.135,
+        "end_pct": 0.395,
+        "description": "Round 1 interrogation: Miranda rights read, suspect asserts silence, detective attempts pressure, narrator explains optimal legal responses."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.395,
+        "end_pct": 0.404,
+        "description": "Two-hour time jump as suspect is returned to the interrogation room for the next session."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.404,
+        "end_pct": 0.645,
+        "description": "Round 2 interrogation: Suspect requests methadone for withdrawal, denies crime, narrator details the Reid technique and its psychological manipulation."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.645,
+        "end_pct": 0.889,
+        "description": "Suspect explicitly invokes right to counsel, detective escalates to false evidence claims and parole bargaining, suspect cites discovery rules to shut down questioning."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.889,
+        "end_pct": 1.0,
+        "description": "Suspect experiences medical distress, is released after 12 hours, turns his life around, and continues educating viewers via his channel."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 2,
+    "emotional_peak": 2,
+    "procedural_violation": 3,
+    "reveal": 2,
+    "detail_noticed": 3,
+    "callback": 1,
+    "tension_shift": 2
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.25,
+    "total_segments": 422,
+    "bodycam_pct": 0.0,
+    "narration_pct": 0.42,
+    "interrogation_pct": 0.53,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "interrogation",
+    "narration"
+  ]
+}
