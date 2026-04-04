@@ -1138,6 +1138,129 @@ def scrape_portal_page(url):
         return None
 
 
+# Credit cost for Firecrawl extract (5 credits per call, per Firecrawl pricing)
+FIRECRAWL_EXTRACT_COST = 5
+FIRECRAWL_EXTRACT_DISABLED = False  # Circuit breaker for extract failures
+PORTAL_POSITION_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "portal_position_log.json")
+
+
+def _log_portal_position(entry):
+    """Append a position tracking entry to the log file."""
+    try:
+        try:
+            with open(PORTAL_POSITION_LOG_FILE, "r") as f:
+                log = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            log = []
+        log.append(entry)
+        with open(PORTAL_POSITION_LOG_FILE, "w") as f:
+            json.dump(log, f, indent=2)
+    except Exception:
+        pass
+
+
+def find_case_in_portal(portal_url, defendant_name, jurisdiction="", case_id=None):
+    """
+    Use Firecrawl AI extract to search a portal page for a specific defendant.
+    Returns dict with match details + position in list, or None if not found.
+
+    Costs 5 lifetime Firecrawl credits per call.
+    Logs position data to portal_position_log.json for distribution analysis.
+    """
+    global FIRECRAWL_EXTRACT_DISABLED
+    if FIRECRAWL_EXTRACT_DISABLED or FirecrawlApp is None or not FIRECRAWL_API_KEY:
+        return None
+
+    quota = _load_firecrawl_quota()
+    if quota["lifetime_credits_used"] + FIRECRAWL_EXTRACT_COST > FIRECRAWL_LIFETIME_LIMIT:
+        print(f"[Firecrawl] BLOCKED — lifetime limit would exceed ({quota['lifetime_credits_used']} + {FIRECRAWL_EXTRACT_COST} > {FIRECRAWL_LIFETIME_LIMIT})")
+        FIRECRAWL_EXTRACT_DISABLED = True
+        return None
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "found": {"type": "boolean", "description": "Whether a matching case was found"},
+            "title": {"type": "string", "description": "Title of the matching case or incident"},
+            "url": {"type": "string", "description": "Direct URL to the case detail page or document"},
+            "date": {"type": "string", "description": "Incident or case date in YYYY-MM-DD format if available"},
+            "description": {"type": "string", "description": "Brief description of the match"},
+            "position_in_list": {"type": "integer", "description": "1-indexed position in the list of cases on the page (if listed)"},
+            "total_items_on_page": {"type": "integer", "description": "Total number of cases or incidents listed on the page"},
+            "confidence": {"type": "number", "description": "Confidence score 0.0 to 1.0"},
+        },
+    }
+
+    prompt = f"""Search this law enforcement portal page for a case or incident involving defendant: {defendant_name}
+Jurisdiction context: {jurisdiction}
+
+Count the total number of distinct cases/incidents listed on this page first (total_items_on_page).
+
+If a matching case is found, return:
+- found: true
+- title, url, date, description of the match
+- position_in_list: 1-indexed position where it appears (1 = first case on page, 2 = second, etc.)
+- total_items_on_page: total count of cases on this page
+- confidence: your confidence level 0.0-1.0
+
+If NO match is found, return found: false but still include total_items_on_page.
+
+Use fuzzy matching — defendant names may be slightly different (initials, middle names, suffixes).
+Match on partial name only if confidence is high."""
+
+    rate_limit("firecrawl", 2.0)
+    print(f"  [Firecrawl extract] {defendant_name[:30]} @ {portal_url[:50]}...")
+
+    start_time = time.time()
+    try:
+        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+        result = app.extract(urls=[portal_url], prompt=prompt, schema=schema, timeout=90)
+        elapsed = time.time() - start_time
+
+        # Update quota
+        credits = getattr(result, "credits_used", None) or FIRECRAWL_EXTRACT_COST
+        quota["lifetime_credits_used"] += credits
+        quota["pages_scraped"] = quota.get("pages_scraped", 0) + 1
+        _save_firecrawl_quota(quota)
+
+        data = result.data if hasattr(result, "data") else {}
+        if not isinstance(data, dict):
+            data = {}
+
+        # Log the position finding
+        log_entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "case_id": case_id,
+            "defendant": defendant_name,
+            "jurisdiction": jurisdiction,
+            "portal_url": portal_url,
+            "found": data.get("found", False),
+            "position": data.get("position_in_list"),
+            "total_items": data.get("total_items_on_page"),
+            "confidence": data.get("confidence"),
+            "match_url": data.get("url", ""),
+            "match_title": data.get("title", ""),
+            "elapsed_sec": round(elapsed, 1),
+            "credits_used": credits,
+        }
+        _log_portal_position(log_entry)
+        _log_api_usage("firecrawl_extract", f"{defendant_name} @ {portal_url}", credits, 1 if data.get("found") else 0, cost_usd=0.0)
+
+        if data.get("found"):
+            print(f"    FOUND at position {data.get('position_in_list', '?')}/{data.get('total_items_on_page', '?')} (confidence={data.get('confidence', '?')})")
+            return data
+        else:
+            total = data.get("total_items_on_page", "?")
+            print(f"    NOT FOUND (scanned {total} items)")
+            return None
+
+    except Exception as e:
+        print(f"  [WARN] Firecrawl extract failed: {e}")
+        # Don't charge quota on total failure (extract SDK raises before any billing)
+        _log_api_usage("firecrawl_extract", f"{defendant_name} @ {portal_url}", 0, 0, cost_usd=0.0)
+        return None
+
+
 def build_portal_cache(force=False):
     """
     One-time function: scrape all portals in PORTAL_REGISTRY, save extracted

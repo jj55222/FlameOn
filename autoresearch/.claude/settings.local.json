@@ -32,7 +32,8 @@
       "Bash(PYTHONIOENCODING=utf-8 python -c \"from research import build_portal_cache; build_portal_cache\\(\\)\")",
       "Bash(python -c \"from firecrawl import FirecrawlApp; app = FirecrawlApp\\(api_key=''test''\\); print\\(dir\\(app\\)\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --verbose --log --hypothesis \"phase2_exa\" --changes \"added Exa search \\(free\\), Brave paid key, portal cache \\(empty\\)\")",
-      "WebSearch"
+      "WebSearch",
+      "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 1 --verbose)"
     ]
   }
 }
