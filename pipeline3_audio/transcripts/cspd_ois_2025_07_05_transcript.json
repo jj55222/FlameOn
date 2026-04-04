@@ -1,0 +1,1414 @@
+{
+  "case_id": "cspd_ois_2025_07_05",
+  "source_evidence_type": "bodycam",
+  "source_url": "https://vimeo.com/1102634528",
+  "transcript": [
+    {
+      "start_sec": 2.414,
+      "end_sec": 6.554,
+      "text": "Hello, I'm Adrian Vasquez, Chief of Police for the Colorado Springs Police Department.",
+      "confidence": 0.915
+    },
+    {
+      "start_sec": 7.214,
+      "end_sec": 10.714,
+      "text": "The video you're about to see is a significant event briefing video.",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 11.434,
+      "end_sec": 16.534,
+      "text": "It's been prepared in accordance with department policy and our commitment to transparency.",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 17.434,
+      "end_sec": 21.594,
+      "text": "The use of deadly force is a responsibility CSPD takes very seriously.",
+      "confidence": 0.992
+    },
+    {
+      "start_sec": 22.394,
+      "end_sec": 27.014,
+      "text": "These incidents are complex and require thorough investigation that can take several months",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 27.014,
+      "end_sec": 27.634,
+      "text": "to complete.",
+      "confidence": 0.999
+    },
+    {
+      "start_sec": 28.514,
+      "end_sec": 34.134,
+      "text": "As the investigation progresses, new information may come to light that could change our understanding",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 34.134,
+      "end_sec": 34.854,
+      "text": "of the event.",
+      "confidence": 0.996
+    },
+    {
+      "start_sec": 35.834,
+      "end_sec": 40.574,
+      "text": "The officers involved in this incident were equipped with body-worn cameras, or BWCs.",
+      "confidence": 0.975
+    },
+    {
+      "start_sec": 41.334,
+      "end_sec": 45.754,
+      "text": "While these cameras provide valuable information, it's important to remember that they may",
+      "confidence": 0.99
+    },
+    {
+      "start_sec": 45.754,
+      "end_sec": 50.934,
+      "text": "not capture everything an officer sees, hears, or experiences during an incident.",
+      "confidence": 0.996
+    },
+    {
+      "start_sec": 51.614,
+      "end_sec": 56.834,
+      "text": "In this video, you'll see relevant body-worn camera footage, along with other evidence",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 56.834,
+      "end_sec": 62.714,
+      "text": "that may help provide context on what led up to the incident and what occurred during it.",
+      "confidence": 0.943
+    },
+    {
+      "start_sec": 63.154,
+      "end_sec": 67.394,
+      "text": "A public information officer with CSPD's public affairs section will now walk you",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 67.394,
+      "end_sec": 72.594,
+      "text": "through the BWC footage, other evidence, and facts of this case as they are known",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 72.594,
+      "end_sec": 74.174,
+      "text": "at the time of this release.",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 74.554,
+      "end_sec": 78.534,
+      "text": "I'm Ira Cronin, a public information officer with the Colorado Springs Police Department.",
+      "confidence": 0.965
+    },
+    {
+      "start_sec": 78.954,
+      "end_sec": 83.654,
+      "text": "The following significant event briefing video contains graphic images and strong language.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 84.214,
+      "end_sec": 85.754,
+      "text": "Viewer discretion is advised.",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 85.754,
+      "end_sec": 91.894,
+      "text": "On Saturday, July 5, 2025, just before 1.30 a.m., the Colorado Springs Police Department",
+      "confidence": 0.846
+    },
+    {
+      "start_sec": 91.894,
+      "end_sec": 96.574,
+      "text": "received a call for service from a community member who reported seeing a man carrying",
+      "confidence": 0.984
+    },
+    {
+      "start_sec": 96.574,
+      "end_sec": 102.154,
+      "text": "a rifle and screaming at people in a parking lot in the 100 block of East Pikes Peak Avenue.",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 102.674,
+      "end_sec": 105.014,
+      "text": "Here's 911 audio from that call.",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 105.334,
+      "end_sec": 108.134,
+      "text": "Colorado Springs 911, what is the exact location of the emergency?",
+      "confidence": 0.799
+    },
+    {
+      "start_sec": 109.534,
+      "end_sec": 113.474,
+      "text": "Hi ma'am, I'm in front of the mansion in downtown Colorado Springs.",
+      "confidence": 0.931
+    },
+    {
+      "start_sec": 113.954,
+      "end_sec": 115.174,
+      "text": "It's the mansion, the club.",
+      "confidence": 0.962
+    },
+    {
+      "start_sec": 115.174,
+      "end_sec": 118.814,
+      "text": "I'm in the parking lot of 19 Avenue, Avenue 19.",
+      "confidence": 0.939
+    },
+    {
+      "start_sec": 119.334,
+      "end_sec": 120.594,
+      "text": "Okay, and that's in front of the mansion?",
+      "confidence": 0.89
+    },
+    {
+      "start_sec": 121.294,
+      "end_sec": 121.694,
+      "text": "Is that correct?",
+      "confidence": 0.974
+    },
+    {
+      "start_sec": 122.034,
+      "end_sec": 123.614,
+      "text": "Yes, I'm in the parking lot right now.",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 123.694,
+      "end_sec": 129.474,
+      "text": "There's an individual with a, it looks like a semi-automatic weapon,",
+      "confidence": 0.944
+    },
+    {
+      "start_sec": 130.054,
+      "end_sec": 133.074,
+      "text": "a black male in the parking lot.",
+      "confidence": 0.912
+    },
+    {
+      "start_sec": 133.134,
+      "end_sec": 136.774,
+      "text": "He's screaming at some people and he has a weapon on the side of him.",
+      "confidence": 0.966
+    },
+    {
+      "start_sec": 137.994,
+      "end_sec": 141.734,
+      "text": "Okay, and was he doing anything with the weapon?",
+      "confidence": 0.9
+    },
+    {
+      "start_sec": 141.794,
+      "end_sec": 144.034,
+      "text": "Did he raise it at all or is it just on his side?",
+      "confidence": 0.945
+    },
+    {
+      "start_sec": 145.234,
+      "end_sec": 150.614,
+      "text": "It's on, it's in his hand, he's screaming at a group of individuals right now",
+      "confidence": 0.875
+    },
+    {
+      "start_sec": 151.194,
+      "end_sec": 153.414,
+      "text": "with it in his hand, like in a threatening manner.",
+      "confidence": 0.867
+    },
+    {
+      "start_sec": 154.054,
+      "end_sec": 157.194,
+      "text": "Okay, okay, Joe, the call started here.",
+      "confidence": 0.648
+    },
+    {
+      "start_sec": 157.874,
+      "end_sec": 161.374,
+      "text": "Just to confirm, so that gun I know you said is in his hand,",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 162.394,
+      "end_sec": 165.914,
+      "text": "is it pointed at people or is it pointed at the ground?",
+      "confidence": 0.751
+    },
+    {
+      "start_sec": 165.954,
+      "end_sec": 169.474,
+      "text": "It's like literally in his hand, like if he was like, it's in low ready,",
+      "confidence": 0.877
+    },
+    {
+      "start_sec": 169.754,
+      "end_sec": 174.914,
+      "text": "like it's like, he's saying comments to these individuals, a group of people,",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 174.914,
+      "end_sec": 178.274,
+      "text": "like if he was going to shoot this place up and everybody's intoxicated",
+      "confidence": 0.779
+    },
+    {
+      "start_sec": 178.274,
+      "end_sec": 179.694,
+      "text": "over here downtown.",
+      "confidence": 0.898
+    },
+    {
+      "start_sec": 180.274,
+      "end_sec": 180.934,
+      "text": "Okay, gotcha.",
+      "confidence": 0.67
+    },
+    {
+      "start_sec": 181.074,
+      "end_sec": 182.694,
+      "text": "So it's not pointed like directly at them,",
+      "confidence": 0.945
+    },
+    {
+      "start_sec": 182.694,
+      "end_sec": 184.694,
+      "text": "but it's not pointed at the ground either, is that correct?",
+      "confidence": 0.988
+    },
+    {
+      "start_sec": 185.234,
+      "end_sec": 185.714,
+      "text": "No.",
+      "confidence": 0.924
+    },
+    {
+      "start_sec": 186.134,
+      "end_sec": 186.934,
+      "text": "Yes, that's correct.",
+      "confidence": 0.75
+    },
+    {
+      "start_sec": 187.834,
+      "end_sec": 190.474,
+      "text": "It is a rifle, it's not a pistol or anything like that.",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 190.494,
+      "end_sec": 192.854,
+      "text": "Okay, what is your personal thing?",
+      "confidence": 0.744
+    },
+    {
+      "start_sec": 193.794,
+      "end_sec": 195.894,
+      "text": "I need to have a call started here.",
+      "confidence": 0.891
+    },
+    {
+      "start_sec": 196.354,
+      "end_sec": 199.214,
+      "text": "Yeah, I'm trying to leave the parking lot right now.",
+      "confidence": 0.993
+    },
+    {
+      "start_sec": 200.034,
+      "end_sec": 203.054,
+      "text": "I'm not staying here just because I saw the weaponarity.",
+      "confidence": 0.935
+    },
+    {
+      "start_sec": 204.234,
+      "end_sec": 207.094,
+      "text": "Okay, and then describe that weapon,",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 207.254,
+      "end_sec": 209.094,
+      "text": "you said it was a semi-automatic rifle, is that correct?",
+      "confidence": 0.94
+    },
+    {
+      "start_sec": 210.434,
+      "end_sec": 212.154,
+      "text": "Yep, it looks like an M4.",
+      "confidence": 0.855
+    },
+    {
+      "start_sec": 212.594,
+      "end_sec": 215.154,
+      "text": "Just so you know, it does look like we do have some officers",
+      "confidence": 0.876
+    },
+    {
+      "start_sec": 215.154,
+      "end_sec": 216.294,
+      "text": "on the way there now.",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 216.934,
+      "end_sec": 219.994,
+      "text": "Officers in the Real-Time Crime Center, or RTCC,",
+      "confidence": 0.85
+    },
+    {
+      "start_sec": 220.534,
+      "end_sec": 223.334,
+      "text": "began scanning live feeds of cameras in the area",
+      "confidence": 0.993
+    },
+    {
+      "start_sec": 223.334,
+      "end_sec": 225.634,
+      "text": "and could not locate anyone with a rifle,",
+      "confidence": 0.914
+    },
+    {
+      "start_sec": 225.754,
+      "end_sec": 228.914,
+      "text": "but did notice a group of people who seemed to be arguing.",
+      "confidence": 0.99
+    },
+    {
+      "start_sec": 229.274,
+      "end_sec": 232.494,
+      "text": "About six minutes later, officers on foot in the area",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 232.494,
+      "end_sec": 235.834,
+      "text": "contacted that group of individuals in the parking lot",
+      "confidence": 0.96
+    },
+    {
+      "start_sec": 235.834,
+      "end_sec": 238.854,
+      "text": "located at 108 East Pikes Peak Avenue.",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 239.394,
+      "end_sec": 241.934,
+      "text": "Here is BWC and security video",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 241.934,
+      "end_sec": 245.094,
+      "text": "of that interaction at 1.34 a.m.",
+      "confidence": 0.872
+    },
+    {
+      "start_sec": 245.974,
+      "end_sec": 248.034,
+      "text": "Hey, pal, dumbass.",
+      "confidence": 0.25
+    },
+    {
+      "start_sec": 248.174,
+      "end_sec": 249.334,
+      "text": "Yo, what's going on?",
+      "confidence": 0.75
+    },
+    {
+      "start_sec": 249.394,
+      "end_sec": 251.914,
+      "text": "He pays the bill, what the fuck is he talking about?",
+      "confidence": 0.799
+    },
+    {
+      "start_sec": 252.294,
+      "end_sec": 252.394,
+      "text": "Dumbass.",
+      "confidence": 0.703
+    },
+    {
+      "start_sec": 252.594,
+      "end_sec": 254.314,
+      "text": "Okay, does anybody have a gun?",
+      "confidence": 0.773
+    },
+    {
+      "start_sec": 254.714,
+      "end_sec": 255.074,
+      "text": "No.",
+      "confidence": 0.701
+    },
+    {
+      "start_sec": 255.554,
+      "end_sec": 255.894,
+      "text": "Hell no.",
+      "confidence": 0.526
+    },
+    {
+      "start_sec": 256.094,
+      "end_sec": 258.254,
+      "text": "Why is that guy saying it's a domestic?",
+      "confidence": 0.866
+    },
+    {
+      "start_sec": 258.594,
+      "end_sec": 259.134,
+      "text": "Who's saying that?",
+      "confidence": 0.492
+    },
+    {
+      "start_sec": 259.134,
+      "end_sec": 260.554,
+      "text": "Hey, what domestic going on by that?",
+      "confidence": 0.603
+    },
+    {
+      "start_sec": 260.554,
+      "end_sec": 261.074,
+      "text": "Arguing.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 261.334,
+      "end_sec": 262.334,
+      "text": "Do you fucking see this?",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 262.334,
+      "end_sec": 263.874,
+      "text": "They're arguing, bro.",
+      "confidence": 0.632
+    },
+    {
+      "start_sec": 263.874,
+      "end_sec": 265.934,
+      "text": "They're slamming doors on us, trying to fucking fight.",
+      "confidence": 0.813
+    },
+    {
+      "start_sec": 266.014,
+      "end_sec": 266.654,
+      "text": "They're arguing.",
+      "confidence": 0.855
+    },
+    {
+      "start_sec": 266.754,
+      "end_sec": 268.594,
+      "text": "She works with Josh's police.",
+      "confidence": 0.857
+    },
+    {
+      "start_sec": 268.954,
+      "end_sec": 270.314,
+      "text": "She works for CSPD.",
+      "confidence": 0.914
+    },
+    {
+      "start_sec": 270.594,
+      "end_sec": 270.914,
+      "text": "All right.",
+      "confidence": 0.542
+    },
+    {
+      "start_sec": 271.054,
+      "end_sec": 272.374,
+      "text": "They're arguing, bro, that's it.",
+      "confidence": 0.95
+    },
+    {
+      "start_sec": 272.554,
+      "end_sec": 273.514,
+      "text": "That's all that's going on.",
+      "confidence": 0.929
+    },
+    {
+      "start_sec": 273.734,
+      "end_sec": 274.974,
+      "text": "Her name is Officer Sony.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 275.074,
+      "end_sec": 276.154,
+      "text": "We got it under control.",
+      "confidence": 0.935
+    },
+    {
+      "start_sec": 276.414,
+      "end_sec": 277.134,
+      "text": "She works for you.",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 277.314,
+      "end_sec": 278.774,
+      "text": "So nobody wants to report anything?",
+      "confidence": 0.928
+    },
+    {
+      "start_sec": 278.874,
+      "end_sec": 279.094,
+      "text": "No.",
+      "confidence": 0.949
+    },
+    {
+      "start_sec": 280.134,
+      "end_sec": 281.374,
+      "text": "All right, guys, make good decisions.",
+      "confidence": 0.876
+    },
+    {
+      "start_sec": 281.534,
+      "end_sec": 281.714,
+      "text": "We're leaving.",
+      "confidence": 0.813
+    },
+    {
+      "start_sec": 281.874,
+      "end_sec": 282.154,
+      "text": "We will.",
+      "confidence": 0.716
+    },
+    {
+      "start_sec": 282.554,
+      "end_sec": 282.834,
+      "text": "All right.",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 284.094,
+      "end_sec": 287.534,
+      "text": "Officers in the RTCC continued monitoring live feeds",
+      "confidence": 0.928
+    },
+    {
+      "start_sec": 287.534,
+      "end_sec": 290.454,
+      "text": "from downtown cameras and also began reviewing",
+      "confidence": 0.959
+    },
+    {
+      "start_sec": 290.454,
+      "end_sec": 293.854,
+      "text": "recorded video from the time of the 911 call",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 293.854,
+      "end_sec": 295.534,
+      "text": "to try to gather more information.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 296.014,
+      "end_sec": 298.434,
+      "text": "At about 1.34, the group of people",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 298.434,
+      "end_sec": 300.774,
+      "text": "that officers had contacted were observed",
+      "confidence": 0.972
+    },
+    {
+      "start_sec": 300.774,
+      "end_sec": 304.674,
+      "text": "going back to a nearby nightclub and continued arguing.",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 305.454,
+      "end_sec": 307.614,
+      "text": "At about 1.37 in the morning,",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 307.794,
+      "end_sec": 310.434,
+      "text": "three minutes after that first contact with officers,",
+      "confidence": 0.968
+    },
+    {
+      "start_sec": 310.954,
+      "end_sec": 313.074,
+      "text": "the same group in question was contacted",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 313.074,
+      "end_sec": 317.594,
+      "text": "for a second time by a different officer at 1.37 a.m.",
+      "confidence": 0.962
+    },
+    {
+      "start_sec": 317.594,
+      "end_sec": 322.494,
+      "text": "Here is BWC and security video of this brief interaction.",
+      "confidence": 0.953
+    },
+    {
+      "start_sec": 330.454,
+      "end_sec": 330.934,
+      "text": "Police!",
+      "confidence": 0.245
+    },
+    {
+      "start_sec": 331.954,
+      "end_sec": 334.314,
+      "text": "Whatever it is, some place else.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 334.754,
+      "end_sec": 334.974,
+      "text": "Whatever it is.",
+      "confidence": 0.716
+    },
+    {
+      "start_sec": 335.134,
+      "end_sec": 337.134,
+      "text": "Oh, my mama, stop playing, you dumb ass bitch.",
+      "confidence": 0.65
+    },
+    {
+      "start_sec": 337.394,
+      "end_sec": 337.894,
+      "text": "That's mine.",
+      "confidence": 0.344
+    },
+    {
+      "start_sec": 338.774,
+      "end_sec": 339.774,
+      "text": "Bro, you're not helping.",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 340.454,
+      "end_sec": 341.334,
+      "text": "Just walk away.",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 341.474,
+      "end_sec": 342.934,
+      "text": "You've been trying to DSP her.",
+      "confidence": 0.749
+    },
+    {
+      "start_sec": 342.934,
+      "end_sec": 343.554,
+      "text": "I know, bro.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 343.554,
+      "end_sec": 344.734,
+      "text": "They keep going, I get it.",
+      "confidence": 0.892
+    },
+    {
+      "start_sec": 345.414,
+      "end_sec": 346.134,
+      "text": "Thank you.",
+      "confidence": 0.918
+    },
+    {
+      "start_sec": 348.414,
+      "end_sec": 349.614,
+      "text": "That's Jesse's car.",
+      "confidence": 0.529
+    },
+    {
+      "start_sec": 350.074,
+      "end_sec": 350.714,
+      "text": "Yeah.",
+      "confidence": 0.762
+    },
+    {
+      "start_sec": 353.414,
+      "end_sec": 356.534,
+      "text": "As officers in the RTCC continued to monitor the area",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 356.534,
+      "end_sec": 359.314,
+      "text": "and review previously recorded video",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 359.314,
+      "end_sec": 361.174,
+      "text": "from the time of the 911 call,",
+      "confidence": 0.951
+    },
+    {
+      "start_sec": 361.734,
+      "end_sec": 364.054,
+      "text": "an individual matching the initial description",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 364.054,
+      "end_sec": 365.774,
+      "text": "provided by the 911 caller,",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 366.314,
+      "end_sec": 367.974,
+      "text": "who was also seen in the group",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 367.974,
+      "end_sec": 370.634,
+      "text": "that officers had now interacted with twice,",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 371.214,
+      "end_sec": 374.054,
+      "text": "was seen on video armed with what appeared to be a rifle.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 374.414,
+      "end_sec": 375.894,
+      "text": "Here is that security video",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 375.894,
+      "end_sec": 378.714,
+      "text": "that was recorded at 1.28 a.m.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 379.214,
+      "end_sec": 381.014,
+      "text": "The yellow boxes on the video",
+      "confidence": 0.977
+    },
+    {
+      "start_sec": 381.014,
+      "end_sec": 383.034,
+      "text": "are part of the security camera program",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 383.034,
+      "end_sec": 384.474,
+      "text": "and cannot be removed.",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 388.071,
+      "end_sec": 391.311,
+      "text": "At 1.41 a.m., officers in the RTCC",
+      "confidence": 0.939
+    },
+    {
+      "start_sec": 391.311,
+      "end_sec": 393.131,
+      "text": "notified officers in the area",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 393.131,
+      "end_sec": 395.971,
+      "text": "that the suspect seen on video carrying the rifle",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 395.971,
+      "end_sec": 398.971,
+      "text": "was likely one of the males observed in the group",
+      "confidence": 0.996
+    },
+    {
+      "start_sec": 398.971,
+      "end_sec": 400.671,
+      "text": "that had been contacted twice.",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 401.311,
+      "end_sec": 404.311,
+      "text": "Officers were working to determine possible next steps",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 404.311,
+      "end_sec": 405.931,
+      "text": "when the individual in question",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 405.931,
+      "end_sec": 407.751,
+      "text": "and the group of people arguing",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 407.751,
+      "end_sec": 412.171,
+      "text": "walked back to the parking lot at 108 East Pikes Peak Avenue.",
+      "confidence": 0.876
+    },
+    {
+      "start_sec": 412.971,
+      "end_sec": 416.171,
+      "text": "At about 1.49 a.m., as officers in the RTCC",
+      "confidence": 0.876
+    },
+    {
+      "start_sec": 416.171,
+      "end_sec": 419.531,
+      "text": "continued to closely monitor the group by camera,",
+      "confidence": 0.972
+    },
+    {
+      "start_sec": 420.051,
+      "end_sec": 422.811,
+      "text": "the arguing escalated and the individual in question",
+      "confidence": 0.947
+    },
+    {
+      "start_sec": 422.811,
+      "end_sec": 424.251,
+      "text": "was seen going into a vehicle",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 424.251,
+      "end_sec": 427.691,
+      "text": "and then carrying a handgun with an extended magazine.",
+      "confidence": 0.978
+    },
+    {
+      "start_sec": 428.251,
+      "end_sec": 431.111,
+      "text": "Here is security video of the individual in question",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 431.111,
+      "end_sec": 432.271,
+      "text": "with that firearm.",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 443.082,
+      "end_sec": 446.522,
+      "text": "Officers in the RTCC immediately notified officers on scene",
+      "confidence": 0.974
+    },
+    {
+      "start_sec": 446.522,
+      "end_sec": 448.442,
+      "text": "that the individual in question,",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 448.662,
+      "end_sec": 451.422,
+      "text": "who they'd been monitoring, was now carrying a firearm.",
+      "confidence": 0.978
+    },
+    {
+      "start_sec": 451.942,
+      "end_sec": 454.502,
+      "text": "Those officers began moving toward the suspect",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 454.502,
+      "end_sec": 455.582,
+      "text": "from Tejon Street.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 456.042,
+      "end_sec": 459.542,
+      "text": "At that time, the suspect appears to conceal the firearm",
+      "confidence": 0.99
+    },
+    {
+      "start_sec": 459.542,
+      "end_sec": 462.062,
+      "text": "in the waistband area of his pants",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 462.062,
+      "end_sec": 464.982,
+      "text": "as another officer approaches him from behind,",
+      "confidence": 0.962
+    },
+    {
+      "start_sec": 465.402,
+      "end_sec": 467.122,
+      "text": "commanding him to put his hands up.",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 467.462,
+      "end_sec": 469.582,
+      "text": "The suspect briefly put his hands up,",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 469.762,
+      "end_sec": 471.342,
+      "text": "then turned and ran from the officer",
+      "confidence": 0.992
+    },
+    {
+      "start_sec": 471.342,
+      "end_sec": 472.902,
+      "text": "while reaching for his waistband.",
+      "confidence": 0.966
+    },
+    {
+      "start_sec": 473.282,
+      "end_sec": 475.862,
+      "text": "At that time, one officer fired multiple shots,",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 475.862,
+      "end_sec": 477.282,
+      "text": "striking the suspect.",
+      "confidence": 0.929
+    },
+    {
+      "start_sec": 477.762,
+      "end_sec": 481.402,
+      "text": "Here is security video with police radio traffic included.",
+      "confidence": 0.892
+    },
+    {
+      "start_sec": 505.862,
+      "end_sec": 507.182,
+      "text": "Hey, put your hands up!",
+      "confidence": 0.796
+    },
+    {
+      "start_sec": 507.342,
+      "end_sec": 508.522,
+      "text": "Get your hands up now!",
+      "confidence": 0.939
+    },
+    {
+      "start_sec": 509.402,
+      "end_sec": 510.522,
+      "text": "Get them! Stop running!",
+      "confidence": 0.597
+    },
+    {
+      "start_sec": 511.482,
+      "end_sec": 512.022,
+      "text": "He's got a gun!",
+      "confidence": 0.861
+    },
+    {
+      "start_sec": 513.802,
+      "end_sec": 515.582,
+      "text": "Get your hands out of your hand pockets now!",
+      "confidence": 0.886
+    },
+    {
+      "start_sec": 515.662,
+      "end_sec": 519.822,
+      "text": "Here is BWC of the incident from the directly involved officer.",
+      "confidence": 0.953
+    },
+    {
+      "start_sec": 523.422,
+      "end_sec": 524.822,
+      "text": "Put your fucking hands up!",
+      "confidence": 0.885
+    },
+    {
+      "start_sec": 525.562,
+      "end_sec": 526.682,
+      "text": "Hey, put your hands up!",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 526.862,
+      "end_sec": 528.082,
+      "text": "Get your hands up now!",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 528.902,
+      "end_sec": 530.122,
+      "text": "Get them! Stop running!",
+      "confidence": 0.934
+    },
+    {
+      "start_sec": 531.042,
+      "end_sec": 531.822,
+      "text": "He's got a gun!",
+      "confidence": 0.996
+    },
+    {
+      "start_sec": 533.062,
+      "end_sec": 535.242,
+      "text": "Get your hands out of your hand pockets now!",
+      "confidence": 0.768
+    },
+    {
+      "start_sec": 536.182,
+      "end_sec": 537.142,
+      "text": "Get your hands out!",
+      "confidence": 0.978
+    },
+    {
+      "start_sec": 539.702,
+      "end_sec": 541.722,
+      "text": "He's got the gun right here.",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 543.462,
+      "end_sec": 544.082,
+      "text": "Give us space!",
+      "confidence": 0.903
+    },
+    {
+      "start_sec": 546.322,
+      "end_sec": 548.882,
+      "text": "Officers immediately took the suspect into custody",
+      "confidence": 0.937
+    },
+    {
+      "start_sec": 548.882,
+      "end_sec": 550.522,
+      "text": "and began rendering medical aid.",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 550.962,
+      "end_sec": 553.422,
+      "text": "But despite those efforts, the suspect died on scene.",
+      "confidence": 0.965
+    },
+    {
+      "start_sec": 553.822,
+      "end_sec": 555.462,
+      "text": "While medical care was being provided,",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 555.682,
+      "end_sec": 557.942,
+      "text": "officers recovered a loaded Glock 17",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 557.942,
+      "end_sec": 559.942,
+      "text": "with an illegal extended magazine",
+      "confidence": 0.828
+    },
+    {
+      "start_sec": 560.602,
+      "end_sec": 563.142,
+      "text": "from the right pant leg of the suspect.",
+      "confidence": 0.968
+    },
+    {
+      "start_sec": 563.562,
+      "end_sec": 565.842,
+      "text": "Here is video of some of the medical care",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 565.842,
+      "end_sec": 568.482,
+      "text": "as well as the recovery of the firearm.",
+      "confidence": 0.966
+    },
+    {
+      "start_sec": 573.042,
+      "end_sec": 573.582,
+      "text": "You guys got it?",
+      "confidence": 0.81
+    },
+    {
+      "start_sec": 573.622,
+      "end_sec": 574.402,
+      "text": "Yep, it's right here.",
+      "confidence": 0.796
+    },
+    {
+      "start_sec": 574.662,
+      "end_sec": 574.962,
+      "text": "Okay, here.",
+      "confidence": 0.54
+    },
+    {
+      "start_sec": 575.262,
+      "end_sec": 576.202,
+      "text": "Hold on, let me put on gloves.",
+      "confidence": 0.842
+    },
+    {
+      "start_sec": 576.322,
+      "end_sec": 576.862,
+      "text": "Let me put on gloves.",
+      "confidence": 0.913
+    },
+    {
+      "start_sec": 577.202,
+      "end_sec": 578.622,
+      "text": "I got it, I got it.",
+      "confidence": 0.891
+    },
+    {
+      "start_sec": 578.802,
+      "end_sec": 579.202,
+      "text": "Hold this.",
+      "confidence": 0.627
+    },
+    {
+      "start_sec": 579.762,
+      "end_sec": 580.802,
+      "text": "It's going to still be loaded.",
+      "confidence": 0.687
+    },
+    {
+      "start_sec": 581.042,
+      "end_sec": 581.422,
+      "text": "I know.",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 583.642,
+      "end_sec": 585.382,
+      "text": "I know, I see it, I see it.",
+      "confidence": 0.92
+    },
+    {
+      "start_sec": 585.522,
+      "end_sec": 585.882,
+      "text": "Alright, go ahead.",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 585.882,
+      "end_sec": 586.262,
+      "text": "Keep cutting.",
+      "confidence": 0.936
+    },
+    {
+      "start_sec": 586.262,
+      "end_sec": 587.162,
+      "text": "Alright, ready?",
+      "confidence": 0.477
+    },
+    {
+      "start_sec": 592.202,
+      "end_sec": 598.582,
+      "text": "I got it, I got it, I got it.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 598.702,
+      "end_sec": 599.642,
+      "text": "I just want to make sure.",
+      "confidence": 0.703
+    },
+    {
+      "start_sec": 599.742,
+      "end_sec": 600.262,
+      "text": "I know, I got it.",
+      "confidence": 0.917
+    },
+    {
+      "start_sec": 607.602,
+      "end_sec": 610.562,
+      "text": "Upon seeing in one of the vehicles that officers determined",
+      "confidence": 0.883
+    },
+    {
+      "start_sec": 610.562,
+      "end_sec": 612.362,
+      "text": "was also involved in the disturbance",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 612.362,
+      "end_sec": 614.442,
+      "text": "that the suspect had been in,",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 614.442,
+      "end_sec": 616.602,
+      "text": "officers recovered another handgun.",
+      "confidence": 0.682
+    },
+    {
+      "start_sec": 616.602,
+      "end_sec": 620.182,
+      "text": "It was a loaded Glock 43 with a defaced serial number.",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 620.622,
+      "end_sec": 623.342,
+      "text": "The rifle that was observed in the suspect's possession",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 623.342,
+      "end_sec": 627.362,
+      "text": "earlier in the evening before officers first contact with him",
+      "confidence": 0.94
+    },
+    {
+      "start_sec": 627.362,
+      "end_sec": 628.542,
+      "text": "has not been located.",
+      "confidence": 0.969
+    },
+    {
+      "start_sec": 629.282,
+      "end_sec": 630.402,
+      "text": "Pursuant to Colorado law,",
+      "confidence": 0.977
+    },
+    {
+      "start_sec": 630.562,
+      "end_sec": 632.682,
+      "text": "the El Paso County Sheriff's Office responded",
+      "confidence": 0.924
+    },
+    {
+      "start_sec": 632.682,
+      "end_sec": 636.362,
+      "text": "and initiated an investigation into CSPD's use of force.",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 636.742,
+      "end_sec": 639.522,
+      "text": "Once completed, that investigation will be sent",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 639.522,
+      "end_sec": 642.162,
+      "text": "to the 4th Judicial District Attorney's Office",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 642.162,
+      "end_sec": 645.602,
+      "text": "for a determination on whether the officer's use of force",
+      "confidence": 0.9
+    },
+    {
+      "start_sec": 645.602,
+      "end_sec": 647.242,
+      "text": "complied with Colorado law.",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 647.782,
+      "end_sec": 649.742,
+      "text": "For more details on this incident,",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 650.322,
+      "end_sec": 652.182,
+      "text": "please refer to the written news release",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 652.182,
+      "end_sec": 654.402,
+      "text": "linked on this incident's entry",
+      "confidence": 0.961
+    },
+    {
+      "start_sec": 654.402,
+      "end_sec": 656.422,
+      "text": "on our Cases of Interest page",
+      "confidence": 0.95
+    },
+    {
+      "start_sec": 656.422,
+      "end_sec": 661.922,
+      "text": "at www.coloradosprings.gov forward slash police",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 661.922,
+      "end_sec": 664.342,
+      "text": "where you'll also find additional information",
+      "confidence": 0.9
+    },
+    {
+      "start_sec": 664.342,
+      "end_sec": 666.662,
+      "text": "regarding investigative, transparency,",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 667.182,
+      "end_sec": 668.262,
+      "text": "and use of force protocols.",
+      "confidence": 0.976
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 2.414,
+      "duration_sec": 2.414
+    },
+    {
+      "original_start_sec": 384.738,
+      "original_end_sec": 387.775,
+      "duration_sec": 3.037
+    },
+    {
+      "original_start_sec": 432.752,
+      "original_end_sec": 442.363,
+      "duration_sec": 9.611
+    },
+    {
+      "original_start_sec": 668.653,
+      "original_end_sec": 673.621,
+      "duration_sec": 4.968
+    }
+  ],
+  "original_duration_sec": 673.621,
+  "processed_duration_sec": 653.591,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "medium",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 713.8
+  }
+}
