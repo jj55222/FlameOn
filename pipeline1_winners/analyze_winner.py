@@ -374,6 +374,13 @@ def analyze_video(url, output_dir, dry_run=False):
         **analysis,
     }
 
+    # Add transparency fields so you can see what the LLM was working with
+    profile["_analysis_metadata"] = {
+        "model": LLM_MODEL,
+        "transcript_segments": len(segments),
+        "transcript_preview": " ".join(s["text"] for s in segments[:20]) + " ...",
+    }
+
     # Step 4: Validate and save
     print("  [4/4] Validating profile...")
     ok, errors = validate_profile(profile)
@@ -389,6 +396,12 @@ def analyze_video(url, output_dir, dry_run=False):
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(profile, f, indent=2, ensure_ascii=False)
     print(f"  Saved: {out_path}")
+
+    # Save full transcript separately for reference
+    transcript_path = os.path.join(output_dir, f"{video_id}_transcript.json")
+    with open(transcript_path, "w", encoding="utf-8") as f:
+        json.dump({"video_id": video_id, "segments": segments}, f, indent=2, ensure_ascii=False)
+    print(f"  Transcript: {transcript_path}")
 
     return profile
 
