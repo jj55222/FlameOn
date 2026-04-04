@@ -1326,6 +1326,108 @@ Match on partial name only if confidence is high."""
         return None
 
 
+def discover_new_cases(portal_url, jurisdiction="", max_cases=20):
+    """
+    Forward discovery: use Firecrawl AI extract to pull recent cases from a portal.
+    Returns a list of new case candidates that can be fed through research_case().
+
+    This is the PRODUCTION workflow — start from what portals are publishing NOW,
+    get defendant names + incident dates, then use those to build full case dossiers.
+
+    Costs ~20 lifetime Firecrawl credits per call.
+    """
+    global FIRECRAWL_EXTRACT_DISABLED
+    if FIRECRAWL_EXTRACT_DISABLED or FirecrawlApp is None or not FIRECRAWL_API_KEY:
+        return []
+
+    quota = _load_firecrawl_quota()
+    if quota["lifetime_credits_used"] + FIRECRAWL_EXTRACT_COST > FIRECRAWL_LIFETIME_LIMIT:
+        print(f"[Firecrawl] BLOCKED — lifetime limit ({quota['lifetime_credits_used']}/{FIRECRAWL_LIFETIME_LIMIT})")
+        FIRECRAWL_EXTRACT_DISABLED = True
+        return []
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "cases": {
+                "type": "array",
+                "description": f"List of up to {max_cases} most recent cases on this page, in order",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "position": {"type": "integer", "description": "1-indexed position on page"},
+                        "title": {"type": "string", "description": "Case or incident title"},
+                        "defendant_name": {"type": "string", "description": "Defendant or suspect name if shown"},
+                        "victim_name": {"type": "string", "description": "Victim name if shown"},
+                        "incident_date": {"type": "string", "description": "Incident date in YYYY-MM-DD if available"},
+                        "location": {"type": "string", "description": "Location of incident"},
+                        "case_url": {"type": "string", "description": "Link to case detail page or report"},
+                        "summary": {"type": "string", "description": "One-sentence description"},
+                        "evidence_types": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                            "description": "Evidence types mentioned: bodycam, interrogation, court_video, 911, docket, etc.",
+                        },
+                    },
+                },
+            }
+        },
+    }
+
+    prompt = f"""Extract the {max_cases} most recent cases, incidents, or press releases from this law enforcement portal page.
+
+For each case return:
+- position: 1-indexed position on the page (1 = topmost/most recent)
+- title: exact case or incident title
+- defendant_name: suspect or defendant name if shown (may be empty on some portals)
+- victim_name: victim name if shown
+- incident_date: date in YYYY-MM-DD format if available
+- location: city or specific location
+- case_url: direct URL to case detail or report page (if linked)
+- summary: one-sentence description
+- evidence_types: any evidence types mentioned (bodycam, interrogation, 911, court video, etc.)
+
+Return cases in the order they appear on the page. If the page has fewer than {max_cases} cases, return all of them."""
+
+    rate_limit("firecrawl", 2.0)
+    print(f"  [Firecrawl discover] {portal_url[:60]}...")
+
+    start_time = time.time()
+    try:
+        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+        result = app.extract(urls=[portal_url], prompt=prompt, schema=schema, timeout=120)
+        elapsed = time.time() - start_time
+
+        credits = getattr(result, "credits_used", None) or FIRECRAWL_EXTRACT_COST
+        quota["lifetime_credits_used"] += credits
+        quota["pages_scraped"] = quota.get("pages_scraped", 0) + 1
+        _save_firecrawl_quota(quota)
+
+        data = result.data if hasattr(result, "data") else {}
+        cases = data.get("cases", []) if isinstance(data, dict) else []
+
+        # Log discovery event
+        log_entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "mode": "discover",
+            "jurisdiction": jurisdiction,
+            "portal_url": portal_url,
+            "cases_found": len(cases),
+            "elapsed_sec": round(elapsed, 1),
+            "credits_used": credits,
+        }
+        _log_portal_position(log_entry)
+        _log_api_usage("firecrawl_discover", f"discover @ {portal_url}", credits, len(cases), cost_usd=0.0)
+
+        print(f"    Extracted {len(cases)} cases in {elapsed:.1f}s ({credits} credits)")
+        return cases
+
+    except Exception as e:
+        print(f"  [WARN] Firecrawl discover failed: {e}")
+        _log_api_usage("firecrawl_discover", f"discover @ {portal_url}", 0, 0, cost_usd=0.0)
+        return []
+
+
 def build_portal_cache(force=False):
     """
     One-time function: scrape all portals in PORTAL_REGISTRY, save extracted
