@@ -976,17 +976,19 @@ def search_brave(names, jurisdiction):
 # Exa Search API (free tier: 1K requests/month)
 # ──────────────────────────────────────────────────────────────
 
+_exa_disabled = False  # Circuit breaker: set True on 402 to stop all further Exa calls
+
 def query_exa(search_term, num_results=10):
-    """Search Exa API. Free tier only — monthly credit guard."""
-    global _exa_case_calls
-    if Exa is None or not EXA_API_KEY:
+    """Search Exa API. Free tier only — monthly credit guard + circuit breaker."""
+    global _exa_case_calls, _exa_disabled
+    if _exa_disabled or Exa is None or not EXA_API_KEY:
         return []
     if _exa_case_calls >= EXA_MAX_PER_CASE:
         return []
 
     quota = _load_exa_quota()
     if quota["calls_this_month"] >= EXA_MONTHLY_LIMIT:
-        print(f"[Exa] BLOCKED — monthly limit reached ({quota['calls_this_month']}/{EXA_MONTHLY_LIMIT})")
+        _exa_disabled = True
         return []
 
     rate_limit("exa", 0.5)
@@ -1002,10 +1004,12 @@ def query_exa(search_term, num_results=10):
         _log_api_usage("exa", search_term, 1, len(result_list), cost_usd=0.0)
         return result_list
     except Exception as e:
-        print(f"  [WARN] Exa search failed: {e}")
-        _log_api_usage("exa", search_term, 1, 0, cost_usd=0.0)
-        quota["calls_this_month"] = quota.get("calls_this_month", 0) + 1
-        _save_exa_quota(quota)
+        err_str = str(e)
+        if "402" in err_str or "credits" in err_str.lower():
+            print(f"  [Exa] Credits exhausted — disabling Exa for this run")
+            _exa_disabled = True
+        else:
+            print(f"  [WARN] Exa search failed: {e}")
         return []
 
 
