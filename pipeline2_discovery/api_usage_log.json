@@ -1534,5 +1534,53 @@
   "credits_used": 97,
   "results_found": 15,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:02:04.833776",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p1",
+  "credits_used": 1,
+  "results_found": 50,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:41:00.627149",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p1",
+  "credits_used": 1,
+  "results_found": 50,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:41:04.104926",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p2",
+  "credits_used": 1,
+  "results_found": 50,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:41:07.806428",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p3",
+  "credits_used": 1,
+  "results_found": 50,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:41:11.269430",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p4",
+  "credits_used": 1,
+  "results_found": 50,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T23:41:14.620459",
+  "api": "firecrawl_foia_discover",
+  "query": "San Francisco DPA p5",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
  }
 ]
