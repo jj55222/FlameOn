@@ -35,6 +35,16 @@ try:
 except ImportError:
     praw = None
 
+try:
+    from exa_py import Exa
+except ImportError:
+    Exa = None
+
+try:
+    from firecrawl import FirecrawlApp
+except ImportError:
+    FirecrawlApp = None
+
 load_dotenv()
 
 # ──────────────────────────────────────────────────────────────
