@@ -1,0 +1,16 @@
+# FlameOn Pipeline 1 — Winner Video URLs
+# One YouTube URL per line. Lines starting with # are ignored.
+# Curated from Dr Insanity and Explore With Us channels.
+#
+# DR INSANITY — bodycam + interrogation documentary style (30-60 min)
+# Channel: https://www.youtube.com/@DrInsanity
+#
+# EXPLORE WITH US — long-form true crime documentaries (1-2+ hours)
+# Channel: https://www.youtube.com/@ExploreWithUs
+#
+# Add URLs below. Target: 20-25 videos for initial calibration.
+# Watch each video yourself before adding — confirm it represents
+# the quality target for your content.
+#
+# FORMAT: paste full YouTube URL, one per line
+# Example: https://www.youtube.com/watch?v=XXXXXXXXXXX
