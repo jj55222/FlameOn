@@ -126,5 +126,85 @@
   "credits_used": 1,
   "results_found": 0,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:19.001887",
+  "api": "firecrawl",
+  "query": "https://www.jaxsheriff.org/transparency.aspx",
+  "credits_used": 0,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:24.212651",
+  "api": "firecrawl",
+  "query": "https://www.phoenix.gov/police/resources-information/officer-involved-shooting-information",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:31.648503",
+  "api": "firecrawl",
+  "query": "https://coloradosprings.gov/police-department/page/officer-involved-shooting-data",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:35.157971",
+  "api": "firecrawl",
+  "query": "https://www.mesaaz.gov/residents/police/transparency",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:37.706104",
+  "api": "firecrawl",
+  "query": "https://www.miamidade.gov/global/police/body-worn-cameras.page",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:42.127486",
+  "api": "firecrawl",
+  "query": "https://www.knoxvilletn.gov/government/city_departments_offices/police_department",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:45.101382",
+  "api": "firecrawl",
+  "query": "https://www.portland.gov/police/open-data",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:47.638581",
+  "api": "firecrawl",
+  "query": "https://www.seattle.gov/police/information-and-data",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:50.565296",
+  "api": "firecrawl",
+  "query": "https://www.auroragov.org/residents/public_safety/police/transparency",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:30:54.268232",
+  "api": "firecrawl",
+  "query": "https://www.tulsapolice.org/content/data-information.aspx",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
  }
 ]
