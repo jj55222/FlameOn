@@ -1,0 +1,130 @@
+[
+ {
+  "timestamp": "2026-04-04T17:25:33.232595",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" Knoxville case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:25:34.690572",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:25:36.226433",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" TN court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:26:58.447359",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" Knoxville case arrest",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:26:59.165686",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" bodycam OR interrogation OR 911",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:26:59.867117",
+  "api": "exa",
+  "query": "\"Christa Gail Pike\" TN court trial news",
+  "credits_used": 1,
+  "results_found": 10,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:48.471628",
+  "api": "firecrawl",
+  "query": "https://www.jaxsheriff.org/transparency.aspx",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:50.463520",
+  "api": "firecrawl",
+  "query": "https://www.phoenix.gov/police/resources-information/officer-involved-shooting-information",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:52.473874",
+  "api": "firecrawl",
+  "query": "https://coloradosprings.gov/police-department/page/officer-involved-shooting-data",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:54.474335",
+  "api": "firecrawl",
+  "query": "https://www.mesaaz.gov/residents/police/transparency",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:56.479545",
+  "api": "firecrawl",
+  "query": "https://www.miamidade.gov/global/police/body-worn-cameras.page",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:27:58.489520",
+  "api": "firecrawl",
+  "query": "https://www.knoxvilletn.gov/government/city_departments_offices/police_department",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:28:00.492009",
+  "api": "firecrawl",
+  "query": "https://www.portland.gov/police/open-data",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:28:02.501655",
+  "api": "firecrawl",
+  "query": "https://www.seattle.gov/police/information-and-data",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:28:04.502302",
+  "api": "firecrawl",
+  "query": "https://www.auroragov.org/residents/public_safety/police/transparency",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T17:28:06.504883",
+  "api": "firecrawl",
+  "query": "https://www.tulsapolice.org/content/data-information.aspx",
+  "credits_used": 1,
+  "results_found": 0,
+  "cost_usd": 0.0
+ }
+]
