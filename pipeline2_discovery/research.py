@@ -719,6 +719,7 @@ def query_brave(search_term, count=5):
 
     rate_limit("brave", 1.1)
     log_call("brave")
+    _brave_case_calls += 1
     try:
         resp = requests.get(
             BRAVE_BASE,
