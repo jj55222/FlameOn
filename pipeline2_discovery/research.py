@@ -250,7 +250,7 @@ def get_budget_report():
 def reset_budget():
     """Reset call counts (call at start of each evaluate.py run)."""
     global _api_call_counts
-    _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+    _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0, "exa": 0, "firecrawl": 0}
 
 # Rate limiting — tracks last call time per API
 _last_call = {"muckrock": 0, "courtlistener": 0, "youtube": 0, "brave": 0, "reddit": 0}
