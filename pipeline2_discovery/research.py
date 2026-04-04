@@ -650,6 +650,14 @@ def _score_youtube_relevance(n, j, combined, title, channel, credible_channels, 
         if any(kw in combined for kw in evidence_keywords):
             relevance = 0.30
 
+    # Jurisdiction cross-check: penalize name-only matches without jurisdiction context
+    # Prevents wrong-person YouTube matches for common names (Gonzalez, Johnson, etc.)
+    if 0 < relevance < 0.9 and j.get("city"):  # skip penalty for full-name matches
+        city_found = j["city"].lower() in combined
+        state_found = j.get("state_abbrev", "").lower() in combined if j.get("state_abbrev") else False
+        if not city_found and not state_found:
+            relevance *= 0.7
+
     channel_slug = re.sub(r'[^a-z0-9]', '', channel.lower())
     if channel_slug in credible_channels:
         relevance = min(relevance + 0.2, 1.0)
