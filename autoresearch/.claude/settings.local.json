@@ -34,7 +34,8 @@
       "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --verbose --log --hypothesis \"phase2_exa\" --changes \"added Exa search \\(free\\), Brave paid key, portal cache \\(empty\\)\")",
       "WebSearch",
       "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 1 --verbose)",
-      "Bash(python -c \"import json; d=json.load\\(open\\(''C:/Users/Diner/.claude/settings.json''\\)\\); hooks=d[''hooks''][''PostToolUse''][0][''hooks'']; print\\(f''PostToolUse hooks: {len\\(hooks\\)}''\\); [print\\(f''  - {h[\"\"command\"\"][:60]}...''\\) for h in hooks]\")"
+      "Bash(python -c \"import json; d=json.load\\(open\\(''C:/Users/Diner/.claude/settings.json''\\)\\); hooks=d[''hooks''][''PostToolUse''][0][''hooks'']; print\\(f''PostToolUse hooks: {len\\(hooks\\)}''\\); [print\\(f''  - {h[\"\"command\"\"][:60]}...''\\) for h in hooks]\")",
+      "Bash(PYTHONIOENCODING=utf-8 python tmp_hunt.py)"
     ]
   }
 }

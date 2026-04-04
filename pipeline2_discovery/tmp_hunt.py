@@ -1,7 +1,9 @@
 """
-Hunt for full-package cases in LA City + SF citywide NextRequest portals.
-Strategy: scrape multiple pages of /documents, group by request_id, rank by
-content variety (video + audio + docs = full package).
+Hunt strategy v2: probe SF DPA request pages directly.
+The /documents global index only surfaces ~200 records via pagination,
+but the parent requests (20-2, 20-3, 22-7, 22-9, etc.) list ALL their
+attached files via timeline entries. Scrape each request page to find
+video+audio full-package cases.
 """
 from firecrawl import FirecrawlApp
 from dotenv import load_dotenv
@@ -14,174 +16,109 @@ from collections import defaultdict, Counter
 load_dotenv()
 app = FirecrawlApp(api_key=os.environ['FIRECRAWL_API_KEY'])
 
+# SF DPA parent requests that aggregate SB1421/SB16 cases
+# 20-1 through 20-6: original SB1421 disclosures
+# 22-1 through 22-11: SB16 (2022 expansion)
+DPA_REQUESTS = [
+    '20-1', '20-2', '20-3', '20-4', '20-5', '20-6',
+    '22-1', '22-2', '22-3', '22-4', '22-5', '22-6', '22-7', '22-8', '22-9', '22-10', '22-11',
+]
 
-def parse_page(md):
-    """Parse NextRequest /documents markdown table into structured records."""
-    row_pattern = re.compile(
-        r'\[([^\]]+)\]\((https://[^)]*/documents/\d+)\)\s*\|\s*'
-        r'\[([\w\-]+)\]\((https://[^)]*/requests/[\w\-]+)\)\s*\|\s*'
-        r'([\d/]+)\s*\|\s*'
-        r'(\d+)\s*\|\s*'
-        r'([^|]*)\|\s*'
-        r'([^|]*)\|\s*'
-        r'([^|\n]*)'
-    )
-    records = []
-    for m in row_pattern.finditer(md):
-        filename = m.group(1).strip()
-        doc_url = m.group(2).strip()
-        req_id = m.group(3).strip()
-        req_url = m.group(4).strip()
-        upload = m.group(5).strip()
-        downloads = int(m.group(6).strip())
-        folder = m.group(7).strip()
-        ext = filename.lower().rsplit('.', 1)[-1] if '.' in filename else ''
-        if ext in ('mp3', 'wav', 'm4a', 'aac'):
-            ftype = 'audio'
-        elif ext in ('mp4', 'mov', 'avi', 'mkv', 'webm', 'm4v', 'mpg'):
-            ftype = 'video'
-        elif ext in ('pdf', 'doc', 'docx'):
-            ftype = 'document'
-        else:
-            ftype = 'other'
-        records.append({
-            'filename': filename,
-            'doc_url': doc_url,
-            'download_url': doc_url + '/download',
-            'request_id': req_id,
-            'request_url': req_url,
-            'upload_date': upload,
-            'downloads': downloads,
-            'folder': folder,
-            'file_type': ftype,
-            'ext': ext,
-        })
-    return records
+all_files = []
 
+for req_id in DPA_REQUESTS:
+    url = f'https://sfdpa.nextrequest.com/requests/{req_id}'
+    print(f'  {req_id}...', end=' ', flush=True)
+    try:
+        result = app.scrape(url, formats=['markdown'])
+        md = getattr(result, 'markdown', '') or ''
 
-def scrape_portal(name, base_url, max_pages=10):
-    """Scrape /documents pages of a NextRequest portal."""
-    all_recs = []
-    for page in range(1, max_pages + 1):
-        url = base_url if page == 1 else f"{base_url}?page={page}"
-        print(f'  [{name}] page {page}...', end=' ', flush=True)
-        try:
-            result = app.scrape(url, formats=['markdown'])
-            md = getattr(result, 'markdown', '') or ''
-            recs = parse_page(md)
-            print(f'+{len(recs)}')
-            if not recs:
-                break
-            for r in recs:
-                r['portal'] = name
-            all_recs.extend(recs)
-            time.sleep(1)
-        except Exception as e:
-            print(f'ERR: {str(e)[:60]}')
-            break
-    return all_recs
+        # Find all [filename](doc_url) within the request page
+        # These are the timeline entries with attached documents
+        file_pattern = re.compile(r'\[([^\]]+\.(?:mp3|mp4|mov|avi|wav|pdf|docx?))\]\((https://sfdpa\.nextrequest\.com/documents/\d+)\)', re.IGNORECASE)
+        matches = file_pattern.findall(md)
 
+        print(f'+{len(matches)} files')
+        for filename, doc_url in matches:
+            ext = filename.lower().rsplit('.', 1)[-1]
+            if ext in ('mp3', 'wav', 'm4a'):
+                ftype = 'audio'
+            elif ext in ('mp4', 'mov', 'avi', 'wmv'):
+                ftype = 'video'
+            elif ext in ('pdf', 'doc', 'docx'):
+                ftype = 'document'
+            else:
+                ftype = 'other'
+            # Extract case folder from filename (format: NNNN-NN)
+            case_match = re.match(r'([\w\-]*\d{3,5}-\d{2,4})', filename)
+            folder = case_match.group(1).strip() if case_match else ''
+            all_files.append({
+                'filename': filename,
+                'doc_url': doc_url,
+                'download_url': doc_url + '/download',
+                'parent_request': req_id,
+                'parent_url': url,
+                'folder': folder,
+                'file_type': ftype,
+                'ext': ext,
+            })
+        time.sleep(1)
+    except Exception as e:
+        print(f'ERR: {str(e)[:60]}')
 
-def rank_cases(all_recs):
-    """Group by request_id, rank by multi-artifact score."""
-    by_req = defaultdict(list)
-    for r in all_recs:
-        by_req[r['request_id']].append(r)
+# Dedupe by doc_url
+seen = set()
+unique = [f for f in all_files if not (f['doc_url'] in seen or seen.add(f['doc_url']))]
+print(f'\nTotal unique files: {len(unique)}')
 
-    ranked = []
-    for req_id, recs in by_req.items():
-        # Dedupe by filename
-        seen = set()
-        unique = [r for r in recs if not (r['filename'] in seen or seen.add(r['filename']))]
-        types = Counter(r['file_type'] for r in unique)
-        vids = types.get('video', 0)
-        auds = types.get('audio', 0)
-        docs = types.get('document', 0)
-        other = types.get('other', 0)
-        # Full-package bonus: having BOTH video AND audio is huge
-        bonus = 20 if (vids >= 1 and auds >= 1) else 0
-        # Multi-angle BWC bonus: 2+ videos
-        multi_angle = 10 if vids >= 2 else 0
-        score = vids * 8 + auds * 4 + docs * 1 + other * 0.5 + bonus + multi_angle
-        if score < 5:
-            continue
-        ranked.append({
-            'score': score,
-            'request_id': req_id,
-            'request_url': unique[0].get('request_url', ''),
-            'portal': unique[0].get('portal', ''),
-            'vids': vids, 'auds': auds, 'docs': docs, 'other': other,
-            'files': unique,
-        })
+with open('sfdpa_full_hunt.json', 'w', encoding='utf-8') as f:
+    json.dump(unique, f, indent=2, ensure_ascii=False)
 
-    ranked.sort(key=lambda x: -x['score'])
-    return ranked
+# Group by folder (case)
+by_folder = defaultdict(list)
+for f in unique:
+    key = f['folder'] or '(no folder)'
+    by_folder[key].append(f)
 
+# Rank
+ranked = []
+for folder, files in by_folder.items():
+    if folder == '(no folder)':
+        continue
+    types = Counter(f['file_type'] for f in files)
+    vids = types.get('video', 0)
+    auds = types.get('audio', 0)
+    docs = types.get('document', 0)
+    if vids + auds == 0 and docs < 2:
+        continue
+    # Gold scoring: video + audio = full package
+    full_pkg_bonus = 50 if (vids >= 1 and auds >= 1) else 0
+    multi_angle = 20 if vids >= 2 else 0
+    multi_interview = 10 if auds >= 2 else 0
+    score = vids * 10 + auds * 5 + docs * 1 + full_pkg_bonus + multi_angle + multi_interview
+    ranked.append({
+        'score': score, 'folder': folder,
+        'vids': vids, 'auds': auds, 'docs': docs,
+        'files': files,
+    })
+ranked.sort(key=lambda x: -x['score'])
 
-def main():
-    print('=' * 90)
-    print('Hunting for full-package cases in NextRequest portals')
-    print('=' * 90)
+print('\n' + '=' * 95)
+print(f'{"RANK":>4} {"SCORE":>6} {"FOLDER":>20} {"VID":>4} {"AUD":>4} {"DOC":>4}')
+print('=' * 95)
+for i, c in enumerate(ranked[:20], 1):
+    print(f'{i:>4} {c["score"]:>6.1f} {c["folder"]:>20s} {c["vids"]:>4d} {c["auds"]:>4d} {c["docs"]:>4d}')
 
-    all_recs = []
-
-    # LA City — 57K records, known to have video
-    la_recs = scrape_portal('LA City', 'https://lacity.nextrequest.com/documents', max_pages=8)
-    all_recs.extend(la_recs)
-
-    # SF citywide — 550K records
-    sf_recs = scrape_portal('SF citywide', 'https://sanfrancisco.nextrequest.com/documents', max_pages=8)
-    all_recs.extend(sf_recs)
-
-    # Save all raw records
-    with open('foia_hunt_raw.json', 'w', encoding='utf-8') as f:
-        json.dump(all_recs, f, indent=2, ensure_ascii=False)
-    print(f'\nTotal raw records: {len(all_recs)}')
-
-    # File type breakdown
-    types = Counter(r['file_type'] for r in all_recs)
-    print(f'Types: {dict(types)}')
-
-    # Rank cases
-    ranked = rank_cases(all_recs)
-
-    print('\n' + '=' * 90)
-    print(f'TOP 15 CASES BY CONTENT VARIETY')
-    print('=' * 90)
-    print(f'{"RANK":>4} {"SCORE":>6} {"REQ ID":>10} {"VID":>4} {"AUD":>4} {"DOC":>4} {"OTH":>4}  PORTAL')
-    for i, c in enumerate(ranked[:15], 1):
-        print(f'{i:>4} {c["score"]:>6.1f} {c["request_id"]:>10s} {c["vids"]:>4d} {c["auds"]:>4d} {c["docs"]:>4d} {c["other"]:>4d}  {c["portal"]}')
-        print(f'     └─ {c["request_url"]}')
-
-    # Show full manifest of top 5 gold candidates (those with both video AND audio)
-    gold = [c for c in ranked if c['vids'] >= 1 and c['auds'] >= 1][:5]
-    print('\n' + '=' * 90)
-    print(f'GOLD CANDIDATES (video AND audio) — {len(gold)} found')
-    print('=' * 90)
-    for c in gold:
-        print(f'\n── REQUEST {c["request_id"]} ({c["portal"]}) — {c["vids"]}V {c["auds"]}A {c["docs"]}D {c["other"]}O ──')
-        print(f'   {c["request_url"]}')
-        order = {'video': 0, 'audio': 1, 'document': 2, 'other': 3}
-        c['files'].sort(key=lambda x: (order.get(x['file_type'], 9), x['filename']))
-        for f in c['files']:
-            k = {'video': 'V', 'audio': 'A', 'document': 'D', 'other': 'O'}.get(f['file_type'], '?')
-            print(f'   [{k}] {f["filename"][:78]}')
-            print(f'        {f["download_url"]}')
-
-    # Also show top video-only cases
-    video_only = [c for c in ranked if c['vids'] >= 2 and c['auds'] == 0][:5]
-    if video_only:
-        print('\n' + '=' * 90)
-        print(f'MULTI-VIDEO CASES (2+ BWC angles, no audio attached)')
-        print('=' * 90)
-        for c in video_only:
-            print(f'\n── REQUEST {c["request_id"]} ({c["portal"]}) — {c["vids"]}V {c["docs"]}D ──')
-            print(f'   {c["request_url"]}')
-            for f in c['files']:
-                if f['file_type'] in ('video', 'document'):
-                    k = {'video': 'V', 'document': 'D'}[f['file_type']]
-                    print(f'   [{k}] {f["filename"][:78]}')
-
-
-if __name__ == '__main__':
-    main()
+# Detailed manifest of gold
+gold = [c for c in ranked if c['vids'] >= 1 and c['auds'] >= 1]
+print(f'\n{"=" * 95}')
+print(f'GOLD CANDIDATES — {len(gold)} cases with BOTH video and audio')
+print('=' * 95)
+for c in gold[:10]:
+    print(f'\n── CASE {c["folder"]} — {c["vids"]}V {c["auds"]}A {c["docs"]}D ──')
+    order = {'video': 0, 'audio': 1, 'document': 2}
+    c['files'].sort(key=lambda x: (order.get(x['file_type'], 9), x['filename']))
+    for f in c['files']:
+        k = {'video': 'V', 'audio': 'A', 'document': 'D'}.get(f['file_type'], '?')
+        print(f'   [{k}] {f["filename"][:78]}')
+        print(f'       {f["download_url"]}')
