@@ -336,11 +336,55 @@ def parse_jurisdiction(jurisdiction):
 # MuckRock API
 # ──────────────────────────────────────────────────────────────
 
+# Cache agency_id → jurisdiction_slug/id mapping to avoid repeated lookups
+_muckrock_agency_cache = {}
+
+def _muckrock_resolve_url(req):
+    """
+    Build a working MuckRock URL from a v2 request record.
+    Format: /foi/<jurisdiction-slug>-<jurisdiction-id>/<request-slug>-<request-id>/
+    Uses the agency cache to avoid repeated API calls.
+    """
+    req_id = req.get("id")
+    req_slug = req.get("slug", "")
+    agency_id = req.get("agency")
+    if not req_id or not req_slug or not agency_id:
+        return ""
+    # Get jurisdiction from agency (cached)
+    if agency_id not in _muckrock_agency_cache:
+        try:
+            headers = {}
+            if MUCKROCK_API_TOKEN:
+                headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
+            a_resp = requests.get(
+                f"{MUCKROCK_BASE}agencies/{agency_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            a_resp.raise_for_status()
+            jur_id = a_resp.json().get("jurisdiction")
+            j_resp = requests.get(
+                f"{MUCKROCK_BASE}jurisdictions/{jur_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            j_resp.raise_for_status()
+            jdata = j_resp.json()
+            _muckrock_agency_cache[agency_id] = (jdata.get("slug", ""), jdata.get("id", ""))
+        except Exception:
+            _muckrock_agency_cache[agency_id] = ("", "")
+    jslug, jid = _muckrock_agency_cache[agency_id]
+    if not jslug or not jid:
+        return ""
+    return f"https://www.muckrock.com/foi/{jslug}-{jid}/{req_slug}-{req_id}/"
+
+
 def query_muckrock(search_term, status=None, page_size=10, has_files=False):
     """
     Query MuckRock API v2/requests endpoint for FOIA requests.
     v2 uses 'requests' not 'foia' (v1 name). Full-text search via 'search' param.
     Set has_files=True to filter for requests with actual attachments.
+    Enriches each result with a resolved absolute_url.
     """
     if not check_budget("muckrock"):
         return []
@@ -360,6 +404,9 @@ def query_muckrock(search_term, status=None, page_size=10, has_files=False):
         )
         resp.raise_for_status()
         results = resp.json().get("results", [])
+        # Resolve URL for each result (uses agency cache)
+        for r in results:
+            r["absolute_url"] = _muckrock_resolve_url(r)
         # Optionally filter for requests with files attached
         if has_files:
             results = [r for r in results if r.get("files") and len(r.get("files", [])) > 0]
