@@ -1596,6 +1596,251 @@ def search_portal_cache(names, jurisdiction):
 
 
 # ──────────────────────────────────────────────────────────────
+# FOIA Document Discovery (NextRequest /documents endpoint)
+# ──────────────────────────────────────────────────────────────
+# These functions leverage existing FOIA requests that OTHER people
+# already filed. NextRequest portals expose a global /documents index
+# listing every publicly-released responsive document. Each document
+# has a direct /documents/{id}/download URL that redirects to S3.
+
+def _parse_nextrequest_documents_page(md):
+    """
+    Parse a NextRequest /documents page markdown into structured document records.
+    Returns list of dicts: {filename, doc_url, request_id, request_url, upload_date, folder, description, file_type}
+    """
+    docs = []
+    # Match table rows: [filename](doc_url) | [request_id](request_url) | upload_date | downloads | folder | ... | description
+    # NextRequest uses markdown tables
+    row_pattern = re.compile(
+        r'\[([^\]]+)\]\((https://[^)]*/documents/\d+)\)\s*\|\s*'
+        r'\[([\w\-]+)\]\((https://[^)]*/requests/[\w\-]+)\)\s*\|\s*'
+        r'([\d/]+)\s*\|\s*'
+        r'(\d+)\s*\|\s*'
+        r'([^|]*)\|\s*'
+        r'([^|]*)\|\s*'
+        r'([^|\n]*)'
+    )
+    for m in row_pattern.finditer(md):
+        filename = m.group(1).strip()
+        doc_url = m.group(2).strip()
+        req_id = m.group(3).strip()
+        req_url = m.group(4).strip()
+        upload_date = m.group(5).strip()
+        downloads = int(m.group(6).strip())
+        folder = m.group(7).strip()
+        doc_date = m.group(8).strip()
+        description = m.group(9).strip()
+
+        # Infer file type from extension
+        ext = filename.lower().split(".")[-1] if "." in filename else ""
+        if ext in ("mp3", "wav", "m4a", "aac", "flac", "ogg"):
+            file_type = "audio"
+        elif ext in ("mp4", "mov", "avi", "mkv", "webm", "mpg", "m4v"):
+            file_type = "video"
+        elif ext in ("pdf", "doc", "docx", "txt", "rtf"):
+            file_type = "document"
+        else:
+            file_type = "other"
+
+        docs.append({
+            "filename": filename,
+            "doc_url": doc_url,
+            "download_url": doc_url.rstrip("/") + "/download",
+            "request_id": req_id,
+            "request_url": req_url,
+            "upload_date": upload_date,
+            "download_count": downloads,
+            "folder": folder,
+            "document_date": doc_date,
+            "description": description,
+            "file_type": file_type,
+            "extension": ext,
+        })
+    return docs
+
+
+def discover_foia_documents(portal_key, max_pages=1):
+    """
+    Scrape a NextRequest portal's /documents index to list public records.
+    Each basic scrape = 1 Firecrawl credit and returns ~30-40 documents.
+
+    Args:
+        portal_key: Key in FOIA_PORTAL_REGISTRY (e.g., "San Francisco DPA")
+        max_pages: Number of pages to scrape (default 1 = first 30-40 docs)
+
+    Returns list of document records with direct download URLs.
+    """
+    if FirecrawlApp is None or not FIRECRAWL_API_KEY:
+        return []
+    if portal_key not in FOIA_PORTAL_REGISTRY:
+        print(f"[FOIA] Unknown portal: {portal_key}")
+        return []
+
+    portal = FOIA_PORTAL_REGISTRY[portal_key]
+    index_url = portal["documents_index"]
+
+    quota = _load_firecrawl_quota()
+    credits_needed = max_pages  # 1 credit per basic scrape
+    if quota["lifetime_credits_used"] + credits_needed > FIRECRAWL_LIFETIME_LIMIT:
+        print(f"[FOIA] BLOCKED — would exceed Firecrawl lifetime limit")
+        return []
+
+    app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+    all_docs = []
+
+    for page in range(1, max_pages + 1):
+        page_url = f"{index_url}?page={page}" if page > 1 else index_url
+        print(f"  [FOIA] Scraping page {page}: {page_url}")
+        rate_limit("firecrawl", 2.0)
+
+        try:
+            result = app.scrape(page_url, formats=["markdown"])
+            md = getattr(result, "markdown", "") or ""
+
+            # Update quota for the successful scrape
+            quota["lifetime_credits_used"] += 1
+            quota["pages_scraped"] = quota.get("pages_scraped", 0) + 1
+            _save_firecrawl_quota(quota)
+
+            docs = _parse_nextrequest_documents_page(md)
+            print(f"    → {len(docs)} documents extracted")
+            for d in docs:
+                d["portal_key"] = portal_key
+                d["portal_base_url"] = portal["base_url"]
+                d["high_signal"] = portal.get("high_signal", False)
+            all_docs.extend(docs)
+
+            _log_api_usage("firecrawl_foia_discover", f"{portal_key} p{page}", 1, len(docs), cost_usd=0.0)
+
+            if not docs:
+                break  # No more docs on this page
+
+        except Exception as e:
+            print(f"    [WARN] Scrape failed: {e}")
+            _log_api_usage("firecrawl_foia_discover", f"{portal_key} p{page}", 0, 0, cost_usd=0.0)
+            break
+
+    return all_docs
+
+
+def download_foia_document(doc_record, output_dir):
+    """
+    Download a FOIA document to disk via its /documents/{id}/download URL.
+    Works with the output of discover_foia_documents().
+
+    NextRequest redirects to S3 signed URLs. This is FREE — no Firecrawl credits.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    download_url = doc_record["download_url"]
+    filename = doc_record["filename"]
+
+    # Sanitize filename for filesystem
+    safe_name = re.sub(r'[<>:"/\\|?*]', "_", filename)
+    out_path = os.path.join(output_dir, safe_name)
+
+    if os.path.exists(out_path):
+        size = os.path.getsize(out_path)
+        print(f"  [FOIA-DL] Already exists: {safe_name} ({size/1024:.0f} KB)")
+        return out_path
+
+    print(f"  [FOIA-DL] Downloading: {safe_name}")
+    try:
+        with requests.get(download_url, stream=True, timeout=120,
+                         headers={"User-Agent": "Mozilla/5.0"},
+                         allow_redirects=True) as r:
+            r.raise_for_status()
+            total = int(r.headers.get("content-length", 0))
+            downloaded = 0
+            with open(out_path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=65536):
+                    f.write(chunk)
+                    downloaded += len(chunk)
+            print(f"    ✓ {downloaded/1024/1024:.1f} MB → {out_path}")
+            return out_path
+    except Exception as e:
+        print(f"    [WARN] Download failed: {e}")
+        if os.path.exists(out_path):
+            os.remove(out_path)
+        return None
+
+
+def build_foia_cache(portal_keys=None, max_pages_per_portal=1, force=False):
+    """
+    One-time function: discover FOIA documents from all registered portals
+    and save to foia_docs_cache.json. Call manually, not from research_case().
+
+    Usage:
+        python -c "from research import build_foia_cache; build_foia_cache()"
+        python -c "from research import build_foia_cache; build_foia_cache(['San Francisco DPA'], max_pages_per_portal=3)"
+    """
+    if os.path.exists(FOIA_DOCS_CACHE_FILE) and not force:
+        with open(FOIA_DOCS_CACHE_FILE, "r") as f:
+            cache = json.load(f)
+        print(f"[FOIA Cache] Already exists with {len(cache)} documents. Use force=True to rebuild.")
+        return cache
+
+    if portal_keys is None:
+        portal_keys = list(FOIA_PORTAL_REGISTRY.keys())
+
+    print("Building FOIA documents cache...")
+    all_docs = []
+    quota_before = _load_firecrawl_quota()
+
+    for key in portal_keys:
+        print(f"\n=== {key} ===")
+        docs = discover_foia_documents(key, max_pages=max_pages_per_portal)
+        all_docs.extend(docs)
+
+    with open(FOIA_DOCS_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(all_docs, f, indent=2, ensure_ascii=False)
+
+    quota_after = _load_firecrawl_quota()
+    credits_used = quota_after["lifetime_credits_used"] - quota_before.get("lifetime_credits_used", 0)
+
+    # Summary by file type
+    from collections import Counter
+    type_counts = Counter(d["file_type"] for d in all_docs)
+    print(f"\n  FOIA cache built: {len(all_docs)} documents")
+    print(f"  By type: {dict(type_counts)}")
+    print(f"  Firecrawl credits used: {credits_used}")
+    print(f"  Saved to: {FOIA_DOCS_CACHE_FILE}")
+    return all_docs
+
+
+def search_foia_cache(query_terms=None, file_types=None, portal_keys=None, limit=50):
+    """
+    Search the FOIA docs cache by filename, folder, description, or file type.
+    Zero API cost — reads from foia_docs_cache.json.
+
+    Args:
+        query_terms: list of substrings to match (case-insensitive) against filename + folder + description
+        file_types: list of file types to include ['audio', 'video', 'document']
+        portal_keys: list of portal keys to restrict to
+        limit: max results to return
+    """
+    try:
+        with open(FOIA_DOCS_CACHE_FILE, "r") as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+    results = []
+    for doc in cache:
+        if file_types and doc.get("file_type") not in file_types:
+            continue
+        if portal_keys and doc.get("portal_key") not in portal_keys:
+            continue
+        if query_terms:
+            haystack = f"{doc.get('filename','')} {doc.get('folder','')} {doc.get('description','')}".lower()
+            if not all(term.lower() in haystack for term in query_terms):
+                continue
+        results.append(doc)
+        if len(results) >= limit:
+            break
+    return results
+
+
+# ──────────────────────────────────────────────────────────────
 # Reddit Search (free, no API key required)
 # ──────────────────────────────────────────────────────────────
 
