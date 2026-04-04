@@ -975,6 +975,291 @@ def search_brave(names, jurisdiction):
 
 
 # ──────────────────────────────────────────────────────────────
+# Exa Search API (free tier: 1K requests/month)
+# ──────────────────────────────────────────────────────────────
+
+def query_exa(search_term, num_results=10):
+    """Search Exa API. Free tier only — monthly credit guard."""
+    global _exa_case_calls
+    if Exa is None or not EXA_API_KEY:
+        return []
+    if _exa_case_calls >= EXA_MAX_PER_CASE:
+        return []
+
+    quota = _load_exa_quota()
+    if quota["calls_this_month"] >= EXA_MONTHLY_LIMIT:
+        print(f"[Exa] BLOCKED — monthly limit reached ({quota['calls_this_month']}/{EXA_MONTHLY_LIMIT})")
+        return []
+
+    rate_limit("exa", 0.5)
+    log_call("exa")
+    _exa_case_calls += 1
+
+    try:
+        exa = Exa(api_key=EXA_API_KEY)
+        results = exa.search(search_term, num_results=num_results, type="auto")
+        quota["calls_this_month"] = quota.get("calls_this_month", 0) + 1
+        _save_exa_quota(quota)
+        result_list = results.results if hasattr(results, 'results') else []
+        _log_api_usage("exa", search_term, 1, len(result_list), cost_usd=0.0)
+        return result_list
+    except Exception as e:
+        print(f"  [WARN] Exa search failed: {e}")
+        _log_api_usage("exa", search_term, 1, 0, cost_usd=0.0)
+        quota["calls_this_month"] = quota.get("calls_this_month", 0) + 1
+        _save_exa_quota(quota)
+        return []
+
+
+def search_exa(names, jurisdiction):
+    """Use Exa Search for supplemental case discovery. Free tier only."""
+    if Exa is None or not EXA_API_KEY:
+        return []
+
+    sources = []
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    seen_urls = set()
+
+    queries = []
+    if n["clean_primary"] and j["city"]:
+        queries.append(f'"{n["clean_primary"]}" {j["city"]} case arrest')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" bodycam OR interrogation OR 911')
+    if n["clean_primary"] and j["state_abbrev"]:
+        queries.append(f'"{n["clean_primary"]}" {j["state_abbrev"]} court trial news')
+
+    # Entertainment/spam filter (reuse from Brave)
+    skip_domains = {
+        "imdb.com", "tvguide.com", "spotify.com", "invubu.com",
+        "viberate.com", "soapcentral.com", "pinterest.com",
+    }
+
+    for query in queries[:EXA_MAX_PER_CASE]:
+        results = query_exa(query, num_results=10)
+        for r in results:
+            url = getattr(r, 'url', '') or ''
+            title = getattr(r, 'title', '') or ''
+            if not url or url in seen_urls:
+                continue
+            try:
+                domain = urlparse(url).netloc.replace("www.", "")
+            except Exception:
+                continue
+            if domain in skip_domains:
+                continue
+
+            combined = f"{title}".lower()
+            relevance = 0.0
+            if n["clean_primary"].lower() in combined:
+                relevance = 0.8
+            elif n["last_name"].lower() in combined and len(n["last_name"]) > 4:
+                if j["city"].lower() in combined or j["state_abbrev"].lower() in combined:
+                    relevance = 0.6
+                else:
+                    relevance = 0.4
+
+            if relevance >= 0.4:
+                seen_urls.add(url)
+                sources.append({
+                    "url": url, "type": "news_article",
+                    "relevance_score": relevance,
+                    "description": title, "api": "exa",
+                })
+
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# Firecrawl Portal Scraping (500 lifetime credits — use sparingly)
+# ──────────────────────────────────────────────────────────────
+
+# Hand-curated portal URLs from calibration data jurisdictions
+PORTAL_REGISTRY = {
+    "Jacksonville": [
+        "https://www.jaxsheriff.org/transparency.aspx",
+    ],
+    "Phoenix": [
+        "https://www.phoenix.gov/police/resources-information/officer-involved-shooting-information",
+    ],
+    "Colorado Springs": [
+        "https://coloradosprings.gov/police-department/page/officer-involved-shooting-data",
+    ],
+    "Mesa": [
+        "https://www.mesaaz.gov/residents/police/transparency",
+    ],
+    "Miami": [
+        "https://www.miamidade.gov/global/police/body-worn-cameras.page",
+    ],
+    "Knoxville": [
+        "https://www.knoxvilletn.gov/government/city_departments_offices/police_department",
+    ],
+    "Portland": [
+        "https://www.portland.gov/police/open-data",
+    ],
+    "Seattle": [
+        "https://www.seattle.gov/police/information-and-data",
+    ],
+    "Aurora": [
+        "https://www.auroragov.org/residents/public_safety/police/transparency",
+    ],
+    "Tulsa": [
+        "https://www.tulsapolice.org/content/data-information.aspx",
+    ],
+}
+
+
+def scrape_portal_page(url):
+    """Scrape a single portal page using Firecrawl. Costs 1 lifetime credit."""
+    if FirecrawlApp is None or not FIRECRAWL_API_KEY:
+        return None
+
+    quota = _load_firecrawl_quota()
+    if quota["lifetime_credits_used"] >= FIRECRAWL_LIFETIME_LIMIT:
+        print(f"[Firecrawl] BLOCKED — lifetime limit reached ({quota['lifetime_credits_used']}/{FIRECRAWL_LIFETIME_LIMIT})")
+        return None
+
+    rate_limit("firecrawl", 2.0)
+    try:
+        app = FirecrawlApp(api_key=FIRECRAWL_API_KEY)
+        result = app.scrape_url(url, params={"formats": ["markdown", "links"]})
+        quota["lifetime_credits_used"] += 1
+        quota["pages_scraped"] = quota.get("pages_scraped", 0) + 1
+        _save_firecrawl_quota(quota)
+        _log_api_usage("firecrawl", url, 1, 1, cost_usd=0.0)
+        return result
+    except Exception as e:
+        print(f"  [WARN] Firecrawl scrape failed for {url}: {e}")
+        _log_api_usage("firecrawl", url, 1, 0, cost_usd=0.0)
+        # Still count the credit (it was attempted)
+        quota["lifetime_credits_used"] += 1
+        _save_firecrawl_quota(quota)
+        return None
+
+
+def build_portal_cache(force=False):
+    """
+    One-time function: scrape all portals in PORTAL_REGISTRY, save extracted
+    URLs to portals_cache.json. Call manually, NOT from research_case().
+
+    Usage: python -c "from research import build_portal_cache; build_portal_cache()"
+    """
+    if os.path.exists(PORTALS_CACHE_FILE) and not force:
+        with open(PORTALS_CACHE_FILE, "r") as f:
+            cache = json.load(f)
+        print(f"[Portal Cache] Already exists with {len(cache)} entries. Use force=True to rebuild.")
+        return cache
+
+    print("Building portal cache...")
+    cache = []
+    quota_before = _load_firecrawl_quota()
+
+    for jurisdiction, urls in PORTAL_REGISTRY.items():
+        for url in urls:
+            print(f"  Scraping: {url}")
+            result = scrape_portal_page(url)
+            if not result:
+                continue
+
+            # Extract links from the scraped content
+            links = []
+            if isinstance(result, dict):
+                # Try to get links from result
+                md_content = result.get("markdown", "") or ""
+                links_list = result.get("links", []) or []
+                # From explicit links array
+                for link in links_list:
+                    if isinstance(link, str):
+                        links.append(link)
+                    elif isinstance(link, dict):
+                        links.append(link.get("url", ""))
+                # Also extract from markdown content
+                md_links = re.findall(r'https?://[^\s\)\"\'>\]]+', md_content)
+                links.extend(md_links)
+
+            # Dedup and filter
+            seen = set()
+            for link in links:
+                if not link or link in seen:
+                    continue
+                seen.add(link)
+                # Skip obvious non-content links
+                if any(skip in link.lower() for skip in [
+                    "javascript:", "mailto:", "tel:", "#", "login", "signin",
+                    "facebook.com/sharer", "twitter.com/intent", ".css", ".js",
+                    "google.com/maps",
+                ]):
+                    continue
+                cache.append({
+                    "url": link,
+                    "jurisdiction": jurisdiction,
+                    "portal_source": url,
+                    "scraped_at": datetime.utcnow().isoformat(),
+                })
+
+    with open(PORTALS_CACHE_FILE, "w") as f:
+        json.dump(cache, f, indent=2)
+
+    quota_after = _load_firecrawl_quota()
+    credits_used = quota_after["lifetime_credits_used"] - quota_before.get("lifetime_credits_used", 0)
+    print(f"\n  Portal cache built: {len(cache)} URLs extracted from {credits_used} portal pages")
+    print(f"  Firecrawl credits used: {credits_used}/{FIRECRAWL_LIFETIME_LIMIT} lifetime")
+    print(f"  Saved to: {PORTALS_CACHE_FILE}")
+    return cache
+
+
+def search_portal_cache(names, jurisdiction):
+    """Search the pre-built portal cache for matching URLs. Zero API cost."""
+    try:
+        with open(PORTALS_CACHE_FILE, "r") as f:
+            cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    sources = []
+    seen_urls = set()
+
+    for entry in cache:
+        url = entry.get("url", "")
+        if not url or url in seen_urls:
+            continue
+        cache_jurisdiction = entry.get("jurisdiction", "").lower()
+
+        # Match by jurisdiction
+        if j["city"] and j["city"].lower() in cache_jurisdiction:
+            relevance = 0.4
+            # Boost if defendant name appears in URL
+            url_lower = url.lower()
+            if n["last_name"].lower() in url_lower and len(n["last_name"]) > 3:
+                relevance = 0.7
+            if n["clean_primary"].lower().replace(" ", "") in url_lower.replace(" ", ""):
+                relevance = 0.8
+
+            seen_urls.add(url)
+            # Guess type from URL
+            source_type = "agency_portal"
+            url_lower = url.lower()
+            if any(kw in url_lower for kw in ["bodycam", "body-cam", "bwc", "body-worn"]):
+                source_type = "bodycam_footage"
+            elif any(kw in url_lower for kw in ["video", "footage", "youtube"]):
+                source_type = "video_footage"
+            elif any(kw in url_lower for kw in ["report", "document", "pdf"]):
+                source_type = "foia_document"
+
+            sources.append({
+                "url": url,
+                "type": source_type,
+                "relevance_score": relevance,
+                "description": f"Portal: {entry.get('portal_source', '')}",
+                "api": "firecrawl_cache",
+            })
+
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
 # Reddit Search (free, no API key required)
 # ──────────────────────────────────────────────────────────────
 
