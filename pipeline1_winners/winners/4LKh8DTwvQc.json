@@ -1,0 +1,90 @@
+{
+  "video_id": "4LKh8DTwvQc",
+  "channel": "EXPLORE WITH US",
+  "title": "Cops Discover Horrifying Secret Behind Dorm Door",
+  "view_count": 4000179,
+  "duration_sec": 3213,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.014,
+        "description": "Chaotic opening audio of police response, a suspect doing a backflip, and narrator intro sets immediate tension."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.014,
+        "end_pct": 0.076,
+        "description": "Initial 911 calls report gunshots and a missing 14-year-old, establishing the campus setting and primary concern."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.076,
+        "end_pct": 0.19,
+        "description": "Police track a suspect with a gun, follow a blood trail, and watch him escape in a truck while the mother arrives at the dorm."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.19,
+        "end_pct": 0.287,
+        "description": "Officers breach the dorm window and discover the deceased teen, triggering an immediate crisis response and paramedic arrival."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.287,
+        "end_pct": 0.513,
+        "description": "Family notification, emotional breakdowns, campus lockdown, and initial investigation into the surviving teens."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.513,
+        "end_pct": 0.638,
+        "description": "Interrogation of Zion exposes contradictions, while phone data reveals a secret drug operation and evidence tampering."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.638,
+        "end_pct": 0.84,
+        "description": "Shooter John is arrested and interrogated, claiming a drug-induced blackout, while missing evidence points to a cover-up."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.84,
+        "end_pct": 1.0,
+        "description": "John learns the victim's age, witness accounts clarify the shooting sequence, and final legal charges are detailed."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 5,
+    "procedural_violation": 2,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.26,
+    "total_segments": 1420,
+    "bodycam_pct": 0.45,
+    "narration_pct": 0.25,
+    "interrogation_pct": 0.2,
+    "other_pct": 0.1
+  },
+  "artifact_combination": [
+    "bodycam",
+    "911_audio",
+    "interrogation",
+    "narration",
+    "documents",
+    "news_clips"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1420,
+    "transcript_preview": "Uh, he pulls a gun out of his waistband, throws it on the ground, does a backflip, and then runs off. >> Yeah, following the blood trail. I just want to make sure we don't have a dead body cuz they're cut up. >> Have a on the ground. >> Not just any person, a 14-year-old kid. >> A 14year-old damn it. When police at the University of New Mexico receive chaotic reports of a shooting, vandalism, and missing children on an otherwise quiet campus, the response pulls baffled officers in different directions. As they begin to suspect the incidents are all connected, one horrifying discovery plunges the night into a full-blown crisis. >> That's when I started losing my mind. I was like, ..."
+  }
+}

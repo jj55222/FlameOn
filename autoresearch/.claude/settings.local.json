@@ -25,7 +25,8 @@
       "Bash(python -c \"import zipfile; zipfile.ZipFile\\(''FlameOn-blitz.zip''\\).extractall\\(''FlameOn-blitz''\\)\")",
       "Bash(python -c \"import research; print\\(''OK — parsed successfully''\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python -c \":*)",
-      "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 14 --verbose)"
+      "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 14 --verbose)",
+      "Bash(PYTHONIOENCODING=utf-8 python analyze_winner.py --batch video_urls.txt --output winners/)"
     ]
   }
 }
