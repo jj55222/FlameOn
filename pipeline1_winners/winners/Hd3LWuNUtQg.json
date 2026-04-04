@@ -1,0 +1,88 @@
+{
+  "video_id": "Hd3LWuNUtQg",
+  "channel": "Dr Insanity",
+  "title": "Mom Realizes Her Daughter Just Decapitated Someone",
+  "view_count": 11932998,
+  "duration_sec": 2829,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.01,
+        "description": "Dramatic opening showing the mother's realization and immediate police bodycam of the decapitation scene."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.01,
+        "end_pct": 0.09,
+        "description": "911 dispatch call, police arrival, forced entry, and initial discovery of the victim's body in the garage."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.09,
+        "end_pct": 0.23,
+        "description": "Scene processing, initial detainment of Kiara, arrival of the victim's mother, and location of Isaac at a nearby store."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.23,
+        "end_pct": 0.34,
+        "description": "Detective Vigil receives scene briefing, learns relationship dynamics and prior domestic battery charge, followed by sponsor segment."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.34,
+        "end_pct": 0.47,
+        "description": "Isaac's first interrogation where he plays the traumatized victim, maps the scene, and establishes a timeline."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.47,
+        "end_pct": 0.75,
+        "description": "Kiara's interrogation reveals her self-diagnosed DID, inconsistent memories, mentions of a violent 'Ghost' organization, and initial blame-shifting to Isaac."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.75,
+        "end_pct": 0.98,
+        "description": "Detectives present Isaac's phone messages, exposing the conspiracy and planning; Isaac's facade crumbles and he confesses to encouraging the murder."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.98,
+        "end_pct": 1.0,
+        "description": "Brief interviews with both families, confirmation of first-degree murder charges, and concluding narrative wrap-up."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 4,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 5,
+    "detail_noticed": 4,
+    "callback": 3,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.16,
+    "total_segments": 1312,
+    "bodycam_pct": 0.23,
+    "narration_pct": 0.12,
+    "interrogation_pct": 0.6,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1312,
+    "transcript_preview": "Tara McCaulay sits beside her 19-year-old daughter, Kiara. Unbeknownst to her, both of their lives are about to change forever. >> How's my houseing crime? >> There's a deceased person in your [clears throat] garage. >> That's why it's a crime scene. >> There's a body in there. >> Stand up for me. >> Kiara is a deranged teenage killer. She just brutally killed her ex-girlfriend with a 3-ft long sword. The body lies in her mother's [music] home just feet away. But this discovery of a body would be just the start. The investigation that followed would reveal a vile teenage couple whose actions left officers, family members, and detectives [music] ..."
+  }
+}

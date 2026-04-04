@@ -1,0 +1,113 @@
+{
+  "video_id": "8PyJNey15gU",
+  "channel": "Dr Insanity",
+  "title": "How Police Captured A Killer Soldier 7 Years Later",
+  "view_count": 9825185,
+  "duration_sec": 3550,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.01,
+        "description": "Cold open reveals the victim's body discovery and hints at the husband's dark secret and escape."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.01,
+        "end_pct": 0.05,
+        "description": "Establishes Katie's final day, her disappearance, and the discovery of her body in an abandoned house."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.05,
+        "end_pct": 0.18,
+        "description": "Wayne Roer is interrogated as the prime suspect; the crime scene appears staged to frame him."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.18,
+        "end_pct": 0.19,
+        "description": "Sponsor segment and narrative bridge back to the investigation."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.19,
+        "end_pct": 0.28,
+        "description": "John's first interview where he calmly plants misdirection and defends Wayne to appear trustworthy."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.28,
+        "end_pct": 0.38,
+        "description": "Interviews with friends and family reinforce John's narrative until the niece reveals a financial motive."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.38,
+        "end_pct": 0.46,
+        "description": "Detectives wire the funeral home, successfully collect John's DNA, and spot him with 17-year-old Hannah."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.46,
+        "end_pct": 0.62,
+        "description": "Hannah and John face intense interrogations; cell phone pings contradict alibis, prompting John to flee."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.62,
+        "end_pct": 0.72,
+        "description": "Nationwide manhunt begins; abandoned vehicle and digital messages confirm premeditation."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.72,
+        "end_pct": 0.81,
+        "description": "Charles Scott's cellmate provides a detailed tip; detectives bluff about John's confession during interrogation."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.81,
+        "end_pct": 0.91,
+        "description": "Hannah returns to authorities, breaks under pressure, and reveals John's confession and their escape plan."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.91,
+        "end_pct": 1.0,
+        "description": "DNA confirms John's guilt, leading to a six-year manhunt, his eventual capture under an alias, and final convictions."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 3,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.27,
+    "total_segments": 1565,
+    "bodycam_pct": 0.12,
+    "narration_pct": 0.55,
+    "interrogation_pct": 0.25,
+    "other_pct": 0.08
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "narration",
+    "documents"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1565,
+    "transcript_preview": "out off of Southeast Main Street, there was a body that was found in the house. Okay, we're able to say that it is Kevin. Okay, I'm so sorry for your loss, sir. >> This is 28-year-old John Plowvelt. Learning that his missing wife was discovered in an abandoned [music] house, brutally murdered, surrounded by satanic markings. However, John had a disturbing secret he couldn't tell the interviewer that day. down if I wiped her down. >> Using his military experience, he carried out a nearperfect murder that kept detectives one step behind for years. And by the time investigators began to narrow in on him, Jon was already long gone, living in a new state, in a new house, running away with ..."
+  }
+}

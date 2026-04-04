@@ -1,0 +1,88 @@
+{
+  "video_id": "DZm5Rm7QNKU",
+  "channel": "Dr Insanity",
+  "title": "Cops Find Missing Teen's Body In Soldier's Bedroom",
+  "view_count": 15986893,
+  "duration_sec": 2954,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.05,
+        "description": "Dramatic bodycam snippets and narrator intro tease the horrific discovery in the bedroom wall."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.05,
+        "end_pct": 0.25,
+        "description": "Police arrive at Eric Banks' home for a missing teen report, establishing the protective order context and Eric's calm but suspicious demeanor."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.25,
+        "end_pct": 0.35,
+        "description": "Officers search the home and discover the teen's body hidden in a crawl space behind Eric's bedroom wall."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.35,
+        "end_pct": 0.45,
+        "description": "Eric is detained and violently resists, attempting to grab an officer's service weapon while handcuffed."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.45,
+        "end_pct": 0.65,
+        "description": "Interviews with the mother and younger son reveal prior abuse, the teen's bruises, and Eric's collapsing personal life."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.65,
+        "end_pct": 0.7,
+        "description": "Narrator bridges the investigation to the formal interrogation, detailing the room setup and detective's strategy."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.7,
+        "end_pct": 0.92,
+        "description": "Detective confronts Eric with the autopsy results, shifting from rapport-building to intense pressure as Eric denies strangulation and admits to initial lies."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.92,
+        "end_pct": 1.0,
+        "description": "Eric is charged, accepts a plea deal for second-degree murder, and receives a 42-year sentence."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 4,
+    "emotional_peak": 3,
+    "procedural_violation": 2,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 3,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 1.93,
+    "total_segments": 1527,
+    "bodycam_pct": 0.28,
+    "narration_pct": 0.16,
+    "interrogation_pct": 0.47,
+    "other_pct": 0.09
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration",
+    "documents"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1527,
+    "transcript_preview": "Hey, how you doing? >> I'm doing good. Bossing yourself. >> This is US Marine veteran Eric Banks. Moments after this body cam footage, officers would find his horrifying secret stuffed inside his bedroom wall. It might dim on you. >> What's up? 9:5 in there and saw our responsibility now. >> Eric, who is also an active officer for Baltimore PD thinks he can use his experience to cover up his vile murder. What follows is amongst the most disturbing collections of criminal case files ever uploaded to YouTube. >> Stop. I'm buckling. What are you doing? My life away, though. >> I don't care. Stop. What are you doing? Who is this person? ..."
+  }
+}

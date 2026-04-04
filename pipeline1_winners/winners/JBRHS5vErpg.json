@@ -1,0 +1,95 @@
+{
+  "video_id": "JBRHS5vErpg",
+  "channel": "EXPLORE WITH US",
+  "title": "OnlyFans Mom Leaves Toddler to Starve With Dead Baby",
+  "view_count": 5125226,
+  "duration_sec": 3022,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.01,
+        "description": "Dramatic opening quotes from 911 call and social media videos establish immediate tension."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.01,
+        "end_pct": 0.06,
+        "description": "Narrator introduces the 911 dispatch, the mother's online murder claims, and initial police response."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.06,
+        "end_pct": 0.18,
+        "description": "911 audio plays, followed by detailed narration of the police discovery of the deceased infant and severely neglected toddler."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.18,
+        "end_pct": 0.25,
+        "description": "Bodycam footage captures the mother's arrest, initial police commands, and transport to the station."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.25,
+        "end_pct": 0.41,
+        "description": "Interviews with friends, ex-boyfriend, and parents establish a history of neglect, CPS involvement, and timeline gaps."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.41,
+        "end_pct": 0.74,
+        "description": "Interrogation begins; detective presses on feeding schedules, drug use, and the mysterious babysitter 'KK' as inconsistencies mount."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.74,
+        "end_pct": 0.75,
+        "description": "Investigators discover 'KK' is actually a friend who has been in jail for three weeks, completely dismantling the mother's alibi."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.75,
+        "end_pct": 0.84,
+        "description": "Detective confronts the mother with photos of the emaciated toddler, triggering a severe emotional breakdown and realization of guilt."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.84,
+        "end_pct": 1.0,
+        "description": "Final interrogation moments, emotional phone call with mother, formal charges, past animal neglect context, and case resolution."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 1,
+    "detail_noticed": 3,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.23,
+    "total_segments": 1355,
+    "bodycam_pct": 0.07,
+    "narration_pct": 0.3,
+    "interrogation_pct": 0.55,
+    "other_pct": 0.08
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1355,
+    "transcript_preview": "I swear to God, my baby was just murdered. Okay. >> If a sitter left your kid to die, you would air out the sitter's name. She's a liar. >> Watch out for KK. If you know who KK is, shoot that. >> So, it's really hard to think that she would actually do that. >> My heart goes out to the police officers. >> Yeah. >> I cannot even imagine. I don't know. No dead baby jokes. They're not funny anymore. >> A chilling 911 call leads police to a house of unimaginable horror where two abandoned children are found in a heartbreaking scene that defies explanation. ..."
+  }
+}

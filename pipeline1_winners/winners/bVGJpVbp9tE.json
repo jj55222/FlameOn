@@ -2,7 +2,7 @@
   "video_id": "bVGJpVbp9tE",
   "channel": "Dr Insanity",
   "title": "Daughters Lead Police To Mother's Dead Body",
-  "view_count": 13644065,
+  "view_count": 13645551,
   "duration_sec": 2156,
   "narrative_arc": {
     "structure_type": "cold_open",
@@ -10,44 +10,44 @@
       {
         "beat_type": "hook",
         "start_pct": 0.0,
-        "end_pct": 0.06,
-        "description": "Dramatic opening with bodycam footage of daughters leading police to their mother's body, followed by narrator introduction of the tragedy."
+        "end_pct": 0.04,
+        "description": "Dramatic opening with bodycam audio of daughters leading police to their mother's body, establishing immediate tragedy and stakes."
       },
       {
         "beat_type": "setup",
-        "start_pct": 0.06,
-        "end_pct": 0.19,
-        "description": "911 call playback, officer arrival at the scene, initial assessment, and securing the traumatized children."
-      },
-      {
-        "beat_type": "escalation",
-        "start_pct": 0.19,
-        "end_pct": 0.36,
-        "description": "Neighbor interviews, CCTV review, suspect identification, and the suspect's unexpected 911 surrender call."
+        "start_pct": 0.04,
+        "end_pct": 0.11,
+        "description": "Backtracks to the initial 911 call, dispatcher interaction, and first officer arrival at the scene."
       },
       {
         "beat_type": "context",
-        "start_pct": 0.36,
-        "end_pct": 0.55,
-        "description": "Ex-husband interview, family statements, relationship background, and discovery that the murder weapon is registered to the victim."
-      },
-      {
-        "beat_type": "escalation",
-        "start_pct": 0.55,
-        "end_pct": 0.86,
-        "description": "Extended interrogation of the suspect; self-defense narrative, emotional volatility, and revelations about custody threats and steroid use."
+        "start_pct": 0.11,
+        "end_pct": 0.25,
+        "description": "Scene processing, victim identification, neighbor interviews, and CCTV footage revealing a black truck leaving the property."
       },
       {
         "beat_type": "reveal",
-        "start_pct": 0.86,
-        "end_pct": 0.89,
-        "description": "Forensic evidence (phone in victim's dominant hand, hair in gun barrel, contact wound) directly contradicts the self-defense claim."
+        "start_pct": 0.25,
+        "end_pct": 0.36,
+        "description": "Suspect identified as Tyler, followed by a second 911 call where he voluntarily surrenders and is arrested."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.36,
+        "end_pct": 0.55,
+        "description": "Ex-husband interview reveals Ashley's fear and final texts; relatives express deep distrust of Tyler; steroids found in suspect's vehicle."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.55,
+        "end_pct": 0.87,
+        "description": "Extended interrogation where Tyler claims self-defense, becomes emotionally volatile, and describes the struggle before detectives pause for forensic results."
       },
       {
         "beat_type": "aftermath",
-        "start_pct": 0.89,
+        "start_pct": 0.87,
         "end_pct": 1.0,
-        "description": "Suspect requests a lawyer, trial outcome, life sentence without parole, and channel's GoFundMe appeal for the children."
+        "description": "Detective confronts Tyler with forensic evidence proving execution, Tyler requests a lawyer, followed by trial verdict and channel outro."
       }
     ]
   },
@@ -63,16 +63,20 @@
   "segment_stats": {
     "avg_segment_length_sec": 2.13,
     "total_segments": 1013,
-    "bodycam_pct": 0.19,
-    "narration_pct": 0.29,
+    "bodycam_pct": 0.22,
+    "narration_pct": 0.28,
     "interrogation_pct": 0.42,
-    "other_pct": 0.1
+    "other_pct": 0.08
   },
   "artifact_combination": [
     "bodycam",
     "interrogation",
     "911_audio",
-    "narration",
-    "documents"
-  ]
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1013,
+    "transcript_preview": "You all right, babe? >> The door was locked in the room. >> Yeah. >> And >> Okay. Can you sit right here for me? >> These are the two daughters [music] of 28-year-old Ashley Fish. In just a few seconds, they're going to lead the officer to their mother's lifeless body inside the [music] bathroom. >> Eggs were burning and she's in there. And as the oldest daughter bravely guides her siblings to safety, police are still unsure whether this was self-inflicted or if there's a killer on the loose. But they'd eventually discover that Ashley's killer is closer to home than anybody expected, pulling investigators into one of the most tragic domestic dispute cases the state ..."
+  }
 }

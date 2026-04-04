@@ -1,0 +1,100 @@
+{
+  "video_id": "C7n1QhP0Lqg",
+  "channel": "EXPLORE WITH US",
+  "title": "Mom Realizes Cops Found Her Sick Photos of 4-Year-Old",
+  "view_count": 6383939,
+  "duration_sec": 3813,
+  "narrative_arc": {
+    "structure_type": "escalation",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.01,
+        "description": "Cold open montage of interrogation soundbites highlighting bizarre fetishes and the core crime."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.01,
+        "end_pct": 0.06,
+        "description": "Narrator provides context on the cyber tip, introduces suspects, and shows bodycam arrest at Safeway."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.06,
+        "end_pct": 0.12,
+        "description": "Transport to PD, Miranda rights administration, disability claims, and initial background gathering."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.12,
+        "end_pct": 0.24,
+        "description": "Deep dive into ABDL/kinks and online platforms as suspects establish boundaries and claim consensual adult play."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.24,
+        "end_pct": 0.35,
+        "description": "Detectives pivot to the daughter, hint at the cyber tip, and face initial denials and deflection."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.35,
+        "end_pct": 0.43,
+        "description": "Detective confirms seeing the explicit photo, reveals dog abuse evidence, and calls an interrogation break."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.43,
+        "end_pct": 0.6,
+        "description": "Lissa's emotional breakdown and confession to sending explicit images of her daughter to an online contact."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.6,
+        "end_pct": 0.72,
+        "description": "John confronted with confession; displays disturbing rationalizations and loss of protective stance."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.72,
+        "end_pct": 0.87,
+        "description": "Interview wrap-up, CPS custody announcement, and John's reluctant statement certification."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.87,
+        "end_pct": 1.0,
+        "description": "Jail calls, relationship fallout, legal updates, and final narrator summary of charges and foster care status."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 2,
+    "procedural_violation": 0,
+    "reveal": 4,
+    "detail_noticed": 3,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.08,
+    "total_segments": 1830,
+    "bodycam_pct": 0.04,
+    "narration_pct": 0.15,
+    "interrogation_pct": 0.75,
+    "other_pct": 0.06
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration",
+    "documents"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1830,
+    "transcript_preview": "I'm protecting my daughter. No one will ever touch my daughter ever. >> Okay. Well, certainly someone's trying and may have. >> I have an Instagram page just focused on fetish. >> I um basically like to be baby. He's my daddy. >> You have a closet full of them >> of diapers? >> Yep. >> Oh yeah. >> And other ABDL stuff. There's a whole strand of stuff. Like it's not just diapers. There's everything that you can think of. >> Interesting. He sometimes will get diapered with me, but he's not a diaper lover. >> I've wore diapers in interviews to ..."
+  }
+}

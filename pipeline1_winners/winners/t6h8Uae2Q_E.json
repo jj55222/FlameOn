@@ -2,7 +2,7 @@
   "video_id": "t6h8Uae2Q_E",
   "channel": "Dr Insanity",
   "title": "How Police Captured Colorado's Smartest Killer",
-  "view_count": 22095067,
+  "view_count": 22095633,
   "duration_sec": 4335,
   "narrative_arc": {
     "structure_type": "cold_open",
@@ -10,75 +10,86 @@
       {
         "beat_type": "hook",
         "start_pct": 0.0,
-        "end_pct": 0.03,
-        "description": "Cold open showing the mother discovering Crystal's body and Daniel leaving for work, establishing the killer's calculated escape."
+        "end_pct": 0.02,
+        "description": "Dramatic opening showing the mother discovering Crystal's body and Daniel leaving for work, establishing the murder and the killer's calculated nature."
       },
       {
         "beat_type": "setup",
-        "start_pct": 0.03,
-        "end_pct": 0.08,
-        "description": "Introduction to the couple, the initial garage break-in, and early police response to stalking reports."
-      },
-      {
-        "beat_type": "escalation",
-        "start_pct": 0.08,
-        "end_pct": 0.24,
-        "description": "Stalking intensifies with messages from 'Anthony', Crystal hires a PI, involves police, and receives a fake message creating false relief."
+        "start_pct": 0.02,
+        "end_pct": 0.06,
+        "description": "Introduces the Krug family, their seemingly normal life, and the initial reports of a stalker and a garage break-in."
       },
       {
         "beat_type": "context",
-        "start_pct": 0.24,
-        "end_pct": 0.4,
-        "description": "Marital strain is revealed, Daniel's initial interview explores family dynamics, and the investigation broadens."
+        "start_pct": 0.06,
+        "end_pct": 0.13,
+        "description": "Details the escalation of the stalking campaign, Crystal's fear, the hiring of a PI, and Detective Martinez taking the case."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.13,
+        "end_pct": 0.22,
+        "description": "Investigation deepens, Daniel's initial interview reveals marital strain, and the stalker sends a message claiming to back off, lowering the family's guard."
       },
       {
         "beat_type": "climax",
-        "start_pct": 0.4,
+        "start_pct": 0.22,
+        "end_pct": 0.32,
+        "description": "The murder occurs, Daniel calls 911, police arrive to find the body, and medics unsuccessfully attempt resuscitation."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.32,
         "end_pct": 0.48,
-        "description": "The murder occurs, 911 call is made, police discover the body, and grieving family members arrive at the scene."
+        "description": "Scene processing, family notifications, initial interviews with Daniel and relatives, and early suspicions about the marriage."
       },
       {
         "beat_type": "reveal",
         "start_pct": 0.48,
-        "end_pct": 0.65,
-        "description": "Security cameras were disabled, ex-girlfriend Carrie's testimony reveals a matching pattern, and Daniel officially becomes a suspect."
+        "end_pct": 0.69,
+        "description": "Surveillance analysis shows cameras were disabled, Anthony's Utah alibi clears him, and Daniel's ex-girlfriend reveals an identical past stalking pattern."
       },
       {
-        "beat_type": "escalation",
-        "start_pct": 0.65,
-        "end_pct": 0.78,
-        "description": "Anthony's alibi is confirmed, digital evidence traces back to Daniel's workplace IP, and the second interrogation begins."
+        "beat_type": "climax",
+        "start_pct": 0.69,
+        "end_pct": 0.94,
+        "description": "Confrontational interrogation where detectives present IP address evidence, burner phone data, and Daniel's motive, leading him to request an attorney."
       },
       {
         "beat_type": "aftermath",
-        "start_pct": 0.78,
+        "start_pct": 0.94,
         "end_pct": 1.0,
-        "description": "Daniel's interrogation breakdown, arrest execution, final forensic evidence summary, and case resolution."
+        "description": "Final digital evidence confirms Daniel's guilt, his arrest is shown, and the case concludes with a summary of his manipulation."
       }
     ]
   },
   "moment_types": {
     "contradiction": 3,
     "emotional_peak": 4,
-    "procedural_violation": 1,
+    "procedural_violation": 0,
     "reveal": 5,
     "detail_noticed": 4,
-    "callback": 2,
+    "callback": 3,
     "tension_shift": 4
   },
   "segment_stats": {
     "avg_segment_length_sec": 2.4,
     "total_segments": 1806,
-    "bodycam_pct": 0.4,
+    "bodycam_pct": 0.35,
     "narration_pct": 0.35,
-    "interrogation_pct": 0.18,
-    "other_pct": 0.07
+    "interrogation_pct": 0.2,
+    "other_pct": 0.1
   },
   "artifact_combination": [
     "bodycam",
     "interrogation",
     "911_audio",
-    "narration",
-    "documents"
-  ]
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1806,
+    "transcript_preview": "This is the mother of 43-year-old Crystal Krug. In a few seconds, she's going to find Crystal's lifeless body inside this very garage. >> Hello. And this is Daniel Krug, the man who killed her. He's heading in for another normal workday just minutes after leaving his wife's lifeless [music] body hidden in the garage of their own home. Oh [ __ ] Holy [ __ ] For the last 4 months, this man has been engineering the most calculated homicide plot Colorado has ever seen. Creating fake identities, manipulating Crystal's children, and setting up the perfect scapegoat to take the blame. He believes his plan is bulletproof, that police will spend weeks chasing a ghost and ..."
+  }
 }

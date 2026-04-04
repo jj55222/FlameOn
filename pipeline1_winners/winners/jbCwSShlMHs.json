@@ -1,0 +1,96 @@
+{
+  "video_id": "jbCwSShlMHs",
+  "channel": "EXPLORE WITH US",
+  "title": "When Cops Discover a Serial Killer's Truck Full of Bodies",
+  "view_count": 5523634,
+  "duration_sec": 3977,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Dramatic montage of high-tension quotes from family, detectives, and the suspect sets a grim tone before the timeline resets."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.02,
+        "end_pct": 0.07,
+        "description": "Narrator establishes the initial missing person case (Matthew Miller) and detectives begin interviewing family and associates in Grants, NM."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.07,
+        "end_pct": 0.2,
+        "description": "Investigation expands to two more missing persons. Shawn Lannon is introduced as a person of interest; informant tips and search warrants raise suspicion."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.2,
+        "end_pct": 0.32,
+        "description": "First interrogation where detectives confront Shawn with surveillance footage contradicting his alibi, though he is released due to lack of direct evidence."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.32,
+        "end_pct": 0.41,
+        "description": "Airport security discovers a foul-smelling red truck containing dismembered remains of the three missing individuals and a fourth unidentified victim."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.41,
+        "end_pct": 0.58,
+        "description": "Manhunt intensifies as Shawn is identified fleeing to New Jersey. A fifth victim is discovered during a wellness check, confirming a cross-country killing spree."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.58,
+        "end_pct": 0.83,
+        "description": "Shawn is apprehended in Missouri and delivers a detailed, chilling confession covering the murders, dismemberment, and disposal of all five confirmed victims."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.83,
+        "end_pct": 0.96,
+        "description": "Shawn claims responsibility for 11 additional murders, but investigators find contradictions in his stories and lack physical evidence, casting doubt on his claims."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.96,
+        "end_pct": 1.0,
+        "description": "Context on Shawn's military trauma is provided, followed by his plea deal, 95-year sentence, and the adoption of the surviving children."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 4,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 5,
+    "detail_noticed": 4,
+    "callback": 3,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.18,
+    "total_segments": 1826,
+    "bodycam_pct": 0.32,
+    "narration_pct": 0.28,
+    "interrogation_pct": 0.3,
+    "other_pct": 0.1
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "news_clips",
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1826,
+    "transcript_preview": "He's been missing for over two weeks. >> That's unlike my daughter. It's unlike my daughter not calling us or texting us three weeks. >> I'm telling you all three of them people, man. >> I'm just scared, bro. >> Step one is to tell me where the bodies are. >> Oh, there is. >> All of them dead. Now, what do you think? >> God, I could imagine anything happened to one person. Never lost three. He told me there could be no god because of what he saw. >> I want to know why and what gave him the right. >> One of the most shocking cases in New Mexico history begins with reports of ..."
+  }
+}

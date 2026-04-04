@@ -1,0 +1,82 @@
+{
+  "video_id": "cgCYon_kKno",
+  "channel": "EXPLORE WITH US",
+  "title": "Teens Realize Cops Discovered Their Sick Secret",
+  "view_count": 4300548,
+  "duration_sec": 2891,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Dramatic audio clips from arrests and interrogations set a tense tone before the narrator introduces the fatal rock-throwing incident."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.02,
+        "end_pct": 0.12,
+        "description": "Police respond to the crash scene, discover Alexa Bartell's death, and link it to other vehicles struck by rocks."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.12,
+        "end_pct": 0.25,
+        "description": "More victims come forward with dashcam footage and injuries, leading to a public tip that identifies three teenage suspects."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.25,
+        "end_pct": 0.38,
+        "description": "Coordinated nighttime arrests unfold, featuring tense confrontations with the suspects' parents."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.38,
+        "end_pct": 0.75,
+        "description": "Interrogations reveal conflicting accounts as Mitch blames Zach, Zach blames Joe, and investigators expose inconsistencies."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.75,
+        "end_pct": 0.88,
+        "description": "Suspects are formally charged with first-degree murder, followed by a nine-month time jump to plea negotiations."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.88,
+        "end_pct": 1.0,
+        "description": "Trial testimony, final sentencing for all three teens, and a tribute to the victim's life conclude the narrative."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 1,
+    "reveal": 3,
+    "detail_noticed": 3,
+    "callback": 2,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.17,
+    "total_segments": 1333,
+    "bodycam_pct": 0.35,
+    "narration_pct": 0.25,
+    "interrogation_pct": 0.3,
+    "other_pct": 0.1
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration",
+    "documents"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1333,
+    "transcript_preview": "And we think somebody else intentionally caused the act. >> What? >> That is not happening. >> Dad, start playing with us. >> Well, it's like you killed somebody, but like ain't no fun game somewhere. >> We have to go back and see that. And that's kind of what I remember. He said, \"We have to.\" It was kind of like excitement. On April 19th, 2023, heavy rocks are hurled from a passing truck until one smashes into the skull of a 20-year-old woman. But what investigators first assume is a prank gone wrong takes a sinister turn as they uncover the truth behind a cruel act of extreme indifference. >> Typical teenage boy stuff, right? >> The following is based on official ..."
+  }
+}
