@@ -390,6 +390,9 @@ def search_muckrock(names, jurisdiction):
         results = query_muckrock(query)
         for r in results:
             url = r.get("absolute_url") or r.get("url", "")
+            # v2 may return relative URLs — prefix if needed
+            if url and not url.startswith("http"):
+                url = f"https://www.muckrock.com{url}"
             if not url or url in seen_urls:
                 continue
             title = (r.get("title", "") or "").lower()
