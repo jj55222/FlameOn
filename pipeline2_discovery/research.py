@@ -336,8 +336,12 @@ def parse_jurisdiction(jurisdiction):
 # MuckRock API
 # ──────────────────────────────────────────────────────────────
 
-def query_muckrock(search_term, status="done", page_size=10):
-    """Query MuckRock FOIA API for completed requests."""
+def query_muckrock(search_term, status=None, page_size=10, has_files=False):
+    """
+    Query MuckRock API v2/requests endpoint for FOIA requests.
+    v2 uses 'requests' not 'foia' (v1 name). Full-text search via 'search' param.
+    Set has_files=True to filter for requests with actual attachments.
+    """
     if not check_budget("muckrock"):
         return []
     rate_limit("muckrock", 1.1)
@@ -346,15 +350,21 @@ def query_muckrock(search_term, status="done", page_size=10):
     if MUCKROCK_API_TOKEN:
         headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
     try:
+        params = {"format": "json", "search": search_term, "page_size": page_size}
+        if status:
+            params["status"] = status
         resp = requests.get(
-            f"{MUCKROCK_BASE}foia/",
-            params={"format": "json", "search": search_term,
-                    "status": status, "page_size": page_size},
+            f"{MUCKROCK_BASE}requests/",
+            params=params,
             headers=headers, timeout=REQUEST_TIMEOUT,
         )
         resp.raise_for_status()
-        return resp.json().get("results", [])
-    except Exception:
+        results = resp.json().get("results", [])
+        # Optionally filter for requests with files attached
+        if has_files:
+            results = [r for r in results if r.get("files") and len(r.get("files", [])) > 0]
+        return results
+    except Exception as e:
         return []
 
 def search_muckrock(names, jurisdiction):
