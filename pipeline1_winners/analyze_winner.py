@@ -107,18 +107,18 @@ def fetch_transcript(video_id):
     try:
         api = YouTubeTranscriptApi()
         result = api.fetch(video_id)
-        return [
-            {
-                "start_sec": round(s.get("start", s.start if hasattr(s, "start") else 0), 2),
-                "end_sec": round(
-                    (s.get("start", s.start if hasattr(s, "start") else 0))
-                    + (s.get("duration", s.duration if hasattr(s, "duration") else 0)),
-                    2,
-                ),
-                "text": s.get("text", s.text if hasattr(s, "text") else ""),
-            }
-            for s in result
-        ]
+        segments = []
+        for s in result:
+            # Support both dict-like and attribute access (API versions vary)
+            start = s["start"] if isinstance(s, dict) else s.start
+            dur = s["duration"] if isinstance(s, dict) else s.duration
+            text = s["text"] if isinstance(s, dict) else s.text
+            segments.append({
+                "start_sec": round(start, 2),
+                "end_sec": round(start + dur, 2),
+                "text": text,
+            })
+        return segments
     except Exception as e:
         print(f"[ERROR] Failed to fetch transcript for {video_id}: {e}")
         return None
