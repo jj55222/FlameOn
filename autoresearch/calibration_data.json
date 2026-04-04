@@ -1,0 +1,868 @@
+[
+  {
+    "case_id": 0,
+    "defendant_names": "Keonte Gathron",
+    "victim_roles": "Elderly murder victim, Elderly robbery victims, Juvenile robbery victims",
+    "jurisdiction": "San Francisco, San Francisco County, California",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 1,
+    "defendant_names": "Min Jian Guan",
+    "victim_roles": "79-year-old woman",
+    "jurisdiction": "San Francisco, San Francisco, CA",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=ytap7WQnLK4",
+        "https://www.youtube.com/watch?v=u0DRn51fR0s",
+        "https://www.youtube.com/watch?v=dWkzJWse_dc",
+        "https://en.wikipedia.org/wiki/Gui_Minhai",
+        "https://www.tiktok.com/@chispcx/video/7419723892278742305",
+        "https://www.justia.com/criminal/procedure/arrests-and-arrest-warrants/probable-cause-and-probable-cause-hearings/"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 2,
+    "defendant_names": "Roger Dale Boshers",
+    "victim_roles": "Perceived minor (undercover officer)",
+    "jurisdiction": "San Francisco, Contra Costa, California",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=6_MBlyEnu8s",
+        "https://law.justia.com/cases/texas/thirteenth-court-of-appeals/2001/11604.html"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 3,
+    "defendant_names": "Kitt Crenshaw, Arthur Gerrans, James Crowley",
+    "victim_roles": "Wrongfully Convicted Individual",
+    "jurisdiction": "San Francisco, San Francisco, California",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 4,
+    "defendant_names": "Christa Gail Pike, Tadaryl Shipp, Shadolla Peterson",
+    "victim_roles": "Peer/Job Corps participant",
+    "jurisdiction": "Knoxville, Knox County, Tennessee",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=t4QUDU1wiyM",
+        "https://www.youtube.com/watch?v=gQLjD37ir20",
+        "https://www.youtube.com/watch?v=_lEh979uBNA",
+        "https://www.youtube.com/watch?v=0R0GopbRbKk",
+        "https://www.tiktok.com/discover/christa-gail-pike-interview?lang=en",
+        "https://archive.knoxnews.com/news/local/pike-weeps-as-she-relives-her-murder-confession-ep-411814911-359926981.html",
+        "https://www.youtube.com/watch?v=tI9Rw5eIyGI",
+        "https://caselaw.findlaw.com/court/tn-supreme-court/1130311.html"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 5,
+    "defendant_names": "Manuel Marin, Roberto \"Bam Bam\" Isaac, Alexis Vila Perdomo, Ariel Gandulla",
+    "victim_roles": "Married father of two; Businessman's wife's lover",
+    "jurisdiction": "Miami, Miami-Dade County, Florida",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=yTQWdBi2aF8",
+        "https://www.youtube.com/watch?v=9aFP2Z9X-2w",
+        "https://www.youtube.com/watch?v=3gW-ojZsQTc",
+        "https://www.youtube.com/watch?v=OSwrkXDOwj4",
+        "https://casetext.com/case/marin-v-state-2039"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 6,
+    "defendant_names": "Braulio Gonzalez",
+    "victim_roles": "children",
+    "jurisdiction": "Miami, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "MAYBE",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=3bvp5QYAp70"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 20
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 7,
+    "defendant_names": "Armando Botell",
+    "victim_roles": "Teen, Drug recipient, Murder victim",
+    "jurisdiction": "Sweetwater, Miami-Dade County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 8,
+    "defendant_names": "Jorge Barahona",
+    "victim_roles": "adopted daughter, adopted son",
+    "jurisdiction": "Miami, Miami-Dade County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "MAYBE",
+      "court_video": "NO",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+        "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/",
+        "https://abcnews.go.com/US/florida-father-pleads-guilty-attempted-murder-acid-attack/story?id=12949156"
+      ],
+      "footage_assessment": "BORDERLINE",
+      "primary_source_score": 66,
+      "evidence_depth_score": 40
+    },
+    "tier": "BORDERLINE"
+  },
+  {
+    "case_id": 9,
+    "defendant_names": "Julius Dwight Mozie",
+    "victim_roles": "16-year-old female runaway, Adult female",
+    "jurisdiction": "Miami, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.docketbird.com/court-cases/USA-v-Julius-Dwight-Mozie-and-Michelle-Cameron-Stubbs/flsd-1:2021-mj-02519",
+        "https://unicourt.com/case/fl-br-department-of-revenue-petitioner-vs-julius-dwight-mozie-respondent-1751059",
+        "https://dockets.justia.com/docket/circuit-courts/ca11/22-10813"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 100,
+      "evidence_depth_score": 20
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 10,
+    "defendant_names": "Keivon McBride",
+    "victim_roles": "Children aged 12-17",
+    "jurisdiction": "Fort Lauderdale, Broward County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "MAYBE",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://law.justia.com/cases/oklahoma/supreme-court/2021/scbd-7034.html",
+        "https://casetext.com/case/mcbride-v-davis-4",
+        "https://dockets.justia.com/docket/florida/flsdce/1:2025cv20195/681838"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 33,
+      "evidence_depth_score": 20
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 11,
+    "defendant_names": "Steven Dexter Gangoo",
+    "victim_roles": "Female minors (as young as 13)",
+    "jurisdiction": "Miami, Broward, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=okHhiS91geA",
+        "https://www.youtube.com/watch?v=n68TcWxWoG0"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 12,
+    "defendant_names": "Antonio Glass, Jerimaine Bryant, Curtis Bryant, Samuel Hayes, Mario Rodriguez, Michael Walker, Reginald Graham, Daniel Jones, Levi Bryant, Torivis Reginald Ingram",
+    "victim_roles": null,
+    "jurisdiction": "Miami, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 13,
+    "defendant_names": "Carmen Barahona, Jorge Barahona",
+    "victim_roles": "adopted daughter, adopted son",
+    "jurisdiction": "Miami, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "NO",
+      "docket_docs": "MAYBE",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+        "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 33,
+      "evidence_depth_score": 20
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 14,
+    "defendant_names": "Dr. Prentiss Madden",
+    "victim_roles": "animal patients, minors",
+    "jurisdiction": "Aventura, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=LsT1qRBhe6Q",
+        "https://www.youtube.com/watch?v=qfN6ZuXkO0o",
+        "https://www.youtube.com/watch?v=M0yHauybTqg",
+        "https://www.cbsnews.com/miami/news/aventura-veterinarian-madden-pleads-guilty-to-child-porn-sex-with-dogs/",
+        "https://www.scribd.com/document/499319973/Prentiss-Madden-Criminal-Complaint",
+        "https://pdfcoffee.com/prentiss-madden-criminal-complaint-pdf-free.html"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 15,
+    "defendant_names": "William D. Foster",
+    "victim_roles": "vulnerable women and girls, minors",
+    "jurisdiction": "Miami, Miami-Dade, Florida",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+        "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+        "https://www.youtube.com/watch?v=5i88VDrI3VA",
+        "https://www.youtube.com/watch?v=zIOuCD54wjM",
+        "https://www.youtube.com/watch?v=5BPmujjSUUE",
+        "https://www.courtlistener.com/docket/16840417/united-states-v-foster/",
+        "https://caselaw.findlaw.com/court/oh-supreme-court/1190226.html",
+        "https://caselaw.findlaw.com/court/ca-court-of-appeal/1240195.html"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 16,
+    "defendant_names": "Mariam Coulibaly",
+    "victim_roles": "Teenage soccer players, Students",
+    "jurisdiction": "North Miami, Miami-Dade County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "MAYBE",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.docketbird.com/court-documents/USA-v-Kamuvaka-et-al/JUDGMENT-AS-TO-MARIAM-COULIBALY-6-Count-s-1-12-13-15-19-20-IMPRISONMENT-135-MONTHS-SUPERVISED-RELEASE-3-YEARS-RESITUTION-036-1-044-000-SPECIAL-ASSESSMENT-036-1-700-Count-s-16-18-NOT-GUILTY-AS-TO-MARIAM-COULIBALY-Signed-by-HONORABLE-STEWART-DALZELL-on/paed-2:2009-cr-00294-302035-00345",
+        "https://digitalcommons.law.villanova.edu/cgi/viewcontent.cgi?article=2436&context=thirdcircuit_2012"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 10
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 17,
+    "defendant_names": "Jeffrey Epstein, Ghislaine Maxwell, Sarah Kellen Vickers",
+    "victim_roles": "Minors/young women recruited for sexual exploitation",
+    "jurisdiction": "Palm Beach, Palm Beach County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+        "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+        "https://timesofindia.indiatimes.com/videos/international/epsteins-unseen-video-interview-released-watch-big-confessions-on-sexual-crimes-us-news-doj/videoshow/127928465.cms",
+        "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+        "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+        "https://www.nytimes.com/live/2025/12/19/us/epstein-files-release",
+        "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+        "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 18,
+    "defendant_names": "Michael Edwin Harding",
+    "victim_roles": "Stepdaughter (9 years old), Unnamed minor daughters of online contact",
+    "jurisdiction": ", Southern District of Florida (federal jurisdiction), Florida",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.dailymotion.com/video/x8mn0al",
+        "https://www.dailymotion.com/video/x8ifs7z",
+        "https://www.courtlistener.com/docket/4237159/united-states-v-harding/",
+        "https://www.pacermonitor.com/public/case/24286828/USA_v_Harding",
+        "https://dockets.justia.com/docket/circuit-courts/ca11/21-14133"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 19,
+    "defendant_names": "Jeffrey Epstein, Nadia Marcinkova, Sarah Kellen",
+    "victim_roles": "16-year-old assault victim",
+    "jurisdiction": "Palm Beach, Palm Beach County, Florida",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://abcnews.go.com/images/WNT/Palm_Beach_Records_Epstein.pdf",
+        "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+        "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+        "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+        "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+        "https://www.cbsnews.com/live-updates/epstein-files-released-doj-2026/",
+        "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+        "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 20,
+    "defendant_names": "Joseph Concialdi",
+    "victim_roles": "Wife",
+    "jurisdiction": "Phoenix, Maricopa County, Arizona",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "MAYBE",
+      "court_video": "MAYBE",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.reddit.com/r/CasesWeFollow/comments/1h87jnh/vt_v_joseph_ferlazzo_trial_day_1/",
+        "https://unicourt.com/case/ca-sbd-joseph-concialdi-n-dulce-concialdi-1486833"
+      ],
+      "footage_assessment": "BORDERLINE",
+      "primary_source_score": 33,
+      "evidence_depth_score": 25
+    },
+    "tier": "BORDERLINE"
+  },
+  {
+    "case_id": 21,
+    "defendant_names": "William James McElroy Jr.",
+    "victim_roles": "16-year-old runaway, relative",
+    "jurisdiction": "Phoenix, Maricopa County, Arizona",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+        "https://www.firstcoastnews.com/article/news/crime/body-camera-jacksonville-traffic-stop-jso-video-william-mcneil/77-fbb3f3e8-251b-4f09-9070-c4c282150619",
+        "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+        "https://www.azcentral.com/story/news/local/phoenix-breaking/2021/11/05/willie-mcelroy-jr-convicted-child-sex-trafficking-sentenced-over-141-years-prison/6293789001/",
+        "https://www.reddit.com/r/Documentaries/comments/vb9hwp/russell_williams_the_confession_2014_the_fifth/",
+        "https://www.jmdlaw.com/criminal-prosecutions/",
+        "https://www.youtube.com/watch?v=Ccg_obzOrfo",
+        "https://www.courthousenews.com/james-mcelroy/"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 22,
+    "defendant_names": "Robert Hood",
+    "victim_roles": "16-year-old female trafficking victim",
+    "jurisdiction": "Phoenix, , Arizona",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=J3e3lsSe0YQ",
+        "https://law.justia.com/cases/north-carolina/supreme-court/1992/15a92-0.html",
+        "https://caselaw.findlaw.com/court/ca-court-of-appeal/1390128.html",
+        "https://www.courtlistener.com/opinion/1055566/state-of-tennessee-v-robert-hood/",
+        "https://www.co.hood.tx.us/640/Docket-Listing",
+        "https://hoodcounty.texas.gov/courts/county_clerk/court_records.php",
+        "https://6park.news/southcarolina/robert-hood-sentenced-to-prison-for-killing-jaiden-hammond.html"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 23,
+    "defendant_names": "Miguel Antonio Mondaca",
+    "victim_roles": "12-year-old female",
+    "jurisdiction": "Spokane, , Washington",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://casetext.com/case/united-states-v-mondaca-mondaca"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 50,
+      "evidence_depth_score": 20
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 24,
+    "defendant_names": "Louis Broadway-Phillips",
+    "victim_roles": "Sex Trafficking Victims (3 women, including one minor)",
+    "jurisdiction": "Mesa, , Arizona",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.police1.com/officer-shootings/bwc-man-fires-shots-at-mo-police-inside-walgreens-before-fatal-ois",
+        "https://www.firstalert4.com/2026/01/23/isp-releases-body-cam-other-video-of-jan-fatal-shooting-involving-troopers-east-st-louis/",
+        "https://lailluminator.com/briefs/louisiana-state-police-locks-in-fees-for-body-camera-vehicle-video-footage/"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 25,
+    "defendant_names": "Kyle Matthew Thompson",
+    "victim_roles": "Minors, Social media contacts",
+    "jurisdiction": "Mohave Valley, Mohave County, Arizona",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "MAYBE",
+      "court_video": "MAYBE",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=FUED9aYcNHU",
+        "https://www.youtube.com/watch?v=tRi2g1s5Vyw",
+        "https://www.youtube.com/watch?v=JeunnmAIUUc"
+      ],
+      "footage_assessment": "BORDERLINE",
+      "primary_source_score": 33,
+      "evidence_depth_score": 25
+    },
+    "tier": "BORDERLINE"
+  },
+  {
+    "case_id": 26,
+    "defendant_names": "William Bracy, Murray Hooper, Ed McCall, Robert Cruz, Arnold Merrill",
+    "victim_roles": "Businessman/Target, Mother-in-law, Wife/Survivor",
+    "jurisdiction": "Phoenix/Scottsdale, Maricopa County, Arizona",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "MAYBE",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://en.wikipedia.org/wiki/Murders_of_William_Redmond_and_Helen_Phelps"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 25,
+      "evidence_depth_score": 10
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 27,
+    "defendant_names": "Alan Matthew Champagne",
+    "victim_roles": "Girlfriend of victim, Boyfriend of victim",
+    "jurisdiction": ", Maricopa, Arizona",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=TlbnKMyfq-k",
+        "https://www.youtube.com/watch?v=AaHAHbrSZMY",
+        "https://www.abc15.com/news/region-phoenix-metro/central-phoenix/trial-set-for-alan-mathew-champagne-man-accused-of-killing-couple-burying-bodies",
+        "https://www.azcentral.com/story/news/local/phoenix/2017/04/03/alan-champagne-accused-killing-burying-bodies/99982274/",
+        "https://www.azcentral.com/story/news/local/phoenix-breaking/2017/08/14/penalty-phase-continues-alan-champagne-convicted-phoenix-couples-murder-2011/565523001/",
+        "https://certpool.com/dockets/19-7091",
+        "https://www.azcourts.gov/Portals/0/OpinionFiles/Supreme/2019/State%20v.%20Champagne%20FILED.pdf"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 28,
+    "defendant_names": "Thomas Michael Riley",
+    "victim_roles": "Inmate",
+    "jurisdiction": "Buckeye, Maricopa, Arizona",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "MAYBE",
+      "court_video": "MAYBE",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=glUF2mnWz-E"
+      ],
+      "footage_assessment": "BORDERLINE",
+      "primary_source_score": 25,
+      "evidence_depth_score": 20
+    },
+    "tier": "BORDERLINE"
+  },
+  {
+    "case_id": 29,
+    "defendant_names": "Angela D. McAnulty",
+    "victim_roles": "Daughter of Defendant",
+    "jurisdiction": ", Lane County / Washington County, Oregon",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://dpic-cdn.org/production/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+        "https://caselaw.findlaw.com/court/or-supreme-court/1682383.html",
+        "https://case-law.vlex.com/vid/state-v-mcanulty-cc-891679955",
+        "https://files.deathpenaltyinfo.org/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+        "https://www.klcc.org/crime-law-justice/2019-07-11/judge-may-overturn-angela-mcanultys-death-sentence",
+        "http://www.clipsyndicate.com/video/play/2210021/disturbing_details_in_angela_mcanulty_sentencing_trial",
+        "https://p1cdn4static.civiclive.com/UserFiles/Servers/Server_3585797/File/McAnultyPCRPressRelease%20(002)%20(002).pdf",
+        "https://www.seattleweekly.com/news/when-angela-mcanulty-spoke-to-a-jury-on-thursday-she-promised-them/"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 30,
+    "defendant_names": "Miguel Antonio Mondaca",
+    "victim_roles": "12-year-old female",
+    "jurisdiction": "Spokane, , Washington",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.facebook.com/pelon241993/videos/police-bodycam-pov/948999804955390/",
+        "https://www.youtube.com/watch?v=2P_PNrIcb2s",
+        "https://www.youtube.com/watch?v=gG9KujODZfU",
+        "https://fallriverreporter.com/fall-river-mans-sentencing-date-revealed-after-being-found-guilty-in-murder-of-jovaughn-antonio-mills-miguel-sanjurjo/",
+        "https://www.kens5.com/article/news/crime/2-men-deadly-migrant-tragedy-quintana-road-sentenced-san-antonio-trailer/273-bfbc5ef6-20b3-4800-afae-10939a681a9b"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 20,
+      "evidence_depth_score": 10
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 31,
+    "defendant_names": "Marvin G. Johnson",
+    "victim_roles": "Child victim (son), Mother/Sexual assault victim",
+    "jurisdiction": "Cambridge, Guernsey County, Ohio",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.chicago.gov/city/en/depts/mayor/press_room/press_releases/2024/april/March-21-shooting.html",
+        "https://caselaw.findlaw.com/court/fl-supreme-court/116366912.html",
+        "https://law.justia.com/cases/federal/appellate-courts/F3/185/765/609204/",
+        "https://law.justia.com/cases/florida/supreme-court/1988/72238-0.html",
+        "https://law.justia.com/cases/federal/appellate-courts/F2/938/1166/294126/",
+        "https://dockets.justia.com/docket/california/cacdce/2:2017cv03564/677960"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 32,
+    "defendant_names": "Letecia Stauch",
+    "victim_roles": "Stepson",
+    "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "YES",
+      "court_video": "MAYBE",
+      "docket_docs": "MAYBE",
+      "dispatch_911": "YES",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=ZrdCRNQU98U",
+        "https://www.tiktok.com/@lawandcrime/video/7219423697906535723",
+        "https://www.facebook.com/courttv/videos/bodycam-audio-letecia-stauch-on-stepsons-disappearance/1178032979551184/",
+        "https://www.youtube.com/watch?v=tOYvzsMNEKU",
+        "https://www.courttv.com/news/law-enforcement-testify-in-letecia-stauch-murder-trial/",
+        "https://www.courts.state.co.us/Courts/County/Case_Details.cfm?Case_ID=3348",
+        "https://www.youtube.com/watch?v=DsFGXIieWAY"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 80,
+      "evidence_depth_score": 75
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 33,
+    "defendant_names": "Carla Marie Faith, Christina Swauger",
+    "victim_roles": "Children under age 2 in daycare",
+    "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+    "ground_truth": {
+      "bodycam": "YES",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.tiktok.com/@robandhaley/video/7511354353928686891",
+        "https://www.tiktok.com/discover/carla-marie-faith",
+        "https://trellis.law/doc/165241368/filing-other-related-document-defendant-countrepoints-position-on-joint-motion-to-dismiss-plaintiffs-claims-against-defendant-colorado-education-group",
+        "https://gazette.com/2021/08/26/colorado-springs-daycare-provider-carla-faith-found-guilty-on-all-counts-9086c1c4-06af-11ec-b2b2-17a50aa56044/"
+      ],
+      "footage_assessment": "BORDERLINE",
+      "primary_source_score": 66,
+      "evidence_depth_score": 40
+    },
+    "tier": "BORDERLINE"
+  },
+  {
+    "case_id": 34,
+    "defendant_names": "Joshua Carrier",
+    "victim_roles": "Middle school wrestlers",
+    "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 0
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 35,
+    "defendant_names": "Katelynne Dianna Leigh Nelson, Carla Faith, Christina Swauger",
+    "victim_roles": "Children under age 2",
+    "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "NO",
+      "court_video": "NO",
+      "docket_docs": "MAYBE",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.courttv.com/title/6-19-19-fl-v-nelson-police-interrogation-video-released/",
+        "https://www.youtube.com/watch?v=Jc8YYpnc148",
+        "https://www.youtube.com/watch?v=a1ZbuPW7Xow",
+        "https://ewscripps.brightspotcdn.com/e3/a3/cf8b319349019bb95aba33d71f2a/nelson-affidavit.pdf"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 0,
+      "evidence_depth_score": 10
+    },
+    "tier": "INSUFFICIENT"
+  },
+  {
+    "case_id": 36,
+    "defendant_names": "Anthony Darrell Dugard Hines",
+    "victim_roles": "motel maid",
+    "jurisdiction": "Kingston Springs, Cheatham County, Tennessee",
+    "ground_truth": {
+      "bodycam": "NO",
+      "interrogation": "YES",
+      "court_video": "YES",
+      "docket_docs": "YES",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/watch?v=8703tQkTQDc",
+        "https://www.tncourts.gov/courts/court-criminal-appeals/opinions/2008/01/29/anthony-darrell-hines-v-state-tennessee",
+        "https://caselaw.findlaw.com/court/us-6th-circuit/2065651.html",
+        "https://tncourts.gov/sites/default/files/docs/Motion-Set%20Execution%20Date%20(14)-Anthony%20Darrell%20Dugard%20Hines.pdf",
+        "https://tncourts.gov/sites/default/files/docs/Order%20setting%20execution%20(17)%20-%20Anthony%20Darrell%20Dugard%20Hines.pdf",
+        "https://www.tncourts.gov/sites/default/files/OPINIONS/tcca/PDF/041/HinesAn.pdf"
+      ],
+      "footage_assessment": "ENOUGH",
+      "primary_source_score": 75,
+      "evidence_depth_score": 70
+    },
+    "tier": "ENOUGH"
+  },
+  {
+    "case_id": 37,
+    "defendant_names": "Ashley Traister, Brooke Shoemaker, Elizabeth Thompson, Kathryn Green, Adora Perez, Emily Akers, Cherie Mason, Brittney Poolaw",
+    "victim_roles": "Fetuses, Stillborn infants",
+    "jurisdiction": "Multiple (Lawton OK, Auburn AL, Chapin SC, etc.), , Multiple (Oklahoma, Alabama, South Carolina, California)",
+    "ground_truth": {
+      "bodycam": "MAYBE",
+      "interrogation": "NO",
+      "court_video": "MAYBE",
+      "docket_docs": "NO",
+      "dispatch_911": "NO",
+      "verified_sources": [
+        "https://www.youtube.com/shorts/c94_qRmeTFM",
+        "https://www.instagram.com/reel/DThC6CODzfU/",
+        "https://www.youtube.com/watch?v=5QETiuKV4_I",
+        "https://www.tiktok.com/@courtroomconsequences9/video/7364813043328503083"
+      ],
+      "footage_assessment": "INSUFFICIENT",
+      "primary_source_score": 20,
+      "evidence_depth_score": 10
+    },
+    "tier": "INSUFFICIENT"
+  }
+]

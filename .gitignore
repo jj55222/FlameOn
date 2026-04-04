@@ -1,0 +1,31 @@
+# Environment
+.env
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Google API credentials (never commit these)
+gdoc_token.json
+gdoc_credentials.json
+gdoc_state.json
+
+# Brave API billing state (machine-specific, auto-generated)
+brave_quota.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output artifacts (large files, regeneratable)
+*.wav
+*.mp3
+*.mp4
+*.webm
+
+# Claude Code local settings
+.claude/settings.local.json
