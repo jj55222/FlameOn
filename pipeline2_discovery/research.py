@@ -1078,9 +1078,81 @@ def research_case(defendant_names, jurisdiction):
     notes.append(f"  Confidence: {confidence}")
     notes.append(f"  API budget used: {get_budget_report()}")
 
+    # Enrich sources with P2→P3 contract fields for downstream pipeline compatibility
+    typed_sources = _type_sources_for_p3(all_sources)
+
     return {
         "evidence_found": evidence,
-        "sources_found": all_sources,
+        "sources_found": typed_sources,
         "confidence": confidence,
         "research_notes": "\n".join(notes),
     }
+
+
+def _type_sources_for_p3(sources):
+    """
+    Enrich each source with P2→P3 contract fields:
+      evidence_type, format, requires_download, source_domain
+    Maps internal source types to the p2_to_p3_case schema enum values.
+    """
+    # Internal type → P3 evidence_type enum
+    _evidence_type_map = {
+        "bodycam_footage": "bodycam",
+        "interrogation_footage": "interrogation",
+        "court_footage": "court_video",
+        "dispatch_audio": "911_audio",
+        "court_docket": "court_docket",
+        "court_opinion": "court_docket",
+        "muckrock_foia": "foia_document",
+        "foia_request": "foia_document",
+        "foia_document": "foia_document",
+        "news_article": "news_report",
+        "video_footage": "other",
+        "general_footage": "other",
+        "wiki_article": "news_report",
+    }
+
+    # Domain → media format
+    _video_domains = {"youtube.com", "tiktok.com", "dailymotion.com", "vimeo.com", "courttv.com"}
+    _audio_domains = {"muckrock.com"}  # FOIA audio releases
+    _document_domains = {"courtlistener.com", "casetext.com", "justia.com", "findlaw.com",
+                         "docketbird.com", "unicourt.com", "pacermonitor.com", "trellis.law",
+                         "documentcloud.org", "scribd.com"}
+
+    # Domains that require yt-dlp or similar for download
+    _download_domains = {"youtube.com", "tiktok.com", "dailymotion.com", "vimeo.com",
+                         "facebook.com", "instagram.com"}
+
+    for s in sources:
+        url = s.get("url", "")
+        internal_type = s.get("type", "")
+
+        # evidence_type
+        s["evidence_type"] = _evidence_type_map.get(internal_type, "other")
+
+        # source_domain
+        try:
+            domain = urlparse(url).netloc.replace("www.", "")
+        except Exception:
+            domain = ""
+        s["source_domain"] = domain
+
+        # format (video / audio / document / webpage)
+        if any(vd in domain for vd in _video_domains):
+            s["format"] = "video"
+        elif any(dd in domain for dd in _document_domains):
+            s["format"] = "document"
+        elif any(ad in domain for ad in _audio_domains):
+            s["format"] = "audio"
+        elif internal_type in ("dispatch_audio",):
+            s["format"] = "audio"
+        elif internal_type in ("bodycam_footage", "interrogation_footage", "court_footage",
+                               "video_footage", "general_footage"):
+            s["format"] = "video"
+        else:
+            s["format"] = "webpage"
+
+        # requires_download
+        s["requires_download"] = any(dd in domain for dd in _download_domains)
+
+    return sources
