@@ -1,0 +1,2611 @@
+{
+  "case_id": "sfdpa_0040_15_edwards",
+  "source_evidence_type": "interrogation",
+  "source_url": "foia_cache/0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3",
+  "transcript": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 7.06,
+      "text": "Today's date is September 30th, 2015. It is 9.15 p.m. This is OCC Investigator Wechter at the OCC office.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 7.34,
+      "end_sec": 13.0,
+      "text": "Our president is Sergeant Scott Edwards, number 541, also I'm Inspector John Evans,",
+      "confidence": 0.75
+    },
+    {
+      "start_sec": 14.36,
+      "end_sec": 17.34,
+      "text": "and Sergeant Joseph Cummings in the room saying that you have a right to record.",
+      "confidence": 0.83
+    },
+    {
+      "start_sec": 17.36,
+      "end_sec": 22.0,
+      "text": "And I've explained to you, as I did before, and as one of our attorneys has documented,",
+      "confidence": 0.933
+    },
+    {
+      "start_sec": 22.94,
+      "end_sec": 25.62,
+      "text": "that you do not have a right to record because you're a witness only.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 26.64,
+      "end_sec": 31.06,
+      "text": "You're not named in this allegation. You're not subject to discipline as a result of this investigation.",
+      "confidence": 0.897
+    },
+    {
+      "start_sec": 35.44,
+      "end_sec": 36.9,
+      "text": "So I'm telling you, you cannot record.",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 49.9,
+      "end_sec": 51.5,
+      "text": "And I'm telling you that you're not.",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 55.64,
+      "end_sec": 58.6,
+      "text": "You may not record. You may not have a representative present.",
+      "confidence": 0.873
+    },
+    {
+      "start_sec": 59.82,
+      "end_sec": 63.48,
+      "text": "Also, I'm aware that you've already submitted me to IA for investigation.",
+      "confidence": 0.895
+    },
+    {
+      "start_sec": 63.7,
+      "end_sec": 66.66,
+      "text": "That means I am the subject of an investigation related to this case.",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 66.7,
+      "end_sec": 68.94,
+      "text": "Not by us. Not our office.",
+      "confidence": 0.631
+    },
+    {
+      "start_sec": 69.12,
+      "end_sec": 74.56,
+      "text": "Sir, we submitted a blue folder as we do anytime an officer fails to cooperate with an investigation.",
+      "confidence": 0.873
+    },
+    {
+      "start_sec": 74.98,
+      "end_sec": 79.6,
+      "text": "And because you were not ready to proceed during our last scheduled interview,",
+      "confidence": 0.949
+    },
+    {
+      "start_sec": 79.72,
+      "end_sec": 82.14,
+      "text": "unless you could record, which you don't have a right to do,",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 82.14,
+      "end_sec": 85.88,
+      "text": "that's our standard practice to submit the failure to comply notice.",
+      "confidence": 0.825
+    },
+    {
+      "start_sec": 86.26,
+      "end_sec": 88.74,
+      "text": "And what the department does with it is they're concerned.",
+      "confidence": 0.909
+    },
+    {
+      "start_sec": 89.02,
+      "end_sec": 91.34,
+      "text": "We have no access to their investigation, if any.",
+      "confidence": 0.973
+    },
+    {
+      "start_sec": 91.7,
+      "end_sec": 92.96,
+      "text": "We have no knowledge of that.",
+      "confidence": 0.993
+    },
+    {
+      "start_sec": 93.16,
+      "end_sec": 95.62,
+      "text": "And we have no role whatsoever once we send that over.",
+      "confidence": 0.919
+    },
+    {
+      "start_sec": 95.88,
+      "end_sec": 99.06,
+      "text": "Now, as I have not been privy to the actual allegations, I can't know that, sir.",
+      "confidence": 0.894
+    },
+    {
+      "start_sec": 99.08,
+      "end_sec": 103.68,
+      "text": "All I know is that you have submitted me to IA pursuant to this investigation.",
+      "confidence": 0.963
+    },
+    {
+      "start_sec": 104.06,
+      "end_sec": 107.76,
+      "text": "I have not been interviewed by IA. I don't know what your actual allegations are.",
+      "confidence": 0.996
+    },
+    {
+      "start_sec": 107.86,
+      "end_sec": 109.22,
+      "text": "I don't know what the charges against me are.",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 109.22,
+      "end_sec": 113.56,
+      "text": "All I know is that pursuant to this case, you have absolutely submitted me to internal affairs,",
+      "confidence": 0.875
+    },
+    {
+      "start_sec": 113.96,
+      "end_sec": 116.38,
+      "text": "which means, because I'm a member under investigation,",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 116.78,
+      "end_sec": 120.42,
+      "text": "I am reasonably entitled to all of my rights under Gov. Code 3300 in sequence.",
+      "confidence": 0.898
+    },
+    {
+      "start_sec": 120.62,
+      "end_sec": 123.96,
+      "text": "Okay, and I've explained to you that what we submitted to the department",
+      "confidence": 0.874
+    },
+    {
+      "start_sec": 123.96,
+      "end_sec": 126.38,
+      "text": "is our standard failure to comply notice,",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 126.74,
+      "end_sec": 129.36,
+      "text": "where your officer either does not appear for an interview,",
+      "confidence": 0.92
+    },
+    {
+      "start_sec": 129.5,
+      "end_sec": 132.02,
+      "text": "or comes to an interview, and is not prepared to answer questions.",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 132.34,
+      "end_sec": 133.56,
+      "text": "And that's what we submitted to them.",
+      "confidence": 0.918
+    },
+    {
+      "start_sec": 133.9,
+      "end_sec": 137.68,
+      "text": "Sir, are you offended to want to answer on June 2nd when I was here for an interview?",
+      "confidence": 0.846
+    },
+    {
+      "start_sec": 137.76,
+      "end_sec": 138.16,
+      "text": "Yes.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 138.16,
+      "end_sec": 139.94,
+      "text": "Okay, I was prepared to interview you.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 140.12,
+      "end_sec": 143.2,
+      "text": "But only if you could record, and you did not have a right to record the interview.",
+      "confidence": 0.923
+    },
+    {
+      "start_sec": 143.48,
+      "end_sec": 145.28,
+      "text": "I was prepared to answer questions.",
+      "confidence": 0.914
+    },
+    {
+      "start_sec": 145.4,
+      "end_sec": 148.74,
+      "text": "The fact that you were not prepared to interview me is irrelevant to this matter.",
+      "confidence": 0.962
+    },
+    {
+      "start_sec": 149.04,
+      "end_sec": 150.38,
+      "text": "But are you prepared to interview me now?",
+      "confidence": 0.95
+    },
+    {
+      "start_sec": 150.5,
+      "end_sec": 151.9,
+      "text": "I am, but not if you record.",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 152.14,
+      "end_sec": 156.02,
+      "text": "So if you insist on recording, I will, again,",
+      "confidence": 0.919
+    },
+    {
+      "start_sec": 156.52,
+      "end_sec": 158.74,
+      "text": "submit a failure to comply to the department,",
+      "confidence": 0.946
+    },
+    {
+      "start_sec": 159.38,
+      "end_sec": 161.54,
+      "text": "because you do not have a right to record now.",
+      "confidence": 0.951
+    },
+    {
+      "start_sec": 161.82,
+      "end_sec": 163.3,
+      "text": "That is our policy.",
+      "confidence": 0.936
+    },
+    {
+      "start_sec": 164.1,
+      "end_sec": 167.84,
+      "text": "I'll show you the email from our attorney documenting that.",
+      "confidence": 0.923
+    },
+    {
+      "start_sec": 169.3,
+      "end_sec": 170.48,
+      "text": "Would you like to give me a copy of that?",
+      "confidence": 0.913
+    },
+    {
+      "start_sec": 170.66,
+      "end_sec": 172.52,
+      "text": "I'd be happy to give you a copy of it.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 202.14,
+      "end_sec": 204.38,
+      "text": "We'll have to print it out.",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 208.82,
+      "end_sec": 210.52,
+      "text": "There it is.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 213.78,
+      "end_sec": 214.94,
+      "text": "Can I get a copy of it, sir?",
+      "confidence": 0.692
+    },
+    {
+      "start_sec": 214.96,
+      "end_sec": 216.32,
+      "text": "I'll make a copy for you.",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 216.68,
+      "end_sec": 220.34,
+      "text": "But first I want to clarify, are you going to proceed with an interview",
+      "confidence": 0.895
+    },
+    {
+      "start_sec": 220.34,
+      "end_sec": 223.24,
+      "text": "without recording and without having to represent in the present?",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 223.7,
+      "end_sec": 226.9,
+      "text": "No, I'm ready to proceed right now with all of my rights intact.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 227.26,
+      "end_sec": 227.44,
+      "text": "Okay.",
+      "confidence": 0.487
+    },
+    {
+      "start_sec": 227.84,
+      "end_sec": 229.48,
+      "text": "Again, you're not answering my question.",
+      "confidence": 0.988
+    },
+    {
+      "start_sec": 229.72,
+      "end_sec": 233.36,
+      "text": "Are you willing to proceed with the interview without recording",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 233.36,
+      "end_sec": 235.26,
+      "text": "or without having to represent in the present?",
+      "confidence": 0.975
+    },
+    {
+      "start_sec": 235.36,
+      "end_sec": 237.46,
+      "text": "Because you are a witness only in this case.",
+      "confidence": 0.905
+    },
+    {
+      "start_sec": 237.84,
+      "end_sec": 240.7,
+      "text": "You are not subject to any allegations we have brought.",
+      "confidence": 0.986
+    },
+    {
+      "start_sec": 241.0,
+      "end_sec": 244.9,
+      "text": "You are not subject to discipline as a result of anything you say in this interview.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 246.24,
+      "end_sec": 247.36,
+      "text": "Will not be?",
+      "confidence": 0.7
+    },
+    {
+      "start_sec": 248.04,
+      "end_sec": 249.56,
+      "text": "That would turn the tide.",
+      "confidence": 0.862
+    },
+    {
+      "start_sec": 250.12,
+      "end_sec": 252.98,
+      "text": "So you're saying I will not be subject to any discipline or action",
+      "confidence": 0.904
+    },
+    {
+      "start_sec": 252.98,
+      "end_sec": 253.8,
+      "text": "for certain to this interview?",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 254.42,
+      "end_sec": 255.38,
+      "text": "Or I am not?",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 256.28,
+      "end_sec": 260.4,
+      "text": "There are no allegations brought against you in this complaint.",
+      "confidence": 0.977
+    },
+    {
+      "start_sec": 260.5,
+      "end_sec": 261.02,
+      "text": "Okay.",
+      "confidence": 0.15
+    },
+    {
+      "start_sec": 261.02,
+      "end_sec": 262.22,
+      "text": "But there have been.",
+      "confidence": 0.584
+    },
+    {
+      "start_sec": 262.86,
+      "end_sec": 266.18,
+      "text": "No, and because you have not been noticing any allegations,",
+      "confidence": 0.886
+    },
+    {
+      "start_sec": 266.6,
+      "end_sec": 272.14,
+      "text": "none can be brought by our agency if you cooperate with the interview,",
+      "confidence": 0.985
+    },
+    {
+      "start_sec": 272.14,
+      "end_sec": 274.22,
+      "text": "if you answer the questions.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 276.44,
+      "end_sec": 277.94,
+      "text": "That's really close.",
+      "confidence": 0.895
+    },
+    {
+      "start_sec": 279.02,
+      "end_sec": 279.38,
+      "text": "That is?",
+      "confidence": 0.744
+    },
+    {
+      "start_sec": 280.7,
+      "end_sec": 282.14,
+      "text": "I am not so.",
+      "confidence": 0.812
+    },
+    {
+      "start_sec": 283.82,
+      "end_sec": 288.1,
+      "text": "I am not willing to be interviewed without tape recording",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 288.1,
+      "end_sec": 292.84,
+      "text": "because I understand the viewpoint you've expressed.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 293.4,
+      "end_sec": 298.0,
+      "text": "I'm also aware there is no department policy or procedure or case law",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 298.0,
+      "end_sec": 301.98,
+      "text": "or statute that prohibits me from recording my own statement.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 302.36,
+      "end_sec": 304.9,
+      "text": "In fact, there is plenty of case law to the opposite",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 304.9,
+      "end_sec": 311.82,
+      "text": "that says that there is no inherent reason for an investigating agency",
+      "confidence": 0.965
+    },
+    {
+      "start_sec": 311.82,
+      "end_sec": 314.28,
+      "text": "to prohibit a person from recording their own statement.",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 314.66,
+      "end_sec": 315.42,
+      "text": "I haven't read what you have.",
+      "confidence": 0.953
+    },
+    {
+      "start_sec": 315.64,
+      "end_sec": 317.14,
+      "text": "Let me read this into the record.",
+      "confidence": 0.86
+    },
+    {
+      "start_sec": 317.28,
+      "end_sec": 320.04,
+      "text": "This is from our manual for this.",
+      "confidence": 0.657
+    },
+    {
+      "start_sec": 320.14,
+      "end_sec": 321.36,
+      "text": "He's one of the OCC attorneys.",
+      "confidence": 0.909
+    },
+    {
+      "start_sec": 321.96,
+      "end_sec": 324.78,
+      "text": "And in this email dated June 3, 2015,",
+      "confidence": 0.93
+    },
+    {
+      "start_sec": 324.78,
+      "end_sec": 325.32,
+      "text": "he wrote,",
+      "confidence": 0.589
+    },
+    {
+      "start_sec": 325.66,
+      "end_sec": 330.34,
+      "text": "Government Code Section 3303 G provides for the audio recording",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 330.34,
+      "end_sec": 332.36,
+      "text": "of an accused officer's interrogation.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 332.88,
+      "end_sec": 335.84,
+      "text": "There is no provision that authorizes a witness officer",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 335.84,
+      "end_sec": 339.08,
+      "text": "to audio record an interrogation such as an OCC interview.",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 339.58,
+      "end_sec": 342.86,
+      "text": "Please inform the sergeant that he cannot record the OCC interview.",
+      "confidence": 0.975
+    },
+    {
+      "start_sec": 343.32,
+      "end_sec": 346.9,
+      "text": "Please also inform him that the OCC will review any legal authority",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 346.9,
+      "end_sec": 349.96,
+      "text": "or citation that he believes gives him the right to record the interview",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 349.96,
+      "end_sec": 350.98,
+      "text": "prior to the interview.",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 350.98,
+      "end_sec": 355.06,
+      "text": "He may also have his attorney contact me directly to discuss the issue.",
+      "confidence": 0.905
+    },
+    {
+      "start_sec": 355.7,
+      "end_sec": 357.16,
+      "text": "It's unfortunate that email has never sent me.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 357.18,
+      "end_sec": 359.76,
+      "text": "Other than the above, he is obligated to appear",
+      "confidence": 0.949
+    },
+    {
+      "start_sec": 359.76,
+      "end_sec": 362.4,
+      "text": "for the OCC recorded interview and is subject to discipline.",
+      "confidence": 0.934
+    },
+    {
+      "start_sec": 362.48,
+      "end_sec": 364.86,
+      "text": "If he does not, then he cannot record the interview.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 365.8,
+      "end_sec": 372.66,
+      "text": "We would note that 3303 has been cited as when you can.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 373.26,
+      "end_sec": 376.52,
+      "text": "Nothing has been cited to indicate why you can't.",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 376.52,
+      "end_sec": 378.2,
+      "text": "Which is exactly my objection, sir.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 378.2,
+      "end_sec": 381.96,
+      "text": "I understand what you've said.",
+      "confidence": 0.667
+    },
+    {
+      "start_sec": 382.32,
+      "end_sec": 384.36,
+      "text": "I understand the opinion of the OCC attorney.",
+      "confidence": 0.846
+    },
+    {
+      "start_sec": 384.78,
+      "end_sec": 388.62,
+      "text": "It is absolutely clear that the Government Code Section 3300",
+      "confidence": 0.825
+    },
+    {
+      "start_sec": 388.62,
+      "end_sec": 392.24,
+      "text": "in sequence provides an explicit right for a named member",
+      "confidence": 0.922
+    },
+    {
+      "start_sec": 392.24,
+      "end_sec": 393.44,
+      "text": "to record an interview.",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 393.68,
+      "end_sec": 395.02,
+      "text": "That's not in question.",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 395.28,
+      "end_sec": 395.6,
+      "text": "I agree.",
+      "confidence": 0.905
+    },
+    {
+      "start_sec": 395.78,
+      "end_sec": 397.3,
+      "text": "I think all three of us agree on that.",
+      "confidence": 0.875
+    },
+    {
+      "start_sec": 397.3,
+      "end_sec": 398.46,
+      "text": "I think the attorney agrees on that.",
+      "confidence": 0.912
+    },
+    {
+      "start_sec": 398.78,
+      "end_sec": 402.28,
+      "text": "The question we have is whether or not there is a prohibition",
+      "confidence": 0.964
+    },
+    {
+      "start_sec": 402.28,
+      "end_sec": 404.78,
+      "text": "against recording for any other person.",
+      "confidence": 0.812
+    },
+    {
+      "start_sec": 405.02,
+      "end_sec": 407.36,
+      "text": "There is no prohibition in 3300.",
+      "confidence": 0.94
+    },
+    {
+      "start_sec": 407.36,
+      "end_sec": 410.16,
+      "text": "There is no prohibition under California state law.",
+      "confidence": 0.764
+    },
+    {
+      "start_sec": 410.38,
+      "end_sec": 412.5,
+      "text": "There is no prohibition under any of the California,",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 412.5,
+      "end_sec": 414.46,
+      "text": "excuse me, Census and municipal codes.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 414.78,
+      "end_sec": 417.24,
+      "text": "There is no prohibition under my department's policy.",
+      "confidence": 0.947
+    },
+    {
+      "start_sec": 417.68,
+      "end_sec": 420.74,
+      "text": "You expressed to me, if I remember correctly, on June 2,",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 420.94,
+      "end_sec": 422.44,
+      "text": "that OCC has a policy.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 423.08,
+      "end_sec": 425.76,
+      "text": "OCC's policy, however, is not incumbent upon me.",
+      "confidence": 0.978
+    },
+    {
+      "start_sec": 426.12,
+      "end_sec": 428.96,
+      "text": "I am ready and willing to cooperate with your investigation.",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 429.56,
+      "end_sec": 432.1,
+      "text": "I understand everything you've set up to this point,",
+      "confidence": 0.88
+    },
+    {
+      "start_sec": 432.1,
+      "end_sec": 434.12,
+      "text": "and I agree that if I am not being,",
+      "confidence": 0.93
+    },
+    {
+      "start_sec": 434.44,
+      "end_sec": 436.58,
+      "text": "if I will not be subject to disciplinary action",
+      "confidence": 0.943
+    },
+    {
+      "start_sec": 436.58,
+      "end_sec": 437.88,
+      "text": "subsequent to this interview,",
+      "confidence": 0.696
+    },
+    {
+      "start_sec": 438.2,
+      "end_sec": 439.46,
+      "text": "despite what's already occurred",
+      "confidence": 0.951
+    },
+    {
+      "start_sec": 439.46,
+      "end_sec": 440.98,
+      "text": "and what you've already sent to IA,",
+      "confidence": 0.944
+    },
+    {
+      "start_sec": 441.28,
+      "end_sec": 442.54,
+      "text": "I am willing to be interviewed",
+      "confidence": 0.892
+    },
+    {
+      "start_sec": 442.54,
+      "end_sec": 444.1,
+      "text": "without the presence of a representative.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 444.48,
+      "end_sec": 447.32,
+      "text": "However, I am not willing to be interviewed",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 447.32,
+      "end_sec": 451.12,
+      "text": "without being allowed to record my own statement",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 451.12,
+      "end_sec": 453.58,
+      "text": "unless you can provide me a prohibition.",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 454.36,
+      "end_sec": 456.82,
+      "text": "And your lawyer's opinion is not a prohibition",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 456.82,
+      "end_sec": 457.78,
+      "text": "against the recording.",
+      "confidence": 0.925
+    },
+    {
+      "start_sec": 460.76,
+      "end_sec": 463.08,
+      "text": "Your lawyer didn't state what section",
+      "confidence": 0.888
+    },
+    {
+      "start_sec": 463.08,
+      "end_sec": 464.6,
+      "text": "prohibited me from recording, sir.",
+      "confidence": 0.869
+    },
+    {
+      "start_sec": 464.6,
+      "end_sec": 466.84,
+      "text": "I'm not trying to be objectionist.",
+      "confidence": 0.885
+    },
+    {
+      "start_sec": 467.54,
+      "end_sec": 468.7,
+      "text": "I'm trying to cooperate with you,",
+      "confidence": 0.962
+    },
+    {
+      "start_sec": 468.78,
+      "end_sec": 470.7,
+      "text": "and the only stipulation that I make",
+      "confidence": 0.979
+    },
+    {
+      "start_sec": 470.7,
+      "end_sec": 474.72,
+      "text": "is that my statement, my own statement, be recorded.",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 475.32,
+      "end_sec": 477.14,
+      "text": "Okay, well, I'll read you again the last line",
+      "confidence": 0.812
+    },
+    {
+      "start_sec": 477.14,
+      "end_sec": 478.16,
+      "text": "that the email sent.",
+      "confidence": 0.635
+    },
+    {
+      "start_sec": 478.98,
+      "end_sec": 479.98,
+      "text": "He says, I will get it to Pierre",
+      "confidence": 0.623
+    },
+    {
+      "start_sec": 479.98,
+      "end_sec": 481.64,
+      "text": "for the OCC recorded interview",
+      "confidence": 0.865
+    },
+    {
+      "start_sec": 481.64,
+      "end_sec": 483.92,
+      "text": "and it's such discipline if he does not",
+      "confidence": 0.796
+    },
+    {
+      "start_sec": 483.92,
+      "end_sec": 485.32,
+      "text": "and he cannot record the interview.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 485.66,
+      "end_sec": 487.3,
+      "text": "I understand the lawyer's opinion.",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 487.5,
+      "end_sec": 488.82,
+      "text": "I agree with two-thirds of that.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 488.88,
+      "end_sec": 491.64,
+      "text": "I am obligated to appear, and I am here.",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 491.96,
+      "end_sec": 493.56,
+      "text": "I am prepared to be interviewed.",
+      "confidence": 0.999
+    },
+    {
+      "start_sec": 493.56,
+      "end_sec": 494.82,
+      "text": "That is the requirement.",
+      "confidence": 0.746
+    },
+    {
+      "start_sec": 495.18,
+      "end_sec": 496.68,
+      "text": "If you will find for me",
+      "confidence": 0.911
+    },
+    {
+      "start_sec": 496.68,
+      "end_sec": 498.84,
+      "text": "anything that prohibits me from recording,",
+      "confidence": 0.963
+    },
+    {
+      "start_sec": 499.12,
+      "end_sec": 501.06,
+      "text": "I will turn that recorder off right now",
+      "confidence": 0.986
+    },
+    {
+      "start_sec": 501.06,
+      "end_sec": 502.04,
+      "text": "and I will sit down",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 502.04,
+      "end_sec": 503.5,
+      "text": "and I will participate with this interview.",
+      "confidence": 0.944
+    },
+    {
+      "start_sec": 504.06,
+      "end_sec": 505.8,
+      "text": "Sir, there is no prohibition",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 505.8,
+      "end_sec": 508.36,
+      "text": "in California state law and case law",
+      "confidence": 0.659
+    },
+    {
+      "start_sec": 508.36,
+      "end_sec": 509.58,
+      "text": "and municipal code",
+      "confidence": 0.74
+    },
+    {
+      "start_sec": 509.58,
+      "end_sec": 511.06,
+      "text": "or in our department policy.",
+      "confidence": 0.833
+    },
+    {
+      "start_sec": 511.98,
+      "end_sec": 513.8,
+      "text": "And the opinion of the OCC's lawyer",
+      "confidence": 0.932
+    },
+    {
+      "start_sec": 513.8,
+      "end_sec": 516.26,
+      "text": "is that the OCC's lawyer",
+      "confidence": 0.681
+    },
+    {
+      "start_sec": 516.26,
+      "end_sec": 518.18,
+      "text": "is not my commanding officer for me.",
+      "confidence": 0.925
+    },
+    {
+      "start_sec": 518.46,
+      "end_sec": 519.48,
+      "text": "It's not a chief of the police.",
+      "confidence": 0.726
+    },
+    {
+      "start_sec": 519.7,
+      "end_sec": 521.34,
+      "text": "It is not a police commissioner",
+      "confidence": 0.861
+    },
+    {
+      "start_sec": 521.34,
+      "end_sec": 523.02,
+      "text": "and does not have the authority",
+      "confidence": 0.931
+    },
+    {
+      "start_sec": 523.02,
+      "end_sec": 524.1,
+      "text": "to give me an order.",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 528.18,
+      "end_sec": 529.06,
+      "text": "You put it on the record.",
+      "confidence": 0.703
+    },
+    {
+      "start_sec": 529.58,
+      "end_sec": 531.24,
+      "text": "The only thing I can offer to do",
+      "confidence": 0.969
+    },
+    {
+      "start_sec": 531.24,
+      "end_sec": 533.22,
+      "text": "is attempt to reach the attorney",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 534.06,
+      "end_sec": 536.02,
+      "text": "at home and see if he will talk to you",
+      "confidence": 0.957
+    },
+    {
+      "start_sec": 536.02,
+      "end_sec": 536.6,
+      "text": "now on the record?",
+      "confidence": 0.946
+    },
+    {
+      "start_sec": 537.58,
+      "end_sec": 538.86,
+      "text": "If the attorney would like to cite",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 538.86,
+      "end_sec": 541.9,
+      "text": "a case, a statute, a code section,",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 542.14,
+      "end_sec": 544.66,
+      "text": "a policy, again, I would be happy.",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 544.9,
+      "end_sec": 547.22,
+      "text": "The opinion of the attorney of the OCC",
+      "confidence": 0.944
+    },
+    {
+      "start_sec": 547.22,
+      "end_sec": 550.56,
+      "text": "as to my nonability or ability to record",
+      "confidence": 0.932
+    },
+    {
+      "start_sec": 550.56,
+      "end_sec": 553.14,
+      "text": "is irrelevant unless there's a policy",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 553.14,
+      "end_sec": 554.38,
+      "text": "that prohibits me, sir.",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 554.44,
+      "end_sec": 554.74,
+      "text": "Okay.",
+      "confidence": 0.337
+    },
+    {
+      "start_sec": 555.22,
+      "end_sec": 556.22,
+      "text": "You put it on the record.",
+      "confidence": 0.787
+    },
+    {
+      "start_sec": 556.36,
+      "end_sec": 558.22,
+      "text": "What I'm going to say again",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 558.22,
+      "end_sec": 559.56,
+      "text": "is that you are obligated",
+      "confidence": 0.947
+    },
+    {
+      "start_sec": 560.7,
+      "end_sec": 562.6,
+      "text": "to be interviewed without recording.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 562.76,
+      "end_sec": 564.22,
+      "text": "If you refuse that,",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 564.34,
+      "end_sec": 566.1,
+      "text": "I will consider it a failure to comply",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 566.1,
+      "end_sec": 567.7,
+      "text": "in our office policy.",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 568.28,
+      "end_sec": 569.36,
+      "text": "A failure to comply notice",
+      "confidence": 0.923
+    },
+    {
+      "start_sec": 569.36,
+      "end_sec": 571.0,
+      "text": "will be sent to the San Francisco",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 571.0,
+      "end_sec": 571.86,
+      "text": "Police Department.",
+      "confidence": 0.937
+    },
+    {
+      "start_sec": 572.22,
+      "end_sec": 573.38,
+      "text": "And just for record,",
+      "confidence": 0.796
+    },
+    {
+      "start_sec": 574.82,
+      "end_sec": 576.3,
+      "text": "the sergeant is going to comply.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 576.52,
+      "end_sec": 577.48,
+      "text": "He's trying to comply.",
+      "confidence": 0.931
+    },
+    {
+      "start_sec": 578.1,
+      "end_sec": 579.22,
+      "text": "The only thing he wants to do",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 579.22,
+      "end_sec": 579.72,
+      "text": "is record himself.",
+      "confidence": 0.809
+    },
+    {
+      "start_sec": 579.72,
+      "end_sec": 579.96,
+      "text": "Okay.",
+      "confidence": 0.099
+    },
+    {
+      "start_sec": 580.28,
+      "end_sec": 581.44,
+      "text": "And I've told you many times",
+      "confidence": 0.861
+    },
+    {
+      "start_sec": 581.44,
+      "end_sec": 582.76,
+      "text": "that witness officers are not allowed",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 582.76,
+      "end_sec": 583.3,
+      "text": "to record.",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 584.4,
+      "end_sec": 584.84,
+      "text": "Can I ask you a simple question?",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 584.84,
+      "end_sec": 585.82,
+      "text": "We have a condescending interview",
+      "confidence": 0.442
+    },
+    {
+      "start_sec": 585.82,
+      "end_sec": 586.54,
+      "text": "with you recording.",
+      "confidence": 0.932
+    },
+    {
+      "start_sec": 586.74,
+      "end_sec": 587.94,
+      "text": "Can I ask you a simple question?",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 588.94,
+      "end_sec": 589.7,
+      "text": "You don't have to answer it.",
+      "confidence": 0.861
+    },
+    {
+      "start_sec": 591.34,
+      "end_sec": 593.26,
+      "text": "Beyond, if we put the government",
+      "confidence": 0.864
+    },
+    {
+      "start_sec": 593.26,
+      "end_sec": 594.58,
+      "text": "code section aside for a moment",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 594.58,
+      "end_sec": 595.48,
+      "text": "and our disagreement,",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 595.74,
+      "end_sec": 596.78,
+      "text": "because clearly we have a disagreement",
+      "confidence": 0.925
+    },
+    {
+      "start_sec": 596.78,
+      "end_sec": 598.02,
+      "text": "about the code itself,",
+      "confidence": 0.879
+    },
+    {
+      "start_sec": 598.8,
+      "end_sec": 602.16,
+      "text": "beyond that, what is the objection",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 602.16,
+      "end_sec": 604.86,
+      "text": "to me recording my own statement?",
+      "confidence": 0.977
+    },
+    {
+      "start_sec": 605.58,
+      "end_sec": 606.82,
+      "text": "You need to raise that issue",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 606.82,
+      "end_sec": 607.92,
+      "text": "with the director of the agency.",
+      "confidence": 0.945
+    },
+    {
+      "start_sec": 608.02,
+      "end_sec": 609.36,
+      "text": "It's the agency policy.",
+      "confidence": 0.991
+    },
+    {
+      "start_sec": 609.36,
+      "end_sec": 609.92,
+      "text": "Okay.",
+      "confidence": 0.042
+    },
+    {
+      "start_sec": 609.92,
+      "end_sec": 611.68,
+      "text": "Witness officers may not record.",
+      "confidence": 0.689
+    },
+    {
+      "start_sec": 611.82,
+      "end_sec": 612.5,
+      "text": "That's a fair answer,",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 613.1,
+      "end_sec": 614.32,
+      "text": "that it's you who are abiding",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 614.32,
+      "end_sec": 615.22,
+      "text": "by your agency policy.",
+      "confidence": 0.787
+    },
+    {
+      "start_sec": 615.32,
+      "end_sec": 616.1,
+      "text": "Yes, I'm abiding",
+      "confidence": 0.833
+    },
+    {
+      "start_sec": 616.1,
+      "end_sec": 617.1,
+      "text": "by my agency policy.",
+      "confidence": 0.99
+    },
+    {
+      "start_sec": 617.14,
+      "end_sec": 617.74,
+      "text": "That's a fair answer.",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 618.24,
+      "end_sec": 619.22,
+      "text": "I'm not going to make",
+      "confidence": 0.89
+    },
+    {
+      "start_sec": 619.22,
+      "end_sec": 620.5,
+      "text": "an exception for you",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 620.5,
+      "end_sec": 622.66,
+      "text": "until the management of the OCC",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 622.66,
+      "end_sec": 623.54,
+      "text": "instructs me to.",
+      "confidence": 0.986
+    },
+    {
+      "start_sec": 623.54,
+      "end_sec": 623.8,
+      "text": "Okay.",
+      "confidence": 0.591
+    },
+    {
+      "start_sec": 623.94,
+      "end_sec": 624.12,
+      "text": "That's a fair answer.",
+      "confidence": 0.933
+    },
+    {
+      "start_sec": 624.12,
+      "end_sec": 627.86,
+      "text": "And I have put this matter before",
+      "confidence": 0.909
+    },
+    {
+      "start_sec": 628.88,
+      "end_sec": 630.26,
+      "text": "the director of the agency",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 630.26,
+      "end_sec": 631.46,
+      "text": "and the attorneys,",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 631.5,
+      "end_sec": 632.36,
+      "text": "and this is the response",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 632.36,
+      "end_sec": 632.8,
+      "text": "I was given.",
+      "confidence": 0.964
+    },
+    {
+      "start_sec": 633.0,
+      "end_sec": 633.3,
+      "text": "Okay.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 633.3,
+      "end_sec": 634.2,
+      "text": "And that is a fair answer.",
+      "confidence": 0.975
+    },
+    {
+      "start_sec": 634.7,
+      "end_sec": 636.08,
+      "text": "Again, for the record,",
+      "confidence": 0.915
+    },
+    {
+      "start_sec": 636.42,
+      "end_sec": 637.34,
+      "text": "I am ready to proceed",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 637.34,
+      "end_sec": 638.22,
+      "text": "under the,",
+      "confidence": 0.669
+    },
+    {
+      "start_sec": 638.22,
+      "end_sec": 639.62,
+      "text": "I am ready to proceed in all cases",
+      "confidence": 0.869
+    },
+    {
+      "start_sec": 639.62,
+      "end_sec": 641.04,
+      "text": "with representation and recording.",
+      "confidence": 0.78
+    },
+    {
+      "start_sec": 641.66,
+      "end_sec": 642.66,
+      "text": "If what you say holds,",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 643.12,
+      "end_sec": 643.92,
+      "text": "and whether or not",
+      "confidence": 0.695
+    },
+    {
+      "start_sec": 643.92,
+      "end_sec": 644.64,
+      "text": "this interaction",
+      "confidence": 0.503
+    },
+    {
+      "start_sec": 644.64,
+      "end_sec": 645.8,
+      "text": "will attach to our interview,",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 646.1,
+      "end_sec": 646.82,
+      "text": "I'm ready to proceed",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 646.82,
+      "end_sec": 648.44,
+      "text": "without a representative,",
+      "confidence": 0.899
+    },
+    {
+      "start_sec": 648.72,
+      "end_sec": 649.84,
+      "text": "despite the IA case",
+      "confidence": 0.963
+    },
+    {
+      "start_sec": 649.84,
+      "end_sec": 650.56,
+      "text": "that I'm aware of.",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 651.04,
+      "end_sec": 653.02,
+      "text": "I will not proceed, however,",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 653.14,
+      "end_sec": 654.0,
+      "text": "without being allowed",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 654.0,
+      "end_sec": 655.84,
+      "text": "to tape record my own statement.",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 656.18,
+      "end_sec": 656.46,
+      "text": "Okay.",
+      "confidence": 0.333
+    },
+    {
+      "start_sec": 656.46,
+      "end_sec": 657.38,
+      "text": "Then we're going to consider",
+      "confidence": 0.942
+    },
+    {
+      "start_sec": 657.38,
+      "end_sec": 659.04,
+      "text": "that a failure to proceed,",
+      "confidence": 0.994
+    },
+    {
+      "start_sec": 659.14,
+      "end_sec": 660.72,
+      "text": "and we'll deal with it accordingly.",
+      "confidence": 0.946
+    },
+    {
+      "start_sec": 660.72,
+      "end_sec": 660.98,
+      "text": "Okay.",
+      "confidence": 0.012
+    },
+    {
+      "start_sec": 667.66,
+      "end_sec": 669.3,
+      "text": "I think we'll probably remain",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 669.3,
+      "end_sec": 670.9,
+      "text": "until we're told to leave.",
+      "confidence": 0.975
+    },
+    {
+      "start_sec": 672.0,
+      "end_sec": 672.7,
+      "text": "So, when we're told,",
+      "confidence": 0.539
+    },
+    {
+      "start_sec": 672.94,
+      "end_sec": 674.34,
+      "text": "it's 9.30 p.m.",
+      "confidence": 0.769
+    },
+    {
+      "start_sec": 674.38,
+      "end_sec": 675.4,
+      "text": "Are you willing to proceed",
+      "confidence": 0.958
+    },
+    {
+      "start_sec": 675.4,
+      "end_sec": 676.16,
+      "text": "with the interview",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 676.16,
+      "end_sec": 677.8,
+      "text": "as a witness officer,",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 678.54,
+      "end_sec": 679.46,
+      "text": "not subject to discipline,",
+      "confidence": 0.731
+    },
+    {
+      "start_sec": 679.62,
+      "end_sec": 681.64,
+      "text": "as a result of the OCC investigation,",
+      "confidence": 0.913
+    },
+    {
+      "start_sec": 681.94,
+      "end_sec": 683.08,
+      "text": "without a recorder?",
+      "confidence": 0.988
+    },
+    {
+      "start_sec": 683.5,
+      "end_sec": 684.22,
+      "text": "I'm recording.",
+      "confidence": 0.667
+    },
+    {
+      "start_sec": 684.36,
+      "end_sec": 685.4,
+      "text": "I'm willing to proceed",
+      "confidence": 0.963
+    },
+    {
+      "start_sec": 685.4,
+      "end_sec": 686.08,
+      "text": "with the interview",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 686.08,
+      "end_sec": 688.38,
+      "text": "under the terms specified.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 688.78,
+      "end_sec": 690.4,
+      "text": "I am not willing to proceed",
+      "confidence": 0.968
+    },
+    {
+      "start_sec": 690.4,
+      "end_sec": 691.58,
+      "text": "without recording the interview.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 692.42,
+      "end_sec": 692.66,
+      "text": "Okay.",
+      "confidence": 0.177
+    },
+    {
+      "start_sec": 693.16,
+      "end_sec": 693.72,
+      "text": "As I stated,",
+      "confidence": 0.762
+    },
+    {
+      "start_sec": 693.86,
+      "end_sec": 694.94,
+      "text": "we will consider that a failure",
+      "confidence": 0.927
+    },
+    {
+      "start_sec": 694.94,
+      "end_sec": 695.52,
+      "text": "to comply,",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 695.78,
+      "end_sec": 696.78,
+      "text": "and we'll address it accordingly",
+      "confidence": 0.905
+    },
+    {
+      "start_sec": 696.78,
+      "end_sec": 698.12,
+      "text": "with a blue-fold",
+      "confidence": 0.77
+    },
+    {
+      "start_sec": 698.12,
+      "end_sec": 698.88,
+      "text": "of failure to comply",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 698.88,
+      "end_sec": 699.58,
+      "text": "to the department.",
+      "confidence": 0.778
+    },
+    {
+      "start_sec": 700.64,
+      "end_sec": 701.38,
+      "text": "That's your decision.",
+      "confidence": 0.989
+    },
+    {
+      "start_sec": 702.8,
+      "end_sec": 704.14,
+      "text": "So, I am not unable to proceed",
+      "confidence": 0.876
+    },
+    {
+      "start_sec": 704.14,
+      "end_sec": 704.7,
+      "text": "with the interview",
+      "confidence": 0.987
+    },
+    {
+      "start_sec": 704.7,
+      "end_sec": 705.98,
+      "text": "because you are unwilling",
+      "confidence": 0.94
+    },
+    {
+      "start_sec": 705.98,
+      "end_sec": 708.16,
+      "text": "to comply with the procedures",
+      "confidence": 0.99
+    },
+    {
+      "start_sec": 708.16,
+      "end_sec": 709.4,
+      "text": "of the agency",
+      "confidence": 0.966
+    },
+    {
+      "start_sec": 709.4,
+      "end_sec": 710.62,
+      "text": "regarding the rights",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 710.62,
+      "end_sec": 711.7,
+      "text": "of a witness officer.",
+      "confidence": 0.922
+    },
+    {
+      "start_sec": 713.36,
+      "end_sec": 714.16,
+      "text": "So, let's...",
+      "confidence": 0.535
+    },
+    {
+      "start_sec": 714.16,
+      "end_sec": 714.98,
+      "text": "Regarding recording.",
+      "confidence": 0.537
+    },
+    {
+      "start_sec": 715.6,
+      "end_sec": 716.54,
+      "text": "Regarding recording",
+      "confidence": 0.964
+    },
+    {
+      "start_sec": 716.54,
+      "end_sec": 717.18,
+      "text": "and the presence",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 717.18,
+      "end_sec": 718.02,
+      "text": "of a representative.",
+      "confidence": 0.961
+    },
+    {
+      "start_sec": 718.76,
+      "end_sec": 719.62,
+      "text": "Well, regarding recording,",
+      "confidence": 0.77
+    },
+    {
+      "start_sec": 719.62,
+      "end_sec": 720.38,
+      "text": "I've already agreed",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 720.94,
+      "end_sec": 722.9,
+      "text": "that I will go",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 722.9,
+      "end_sec": 723.7,
+      "text": "without a representative.",
+      "confidence": 0.977
+    },
+    {
+      "start_sec": 725.14,
+      "end_sec": 725.98,
+      "text": "Let's agree that",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 725.98,
+      "end_sec": 726.5,
+      "text": "the sticky widget",
+      "confidence": 0.946
+    },
+    {
+      "start_sec": 726.5,
+      "end_sec": 727.18,
+      "text": "is the recording.",
+      "confidence": 0.83
+    },
+    {
+      "start_sec": 727.44,
+      "end_sec": 727.62,
+      "text": "Okay.",
+      "confidence": 0.245
+    },
+    {
+      "start_sec": 728.82,
+      "end_sec": 730.58,
+      "text": "And we'll simply re-notice you",
+      "confidence": 0.718
+    },
+    {
+      "start_sec": 730.58,
+      "end_sec": 732.08,
+      "text": "and bring it back again.",
+      "confidence": 0.779
+    },
+    {
+      "start_sec": 733.48,
+      "end_sec": 734.2,
+      "text": "That's your decision.",
+      "confidence": 0.749
+    },
+    {
+      "start_sec": 734.64,
+      "end_sec": 735.52,
+      "text": "So, unless you're willing",
+      "confidence": 0.958
+    },
+    {
+      "start_sec": 735.52,
+      "end_sec": 736.68,
+      "text": "to turn off the recorder",
+      "confidence": 0.993
+    },
+    {
+      "start_sec": 736.68,
+      "end_sec": 738.34,
+      "text": "and proceed with the interview,",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 738.88,
+      "end_sec": 739.82,
+      "text": "there's really nothing",
+      "confidence": 0.983
+    },
+    {
+      "start_sec": 739.82,
+      "end_sec": 741.08,
+      "text": "further to discuss.",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 741.72,
+      "end_sec": 742.56,
+      "text": "Okay, so am I dismissed",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 742.56,
+      "end_sec": 743.02,
+      "text": "at this time?",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 743.84,
+      "end_sec": 746.1,
+      "text": "Since you're not willing",
+      "confidence": 0.927
+    },
+    {
+      "start_sec": 746.1,
+      "end_sec": 747.12,
+      "text": "to answer questions,",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 747.18,
+      "end_sec": 748.14,
+      "text": "unless you can record,",
+      "confidence": 0.997
+    },
+    {
+      "start_sec": 748.14,
+      "end_sec": 749.48,
+      "text": "then I cannot conduct",
+      "confidence": 0.708
+    },
+    {
+      "start_sec": 749.48,
+      "end_sec": 750.18,
+      "text": "the interview.",
+      "confidence": 0.988
+    },
+    {
+      "start_sec": 751.34,
+      "end_sec": 752.32,
+      "text": "Can he have a copy",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 752.32,
+      "end_sec": 752.96,
+      "text": "of your recording?",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 753.74,
+      "end_sec": 754.14,
+      "text": "No.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 755.98,
+      "end_sec": 756.38,
+      "text": "Well...",
+      "confidence": 0.322
+    },
+    {
+      "start_sec": 756.38,
+      "end_sec": 757.06,
+      "text": "I would still,",
+      "confidence": 0.815
+    },
+    {
+      "start_sec": 757.1,
+      "end_sec": 757.98,
+      "text": "if the offer's still open,",
+      "confidence": 0.871
+    },
+    {
+      "start_sec": 758.1,
+      "end_sec": 759.14,
+      "text": "I would select the copy",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 759.14,
+      "end_sec": 760.36,
+      "text": "of the email from the attorney",
+      "confidence": 0.924
+    },
+    {
+      "start_sec": 760.36,
+      "end_sec": 761.28,
+      "text": "seeing as the attorney",
+      "confidence": 0.625
+    },
+    {
+      "start_sec": 761.28,
+      "end_sec": 763.1,
+      "text": "clearly by what you read to me",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 763.1,
+      "end_sec": 764.42,
+      "text": "assumed that at some point",
+      "confidence": 0.862
+    },
+    {
+      "start_sec": 764.42,
+      "end_sec": 765.02,
+      "text": "it would go to me",
+      "confidence": 0.972
+    },
+    {
+      "start_sec": 765.02,
+      "end_sec": 766.2,
+      "text": "and let's agree",
+      "confidence": 0.74
+    },
+    {
+      "start_sec": 766.2,
+      "end_sec": 768.24,
+      "text": "that I'm not on there",
+      "confidence": 0.905
+    },
+    {
+      "start_sec": 768.24,
+      "end_sec": 771.48,
+      "text": "and that I admit was not,",
+      "confidence": 0.665
+    },
+    {
+      "start_sec": 771.5,
+      "end_sec": 771.96,
+      "text": "according at least",
+      "confidence": 0.943
+    },
+    {
+      "start_sec": 771.96,
+      "end_sec": 772.74,
+      "text": "to the email chain,",
+      "confidence": 0.925
+    },
+    {
+      "start_sec": 772.84,
+      "end_sec": 773.92,
+      "text": "that it was never forwarded to me.",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 774.68,
+      "end_sec": 775.48,
+      "text": "It's unfortunate.",
+      "confidence": 0.986
+    },
+    {
+      "start_sec": 775.56,
+      "end_sec": 776.14,
+      "text": "We could have had",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 776.14,
+      "end_sec": 776.82,
+      "text": "this conversation",
+      "confidence": 0.998
+    },
+    {
+      "start_sec": 776.82,
+      "end_sec": 777.98,
+      "text": "before the interview.",
+      "confidence": 0.627
+    },
+    {
+      "start_sec": 778.84,
+      "end_sec": 779.08,
+      "text": "Okay.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 780.38,
+      "end_sec": 780.68,
+      "text": "All right.",
+      "confidence": 0.822
+    },
+    {
+      "start_sec": 780.7,
+      "end_sec": 781.08,
+      "text": "I'm going to leave",
+      "confidence": 0.846
+    },
+    {
+      "start_sec": 781.08,
+      "end_sec": 781.88,
+      "text": "the recorder running.",
+      "confidence": 0.965
+    },
+    {
+      "start_sec": 782.24,
+      "end_sec": 784.04,
+      "text": "It's 9.31 p.m.",
+      "confidence": 0.872
+    },
+    {
+      "start_sec": 784.7,
+      "end_sec": 785.1,
+      "text": "and we're going",
+      "confidence": 0.649
+    },
+    {
+      "start_sec": 785.1,
+      "end_sec": 786.12,
+      "text": "to make you a copy.",
+      "confidence": 0.908
+    },
+    {
+      "start_sec": 792.44,
+      "end_sec": 793.56,
+      "text": "Come on.",
+      "confidence": 0.547
+    },
+    {
+      "start_sec": 795.42,
+      "end_sec": 795.74,
+      "text": "Thanks.",
+      "confidence": 0.244
+    },
+    {
+      "start_sec": 797.32,
+      "end_sec": 797.82,
+      "text": "Yeah.",
+      "confidence": 0.173
+    },
+    {
+      "start_sec": 811.58,
+      "end_sec": 812.46,
+      "text": "Did you see the rain",
+      "confidence": 0.871
+    },
+    {
+      "start_sec": 812.46,
+      "end_sec": 813.12,
+      "text": "earlier today?",
+      "confidence": 0.516
+    },
+    {
+      "start_sec": 813.3,
+      "end_sec": 813.74,
+      "text": "Yes.",
+      "confidence": 0.848
+    },
+    {
+      "start_sec": 813.92,
+      "end_sec": 815.02,
+      "text": "I was always surprised.",
+      "confidence": 0.697
+    },
+    {
+      "start_sec": 815.08,
+      "end_sec": 816.1,
+      "text": "I knew that",
+      "confidence": 0.521
+    },
+    {
+      "start_sec": 819.46,
+      "end_sec": 820.4,
+      "text": "They're also saying",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 820.4,
+      "end_sec": 821.0,
+      "text": "that it won't even",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 821.0,
+      "end_sec": 821.68,
+      "text": "bring back",
+      "confidence": 0.984
+    },
+    {
+      "start_sec": 821.68,
+      "end_sec": 822.58,
+      "text": "the smallest part",
+      "confidence": 0.94
+    },
+    {
+      "start_sec": 822.58,
+      "end_sec": 823.16,
+      "text": "of this compact.",
+      "confidence": 0.604
+    },
+    {
+      "start_sec": 824.6,
+      "end_sec": 825.7,
+      "text": "A couple of years ago.",
+      "confidence": 0.568
+    },
+    {
+      "start_sec": 829.02,
+      "end_sec": 830.06,
+      "text": "It was nice to see.",
+      "confidence": 0.959
+    },
+    {
+      "start_sec": 830.46,
+      "end_sec": 830.64,
+      "text": "It was?",
+      "confidence": 0.659
+    },
+    {
+      "start_sec": 830.88,
+      "end_sec": 831.18,
+      "text": "Well,",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 831.44,
+      "end_sec": 832.04,
+      "text": "it was nice to hear.",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 832.22,
+      "end_sec": 833.92,
+      "text": "I woke up to it.",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 834.82,
+      "end_sec": 835.86,
+      "text": "Rain is the best",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 835.86,
+      "end_sec": 836.46,
+      "text": "sleeping weather.",
+      "confidence": 0.97
+    },
+    {
+      "start_sec": 836.56,
+      "end_sec": 837.82,
+      "text": "I don't know what it is.",
+      "confidence": 0.992
+    },
+    {
+      "start_sec": 838.2,
+      "end_sec": 839.14,
+      "text": "It's something soothing",
+      "confidence": 0.889
+    },
+    {
+      "start_sec": 839.14,
+      "end_sec": 841.3,
+      "text": "about it that just...",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 841.3,
+      "end_sec": 843.32,
+      "text": "I actually normally have",
+      "confidence": 0.959
+    },
+    {
+      "start_sec": 843.32,
+      "end_sec": 844.1,
+      "text": "no problem sleeping",
+      "confidence": 0.76
+    },
+    {
+      "start_sec": 844.1,
+      "end_sec": 845.18,
+      "text": "during the day.",
+      "confidence": 0.915
+    },
+    {
+      "start_sec": 845.54,
+      "end_sec": 846.08,
+      "text": "But I do have",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 846.08,
+      "end_sec": 848.46,
+      "text": "a rain...",
+      "confidence": 0.026
+    },
+    {
+      "start_sec": 848.46,
+      "end_sec": 849.28,
+      "text": "The only thing I have",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 849.28,
+      "end_sec": 850.32,
+      "text": "on the white noise generator",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 850.32,
+      "end_sec": 851.02,
+      "text": "that I can pull up",
+      "confidence": 0.95
+    },
+    {
+      "start_sec": 851.02,
+      "end_sec": 851.56,
+      "text": "on my phone",
+      "confidence": 0.992
+    },
+    {
+      "start_sec": 852.08,
+      "end_sec": 852.52,
+      "text": "is rainfall.",
+      "confidence": 0.85
+    },
+    {
+      "start_sec": 852.74,
+      "end_sec": 853.58,
+      "text": "Thunderstorm, actually.",
+      "confidence": 0.93
+    },
+    {
+      "start_sec": 853.86,
+      "end_sec": 854.88,
+      "text": "Oh, my goodness.",
+      "confidence": 0.287
+    },
+    {
+      "start_sec": 854.88,
+      "end_sec": 855.96,
+      "text": "I was born in the Midwest",
+      "confidence": 0.976
+    },
+    {
+      "start_sec": 855.96,
+      "end_sec": 857.1,
+      "text": "and I miss",
+      "confidence": 0.662
+    },
+    {
+      "start_sec": 857.1,
+      "end_sec": 857.94,
+      "text": "the big boomers.",
+      "confidence": 0.872
+    },
+    {
+      "start_sec": 858.66,
+      "end_sec": 859.12,
+      "text": "The house.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 859.36,
+      "end_sec": 859.8,
+      "text": "They take this",
+      "confidence": 0.327
+    },
+    {
+      "start_sec": 859.8,
+      "end_sec": 860.62,
+      "text": "and she's set.",
+      "confidence": 0.627
+    },
+    {
+      "start_sec": 860.78,
+      "end_sec": 861.46,
+      "text": "The same thing.",
+      "confidence": 0.93
+    },
+    {
+      "start_sec": 861.56,
+      "end_sec": 861.82,
+      "text": "Yeah.",
+      "confidence": 0.382
+    },
+    {
+      "start_sec": 862.62,
+      "end_sec": 863.56,
+      "text": "Where the whole house",
+      "confidence": 0.872
+    },
+    {
+      "start_sec": 863.56,
+      "end_sec": 864.1,
+      "text": "would shake",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 864.1,
+      "end_sec": 865.36,
+      "text": "and lightning strikes",
+      "confidence": 0.933
+    },
+    {
+      "start_sec": 865.36,
+      "end_sec": 866.64,
+      "text": "and thunder and rain.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 867.06,
+      "end_sec": 868.14,
+      "text": "My dad had",
+      "confidence": 0.984
+    },
+    {
+      "start_sec": 868.14,
+      "end_sec": 868.8,
+      "text": "in the house",
+      "confidence": 0.829
+    },
+    {
+      "start_sec": 868.8,
+      "end_sec": 869.4,
+      "text": "a library",
+      "confidence": 0.418
+    },
+    {
+      "start_sec": 869.4,
+      "end_sec": 870.24,
+      "text": "and it had skylights,",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 870.42,
+      "end_sec": 871.3,
+      "text": "plexiglass skylights,",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 871.36,
+      "end_sec": 872.66,
+      "text": "which would amplify",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 873.52,
+      "end_sec": 875.04,
+      "text": "just an easy rain",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 875.04,
+      "end_sec": 876.36,
+      "text": "into a...",
+      "confidence": 0.442
+    },
+    {
+      "start_sec": 876.36,
+      "end_sec": 876.74,
+      "text": "Right.",
+      "confidence": 0.121
+    },
+    {
+      "start_sec": 876.74,
+      "end_sec": 877.52,
+      "text": "A real rattle.",
+      "confidence": 0.7
+    },
+    {
+      "start_sec": 877.82,
+      "end_sec": 877.84,
+      "text": "Right.",
+      "confidence": 0.737
+    },
+    {
+      "start_sec": 878.1,
+      "end_sec": 879.32,
+      "text": "When a true thunderstorm",
+      "confidence": 0.439
+    },
+    {
+      "start_sec": 879.32,
+      "end_sec": 879.64,
+      "text": "would hit,",
+      "confidence": 0.443
+    },
+    {
+      "start_sec": 879.82,
+      "end_sec": 880.52,
+      "text": "it was deafening.",
+      "confidence": 0.948
+    },
+    {
+      "start_sec": 881.0,
+      "end_sec": 882.1,
+      "text": "It was absolutely amazing.",
+      "confidence": 0.986
+    },
+    {
+      "start_sec": 883.56,
+      "end_sec": 884.04,
+      "text": "Okay.",
+      "confidence": 0.395
+    },
+    {
+      "start_sec": 884.28,
+      "end_sec": 884.78,
+      "text": "Thank you, sir.",
+      "confidence": 0.945
+    },
+    {
+      "start_sec": 885.2,
+      "end_sec": 886.08,
+      "text": "It's 933.",
+      "confidence": 0.62
+    },
+    {
+      "start_sec": 886.3,
+      "end_sec": 886.82,
+      "text": "So as I said,",
+      "confidence": 0.751
+    },
+    {
+      "start_sec": 886.96,
+      "end_sec": 888.52,
+      "text": "I will be...",
+      "confidence": 0.888
+    },
+    {
+      "start_sec": 888.52,
+      "end_sec": 889.12,
+      "text": "You will be here",
+      "confidence": 0.591
+    },
+    {
+      "start_sec": 889.12,
+      "end_sec": 889.74,
+      "text": "and let's understand",
+      "confidence": 0.591
+    },
+    {
+      "start_sec": 889.74,
+      "end_sec": 890.36,
+      "text": "the procedure",
+      "confidence": 0.995
+    },
+    {
+      "start_sec": 890.36,
+      "end_sec": 891.3,
+      "text": "and I will be sending",
+      "confidence": 0.888
+    },
+    {
+      "start_sec": 891.3,
+      "end_sec": 891.78,
+      "text": "you a notice",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 891.78,
+      "end_sec": 892.72,
+      "text": "and bringing you back again.",
+      "confidence": 0.964
+    },
+    {
+      "start_sec": 892.86,
+      "end_sec": 893.1,
+      "text": "Okay.",
+      "confidence": 0.942
+    },
+    {
+      "start_sec": 893.66,
+      "end_sec": 894.06,
+      "text": "Okay.",
+      "confidence": 0.913
+    },
+    {
+      "start_sec": 895.38,
+      "end_sec": 895.86,
+      "text": "Okay.",
+      "confidence": 0.454
+    },
+    {
+      "start_sec": 896.18,
+      "end_sec": 897.42,
+      "text": "It's now 933",
+      "confidence": 0.954
+    },
+    {
+      "start_sec": 900.3,
+      "end_sec": 901.26,
+      "text": "and Sergeant...",
+      "confidence": 0.546
+    },
+    {
+      "start_sec": 901.26,
+      "end_sec": 901.72,
+      "text": "Edwards.",
+      "confidence": 0.684
+    },
+    {
+      "start_sec": 903.18,
+      "end_sec": 903.9,
+      "text": "It's Edwards.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 904.12,
+      "end_sec": 905.02,
+      "text": "Edwards and...",
+      "confidence": 0.774
+    },
+    {
+      "start_sec": 905.02,
+      "end_sec": 906.44,
+      "text": "Inspector Evans",
+      "confidence": 0.67
+    },
+    {
+      "start_sec": 906.44,
+      "end_sec": 907.32,
+      "text": "are leaving the room.",
+      "confidence": 0.913
+    }
+  ],
+  "silence_map": [],
+  "original_duration_sec": 915.409,
+  "processed_duration_sec": 915.409,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "medium",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 1624.0
+  }
+}
