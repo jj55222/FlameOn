@@ -1077,36 +1077,38 @@ def search_exa(names, jurisdiction):
 # ──────────────────────────────────────────────────────────────
 
 # Hand-curated portal URLs from calibration data jurisdictions
+# Verified portal URLs from calibration data jurisdictions (April 2026)
+# Only includes pages known to have direct document/video links
 PORTAL_REGISTRY = {
-    "Jacksonville": [
-        "https://www.jaxsheriff.org/transparency.aspx",
-    ],
     "Phoenix": [
-        "https://www.phoenix.gov/police/resources-information/officer-involved-shooting-information",
+        "https://www.phoenix.gov/police/transparency",            # Critical Incident Briefing videos w/ BWC
+        "https://www.phoenix.gov/police/oisinfo",                 # OIS data/statistics
     ],
-    "Colorado Springs": [
-        "https://coloradosprings.gov/police-department/page/officer-involved-shooting-data",
-    ],
-    "Mesa": [
-        "https://www.mesaaz.gov/residents/police/transparency",
-    ],
-    "Miami": [
-        "https://www.miamidade.gov/global/police/body-worn-cameras.page",
+    "San Francisco": [
+        "https://www.sf.gov/resource/2021/records-released-officer-involved-shooting-case-files",  # SB 1421 OIS files
     ],
     "Knoxville": [
-        "https://www.knoxvilletn.gov/government/city_departments_offices/police_department",
+        "https://knoxvilletnpolice.gov/video-library/",           # Critical incident videos
     ],
-    "Portland": [
-        "https://www.portland.gov/police/open-data",
+    "Mesa": [
+        "https://www.mesaaz.gov/Public-Safety/Mesa-Police/Community/Transparency-In-Policing/Community-Briefings",  # Incident briefing videos
     ],
-    "Seattle": [
-        "https://www.seattle.gov/police/information-and-data",
+    "Colorado Springs": [
+        "https://coloradosprings.gov/police-department/page/cases-interest",  # Downloadable case reports
+        "https://coloradosprings.gov/cspd-body-worn-camera-technology",       # BWC program info
     ],
-    "Aurora": [
-        "https://www.auroragov.org/residents/public_safety/police/transparency",
+    "Miami": [
+        "https://miamisao.com/media/",                            # SA media + OIS section
+        "https://miamisao.com/media/press-releases/",             # Press releases
     ],
-    "Tulsa": [
-        "https://www.tulsapolice.org/content/data-information.aspx",
+    "Palm Beach": [
+        "https://sa15.org/news-alert/",                           # State Attorney case alerts
+    ],
+    "Fort Lauderdale": [
+        "https://www.sheriff.org/PIO/BSONews/Pages/default.aspx", # BSO news releases
+    ],
+    "Maricopa": [
+        "https://maricopacountyattorney.org/403/Newsroom",        # MCAO press releases
     ],
 }
 
