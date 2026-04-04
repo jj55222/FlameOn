@@ -1382,5 +1382,101 @@
   "credits_used": 1,
   "results_found": 0,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:49:56.998680",
+  "api": "firecrawl",
+  "query": "https://www.phoenix.gov/police/transparency",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:02.518715",
+  "api": "firecrawl",
+  "query": "https://www.phoenix.gov/police/oisinfo",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:12.091628",
+  "api": "firecrawl",
+  "query": "https://www.sf.gov/resource/2021/records-released-officer-involved-shooting-case-files",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:22.781695",
+  "api": "firecrawl",
+  "query": "https://knoxvilletnpolice.gov/video-library/",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:38.570502",
+  "api": "firecrawl",
+  "query": "https://www.mesaaz.gov/Public-Safety/Mesa-Police/Community/Transparency-In-Policing/Community-Briefi",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:45.395535",
+  "api": "firecrawl",
+  "query": "https://coloradosprings.gov/police-department/page/cases-interest",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:50:52.457466",
+  "api": "firecrawl",
+  "query": "https://coloradosprings.gov/cspd-body-worn-camera-technology",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:51:00.854716",
+  "api": "firecrawl",
+  "query": "https://miamisao.com/media/",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:51:08.234019",
+  "api": "firecrawl",
+  "query": "https://miamisao.com/media/press-releases/",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:51:21.128133",
+  "api": "firecrawl",
+  "query": "https://sa15.org/news-alert/",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:51:27.167960",
+  "api": "firecrawl",
+  "query": "https://www.sheriff.org/PIO/BSONews/Pages/default.aspx",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T19:51:35.469758",
+  "api": "firecrawl",
+  "query": "https://maricopacountyattorney.org/403/Newsroom",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
  }
 ]
