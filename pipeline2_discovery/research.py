@@ -411,6 +411,28 @@ def search_courtlistener(names, jurisdiction):
                     "description": description, "api": "courtlistener",
                 })
 
+        # Oral arguments — court audio recordings (maps to court_footage evidence)
+        for r in query_courtlistener_oral_args(query):
+            case_name = r.get("caseName", "") or r.get("case_name", "")
+            oa_url = r.get("absolute_url", "")
+            if oa_url and not oa_url.startswith("http"):
+                oa_url = f"https://www.courtlistener.com{oa_url}"
+            if not oa_url or oa_url in seen_urls:
+                continue
+            case_lower = case_name.lower()
+            relevance = 0.0
+            if n["clean_primary"].lower() in case_lower:
+                relevance = 0.85
+            elif n["last_name"].lower() in case_lower:
+                relevance = 0.7
+            if relevance >= 0.5:
+                seen_urls.add(oa_url)
+                sources.append({
+                    "url": oa_url, "type": "court_footage",
+                    "relevance_score": relevance,
+                    "description": case_name, "api": "courtlistener",
+                })
+
     return sources
 
 
