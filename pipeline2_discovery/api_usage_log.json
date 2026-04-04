@@ -1478,5 +1478,45 @@
   "credits_used": 1,
   "results_found": 1,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:12:45.929262",
+  "api": "firecrawl_extract",
+  "query": "Letecia Stauch @ https://coloradosprings.gov/police-department/page/cases-interest",
+  "credits_used": 21,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:13:02.163302",
+  "api": "firecrawl_extract",
+  "query": "Joshua Carrier @ https://coloradosprings.gov/police-department/page/cases-interest",
+  "credits_used": 21,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:13:17.575555",
+  "api": "firecrawl_extract",
+  "query": "William James McElroy Jr. @ https://www.phoenix.gov/police/transparency",
+  "credits_used": 21,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:13:30.182302",
+  "api": "firecrawl_extract",
+  "query": "Manuel Marin @ https://miamisao.com/media/press-releases/",
+  "credits_used": 21,
+  "results_found": 0,
+  "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-04T20:13:42.583393",
+  "api": "firecrawl_extract",
+  "query": "Christa Gail Pike @ https://knoxvilletnpolice.gov/video-library/",
+  "credits_used": 21,
+  "results_found": 0,
+  "cost_usd": 0.0
  }
 ]
