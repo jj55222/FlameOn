@@ -1,24 +1,26 @@
 # FlameOn Pipeline 1 — Winner Video URLs
-# 30 videos: 15 Dr Insanity + 15 Explore With Us
+# 30 videos: 15 Dr Insanity Crime + 15 Explore With Us
 #
-# DR INSANITY — bodycam + interrogation documentary style
+# DR INSANITY CRIME — bodycam + interrogation documentary style
+# Channel: https://www.youtube.com/@DrInsanityCrime
 https://www.youtube.com/watch?v=t6h8Uae2Q_E
 https://www.youtube.com/watch?v=Vn2Wqccg05w
-https://www.youtube.com/watch?v=fuw2eQynYzo
-https://www.youtube.com/watch?v=CF1jUulbh98
-https://www.youtube.com/watch?v=FpsNfrkwC_c
-https://www.youtube.com/watch?v=lyCBPKiSOIQ
-https://www.youtube.com/watch?v=bVGJpVbp9tE
+https://www.youtube.com/watch?v=s6CXNbzKlks
+https://www.youtube.com/watch?v=QHAYwcCeKms
+https://www.youtube.com/watch?v=_Vusd3fkJKU
+https://www.youtube.com/watch?v=HEa9vzq4g9E
+https://www.youtube.com/watch?v=C9JrHmj16pQ
 https://www.youtube.com/watch?v=8PyJNey15gU
-https://www.youtube.com/watch?v=ERnwhw5VFCg
-https://www.youtube.com/watch?v=A23EctG7Kg8
-https://www.youtube.com/watch?v=gSdASEOnItY
-https://www.youtube.com/watch?v=H3G8fwIU9v4
-https://www.youtube.com/watch?v=06qi89GfjaE
-https://www.youtube.com/watch?v=Yg7XL-B9wMU
-https://www.youtube.com/watch?v=Lx-aUBgwhM0
+https://www.youtube.com/watch?v=bVGJpVbp9tE
+https://www.youtube.com/watch?v=DZm5Rm7QNKU
+https://www.youtube.com/watch?v=n15-6gt7dCw
+https://www.youtube.com/watch?v=Hd3LWuNUtQg
+https://www.youtube.com/watch?v=g2YemY3Wxq4
+https://www.youtube.com/watch?v=aqf8SV6StI8
+https://www.youtube.com/watch?v=Iq08Ov6uiS0
 #
 # EXPLORE WITH US — long-form true crime documentaries
+# Channel: https://www.youtube.com/@ExploreWithUs
 https://www.youtube.com/watch?v=6Ghe55PHc58
 https://www.youtube.com/watch?v=cgCYon_kKno
 https://www.youtube.com/watch?v=JBRHS5vErpg
