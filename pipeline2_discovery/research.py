@@ -121,6 +121,99 @@ def _update_quota_from_response(state, resp):
     return state
 
 # ──────────────────────────────────────────────────────────────
+# Exa quota — monthly credit tracking (free tier: 1K/month)
+# ──────────────────────────────────────────────────────────────
+EXA_MONTHLY_LIMIT = int(os.environ.get("EXA_MONTHLY_LIMIT", "1000"))
+EXA_MAX_PER_CASE = 3
+EXA_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "exa_quota.json")
+
+def _load_exa_quota():
+    month_key = datetime.utcnow().strftime("%Y-%m")
+    default = {"month_key": month_key, "calls_this_month": 0}
+    try:
+        with open(EXA_QUOTA_FILE, "r") as f:
+            data = json.load(f)
+        if data.get("month_key") != month_key:
+            data = default
+        return data
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+
+def _save_exa_quota(state):
+    try:
+        with open(EXA_QUOTA_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception:
+        pass
+
+# ──────────────────────────────────────────────────────────────
+# Firecrawl quota — LIFETIME credit tracking (500 total, NEVER resets)
+# ──────────────────────────────────────────────────────────────
+FIRECRAWL_LIFETIME_LIMIT = int(os.environ.get("FIRECRAWL_LIFETIME_LIMIT", "500"))
+FIRECRAWL_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "firecrawl_quota.json")
+PORTALS_CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "portals_cache.json")
+
+def _load_firecrawl_quota():
+    default = {"lifetime_credits_used": 0, "pages_scraped": 0}
+    try:
+        with open(FIRECRAWL_QUOTA_FILE, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+
+def _save_firecrawl_quota(state):
+    try:
+        with open(FIRECRAWL_QUOTA_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception:
+        pass
+
+# ──────────────────────────────────────────────────────────────
+# Usage logging — append-only log for cost estimation
+# ──────────────────────────────────────────────────────────────
+API_USAGE_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "api_usage_log.json")
+
+def _log_api_usage(api, query, credits_used, results_found, cost_usd=0.0):
+    """Append a usage entry to the log file for cost estimation."""
+    entry = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "api": api,
+        "query": query[:100],
+        "credits_used": credits_used,
+        "results_found": results_found,
+        "cost_usd": cost_usd,
+    }
+    try:
+        try:
+            with open(API_USAGE_LOG_FILE, "r") as f:
+                log = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            log = []
+        log.append(entry)
+        with open(API_USAGE_LOG_FILE, "w") as f:
+            json.dump(log, f, indent=1)
+    except Exception:
+        pass
+
+def get_usage_summary():
+    """Return a summary of API usage from the log."""
+    try:
+        with open(API_USAGE_LOG_FILE, "r") as f:
+            log = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+    summary = {}
+    for entry in log:
+        api = entry.get("api", "unknown")
+        if api not in summary:
+            summary[api] = {"calls": 0, "credits": 0, "cost_usd": 0.0, "results": 0}
+        summary[api]["calls"] += 1
+        summary[api]["credits"] += entry.get("credits_used", 0)
+        summary[api]["cost_usd"] += entry.get("cost_usd", 0)
+        summary[api]["results"] += entry.get("results_found", 0)
+    return summary
+
+# ──────────────────────────────────────────────────────────────
 # Budget caps — prevent runaway API spending
 # ──────────────────────────────────────────────────────────────
 # YouTube: 10,000 free units/day. Each search = 100 units.
