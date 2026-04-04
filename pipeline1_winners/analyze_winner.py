@@ -105,20 +105,19 @@ def fetch_transcript(video_id):
         return None
 
     try:
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
-        # Prefer manual captions, fall back to auto-generated
-        try:
-            transcript = transcript_list.find_manually_created_transcript(["en"])
-        except Exception:
-            transcript = transcript_list.find_generated_transcript(["en"])
-        segments = transcript.fetch()
+        api = YouTubeTranscriptApi()
+        result = api.fetch(video_id)
         return [
             {
-                "start_sec": round(s.start, 2),
-                "end_sec": round(s.start + s.duration, 2),
-                "text": s.text,
+                "start_sec": round(s.get("start", s.start if hasattr(s, "start") else 0), 2),
+                "end_sec": round(
+                    (s.get("start", s.start if hasattr(s, "start") else 0))
+                    + (s.get("duration", s.duration if hasattr(s, "duration") else 0)),
+                    2,
+                ),
+                "text": s.get("text", s.text if hasattr(s, "text") else ""),
             }
-            for s in segments
+            for s in result
         ]
     except Exception as e:
         print(f"[ERROR] Failed to fetch transcript for {video_id}: {e}")
