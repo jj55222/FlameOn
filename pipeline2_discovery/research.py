@@ -152,6 +152,40 @@ def _save_exa_quota(state):
 FIRECRAWL_LIFETIME_LIMIT = int(os.environ.get("FIRECRAWL_LIFETIME_LIMIT", "500"))
 FIRECRAWL_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "firecrawl_quota.json")
 PORTALS_CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "portals_cache.json")
+FOIA_DOCS_CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "foia_docs_cache.json")
+
+# ──────────────────────────────────────────────────────────────
+# FOIA Portal Registry (NextRequest-based, publicly browsable)
+# These portals expose a /documents endpoint with a full searchable
+# index of already-released responsive documents. No FOIA filing
+# required — someone already did the work.
+# ──────────────────────────────────────────────────────────────
+FOIA_PORTAL_REGISTRY = {
+    "San Francisco DPA": {
+        "platform": "nextrequest",
+        "base_url": "https://sfdpa.nextrequest.com",
+        "documents_index": "https://sfdpa.nextrequest.com/documents",
+        "description": "SF Department of Police Accountability — SB1421 police misconduct records, officer interview MP3s, BWC footage",
+        "jurisdictions": ["San Francisco"],
+        "high_signal": True,  # All records are police misconduct — every doc is relevant
+    },
+    "Los Angeles City": {
+        "platform": "nextrequest",
+        "base_url": "https://lacity.nextrequest.com",
+        "documents_index": "https://lacity.nextrequest.com/documents",
+        "description": "LA City (includes LAPD) — 57K+ public records including case files with video",
+        "jurisdictions": ["Los Angeles"],
+        "high_signal": False,  # Mixed content — need filter by department
+    },
+    "San Francisco citywide": {
+        "platform": "nextrequest",
+        "base_url": "https://sanfrancisco.nextrequest.com",
+        "documents_index": "https://sanfrancisco.nextrequest.com/documents",
+        "description": "SF citywide (includes SFPD) — 550K+ public records",
+        "jurisdictions": ["San Francisco"],
+        "high_signal": False,
+    },
+}
 
 def _load_firecrawl_quota():
     default = {"lifetime_credits_used": 0, "pages_scraped": 0}
