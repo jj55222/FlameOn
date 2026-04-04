@@ -82,5 +82,14 @@
     "cases_found": 0,
     "elapsed_sec": 50.4,
     "credits_used": 21
+  },
+  {
+    "timestamp": "2026-04-04T20:30:08.041656",
+    "mode": "discover",
+    "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+    "portal_url": "https://coloradosprings.gov/police-department/page/cases-interest",
+    "cases_found": 15,
+    "elapsed_sec": 44.2,
+    "credits_used": 97
   }
 ]
