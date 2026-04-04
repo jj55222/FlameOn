@@ -1158,21 +1158,27 @@ def build_portal_cache(force=False):
             if not result:
                 continue
 
-            # Extract links from the scraped content
+            # Extract links from the scraped content (handles both dict and Document object)
             links = []
-            if isinstance(result, dict):
-                # Try to get links from result
+            md_content = ""
+            if hasattr(result, 'markdown'):
+                md_content = result.markdown or ""
+            elif isinstance(result, dict):
                 md_content = result.get("markdown", "") or ""
-                links_list = result.get("links", []) or []
-                # From explicit links array
-                for link in links_list:
-                    if isinstance(link, str):
-                        links.append(link)
-                    elif isinstance(link, dict):
-                        links.append(link.get("url", ""))
-                # Also extract from markdown content
-                md_links = re.findall(r'https?://[^\s\)\"\'>\]]+', md_content)
-                links.extend(md_links)
+            if hasattr(result, 'links'):
+                raw_links = result.links or []
+            elif isinstance(result, dict):
+                raw_links = result.get("links", []) or []
+            else:
+                raw_links = []
+            for link in raw_links:
+                if isinstance(link, str):
+                    links.append(link)
+                elif isinstance(link, dict):
+                    links.append(link.get("url", ""))
+            # Also extract URLs from markdown content
+            md_links = re.findall(r'https?://[^\s\)\"\'>\]]+', md_content)
+            links.extend(md_links)
 
             # Dedup and filter
             seen = set()
