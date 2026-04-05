@@ -615,11 +615,11 @@ def process_audio(
         normalize_loudness(compressed_wav, normalized_wav, loudness_target)
 
         # Step 7: transcribe
-        print(f"\n  [7/8] Transcribing with Whisper {whisper_model}...")
+        print(f"\n  [7/8] Transcribing via backend={backend} model={whisper_model}...")
         t_whisper = time.time()
-        segments_trimmed, info = transcribe(normalized_wav, whisper_model)
+        segments_trimmed, info = transcribe(normalized_wav, whisper_model, backend=backend)
         print(f"    Got {len(segments_trimmed)} segments in {time.time()-t_whisper:.1f}s")
-        print(f"    Language: {info.language} (probability: {info.language_probability:.2f})")
+        print(f"    Language: {info.language}, backend: {info.backend}, model: {info.model}")
 
         # Step 8: remap timestamps to ORIGINAL timeline
         print("\n  [8/8] Remapping timestamps (trimmed → original)...")
