@@ -146,11 +146,21 @@ def render_pass1(merged_transcript: dict, transcript_text: str) -> tuple:
         f"  S{s['source_idx']}: {s['source_url'][:80]} ({s['evidence_type']}, {s['duration_sec']:.0f}s)"
         for s in sources
     )
+    segment_count = len(merged_transcript.get("segments", []))
+    # Scale extraction target to transcript length so Gemini isn't over-conservative.
+    # Rough guidance: ~1 moment per 50 segments, ~1 timeline event per 20 segments.
+    target_moments_low = max(8, min(25, round(segment_count / 70)))
+    target_moments_high = max(target_moments_low + 4, min(45, round(segment_count / 35)))
+    target_timeline = max(15, min(80, round(segment_count / 20)))
     user = PASS1_USER_TEMPLATE.format(
         case_id=merged_transcript["case_id"],
         total_sec=merged_transcript["total_duration_sec"],
         total_min=merged_transcript["total_duration_sec"] / 60,
         source_count=len(sources),
+        segment_count=segment_count,
+        target_moments_low=target_moments_low,
+        target_moments_high=target_moments_high,
+        target_timeline=target_timeline,
         source_list=source_list,
         transcript_text=transcript_text,
         moment_types_list=", ".join(VALID_MOMENT_TYPES),
