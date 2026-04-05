@@ -362,16 +362,25 @@ def normalize_loudness(wav_path, output_path, target_lufs=DEFAULT_LOUDNESS_TARGE
 # 7. Transcription (faster-whisper)
 # ──────────────────────────────────────────────────────────────
 
-def transcribe(wav_path, model_name=DEFAULT_WHISPER_MODEL):
+class TranscribeInfo:
+    """Common info object returned by all backends."""
+    def __init__(self, language="en", language_probability=1.0, backend="local", model=""):
+        self.language = language
+        self.language_probability = language_probability
+        self.backend = backend
+        self.model = model
+
+
+def transcribe_local(wav_path, model_name=DEFAULT_WHISPER_MODEL):
     """
     Transcribe with faster-whisper on CPU (int8). Returns list of segments
     with start/end/text/confidence on the TRIMMED timeline.
     """
     from faster_whisper import WhisperModel
-    print(f"  [whisper] Loading model: {model_name} (int8 on CPU)...")
+    print(f"  [whisper-local] Loading model: {model_name} (int8 on CPU)...")
     model = WhisperModel(model_name, device="cpu", compute_type="int8")
 
-    print(f"  [whisper] Transcribing...")
+    print(f"  [whisper-local] Transcribing...")
     segments, info = model.transcribe(
         wav_path,
         language="en",
@@ -383,7 +392,6 @@ def transcribe(wav_path, model_name=DEFAULT_WHISPER_MODEL):
 
     results = []
     for seg in segments:
-        # Average word-level confidence
         words = getattr(seg, "words", None) or []
         if words:
             confs = [getattr(w, "probability", None) for w in words]
@@ -398,7 +406,133 @@ def transcribe(wav_path, model_name=DEFAULT_WHISPER_MODEL):
             "confidence": round(confidence, 3) if confidence is not None else None,
         })
 
-    return results, info
+    out_info = TranscribeInfo(
+        language=info.language,
+        language_probability=info.language_probability,
+        backend="local",
+        model=model_name,
+    )
+    return results, out_info
+
+
+def transcribe_groq(wav_path, model_name=GROQ_DEFAULT_MODEL):
+    """
+    Transcribe via Groq Whisper API. Returns segments with TRIMMED-timeline
+    timestamps matching the local backend format.
+
+    Uses OpenAI-compatible /audio/transcriptions endpoint. Groq has a 25 MB
+    per-request limit — larger files get auto-compressed to MP3 first.
+    """
+    if not GROQ_API_KEY:
+        raise RuntimeError(
+            "GROQ_API_KEY not set. Add it to pipeline3_audio/.env or export it."
+        )
+
+    # Compress to MP3 if the WAV is over the Groq upload limit
+    size_mb = os.path.getsize(wav_path) / 1024 / 1024
+    upload_path = wav_path
+    temp_mp3 = None
+    if size_mb > GROQ_MAX_FILE_MB:
+        print(f"  [groq] Input is {size_mb:.1f} MB — compressing to MP3 for upload (max {GROQ_MAX_FILE_MB} MB)...")
+        temp_mp3 = wav_path.rsplit(".", 1)[0] + "_groq.mp3"
+        # 64kbps mono mp3: very compact, still high enough quality for Whisper
+        cmd = [FFMPEG, "-y", "-i", wav_path, "-ar", str(TARGET_SAMPLE_RATE),
+               "-ac", "1", "-b:a", "64k", temp_mp3]
+        subprocess.run(cmd, capture_output=True, check=True)
+        upload_path = temp_mp3
+        size_mb = os.path.getsize(upload_path) / 1024 / 1024
+        print(f"  [groq] Compressed to {size_mb:.1f} MB")
+
+    print(f"  [groq] Uploading {size_mb:.1f} MB to {model_name}...")
+    t_upload = time.time()
+
+    try:
+        # Use OpenAI SDK pointed at Groq — simplest + most robust
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise RuntimeError("openai SDK not installed. Run: pip install openai")
+
+        client = OpenAI(api_key=GROQ_API_KEY, base_url=GROQ_BASE_URL)
+
+        with open(upload_path, "rb") as f:
+            # Groq supports OpenAI's response_format=verbose_json which returns segments
+            # with timestamps. Whisper's 30-sec window segments are what we want.
+            response = client.audio.transcriptions.create(
+                model=model_name,
+                file=(os.path.basename(upload_path), f, "audio/mpeg"),
+                response_format="verbose_json",
+                language="en",
+                # Groq-specific param: timestamp_granularities=["segment", "word"]
+                # Not all models support word-level. We stick with segment-level.
+                timestamp_granularities=["segment"],
+                temperature=0.0,
+            )
+
+        elapsed = time.time() - t_upload
+        print(f"  [groq] API call completed in {elapsed:.1f}s")
+
+        # Groq returns a Transcription object with .segments, .language, .duration
+        segments = getattr(response, "segments", None) or []
+        if not segments:
+            print("  [groq] WARN: No segments in response, falling back to plain text")
+            # Degenerate fallback: single segment with all text
+            text = getattr(response, "text", "") or ""
+            results = [{
+                "start_sec": 0.0,
+                "end_sec": round(getattr(response, "duration", 0), 3),
+                "text": text.strip(),
+                "confidence": None,
+            }]
+        else:
+            results = []
+            for seg in segments:
+                # Groq segment can be dict-like or object
+                def g(k, default=None):
+                    if isinstance(seg, dict):
+                        return seg.get(k, default)
+                    return getattr(seg, k, default)
+
+                # avg_logprob is on -inf..0 scale; convert to 0..1 confidence
+                avg_lp = g("avg_logprob")
+                if avg_lp is not None:
+                    import math
+                    confidence = round(math.exp(avg_lp), 3)
+                else:
+                    confidence = None
+
+                results.append({
+                    "start_sec": round(g("start", 0), 3),
+                    "end_sec": round(g("end", 0), 3),
+                    "text": (g("text", "") or "").strip(),
+                    "confidence": confidence,
+                })
+
+        language = getattr(response, "language", "en")
+        out_info = TranscribeInfo(
+            language=language,
+            language_probability=1.0,  # Groq doesn't return probability
+            backend="groq",
+            model=model_name,
+        )
+        return results, out_info
+
+    finally:
+        if temp_mp3 and os.path.exists(temp_mp3):
+            os.remove(temp_mp3)
+
+
+def transcribe(wav_path, model_name=DEFAULT_WHISPER_MODEL, backend=DEFAULT_BACKEND):
+    """Dispatch to the requested backend."""
+    if backend == "groq":
+        # If user passed a local-whisper model name, swap to Groq default
+        if model_name in ("tiny", "base", "small", "medium", "large-v3"):
+            model_name = GROQ_DEFAULT_MODEL
+        return transcribe_groq(wav_path, model_name)
+    elif backend == "local":
+        return transcribe_local(wav_path, model_name)
+    else:
+        raise ValueError(f"Unknown backend: {backend}. Use 'local' or 'groq'.")
 
 
 # ──────────────────────────────────────────────────────────────
