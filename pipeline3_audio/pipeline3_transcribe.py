@@ -433,15 +433,38 @@ def transcribe_groq(wav_path, model_name=GROQ_DEFAULT_MODEL):
     upload_path = wav_path
     temp_mp3 = None
     if size_mb > GROQ_MAX_FILE_MB:
-        print(f"  [groq] Input is {size_mb:.1f} MB — compressing to MP3 for upload (max {GROQ_MAX_FILE_MB} MB)...")
+        # Calculate bitrate dynamically to fit within upload limit with headroom
+        # Target 22 MB (3 MB headroom for MP3 overhead) = 22 * 1024 * 8 kbits / duration_sec
+        # Get duration from ffprobe
+        probe_cmd = [FFPROBE, "-v", "error", "-show_entries", "format=duration",
+                     "-of", "default=noprint_wrappers=1:nokey=1", wav_path]
+        probe_result = subprocess.run(probe_cmd, capture_output=True, text=True, check=True)
+        duration_sec = float(probe_result.stdout.strip())
+
+        target_mb = GROQ_MAX_FILE_MB - 3  # 3 MB headroom
+        target_bitrate_kbps = int((target_mb * 1024 * 8) / duration_sec)
+        # Clamp: Whisper works well at 32 kbps minimum for speech; no need above 96 kbps for mono voice
+        target_bitrate_kbps = max(32, min(96, target_bitrate_kbps))
+
+        print(f"  [groq] Input is {size_mb:.1f} MB ({duration_sec/60:.1f} min) — "
+              f"compressing to MP3 @ {target_bitrate_kbps} kbps (max {GROQ_MAX_FILE_MB} MB)...")
+
         temp_mp3 = wav_path.rsplit(".", 1)[0] + "_groq.mp3"
-        # 64kbps mono mp3: very compact, still high enough quality for Whisper
         cmd = [FFMPEG, "-y", "-i", wav_path, "-ar", str(TARGET_SAMPLE_RATE),
-               "-ac", "1", "-b:a", "64k", temp_mp3]
+               "-ac", "1", "-b:a", f"{target_bitrate_kbps}k", temp_mp3]
         subprocess.run(cmd, capture_output=True, check=True)
         upload_path = temp_mp3
         size_mb = os.path.getsize(upload_path) / 1024 / 1024
         print(f"  [groq] Compressed to {size_mb:.1f} MB")
+
+        # Safety check: if still over limit, re-encode at minimum bitrate
+        if size_mb > GROQ_MAX_FILE_MB:
+            print(f"  [groq] Still over limit, forcing 24 kbps...")
+            cmd = [FFMPEG, "-y", "-i", wav_path, "-ar", str(TARGET_SAMPLE_RATE),
+                   "-ac", "1", "-b:a", "24k", temp_mp3]
+            subprocess.run(cmd, capture_output=True, check=True)
+            size_mb = os.path.getsize(upload_path) / 1024 / 1024
+            print(f"  [groq] Re-compressed to {size_mb:.1f} MB")
 
     print(f"  [groq] Uploading {size_mb:.1f} MB to {model_name}...")
     t_upload = time.time()
