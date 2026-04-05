@@ -684,8 +684,13 @@ def main():
     parser.add_argument("--output", default="transcripts", help="Output directory")
     parser.add_argument("--evidence-type", default="bodycam",
                         choices=["bodycam", "interrogation", "court_video", "911_audio", "dash_cam", "news_report", "other"])
-    parser.add_argument("--whisper-model", default=DEFAULT_WHISPER_MODEL,
-                        choices=["tiny", "base", "small", "medium", "large-v3"])
+    parser.add_argument("--backend", default=DEFAULT_BACKEND,
+                        choices=["local", "groq"],
+                        help="Transcription backend: 'local' (free CPU, slow) or 'groq' (cheap API, fast)")
+    parser.add_argument("--whisper-model", default=None,
+                        help="Model name. Local: tiny|base|small|medium|large-v3. "
+                             "Groq: whisper-large-v3|whisper-large-v3-turbo (default). "
+                             "If omitted, uses backend default.")
     parser.add_argument("--silence-threshold", type=float, default=DEFAULT_SILENCE_THRESHOLD_DB,
                         help="Silence detection threshold in dB (default: -40)")
     parser.add_argument("--min-silence", type=float, default=DEFAULT_MIN_SILENCE_SEC,
