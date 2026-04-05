@@ -68,6 +68,11 @@ def moment_density_score(
 
     moment_weights = weights.get("moment_weights", {})
     runtime_min = runtime_sec / 60.0
+    # Clamp the runtime divisor to [20, 50] min. Prevents tiny clips from
+    # gaming the ratio and stops long interrogations from being over-penalized
+    # for length — what matters is that 20-40 strong moments exist, not
+    # whether they're in 30min or 120min.
+    effective_runtime_min = max(20.0, min(50.0, runtime_min))
     weighted_sum = 0.0
 
     for m in moments:
@@ -77,7 +82,7 @@ def moment_density_score(
         imp_mult = IMPORTANCE_MULTIPLIER.get(importance, 0.4)
         weighted_sum += type_weight * imp_mult
 
-    density = weighted_sum / runtime_min
+    density = weighted_sum / effective_runtime_min
     # Normalize: reference_density → 60. Cap at 100.
     score = (density / reference_density) * 60
     return max(0.0, min(100.0, round(score, 2)))
