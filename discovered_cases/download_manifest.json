@@ -1,0 +1,46 @@
+{
+  "sfdpa": [
+    [
+      "0204-18_iad_reininger",
+      "C:\\FlameON\\FlameOn-main\\pipeline3_audio\\foia_cache\\sfdpa_0204-18_iad_reininger.mp3",
+      "downloaded"
+    ],
+    [
+      "0045-19_dpa_hernandez",
+      "C:\\FlameON\\FlameOn-main\\pipeline3_audio\\foia_cache\\sfdpa_0045-19_dpa_hernandez.mp3",
+      "downloaded"
+    ],
+    [
+      "0045-19_dpa_pai",
+      "C:\\FlameON\\FlameOn-main\\pipeline3_audio\\foia_cache\\sfdpa_0045-19_dpa_pai.mp3",
+      "downloaded"
+    ],
+    [
+      "44321-20_dpa_rabsatt",
+      "C:\\FlameON\\FlameOn-main\\pipeline3_audio\\foia_cache\\sfdpa_44321-20_dpa_rabsatt.mp3",
+      "downloaded"
+    ],
+    [
+      "0210-14_dpa_dejesus",
+      "C:\\FlameON\\FlameOn-main\\pipeline3_audio\\foia_cache\\sfdpa_0210-14_dpa_dejesus.mp3",
+      "downloaded"
+    ]
+  ],
+  "sds": [
+    [
+      "sds_vista",
+      null,
+      "error_DownloadError"
+    ],
+    [
+      "sds_el_cajon",
+      null,
+      "error_DownloadError"
+    ],
+    [
+      "sds_otay_mesa",
+      null,
+      "error_DownloadError"
+    ]
+  ]
+}
