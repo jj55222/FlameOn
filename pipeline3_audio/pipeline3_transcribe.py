@@ -48,6 +48,20 @@ DEFAULT_MIN_SILENCE_SEC = 2.0
 DEFAULT_LOUDNESS_TARGET = -16.0
 TARGET_SAMPLE_RATE = 16000   # Whisper's native rate
 
+# Backend options:
+#   "local"  — faster-whisper on CPU (free but slow, ~1x realtime)
+#   "groq"   — Groq Whisper API (~$0.01/8min, ~200x realtime)
+DEFAULT_BACKEND = "local"
+
+# Groq API configuration
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
+# whisper-large-v3-turbo is fastest + most accurate on Groq (~$0.04/hr audio)
+# whisper-large-v3 is the full model (~$0.111/hr audio, slightly more accurate)
+GROQ_DEFAULT_MODEL = "whisper-large-v3-turbo"
+# Groq has a 25 MB upload limit per request as of 2026-04
+GROQ_MAX_FILE_MB = 25
+
 FFMPEG = shutil.which("ffmpeg") or "ffmpeg"
 FFPROBE = shutil.which("ffprobe") or "ffprobe"
 

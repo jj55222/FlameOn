@@ -38,7 +38,8 @@
       "Bash(PYTHONIOENCODING=utf-8 python tmp_hunt.py)",
       "Bash(grep -oE 'data-[a-z-]+=\"\"\"\"[^\"\"\"\"]{0,80}\"\"\"\"' \"C:/FlameON/FlameOn-main/pipeline2_discovery/request_22-7.html\")",
       "Bash(python -c \"import research; print\\(''OK''\\); print\\(''probe_nextrequest_batch:'', callable\\(research.probe_nextrequest_batch\\)\\); print\\(''download_nextrequest_batch:'', callable\\(research.download_nextrequest_batch\\)\\)\")",
-      "Bash(PYTHONIOENCODING=utf-8 python tmp_la_hunt.py)"
+      "Bash(PYTHONIOENCODING=utf-8 python tmp_la_hunt.py)",
+      "Bash(tasklist.exe)"
     ]
   }
 }
