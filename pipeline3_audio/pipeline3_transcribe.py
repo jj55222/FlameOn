@@ -546,6 +546,7 @@ def process_audio(
     source_evidence_type="bodycam",
     source_url=None,
     whisper_model=DEFAULT_WHISPER_MODEL,
+    backend=DEFAULT_BACKEND,
     silence_threshold_db=DEFAULT_SILENCE_THRESHOLD_DB,
     min_silence_sec=DEFAULT_MIN_SILENCE_SEC,
     loudness_target=DEFAULT_LOUDNESS_TARGET,
