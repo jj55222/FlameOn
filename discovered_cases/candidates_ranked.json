@@ -1,0 +1,933 @@
+[
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0386-17",
+    "folder": "0386-17",
+    "n_docs": 11,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 2590,
+    "titles": [
+      "0386-17 DPA Interview - Wilrolan Ravelo 2464 - Redacted.mp3",
+      "Production - 0386-17 Part B.pdf",
+      "0386-17 DPA Interview - Brent Bradford 4199 - Redacted.mp3",
+      "0386-17 Homicide Interview - Michael Hara 1805 - Redacted...",
+      "0386-17 DPA Interview - Nicholas Suslow 886 - Redacted.mp3",
+      "Production - 0386-17 Part A.pdf",
+      "0386-17 Homicide Interview - Nicholas Suslow 886 - Redact...",
+      "0386-17 DPA Interview - Brent Bradford 4199 addendum - Re...",
+      "0386-17 Homicide Interview - Wilrolan Ravelo 2464 - Redac...",
+      "Production - 0386-17 Part C.pdf",
+      "0386-17 DPA Interview - Jason Robinson 1850 - Redacted.mp3"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11518427",
+      "https://sfdpa.nextrequest.com/documents/11058153",
+      "https://sfdpa.nextrequest.com/documents/11518421",
+      "https://sfdpa.nextrequest.com/documents/11518429",
+      "https://sfdpa.nextrequest.com/documents/11518426",
+      "https://sfdpa.nextrequest.com/documents/11058152",
+      "https://sfdpa.nextrequest.com/documents/11518430",
+      "https://sfdpa.nextrequest.com/documents/11518422",
+      "https://sfdpa.nextrequest.com/documents/11518431",
+      "https://sfdpa.nextrequest.com/documents/11518432",
+      "https://sfdpa.nextrequest.com/documents/11518423"
+    ],
+    "keyword_score": 8,
+    "artifact_bonus": 5,
+    "score": 16,
+    "hits": [
+      "+5 homicide",
+      "+4 interview",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0204-18",
+    "folder": "0204-18",
+    "n_docs": 6,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 1247,
+    "titles": [
+      "0204-18 Homicide Interview - Nicholas Hillard 1339 - Reda...",
+      "0204-18 Homicide Interview - Graham Pfiefer 2424 - Redact...",
+      "Production - 0204-18 Part B.pdf",
+      "Production - 0204-18 Part A.pdf",
+      "0204-18 IAD Interview - Deniz Akmese 1339 - Redacted (Par...",
+      "0204-18 IAD Interview - William Reininger 374 - Redacted.mp3"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11728596",
+      "https://sfdpa.nextrequest.com/documents/11728595",
+      "https://sfdpa.nextrequest.com/documents/11728598",
+      "https://sfdpa.nextrequest.com/documents/11728597",
+      "https://sfdpa.nextrequest.com/documents/11728589",
+      "https://sfdpa.nextrequest.com/documents/11728593"
+    ],
+    "keyword_score": 8,
+    "artifact_bonus": 5,
+    "score": 16,
+    "hits": [
+      "+5 homicide",
+      "+4 interview",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0141-19",
+    "folder": "0141-19",
+    "n_docs": 4,
+    "has_mp3": false,
+    "has_video": true,
+    "has_pdf": true,
+    "total_downloads": 1048,
+    "titles": [
+      "Ex. M-1, Officer Christina Galande #1660 BWC Footage Post...",
+      "Production - 0141-19.pdf",
+      "Ex. M-9a, Interview of Lieutenant Mark Im #2096, Part 1, ...",
+      "Ex. M-9b, Interview of Lieutenant Mark Im #2096, Part 2, ..."
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13224767",
+      "https://sfdpa.nextrequest.com/documents/13224762",
+      "https://sfdpa.nextrequest.com/documents/13224763",
+      "https://sfdpa.nextrequest.com/documents/13224764"
+    ],
+    "keyword_score": 7,
+    "artifact_bonus": 4,
+    "score": 14,
+    "hits": [
+      "+4 interview",
+      "+3 bwc"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0040-15",
+    "folder": "0040-15",
+    "n_docs": 1,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": false,
+    "total_downloads": 327,
+    "titles": [
+      "0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/15007293"
+    ],
+    "keyword_score": 4,
+    "artifact_bonus": 4,
+    "score": 11,
+    "hits": [
+      "+4 interview"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0045-19",
+    "folder": "0045-19",
+    "n_docs": 7,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 1826,
+    "titles": [
+      "0045-19 Amended Commission Ex. J-2, Officer Jacqueline He...",
+      "0045-19 Amended Commission Ex. J-1, Officer Brett Hernand...",
+      "Production - 0045-19 Part A.pdf",
+      "0045-19 DPA Interview - Brett Hernandez 307 - Redacted.mp3",
+      "0045-19 DPA Interview - John Pai 4169 - Redacted.mp3",
+      "Production - 0045-19 Part B.pdf",
+      "0045-19 DPA Interview - Jacqueline Hernandez 4039 - Redac..."
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/12715412",
+      "https://sfdpa.nextrequest.com/documents/12715411",
+      "https://sfdpa.nextrequest.com/documents/12536056",
+      "https://sfdpa.nextrequest.com/documents/12536055",
+      "https://sfdpa.nextrequest.com/documents/12536054",
+      "https://sfdpa.nextrequest.com/documents/12715413",
+      "https://sfdpa.nextrequest.com/documents/12536053"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 5,
+    "score": 11,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_44321-20",
+    "folder": "44321-20",
+    "n_docs": 2,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 473,
+    "titles": [
+      "Production - 44321-20.pdf",
+      "44321-20 DPA Interview - Bernard Rabsatt 829 - Redacted.mp3"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11775382",
+      "https://sfdpa.nextrequest.com/documents/11775381"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 5,
+    "score": 11,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0210-14",
+    "folder": "0210-14",
+    "n_docs": 1,
+    "has_mp3": true,
+    "has_video": false,
+    "has_pdf": false,
+    "total_downloads": 275,
+    "titles": [
+      "0210-14 DPA Interview - Sgt Luis DeJesus #247 - Redacted.mp3"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13468341"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 4,
+    "score": 9,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0409-18",
+    "folder": "0409-18",
+    "n_docs": 2,
+    "has_mp3": false,
+    "has_video": true,
+    "has_pdf": true,
+    "total_downloads": 524,
+    "titles": [
+      "Production - 0409-18.pdf",
+      "0409-18 BWC of Officer Sherry #1046 - Redacted.mp4"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13420843",
+      "https://sfdpa.nextrequest.com/documents/13420842"
+    ],
+    "keyword_score": 2,
+    "artifact_bonus": 4,
+    "score": 9,
+    "hits": [
+      "+3 bwc",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_RI46uwNZKA0",
+    "title": "Shooting Investigations - San Diego County Sheriff’s Department",
+    "url": "https://www.youtube.com/watch?v=RI46uwNZKA0",
+    "duration_sec": 90,
+    "duration_min": 1.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 5,
+    "artifact_bonus": 3,
+    "score": 8,
+    "hits": [
+      "+5 shooting"
+    ]
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_avmvvSIxytw",
+    "title": "Critical Incident Video Release - Vista",
+    "url": "https://www.youtube.com/watch?v=avmvvSIxytw",
+    "duration_sec": 667,
+    "duration_min": 11.1,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_WErLDy2sSzc",
+    "title": "Critical Incident Video - El Cajon",
+    "url": "https://www.youtube.com/watch?v=WErLDy2sSzc",
+    "duration_sec": 599,
+    "duration_min": 10.0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_NWjzQ-UIGJY",
+    "title": "Critical Incident Video - Otay Mesa",
+    "url": "https://www.youtube.com/watch?v=NWjzQ-UIGJY",
+    "duration_sec": 410,
+    "duration_min": 6.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_n7G4cfh1fEY",
+    "title": "Critical Incident Video - Little Italy",
+    "url": "https://www.youtube.com/watch?v=n7G4cfh1fEY",
+    "duration_sec": 640,
+    "duration_min": 10.7,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_oud-H3Mrr-A",
+    "title": "Critical Incident Video - Unincorporated El Cajon",
+    "url": "https://www.youtube.com/watch?v=oud-H3Mrr-A",
+    "duration_sec": 409,
+    "duration_min": 6.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_smlLIX0j_2s",
+    "title": "Critical Incident Video - Fallbrook",
+    "url": "https://www.youtube.com/watch?v=smlLIX0j_2s",
+    "duration_sec": 330,
+    "duration_min": 5.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_tnrl1Epvq84",
+    "title": "Critical Incident Video - Spring Valley",
+    "url": "https://www.youtube.com/watch?v=tnrl1Epvq84",
+    "duration_sec": 377,
+    "duration_min": 6.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_vdMjrjDl7_M",
+    "title": "Critical Incident Video - Vista",
+    "url": "https://www.youtube.com/watch?v=vdMjrjDl7_M",
+    "duration_sec": 480,
+    "duration_min": 8.0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_jmvGmglhBew",
+    "title": "Critical Incident Video - Bonsall",
+    "url": "https://www.youtube.com/watch?v=jmvGmglhBew",
+    "duration_sec": 676,
+    "duration_min": 11.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_san_diego_sheriff",
+    "case_id": "san_diego_sheriff_Mm9K83KiGNs",
+    "title": "Critical Incident Video - National City",
+    "url": "https://www.youtube.com/watch?v=Mm9K83KiGNs",
+    "duration_sec": 813,
+    "duration_min": 13.6,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_I9s-BG6f40g",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: January 28, 2026 (26-02155)",
+    "url": "https://www.youtube.com/watch?v=I9s-BG6f40g",
+    "duration_sec": 429,
+    "duration_min": 7.2,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_sNSYltfuY6c",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: January 1, 2026 (26-00037)",
+    "url": "https://www.youtube.com/watch?v=sNSYltfuY6c",
+    "duration_sec": 557,
+    "duration_min": 9.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_Z6kFAkqINa8",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 25-02190",
+    "url": "https://www.youtube.com/watch?v=Z6kFAkqINa8",
+    "duration_sec": 724,
+    "duration_min": 12.1,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_v8-8N5yXZA4",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 25-00054",
+    "url": "https://www.youtube.com/watch?v=v8-8N5yXZA4",
+    "duration_sec": 729,
+    "duration_min": 12.2,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_Gt3F1NtqSJc",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 24-26142",
+    "url": "https://www.youtube.com/watch?v=Gt3F1NtqSJc",
+    "duration_sec": 820,
+    "duration_min": 13.7,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_dkS-udbkRsE",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 23-23045",
+    "url": "https://www.youtube.com/watch?v=dkS-udbkRsE",
+    "duration_sec": 830,
+    "duration_min": 13.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_euRGbN3bj2U",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 23-07962",
+    "url": "https://www.youtube.com/watch?v=euRGbN3bj2U",
+    "duration_sec": 679,
+    "duration_min": 11.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_ZYgasf6LCQI",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 22-51943",
+    "url": "https://www.youtube.com/watch?v=ZYgasf6LCQI",
+    "duration_sec": 620,
+    "duration_min": 10.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_IBScsJiko5A",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 22-07244",
+    "url": "https://www.youtube.com/watch?v=IBScsJiko5A",
+    "duration_sec": 792,
+    "duration_min": 13.2,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_uEsUz5FEa4c",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 21-11882",
+    "url": "https://www.youtube.com/watch?v=uEsUz5FEa4c",
+    "duration_sec": 489,
+    "duration_min": 8.2,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_ONCDyZg5d_c",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 20-05364",
+    "url": "https://www.youtube.com/watch?v=ONCDyZg5d_c",
+    "duration_sec": 709,
+    "duration_min": 11.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_eYbuh5RBgao",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 20-01709",
+    "url": "https://www.youtube.com/watch?v=eYbuh5RBgao",
+    "duration_sec": 725,
+    "duration_min": 12.1,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_KEWi27MxRQw",
+    "title": "Reconnecting - Vallejo Police Department",
+    "url": "https://www.youtube.com/watch?v=KEWi27MxRQw",
+    "duration_sec": 489,
+    "duration_min": 8.2,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0658-08",
+    "folder": "0658-08",
+    "n_docs": 2,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 562,
+    "titles": [
+      "Production - 0658-08 Part A.pdf",
+      "Production - 0658-08 Part B.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/6456491",
+      "https://sfdpa.nextrequest.com/documents/6557916"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 4,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0716-06",
+    "folder": "0716-06",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 252,
+    "titles": [
+      "Production - 0716-06.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/8582666"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_44328-20",
+    "folder": "44328-20",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 241,
+    "titles": [
+      "Production - 00044328-20.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/7663651"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0777-07",
+    "folder": "0777-07",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 266,
+    "titles": [
+      "Production - 0777-07 Part A.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/7805545"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0756-10",
+    "folder": "0756-10",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 243,
+    "titles": [
+      "Production - 0756-10.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/7519114"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_45130-20",
+    "folder": "45130-20",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 237,
+    "titles": [
+      "Production - 45130-20 Part B.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11550562"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0686-10",
+    "folder": "0686-10",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 272,
+    "titles": [
+      "Production - 0686-10.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/7420080"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0074-15",
+    "folder": "0074-15",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 286,
+    "titles": [
+      "Production - 0074-15.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/6633178"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "sfdpa",
+    "case_id": "sfdpa_0081-19",
+    "folder": "0081-19",
+    "n_docs": 1,
+    "has_mp3": false,
+    "has_video": false,
+    "has_pdf": true,
+    "total_downloads": 227,
+    "titles": [
+      "Production - 0081-19 Part A.pdf"
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/6633228"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 1,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_santa_ana",
+    "case_id": "santa_ana_7xROSqoS5yo",
+    "title": "SAPD CRITICAL INCIDENT COMMUNITY BRIEFING: 25-01082",
+    "url": "https://www.youtube.com/watch?v=7xROSqoS5yo",
+    "duration_sec": 1241,
+    "duration_min": 20.7,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_5KmGhusRcak",
+    "title": "Neighborhood Watch",
+    "url": "https://www.youtube.com/watch?v=5KmGhusRcak",
+    "duration_sec": 31,
+    "duration_min": 0.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_fU2Zom-Scmo",
+    "title": "School Resource Officer",
+    "url": "https://www.youtube.com/watch?v=fU2Zom-Scmo",
+    "duration_sec": 31,
+    "duration_min": 0.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_EZgNs1vDxtI",
+    "title": "Midnight Basketball",
+    "url": "https://www.youtube.com/watch?v=EZgNs1vDxtI",
+    "duration_sec": 31,
+    "duration_min": 0.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_4UW3ncpYpss",
+    "title": "BELLYFLOPS with the COPS!",
+    "url": "https://www.youtube.com/watch?v=4UW3ncpYpss",
+    "duration_sec": 80,
+    "duration_min": 1.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_nncmtf-Ci8M",
+    "title": "19-14146",
+    "url": "https://www.youtube.com/watch?v=nncmtf-Ci8M",
+    "duration_sec": 80,
+    "duration_min": 1.3,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_FSaHhW_NDf4",
+    "title": "Vallejo Police Department Recruitment 2025 (Version A)",
+    "url": "https://www.youtube.com/watch?v=FSaHhW_NDf4",
+    "duration_sec": 31,
+    "duration_min": 0.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_oU2dtAMwJHM",
+    "title": "Vallejo Police Department Recruitment 2025 (Version B)",
+    "url": "https://www.youtube.com/watch?v=oU2dtAMwJHM",
+    "duration_sec": 31,
+    "duration_min": 0.5,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_rG6Ja7W6LCk",
+    "title": "Vallejo National Night Out 2025 | Vallejo Police Department",
+    "url": "https://www.youtube.com/watch?v=rG6Ja7W6LCk",
+    "duration_sec": 47,
+    "duration_min": 0.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  },
+  {
+    "source": "cib_vallejo",
+    "case_id": "vallejo_1L2E5j3HqLA",
+    "title": "National Night Out 2025 | Vallejo Police Department",
+    "url": "https://www.youtube.com/watch?v=1L2E5j3HqLA",
+    "duration_sec": 47,
+    "duration_min": 0.8,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "keyword_score": 0,
+    "artifact_bonus": 3,
+    "score": 3,
+    "hits": []
+  }
+]

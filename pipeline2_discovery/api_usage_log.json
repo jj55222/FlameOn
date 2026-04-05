@@ -1590,5 +1590,13 @@
   "credits_used": 1,
   "results_found": 1,
   "cost_usd": 0.0
+ },
+ {
+  "timestamp": "2026-04-05T13:16:32.020285",
+  "api": "firecrawl",
+  "query": "https://sfdpa.nextrequest.com/documents/8404556",
+  "credits_used": 1,
+  "results_found": 1,
+  "cost_usd": 0.0
  }
 ]
