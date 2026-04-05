@@ -645,7 +645,8 @@ def process_audio(
             "processed_duration_sec": trimmed_duration,
             "speaker_count": None,  # Diarization not implemented in v1
             "processing_metadata": {
-                "whisper_model": whisper_model,
+                "whisper_model": info.model if hasattr(info, "model") and info.model else whisper_model,
+                "whisper_backend": getattr(info, "backend", backend),
                 "silence_threshold_db": silence_threshold_db,
                 "min_silence_duration_sec": min_silence_sec,
                 "compression_applied": True,
