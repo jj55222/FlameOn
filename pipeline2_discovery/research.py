@@ -1807,6 +1807,122 @@ def build_foia_cache(portal_keys=None, max_pages_per_portal=1, force=False):
     return all_docs
 
 
+def probe_nextrequest_batch(anchor_doc_url, range_before=30, range_after=30):
+    """
+    Probe sequential document IDs near an anchor to find sibling files from
+    the same upload batch. NextRequest assigns sequential IDs within a batch,
+    so files uploaded together (same timeline entry) are adjacent.
+
+    This is the SCALABLE way to resolve complete case file manifests:
+    Firecrawl can't see the JS-rendered anchor tags on request timelines,
+    but we can take ONE known anchor (from the global /documents index) and
+    harvest every sibling file via direct HTTP GET. Zero API cost.
+
+    Args:
+        anchor_doc_url: A known /documents/NNNNN URL (with or without /download)
+        range_before: How many IDs to probe below the anchor
+        range_after: How many IDs to probe above the anchor
+
+    Returns:
+        List of {doc_id, filename, size_bytes, download_url} for every
+        responding document in the range.
+
+    Example:
+        >>> anchor = "https://sfdpa.nextrequest.com/documents/13420842"
+        >>> batch = probe_nextrequest_batch(anchor)
+        >>> # Returns all 5 files from Case 0409-18's upload batch
+    """
+    # Parse anchor ID from URL
+    m = re.search(r'/documents/(\d+)', anchor_doc_url)
+    if not m:
+        print(f"[probe] Invalid anchor URL: {anchor_doc_url}")
+        return []
+    anchor_id = int(m.group(1))
+
+    # Derive the base URL (portal subdomain)
+    base_m = re.match(r'(https?://[^/]+)', anchor_doc_url)
+    base_url = base_m.group(1) if base_m else "https://sfdpa.nextrequest.com"
+
+    print(f"[probe] Scanning IDs {anchor_id - range_before}..{anchor_id + range_after} at {base_url}")
+    found = []
+    for offset in range(-range_before, range_after + 1):
+        doc_id = anchor_id + offset
+        url = f"{base_url}/documents/{doc_id}/download"
+        try:
+            with requests.get(url, stream=True, timeout=10, allow_redirects=True,
+                              headers={"User-Agent": "Mozilla/5.0"}) as r:
+                if r.status_code != 200:
+                    continue
+                cd = r.headers.get("content-disposition", "")
+                fn_match = re.search(r'filename="([^"]+)"', cd)
+                filename = fn_match.group(1) if fn_match else ""
+                size = int(r.headers.get("content-length", 0))
+                if not filename:
+                    continue
+                ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+                if ext in ("mp3", "wav", "m4a", "aac"):
+                    file_type = "audio"
+                elif ext in ("mp4", "mov", "avi", "mkv", "webm"):
+                    file_type = "video"
+                elif ext in ("pdf", "doc", "docx"):
+                    file_type = "document"
+                else:
+                    file_type = "other"
+                found.append({
+                    "doc_id": doc_id,
+                    "filename": filename,
+                    "size_bytes": size,
+                    "file_type": file_type,
+                    "download_url": url,
+                })
+        except Exception:
+            continue
+        time.sleep(0.2)  # be polite
+
+    print(f"[probe] Found {len(found)} documents in batch")
+    return found
+
+
+def download_nextrequest_batch(anchor_doc_url, output_dir, range_before=30, range_after=30):
+    """
+    Probe + download a full NextRequest upload batch. Zero Firecrawl credits,
+    plain HTTP. Returns list of downloaded file paths.
+
+    Workflow:
+        1. probe_nextrequest_batch to find all files in range
+        2. Download each via /documents/{id}/download (S3 redirect)
+    """
+    batch = probe_nextrequest_batch(anchor_doc_url, range_before, range_after)
+    os.makedirs(output_dir, exist_ok=True)
+    downloaded = []
+
+    for rec in batch:
+        safe_name = re.sub(r'[<>:"/\\|?*#]', "_", rec["filename"])
+        out_path = os.path.join(output_dir, safe_name)
+
+        if os.path.exists(out_path):
+            print(f"  [SKIP] {rec['filename']} (already exists)")
+            downloaded.append(out_path)
+            continue
+
+        print(f"  [GET]  {rec['filename']} ({rec['size_bytes']/1024/1024:.1f} MB)...")
+        try:
+            with requests.get(rec["download_url"], stream=True, timeout=300,
+                              allow_redirects=True,
+                              headers={"User-Agent": "Mozilla/5.0"}) as r:
+                r.raise_for_status()
+                with open(out_path, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=1024 * 1024):
+                        f.write(chunk)
+            downloaded.append(out_path)
+        except Exception as e:
+            print(f"  [ERR]  {e}")
+            if os.path.exists(out_path):
+                os.remove(out_path)
+
+    return downloaded
+
+
 def search_foia_cache(query_terms=None, file_types=None, portal_keys=None, limit=50):
     """
     Search the FOIA docs cache by filename, folder, description, or file type.
