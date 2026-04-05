@@ -1,46 +1,94 @@
 """
-Fresh scrape of 22-7 with only_main_content=False to get ALL timeline entries.
-Earlier scrapes returned 3-7KB, but my very first scrape got 14KB+ with full list.
+Option C: single Firecrawl extract call on request 22-7 to get all
+filename -> document URL mappings. Costs ~21 credits but gives us
+everything in one shot.
 """
 from firecrawl import FirecrawlApp
 from dotenv import load_dotenv
 import os
-import re
 import json
+import time
 load_dotenv()
 app = FirecrawlApp(api_key=os.environ['FIRECRAWL_API_KEY'])
 
-# Use only_main_content=False + cache bust
-print('Scraping 22-7 with only_main_content=False...')
-result = app.scrape(
-    'https://sfdpa.nextrequest.com/requests/22-7',
-    formats=['markdown'],
-    only_main_content=False,
-    wait_for=5000,
-    max_age=0,
-)
-md = getattr(result, 'markdown', '') or ''
-print(f'md: {len(md)} chars')
+url = 'https://sfdpa.nextrequest.com/requests/22-7'
+print(f'Extracting files from {url}...')
+start = time.time()
 
-# Save for inspection
-with open('request_22-7_full.md', 'w', encoding='utf-8') as f:
-    f.write(md)
+schema = {
+    'type': 'object',
+    'properties': {
+        'files': {
+            'type': 'array',
+            'items': {
+                'type': 'object',
+                'properties': {
+                    'filename': {'type': 'string'},
+                    'document_url': {'type': 'string', 'description': 'The /documents/NNNN URL that clicking this file links to'},
+                    'case_folder': {'type': 'string', 'description': 'Case folder ID like 0213-18 extracted from filename'},
+                    'file_type': {'type': 'string', 'enum': ['audio', 'video', 'document', 'other']},
+                },
+            },
+        },
+    },
+}
 
-# Extract all filenames referenced
-filenames = set(re.findall(r'([\d]{3,5}-[\d]{2,4}[^\n<>]*?\.(?:mp3|mp4|mov|pdf|docx))', md, re.IGNORECASE))
-filenames |= set(re.findall(r'(Production[^\n<>]*?\.pdf)', md))
-filenames |= set(re.findall(r'([\w ]+?\.(?:mp3|mp4|mov))', md))
+try:
+    result = app.extract(
+        urls=[url],
+        prompt='''Extract every file listed in the Documents timeline of this NextRequest page.
+For each file provide:
+- filename (exact name like "0213-18 - BWC of Lt. Christopher Wilhelm #1282.mp4")
+- document_url (the href URL that clicking this filename opens, should be of the form https://sfdpa.nextrequest.com/documents/NNNNNN)
+- case_folder (extract the case ID at the start of filename, e.g., "0213-18")
+- file_type ("video" for .mp4/.mov, "audio" for .mp3/.wav, "document" for .pdf/.docx, "other" otherwise)
 
-print(f'Filenames referenced: {len(filenames)}')
-for f in sorted(filenames):
-    print(f'  {f[:80]}')
+Return ALL files visible on the page, even if 20+ files. Check the click handlers and href attributes carefully.''',
+        schema=schema,
+        timeout=120,
+    )
+    elapsed = time.time() - start
 
-# Also count [text](url) pairs for each file
-link_pattern = re.compile(r'\[([^\]]+)\]\((https://[^)]+)\)')
-links = link_pattern.findall(md)
-print(f'\nTotal markdown links: {len(links)}')
-# Filter for document links
-doc_links = [(t, u) for t, u in links if '/documents/' in u]
-print(f'Document links: {len(doc_links)}')
-for t, u in doc_links[:10]:
-    print(f'  [{t[:60]}]({u})')
+    data = result.data if hasattr(result, 'data') else {}
+    files = data.get('files', []) if isinstance(data, dict) else []
+    credits = getattr(result, 'credits_used', '?')
+
+    print(f'Elapsed: {elapsed:.1f}s, credits: {credits}')
+    print(f'Files extracted: {len(files)}')
+
+    # Check how many have valid document_urls
+    with_url = [f for f in files if f.get('document_url') and '/documents/' in f.get('document_url', '')]
+    print(f'Files WITH valid document_url: {len(with_url)}')
+
+    # Save
+    with open('gold_case_urls.json', 'w', encoding='utf-8') as f:
+        json.dump(files, f, indent=2, ensure_ascii=False)
+
+    # Group by case
+    from collections import defaultdict, Counter
+    by_case = defaultdict(list)
+    for f in files:
+        by_case[f.get('case_folder', '?')].append(f)
+
+    print()
+    print('=' * 90)
+    print('RESULTS BY CASE')
+    print('=' * 90)
+    for case, flist in sorted(by_case.items()):
+        types = Counter(f.get('file_type', '?') for f in flist)
+        with_urls = sum(1 for f in flist if f.get('document_url') and '/documents/' in f.get('document_url', ''))
+        print(f'\n── {case} — {len(flist)} files ({dict(types)}, {with_urls} with URLs) ──')
+        for f in flist:
+            has_url = '✓' if f.get('document_url') and '/documents/' in f.get('document_url', '') else '✗'
+            ft = f.get('file_type', '?')[:3]
+            print(f'  [{has_url}] [{ft}] {f.get("filename", "?")[:70]}')
+            if f.get('document_url'):
+                print(f'         {f["document_url"]}')
+
+except Exception as e:
+    print(f'EXTRACT FAILED: {e}')
+
+# Check Firecrawl quota
+with open('firecrawl_quota.json') as f:
+    q = json.load(f)
+print(f'\nFirecrawl quota now: {q}')
