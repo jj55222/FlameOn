@@ -1,110 +1,66 @@
 """
-Resolve filenames → document URLs for case 0213-18 and other gold cases.
-Strategy: scrape deep pages of /documents global index until we find all target files.
+Probe sequential doc IDs near known anchors to find gold case files.
+Known anchor: 13420842 = 0409-18 BWC of Officer Sherry.
+NextRequest assigns sequential IDs, so sibling files (same timeline batch)
+should be adjacent.
 """
-from firecrawl import FirecrawlApp
-from dotenv import load_dotenv
-import os
+import requests
 import re
 import json
 import time
-load_dotenv()
-app = FirecrawlApp(api_key=os.environ['FIRECRAWL_API_KEY'])
 
-TARGET_FILENAMES = {
-    # Case 0213-18
-    '0213-18 - BWC of Lt. Christopher Wilhelm #1282.mp4',
-    '0213-18 - DPA Interview of Officer Christopher Wilhelm #1282.mp3',
-    '0213-18 - DPA Interview of Officer Eric Robinson #2350 - Part 1.mp3',
-    '0213-18 - DPA Interview of Officer Eric Robinson #2350 - Part 2.mp3',
-    '0213-18 - DPA Interview of Sgt. Matthew Loya #352.mp3',
-    '0213-18 - Surveillance Footage.mp4',
-    'Production - 0213-18.pdf',
-    # Case 0164-18
-    '0164-18 BWC of Ofc. Christopher Prescott #1605 - Redacted.mp4',
-    '0164-18 BWC of Ofc. Frank Ocolmendy #2191 - Redacted.mp4',
-    '0164-18 DPA Interview of Ofc. Christopher Prescott #1605 - Redacted.mp3',
-    '0164-18 DPA Interview of Ofc. Frank Olcomendy #2191 - Redacted.mp3',
-    'Production - 0164-18.pdf',
-    # Case 0261-18
-    '0261-18 BWC of Ofc. Brian Burke #32 - Redacted.mp4',
-    '0261-18 BWC of Ofc. Erik Risslen #381 - Redacted.mp4',
-    '0261-18 DPA Interview of Ofc. Brian Burke #32 - Redacted.mp3',
-    '0261-18 DPA Interview of Ofc. Erik Risslen #32 - Redacted.mp3',
-    'Production - 0261-18.pdf',
-    # Case 0409-18
-    '0409-18 BWC of Officer Bradford #4199.mp4',
-    '0409-18 BWC of Officer Sherry #1046 - Redacted.mp4',
-    '0409-18 DPA Interview of Officer Sherry #1046 - Redacted.mp3',
-    '0409-18 DPA Interview of Sergeant Bradford #4199 - Redacted.mp3',
-    'Production - 0409-18.pdf',
-}
+# Known anchors (from foia_docs_cache.json)
+# 0409-18 Sherry BWC = 13420842
+# 0409-18 Production PDF = 13420843
+# Case 0213-18 upload dates are April 29 2022 (Ex.M-1 Galande doc 13224767)
+# Case 0164-18 files uploaded June 8 2023
+# Case 0261-18 files uploaded March 21 2023
 
-# Fuzzy match helper: strip " - Redacted", "Part X", extensions for comparison
-def normalize(s):
-    s = s.lower()
-    s = re.sub(r'\s+', ' ', s)
-    return s.strip()
-
-found = {}  # filename -> doc_url
-
-# Scrape many pages of /documents
-for page in range(1, 15):
-    url = 'https://sfdpa.nextrequest.com/documents' if page == 1 else f'https://sfdpa.nextrequest.com/documents?page={page}'
-    print(f'  page {page}...', end=' ', flush=True)
+# Strategy: probe ranges and check HEAD for files
+def check_doc(doc_id):
+    """Return (filename, size, type) or None."""
+    url = f'https://sfdpa.nextrequest.com/documents/{doc_id}/download'
     try:
-        result = app.scrape(url, formats=['html'], max_age=0)
-        html = getattr(result, 'html', '') or ''
-
-        # Match: <a href="/documents/12345">filename</a>
-        link_pattern = re.compile(r'<a[^>]*href="(/documents/\d+)"[^>]*>([^<]+)</a>', re.IGNORECASE)
-        matches = link_pattern.findall(html)
-        print(f'{len(matches)} links', end=' ')
-
-        new_hits = 0
-        for doc_path, raw_name in matches:
-            # Decode HTML entities and normalize
-            clean_name = raw_name.strip()
-            clean_name = clean_name.replace('&#39;', "'").replace('&amp;', '&').replace('&quot;', '"')
-
-            # Check exact or fuzzy match against targets
-            for target in list(TARGET_FILENAMES - set(found.keys())):
-                if normalize(target) == normalize(clean_name):
-                    found[target] = 'https://sfdpa.nextrequest.com' + doc_path
-                    new_hits += 1
-                    break
-        print(f'({new_hits} new target hits)')
-        time.sleep(1)
-        if len(found) == len(TARGET_FILENAMES):
-            break
+        r = requests.head(url, timeout=15, allow_redirects=True,
+                          headers={'User-Agent': 'Mozilla/5.0'})
+        if r.status_code != 200:
+            return None
+        cd = r.headers.get('content-disposition', '')
+        fn_match = re.search(r'filename="([^"]+)"', cd)
+        filename = fn_match.group(1) if fn_match else ''
+        size = int(r.headers.get('content-length', 0))
+        ct = r.headers.get('content-type', '')
+        return filename, size, ct
     except Exception as e:
-        print(f'ERR: {e}')
-        break
+        return None
 
-print(f'\n{len(found)}/{len(TARGET_FILENAMES)} targets resolved')
+# Probe a range around known 0164-18 anchor (13420842 for 0409-18 Sherry)
+# Case 0164-18 was uploaded June 2023 so should be near 14M-14.5M range
+# Case 0261-18 was uploaded March 2023 so should be near 13.5M-14M
+# Case 0213-18 uploaded April 2022 so should be around 12.5-13.3M
+
+print('Probing doc ID ranges near known anchors...')
 print()
-print('=' * 90)
-print('RESOLVED FILES (by case)')
-print('=' * 90)
-from collections import defaultdict
-by_case = defaultdict(list)
-for fn, url in found.items():
-    m = re.match(r'(?:Production - )?(\d{3,5}-\d{2,4})', fn)
-    case = m.group(1) if m else '?'
-    by_case[case].append((fn, url))
 
-for case in sorted(by_case.keys()):
-    files = by_case[case]
-    print(f'\n── CASE {case} ──')
-    for fn, url in sorted(files):
-        print(f'  {fn[:70]}')
-        print(f'    {url}/download')
+# Start with range around 0409-18 and walk outward
+anchor = 13420842  # 0409-18 Sherry
+results = {}
 
-# Save for later use
-with open('gold_case_urls.json', 'w', encoding='utf-8') as f:
-    json.dump({fn: url + '/download' for fn, url in found.items()}, f, indent=2)
-print(f'\nSaved to gold_case_urls.json')
+# Walk backwards and forwards 20 IDs
+for offset in list(range(-30, 31)):
+    did = anchor + offset
+    info = check_doc(did)
+    if info:
+        fn, size, ct = info
+        sz_mb = size / 1024 / 1024
+        if any(ext in fn.lower() for ext in ['.mp3', '.mp4', '.mov', '.pdf']):
+            print(f'  [{did}]  {sz_mb:>6.1f} MB  {fn[:70]}')
+            results[did] = fn
+    time.sleep(0.2)
 
-print('\nMISSING:')
-for t in sorted(TARGET_FILENAMES - set(found.keys())):
-    print(f'  {t}')
+print()
+print(f'Found {len(results)} documents in range {anchor-30}..{anchor+30}')
+
+# Save
+with open('doc_id_probe.json', 'w') as f:
+    json.dump({str(k): v for k, v in results.items()}, f, indent=2)
