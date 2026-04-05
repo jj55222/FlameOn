@@ -730,13 +730,20 @@ def main():
         evidence_type = args.evidence_type
         source_url = args.url if args.url else None
 
+    # Resolve default model based on backend
+    if args.whisper_model is None:
+        whisper_model = GROQ_DEFAULT_MODEL if args.backend == "groq" else DEFAULT_WHISPER_MODEL
+    else:
+        whisper_model = args.whisper_model
+
     process_audio(
         source=source,
         case_id=case_id,
         output_dir=args.output,
         source_evidence_type=evidence_type,
         source_url=source_url,
-        whisper_model=args.whisper_model,
+        whisper_model=whisper_model,
+        backend=args.backend,
         silence_threshold_db=args.silence_threshold,
         min_silence_sec=args.min_silence,
         loudness_target=args.loudness_target,
