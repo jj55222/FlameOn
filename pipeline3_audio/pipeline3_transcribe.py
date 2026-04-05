@@ -568,7 +568,7 @@ def process_audio(
         print(f"    4. Trim silence + build offset map")
         print(f"    5. Dynamic range compression")
         print(f"    6. Loudness normalize to {loudness_target} LUFS")
-        print(f"    7. Transcribe with Whisper {whisper_model}")
+        print(f"    7. Transcribe via backend={backend} model={whisper_model}")
         print(f"    8. Remap timestamps trimmed→original")
         print(f"    9. Save JSON to {output_dir}/{case_id}_transcript.json")
         return None
