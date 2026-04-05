@@ -56,6 +56,8 @@ You do NOT judge narrative value — a separate model does that. Your output mus
 
 PASS1_USER_TEMPLATE = """CASE ID: {case_id}
 TOTAL RUNTIME: {total_sec:.0f}s ({total_min:.1f} min) across {source_count} source(s).
+TRANSCRIPT SEGMENT COUNT: {segment_count}
+EXTRACTION TARGET: {target_moments_low}-{target_moments_high} moments, {target_timeline} timeline events
 
 SOURCES:
 {source_list}

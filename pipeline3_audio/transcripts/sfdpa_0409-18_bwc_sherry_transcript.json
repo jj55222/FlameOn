@@ -1,5 +1,5 @@
 {
-  "case_id": "sfdpa_0409-18_bwc_sherry",
+  "case_id": "sfdpa_0409-18",
   "source_evidence_type": "bodycam",
   "source_url": "https://sfdpa.nextrequest.com/requests/22-7",
   "transcript": [
@@ -70,5 +70,6 @@
     "compression_applied": true,
     "loudness_target_lufs": -16.0,
     "total_processing_sec": 11.7
-  }
+  },
+  "source_label": "sfdpa_0409-18_bwc_sherry"
 }

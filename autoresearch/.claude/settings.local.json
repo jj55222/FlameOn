@@ -40,7 +40,8 @@
       "Bash(python -c \"import research; print\\(''OK''\\); print\\(''probe_nextrequest_batch:'', callable\\(research.probe_nextrequest_batch\\)\\); print\\(''download_nextrequest_batch:'', callable\\(research.download_nextrequest_batch\\)\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python tmp_la_hunt.py)",
       "Bash(tasklist.exe)",
-      "Bash(PYTHONIOENCODING=utf-8 python tmp_batch_0409.py)"
+      "Bash(PYTHONIOENCODING=utf-8 python tmp_batch_0409.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python pipeline4_score.py --transcript ../pipeline3_audio/transcripts/mesa_mckellips_2022_01_02_groq_transcript.json --weights ../pipeline1_winners/scoring_weights.json --dry-run)"
     ]
   }
 }

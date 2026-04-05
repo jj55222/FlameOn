@@ -1,5 +1,5 @@
 {
-  "case_id": "sfdpa_0409-18_interview_bradford",
+  "case_id": "sfdpa_0409-18",
   "source_evidence_type": "interrogation",
   "source_url": "case_0409-18/0409-18 DPA Interview of Sergeant Bradford _4199 - Redacted.mp3",
   "transcript": [
@@ -4656,5 +4656,6 @@
     "compression_applied": true,
     "loudness_target_lufs": -16.0,
     "total_processing_sec": 395.6
-  }
+  },
+  "source_label": "sfdpa_0409-18_interview_bradford"
 }
