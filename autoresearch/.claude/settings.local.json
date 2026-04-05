@@ -35,7 +35,8 @@
       "WebSearch",
       "Bash(PYTHONIOENCODING=utf-8 python evaluate.py --case 1 --verbose)",
       "Bash(python -c \"import json; d=json.load\\(open\\(''C:/Users/Diner/.claude/settings.json''\\)\\); hooks=d[''hooks''][''PostToolUse''][0][''hooks'']; print\\(f''PostToolUse hooks: {len\\(hooks\\)}''\\); [print\\(f''  - {h[\"\"command\"\"][:60]}...''\\) for h in hooks]\")",
-      "Bash(PYTHONIOENCODING=utf-8 python tmp_hunt.py)"
+      "Bash(PYTHONIOENCODING=utf-8 python tmp_hunt.py)",
+      "Bash(grep -oE 'data-[a-z-]+=\"\"\"\"[^\"\"\"\"]{0,80}\"\"\"\"' \"C:/FlameON/FlameOn-main/pipeline2_discovery/request_22-7.html\")"
     ]
   }
 }
