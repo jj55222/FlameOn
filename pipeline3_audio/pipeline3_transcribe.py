@@ -34,6 +34,13 @@ import tempfile
 import time
 from pathlib import Path
 
+# Load pipeline-local .env (for GROQ_API_KEY etc.)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent / ".env")
+except ImportError:
+    pass
+
 # Register static-ffmpeg binaries on PATH so ffmpeg/ffprobe are callable
 try:
     import static_ffmpeg
