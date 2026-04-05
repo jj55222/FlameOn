@@ -1,0 +1,74 @@
+{
+  "case_id": "sfdpa_0409-18_bwc_sherry",
+  "source_evidence_type": "bodycam",
+  "source_url": "https://sfdpa.nextrequest.com/requests/22-7",
+  "transcript": [
+    {
+      "start_sec": 59.165,
+      "end_sec": 104.36,
+      "text": "and",
+      "confidence": 0.028
+    },
+    {
+      "start_sec": 104.36,
+      "end_sec": 109.36,
+      "text": "hey",
+      "confidence": 0.028
+    },
+    {
+      "start_sec": 109.36,
+      "end_sec": 114.028,
+      "text": "coup",
+      "confidence": 0.028
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 59.165,
+      "duration_sec": 59.165
+    },
+    {
+      "original_start_sec": 59.429,
+      "original_end_sec": 64.247,
+      "duration_sec": 4.818
+    },
+    {
+      "original_start_sec": 64.987,
+      "original_end_sec": 68.229,
+      "duration_sec": 3.242
+    },
+    {
+      "original_start_sec": 68.23,
+      "original_end_sec": 70.481,
+      "duration_sec": 2.251
+    },
+    {
+      "original_start_sec": 72.494,
+      "original_end_sec": 93.141,
+      "duration_sec": 20.647
+    },
+    {
+      "original_start_sec": 93.956,
+      "original_end_sec": 96.193,
+      "duration_sec": 2.237
+    },
+    {
+      "original_start_sec": 114.028,
+      "original_end_sec": 120.128,
+      "duration_sec": 6.1
+    }
+  ],
+  "original_duration_sec": 120.128,
+  "processed_duration_sec": 21.668,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "whisper-large-v3-turbo",
+    "whisper_backend": "groq",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 11.7
+  }
+}

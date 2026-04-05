@@ -1,0 +1,54 @@
+{
+  "case_id": "sfdpa_0409-18_bwc_bradford",
+  "source_evidence_type": "bodycam",
+  "source_url": "https://sfdpa.nextrequest.com/requests/22-7",
+  "transcript": [
+    {
+      "start_sec": 64.708,
+      "end_sec": 110.291,
+      "text": "Get out of here! Get out of here! Get out of here! Get out of here! Get out of here!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 110.291,
+      "end_sec": 116.162,
+      "text": "Get out of here! Get back! Get back!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 116.162,
+      "end_sec": 120.122,
+      "text": "Flock support down here, south end. Patrol south one.",
+      "confidence": 0.647
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 64.708,
+      "duration_sec": 64.708
+    },
+    {
+      "original_start_sec": 64.731,
+      "original_end_sec": 95.314,
+      "duration_sec": 30.583
+    },
+    {
+      "original_start_sec": 110.688,
+      "original_end_sec": 113.219,
+      "duration_sec": 2.53
+    }
+  ],
+  "original_duration_sec": 120.128,
+  "processed_duration_sec": 22.306,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "whisper-large-v3-turbo",
+    "whisper_backend": "groq",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 3.5
+  }
+}

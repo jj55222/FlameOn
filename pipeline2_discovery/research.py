@@ -203,6 +203,495 @@ def _save_firecrawl_quota(state):
         pass
 
 # ──────────────────────────────────────────────────────────────
+# Jurisdiction Portal Registry
+# ──────────────────────────────────────────────────────────────
+# Comprehensive registry of 30+ law enforcement agencies with their:
+#   - public records / FOIA portal URLs (GovQA, NextRequest, JustFOIA, etc.)
+#   - official YouTube channels + critical-incident playlists
+#   - portal vendor fingerprint (for generic parsing)
+#   - direct critical-incident / BWC publishing pages where available
+#
+# Use cases:
+#   1. Seeding Firecrawl with high-signal entry points per jurisdiction
+#   2. Looking up a case by jurisdiction → routing to the right intake portal
+#   3. Crawling official YouTube channels for CIB/BWC video metadata
+#   4. Modeling "no portal" agencies explicitly (Maricopa County Sheriff, LASD)
+#
+# Source: verified from official agency/city/county pages (April 2026).
+# ──────────────────────────────────────────────────────────────
+
+# Portal vendor platforms. Used for generic parsers + normalization.
+PORTAL_VENDORS = {
+    "govqa": {
+        "subdomain_pattern": r"\.govqa\.us$|\.mycusthelp\.com$",
+        "entry_path": "/WEBAPP/_rs/SupportHome.aspx",
+        "notes": "Granicus GovQA. Session tokens may be injected in URLs — normalize to SupportHome.aspx.",
+    },
+    "nextrequest": {
+        "subdomain_pattern": r"\.nextrequest\.com$",
+        "entry_path": "/",
+        "notes": "NextRequest (CivicPlus). Both intake and public archive. Has /documents and /requests endpoints.",
+    },
+    "justfoia": {
+        "subdomain_pattern": r"\.justfoia\.com$",
+        "entry_path": "/publicportal",
+        "notes": "JustFOIA public portal.",
+    },
+    "seamlessdocs": {
+        "subdomain_pattern": r"\.seamlessdocs\.com$",
+        "entry_path": "/",
+        "notes": "Form-based intake, no public archive.",
+    },
+    "accessgov": {
+        "subdomain_pattern": r"\.accessgov\.com$",
+        "entry_path": "/",
+        "notes": "AccessGov request forms. Often used for specific record types (e.g. Colorado Springs body-camera form).",
+    },
+    "dynamics365": {
+        "subdomain_pattern": r"phxpublicsafety\.phoenix\.gov$",
+        "entry_path": "/",
+        "notes": "Microsoft Dynamics 365 Customer Self-Service. Account required.",
+    },
+    "powerapps": {
+        "subdomain_pattern": r"\.powerappsportals\.us$",
+        "entry_path": "/",
+        "notes": "Microsoft Power Apps portals (e.g. LASD SB1421).",
+    },
+    "no_portal": {
+        "subdomain_pattern": None,
+        "entry_path": None,
+        "notes": "Agency uses email/fax/mail only. Requires manual submission workflow.",
+    },
+}
+
+
+# Per-agency canonical registry. Every entry:
+#   agency_key:  "{state_abbrev}.{city_slug}.{dept_slug}"  — stable lookup key
+#   state:       2-letter state code
+#   jurisdiction: list of common city/county names for fuzzy matching
+#   name:        canonical agency name
+#   portal_url:  primary records-request portal URL (None if no portal)
+#   portal_vendor: one of PORTAL_VENDORS keys
+#   yt_channel:  official YouTube channel URL (if verified)
+#   yt_cib_playlist: official critical-incident / BWC playlist URL (if verified)
+#   publishing_pages: extra URLs where agency posts BWC / case files / OIS data
+#   notes:       special handling notes
+JURISDICTION_PORTALS = {
+    # ─── CALIFORNIA — SF Bay Area ─────────────────────────────
+    "CA.san_francisco.police": {
+        "state": "CA", "name": "San Francisco Police Department",
+        "jurisdiction": ["San Francisco"],
+        "portal_url": "https://sanfranciscopd.govqa.us",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/@SFPolice",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.sanfranciscopolice.org/get-service/public-records-request"],
+        "notes": "SFPD CPRA page explicitly identifies GovQA as the records system.",
+    },
+    "CA.san_francisco.sheriff": {
+        "state": "CA", "name": "San Francisco Sheriff's Office",
+        "jurisdiction": ["San Francisco"],
+        "portal_url": "https://sfsheriff.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/@SheriffSF",
+        "yt_cib_playlist": None,
+        "publishing_pages": [],
+        "notes": "",
+    },
+    "CA.san_francisco.dpa": {
+        "state": "CA", "name": "San Francisco Department of Police Accountability",
+        "jurisdiction": ["San Francisco"],
+        "portal_url": "https://sfdpa.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/@SFDPA",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://sfdpa.nextrequest.com/documents"],
+        "notes": "SB1421 disclosures. Has public /documents archive with released BWC + officer interview MP3s.",
+    },
+    "CA.vallejo.police": {
+        "state": "CA", "name": "Vallejo Police Department",
+        "jurisdiction": ["Vallejo", "Solano County"],
+        "portal_url": "https://vallejo.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": None,
+        "yt_cib_playlist": "https://www.youtube.com/playlist?list=PLlvdQ6GkVoBPftQtHldvZFjGw3pyO-XWK",
+        "publishing_pages": ["https://vallejopd.net/public_information/news/department_videos"],
+        "notes": "PD site routes PRA requests to NextRequest. Video playlist hosted under City of Vallejo channel.",
+    },
+    "CA.solano.sheriff": {
+        "state": "CA", "name": "Solano County Sheriff's Office",
+        "jurisdiction": ["Solano County", "Fairfield", "Vallejo"],
+        "portal_url": "https://solanocountyca.govqa.us/WEBAPP/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/channel/UCEXuWriaMKG2wR6mbkkXg7g",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.solanocounty.gov/government/sheriff-coroner/sheriff-services/public-records-request"],
+        "notes": "GovQA exposes sheriff-specific BWC extraction/redaction FAQs.",
+    },
+
+    # ─── CALIFORNIA — San Diego ──────────────────────────────
+    "CA.san_diego.police": {
+        "state": "CA", "name": "San Diego Police Department",
+        "jurisdiction": ["San Diego"],
+        "portal_url": "https://sandiego.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/c/SanDiegoPoliceDepartment",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.sandiego.gov/police/data-transparency/critical-incident-videos"],
+        "notes": "AB 748 framing. Critical Incident Videos page is a structured index.",
+    },
+    "CA.san_diego.sheriff": {
+        "state": "CA", "name": "San Diego County Sheriff's Office",
+        "jurisdiction": ["San Diego County"],
+        "portal_url": "https://sdsheriff.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/channel/UCMwIXFh8iOYOWzrEWlIQwuQ",
+        "yt_cib_playlist": "https://www.youtube.com/playlist?list=PLuq7n34T9dhOxnyWD4EA13To2F-6u99VB",
+        "publishing_pages": [],
+        "notes": "Critical Incident Videos playlist is a high-value crawl target for deputy-involved shootings.",
+    },
+
+    # ─── CALIFORNIA — Orange County ──────────────────────────
+    "CA.orange.sheriff": {
+        "state": "CA", "name": "Orange County Sheriff's Department",
+        "jurisdiction": ["Orange County"],
+        "portal_url": "https://ocso.govqa.us/WEBAPP/_rs/RequestLogin.aspx?rqst=1",
+        "portal_vendor": "govqa",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.ocsheriff.gov/news/oc-sheriff-releases-critical-incident-video-5"],
+        "notes": "Publishes Critical Incident Videos for significant/deadly force incidents.",
+    },
+    "CA.anaheim.police": {
+        "state": "CA", "name": "Anaheim Police Department",
+        "jurisdiction": ["Anaheim"],
+        "portal_url": "https://cityofanaheimcapd.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/user/AnaheimPD",
+        "yt_cib_playlist": None,
+        "publishing_pages": [],
+        "notes": "Channel includes Critical Incident Community Briefing content.",
+    },
+    "CA.santa_ana.police": {
+        "state": "CA", "name": "Santa Ana Police Department",
+        "jurisdiction": ["Santa Ana"],
+        "portal_url": "https://cityofsantaanaca.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/channel/UCzivM4l35Ct9W688osllc3Q",
+        "yt_cib_playlist": "https://www.youtube.com/playlist?list=PL3ygXPldEMUXCrS98YGuQ7bQ1hDy7jouz",
+        "publishing_pages": ["https://www.santa-ana.org/use-of-force-report/"],
+        "notes": "Santa Ana has a dedicated Critical Incidents – Community Briefings playlist.",
+    },
+    "CA.irvine.police": {
+        "state": "CA", "name": "Irvine Police Department",
+        "jurisdiction": ["Irvine"],
+        "portal_url": "https://irvinequickrecords.com/",
+        "portal_vendor": "seamlessdocs",
+        "yt_channel": "https://www.youtube.com/@IrvinePolice",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://irvineca.seamlessdocs.com/"],
+        "notes": "Quick Records hub uses SeamlessDocs for the Public Safety records form.",
+    },
+
+    # ─── CALIFORNIA — LA / Long Beach ────────────────────────
+    "CA.los_angeles.police": {
+        "state": "CA", "name": "Los Angeles Police Department",
+        "jurisdiction": ["Los Angeles"],
+        "portal_url": "https://recordsrequest.lacity.org/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/@LAPDHQ",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.lapdonline.org/office-of-the-chief-of-police/professional-standards-bureau/critical-incident-videos/"],
+        "notes": "LAPD Critical Incident Videos index includes OIS with hits/no-hits, in-custody deaths, etc.",
+    },
+    "CA.los_angeles.sheriff": {
+        "state": "CA", "name": "Los Angeles County Sheriff's Department",
+        "jurisdiction": ["Los Angeles County"],
+        "portal_url": None,  # Phone submission only for general records
+        "portal_vendor": "no_portal",
+        "yt_channel": "https://www.youtube.com/@LACountySheriff",
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://lasd.org/records-faq/",
+            "https://lasdsb1421.powerappsportals.us/",  # SB1421 disclosures
+        ],
+        "notes": "General records: phone submission (Records & ID Bureau). SB1421 disclosures via PowerApps portal. Email: prarequests@lasd.org.",
+    },
+    "CA.long_beach.police": {
+        "state": "CA", "name": "Long Beach Police Department",
+        "jurisdiction": ["Long Beach"],
+        "portal_url": "https://longbeachca.govqa.us/WEBAPP/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/user/lbpdmediarelations1",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.longbeach.gov/police/about-the-lbpd/lbpd-1421748/"],
+        "notes": "Publishes SB1421/AB748/AB2761 records on dedicated page.",
+    },
+
+    # ─── WASHINGTON — Seattle / King County ──────────────────
+    "WA.seattle.police": {
+        "state": "WA", "name": "Seattle Police Department",
+        "jurisdiction": ["Seattle"],
+        "portal_url": "https://www.seattle.gov/police/information-and-data/public-disclosure-requests/records-request-center",
+        "portal_vendor": "govqa",  # spd-seattle.mycusthelp.com underneath
+        "yt_channel": "https://www.youtube.com/user/spdblotter",
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://www.seattle.gov/police/information-and-data/public-disclosure-requests/public-information-online",
+            "https://spdblotter.seattle.gov/",  # OIS video release blog
+        ],
+        "notes": "SPD Blotter publishes OIS video releases as structured blog posts.",
+    },
+    "WA.king.sheriff": {
+        "state": "WA", "name": "King County Sheriff's Office",
+        "jurisdiction": ["King County"],
+        "portal_url": "https://kingcounty.gov/en/dept/sheriff/courts-jails-legal-system/sheriff-records",
+        "portal_vendor": "no_portal",  # Contact email only, no structured portal
+        "yt_channel": "https://www.youtube.com/@kcsheriff",
+        "yt_cib_playlist": None,
+        "publishing_pages": [],
+        "notes": "Records via email contact to public disclosure unit.",
+    },
+
+    # ─── ARIZONA — Phoenix / Maricopa County ─────────────────
+    "AZ.phoenix.police": {
+        "state": "AZ", "name": "Phoenix Police Department",
+        "jurisdiction": ["Phoenix", "Maricopa County"],
+        "portal_url": "https://phxpublicsafety.phoenix.gov/public-records-request/",
+        "portal_vendor": "dynamics365",
+        "yt_channel": None,  # No confirmed official PPD-only channel
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.phoenix.gov/police/transparency"],
+        "notes": "Dynamics 365 portal requires account. Transparency hub has Critical Incident Briefings.",
+    },
+    "AZ.mesa.police": {
+        "state": "AZ", "name": "Mesa Police Department",
+        "jurisdiction": ["Mesa", "Maricopa County"],
+        "portal_url": "https://mesaazpd.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/@MesaPolice",
+        "yt_cib_playlist": "https://www.youtube.com/playlist?list=PLodB8qVlDE3b4BaBnnkuwqfuQbyFFzabU",
+        "publishing_pages": ["https://www.mesaaz.gov/Public-Safety/Mesa-Police/Community/Transparency-In-Policing/Community-Briefings"],
+        "notes": "CIB playlist is a proven high-signal source for criminal OIS cases (40+ videos verified).",
+    },
+    "AZ.maricopa.sheriff": {
+        "state": "AZ", "name": "Maricopa County Sheriff's Office",
+        "jurisdiction": ["Maricopa County"],
+        "portal_url": None,
+        "portal_vendor": "no_portal",
+        "yt_channel": "https://www.youtube.com/@MCSOAZ",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.betamcso.org/requesting-other-public-records.html"],
+        "notes": "Email/fax/mail submission only. Legal Liaison Section handles. Fee schedule includes BWC video pricing.",
+    },
+
+    # ─── COLORADO — Denver / Colorado Springs / Aurora ───────
+    "CO.aurora.police": {
+        "state": "CO", "name": "Aurora Police Department",
+        "jurisdiction": ["Aurora"],
+        "portal_url": "https://auroracolorado-police.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.auroragov.org/residents/public_safety/police/get_a_police_record"],
+        "notes": "",
+    },
+    "CO.colorado_springs.police": {
+        "state": "CO", "name": "Colorado Springs Police Department",
+        "jurisdiction": ["Colorado Springs", "El Paso County"],
+        "portal_url": "https://coloradosprings.gov/policerecords",
+        "portal_vendor": "accessgov",
+        "yt_channel": "https://www.youtube.com/@coloradospringspolice",
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://coloradosprings.gov/police-department/page/cases-interest",
+            "https://co.accessgov.com/coloradosprings/Forms/Page/policedepartment/fe121814-3a2a-4119-ad6b-33d827b86862/3f829f6b-aa2d-41e3-9400-fa74a1fa874b/1",  # BWC-specific form
+        ],
+        "notes": "Cases of Interest page lists Significant Event Briefing Videos. Dedicated BWC request form via AccessGov.",
+    },
+    "CO.el_paso.sheriff": {
+        "state": "CO", "name": "El Paso County Sheriff's Office",
+        "jurisdiction": ["El Paso County", "Colorado Springs"],
+        "portal_url": None,
+        "portal_vendor": "no_portal",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": [],
+        "notes": "Gap — not fully validated. CORA/CCJRA submission form TBD.",
+    },
+    "CO.denver.police": {
+        "state": "CO", "name": "Denver Police Department",
+        "jurisdiction": ["Denver"],
+        "portal_url": "https://www.denvergov.org/content/denvergov/en/police-department/records/request-records-online.html",
+        "portal_vendor": "no_portal",  # Online ordering but not a standard vendor
+        "yt_channel": None,  # No confirmed DPD-only channel
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Police-Department/Police-Records",
+        ],
+        "notes": "Online ordering workflow. Treat incident videos on YouTube as media-hosted unless verified.",
+    },
+
+    # ─── FLORIDA — Broward ────────────────────────────────────
+    "FL.broward.sheriff": {
+        "state": "FL", "name": "Broward Sheriff's Office",
+        "jurisdiction": ["Broward County", "Fort Lauderdale"],
+        "portal_url": "https://browardcountysheriff.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": "https://www.youtube.com/user/bsowebmaster",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.broward.org/OpenGovernment/prr/Pages/default.aspx"],
+        "notes": "County records vs sheriff BWC are separate custody. Routing logic important.",
+    },
+    "FL.fort_lauderdale.police": {
+        "state": "FL", "name": "Fort Lauderdale Police Department",
+        "jurisdiction": ["Fort Lauderdale"],
+        "portal_url": "https://fortlauderdalefl.justfoia.com/publicportal",
+        "portal_vendor": "justfoia",
+        "yt_channel": "https://www.youtube.com/channel/UCjz6Ksf6g6Mb8cuKfJQADMw",
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.flpd.gov/community-resources/public-records-request"],
+        "notes": "",
+    },
+    "FL.hollywood.police": {
+        "state": "FL", "name": "Hollywood Police Department",
+        "jurisdiction": ["Hollywood"],
+        "portal_url": "https://hollywoodfl.mycusthelp.com/WEBAPP/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",  # mycusthelp is GovQA legacy
+        "yt_channel": None,
+        "yt_cib_playlist": "https://www.youtube.com/playlist?list=PLAnooDw8OOHcAS8VXnZdYhotSMz9nsvMS",
+        "publishing_pages": [],
+        "notes": "Video presence nested under City of Hollywood channel infrastructure.",
+    },
+
+    # ─── FLORIDA — Miami-Dade ────────────────────────────────
+    "FL.miami_dade.police": {
+        "state": "FL", "name": "Miami-Dade Police Department",
+        "jurisdiction": ["Miami-Dade County", "Miami"],
+        "portal_url": "https://miamidadecountyfl.govqa.us/webapp/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://www.miamidade.gov/global/publicrecords/search.page",
+            "https://www.miamidade.gov/global/service.page?Mduid_service=ser1470774597039291",
+        ],
+        "notes": "Law-enforcement records routed via Miami-Dade Sheriff's Office Public Records System.",
+    },
+    "FL.miami.police": {
+        "state": "FL", "name": "Miami Police Department",
+        "jurisdiction": ["Miami"],
+        "portal_url": "https://miamifl.mycusthelp.com/WEBAPP/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://miami.nextrequest.com/",  # City-wide NextRequest
+            "https://www.miami-police.org/Forms/Req_acc_incReport.aspx",
+        ],
+        "notes": "Two portals: mycusthelp for non-report records, NextRequest for city-wide. Incident reports via Req_acc form.",
+    },
+    "FL.hialeah.police": {
+        "state": "FL", "name": "Hialeah Police Department",
+        "jurisdiction": ["Hialeah"],
+        "portal_url": "https://cityofhialeahfl.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.hialeahfl.gov/1115/Public-Records-Request"],
+        "notes": "",
+    },
+
+    # ─── FLORIDA — Orange County / Orlando ───────────────────
+    "FL.orange.sheriff": {
+        "state": "FL", "name": "Orange County Sheriff's Office (FL)",
+        "jurisdiction": ["Orange County FL", "Orlando"],
+        "portal_url": "https://ocso-fl.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": "https://www.youtube.com/user/OrangeCoSheriffFL",
+        "yt_cib_playlist": None,
+        "publishing_pages": [],
+        "notes": "",
+    },
+    "FL.orlando.police": {
+        "state": "FL", "name": "Orlando Police Department",
+        "jurisdiction": ["Orlando"],
+        "portal_url": "https://orlando.nextrequest.com/",
+        "portal_vendor": "nextrequest",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": ["https://www.orlando.gov/Public-Safety/OPD/OPD-Records-Open-Data/Request-an-Orlando-Police-Department-Record"],
+        "notes": "",
+    },
+
+    # ─── FLORIDA — Jacksonville ──────────────────────────────
+    "FL.jacksonville.sheriff": {
+        "state": "FL", "name": "Jacksonville Sheriff's Office",
+        "jurisdiction": ["Jacksonville", "Duval County"],
+        "portal_url": "https://jacksonvilleso.mycusthelp.com/WEBAPP/_rs/supporthome.aspx",
+        "portal_vendor": "govqa",
+        "yt_channel": None,
+        "yt_cib_playlist": None,
+        "publishing_pages": [
+            "https://www.jaxsheriff.org/Resources/public-records.aspx",
+            "https://transparency.jaxsheriff.org/",  # Proactive BWC portal
+        ],
+        "notes": "JSO portal used to search prior published media requests by reference number. Separate transparency.jaxsheriff.org publishes BWC proactively.",
+    },
+}
+
+
+def get_portal_for_jurisdiction(jurisdiction_str, agency_type=None):
+    """
+    Look up portal registry entries for a jurisdiction string.
+    Returns a list of matching entries (sorted by agency_type preference).
+
+    Args:
+        jurisdiction_str: "Phoenix, Arizona" or "Miami-Dade County, Florida" etc.
+        agency_type: optional filter — "police" or "sheriff" or "dpa"
+
+    Example:
+        >>> entries = get_portal_for_jurisdiction("Phoenix, Maricopa County, Arizona")
+        >>> # Returns Phoenix PD + Maricopa Sheriff entries
+    """
+    if not jurisdiction_str:
+        return []
+    jstr = jurisdiction_str.lower()
+    matches = []
+    for key, info in JURISDICTION_PORTALS.items():
+        if agency_type and not key.endswith(f".{agency_type}"):
+            continue
+        for j in info.get("jurisdiction", []):
+            if j.lower() in jstr:
+                matches.append({"key": key, **info})
+                break
+    return matches
+
+
+def get_cib_youtube_sources(jurisdiction_str):
+    """
+    Return all verified Critical Incident Briefing YouTube channels + playlists
+    for a given jurisdiction. Used to seed yt-dlp channel crawling.
+    """
+    sources = []
+    for entry in get_portal_for_jurisdiction(jurisdiction_str):
+        if entry.get("yt_channel"):
+            sources.append({"type": "channel", "url": entry["yt_channel"], "agency": entry["name"]})
+        if entry.get("yt_cib_playlist"):
+            sources.append({"type": "playlist", "url": entry["yt_cib_playlist"], "agency": entry["name"]})
+    return sources
+
+
+def list_jurisdictions_by_vendor(vendor):
+    """List all agencies using a specific portal vendor (e.g. 'nextrequest', 'govqa')."""
+    return [
+        {"key": k, **info}
+        for k, info in JURISDICTION_PORTALS.items()
+        if info.get("portal_vendor") == vendor
+    ]
+
+
+# ──────────────────────────────────────────────────────────────
 # Usage logging — append-only log for cost estimation
 # ──────────────────────────────────────────────────────────────
 API_USAGE_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "api_usage_log.json")
