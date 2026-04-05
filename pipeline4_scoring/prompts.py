@@ -127,7 +127,7 @@ RULES:
 2. timestamp_sec and end_timestamp_sec must exist within the transcript — NEVER invent timestamps.
 3. Every moment MUST include source_idx matching the source it came from.
 4. If a speaker appears in multiple sources, look for cross-source contradictions.
-5. Cap moments at 60 total. Cap timeline at 100 events. Cap emotional_arc at 20 segments.
+5. AIM for the EXTRACTION TARGET shown above. A 100-minute transcript with only 3 moments is wrong — there WILL be 20-40 notable moments in a long police transcript. Hard cap moments at 60, timeline at 100, emotional_arc at 20.
 6. Mark provisional_importance CONSERVATIVELY:
    - "critical": direct admission of fact, cross-source contradiction, Miranda issue, use-of-force moment, confession, fatal shot fired
    - "high": tension shift, emotional peak with visible distress, strong reveal
