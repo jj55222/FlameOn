@@ -1,0 +1,731 @@
+{
+  "root_folder_id": "1UkdCEC2TJ8NqqSIILuEugcuify9sgn9e",
+  "gdoc_id": "1PKDZhy80v1El7onp-zIZcCbzNEtIn1Y7aWBKR6_jJtE",
+  "files": {
+    "README.md": {
+      "drive_id": "1d6qmxdwB5MsbwA4NTL4nCKH3BsnM3by4",
+      "mtime": 1774757395.1804535,
+      "size": 9
+    },
+    "SYSTEM.md": {
+      "drive_id": "1SOtBO1snxMgWasvUH2qYq8tM-8nXTB19",
+      "mtime": 1775268804.5352976,
+      "size": 12307
+    },
+    "autoresearch/brave_guard.py": {
+      "drive_id": "1Ofnu506WEe2GweF4gR-E-SZblB06RaMB",
+      "mtime": 1775096471.465643,
+      "size": 9106
+    },
+    "autoresearch/brave_quota.json": {
+      "drive_id": "10o6sLhFmXsylyWqWm8TrT-i8HSyR8Bc5",
+      "mtime": 1774836123.5108433,
+      "size": 95
+    },
+    "autoresearch/calibration_data.json": {
+      "drive_id": "177o9oQFJP_kJvF4XIYfM6sD54PzHMQXE",
+      "mtime": 1774757395.2341459,
+      "size": 33113
+    },
+    "autoresearch/CLAUDE.md": {
+      "drive_id": "1TaPgOfTrjGalVgXsJdfLDFYHI-Tqk7lH",
+      "mtime": 1775267805.4044967,
+      "size": 9132
+    },
+    "autoresearch/evaluate.py": {
+      "drive_id": "1DX0JinKAKOkgejuVZbHZCqkvIF5VFQR3",
+      "mtime": 1775267805.409947,
+      "size": 20489
+    },
+    "autoresearch/program.md": {
+      "drive_id": "1ps7Pb8fseve-Tny1bWn4EByzCb9Avgkp",
+      "mtime": 1774757395.2498062,
+      "size": 7490
+    },
+    "autoresearch/requirements.txt": {
+      "drive_id": "1S8DWIn6P0qs3vmm2mfuDbN2_eXJSxhf7",
+      "mtime": 1775267805.415407,
+      "size": 73
+    },
+    "autoresearch/research.py": {
+      "drive_id": "1F829G4L89YEwUhYqLWIWL_nCRoSRG82t",
+      "mtime": 1775267805.421161,
+      "size": 47616
+    },
+    "autoresearch/results.tsv": {
+      "drive_id": "12iPDBJWkTnjwpYChSmf2pkD8OnDVMfxT",
+      "mtime": 1775267805.4257126,
+      "size": 4841
+    },
+    "autoresearch/sync_to_gdoc.py": {
+      "drive_id": "1dYNC6pVDAKRdHwmpR1yRFxn0E0HimAcd",
+      "mtime": 1775090754.2635026,
+      "size": 7661
+    },
+    "discovered_cases/candidates_ranked.json": {
+      "drive_id": "1xtplbk4dc2vDRly_9N215G1iDgSUxlYt",
+      "mtime": 1775394832.3561401,
+      "size": 25402
+    },
+    "discovered_cases/cib_playlists.json": {
+      "drive_id": "1kvS3cQPYvOJVzHbXEhj4JJnYkMo7ATzt",
+      "mtime": 1775394653.9324453,
+      "size": 6555
+    },
+    "discovered_cases/download_all.py": {
+      "drive_id": "18XZJMrDXZG5nebPQRwRoYo3trrRz9Dn-",
+      "mtime": 1775395084.1255822,
+      "size": 4636
+    },
+    "discovered_cases/download_manifest.json": {
+      "drive_id": "16xN0YE2EOXrhDfBZIU7W7IXk1bUgXzLQ",
+      "mtime": 1775395222.0889611,
+      "size": 1084
+    },
+    "discovered_cases/rank_candidates.py": {
+      "drive_id": "1p9WR3VkcYrJbbtOxeuHyyWOw6LgGf38K",
+      "mtime": 1775394723.7863169,
+      "size": 6290
+    },
+    "discovered_cases/sfdpa_docs.json": {
+      "drive_id": "1FhsxP6MhImcYREC2IJ6V5AbrSOfWrmW3",
+      "mtime": 1775394670.5418837,
+      "size": 15467
+    },
+    "discovered_cases/sfdpa_downloads.json": {
+      "drive_id": "1IF9r2xRt-YOV2dy5bd39S6FxWrNTBwEB",
+      "mtime": 1775395044.2374501,
+      "size": 797
+    },
+    "discovered_cases/transcribe_all.sh": {
+      "drive_id": "1cib-pKJHAlH7_rp8BkK1TwvHutsqxaC7",
+      "mtime": 1775395491.4431171,
+      "size": 1483
+    },
+    "pipeline1_winners/aggregate_weights.py": {
+      "drive_id": "1Obp3qzUf2JmAU7ytCNI64GXSmcnXPkiO",
+      "mtime": 1775315907.1412919,
+      "size": 10762
+    },
+    "pipeline1_winners/analyze_winner.py": {
+      "drive_id": "1Svz5NIOv6reci0UND4MiXiN0i6GmbcgE",
+      "mtime": 1775317562.2487955,
+      "size": 18463
+    },
+    "pipeline1_winners/CLAUDE.md": {
+      "drive_id": "1fZWys3rskmmNo3F29k3W4PhmVsNNIQ-k",
+      "mtime": 1775267177.7150142,
+      "size": 3946
+    },
+    "pipeline1_winners/comment_calibration.py": {
+      "drive_id": "1uFFKXWVh7an0OLFsJ-dPyt2Q0gtBcQYj",
+      "mtime": 1775315855.05657,
+      "size": 16463
+    },
+    "pipeline1_winners/requirements.txt": {
+      "drive_id": "1SpuqjUXKsm6eDSgM6bsyjI9ufaIaC2dh",
+      "mtime": 1775315695.207587,
+      "size": 111
+    },
+    "pipeline1_winners/scoring_weights.json": {
+      "drive_id": "1EmDyc5eS6V2Zb2ex_b5s0BnMN0sYX8Af",
+      "mtime": 1775321307.625952,
+      "size": 1343
+    },
+    "pipeline1_winners/video_urls.txt": {
+      "drive_id": "1gaX5QZ5DVZjIUqL4QDNUw4LVBbVK76PN",
+      "mtime": 1775317587.418281,
+      "size": 1647
+    },
+    "pipeline1_winners/winners/29PVkF6hcnw.json": {
+      "drive_id": "1fI-poLyaV3YfFdDMiaBAwgVQ-hdHXgnI",
+      "mtime": 1775319914.8761206,
+      "size": 4519
+    },
+    "pipeline1_winners/winners/29PVkF6hcnw_transcript.json": {
+      "drive_id": "1BS0waDB1w00nmXw-kB9ixCphr6aWFWU6",
+      "mtime": 1775319914.9226022,
+      "size": 168291
+    },
+    "pipeline1_winners/winners/4LKh8DTwvQc.json": {
+      "drive_id": "1pRtwO0ZtBuarDxU5opvL-ZVHke0Fv9FM",
+      "mtime": 1775320031.210924,
+      "size": 3654
+    },
+    "pipeline1_winners/winners/4LKh8DTwvQc_transcript.json": {
+      "drive_id": "1BiY-2ctfqeIkUANJ_NKk6y3rHWMecyGr",
+      "mtime": 1775320031.2652228,
+      "size": 169572
+    },
+    "pipeline1_winners/winners/6Ghe55PHc58.json": {
+      "drive_id": "1ITfSc8fNIotJqbnnN_Vd_B7ra2aTglkD",
+      "mtime": 1775319476.0908303,
+      "size": 4250
+    },
+    "pipeline1_winners/winners/6Ghe55PHc58_transcript.json": {
+      "drive_id": "1ajnjIYGzvjPgXtbFc4N0G-COkdaIEwwk",
+      "mtime": 1775319476.1777918,
+      "size": 198282
+    },
+    "pipeline1_winners/winners/7xboEsXt_a0.json": {
+      "drive_id": "1BlKvmSovIPjWxWvHon5Zhj5UqgS_YIZm",
+      "mtime": 1775320875.197762,
+      "size": 3826
+    },
+    "pipeline1_winners/winners/7xboEsXt_a0_transcript.json": {
+      "drive_id": "1T_TguYBOL8ixg6Ublu6JdN0eKFZ8EOCz",
+      "mtime": 1775320875.2154727,
+      "size": 170100
+    },
+    "pipeline1_winners/winners/8PyJNey15gU.json": {
+      "drive_id": "1b2Qd4yj4UiZ8CCetUpM2StAQNG3QAUZo",
+      "mtime": 1775318520.7300005,
+      "size": 4414
+    },
+    "pipeline1_winners/winners/8PyJNey15gU_transcript.json": {
+      "drive_id": "18w1YDUrgMV1hGH6YJLc3sk9s5AbdgPNU",
+      "mtime": 1775318520.760648,
+      "size": 189746
+    },
+    "pipeline1_winners/winners/aqf8SV6StI8.json": {
+      "drive_id": "1fhP1D8bMoWTINz3nR7Czw177xZU0SSx0",
+      "mtime": 1775319276.751306,
+      "size": 3888
+    },
+    "pipeline1_winners/winners/aqf8SV6StI8_transcript.json": {
+      "drive_id": "1v6uMsg-eqcR1o3w2H4zjA6HIWVHd3Kcs",
+      "mtime": 1775319276.8510878,
+      "size": 151109
+    },
+    "pipeline1_winners/winners/bVGJpVbp9tE.json": {
+      "drive_id": "1i4WACM44gBY_i7EuF45pWR-Je3xwcj7z",
+      "mtime": 1775318622.6740894,
+      "size": 3402
+    },
+    "pipeline1_winners/winners/bVGJpVbp9tE_transcript.json": {
+      "drive_id": "1UlUO2QBX1BnAb5gH_ue7ySXNV_TnaQcK",
+      "mtime": 1775318622.7055137,
+      "size": 122902
+    },
+    "pipeline1_winners/winners/C7n1QhP0Lqg.json": {
+      "drive_id": "1LcqmqbyFIZIS-wXn8H5ciaCo1y_Srd9o",
+      "mtime": 1775320531.7757835,
+      "size": 3820
+    },
+    "pipeline1_winners/winners/C7n1QhP0Lqg_transcript.json": {
+      "drive_id": "1mGGZ0fIx9CAhIeGjFhLO1Q6-Kn8WGKqJ",
+      "mtime": 1775320531.8260999,
+      "size": 216489
+    },
+    "pipeline1_winners/winners/C9JrHmj16pQ.json": {
+      "drive_id": "1EuB0_XQNQ5mrbvFps07bUPh_zZ7OHGei",
+      "mtime": 1775318358.1374526,
+      "size": 3637
+    },
+    "pipeline1_winners/winners/C9JrHmj16pQ_transcript.json": {
+      "drive_id": "1BkD0Yds1TM1qQ4SDWqD3oTyM9szZaN8J",
+      "mtime": 1775318358.1553419,
+      "size": 84688
+    },
+    "pipeline1_winners/winners/cgCYon_kKno.json": {
+      "drive_id": "13li24EF3TZpvCIf_p0ha3vnGeQmLgCV7",
+      "mtime": 1775319576.37829,
+      "size": 3335
+    },
+    "pipeline1_winners/winners/cgCYon_kKno_transcript.json": {
+      "drive_id": "12hsh4DpEX-EXvGxAJOb0GAlfkll1-qce",
+      "mtime": 1775319576.42161,
+      "size": 158186
+    },
+    "pipeline1_winners/winners/DZm5Rm7QNKU.json": {
+      "drive_id": "1M2anwf2xR83EaO-ew6TD6q8e3Zvh90CB",
+      "mtime": 1775318748.997638,
+      "size": 3549
+    },
+    "pipeline1_winners/winners/DZm5Rm7QNKU_transcript.json": {
+      "drive_id": "1-dwMzuA2nW8o0fVe0tTQQRuQociJCSsq",
+      "mtime": 1775318749.0556555,
+      "size": 183392
+    },
+    "pipeline1_winners/winners/fsL0ag9ySao.json": {
+      "drive_id": "1Q1T0t1bEoPQn8iy681gcTKNX1Mf8qABU",
+      "mtime": 1775319798.9032717,
+      "size": 3551
+    },
+    "pipeline1_winners/winners/fsL0ag9ySao_transcript.json": {
+      "drive_id": "1uKMXkIEQosBk2joiQZQ3G7arBRFS2wYz",
+      "mtime": 1775319798.930663,
+      "size": 144547
+    },
+    "pipeline1_winners/winners/g2YemY3Wxq4.json": {
+      "drive_id": "1ZNNLgnV0s8rUTmV6ZUwgwVyx0j1CV4yd",
+      "mtime": 1775319139.5128357,
+      "size": 4162
+    },
+    "pipeline1_winners/winners/g2YemY3Wxq4_transcript.json": {
+      "drive_id": "1SLrmxNz6m_gxJqDQX1oEpPvDbD8k3XPe",
+      "mtime": 1775319139.537104,
+      "size": 178474
+    },
+    "pipeline1_winners/winners/Hd3LWuNUtQg.json": {
+      "drive_id": "1e9kJZuXtLhC7Gib_jHc_UQAeOnldsirT",
+      "mtime": 1775319010.1411436,
+      "size": 3623
+    },
+    "pipeline1_winners/winners/Hd3LWuNUtQg_transcript.json": {
+      "drive_id": "15lPctmZD_TuO-ypE5rPjTe0znLR4GJtW",
+      "mtime": 1775319010.1546607,
+      "size": 157169
+    },
+    "pipeline1_winners/winners/HEa9vzq4g9E.json": {
+      "drive_id": "1Meq2T54N4Jy7bdPYAfHU9K_ZJ_Sa2k3p",
+      "mtime": 1775318232.945447,
+      "size": 3548
+    },
+    "pipeline1_winners/winners/HEa9vzq4g9E_transcript.json": {
+      "drive_id": "16m2ycgQxcgG0MgZm1iv_mK79_99IDsiG",
+      "mtime": 1775318232.9915864,
+      "size": 174261
+    },
+    "pipeline1_winners/winners/Iq08Ov6uiS0.json": {
+      "drive_id": "14PvAUMbFAA4tbPtFoQYZdhz9OJ-niy_e",
+      "mtime": 1775319401.8488123,
+      "size": 3958
+    },
+    "pipeline1_winners/winners/Iq08Ov6uiS0_transcript.json": {
+      "drive_id": "18tA0uIEPeb2qT2aE3qsDCC0x628amMNe",
+      "mtime": 1775319401.8746762,
+      "size": 108683
+    },
+    "pipeline1_winners/winners/jbCwSShlMHs.json": {
+      "drive_id": "1dHDYC8bQgqHFlJkqsfwIrUsHQTXzm152",
+      "mtime": 1775320376.2624054,
+      "size": 4077
+    },
+    "pipeline1_winners/winners/jbCwSShlMHs_transcript.json": {
+      "drive_id": "1JvTHvPCBfsKTILMiTpLwjhaIP-CERvIU",
+      "mtime": 1775320376.3062348,
+      "size": 216917
+    },
+    "pipeline1_winners/winners/JBRHS5vErpg.json": {
+      "drive_id": "1pAp2M51-5tLu4RDe8V3YpC86pAec-5xj",
+      "mtime": 1775319706.5961382,
+      "size": 3750
+    },
+    "pipeline1_winners/winners/JBRHS5vErpg_transcript.json": {
+      "drive_id": "1xA6zBIH3EwwwiHecQ4aD0wcvtN-XksYd",
+      "mtime": 1775319706.6291509,
+      "size": 161644
+    },
+    "pipeline1_winners/winners/lkAEZnAnAyw.json": {
+      "drive_id": "104kpJsAIaHnMuJ5pnG0rYmb5P8EHGxA_",
+      "mtime": 1775320767.41574,
+      "size": 4081
+    },
+    "pipeline1_winners/winners/lkAEZnAnAyw_transcript.json": {
+      "drive_id": "1wxoPeZW21erLn4O2BpVYCQjDyoc0aGIu",
+      "mtime": 1775320767.4323223,
+      "size": 138845
+    },
+    "pipeline1_winners/winners/MgITC-rOAVs.json": {
+      "drive_id": "1qbq51VUw0DWLWLjcFFWRLysu_YI3Ww3E",
+      "mtime": 1775321238.8937159,
+      "size": 3751
+    },
+    "pipeline1_winners/winners/MgITC-rOAVs_transcript.json": {
+      "drive_id": "1H4qfyZp1xcf3Vy-qCfw-yP456WQDWeLq",
+      "mtime": 1775321238.9888923,
+      "size": 189006
+    },
+    "pipeline1_winners/winners/n15-6gt7dCw.json": {
+      "drive_id": "1FcEi3H097JpvQcw1ymWk5P4_fdEJlPBd",
+      "mtime": 1775318875.608621,
+      "size": 3411
+    },
+    "pipeline1_winners/winners/n15-6gt7dCw_transcript.json": {
+      "drive_id": "1JyGvRLHSNsDX33hjgx6kNoRVup0Vb22a",
+      "mtime": 1775318875.650122,
+      "size": 185210
+    },
+    "pipeline1_winners/winners/q5kITpYMwUE.json": {
+      "drive_id": "1szPuYUqs2M0cAHHJl6hDVeOd7FJe09PX",
+      "mtime": 1775320640.2385566,
+      "size": 3427
+    },
+    "pipeline1_winners/winners/q5kITpYMwUE_transcript.json": {
+      "drive_id": "1uTzSCBllbxEh5nBo2yyGl406cvBYIh1V",
+      "mtime": 1775320640.2636402,
+      "size": 111545
+    },
+    "pipeline1_winners/winners/QHAYwcCeKms.json": {
+      "drive_id": "1CpSM1pji_88o9vIr9TNAo9ocex59ghdt",
+      "mtime": 1775318123.2699747,
+      "size": 3311
+    },
+    "pipeline1_winners/winners/QHAYwcCeKms_transcript.json": {
+      "drive_id": "1tbk0AyDb1hAuRcnA0PBRVrJLfiUh3_el",
+      "mtime": 1775318123.3236928,
+      "size": 176203
+    },
+    "pipeline1_winners/winners/rL9jt9zEhAc.json": {
+      "drive_id": "1NuMk71xYQcX1-JJaqCAFZBcKM9aDN0Ee",
+      "mtime": 1775320994.9046955,
+      "size": 3299
+    },
+    "pipeline1_winners/winners/rL9jt9zEhAc_transcript.json": {
+      "drive_id": "11FyhuQGQ-V0prEINx1HC1gfNnhoVK-38",
+      "mtime": 1775320994.9522164,
+      "size": 192625
+    },
+    "pipeline1_winners/winners/s6CXNbzKlks.json": {
+      "drive_id": "1qYM94kAFQK90eQsgtEuxZUlP9aZ1K0Ij",
+      "mtime": 1775318023.833078,
+      "size": 4465
+    },
+    "pipeline1_winners/winners/s6CXNbzKlks_transcript.json": {
+      "drive_id": "1G01N4-WMqYgdkiG_pU3jfw7lmTEb6YFK",
+      "mtime": 1775318023.8581336,
+      "size": 154209
+    },
+    "pipeline1_winners/winners/t6h8Uae2Q_E.json": {
+      "drive_id": "1fFADWgx2MxRA3QJ-eUdp84n7yVbDpVVY",
+      "mtime": 1775317792.5131106,
+      "size": 4017
+    },
+    "pipeline1_winners/winners/t6h8Uae2Q_E_transcript.json": {
+      "drive_id": "1G7T53g0SHCIukq3FZ8C7tdQc43w4HPrE",
+      "mtime": 1775317792.5948288,
+      "size": 219416
+    },
+    "pipeline1_winners/winners/V4pEJXHvSjo.json": {
+      "drive_id": "1qX8mom8KvlvpVVUcZ_M0N9b58iUoUJUH",
+      "mtime": 1775321101.2482474,
+      "size": 4030
+    },
+    "pipeline1_winners/winners/V4pEJXHvSjo_transcript.json": {
+      "drive_id": "1xT9mLHpf_g8W8wKtfzkWhHoAL2sjKeoo",
+      "mtime": 1775321101.3599637,
+      "size": 273857
+    },
+    "pipeline1_winners/winners/Vn2Wqccg05w.json": {
+      "drive_id": "1l7w9JRP5EImQgisfp-WMruS4BI_wHfj-",
+      "mtime": 1775317913.6033828,
+      "size": 4514
+    },
+    "pipeline1_winners/winners/Vn2Wqccg05w_transcript.json": {
+      "drive_id": "18WbtA9TFzhSFQj-jh14AWDWkXkDxpWZh",
+      "mtime": 1775317913.632655,
+      "size": 286161
+    },
+    "pipeline1_winners/winners/vXlt7HT74SE.json": {
+      "drive_id": "1jipUeGhbtx7RF-VoT8ahbwu3DJnt_Dt9",
+      "mtime": 1775320203.7470767,
+      "size": 3270
+    },
+    "pipeline1_winners/winners/vXlt7HT74SE_transcript.json": {
+      "drive_id": "1DEalu_FwCpCjnWEsJgge-llGhdk6pnJv",
+      "mtime": 1775320203.8501961,
+      "size": 200006
+    },
+    "pipeline2_discovery/api_usage_log.json": {
+      "drive_id": "12AtJYbsMdA-QYBpXHB0bAruAKYKDpS1C",
+      "mtime": 1775394992.0380409,
+      "size": 40555
+    },
+    "pipeline2_discovery/brave_guard.py": {
+      "drive_id": "1jEzZZccDauRVQ7KEL9eOWAj1noonMmgo",
+      "mtime": 1775267151.3064036,
+      "size": 9106
+    },
+    "pipeline2_discovery/brave_quota.json": {
+      "drive_id": "1zQvNRjV-NdbjCQ498KBFAAYXk_Zgq54f",
+      "mtime": 1775334872.708182,
+      "size": 112
+    },
+    "pipeline2_discovery/calibration_data.json": {
+      "drive_id": "1h-JO_0vom2GJCRPTJYRHpsgQ3lXayv82",
+      "mtime": 1775267151.4822528,
+      "size": 33113
+    },
+    "pipeline2_discovery/CLAUDE.md": {
+      "drive_id": "1E6oXLna6_m4EGPesJIem6TO_S1Gx2CZM",
+      "mtime": 1775267205.1954615,
+      "size": 6012
+    },
+    "pipeline2_discovery/evaluate.py": {
+      "drive_id": "1NP2IU71BnOxm5cl0hye7DSwXghe4yRzN",
+      "mtime": 1775267151.5619824,
+      "size": 19960
+    },
+    "pipeline2_discovery/exa_quota.json": {
+      "drive_id": "1AZa2EJs82cLd8c1OARbdHn0MMPjLx3aH",
+      "mtime": 1775331243.0321076,
+      "size": 49
+    },
+    "pipeline2_discovery/firecrawl_quota.json": {
+      "drive_id": "108vZYTcAu0v95AADng9v9I4Sohj2znq3",
+      "mtime": 1775394992.0202854,
+      "size": 51
+    },
+    "pipeline2_discovery/foia_docs_cache.json": {
+      "drive_id": "12_abkOqX0WpSnGYPHLqEOuRsgIRn-9kU",
+      "mtime": 1775346369.0263665,
+      "size": 32610
+    },
+    "pipeline2_discovery/portals_cache.json": {
+      "drive_id": "1DG8tcGe4_DtrXIKn138cvBxB990H_e0x",
+      "mtime": 1775332295.5834646,
+      "size": 98776
+    },
+    "pipeline2_discovery/portal_position_log.json": {
+      "drive_id": "1O1r8LZ2CCwAyGpoi8EKG-nSBUWb8upQ4",
+      "mtime": 1775334608.062156,
+      "size": 2833
+    },
+    "pipeline2_discovery/program.md": {
+      "drive_id": "1dg7mfydNG8mgnlM-U_rSmbfakZ54SKD3",
+      "mtime": 1775267151.6376114,
+      "size": 7490
+    },
+    "pipeline2_discovery/requirements.txt": {
+      "drive_id": "1PmtU4lE1OfKVEXsbcgW5pd87l8OQQ5g9",
+      "mtime": 1775322739.1687045,
+      "size": 89
+    },
+    "pipeline2_discovery/research.py": {
+      "drive_id": "1A919oBjc97e5l8xpmP4sPjbaxP1A6Uol",
+      "mtime": 1775355317.5916114,
+      "size": 121779
+    },
+    "pipeline2_discovery/results.tsv": {
+      "drive_id": "1bRiSZr6sEpp3n5wrCFRprZd4hboPepN5",
+      "mtime": 1775331263.8085635,
+      "size": 5764
+    },
+    "pipeline2_discovery/sync_to_gdoc.py": {
+      "drive_id": "1vwDg4pRs_Be_G42eWjFHC4TvxQdMjk27",
+      "mtime": 1775440806.9590113,
+      "size": 7870
+    },
+    "pipeline2_discovery/sync_to_gdrive.py": {
+      "drive_id": "1MyMOBMYv1G_g_cveQuifqbHImpUSSEF-",
+      "mtime": 1775441669.6590114,
+      "size": 14987
+    },
+    "pipeline3_audio/CLAUDE.md": {
+      "drive_id": "1y9tb7_Xg0Mjr5bmBJPXfZN69JUNMFDva",
+      "mtime": 1775267177.8010716,
+      "size": 5118
+    },
+    "pipeline3_audio/colab_transcribe.ipynb": {
+      "drive_id": "12KHnBhHypUeVlShNQ_9qLYayilwpYkJo",
+      "mtime": 1775348634.3896255,
+      "size": 15905
+    },
+    "pipeline3_audio/pipeline3_transcribe.py": {
+      "drive_id": "1xpGzlOpE7N6o5iRq7qXlMXcAhIcjyF6W",
+      "mtime": 1775355730.3085656,
+      "size": 34076
+    },
+    "pipeline3_audio/requirements.txt": {
+      "drive_id": "1RXlHpa6H7Sb4BQTLyf2MaJwgGGM9P0-b",
+      "mtime": 1775353647.910676,
+      "size": 166
+    },
+    "pipeline3_audio/case_0409-18/0409-18 DPA Interview of Officer Sherry _1046 - Redacted.mp3": {
+      "drive_id": "1s--TELuXWlNmadf7kOAfRiM1sq8DOktS",
+      "mtime": 1775348552.8885372,
+      "size": 36378170
+    },
+    "pipeline3_audio/foia_cache/0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3": {
+      "drive_id": "17-AgG_RH0HL9G0KvYjVzwtllA0hg9ydO",
+      "mtime": 1775343756.538967,
+      "size": 14621725
+    },
+    "pipeline3_audio/foia_cache/sapd_25-01082.webm": {
+      "drive_id": "1SSs3F6e7bEZqZIgbipoZ-W4N4rv5VciS",
+      "mtime": 1775395256.065588,
+      "size": 12587379
+    },
+    "pipeline3_audio/foia_cache/sapd_26-00037.m4a": {
+      "drive_id": "12CE5kcHsMJMpJ_0pbKqtaHDzUsmYbZ5z",
+      "mtime": 1775395334.2005236,
+      "size": 9003566
+    },
+    "pipeline3_audio/foia_cache/sapd_26-02155.webm": {
+      "drive_id": "1U4YUjNLzlNYhB7Ltp0hz84erJm7Qvsg6",
+      "mtime": 1775395258.6326447,
+      "size": 5125345
+    },
+    "pipeline3_audio/foia_cache/sfdpa_0045-19_dpa_pai.mp3": {
+      "drive_id": "1HWIYCcmAcVw_gsXQesTk_-w8wBrS7DTa",
+      "mtime": 1775395208.4149268,
+      "size": 21164058
+    },
+    "pipeline3_audio/foia_cache/sfdpa_0210-14_dpa_dejesus.mp3": {
+      "drive_id": "1ckfsgsOXteP4wWmbQbT0sNwyFNBwjG4T",
+      "mtime": 1775395216.367681,
+      "size": 23588502
+    },
+    "pipeline3_audio/transcripts/cspd_ois_2025_07_05_transcript.json": {
+      "drive_id": "1MvYmkUYkFi7fA53K08qEq_33egvUEovV",
+      "mtime": 1775336804.103675,
+      "size": 36621
+    },
+    "pipeline3_audio/transcripts/mesa_mckellips_2022_01_02_groq_transcript.json": {
+      "drive_id": "16bwv-ZM5W-YfOq1lkVKPznRgc6A71WDn",
+      "mtime": 1775354656.6502213,
+      "size": 19422
+    },
+    "pipeline3_audio/transcripts/mesa_mckellips_2022_01_02_transcript.json": {
+      "drive_id": "1YlM9TX-3uPZftqO8xSzZMYmEj2IoVCyM",
+      "mtime": 1775352238.3778875,
+      "size": 25708
+    },
+    "pipeline3_audio/transcripts/sapd_25-01082_transcript.json": {
+      "drive_id": "1RWLUebEbw3NlU2okKqq8buItBJndBqqF",
+      "mtime": 1775396601.9417076,
+      "size": 29865
+    },
+    "pipeline3_audio/transcripts/sapd_26-00037_transcript.json": {
+      "drive_id": "1KcnMFZwwOWeqMGeddQ9QaVdU07KW-1ZJ",
+      "mtime": 1775396650.0881538,
+      "size": 18296
+    },
+    "pipeline3_audio/transcripts/sapd_26-02155_transcript.json": {
+      "drive_id": "1ufTHQ7ux8YV6pZJyGOOY4Dc-S0PFRR0H",
+      "mtime": 1775396624.1214378,
+      "size": 12455
+    },
+    "pipeline3_audio/transcripts/sfdpa_0040-15_edwards_transcript.json": {
+      "drive_id": "1RqkGIjhRU5ZIFu_mi5KCT14tEfoHkDpy",
+      "mtime": 1775395633.8587894,
+      "size": 40563
+    },
+    "pipeline3_audio/transcripts/sfdpa_0040_15_edwards_transcript.json": {
+      "drive_id": "1sUKAA1gndQh9Fnho0aK8Ceh_ermA63jD",
+      "mtime": 1775345392.2854588,
+      "size": 62920
+    },
+    "pipeline3_audio/transcripts/sfdpa_0045-19_hernandez_transcript.json": {
+      "drive_id": "1frMtLL0EddXjMdZ4ET2EwBboVuwKpyBw",
+      "mtime": 1775396090.4358308,
+      "size": 282546
+    },
+    "pipeline3_audio/transcripts/sfdpa_0045-19_pai_transcript.json": {
+      "drive_id": "1xRs8FExPUBpYDpCA6j9AG39FZHHapetS",
+      "mtime": 1775395698.5992978,
+      "size": 42406
+    },
+    "pipeline3_audio/transcripts/sfdpa_0204-18_reininger_transcript.json": {
+      "drive_id": "1yurIZR53_tV3BvMV5skQeiboc-B8dacJ",
+      "mtime": 1775396350.1513162,
+      "size": 277624
+    },
+    "pipeline3_audio/transcripts/sfdpa_0210-14_dejesus_transcript.json": {
+      "drive_id": "19lceM3ViFzRAW_VWf7PorFDYQDlCwcS8",
+      "mtime": 1775395471.8139868,
+      "size": 41398
+    },
+    "pipeline3_audio/transcripts/sfdpa_0409-18_bwc_bradford_transcript.json": {
+      "drive_id": "1Dr0zjRQxybPw-6WmH-YdsynRrChvZbso",
+      "mtime": 1775359114.5205834,
+      "size": 1494
+    },
+    "pipeline3_audio/transcripts/sfdpa_0409-18_bwc_sherry_transcript.json": {
+      "drive_id": "1G7rmEsmUTFO9iqjCk4af4-Vjry5wYZPL",
+      "mtime": 1775359114.5205834,
+      "size": 1788
+    },
+    "pipeline3_audio/transcripts/sfdpa_0409-18_interview_bradford_transcript.json": {
+      "drive_id": "1lloC6ud4YrN8U1TxxsLeU80yDqMsQkDo",
+      "mtime": 1775359114.5420797,
+      "size": 120632
+    },
+    "pipeline3_audio/transcripts/sfdpa_0409-18_interview_sherry_transcript.json": {
+      "drive_id": "1gqpLIf60AhMcxKipM-MuOg5lJNak73cj",
+      "mtime": 1775359114.5516117,
+      "size": 119642
+    },
+    "pipeline3_audio/transcripts/sfdpa_44321-20_rabsatt_transcript.json": {
+      "drive_id": "1wRbmdLYyzYprD5oQbPn5E0RMtabSW6qU",
+      "mtime": 1775396553.050884,
+      "size": 157994
+    },
+    "pipeline4_scoring/CLAUDE.md": {
+      "drive_id": "1ej00GoSy7c2by7USDDtxnse2Ob9AZ2ya",
+      "mtime": 1775267177.894688,
+      "size": 7139
+    },
+    "pipeline4_scoring/llm_backends.py": {
+      "drive_id": "1uWGWfAUz7VgmlDvhb4CppQPUdIciBEKr",
+      "mtime": 1775358085.0019126,
+      "size": 5778
+    },
+    "pipeline4_scoring/pipeline4_score.py": {
+      "drive_id": "1srtX_MyqsZhjGpJPMhqmc4BtqCR-msIs",
+      "mtime": 1775358652.0276928,
+      "size": 25573
+    },
+    "pipeline4_scoring/prompts.py": {
+      "drive_id": "1zIuag2ovgg8lU5DQCf6TRv1W6315Qmmz",
+      "mtime": 1775394119.496763,
+      "size": 14302
+    },
+    "pipeline4_scoring/requirements.txt": {
+      "drive_id": "1pLW5Z6TA_GHYilnM_aJVozw2V8TufdOB",
+      "mtime": 1775357794.8012257,
+      "size": 35
+    },
+    "pipeline4_scoring/scoring_math.py": {
+      "drive_id": "1LZHfEc9qUJSiPwlcWrE4khaidyvBkz8Y",
+      "mtime": 1775394236.2050235,
+      "size": 11224
+    },
+    "pipeline4_scoring/transcript_loader.py": {
+      "drive_id": "1VhDiBmfZCAUhP0mH8A2eh8b8J2LqAUuV",
+      "mtime": 1775357951.5245352,
+      "size": 7432
+    },
+    "pipeline4_scoring/verdicts/batch_summary.tsv": {
+      "drive_id": "1BQtAlgIh5r1fmn8qVf4QbpxDyETU6UDm",
+      "mtime": 1775394539.5411067,
+      "size": 456
+    },
+    "pipeline4_scoring/verdicts/mesa_mckellips_2022_01_02_groq_verdict.json": {
+      "drive_id": "1S8bEHEGfdvxEM926sCeDedb2YbwD96cD",
+      "mtime": 1775394450.5677202,
+      "size": 3418
+    },
+    "pipeline4_scoring/verdicts/sfdpa_0409-18_verdict.json": {
+      "drive_id": "1L4tOn9IuI9hZYYTINSua7UEKWA2wygtD",
+      "mtime": 1775394539.5411067,
+      "size": 3277
+    },
+    "pipeline5_assembly/CLAUDE.md": {
+      "drive_id": "1wyfctTowWkUWOvj25UXBZxJ-SMa774zf",
+      "mtime": 1775267177.9828231,
+      "size": 4204
+    },
+    "schemas/contracts.json": {
+      "drive_id": "1eVrYCQunbyU6Xxd8woJeUAlHN_szSY6w",
+      "mtime": 1775267178.064981,
+      "size": 15691
+    }
+  },
+  "folders": {
+    "autoresearch": "1IAUJBzQ8YccUAl23k2qAE0zpVj3eLgO_",
+    "discovered_cases": "1LOhfleZ9Nj3w35YNKqLkmkbmh1_5sSg6",
+    "pipeline1_winners": "1pAFOQYxxodxcT_84E0-Aol4e0EWAtakv",
+    "pipeline1_winners\\winners": "13IV_TElzv2pS8JYUGPdaW4DJLCSWGqDj",
+    "pipeline2_discovery": "1rC4odEGVFNc_EgMNJ-oWGD_gfYzYnoHE",
+    "pipeline3_audio": "1UTCAkgyZ-r05x00ZPoOuVvIbYb9L_797",
+    "pipeline3_audio\\case_0409-18": "1uh42qeoaqa2VqwW6gP2a7I9UjTMCbwZ8",
+    "pipeline3_audio\\foia_cache": "1URgVHvO4eQNNXlI4gaJyehimbbJ8BA10",
+    "pipeline3_audio\\transcripts": "1VcRLssLVQ2nvril2Q_FZWHeFmoHRTQHI",
+    "pipeline4_scoring": "1TbMOoVhxDHUEMBwrkYby9XzANrNDDhSj",
+    "pipeline4_scoring\\verdicts": "13CiwnymmiQ4lA1hX88E62nI2cnZNkE27",
+    "pipeline5_assembly": "1xTHNgDQWsVntw6V8ybBWr6Oma5zLDPDl",
+    "schemas": "1YbByTnkNRh7RrYW-zlcwxEFNY-Oih9WM"
+  }
+}
