@@ -262,17 +262,21 @@ def ensure_sheet(project_root):
         sheet_id = result["spreadsheetId"]
         sheet_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/edit"
 
-        # Bold the header row
-        sheets_svc.spreadsheets().batchUpdate(
-            spreadsheetId=sheet_id,
-            body={"requests": [{
-                "repeatCell": {
-                    "range": {"sheetId": 0, "startRowIndex": 0, "endRowIndex": 1},
-                    "cell": {"userEnteredFormat": {"textFormat": {"bold": True}}},
-                    "fields": "userEnteredFormat.textFormat.bold",
-                }
-            }]},
-        ).execute()
+        # Bold the header row (use actual sheetId from creation response)
+        try:
+            actual_sheet_id = result["sheets"][0]["properties"]["sheetId"]
+            sheets_svc.spreadsheets().batchUpdate(
+                spreadsheetId=sheet_id,
+                body={"requests": [{
+                    "repeatCell": {
+                        "range": {"sheetId": actual_sheet_id, "startRowIndex": 0, "endRowIndex": 1},
+                        "cell": {"userEnteredFormat": {"textFormat": {"bold": True}}},
+                        "fields": "userEnteredFormat.textFormat.bold",
+                    }
+                }]},
+            ).execute()
+        except Exception:
+            pass  # Formatting is nice-to-have, not critical
 
         state["sheet_id"] = sheet_id
         state["sheet_url"] = sheet_url
