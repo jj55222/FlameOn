@@ -20,7 +20,11 @@ import os
 import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-CLAUDE_MD   = os.path.join(SCRIPT_DIR, "CLAUDE.md")
+# CLAUDE.md lives one level up in autoresearch/
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+CLAUDE_MD   = os.path.join(PROJECT_ROOT, "autoresearch", "CLAUDE.md")
+if not os.path.exists(CLAUDE_MD):
+    CLAUDE_MD = os.path.join(SCRIPT_DIR, "CLAUDE.md")  # fallback
 STATE_FILE  = os.path.join(SCRIPT_DIR, "gdoc_state.json")
 TOKEN_FILE  = os.path.join(SCRIPT_DIR, "gdoc_token.json")
 CREDS_FILE  = os.path.join(SCRIPT_DIR, "gdoc_credentials.json")
