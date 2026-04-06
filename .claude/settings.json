@@ -32,7 +32,7 @@
           },
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python pipeline2_discovery/sync_to_gdoc.py 2>/dev/null || true"
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python pipeline2_discovery/sync_to_gdrive.py 2>/dev/null || true"
           }
         ]
       }
