@@ -169,6 +169,158 @@ def update_last_modified(log_path):
         f.write(content)
 
 
+SHEETS_STATE_FILE = ".sheets_state.json"
+SHEET_HEADERS = [
+    "Exp ID", "Timestamp", "Pipeline", "Type", "Hypothesis",
+    "Changes", "Result", "Verdict", "Notes"
+]
+
+
+def load_sheets_state(project_root):
+    """Load Google Sheet state (sheet ID)."""
+    p = project_root / SHEETS_STATE_FILE
+    if p.exists():
+        return json.loads(p.read_text())
+    return {}
+
+
+def save_sheets_state(project_root, state):
+    p = project_root / SHEETS_STATE_FILE
+    p.write_text(json.dumps(state, indent=2))
+
+
+def get_sheets_credentials():
+    """Reuse the same OAuth token from sync_to_gdrive."""
+    try:
+        from google.oauth2.credentials import Credentials
+        from google.auth.transport.requests import Request
+    except ImportError:
+        return None
+
+    # Look for token in pipeline2_discovery/ (shared with sync_to_gdrive)
+    token_paths = [
+        Path(__file__).parent / "pipeline2_discovery" / "gdoc_token.json",
+        Path(__file__).parent / "autoresearch" / "gdoc_token.json",
+    ]
+    for tp in token_paths:
+        if tp.exists():
+            creds = Credentials.from_authorized_user_file(
+                str(tp),
+                [
+                    "https://www.googleapis.com/auth/spreadsheets",
+                    "https://www.googleapis.com/auth/drive.file",
+                ],
+            )
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+                tp.write_text(creds.to_json())
+            return creds
+    return None
+
+
+def ensure_sheet(project_root):
+    """Create or find the FlameOn Experiments Google Sheet. Returns (sheet_id, service) or (None, None)."""
+    creds = get_sheets_credentials()
+    if not creds:
+        return None, None
+
+    try:
+        from googleapiclient.discovery import build
+        sheets_svc = build("sheets", "v4", credentials=creds)
+        drive_svc = build("drive", "v3", credentials=creds)
+    except Exception as e:
+        print(f"[sheets] API build failed: {e}")
+        return None, None
+
+    state = load_sheets_state(project_root)
+    sheet_id = state.get("sheet_id")
+
+    # Verify existing sheet is accessible
+    if sheet_id:
+        try:
+            sheets_svc.spreadsheets().get(spreadsheetId=sheet_id).execute()
+            return sheet_id, sheets_svc
+        except Exception:
+            sheet_id = None  # Deleted or inaccessible — recreate
+
+    # Create new sheet
+    try:
+        body = {
+            "properties": {"title": "FlameOn Experiments"},
+            "sheets": [{
+                "properties": {"title": "Experiments"},
+                "data": [{
+                    "startRow": 0,
+                    "startColumn": 0,
+                    "rowData": [{
+                        "values": [{"userEnteredValue": {"stringValue": h}} for h in SHEET_HEADERS]
+                    }],
+                }],
+            }],
+        }
+        result = sheets_svc.spreadsheets().create(body=body).execute()
+        sheet_id = result["spreadsheetId"]
+        sheet_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/edit"
+
+        # Bold the header row
+        sheets_svc.spreadsheets().batchUpdate(
+            spreadsheetId=sheet_id,
+            body={"requests": [{
+                "repeatCell": {
+                    "range": {"sheetId": 0, "startRowIndex": 0, "endRowIndex": 1},
+                    "cell": {"userEnteredFormat": {"textFormat": {"bold": True}}},
+                    "fields": "userEnteredFormat.textFormat.bold",
+                }
+            }]},
+        ).execute()
+
+        state["sheet_id"] = sheet_id
+        state["sheet_url"] = sheet_url
+        save_sheets_state(project_root, state)
+        print(f"[sheets] Created: {sheet_url}")
+        return sheet_id, sheets_svc
+
+    except Exception as e:
+        print(f"[sheets] Create failed: {e}")
+        return None, None
+
+
+def append_to_sheet(project_root, exp_id, args, timestamp):
+    """Append one row to the Google Sheet."""
+    sheet_id, svc = ensure_sheet(project_root)
+    if not sheet_id or not svc:
+        return
+
+    pipeline_label = PIPELINE_NAMES.get(str(args.pipeline), f"Pipeline {args.pipeline}")
+    type_label = TYPE_LABELS.get(args.type, args.type)
+    verdict_str = f"{VERDICT_EMOJI.get(args.verdict, '')} {args.verdict.upper()}"
+
+    row = [
+        str(exp_id),
+        timestamp,
+        pipeline_label,
+        type_label,
+        args.hypothesis,
+        args.changes,
+        args.result,
+        verdict_str,
+        args.notes or "",
+    ]
+
+    try:
+        svc.spreadsheets().values().append(
+            spreadsheetId=sheet_id,
+            range="Experiments!A:I",
+            valueInputOption="USER_ENTERED",
+            insertDataOption="INSERT_ROWS",
+            body={"values": [row]},
+        ).execute()
+        state = load_sheets_state(project_root)
+        print(f"   Sheet: {state.get('sheet_url', sheet_id)}")
+    except Exception as e:
+        print(f"   [sheets] Append failed: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="FlameOn Experiment Logger")
     parser.add_argument("--pipeline", required=True, help="Pipeline number (1-5) or 'cross'")
@@ -180,6 +332,7 @@ def main():
     parser.add_argument("--notes", default="", help="Additional context")
     parser.add_argument("--exp-id", type=int, default=None, help="Manual exp ID (auto if omitted)")
     parser.add_argument("--log-file", default=None, help="Path to log file")
+    parser.add_argument("--no-sheets", action="store_true", help="Skip Google Sheets sync")
 
     args = parser.parse_args()
 
@@ -221,6 +374,10 @@ def main():
     print(f"   Pipeline: {PIPELINE_NAMES.get(str(args.pipeline), args.pipeline)}")
     print(f"   Verdict: {VERDICT_EMOJI[args.verdict]} {args.verdict.upper()}")
     print(f"   Result: {args.result}")
+
+    # Sync to Google Sheet
+    if not args.no_sheets:
+        append_to_sheet(project_root, exp_id, args, timestamp)
 
 
 if __name__ == "__main__":
