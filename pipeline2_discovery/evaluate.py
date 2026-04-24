@@ -332,8 +332,10 @@ def evaluate(case_filter=None, tier_filter=None, verbose=False):
 
     # Reset API budget counters for this run
     try:
-        from research import reset_budget, get_budget_report
+        from research import reset_budget, get_budget_report, set_case_slice
         reset_budget()
+        # Declare case slice so Brave per-case cap can fair-share across all cases
+        set_case_slice(len(cases))
     except ImportError:
         pass
 
