@@ -1,0 +1,21 @@
+{
+  "research_score": 39.83,
+  "components": {
+    "evidence_recall": 60.0,
+    "source_discovery": 25.0,
+    "precision": 16.67,
+    "tier_accuracy": 50.0
+  },
+  "api_calls": {
+    "muckrock": 0,
+    "courtlistener": 0,
+    "brave": 0,
+    "youtube": 0
+  },
+  "est_cost_usd": 0.0,
+  "label": "candidate",
+  "elapsed_sec": 80.4,
+  "exit_code": 0,
+  "source_file": "C:\\FlameON\\FlameOn-main\\pipeline2_discovery\\research.py",
+  "hypothesis": "NextRequest portal harness wired into research_case (SF case — max portal-benefit case)"
+}

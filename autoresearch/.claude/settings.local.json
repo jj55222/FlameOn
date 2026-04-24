@@ -64,7 +64,10 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\('aggregate_joint_weights.py'\\).read\\(\\)\\); ast.parse\\(open\\('analyze_winner.py'\\).read\\(\\)\\); print\\('SYNTAX OK'\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python aggregate_joint_weights.py --dry-run)",
       "Bash(python -c \"import ast; ast.parse\\(open\\('ab_eval.py'\\).read\\(\\)\\); print\\('SYNTAX OK'\\)\")",
-      "Bash(PYTHONIOENCODING=utf-8 python ab_eval.py --candidate-py pipeline2_discovery/research.py --baseline-ref HEAD~5 --tier ENOUGH --hypothesis \"MuckRock has_files + Brave redistribution\" --dry-run)"
+      "Bash(PYTHONIOENCODING=utf-8 python ab_eval.py --candidate-py pipeline2_discovery/research.py --baseline-ref HEAD~5 --tier ENOUGH --hypothesis \"MuckRock has_files + Brave redistribution\" --dry-run)",
+      "Read(//c/Users/Diner/AppData/Local/Temp/claude/**)",
+      "Bash(find /tmp -name \"b0pxhputz*\")",
+      "Bash(PYTHONIOENCODING=utf-8 python ab_eval.py --baseline-py ab_runs/.baseline_pre_portals.py --candidate-py pipeline2_discovery/research.py --case 1 --hypothesis \"NextRequest portal harness wired into research_case \\(SF case — max portal-benefit case\\)\")"
     ]
   }
 }

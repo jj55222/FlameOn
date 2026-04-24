@@ -177,13 +177,19 @@ class NextRequestHarness(PortalHarness):
         sources = []
         seen = set()
 
+        # IMPORTANT: NextRequest's ?query= is NOT a guaranteed server-side filter.
+        # Small archives (SF DPA, ~600 docs) honor it tightly. Large citywide
+        # archives (sanfrancisco.nextrequest.com, 550K+ docs) return default
+        # pages regardless of query. So we CANNOT trust that a returned item
+        # actually matches the defendant — we must verify locally from title/
+        # description/highlights text and drop anything with no match.
+
         # Lane 1 — released documents (highest value: direct file URLs)
         docs = self._get_json("/client/documents", {"query": defendant})
         if docs:
             for d in docs.get("documents", []) or []:
                 doc_path = d.get("document_path") or ""
                 req_path = d.get("request_path") or ""
-                # document_path is the stable anchor; request_path may also link the parent
                 detail_path = doc_path or req_path
                 if not detail_path:
                     continue
@@ -192,15 +198,18 @@ class NextRequestHarness(PortalHarness):
                     continue
                 title = (d.get("title") or "").strip()
                 desc = (d.get("description") or "").strip()
-                # Highlights (API-provided match highlights) give us a stronger relevance signal
                 highlights = " ".join(d.get("highlights", []) or []).strip()
-                blob = " ".join([title, desc, d.get("folder_name") or "", highlights])
+                folder = d.get("folder_name") or ""
+                blob = " ".join([title, desc, folder, highlights])
                 rel = _score_relevance(defendant, blob)
+                # Hard precision gate: require an actual name match.
+                # `highlights` is non-empty ONLY when the server did find a match
+                # on the ?query= — treat that as a valid signal too.
                 if rel <= 0 and not highlights:
                     continue
-                # Any document that came back on a ?query= call has already matched server-side
-                rel = max(rel, 0.55)
-                # File-extension → internal evidence type
+                # If only highlights carried the signal, use a modest boost (not floor)
+                if rel <= 0 and highlights:
+                    rel = 0.6
                 ext = (d.get("file_extension") or "").lower()
                 if ext in ("mp4", "mov", "avi", "mkv", "webm"):
                     evidence_hint = "court_footage"
@@ -216,7 +225,7 @@ class NextRequestHarness(PortalHarness):
                 if len(sources) >= limit:
                     return sources
 
-        # Lane 2 — public requests archive (fewer direct files, but captures FOIA in progress)
+        # Lane 2 — public requests archive (fewer direct files, more name-in-body hits)
         reqs = self._get_json("/client/requests", {"query": defendant})
         if reqs:
             for r in reqs.get("requests", []) or []:
@@ -231,8 +240,9 @@ class NextRequestHarness(PortalHarness):
                 dept = r.get("department_names") or ""
                 blob = " ".join([text, dept, str(req_id or "")])
                 rel = _score_relevance(defendant, blob)
-                # Server already filtered, so a miss on text still counts at low relevance
-                rel = max(rel, 0.35)
+                # Hard precision gate — same reason as Lane 1
+                if rel <= 0:
+                    continue
                 seen.add(abs_url)
                 short_desc = (text or f"Request {req_id}").strip()[:180]
                 sources.append(self._as_source(abs_url, short_desc, rel, "foia_request"))
