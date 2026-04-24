@@ -44,7 +44,8 @@
       "Bash(PYTHONIOENCODING=utf-8 python pipeline4_score.py --transcript ../pipeline3_audio/transcripts/mesa_mckellips_2022_01_02_groq_transcript.json --weights ../pipeline1_winners/scoring_weights.json --dry-run)",
       "Read(//c/FlameON/FlameOn-main/**)",
       "mcp__c1fc4002-5f49-5f9d-a4e5-93c4ef5d6a75__google_drive_search",
-      "Bash(PYTHONIOENCODING=utf-8 python experiment_log.py --pipeline 4 --type pipeline_build --hypothesis \"Build Pipeline 4 scoring engine \\(2-pass LLM + deterministic math\\)\" --changes \"Created 7 files: transcript_loader.py, llm_backends.py, prompts.py, scoring_math.py, pipeline4_score.py, .env, requirements.txt\" --result \"End-to-end working. Mesa SKIP \\(10.5\\), 0409-18 SKIP \\(14.9\\). Merge-by-case_id validated.\" --verdict keep --notes \"Backfill: Pass 1 gemini-3.1-flash-lite, Pass 2 qwen3.6-plus:free\" --exp-id 1)"
+      "Bash(PYTHONIOENCODING=utf-8 python experiment_log.py --pipeline 4 --type pipeline_build --hypothesis \"Build Pipeline 4 scoring engine \\(2-pass LLM + deterministic math\\)\" --changes \"Created 7 files: transcript_loader.py, llm_backends.py, prompts.py, scoring_math.py, pipeline4_score.py, .env, requirements.txt\" --result \"End-to-end working. Mesa SKIP \\(10.5\\), 0409-18 SKIP \\(14.9\\). Merge-by-case_id validated.\" --verdict keep --notes \"Backfill: Pass 1 gemini-3.1-flash-lite, Pass 2 qwen3.6-plus:free\" --exp-id 1)",
+      "Bash(python -c \"import jsonschema; print\\('jsonschema ok', jsonschema.__version__\\)\")"
     ]
   }
 }

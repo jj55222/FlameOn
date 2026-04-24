@@ -942,6 +942,12 @@ def search_muckrock(names, jurisdiction):
     Build and execute MuckRock queries. Returns source list.
     FOIA requests are indexed by REQUEST title, not by defendant name.
     Better strategy: search jurisdiction + evidence type, then filter by name.
+
+    Two lanes:
+      Lane A (broad): existing name + jurisdiction queries, no status filter
+      Lane B (high-signal): same queries restricted to status="done" + has_files=True
+                            — FOIA requests that actually released downloadable artifacts.
+                            These get a relevance boost and a file_count hint.
     """
     sources = []
     n = parse_names(names)
@@ -955,33 +961,83 @@ def search_muckrock(names, jurisdiction):
         queries.append(f"{j['city']} bodycam")
         queries.append(f"{j['city']} police shooting")
 
+    def _score_result(r, high_signal=False):
+        """Score a single MuckRock result. Returns (url, relevance, file_count) or None."""
+        url = r.get("absolute_url") or r.get("url", "")
+        if url and not url.startswith("http"):
+            url = f"https://www.muckrock.com{url}"
+        if not url:
+            return None
+        title = (r.get("title", "") or "").lower()
+        desc = (r.get("description", "") or "").lower()
+        combined = f"{title} {desc}"
+        relevance = 0.0
+        if n["clean_primary"].lower() in combined:
+            relevance = 0.9
+        elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
+            relevance = 0.5
+        elif j["city"].lower() in combined and any(
+            kw in combined for kw in ["shooting", "bodycam", "police", "homicide"]
+        ):
+            relevance = 0.3
+        if relevance < 0.3:
+            return None
+        file_count = len(r.get("files") or [])
+        # High-signal boost: completed request with real attachments is gold
+        if high_signal:
+            relevance = min(1.0, relevance + 0.15)
+            if file_count >= 3:
+                relevance = min(1.0, relevance + 0.05)
+        return url, relevance, file_count
+
     seen_urls = set()
+
+    # Lane A — broad (no status filter, keeps parity with prior behavior)
     for query in queries[:3]:
         results = query_muckrock(query)
         for r in results:
-            url = r.get("absolute_url") or r.get("url", "")
-            # v2 may return relative URLs — prefix if needed
-            if url and not url.startswith("http"):
-                url = f"https://www.muckrock.com{url}"
-            if not url or url in seen_urls:
+            scored = _score_result(r, high_signal=False)
+            if not scored:
                 continue
-            title = (r.get("title", "") or "").lower()
-            desc = (r.get("description", "") or "").lower()
-            combined = f"{title} {desc}"
-            relevance = 0.0
-            if n["clean_primary"].lower() in combined:
-                relevance = 0.9
-            elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
-                relevance = 0.5
-            elif j["city"].lower() in combined and any(kw in combined for kw in ["shooting", "bodycam", "police", "homicide"]):
-                relevance = 0.3
-            if relevance >= 0.3:
-                seen_urls.add(url)
-                sources.append({
-                    "url": url, "type": "muckrock_foia",
-                    "relevance_score": relevance,
-                    "description": r.get("title", ""), "api": "muckrock",
-                })
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": False,
+            })
+
+    # Lane B — high-signal (completed FOIA with files attached)
+    # Free API, 1 req/sec, same total query count — net-zero cost vs recall lift.
+    for query in queries[:3]:
+        results = query_muckrock(query, status="done", has_files=True)
+        for r in results:
+            scored = _score_result(r, high_signal=True)
+            if not scored:
+                continue
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                # Already captured by Lane A — upgrade it in place
+                for s in sources:
+                    if s["url"] == url:
+                        s["relevance_score"] = max(s["relevance_score"], relevance)
+                        s["file_count"] = max(s.get("file_count", 0), file_count)
+                        s["high_signal"] = True
+                        break
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": True,
+            })
+
     return sources
 
 
