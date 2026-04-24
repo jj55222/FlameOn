@@ -2718,27 +2718,42 @@ def research_case(defendant_names, jurisdiction):
     all_sources = []
     notes = []
 
+    # Feature flags — so experiments can toggle each supplementary source without
+    # editing code. Default: all supplementals ON (current behavior).
+    USE_PORTAL_CACHE = os.environ.get("FLAMEON_USE_PORTAL_CACHE", "1") != "0"
+    USE_PORTAL_HARNESS = os.environ.get("FLAMEON_USE_PORTAL_HARNESS", "1") != "0"
+    USE_EXA = os.environ.get("FLAMEON_USE_EXA", "1") != "0"
+    USE_WIKIPEDIA = os.environ.get("FLAMEON_USE_WIKIPEDIA", "1") != "0"
+    USE_DAILYMOTION = os.environ.get("FLAMEON_USE_DAILYMOTION", "1") != "0"
+    USE_REDDIT = os.environ.get("FLAMEON_USE_REDDIT", "1") != "0"
+
     # Portal cache (zero API cost — reads from pre-built cache)
     notes.append("=== Portal Cache ===")
-    portal_sources = search_portal_cache(defendant_names, jurisdiction)
-    notes.append(f"  Found {len(portal_sources)} cached portal results")
-    all_sources.extend(portal_sources)
+    if USE_PORTAL_CACHE:
+        portal_sources = search_portal_cache(defendant_names, jurisdiction)
+        notes.append(f"  Found {len(portal_sources)} cached portal results")
+        all_sources.extend(portal_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_PORTAL_CACHE=0)")
 
     # Native portal harnesses (zero API credits — plain requests + stdlib parser).
     # Currently covers NextRequest (10 agencies) and best-effort GovQA (13 agencies,
     # most gated). Replaces expensive Firecrawl AI-extract for covered jurisdictions.
     notes.append("=== Native Portal Harnesses ===")
-    try:
-        from portal_harnesses import search_all_portals_for_jurisdiction
-        harness_sources = search_all_portals_for_jurisdiction(
-            defendant_names, jurisdiction, limit=15,
-        )
-        notes.append(f"  Found {len(harness_sources)} native portal results")
-        all_sources.extend(harness_sources)
-    except ImportError:
-        notes.append("  (portal_harnesses not available)")
-    except Exception as e:
-        notes.append(f"  (portal harness error: {e})")
+    if USE_PORTAL_HARNESS:
+        try:
+            from portal_harnesses import search_all_portals_for_jurisdiction
+            harness_sources = search_all_portals_for_jurisdiction(
+                defendant_names, jurisdiction, limit=15,
+            )
+            notes.append(f"  Found {len(harness_sources)} native portal results")
+            all_sources.extend(harness_sources)
+        except ImportError:
+            notes.append("  (portal_harnesses not available)")
+        except Exception as e:
+            notes.append(f"  (portal harness error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_PORTAL_HARNESS=0)")
 
     notes.append("=== MuckRock FOIA ===")
     mr_sources = search_muckrock(defendant_names, jurisdiction)
