@@ -1502,7 +1502,10 @@ def query_brave(search_term, count=5):
         return []
     if not check_budget("brave"):
         return []
-    if _brave_case_calls >= BRAVE_MAX_PER_CASE:
+    # Per-case cap: dynamic fair-share if set_case_slice() was called,
+    # otherwise fall back to the static BRAVE_MAX_PER_CASE ceiling.
+    per_case_cap = _current_case_brave_cap if _current_case_brave_cap is not None else BRAVE_MAX_PER_CASE
+    if _brave_case_calls >= per_case_cap:
         return []
 
     # ── Hard billing quota check ──────────────────────────────
