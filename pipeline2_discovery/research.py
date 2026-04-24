@@ -2771,9 +2771,12 @@ def research_case(defendant_names, jurisdiction):
     all_sources.extend(brave_sources)
 
     notes.append("=== Exa Search ===")
-    exa_sources = search_exa(defendant_names, jurisdiction)
-    notes.append(f"  Found {len(exa_sources)} Exa results")
-    all_sources.extend(exa_sources)
+    if USE_EXA:
+        exa_sources = search_exa(defendant_names, jurisdiction)
+        notes.append(f"  Found {len(exa_sources)} Exa results")
+        all_sources.extend(exa_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_EXA=0)")
 
     notes.append("=== YouTube (yt-dlp) ===")
     yt_sources = search_youtube(defendant_names, jurisdiction)
