@@ -248,25 +248,37 @@ class NextRequestHarness(PortalHarness):
 
 class GovQAHarness(PortalHarness):
     """
-    GovQA (Granicus) is ASP.NET Web Forms. Search is a POST-back to the
-    same SupportHome.aspx with hidden __VIEWSTATE + __RequestVerificationToken
-    fields. The session token is embedded in the URL as `(S(xxxx))`.
+    GovQA (Granicus) is ASP.NET Web Forms. The primary search is a POST-back
+    with __VIEWSTATE/__RequestVerificationToken, and on most installs the
+    returned result page is gated behind a login — POST-backs on public
+    sessions return ~2.8KB stub pages with no usable anchors.
 
-    Works across govqa.us and mycusthelp.com (same platform, different DNS).
-    Publishes an optional public knowledge base at SolutionsHome.aspx on
-    some installs — that's simpler but not universal.
+    Three best-effort lanes, in ascending hope:
+      1. Public knowledge base (SolutionsHome.aspx) — some installs expose it
+      2. Public request archive (RequestArchive.aspx direct list) — rare
+      3. POST-back knowledge-base search — works on the tiny subset of
+         installs that don't gate the solutions module
+
+    Known limitation: for most GovQA installs, deep records browsing
+    requires an account. This harness returns [] gracefully when the
+    portal gates the search — callers (research.py) should combine this
+    with the existing `publishing_pages` scrape (1-credit Firecrawl) to
+    cover the BWC/OIS pages that ARE public.
     """
     vendor = "govqa"
     api_tag = "govqa_portal"
 
-    # Hidden fields we must echo back on the POST
     _POST_FIELDS = (
         "__VIEWSTATE", "__VIEWSTATEGENERATOR", "__VIEWSTATEENCRYPTED",
         "__EVENTTARGET", "__EVENTARGUMENT",
         "__RequestVerificationToken",
     )
 
-    def _get_home(self):
+    _RESULT_ANCHOR = re.compile(
+        r"(SolutionDisplay|RequestArchive|RequestDisplay)\.aspx", re.I,
+    )
+
+    def _fetch_home(self):
         """Return (html, final_url_with_session_token) or (None, None)."""
         for p in ("/WEBAPP/_rs/SupportHome.aspx", "/webapp/_rs/supporthome.aspx"):
             text, final = _fetch(f"{self.base_url}{p}", session=self.session)
@@ -275,7 +287,6 @@ class GovQAHarness(PortalHarness):
         return None, None
 
     def _extract_hidden(self, html):
-        """Pull hidden form inputs from the ASP.NET form."""
         form = {}
         for name in self._POST_FIELDS:
             m = re.search(
@@ -285,25 +296,49 @@ class GovQAHarness(PortalHarness):
                 form[name] = m.group(1)
         return form
 
-    def search(self, defendant, jurisdiction="", limit=20):
-        sources = []
-        seen = set()
+    def _harvest_anchors(self, html, home_url, limit, defendant):
+        """Pull matching anchors from HTML into source dicts."""
+        parser = _LinkCollector()
+        out = []
+        try:
+            parser.feed(html)
+        except Exception:
+            return out
+        for href, link_text in parser.links:
+            if not href or not self._RESULT_ANCHOR.search(href):
+                continue
+            abs_url = urljoin(home_url, href) if not href.startswith("http") else href
+            rel = _score_relevance(defendant, link_text or "")
+            rel = max(rel, 0.4)  # server-side filter gives a floor
+            evidence_hint = "foia_document" if "SolutionDisplay" in href else "foia_request"
+            out.append(self._as_source(abs_url, (link_text or "")[:180], rel, evidence_hint))
+            if len(out) >= limit:
+                break
+        return out
 
-        html, home_url = self._get_home()
-        if not html or not home_url:
-            return sources
+    def _try_lane_public_browse(self, home_url, limit, defendant):
+        """Fetch well-known public endpoints and scrape anchors."""
+        results = []
+        for p in ("SolutionsHome.aspx", "RequestArchive.aspx", "AllSolutions.aspx"):
+            # Replace the last path segment with p (preserving the session token)
+            target = re.sub(r"[^/]+\.aspx$", p, home_url)
+            text, _ = _fetch(target, session=self.session)
+            if not text or len(text) < 500:
+                continue
+            results.extend(self._harvest_anchors(text, home_url, limit, defendant))
+            if len(results) >= limit:
+                return results[:limit]
+        return results
 
-        form = self._extract_hidden(html)
+    def _try_lane_postback(self, home_html, home_url, defendant, limit):
+        """POST-back the search form. Works only on installs that don't gate it."""
+        form = self._extract_hidden(home_html)
         if not form.get("__VIEWSTATE"):
-            return sources  # No VIEWSTATE means we can't POST back
-
-        # Include the search fields
+            return []
         form["w_search_words"] = defendant
         form["w_search_btn"] = "Search"
-        # Explicitly zero out event fields if not set
         form.setdefault("__EVENTTARGET", "")
         form.setdefault("__EVENTARGUMENT", "")
-
         try:
             resp = self.session.post(
                 home_url,
@@ -318,41 +353,34 @@ class GovQAHarness(PortalHarness):
                 timeout=DEFAULT_TIMEOUT,
                 allow_redirects=True,
             )
-            if resp.status_code != 200:
-                return sources
-            result_html = resp.text
+            if resp.status_code != 200 or len(resp.text) < 5000:
+                # <5KB is almost always a "session expired / please sign in" stub
+                return []
+            return self._harvest_anchors(resp.text, home_url, limit, defendant)
         except requests.RequestException:
-            return sources
+            return []
 
-        # Parse result anchors. Valid result targets:
-        #   SolutionDisplay.aspx — knowledge base article (public)
-        #   RequestArchive.aspx / RequestDisplay.aspx — gated, but title is in the anchor text
-        parser = _LinkCollector()
-        try:
-            parser.feed(result_html)
-        except Exception:
-            return sources
+    def search(self, defendant, jurisdiction="", limit=20):
+        home_html, home_url = self._fetch_home()
+        if not home_html or not home_url:
+            return []
 
-        pattern = re.compile(r"(SolutionDisplay|RequestArchive|RequestDisplay)\.aspx", re.I)
+        results = []
+        seen = set()
 
-        for href, link_text in parser.links:
-            if not href:
-                continue
-            if not pattern.search(href):
-                continue
-            abs_url = urljoin(home_url, href) if not href.startswith("http") else href
-            if abs_url in seen:
-                continue
-            rel = _score_relevance(defendant, link_text or "")
-            # Server already filtered by the search term — give a floor
-            rel = max(rel, 0.4)
-            seen.add(abs_url)
-            evidence_hint = "foia_document" if "SolutionDisplay" in href else "foia_request"
-            sources.append(self._as_source(abs_url, (link_text or "")[:180], rel, evidence_hint))
-            if len(sources) >= limit:
-                break
+        for lane_fn in (
+            lambda: self._try_lane_public_browse(home_url, limit, defendant),
+            lambda: self._try_lane_postback(home_html, home_url, defendant, limit),
+        ):
+            for s in lane_fn():
+                if s["url"] in seen:
+                    continue
+                seen.add(s["url"])
+                results.append(s)
+                if len(results) >= limit:
+                    return results
 
-        return sources
+        return results
 
 
 # ─────────────────────────────────────────────────────────────

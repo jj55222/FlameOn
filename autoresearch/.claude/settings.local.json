@@ -57,7 +57,9 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\('portal_harnesses.py'\\).read\\(\\)\\); print\\('SYNTAX OK'\\)\")",
       "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --vendor nextrequest --base https://sfdpa.nextrequest.com --defendant Edwards --dry-run)",
       "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.dpa\" --defendant Edwards --dry-run)",
-      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.dpa\" --defendant Edwards)"
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.dpa\" --defendant Edwards)",
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --vendor govqa --base https://longbeachca.govqa.us --defendant \"officer involved shooting\")",
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.police\" --defendant \"Edwards\")"
     ]
   }
 }
