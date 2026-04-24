@@ -2709,6 +2709,12 @@ def research_case(defendant_names, jurisdiction):
     _brave_case_calls = 0  # Reset per-case Brave budget
     _exa_case_calls = 0    # Reset per-case Exa budget
 
+    # Compute this case's Brave cap from live remaining run-budget / remaining cases.
+    # If the orchestrator never called set_case_slice(), this is a no-op and
+    # BRAVE_MAX_PER_CASE (the static ceiling) applies as before.
+    if _case_slice_total > 0:
+        _allocate_brave_cap_for_case()
+
     all_sources = []
     notes = []
 
