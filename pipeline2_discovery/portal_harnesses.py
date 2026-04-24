@@ -147,49 +147,95 @@ class PortalHarness:
 
 class NextRequestHarness(PortalHarness):
     """
-    NextRequest public archives expose:
-      /requests          — public request index (with optional ?query=)
-      /documents         — released-document index (with optional ?query=)
+    NextRequest is a JavaScript SPA — the rendered HTML is empty. But the
+    SPA calls two public JSON endpoints that accept ?query=:
+      GET /client/requests?query=<term>   → {total_count, requests:[...]}
+      GET /client/documents?query=<term>  → {total_count, documents:[...]}
 
-    No auth required for browsing published records. Page is standard HTML
-    with anchor tags pointing at `/requests/<id>` and `/documents/<id>`.
+    No auth required. These return structured records (request_path,
+    document_path, file_extension, highlights) that map cleanly to the
+    p2_to_p3_case source contract.
     """
     vendor = "nextrequest"
     api_tag = "nextrequest_portal"
+
+    def _get_json(self, path, params):
+        try:
+            resp = self.session.get(
+                f"{self.base_url}{path}",
+                params=params,
+                headers={"User-Agent": DEFAULT_UA, "Accept": "application/json"},
+                timeout=DEFAULT_TIMEOUT,
+            )
+            if resp.status_code != 200 or "json" not in resp.headers.get("content-type", "").lower():
+                return None
+            return resp.json()
+        except (requests.RequestException, ValueError):
+            return None
 
     def search(self, defendant, jurisdiction="", limit=20):
         sources = []
         seen = set()
 
-        for path in ("/requests", "/documents"):
-            url = f"{self.base_url}{path}"
-            text, _ = _fetch(url, params={"query": defendant}, session=self.session)
-            if not text:
-                continue
-
-            parser = _LinkCollector()
-            try:
-                parser.feed(text)
-            except Exception:
-                continue
-
-            for href, link_text in parser.links:
-                if not href:
+        # Lane 1 — released documents (highest value: direct file URLs)
+        docs = self._get_json("/client/documents", {"query": defendant})
+        if docs:
+            for d in docs.get("documents", []) or []:
+                doc_path = d.get("document_path") or ""
+                req_path = d.get("request_path") or ""
+                # document_path is the stable anchor; request_path may also link the parent
+                detail_path = doc_path or req_path
+                if not detail_path:
                     continue
-                # Only keep detail-page anchors within this NextRequest instance
-                if not re.search(r"^/(requests|documents)/\w", href):
-                    continue
-                abs_url = urljoin(self.base_url + "/", href.lstrip("/"))
+                abs_url = urljoin(self.base_url + "/", detail_path.lstrip("/"))
                 if abs_url in seen:
                     continue
-                # Score: name match on link text OR slug
-                text_blob = f"{link_text} {href}"
-                rel = _score_relevance(defendant, text_blob)
-                if rel <= 0:
+                title = (d.get("title") or "").strip()
+                desc = (d.get("description") or "").strip()
+                # Highlights (API-provided match highlights) give us a stronger relevance signal
+                highlights = " ".join(d.get("highlights", []) or []).strip()
+                blob = " ".join([title, desc, d.get("folder_name") or "", highlights])
+                rel = _score_relevance(defendant, blob)
+                if rel <= 0 and not highlights:
                     continue
+                # Any document that came back on a ?query= call has already matched server-side
+                rel = max(rel, 0.55)
+                # File-extension → internal evidence type
+                ext = (d.get("file_extension") or "").lower()
+                if ext in ("mp4", "mov", "avi", "mkv", "webm"):
+                    evidence_hint = "court_footage"
+                elif ext in ("mp3", "wav", "m4a", "ogg"):
+                    evidence_hint = "dispatch_audio"
+                elif ext in ("pdf", "docx", "doc"):
+                    evidence_hint = "foia_document"
+                else:
+                    evidence_hint = "foia_document"
                 seen.add(abs_url)
-                evidence_hint = "foia_document" if "/documents/" in href else "foia_request"
-                sources.append(self._as_source(abs_url, link_text[:150], rel, evidence_hint))
+                desc_str = f"{title} — {desc}" if desc else title
+                sources.append(self._as_source(abs_url, desc_str[:180], rel, evidence_hint))
+                if len(sources) >= limit:
+                    return sources
+
+        # Lane 2 — public requests archive (fewer direct files, but captures FOIA in progress)
+        reqs = self._get_json("/client/requests", {"query": defendant})
+        if reqs:
+            for r in reqs.get("requests", []) or []:
+                req_id = r.get("id")
+                req_path = r.get("request_path") or (f"/requests/{req_id}" if req_id else "")
+                if not req_path:
+                    continue
+                abs_url = urljoin(self.base_url + "/", req_path.lstrip("/"))
+                if abs_url in seen:
+                    continue
+                text = r.get("request_text") or ""
+                dept = r.get("department_names") or ""
+                blob = " ".join([text, dept, str(req_id or "")])
+                rel = _score_relevance(defendant, blob)
+                # Server already filtered, so a miss on text still counts at low relevance
+                rel = max(rel, 0.35)
+                seen.add(abs_url)
+                short_desc = (text or f"Request {req_id}").strip()[:180]
+                sources.append(self._as_source(abs_url, short_desc, rel, "foia_request"))
                 if len(sources) >= limit:
                     return sources
 

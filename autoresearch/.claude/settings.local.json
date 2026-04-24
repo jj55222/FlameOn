@@ -53,7 +53,11 @@
       "Bash(python -c ' *)",
       "Bash(python -c \"import bs4; print\\('bs4', bs4.__version__\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('pipeline5_assembly/pipeline5_assemble.py'\\).read\\(\\)\\); print\\('SYNTAX OK'\\)\")",
-      "Bash(PYTHONIOENCODING=utf-8 python pipeline5_assembly/pipeline5_assemble.py --verdict pipeline4_scoring/verdicts/sfdpa_0409-18_verdict.json --dry-run)"
+      "Bash(PYTHONIOENCODING=utf-8 python pipeline5_assembly/pipeline5_assemble.py --verdict pipeline4_scoring/verdicts/sfdpa_0409-18_verdict.json --dry-run)",
+      "Bash(python -c \"import ast; ast.parse\\(open\\('portal_harnesses.py'\\).read\\(\\)\\); print\\('SYNTAX OK'\\)\")",
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --vendor nextrequest --base https://sfdpa.nextrequest.com --defendant Edwards --dry-run)",
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.dpa\" --defendant Edwards --dry-run)",
+      "Bash(PYTHONIOENCODING=utf-8 python portal_harnesses.py --from-registry \"CA.san_francisco.dpa\" --defendant Edwards)"
     ]
   }
 }
