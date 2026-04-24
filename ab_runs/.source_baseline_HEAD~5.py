@@ -2724,22 +2724,6 @@ def research_case(defendant_names, jurisdiction):
     notes.append(f"  Found {len(portal_sources)} cached portal results")
     all_sources.extend(portal_sources)
 
-    # Native portal harnesses (zero API credits — plain requests + stdlib parser).
-    # Currently covers NextRequest (10 agencies) and best-effort GovQA (13 agencies,
-    # most gated). Replaces expensive Firecrawl AI-extract for covered jurisdictions.
-    notes.append("=== Native Portal Harnesses ===")
-    try:
-        from portal_harnesses import search_all_portals_for_jurisdiction
-        harness_sources = search_all_portals_for_jurisdiction(
-            defendant_names, jurisdiction, limit=15,
-        )
-        notes.append(f"  Found {len(harness_sources)} native portal results")
-        all_sources.extend(harness_sources)
-    except ImportError:
-        notes.append("  (portal_harnesses not available)")
-    except Exception as e:
-        notes.append(f"  (portal harness error: {e})")
-
     notes.append("=== MuckRock FOIA ===")
     mr_sources = search_muckrock(defendant_names, jurisdiction)
     notes.append(f"  Found {len(mr_sources)} FOIA results")
