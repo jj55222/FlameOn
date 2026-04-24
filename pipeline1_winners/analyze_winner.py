@@ -337,6 +337,36 @@ def validate_profile(profile):
         if a not in VALID_ARTIFACTS:
             errors.append(f"Invalid artifact: {a}")
 
+    # moments_by_artifact (OPTIONAL — extension field, backward compat with older profiles)
+    mba = profile.get("moments_by_artifact")
+    if mba is not None:
+        if not isinstance(mba, dict):
+            errors.append("moments_by_artifact must be an object")
+        else:
+            for artifact, counts in mba.items():
+                if artifact not in VALID_ARTIFACTS:
+                    errors.append(f"moments_by_artifact.{artifact}: unknown artifact")
+                    continue
+                if not isinstance(counts, dict):
+                    errors.append(f"moments_by_artifact.{artifact}: must be object")
+                    continue
+                for mt_k, mt_v in counts.items():
+                    if mt_k not in VALID_MOMENT_TYPES:
+                        errors.append(f"moments_by_artifact.{artifact}.{mt_k}: unknown moment_type")
+                    if not isinstance(mt_v, int) or mt_v < 0:
+                        errors.append(f"moments_by_artifact.{artifact}.{mt_k} must be non-negative int, got {mt_v}")
+            # Sanity: sums per moment_type should equal top-level moment_types when counts are given
+            for mt in VALID_MOMENT_TYPES:
+                if mt not in mt:
+                    continue
+                joint_sum = sum((mba.get(a, {}) or {}).get(mt, 0) for a in VALID_ARTIFACTS)
+                top_level = mt_total = profile.get("moment_types", {}).get(mt, 0)
+                # Allow a small tolerance — the LLM may round
+                if joint_sum > 0 and abs(joint_sum - top_level) > max(1, top_level):
+                    errors.append(
+                        f"moments_by_artifact sum for {mt!r} is {joint_sum} but moment_types.{mt} is {top_level}"
+                    )
+
     return (len(errors) == 0, errors)
 
 
