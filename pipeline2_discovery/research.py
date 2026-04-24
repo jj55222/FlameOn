@@ -2784,20 +2784,28 @@ def research_case(defendant_names, jurisdiction):
     all_sources.extend(yt_sources)
 
     notes.append("=== Wikipedia ===")
-    wiki_sources = search_wikipedia(defendant_names)
-    notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
-    all_sources.extend(wiki_sources)
+    if USE_WIKIPEDIA:
+        wiki_sources = search_wikipedia(defendant_names)
+        notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
+        all_sources.extend(wiki_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_WIKIPEDIA=0)")
 
     notes.append("=== DailyMotion ===")
-    dm_sources = search_dailymotion(defendant_names)
-    notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
-    all_sources.extend(dm_sources)
+    if USE_DAILYMOTION:
+        dm_sources = search_dailymotion(defendant_names)
+        notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
+        all_sources.extend(dm_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_DAILYMOTION=0)")
 
     notes.append("=== Reddit (PRAW) ===")
-    if len(all_sources) < 20:
+    if USE_REDDIT and len(all_sources) < 20:
         reddit_sources = search_reddit(defendant_names, jurisdiction)
         notes.append(f"  Found {len(reddit_sources)} Reddit posts")
         all_sources.extend(reddit_sources)
+    elif not USE_REDDIT:
+        notes.append("  (disabled via FLAMEON_USE_REDDIT=0)")
 
     # Deduplicate by URL
     seen = set()
