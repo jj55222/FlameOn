@@ -186,13 +186,32 @@ Return a JSON object with EXACTLY this structure:
     "interrogation_pct": <float 0.0-1.0, fraction that is interrogation footage>,
     "other_pct": <float 0.0-1.0, fraction that is other content>
   }},
-  "artifact_combination": ["<list of artifact types used, from: bodycam, interrogation, 911_audio, court_video, news_clips, documents, narration>"]
+  "artifact_combination": ["<list of artifact types used, from: bodycam, interrogation, 911_audio, court_video, news_clips, documents, narration>"],
+  "moments_by_artifact": {{
+    "bodycam":       {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "interrogation": {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "911_audio":     {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "court_video":   {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "news_clips":    {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "documents":     {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }},
+    "narration":     {{ "contradiction": 0, "emotional_peak": 0, "procedural_violation": 0, "reveal": 0, "detail_noticed": 0, "callback": 0, "tension_shift": 0 }}
+  }}
 }}
 
 DEFINITIONS:
 - structure_type: "chronological" = events in order; "cold_open" = starts with dramatic moment then backtracks; "parallel_timeline" = alternates between timelines; "reveal_structure" = builds to a reveal; "escalation" = tension builds throughout
 - beat_type: "hook" = opening attention grab; "setup" = context/background; "escalation" = rising tension; "climax" = peak moment; "aftermath" = consequences; "reveal" = new information changes understanding; "context" = factual background; "transition" = connecting segment
 - moment_types: "contradiction" = someone says something that conflicts with evidence or another statement; "emotional_peak" = intense emotional moment; "procedural_violation" = law enforcement error or rights issue; "reveal" = new information revealed; "detail_noticed" = narrator/video highlights a small but important detail; "callback" = reference to earlier moment; "tension_shift" = sudden change in tension level
+- moments_by_artifact: SAME moments counted above in `moment_types`, but broken down by which artifact they occur inside. A contradiction spoken on bodycam goes in bodycam.contradiction; a reveal delivered by the narrator goes in narration.reveal. Attribute each moment to exactly ONE artifact (the footage/audio source where it occurs). Totals per moment_type MUST equal the corresponding moment_types count.
+
+ARTIFACT ATTRIBUTION HEURISTICS (infer from transcript linguistic cues):
+- bodycam: command-mode imperatives ("Get on the ground!"), radio chatter, on-scene exchanges between officers and subjects, Miranda on the curb
+- interrogation: Q&A in a controlled room, detective-style questioning, Miranda warning at the start of a recorded session
+- narration: past-tense third-person voiceover describing events that already happened ("Officers arrived at...")
+- 911_audio: distressed caller describing an ongoing emergency, dispatcher asking structured questions
+- court_video: direct/cross-exam, judge speaking, attorney questioning a witness, sentencing remarks
+- news_clips: anchor-style delivery with station branding, short reported segments
+- documents: spoken recitation of a search warrant, affidavit, text-message log, or court filing
 
 RULES:
 - Beats must cover the full video (start_pct of first beat near 0.0, end_pct of last beat near 1.0)
@@ -201,6 +220,7 @@ RULES:
 - Count moments conservatively — only clear, distinct instances
 - Be precise with beat positions based on transcript timestamps
 - artifact_combination should list ALL artifact types woven into the video
+- In moments_by_artifact: sums per moment_type MUST match moment_types (sanity check)
 
 Return ONLY the JSON object, no other text."""
 
