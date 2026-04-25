@@ -421,7 +421,7 @@ def evaluate(case_filter=None, verbose=False, dry_run=False,
         cid = c["case_id"]
         print(f"  [{i+1}/{len(cases)}] {cid} ({c.get('channel', '?')}) — {c.get('title','')[:40]}")
         t0 = time.time()
-        v = run_one_case(c, dry_run, pass1_model, pass2_model)
+        v = run_one_case(c, dry_run, pass1_model, pass2_model, weights=weights)
         t1 = time.time()
         if dry_run:
             print(f"    [DRY RUN] rendered in {t1-t0:.1f}s")
