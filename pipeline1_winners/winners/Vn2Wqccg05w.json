@@ -1,8 +1,8 @@
 {
   "video_id": "Vn2Wqccg05w",
   "channel": "Dr Insanity",
-  "title": "Triple Killer Accidentally Shows Police Her Horrifying Secret",
-  "view_count": 1345051,
+  "title": "Cops Realize Psycho Daughters Car Is Filled With Bodies",
+  "view_count": 6627952,
   "duration_sec": 5397,
   "narrative_arc": {
     "structure_type": "cold_open",
@@ -10,104 +10,235 @@
       {
         "beat_type": "hook",
         "start_pct": 0.0,
-        "end_pct": 0.02,
-        "description": "Dramatic cold open showing police arrival at the getaway motel and initial discovery of burned remains."
+        "end_pct": 0.013,
+        "description": "Cold open: Officers confront Cassandra at motel, mention three family members found dead and burned."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.013,
+        "end_pct": 0.045,
+        "description": "Narrator sets up the case: routine Friday, Kane's first 911 calls about squatters and missing grandmother."
       },
       {
         "beat_type": "setup",
-        "start_pct": 0.02,
-        "end_pct": 0.08,
-        "description": "Backstory established through 911 calls from Kane reporting missing family and requesting a welfare check."
-      },
-      {
-        "beat_type": "context",
-        "start_pct": 0.08,
-        "end_pct": 0.16,
-        "description": "Mike warns police about Kane's behavior and firearms; initial house search reveals staged clutter and dispatcher contradictions."
-      },
-      {
-        "beat_type": "reveal",
-        "start_pct": 0.16,
-        "end_pct": 0.2,
-        "description": "Fire reported near the property; officers discover a burned vehicle containing three bodies."
-      },
-      {
-        "beat_type": "context",
-        "start_pct": 0.2,
-        "end_pct": 0.26,
-        "description": "Autopsy confirms identities; Kane's wife reveals history of domestic violence and provides a disturbing audio recording."
+        "start_pct": 0.045,
+        "end_pct": 0.085,
+        "description": "Mike Fledge reports Kane as suspicious and armed; Sergeant Nordquist begins welfare check."
       },
       {
         "beat_type": "escalation",
-        "start_pct": 0.26,
-        "end_pct": 0.36,
-        "description": "Cassandra calls 911 claiming Kane is missing; police uncover lies via social media and Walmart surveillance footage."
+        "start_pct": 0.085,
+        "end_pct": 0.12,
+        "description": "First welfare check finds house empty and staged; Kane cancels check; Nordquist calls Kane, notes lies."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.12,
+        "end_pct": 0.155,
+        "description": "Burned vehicle found with three bodies; officers identify it as Victor's Subaru; homicide suspected."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.155,
+        "end_pct": 0.19,
+        "description": "Autopsy confirms victims; Kane's wife Samantha reveals domestic violence and a recording."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.19,
+        "end_pct": 0.225,
+        "description": "Second search of house finds blood spatter, shell casings, cleanup supplies; evidence of multiple perpetrators."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.225,
+        "end_pct": 0.26,
+        "description": "Detectives inform Mike and Lourdes of deaths; Lourdes identifies Cassandra as potential accomplice."
       },
       {
         "beat_type": "transition",
-        "start_pct": 0.36,
-        "end_pct": 0.42,
-        "description": "Phone tracking locates Cassandra in Mississippi; investigators travel to prepare for confrontation."
-      },
-      {
-        "beat_type": "escalation",
-        "start_pct": 0.42,
-        "end_pct": 0.52,
-        "description": "Motel confrontation with Cassandra; she breaks down, slips up, and attempts to deflect blame onto Mike."
+        "start_pct": 0.26,
+        "end_pct": 0.285,
+        "description": "Cassandra calls 911 claiming Kane is missing; officers visit her house, unaware Kane is hiding inside."
       },
       {
         "beat_type": "reveal",
-        "start_pct": 0.52,
+        "start_pct": 0.285,
+        "end_pct": 0.32,
+        "description": "Neighbors report Kane staying with Cassandra; Walmart footage shows them buying bleach and kerosene."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.32,
+        "end_pct": 0.355,
+        "description": "Search warrant executed at Cassandra's house; officers find basement with victim documents and ammunition."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.355,
+        "end_pct": 0.39,
+        "description": "Phone ping places Cassandra in Mississippi; officers confront her at motel; she slips up about knowing victims are dead."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.39,
+        "end_pct": 0.43,
+        "description": "Kane voluntarily walks into Mississippi police station; interview begins with Agent Silva."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.43,
+        "end_pct": 0.47,
+        "description": "Kane claims Mike shot at him; Silva debunks with no bullet holes or camera evidence."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.47,
+        "end_pct": 0.51,
+        "description": "Silva presses Kane on texts with Cassandra; Kane shows no emotion, leading officers to suspect he knew."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.51,
+        "end_pct": 0.545,
+        "description": "Green Subaru found with Kane's passport, gloves, ammo; Kane arrested for murder."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.545,
+        "end_pct": 0.58,
+        "description": "Cassandra flees back to New Mexico; detectives interview her at parents' house, she begins to confess."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.58,
         "end_pct": 0.62,
-        "description": "Kane voluntarily enters police station; detective dismantles his alibi, green Subaru is found with incriminating evidence, and Kane is arrested."
+        "description": "Cassandra admits helping clean up blood and move bodies; implicates Kane as primary actor."
       },
       {
         "beat_type": "climax",
         "start_pct": 0.62,
-        "end_pct": 0.78,
-        "description": "Police visit Cassandra at her parents' home; she confesses to the cover-up and implicates Kane in the murders."
+        "end_pct": 0.66,
+        "description": "Final interrogation: Agent Graham confronts Kane with Cassandra's confession; Kane admits to covering up murders."
       },
       {
         "beat_type": "aftermath",
-        "start_pct": 0.78,
-        "end_pct": 0.9,
-        "description": "Final interrogation of Kane; he confesses to concealing the bodies while maintaining a fabricated story about the killings."
+        "start_pct": 0.66,
+        "end_pct": 0.7,
+        "description": "Kane claims Victor and Killian shot each other; Graham dismisses story; Kane requests attorney."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.7,
+        "end_pct": 0.735,
+        "description": "Charges filed: Kane with three counts murder, arson; Cassandra with murder, conspiracy, tampering."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.735,
+        "end_pct": 0.77,
+        "description": "Narrator summarizes evidence and motive: property dispute over 22 acres; both face life sentences."
       },
       {
         "beat_type": "transition",
-        "start_pct": 0.9,
-        "end_pct": 1.0,
-        "description": "Case resolution summary, formal charges outlined, and final reflections on the investigation."
+        "start_pct": 0.77,
+        "end_pct": 0.8,
+        "description": "Closing remarks: family can rest; case remains presumed innocent until trial."
       }
     ]
   },
   "moment_types": {
     "contradiction": 5,
-    "emotional_peak": 3,
-    "procedural_violation": 0,
-    "reveal": 5,
-    "detail_noticed": 4,
-    "callback": 3,
-    "tension_shift": 4
+    "emotional_peak": 4,
+    "procedural_violation": 1,
+    "reveal": 7,
+    "detail_noticed": 3,
+    "callback": 1,
+    "tension_shift": 6
   },
   "segment_stats": {
-    "avg_segment_length_sec": 2.27,
-    "total_segments": 2377,
+    "avg_segment_length_sec": 2.24,
+    "total_segments": 2408,
     "bodycam_pct": 0.35,
-    "narration_pct": 0.3,
-    "interrogation_pct": 0.25,
-    "other_pct": 0.1
+    "narration_pct": 0.4,
+    "interrogation_pct": 0.2,
+    "other_pct": 0.05
   },
   "artifact_combination": [
     "bodycam",
     "interrogation",
     "911_audio",
-    "narration",
-    "documents"
+    "narration"
   ],
+  "moments_by_artifact": {
+    "bodycam": {
+      "contradiction": 2,
+      "emotional_peak": 2,
+      "procedural_violation": 0,
+      "reveal": 3,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 2
+    },
+    "interrogation": {
+      "contradiction": 2,
+      "emotional_peak": 1,
+      "procedural_violation": 1,
+      "reveal": 2,
+      "detail_noticed": 1,
+      "callback": 1,
+      "tension_shift": 2
+    },
+    "911_audio": {
+      "contradiction": 1,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 1,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 1
+    },
+    "court_video": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "news_clips": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "documents": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "narration": {
+      "contradiction": 0,
+      "emotional_peak": 1,
+      "procedural_violation": 0,
+      "reveal": 1,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 1
+    }
+  },
+  "_llm_model": "deepseek/deepseek-v4-flash",
   "_analysis_metadata": {
-    "model": "qwen/qwen3.6-plus:free",
-    "transcript_segments": 2377,
-    "transcript_preview": "All right. You nervous? >> I'm out here with Miss Cassandra. >> Officers have just arrived at the getaway motel of 28-year-old Cassandra Douglas. For the last 24 hours, she and her brother have been on the run after three of their family members were found dead and burned in the desert. Damn. >> I'm 99% this is either an animal or a person. Yeah, >> that looks like a human, dude. >> And as these local officers prepare to confront the primary suspect of the most important case they've ever worked on, nothing could prepare them for the horrifying discoveries they're about to make. >> Call the police. Anyone sign? Make yourself known. ..."
+    "model": "deepseek/deepseek-v4-flash",
+    "transcript_segments": 2408,
+    "transcript_preview": "All right. You nervous? I'm not opening this door. >> out here with Ms. Cassandra. >> [music] >> Officers have just arrived at the Getaway Motel of 28-year-old Cassandra [music] Douglas. For the last 24 hours, she and her brother have been on the run after three of their family members were found dead and burned in the desert. 99% this is either an animal or a person. Yeah. That looks like a human, dude. And as these local officers prepare to confront the primary suspect of the most important case they've ever worked on, nothing could prepare them for the horrifying discoveries they're about to make. Otero police, I don't want to sign. Make ..."
   }
 }

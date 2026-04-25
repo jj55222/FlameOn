@@ -167,10 +167,6 @@ def aggregate(profiles):
     explicit_count = 0
     distributed_count = 0
 
-    # Per-channel aggregation
-    per_channel = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
-    channel_video_counts = defaultdict(int)
-
     for p in profiles:
         source, dist = extract_joint_counts(p)
         if source == "explicit":
@@ -178,13 +174,9 @@ def aggregate(profiles):
         else:
             distributed_count += 1
 
-        channel = p.get("channel", "unknown")
-        channel_video_counts[channel] += 1
-
         for artifact, counts in dist.items():
             for mt, v in counts.items():
                 total[artifact][mt] += v
-                per_channel[channel][artifact][mt] += v
 
     # Normalize per artifact so each row sums to 1.0 (conditional distribution)
     moment_artifact_weights = {}
