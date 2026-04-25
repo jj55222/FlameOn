@@ -326,7 +326,33 @@ def score_artifact_completeness(cases, results):
 # Run orchestration
 # ──────────────────────────────────────────────────────────────
 
-def run_one_case(entry, dry_run, pass1_model, pass2_model):
+def _load_weights(path):
+    """Load Pipeline 1 scoring weights JSON. Returns None on failure."""
+    if not path:
+        return None
+    p = Path(path)
+    if not p.is_absolute():
+        p = (SCRIPT_DIR / p).resolve()
+    if not p.exists():
+        # Try common defaults relative to repo root
+        for candidate in [
+            SCRIPT_DIR.parent / "pipeline1_winners" / "scoring_weights_joint.json",
+            SCRIPT_DIR.parent / "pipeline1_winners" / "scoring_weights.json",
+        ]:
+            if candidate.exists():
+                p = candidate
+                break
+        else:
+            return None
+    try:
+        with open(p, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"  [WARN] failed to load weights from {p}: {e}")
+        return None
+
+
+def run_one_case(entry, dry_run, pass1_model, pass2_model, weights=None):
     """Adapt + score one calibration entry. Returns verdict dict or None."""
     merged = adapt_for_p4(entry)
     if merged is None:
@@ -348,7 +374,7 @@ def run_one_case(entry, dry_run, pass1_model, pass2_model):
     try:
         verdict = score_case(
             merged=merged,
-            weights=None,           # use equal-weight fallback for now
+            weights=weights,                # P1 scoring weights if provided
             case_research=None,
             pass1_backend=pb1,
             pass2_backend=pb2,
