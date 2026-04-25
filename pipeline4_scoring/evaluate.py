@@ -59,6 +59,49 @@ TIME_BUDGET_SECONDS = 3600  # 60 min max per evaluation run
 
 VALID_ARCS = {"chronological", "cold_open", "parallel_timeline", "reveal_structure", "escalation"}
 VALID_VERDICTS = {"PRODUCE", "HOLD", "SKIP"}
+VALID_MOMENT_TYPES_OUT = {
+    "contradiction", "emotional_peak", "procedural_violation",
+    "reveal", "detail_noticed", "callback", "tension_shift",
+}
+VALID_IMPORTANCE = {"critical", "high", "medium", "low"}
+
+
+def validate_verdict_against_schema(v):
+    """
+    Hand-validate a verdict dict against p4_to_p5_verdict in
+    schemas/contracts.json. Returns (ok, errors).
+    """
+    errors = []
+    if not isinstance(v, dict):
+        return False, ["verdict is not a dict"]
+    for f in ("case_id", "verdict", "narrative_score", "key_moments", "content_pitch"):
+        if f not in v:
+            errors.append(f"missing required field: {f}")
+    if v.get("verdict") not in VALID_VERDICTS:
+        errors.append(f"verdict must be PRODUCE|HOLD|SKIP (got {v.get('verdict')!r})")
+    ns = v.get("narrative_score")
+    if not isinstance(ns, (int, float)) or ns < 0 or ns > 100:
+        errors.append(f"narrative_score out of [0,100]: {ns!r}")
+    conf = v.get("confidence")
+    if conf is not None and (not isinstance(conf, (int, float)) or conf < 0 or conf > 1):
+        errors.append(f"confidence out of [0,1]: {conf!r}")
+    arc = v.get("narrative_arc_recommendation")
+    if arc is not None and arc not in VALID_ARCS:
+        errors.append(f"narrative_arc_recommendation invalid: {arc!r}")
+    moments = v.get("key_moments") or []
+    if not isinstance(moments, list):
+        errors.append("key_moments must be a list")
+    else:
+        for i, m in enumerate(moments):
+            if m.get("moment_type") not in VALID_MOMENT_TYPES_OUT:
+                errors.append(f"key_moments[{i}].moment_type invalid: {m.get('moment_type')!r}")
+            if not isinstance(m.get("timestamp_sec"), (int, float)):
+                errors.append(f"key_moments[{i}].timestamp_sec not numeric")
+            if not isinstance(m.get("description"), str):
+                errors.append(f"key_moments[{i}].description not string")
+            if m.get("importance") not in VALID_IMPORTANCE:
+                errors.append(f"key_moments[{i}].importance invalid: {m.get('importance')!r}")
+    return (len(errors) == 0, errors)
 
 WINNER_TRANSCRIPT_DIR = SCRIPT_DIR.parent / "pipeline1_winners" / "winners"
 

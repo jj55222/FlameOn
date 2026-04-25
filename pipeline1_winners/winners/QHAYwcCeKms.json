@@ -2,7 +2,7 @@
   "video_id": "QHAYwcCeKms",
   "channel": "Dr Insanity",
   "title": "Man Faints After Realizing He Accidentally Killed His Wife",
-  "view_count": 4384446,
+  "view_count": 5122034,
   "duration_sec": 3345,
   "narrative_arc": {
     "structure_type": "cold_open",
@@ -10,73 +10,229 @@
       {
         "beat_type": "hook",
         "start_pct": 0.0,
-        "end_pct": 0.04,
-        "description": "Dramatic opening of the shootout, police arrival, and immediate revelation of the wife's fatal injury."
+        "end_pct": 0.02,
+        "description": "Dramatic opening: Matthew and Kimberly in car, seconds from confrontation, foreshadowing tragedy"
       },
       {
         "beat_type": "setup",
-        "start_pct": 0.04,
-        "end_pct": 0.15,
-        "description": "Police search the mansion, uncovering signs of wealth, drug use, and a hidden basement."
+        "start_pct": 0.02,
+        "end_pct": 0.06,
+        "description": "Police arrive at scene, multiple shooters, two critically injured victims, Matthew unaware wife is dead"
       },
       {
         "beat_type": "context",
-        "start_pct": 0.15,
-        "end_pct": 0.25,
-        "description": "Flashback to the evening's beginning, detailing the couple's argument, the affair, and the financial betrayal."
+        "start_pct": 0.06,
+        "end_pct": 0.1,
+        "description": "Background on Matthew and Kimberly: wealthy business owners, 8,000 sq ft mansion, three children, hidden dark secret"
       },
       {
         "beat_type": "escalation",
-        "start_pct": 0.25,
+        "start_pct": 0.1,
+        "end_pct": 0.14,
+        "description": "Police search mansion, find drugs and signs of struggle in basement, evidence of volatile relationship"
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.14,
+        "end_pct": 0.18,
+        "description": "Flashback to 15 hours earlier: argument about Kimberly's affair, Matthew discovers $60,000 transferred to lover"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.18,
+        "end_pct": 0.22,
+        "description": "Couple leaves mansion armed, arrives at lover's home where family is having barbecue, tension builds"
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.22,
+        "end_pct": 0.3,
+        "description": "911 call, shootout erupts, officers arrive to active shooter scene, Kimberly shot in neck, Matthew begging for help"
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.3,
+        "end_pct": 0.36,
+        "description": "SWAT clears house, find wounded homeowner Daniel, realize no active shooter, Kimberly pronounced dead"
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.36,
+        "end_pct": 0.4,
+        "description": "Police discover hidden marijuana grow and missing CCTV cameras in basement, key evidence for case"
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.4,
+        "end_pct": 0.42,
+        "description": "Detective Frasier takes over case, identifies key players: Matthew, Daniel, and family members"
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.42,
         "end_pct": 0.48,
-        "description": "911 call, chaotic police response, tactical rescue under fire, and confirmation of Kimberly's death."
+        "description": "Interviews begin with Daniel's fiance Elona, who reveals affair but claims it ended years ago"
       },
       {
         "beat_type": "reveal",
         "start_pct": 0.48,
+        "end_pct": 0.52,
+        "description": "Interview with Daniel's sister Gabriella confirms ongoing affair, Matthew as aggressor, family traumatized"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.52,
+        "end_pct": 0.58,
+        "description": "Daniel interrogated from hospital bed, claims self-defense, refuses phone access, learns Kimberly is dead"
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.58,
+        "end_pct": 0.62,
+        "description": "Sponsor segment: Morgan and Morgan law firm advertisement"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.62,
         "end_pct": 0.68,
-        "description": "Interviews with family members expose the ongoing affair and Daniel's initial account, while investigators secure CCTV access."
+        "description": "Search of Matthew's home finds drugs, guns, evidence of struggle; Matthew unaware of wife's death"
+      },
+      {
+        "beat_type": "emotional_peak",
+        "start_pct": 0.68,
+        "end_pct": 0.74,
+        "description": "Matthew learns Kimberly is dead, collapses in grief, then shifts to blaming Daniel and self-recrimination"
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.74,
+        "end_pct": 0.8,
+        "description": "Matthew gives his version of events, claims self-defense and concealed weapon; CCTV footage arrives"
       },
       {
         "beat_type": "climax",
-        "start_pct": 0.68,
-        "end_pct": 0.88,
-        "description": "Matthew's interrogation, his emotional breakdown, and the pivotal review of CCTV footage that contradicts both men's stories."
+        "start_pct": 0.8,
+        "end_pct": 0.86,
+        "description": "CCTV footage reviewed: shows Matthew as aggressor, Daniel's warning shot, fatal bullet from Daniel's gun"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.86,
+        "end_pct": 0.9,
+        "description": "Detective confronts Matthew with inconsistencies, Matthew insists cameras will prove him right"
       },
       {
         "beat_type": "aftermath",
-        "start_pct": 0.88,
+        "start_pct": 0.9,
+        "end_pct": 0.96,
+        "description": "Legal decision: Matthew charged with attempted murder and manslaughter, Daniel released under self-defense law"
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.96,
         "end_pct": 1.0,
-        "description": "Legal strategy, trial proceedings, jury verdict, sentencing, and Daniel's exoneration."
+        "description": "Trial and sentencing: Matthew found guilty, sentenced to 40 years; Daniel walks free; pattern of abuse revealed"
       }
     ]
   },
   "moment_types": {
     "contradiction": 4,
     "emotional_peak": 3,
-    "procedural_violation": 0,
+    "procedural_violation": 1,
     "reveal": 5,
-    "detail_noticed": 4,
-    "callback": 3,
+    "detail_noticed": 3,
+    "callback": 1,
     "tension_shift": 4
   },
   "segment_stats": {
     "avg_segment_length_sec": 2.27,
     "total_segments": 1473,
-    "bodycam_pct": 0.45,
-    "narration_pct": 0.3,
-    "interrogation_pct": 0.2,
-    "other_pct": 0.05
+    "bodycam_pct": 0.25,
+    "narration_pct": 0.35,
+    "interrogation_pct": 0.3,
+    "other_pct": 0.1
   },
   "artifact_combination": [
     "bodycam",
     "interrogation",
     "911_audio",
+    "court_video",
+    "news_clips",
+    "documents",
     "narration"
   ],
+  "moments_by_artifact": {
+    "bodycam": {
+      "contradiction": 1,
+      "emotional_peak": 1,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 1
+    },
+    "interrogation": {
+      "contradiction": 2,
+      "emotional_peak": 2,
+      "procedural_violation": 1,
+      "reveal": 2,
+      "detail_noticed": 0,
+      "callback": 1,
+      "tension_shift": 2
+    },
+    "911_audio": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 1
+    },
+    "court_video": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "news_clips": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "documents": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "narration": {
+      "contradiction": 1,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 3,
+      "detail_noticed": 2,
+      "callback": 0,
+      "tension_shift": 0
+    }
+  },
+  "_llm_model": "deepseek/deepseek-v4-flash",
   "_analysis_metadata": {
-    "model": "qwen/qwen3.6-plus:free",
+    "model": "deepseek/deepseek-v4-flash",
     "transcript_segments": 1473,
     "transcript_preview": "Inside this car are multi-millionaire business owners Matthew Molicone and his wife Kimberly. Matthew is seconds away from confronting the man who's been in a secret affair with his wife. He has a plan to get revenge, but has no idea how horribly it's about to play out. >> Get out OF HERE, BRO. GET out of here. >> STAY AWAY FROM MY WIFE. >> I DON'T EVEN KNOW WHAT the We're taking one back to the road. >> You need to get back over here. Give us my wife. Get to work, please. >> Hands up. >> As officers rush to the scene, they're met with multiple shooters, families scrambling for help, and two critically injured victims. And while Matthew sits in the back of a cop car, he has no idea his wife, the one he just got into a ..."
-  }
+  },
+  "_validation_errors": [
+    "Beat 15: invalid beat_type 'emotional_peak'"
+  ]
 }
