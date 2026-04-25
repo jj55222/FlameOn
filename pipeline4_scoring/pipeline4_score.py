@@ -356,12 +356,19 @@ def score_case(
     llm_verdict = pass2.get("verdict", "HOLD")
     det_verdict = scoring["verdict"]
 
-    # Rule: if deterministic says SKIP, never let Pass 2 upgrade to PRODUCE
-    # Rule: if deterministic says PRODUCE, Pass 2 can only demote to HOLD
+    # Reconciliation rules (env-tunable for experiments):
+    #   P4_TRUST_DETERMINISTIC_PRODUCE=1 — if math says PRODUCE, accept it even
+    #   when Pass 2 demotes to HOLD. Pass 2 has been conservative on winners
+    #   that score 60+ (V6 calibration showed 5/9 winners landing wrong-HOLD).
+    #   When deterministic = SKIP, still never let Pass 2 upgrade to PRODUCE.
+    trust_det_produce = os.environ.get("P4_TRUST_DETERMINISTIC_PRODUCE", "0") == "1"
+
     if det_verdict == "SKIP" and llm_verdict == "PRODUCE":
-        final_verdict = "HOLD"  # compromise
+        final_verdict = "HOLD"  # compromise — never SKIP→PRODUCE swing
     elif det_verdict == "PRODUCE" and llm_verdict == "SKIP":
-        final_verdict = "HOLD"
+        final_verdict = "HOLD"  # compromise — never PRODUCE→SKIP swing
+    elif det_verdict == "PRODUCE" and llm_verdict == "HOLD" and trust_det_produce:
+        final_verdict = "PRODUCE"  # math says PRODUCE; trust it over Pass 2's HOLD
     else:
         final_verdict = llm_verdict
 
