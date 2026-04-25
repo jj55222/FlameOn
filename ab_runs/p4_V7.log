@@ -39,3 +39,21 @@ Scoring case: Vn2Wqccg05w
   [Scoring] Deterministic verdict: PRODUCE (conf=0.791)
   [Pass 2] Calling qwen/qwen3.6-plus...
     Prompt size: ~2731 tokens (10,924 chars)
+    Returned in 104.4s
+    PRODUCE  (gt=PRODUCE) score=72.7 moments=7  [OK]  111.8s
+  [3/10] s6CXNbzKlks (Dr Insanity) — Secret Killer Leads Cops Into Her $3,000
+
+======================================================================
+Scoring case: s6CXNbzKlks
+  Sources: 4
+  Total duration: 2998s (50.0 min)
+  Segments: 1299
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~19731 tokens (78,926 chars)
+    Returned in 33.3s
+  [Pass 1] Extracted: 9 moments, 3 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=78.5 (density=77.7, arc=100.0, artifact=58.6, unique=57.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.824)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2990 tokens (11,962 chars)

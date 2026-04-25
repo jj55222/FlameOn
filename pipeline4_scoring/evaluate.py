@@ -411,30 +411,64 @@ def evaluate(case_filter=None, verbose=False, dry_run=False,
               f"{len(weights.get('artifact_value', {}))} artifact combos)")
     else:
         print(f"Weights: equal-weight fallback")
+    if parallel > 1:
+        print(f"Parallelism: {parallel} workers (per-case concurrency)")
     print()
 
-    results = []
+    results = [None] * len(cases)
     start = time.time()
-    for i, c in enumerate(cases):
-        if time.time() - start > TIME_BUDGET_SECONDS:
-            print(f"  TIME BUDGET EXCEEDED at case {i}/{len(cases)}")
-            break
+
+    def _score_indexed(idx_case):
+        idx, c = idx_case
         cid = c["case_id"]
-        print(f"  [{i+1}/{len(cases)}] {cid} ({c.get('channel', '?')}) — {c.get('title','')[:40]}")
         t0 = time.time()
         v = run_one_case(c, dry_run, pass1_model, pass2_model, weights=weights)
-        t1 = time.time()
-        if dry_run:
-            print(f"    [DRY RUN] rendered in {t1-t0:.1f}s")
-            results.append(None)
-            continue
-        if v is None:
-            print(f"    FAILED in {t1-t0:.1f}s")
-        else:
-            gt = (c.get("ground_truth") or {}).get("verdict", "?")
-            match = "OK" if v.get("verdict") == gt else "MISS"
-            print(f"    {v.get('verdict'):8s} (gt={gt}) score={v.get('narrative_score'):.1f} moments={len(v.get('key_moments') or [])}  [{match}]  {t1-t0:.1f}s")
-        results.append(v)
+        elapsed = time.time() - t0
+        return idx, c, v, elapsed
+
+    if parallel > 1 and not dry_run:
+        # Parallel per-case execution. Print results as cases complete (out of order).
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        with ThreadPoolExecutor(max_workers=parallel) as exe:
+            futures = {exe.submit(_score_indexed, (i, c)): i for i, c in enumerate(cases)}
+            done_count = 0
+            for fut in as_completed(futures):
+                idx, c, v, elapsed = fut.result()
+                results[idx] = v
+                done_count += 1
+                cid = c["case_id"]
+                if v is None:
+                    print(f"  [{done_count}/{len(cases)}] {cid}: FAILED ({elapsed:.1f}s)")
+                else:
+                    gt = (c.get("ground_truth") or {}).get("verdict", "?")
+                    match = "OK" if v.get("verdict") == gt else "MISS"
+                    print(f"  [{done_count}/{len(cases)}] {cid:20s} {v.get('verdict'):8s} (gt={gt}) "
+                          f"score={v.get('narrative_score'):.1f} moments={len(v.get('key_moments') or [])} "
+                          f"[{match}] ({elapsed:.1f}s)")
+                if time.time() - start > TIME_BUDGET_SECONDS:
+                    print(f"  TIME BUDGET EXCEEDED — letting in-flight workers finish, no new submits")
+                    # Can't easily cancel running futures cleanly; let them complete.
+    else:
+        # Serial path (original). Honored when parallel=1 OR dry_run.
+        for i, c in enumerate(cases):
+            if time.time() - start > TIME_BUDGET_SECONDS:
+                print(f"  TIME BUDGET EXCEEDED at case {i}/{len(cases)}")
+                break
+            cid = c["case_id"]
+            print(f"  [{i+1}/{len(cases)}] {cid} ({c.get('channel', '?')}) — {c.get('title','')[:40]}")
+            t0 = time.time()
+            v = run_one_case(c, dry_run, pass1_model, pass2_model, weights=weights)
+            t1 = time.time()
+            if dry_run:
+                print(f"    [DRY RUN] rendered in {t1-t0:.1f}s")
+                continue
+            results[i] = v
+            if v is None:
+                print(f"    FAILED in {t1-t0:.1f}s")
+            else:
+                gt = (c.get("ground_truth") or {}).get("verdict", "?")
+                match = "OK" if v.get("verdict") == gt else "MISS"
+                print(f"    {v.get('verdict'):8s} (gt={gt}) score={v.get('narrative_score'):.1f} moments={len(v.get('key_moments') or [])}  [{match}]  {t1-t0:.1f}s")
 
     if dry_run:
         print("\n[DRY RUN] No scoring performed.")
