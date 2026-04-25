@@ -6,3 +6,5 @@ experiment_id	timestamp	narrative_scoring_score	verdict_accuracy	narrative_calib
 4	2026-04-25T04:27:19Z	6.00	0.00	10.00	10.00	10.00	10.00	10	10	372.6	google/gemini-2.5-flash-lite	qwen/qwen3.6-plus	V3_combined	V3: V1+V2 combined	28d8bb8
 5	2026-04-25T16:02:08Z	22.00	10.00	10.00	30.00	70.00	10.00	10	10	647.2	google/gemini-3.1-flash-lite-preview	qwen/qwen3.6-plus	V0_baseline_stable	V0 stable Pass 1, defaults	d4c7cee
 6	2026-04-25T16:12:27Z	22.00	10.00	10.00	20.00	80.00	10.00	10	10	600.4	google/gemini-3.1-flash-lite-preview	qwen/qwen3.6-plus	V1_relax_density_stable	V1: P4_REFERENCE_DENSITY=0.1 (6x more generous density)	d4c7cee
+7	2026-04-25T16:43:45Z	22.00	10.00	10.00	10.00	90.00	10.00	10	10	687.7	google/gemini-3.1-flash-lite-preview	qwen/qwen3.6-plus	V2_lower_thresholds_stable	V2: produce=45, min_density=35, skip=20 (credits restored)	06ec197
+8	2026-04-25T16:54:22Z	23.50	10.00	10.00	30.00	80.00	10.00	10	10	615.3	google/gemini-3.1-flash-lite-preview	qwen/qwen3.6-plus	V3_combined_stable	V3: ref_density=0.1 + produce=45 + min_density=35 + skip=20 (V1+V2 combined)	06ec197

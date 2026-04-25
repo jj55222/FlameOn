@@ -57,7 +57,21 @@ You do NOT judge narrative value — a separate model does that. Your output mus
 PASS1_USER_TEMPLATE = """CASE ID: {case_id}
 TOTAL RUNTIME: {total_sec:.0f}s ({total_min:.1f} min) across {source_count} source(s).
 TRANSCRIPT SEGMENT COUNT: {segment_count}
-EXTRACTION TARGET: {target_moments_low}-{target_moments_high} moments, {target_timeline} timeline events
+
+╔══════════════════════════════════════════════════════════════════╗
+║ MANDATORY EXTRACTION QUOTA: {target_moments_low} to {target_moments_high} moments. ║
+║ Returning fewer than {target_moments_low} moments is a FAILED extraction.            ║
+║ Successful winning true-crime documentaries pack {target_moments_low}-{target_moments_high} narrative ║
+║ moments per hour. You must find them. Be thorough, not conservative. ║
+╚══════════════════════════════════════════════════════════════════╝
+
+CONTENT TYPE GUIDANCE:
+This transcript may be raw single-source footage (one bodycam, one
+interrogation) OR a compiled documentary (narrator voiceover + clips
+of bodycam + clips of interrogation + court audio + 911). Treat both
+as valid: in compiled content, the narrator's reveals/contradictions/
+callbacks count as moments just like the on-scene speech. Each segment
+is potential signal — scan all of it.
 
 SOURCES:
 {source_list}
