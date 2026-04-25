@@ -282,7 +282,6 @@ def main():
     meta = joint["_joint_metadata"]
     print(f"  Explicit moments_by_artifact: {meta['profiles_explicit']}/{meta['profiles_total']}")
     print(f"  Distributed (legacy fallback): {meta['profiles_distributed']}/{meta['profiles_total']}")
-    print(f"  Channels: {meta['channels']}")
 
     # Load base weights (optional)
     base = None
