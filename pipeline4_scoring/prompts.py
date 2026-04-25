@@ -58,12 +58,12 @@ PASS1_USER_TEMPLATE = """CASE ID: {case_id}
 TOTAL RUNTIME: {total_sec:.0f}s ({total_min:.1f} min) across {source_count} source(s).
 TRANSCRIPT SEGMENT COUNT: {segment_count}
 
-╔══════════════════════════════════════════════════════════════════╗
-║ MANDATORY EXTRACTION QUOTA: {target_moments_low} to {target_moments_high} moments. ║
-║ Returning fewer than {target_moments_low} moments is a FAILED extraction.            ║
-║ Successful winning true-crime documentaries pack {target_moments_low}-{target_moments_high} narrative ║
-║ moments per hour. You must find them. Be thorough, not conservative. ║
-╚══════════════════════════════════════════════════════════════════╝
+================================================================
+MANDATORY EXTRACTION QUOTA: {target_moments_low} to {target_moments_high} moments.
+Returning fewer than {target_moments_low} moments is a FAILED extraction.
+Successful winning true-crime documentaries pack {target_moments_low}-{target_moments_high} narrative
+moments per hour. You must find them. Be thorough, not conservative.
+================================================================
 
 CONTENT TYPE GUIDANCE:
 This transcript may be raw single-source footage (one bodycam, one
