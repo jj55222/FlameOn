@@ -57,3 +57,39 @@ Scoring case: s6CXNbzKlks
   [Scoring] Deterministic verdict: PRODUCE (conf=0.824)
   [Pass 2] Calling qwen/qwen3.6-plus...
     Prompt size: ~2990 tokens (11,962 chars)
+    Returned in 83.4s
+    PRODUCE  (gt=PRODUCE) score=78.5 moments=8  [OK]  116.7s
+  [4/10] QHAYwcCeKms (Dr Insanity) — Man Faints After Realizing He Accidental
+
+======================================================================
+Scoring case: QHAYwcCeKms
+  Sources: 7
+  Total duration: 3346s (55.8 min)
+  Segments: 1473
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'court_video', 'news_clips', 'documents', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~22020 tokens (88,083 chars)
+    Returned in 11.1s
+  [Pass 1] Extracted: 10 moments, 2 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=88.9 (density=86.7, arc=100.0, artifact=100.0, unique=42.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.885)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~3131 tokens (12,524 chars)
+    Returned in 74.6s
+    PRODUCE  (gt=PRODUCE) score=88.9 moments=8  [OK]  85.7s
+  [5/10] 6Ghe55PHc58 (EXPLORE WITH US) — Cops Make Worst Discovery of Their Lives
+
+======================================================================
+Scoring case: 6Ghe55PHc58
+  Sources: 5
+  Total duration: 3314s (55.2 min)
+  Segments: 1681
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration', 'documents']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~24213 tokens (96,852 chars)
+    Returned in 7.4s
+  [Pass 1] Extracted: 7 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=77.4 (density=58.0, arc=100.0, artifact=100.0, unique=42.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.766)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2710 tokens (10,843 chars)

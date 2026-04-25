@@ -620,6 +620,8 @@ def main():
                         help="Override Pass 2 model")
     parser.add_argument("--weights", default=os.environ.get("P4_WEIGHTS_PATH"),
                         help="Path to scoring_weights.json (auto-discovers ../pipeline1_winners/scoring_weights_joint.json if omitted)")
+    parser.add_argument("--parallel", type=int, default=int(os.environ.get("P4_PARALLEL", "1")),
+                        help="Number of cases to score concurrently (default: 1 = serial). 3-4 recommended.")
     args = parser.parse_args()
 
     # If --weights not given, default to the auto-discovery path
@@ -632,6 +634,7 @@ def main():
         pass1_model=args.pass1_model,
         pass2_model=args.pass2_model,
         weights_path=weights_path,
+        parallel=max(1, args.parallel),
     )
 
     if metrics and args.log and not args.dry_run:
