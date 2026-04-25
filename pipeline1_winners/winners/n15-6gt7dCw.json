@@ -2,7 +2,7 @@
   "video_id": "n15-6gt7dCw",
   "channel": "Dr Insanity",
   "title": "Mom Shocked After Learning Teen Sons Are Wanted Killers",
-  "view_count": 7475128,
+  "view_count": 7875877,
   "duration_sec": 3239,
   "narrative_arc": {
     "structure_type": "cold_open",
@@ -10,72 +10,162 @@
       {
         "beat_type": "hook",
         "start_pct": 0.0,
-        "end_pct": 0.019,
-        "description": "Dramatic opening montage introducing the mother, the murder, and interrogation snippets to immediately grab attention."
+        "end_pct": 0.017,
+        "description": "Introduction of Tiffany and her sons, Tyler and Eli, as killers, setting a dark tone."
       },
       {
         "beat_type": "setup",
-        "start_pct": 0.019,
-        "end_pct": 0.091,
-        "description": "Backtracks to the morning of the crime, establishing the brothers' routine, Sierra's request, and the initial shooting."
-      },
-      {
-        "beat_type": "context",
-        "start_pct": 0.091,
-        "end_pct": 0.191,
-        "description": "First responders secure the scene, analyze the execution-style wounds, and identify the victim and his ex-girlfriend Sierra."
+        "start_pct": 0.017,
+        "end_pct": 0.058,
+        "description": "Recounting the morning of the crime, the brothers' activities, and the initial moments leading to the shooting."
       },
       {
         "beat_type": "escalation",
-        "start_pct": 0.191,
-        "end_pct": 0.365,
-        "description": "Sierra's initial interrogation reveals her nervousness, followed by a SWAT raid and the brothers' arrest and wiretapped transport."
+        "start_pct": 0.058,
+        "end_pct": 0.159,
+        "description": "The shooting occurs, police arrive, initial witness interviews, and the discovery of the victim and his residence."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.159,
+        "end_pct": 0.33,
+        "description": "Victim identification, introduction of Sierra Collins, and her initial interview where she implicates the Chaffen brothers."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.33,
+        "end_pct": 0.482,
+        "description": "The manhunt for the Chaffen brothers, their arrest, and the initial conversations in the police vehicle."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.482,
+        "end_pct": 0.576,
+        "description": "Interviews with Tyler and Eli, their conflicting stories, and the introduction of their mother, Tiffany."
       },
       {
         "beat_type": "climax",
-        "start_pct": 0.365,
-        "end_pct": 0.615,
-        "description": "Tyler's interrogation unravels his self-defense claim, followed by a second confrontation with Sierra where texts expose her orchestration."
-      },
-      {
-        "beat_type": "reveal",
-        "start_pct": 0.615,
-        "end_pct": 0.856,
-        "description": "Eli is interrogated with his mother present; his detailed account and YouTube training claims clash with evidence, leading to a lawyer request."
+        "start_pct": 0.576,
+        "end_pct": 0.707,
+        "description": "Eli's confession of the murder, with Tiffany present, and the detective challenging their self-defense narrative."
       },
       {
         "beat_type": "aftermath",
-        "start_pct": 0.856,
+        "start_pct": 0.707,
+        "end_pct": 0.805,
+        "description": "Tyler's final interview, his insistence on being set up by Sierra, and the detective's assessment of the brothers' guilt."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.805,
+        "end_pct": 0.877,
+        "description": "Tiffany's continued support for her sons, jail calls, and the legal proceedings."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.877,
+        "end_pct": 0.924,
+        "description": "Sierra's death due to a medical emergency and the Chaffen brothers entering plea agreements."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.924,
         "end_pct": 1.0,
-        "description": "Emotional goodbyes, Tyler's final attempt to align stories, jail calls, and the epilogue covering Sierra's death and the brothers' sentencing."
+        "description": "Sentencing of Eli and Tyler, concluding the narrative with their prison terms."
       }
     ]
   },
   "moment_types": {
-    "contradiction": 2,
-    "emotional_peak": 3,
-    "procedural_violation": 0,
-    "reveal": 3,
+    "contradiction": 3,
+    "emotional_peak": 5,
+    "procedural_violation": 1,
+    "reveal": 4,
     "detail_noticed": 3,
     "callback": 2,
-    "tension_shift": 3
+    "tension_shift": 4
   },
   "segment_stats": {
-    "avg_segment_length_sec": 2.11,
+    "avg_segment_length_sec": 21.06,
     "total_segments": 1535,
     "bodycam_pct": 0.18,
-    "narration_pct": 0.42,
-    "interrogation_pct": 0.33,
-    "other_pct": 0.07
+    "narration_pct": 0.55,
+    "interrogation_pct": 0.25,
+    "other_pct": 0.02
   },
   "artifact_combination": [
+    "narration",
     "bodycam",
     "interrogation",
-    "911_audio",
-    "narration"
+    "911_audio"
   ],
+  "moments_by_artifact": {
+    "bodycam": {
+      "contradiction": 0,
+      "emotional_peak": 1,
+      "procedural_violation": 1,
+      "reveal": 0,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 1
+    },
+    "interrogation": {
+      "contradiction": 3,
+      "emotional_peak": 3,
+      "procedural_violation": 0,
+      "reveal": 3,
+      "detail_noticed": 2,
+      "callback": 2,
+      "tension_shift": 3
+    },
+    "911_audio": {
+      "contradiction": 0,
+      "emotional_peak": 1,
+      "procedural_violation": 0,
+      "reveal": 1,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "court_video": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "news_clips": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "documents": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "narration": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    }
+  },
+  "_llm_model": "google/gemini-2.5-flash-lite",
   "_analysis_metadata": {
-    "model": "qwen/qwen3.6-plus:free",
+    "model": "google/gemini-2.5-flash-lite",
     "transcript_segments": 1535,
     "transcript_preview": "This is Tiffany, mother of Tyler and Eli Chaffen. Just hours earlier, her two sons brutally killed a man and left his body by the side of the road. >> I felt I had to shoot wheels to make sure my brother didn't get hurt. This police are always trying to protect the children. >> As Tiffany listens in horror, the brothers insist they were only protecting each other. But the truth is far darker. >> Over the next 24 hours, Tiffany will face the worst day of her life as she slowly pieces together the horrifying truth that she's raised two terrifying killers. >> And your brother, your brother murdered somebody. >> I love you very much. ..."
   }

@@ -162,12 +162,28 @@ def adapt_winner_to_merged(entry):
 
 
 def adapt_p3_to_merged(entry):
-    """Adapter for P3-format transcripts (delegate to transcript_loader)."""
-    from transcript_loader import merge_transcripts
-    path = _resolve_path(entry["transcript_path"])
-    if not path.exists():
+    """
+    Adapter for P3-format transcripts. Supports:
+      - entry["transcript_path"]  — single file
+      - entry["transcript_paths"] — list of files (auto-merged by case_id)
+      - entry["transcript_dir"]   — directory; auto-discover by case_id
+    """
+    from transcript_loader import merge_transcripts, discover_case_transcripts
+    paths = []
+    if entry.get("transcript_paths"):
+        paths = [_resolve_path(p) for p in entry["transcript_paths"]]
+    elif entry.get("transcript_path"):
+        paths = [_resolve_path(entry["transcript_path"])]
+    elif entry.get("transcript_dir"):
+        td = _resolve_path(entry["transcript_dir"])
+        groups = discover_case_transcripts(str(td), case_id=entry.get("case_id"))
+        if groups:
+            cid = entry.get("case_id") or next(iter(groups.keys()))
+            paths = groups.get(cid, [])
+    paths = [p for p in paths if p.exists()]
+    if not paths:
         return None
-    return merge_transcripts([path])
+    return merge_transcripts(paths)
 
 
 def adapt_for_p4(entry):
