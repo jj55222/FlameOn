@@ -521,7 +521,7 @@ def main():
             results.append(result)
 
     print(f"\n{'='*60}")
-    print(f"Done. {len(results)}/{len(urls)} videos processed.")
+    print(f"Done. {len(results)}/{len(urls)} videos processed (skipped {skipped} already-analyzed).")
     if not args.dry_run:
         print(f"Profiles saved to: {args.output}/")
 
