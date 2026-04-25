@@ -65,7 +65,7 @@ def moment_density_score(
     moments: list,
     weights: dict,
     runtime_sec: float,
-    reference_density: float = 0.6,
+    reference_density: Optional[float] = None,
 ) -> float:
     """
     Score the density of high-value moments per minute, weighted by type and importance.
