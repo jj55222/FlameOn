@@ -138,17 +138,29 @@ Extract the following and return a single JSON object with EXACTLY this structur
 
 RULES:
 1. Use ONLY these seven moment types: {moment_types_list}
+   - "contradiction" — a statement that conflicts with another statement, evidence, or known fact (within or across sources, including narrator vs. on-scene speech)
+   - "reveal" — new information that changes understanding (a discovery, a confession, a piece of evidence surfaced, a name dropped)
+   - "emotional_peak" — visible/audible distress, shock, anger, breakdown, dramatic shift in tone
+   - "procedural_violation" — Miranda issue, use-of-force concern, evidence handling failure, rights ignored, policy breach
+   - "detail_noticed" — narrator or speaker draws attention to a small but loaded detail (a poison search, a missing object, an out-of-place statement)
+   - "callback" — explicit reference to an earlier moment that recontextualizes it
+   - "tension_shift" — interaction pivots from cooperative→adversarial or vice versa, or stakes escalate suddenly
 2. timestamp_sec and end_timestamp_sec must exist within the transcript — NEVER invent timestamps.
-3. Every moment MUST include source_idx matching the source it came from.
-4. If a speaker appears in multiple sources, look for cross-source contradictions.
-5. AIM for the EXTRACTION TARGET shown above. A 100-minute transcript with only 3 moments is wrong — there WILL be 20-40 notable moments in a long police transcript. Hard cap moments at 60, timeline at 100, emotional_arc at 20.
-6. Mark provisional_importance CONSERVATIVELY:
-   - "critical": direct admission of fact, cross-source contradiction, Miranda issue, use-of-force moment, confession, fatal shot fired
-   - "high": tension shift, emotional peak with visible distress, strong reveal
-   - "medium": default for most moments
-   - "low": background context, procedural filler
+3. Every moment MUST include source_idx matching the source it came from (use 0 for single-source compiled videos).
+4. Cross-source signal is gold: if the same speaker appears in bodycam AND a later interrogation, scan for contradictions between them.
+5. EXTRACTION DENSITY IS THE PRIMARY METRIC. Do NOT be conservative about how many moments to extract. The quota above is a floor, not a ceiling. A 60-minute compiled true-crime documentary regularly contains 20-40 distinct narrative moments — find them. Hard cap moments at 60, timeline at 100, emotional_arc at 20.
+6. Mark provisional_importance based on narrative weight (NOT extraction stinginess):
+   - "critical" (~10-20% of moments): confession, cross-source contradiction, Miranda issue, fatal force, named suspect first revealed, motive uncovered
+   - "high" (~30-40% of moments): strong emotional peak, key reveal, tension shift, procedural concern
+   - "medium" (~30-40% of moments): default; most moments fall here
+   - "low" (~10-20% of moments): minor callback, supporting detail, transitional beat
 7. emotional_intensity scale: 1 (calm) to 5 (crisis).
-8. detected_structure_hint: pick the pattern that best matches how this case is narrated. If the transcript opens with a dramatic moment then backtracks, it's cold_open. If it walks forward in time, it's chronological.
+8. detected_structure_hint criteria:
+   - "cold_open" — opens with the climactic/dramatic moment (arrest, body discovery, key quote), then backtracks to fill in setup. THIS IS THE MOST COMMON in true-crime documentaries (~80% of winners) — pick this if the first 60 seconds contains a payoff that's later contextualized.
+   - "chronological" — strict forward time order from setup to climax to aftermath
+   - "escalation" — opens calm and steadily escalates without re-ordering
+   - "parallel_timeline" — alternates between two timelines (e.g. investigation thread vs. suspect-life thread)
+   - "reveal_structure" — only when the structure is explicitly built around delaying ONE specific revelation (rare; do not over-pick this)
 9. Return ONLY the JSON object. No prose before or after. No markdown. No thinking blocks.
 """
 
