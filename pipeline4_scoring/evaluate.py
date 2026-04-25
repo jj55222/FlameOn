@@ -388,7 +388,8 @@ def run_one_case(entry, dry_run, pass1_model, pass2_model, weights=None):
 
 
 def evaluate(case_filter=None, verbose=False, dry_run=False,
-             pass1_model=None, pass2_model=None, weights_path=None):
+             pass1_model=None, pass2_model=None, weights_path=None,
+             parallel=1):
     cases_all = load_calibration()
     if case_filter:
         cases = [c for c in cases_all if c.get("case_id") == case_filter]

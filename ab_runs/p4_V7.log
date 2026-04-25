@@ -1,0 +1,41 @@
+Pipeline 4 AutoResearch Evaluation
+========================================================
+Cases: 10 | Dry run: False
+Pass 1 model: google/gemini-3.1-flash-lite-preview
+Pass 2 model: qwen/qwen3.6-plus
+Weights: loaded (joint; 9 artifact combos)
+
+  [1/10] t6h8Uae2Q_E (Dr Insanity) — How Police Captured Colorado's Smartest 
+
+======================================================================
+Scoring case: t6h8Uae2Q_E
+  Sources: 6
+  Total duration: 4336s (72.3 min)
+  Segments: 1806
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'news_clips', 'documents', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~27414 tokens (109,659 chars)
+    Returned in 10.9s
+  [Pass 1] Extracted: 5 moments, 1 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=71.5 (density=45.8, arc=100.0, artifact=100.0, unique=32.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.713)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2465 tokens (9,863 chars)
+    Returned in 65.2s
+    PRODUCE  (gt=PRODUCE) score=71.5 moments=5  [OK]  76.1s
+  [2/10] Vn2Wqccg05w (Dr Insanity) — Cops Realize Psycho Daughters Car Is Fil
+
+======================================================================
+Scoring case: Vn2Wqccg05w
+  Sources: 4
+  Total duration: 5397s (89.9 min)
+  Segments: 2408
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~35124 tokens (140,497 chars)
+    Returned in 7.3s
+  [Pass 1] Extracted: 7 moments, 1 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=72.7 (density=65.7, arc=100.0, artifact=58.6, unique=47.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.791)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2731 tokens (10,924 chars)
