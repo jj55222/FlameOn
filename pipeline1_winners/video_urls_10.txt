@@ -1,0 +1,15 @@
+# 10-video calibration subset (5 Dr Insanity + 5 Explore With Us)
+# 2 already processed with deepseek-v4-flash: t6h8Uae2Q_E, Vn2Wqccg05w (Dr Insanity)
+# This file lists the remaining 8 for a balanced 10-video baseline.
+
+# Dr Insanity (3 more):
+https://www.youtube.com/watch?v=s6CXNbzKlks
+https://www.youtube.com/watch?v=QHAYwcCeKms
+https://www.youtube.com/watch?v=_Vusd3fkJKU
+
+# Explore With Us (5):
+https://www.youtube.com/watch?v=6Ghe55PHc58
+https://www.youtube.com/watch?v=cgCYon_kKno
+https://www.youtube.com/watch?v=JBRHS5vErpg
+https://www.youtube.com/watch?v=fsL0ag9ySao
+https://www.youtube.com/watch?v=29PVkF6hcnw
