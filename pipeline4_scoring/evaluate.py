@@ -215,16 +215,28 @@ def score_verdict_accuracy(cases, results):
 
 
 def score_narrative_calibration(cases, results):
-    """% of cases where narrative_score falls at/above min_narrative_score."""
+    """
+    % of cases where narrative_score falls in the expected band:
+      - If ground_truth.min_narrative_score: score >= min
+      - If ground_truth.max_narrative_score: score <= max
+      - Both can be set for SKIP/HOLD-class cases that should score LOW.
+    """
     n_total = 0
     n_hit = 0
     for case, verdict in zip(cases, results):
         gt = case.get("ground_truth") or {}
         mn = gt.get("min_narrative_score")
-        if mn is None:
+        mx = gt.get("max_narrative_score")
+        if mn is None and mx is None:
             continue
         n_total += 1
-        if verdict and verdict.get("narrative_score", 0) >= mn:
+        ns = (verdict or {}).get("narrative_score", 0)
+        ok = True
+        if mn is not None and ns < mn:
+            ok = False
+        if mx is not None and ns > mx:
+            ok = False
+        if ok:
             n_hit += 1
     return (n_hit / n_total * 100) if n_total > 0 else 0.0
 

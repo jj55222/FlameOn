@@ -200,5 +200,25 @@
       ],
       "notes": "Proven winner (6,431,734 views) — transcript-only test of narrative detection"
     }
+  },
+  {
+    "case_id": "sfdpa_0409-18",
+    "source": "pipeline3_p3_case",
+    "channel": "SF DPA (administrative hearing)",
+    "title": "Officer Sherry + Bradford use-of-force at protest — admin review",
+    "view_count": 0,
+    "transcript_dir": "../pipeline3_audio/transcripts",
+    "adapter": "p3",
+    "ground_truth": {
+      "verdict": "SKIP",
+      "max_narrative_score": 40,
+      "expected_arc": "chronological",
+      "min_key_moments": 0,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation"
+      ],
+      "notes": "Administrative review of officer use-of-force at a protest. No criminal narrative, no compelling arc. P4 previously verdicted SKIP @ 14.96."
+    }
   }
 ]
