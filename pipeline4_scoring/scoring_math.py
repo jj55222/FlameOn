@@ -79,6 +79,9 @@ def moment_density_score(
     if not moments or runtime_sec <= 0:
         return 0.0
 
+    if reference_density is None:
+        reference_density = REFERENCE_DENSITY
+
     moment_weights = weights.get("moment_weights", {})
     runtime_min = runtime_sec / 60.0
     # Clamp the runtime divisor to [20, 50] min. Prevents tiny clips from
