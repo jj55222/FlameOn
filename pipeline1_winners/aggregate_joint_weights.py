@@ -211,33 +211,15 @@ def aggregate(profiles):
                 lift[mt] = 0.0
         moment_artifact_lift[artifact] = lift
 
-    # Per-channel normalization
-    channel_breakdown = {}
-    for channel, art_map in per_channel.items():
-        channel_weights = {}
-        for artifact in VALID_ARTIFACTS:
-            counts = art_map.get(artifact, {})
-            s = sum(counts.values())
-            if s <= 0:
-                channel_weights[artifact] = {mt: 0.0 for mt in VALID_MOMENT_TYPES}
-            else:
-                channel_weights[artifact] = {mt: round(counts.get(mt, 0) / s, 4) for mt in VALID_MOMENT_TYPES}
-        channel_breakdown[channel] = {
-            "n_videos": channel_video_counts[channel],
-            "moment_artifact_weights": channel_weights,
-        }
-
     return {
         "moment_artifact_weights": moment_artifact_weights,
         "moment_artifact_lift": moment_artifact_lift,
         "moment_artifact_baseline": {mt: round(v, 4) for mt, v in baseline.items()},
         "artifact_observation_totals": {a: round(v, 2) for a, v in artifact_totals.items()},
-        "channel_breakdown": channel_breakdown,
         "_joint_metadata": {
             "profiles_total": len(profiles),
             "profiles_explicit": explicit_count,
             "profiles_distributed": distributed_count,
-            "channels": list(channel_video_counts.keys()),
         },
     }
 
