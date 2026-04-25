@@ -230,8 +230,48 @@ RULES:
 Return ONLY the JSON object, no other text."""
 
 
+def _try_one_model(client, model, prompt, max_attempts=3):
+    """Single model attempt with retries. Returns parsed dict or None."""
+    for attempt in range(max_attempts):
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                timeout=LLM_TIMEOUT,
+                extra_headers={
+                    "HTTP-Referer": "https://github.com/jj55222/FlameOn",
+                    "X-Title": "FlameOn Pipeline 1",
+                },
+            )
+            content = response.choices[0].message.content.strip()
+            # Strip markdown code fences if present
+            content = re.sub(r'^```(?:json)?\s*\n?', '', content)
+            content = re.sub(r'\n?```\s*$', '', content)
+            # Strip <think>...</think> blocks if present (Qwen thinking)
+            content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+            return json.loads(content)
+        except json.JSONDecodeError as e:
+            print(f"  [WARN] {model}: JSON parse failed (attempt {attempt+1}/{max_attempts}): {e}")
+            if attempt < max_attempts - 1:
+                time.sleep(5)
+        except Exception as e:
+            err = str(e)
+            print(f"  [WARN] {model}: LLM call failed (attempt {attempt+1}/{max_attempts}): {err[:200]}")
+            # If this is a fatal config error (404 model not found, 401 auth),
+            # don't bother retrying — let caller fall through to fallback model.
+            if any(code in err for code in ("404", "model_not_found", "Invalid model")):
+                return None
+            if attempt < max_attempts - 1:
+                time.sleep(10)
+    return None
+
+
 def analyze_with_llm(transcript_text, metadata):
-    """Send transcript to LLM for structural analysis."""
+    """
+    Send transcript to LLM for structural analysis.
+    Tries LLM_MODEL (primary) first; on failure, falls back to LLM_FALLBACK_MODEL.
+    """
     try:
         from openai import OpenAI
     except ImportError:
@@ -256,36 +296,20 @@ def analyze_with_llm(transcript_text, metadata):
         transcript_text=transcript_text,
     )
 
-    for attempt in range(3):
-        try:
-            response = client.chat.completions.create(
-                model=LLM_MODEL,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-                timeout=LLM_TIMEOUT,
-                extra_headers={
-                    "HTTP-Referer": "https://github.com/jj55222/FlameOn",
-                    "X-Title": "FlameOn Pipeline 1",
-                },
-            )
-            content = response.choices[0].message.content.strip()
+    # Primary: deepseek-v4-flash (fast extraction)
+    print(f"  [LLM] Trying primary: {LLM_MODEL}")
+    result = _try_one_model(client, LLM_MODEL, prompt, max_attempts=3)
+    if result is not None:
+        result["_llm_model"] = LLM_MODEL
+        return result
 
-            # Strip markdown code fences if present
-            content = re.sub(r'^```(?:json)?\s*\n?', '', content)
-            content = re.sub(r'\n?```\s*$', '', content)
-
-            # Strip <think>...</think> blocks if present (Qwen thinking)
-            content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
-
-            return json.loads(content)
-        except json.JSONDecodeError as e:
-            print(f"  [WARN] JSON parse failed (attempt {attempt+1}/3): {e}")
-            if attempt < 2:
-                time.sleep(5)
-        except Exception as e:
-            print(f"  [WARN] LLM call failed (attempt {attempt+1}/3): {e}")
-            if attempt < 2:
-                time.sleep(10)
+    # Fallback: qwen3.6-plus (robust free-tier safety net)
+    if LLM_FALLBACK_MODEL and LLM_FALLBACK_MODEL != LLM_MODEL:
+        print(f"  [LLM] Primary failed — falling back to: {LLM_FALLBACK_MODEL}")
+        result = _try_one_model(client, LLM_FALLBACK_MODEL, prompt, max_attempts=2)
+        if result is not None:
+            result["_llm_model"] = LLM_FALLBACK_MODEL
+            return result
 
     return None
 
