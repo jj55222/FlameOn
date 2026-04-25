@@ -266,10 +266,10 @@ def decide_verdict(
         for m in moments
     )
 
-    # Thresholds
-    PRODUCE_SCORE = 72
-    PRODUCE_DENSITY = 60
-    SKIP_SCORE = 35
+    # Thresholds (env-var tunable — see module header)
+    PRODUCE_SCORE = PRODUCE_SCORE_THRESH
+    PRODUCE_DENSITY = PRODUCE_DENSITY_THRESH
+    SKIP_SCORE = SKIP_SCORE_THRESH
 
     if (
         narrative_score >= PRODUCE_SCORE
