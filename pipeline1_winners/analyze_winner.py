@@ -32,7 +32,12 @@ load_dotenv()
 # ──────────────────────────────────────────────────────────────
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-LLM_MODEL = os.environ.get("P1_LLM_MODEL", "qwen/qwen3-235b-a22b:free")
+# Primary + fallback model chain. Try primary first; on persistent failure
+# (model unavailable, rate limit, repeated JSON parse failures), fall through
+# to the fallback. Lets us use a faster/cheaper extraction model with a
+# robust free-tier safety net.
+LLM_MODEL = os.environ.get("P1_LLM_MODEL", "deepseek/deepseek-v4-flash")
+LLM_FALLBACK_MODEL = os.environ.get("P1_LLM_FALLBACK_MODEL", "qwen/qwen3.6-plus:free")
 LLM_BASE_URL = "https://openrouter.ai/api/v1"
 LLM_TIMEOUT = 120  # seconds — long transcripts take time
 
