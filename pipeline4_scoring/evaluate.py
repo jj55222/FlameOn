@@ -583,7 +583,12 @@ def main():
                         help="Override Pass 1 model")
     parser.add_argument("--pass2-model", default=os.environ.get("P4_PASS2_MODEL"),
                         help="Override Pass 2 model")
+    parser.add_argument("--weights", default=os.environ.get("P4_WEIGHTS_PATH"),
+                        help="Path to scoring_weights.json (auto-discovers ../pipeline1_winners/scoring_weights_joint.json if omitted)")
     args = parser.parse_args()
+
+    # If --weights not given, default to the auto-discovery path
+    weights_path = args.weights if args.weights is not None else "auto"
 
     metrics = evaluate(
         case_filter=args.case,
@@ -591,6 +596,7 @@ def main():
         dry_run=args.dry_run,
         pass1_model=args.pass1_model,
         pass2_model=args.pass2_model,
+        weights_path=weights_path,
     )
 
     if metrics and args.log and not args.dry_run:
