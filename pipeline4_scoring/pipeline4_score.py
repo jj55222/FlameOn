@@ -57,7 +57,7 @@ from scoring_math import compute_all, equal_weight_fallback
 
 
 DEFAULT_PASS1_MODEL = os.environ.get(
-    "P4_PASS1_MODEL", "google/gemini-2.5-flash-lite"
+    "P4_PASS1_MODEL", "google/gemini-3.1-flash-lite-preview"
 )
 DEFAULT_PASS2_MODEL = os.environ.get("P4_PASS2_MODEL", "qwen/qwen3.6-plus")
 
