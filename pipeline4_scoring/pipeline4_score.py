@@ -103,7 +103,7 @@ def run_pass1(merged, backend):
     print(f"    Prompt size: ~{len(user) // 4} tokens ({len(user):,} chars)")
 
     t0 = time.time()
-    raw = backend.complete(system=system, user=user, max_tokens=12000, temperature=0.1)
+    raw = backend.complete(system=system, user=user, max_tokens=8000, temperature=0.1)
     elapsed = time.time() - t0
     print(f"    Returned in {elapsed:.1f}s")
 
