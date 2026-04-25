@@ -398,11 +398,18 @@ def evaluate(case_filter=None, verbose=False, dry_run=False,
         print("No cases match filter")
         return None
 
+    weights = _load_weights(weights_path) if weights_path is not None else None
+
     print(f"Pipeline 4 AutoResearch Evaluation")
     print(f"{'=' * 56}")
     print(f"Cases: {len(cases)} | Dry run: {dry_run}")
     print(f"Pass 1 model: {pass1_model or '(default)'}")
     print(f"Pass 2 model: {pass2_model or '(default)'}")
+    if weights:
+        print(f"Weights: loaded ({'joint' if 'moment_artifact_weights' in weights else 'standard'}; "
+              f"{len(weights.get('artifact_value', {}))} artifact combos)")
+    else:
+        print(f"Weights: equal-weight fallback")
     print()
 
     results = []
