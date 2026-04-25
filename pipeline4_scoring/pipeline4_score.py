@@ -172,7 +172,7 @@ def run_pass2(merged, pass1, weights, backend, scoring_breakdown, narrative_scor
     print(f"    Prompt size: ~{len(user) // 4} tokens ({len(user):,} chars)")
 
     t0 = time.time()
-    raw = backend.complete(system=system, user=user, max_tokens=8000, temperature=0.2)
+    raw = backend.complete(system=system, user=user, max_tokens=3000, temperature=0.2)
     elapsed = time.time() - t0
     print(f"    Returned in {elapsed:.1f}s")
 
