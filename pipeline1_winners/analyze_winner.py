@@ -492,6 +492,8 @@ def main():
     group.add_argument("--batch", help="Text file with one YouTube URL per line")
     parser.add_argument("--output", default="winners", help="Output directory (default: winners/)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would be done without LLM calls")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-analyze even if winners/{video_id}.json already exists")
     args = parser.parse_args()
 
     if args.url:
@@ -506,7 +508,14 @@ def main():
         print(f"Loaded {len(urls)} URLs from {args.batch}")
 
     results = []
+    skipped = 0
     for url in urls:
+        vid = extract_video_id(url)
+        out_profile = os.path.join(args.output, f"{vid}.json") if vid else None
+        if not args.force and out_profile and os.path.exists(out_profile) and not args.dry_run:
+            print(f"\n[SKIP] {vid}: profile exists (use --force to re-analyze)")
+            skipped += 1
+            continue
         result = analyze_video(url, args.output, dry_run=args.dry_run)
         if result:
             results.append(result)
