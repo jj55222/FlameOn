@@ -1,0 +1,113 @@
+{
+  "video_id": "29PVkF6hcnw",
+  "channel": "EXPLORE WITH US",
+  "title": "Husband Whistles As He Slowly Murders His Wife",
+  "view_count": 6431734,
+  "duration_sec": 3166,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.03,
+        "description": "Dramatic opening quotes from interviews and interrogations highlighting the poisoning, dizziness, and cyanide discovery."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.03,
+        "end_pct": 0.09,
+        "description": "Introduction of Jim and Angela Craig, their seemingly perfect life, and the morning of March 6, 2023."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.09,
+        "end_pct": 0.16,
+        "description": "Angela's sudden illness after a workout, first hospital visit, and her growing suspicion of being drugged."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.16,
+        "end_pct": 0.22,
+        "description": "Backstory of Jim's past infidelity, a prior drugging incident six years earlier, and recent dating app activity."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.22,
+        "end_pct": 0.31,
+        "description": "Angela's condition worsens, leading to a second hospitalization while Jim displays bizarrely casual and cheerful behavior."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.31,
+        "end_pct": 0.41,
+        "description": "Angela's final medical crash, failed intubation, brain death, and the office manager's revelation of the potassium cyanide package."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.41,
+        "end_pct": 0.5,
+        "description": "Police confrontation, Jim's arrest for first-degree murder, and his initial jail interview where he invokes his rights."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.5,
+        "end_pct": 0.61,
+        "description": "Interview with Karen, the orthodontist Jim met in Vegas, exposing his lies about divorce and revealing financial motives."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.61,
+        "end_pct": 0.73,
+        "description": "Revelation of Jim's severe debt, $4M life insurance policy, and the emotional toll on family and investigators."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.73,
+        "end_pct": 0.8,
+        "description": "Jim's post-arrest attempts to orchestrate a cover-up, including deepfake requests, soliciting murder, and perjury."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.8,
+        "end_pct": 0.87,
+        "description": "Digital forensics uncover Jim's poison searches, purchase timeline, and the final hospital syringe administration."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.87,
+        "end_pct": 1.0,
+        "description": "Trial proceedings, guilty verdict on all counts, life sentence without parole, and final tribute to Angela."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.27,
+    "total_segments": 1397,
+    "bodycam_pct": 0.3,
+    "narration_pct": 0.35,
+    "interrogation_pct": 0.2,
+    "other_pct": 0.15
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "documents",
+    "narration",
+    "court_video"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1397,
+    "transcript_preview": "She kind of just like laid down and said that she felt dizzy and she wasn't feeling well. It is absolutely sickening. Sickening. >> But I am angry. You just brought me home. You just brought me home. >> Kind of a sick person does that. It just is psychotic. >> You think she's going to die? >> There's some drugs that wouldn't show up on that drug panel. >> And so potassium cyanide is not something that we use in dentistry. I don't even know how to acquire potassium cyanide. >> It just is a whole another layer of just >> wicked. >> A Colorado mother begins experiencing sudden and devastating symptoms after a ..."
+  }
+}

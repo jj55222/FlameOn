@@ -1,0 +1,109 @@
+{
+  "video_id": "V4pEJXHvSjo",
+  "channel": "EXPLORE WITH US",
+  "title": "Serial Killer Vlogs His Murder Spree",
+  "view_count": 6371356,
+  "duration_sec": 5172,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.025,
+        "description": "Cold open featuring tense roadside encounter between deputy and suspect Gary Hilton"
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.025,
+        "end_pct": 0.085,
+        "description": "Introduction of Cheryl Dunlap's disappearance in Florida and initial investigation"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.085,
+        "end_pct": 0.135,
+        "description": "Meredith Emerson vanishes in Georgia; witness accounts and tip line identify Hilton"
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.135,
+        "end_pct": 0.175,
+        "description": "Discovery of Cheryl's remains, 911 call spots Hilton, and he is arrested"
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.175,
+        "end_pct": 0.24,
+        "description": "Interrogation begins; Hilton's uncooperative demeanor shifts to philosophical monologues"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.24,
+        "end_pct": 0.44,
+        "description": "Detailed confession of the abduction, struggle, and zip-tying of Meredith Emerson"
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.44,
+        "end_pct": 0.64,
+        "description": "Hilton's worldview, failed ATM runs, camping with hostage, and psychological manipulation"
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.64,
+        "end_pct": 0.77,
+        "description": "Hilton confesses to the brutal murder, decapitation, and disposal of Meredith's body"
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.77,
+        "end_pct": 0.89,
+        "description": "Body recovery, autopsy findings, perp walk, and initial state sentencing"
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.89,
+        "end_pct": 0.96,
+        "description": "Federal investigation reveals Bryant murders; Hilton receives additional life sentences"
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.96,
+        "end_pct": 1.0,
+        "description": "Florida trial, video evidence presentation, and death penalty sentencing"
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 1,
+    "reveal": 5,
+    "detail_noticed": 4,
+    "callback": 3,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.36,
+    "total_segments": 2194,
+    "bodycam_pct": 0.25,
+    "narration_pct": 0.35,
+    "interrogation_pct": 0.3,
+    "other_pct": 0.1
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "court_video",
+    "news_clips",
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 2194,
+    "transcript_preview": "When you're going out to kill somebody, if you're seen by a single other person on the trail, then that's that day screwed. In Cherokee County, Georgia, a sheriff's deputy stops to question a man parked on private hunting lands. At worst, the man is guilty of trespassing. Or so the deputy thinks as he approaches. Good. Yourself, sir? What you doing out here? Well, you're the and the fourth person that's come along. Am I? And asked me that. I guess they called you, didn't they? Yes, I did. I you know, I just wanted a place to camp cuz I'm on my way to cut. I'm leaving. As a matter of fact, I'm getting my maps together. I got to bought some maps right now. That's why I just came out the place and ..."
+  }
+}

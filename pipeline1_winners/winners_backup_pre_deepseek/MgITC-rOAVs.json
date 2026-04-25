@@ -1,0 +1,95 @@
+{
+  "video_id": "MgITC-rOAVs",
+  "channel": "EXPLORE WITH US",
+  "title": "Cops Discover Disabled Teen Caged in Mom's Backyard",
+  "view_count": 10212605,
+  "duration_sec": 3648,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Dramatic 911 audio and narrator intro establish immediate tension before backtracking to the case origin."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.02,
+        "end_pct": 0.15,
+        "description": "CPS receives abuse report, details Georgia's disabilities and allegations, police arrive with search warrant."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.15,
+        "end_pct": 0.32,
+        "description": "House search unfolds, Patricia stalls with dogs, James hides and is discovered, leading to his arrest."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.32,
+        "end_pct": 0.48,
+        "description": "Interrogations begin, suspects deny claims, but text messages and physical evidence expose systematic abuse."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.48,
+        "end_pct": 0.52,
+        "description": "Five-month time jump, suspects arrested and released on bond, setting stage for the next event."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.52,
+        "end_pct": 0.66,
+        "description": "Jazelle's frantic 911 call, police respond to Patricia's shooting, chaotic scene and emotional distress."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.66,
+        "end_pct": 0.82,
+        "description": "Manhunt for suspect, surveillance identifies truck, Mark brought in, tense detention and rights dispute."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.82,
+        "end_pct": 0.96,
+        "description": "Dump site yields murder weapon, glasses mismatch clears Mark, Walmart footage identifies brother Matthew."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.96,
+        "end_pct": 1.0,
+        "description": "Formal charges filed, custody updates for Georgia, channel outro and call to action."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 2,
+    "procedural_violation": 2,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.38,
+    "total_segments": 1533,
+    "bodycam_pct": 0.48,
+    "narration_pct": 0.2,
+    "interrogation_pct": 0.25,
+    "other_pct": 0.07
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1533,
+    "transcript_preview": "I think it's okay because she has court for a stupid child abuse case that she didn't even do. It's all a lie. She said that every every morning from about 6:00 in the morning until 10 to midnight at night she would have to be locked in the chicken coop. When I went inside I heard gunshots and I found the bullet in the back. Okay. When a 15year-old girl comes forward with a harrowing tale of abuse, investigators in Farmington, New Mexico are plunged into a chilling story steeped in unimaginable cruelty and neglect. As they search for evidence and interrogate the accused, the truth is exposed, sending the case spiraling toward an explosive conclusion they never saw coming. My daughter was in ..."
+  }
+}
