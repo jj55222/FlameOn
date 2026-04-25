@@ -126,7 +126,11 @@ def adapt_winner_to_merged(entry):
     """
     Turn a Pipeline 1 winner transcript ({video_id, segments[]}) into a
     merged-transcript dict that pipeline4_score.score_case can consume.
-    Single source, evidence_type='other' (compiled content).
+
+    available_evidence_types is populated from the winner's profile
+    artifact_combination (so artifact_completeness scoring uses real
+    artifact data, not a uniform 'other' default that flattens all
+    winners into the same neutral score).
     """
     path = _resolve_path(entry["transcript_path"])
     if not path.exists():
@@ -137,18 +141,42 @@ def adapt_winner_to_merged(entry):
     if not segs_in:
         return None
     total_dur = max((s.get("end_sec", 0) for s in segs_in), default=0)
-    return {
-        "case_id": entry["case_id"],
-        "sources": [{
-            "source_idx": 0,
-            "source_url": f"https://youtube.com/watch?v={entry['case_id']}",
-            "evidence_type": "other",
+
+    # Pull artifact_combination from the matching winner profile (sibling
+    # file <case_id>.json next to the transcript). This is the discriminating
+    # signal that separates true winners (4-artifact combo) from
+    # admin/single-source content (1-2 artifacts).
+    profile_path = path.parent / f"{entry['case_id']}.json"
+    artifacts = []
+    if profile_path.exists():
+        try:
+            with open(profile_path, "r", encoding="utf-8") as f:
+                prof = json.load(f)
+            artifacts = [a for a in (prof.get("artifact_combination") or []) if a]
+        except (json.JSONDecodeError, OSError):
+            pass
+    if not artifacts:
+        artifacts = ["other"]  # safe fallback
+
+    # Build one source entry per artifact so available_evidence_types
+    # populates correctly via merge_transcripts logic in score_case.
+    # Each source carries the same segments — a simplification, but
+    # importantly drives the artifact_completeness lookup correctly.
+    sources = []
+    for idx, art in enumerate(artifacts):
+        sources.append({
+            "source_idx": idx,
+            "source_url": f"https://youtube.com/watch?v={entry['case_id']}#{art}",
+            "evidence_type": art,
             "duration_sec": float(total_dur),
             "processed_duration_sec": float(total_dur),
             "transcript_path": str(path),
-        }],
+        })
+    return {
+        "case_id": entry["case_id"],
+        "sources": sources,
         "segments": [{
-            "source_idx": 0,
+            "source_idx": 0,  # all moments tagged to source 0; artifact set is what matters for scoring
             "start_sec": float(s.get("start_sec", 0)),
             "end_sec": float(s.get("end_sec", 0)),
             "text": (s.get("text") or "").strip(),
@@ -157,7 +185,7 @@ def adapt_winner_to_merged(entry):
         } for s in segs_in],
         "total_duration_sec": round(float(total_dur), 3),
         "transcript_refs": [str(path)],
-        "available_evidence_types": ["other"],
+        "available_evidence_types": artifacts,
     }
 
 
