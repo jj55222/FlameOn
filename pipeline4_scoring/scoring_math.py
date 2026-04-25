@@ -5,10 +5,23 @@ Pure Python, no LLM calls. The numeric narrative_score comes from here,
 NOT from the LLM, so the <30% PRODUCE target can be enforced reliably
 via fixed thresholds. Pass 2 is trusted for labels and reasoning;
 Python is trusted for numbers.
+
+Tunable via env vars (for A/B experiments):
+    P4_REFERENCE_DENSITY       default 0.6   (weighted moments/min baseline)
+    P4_PRODUCE_SCORE_THRESH    default 72    (min narrative_score for PRODUCE)
+    P4_PRODUCE_DENSITY_THRESH  default 60    (min density subscore for PRODUCE)
+    P4_SKIP_SCORE_THRESH       default 35    (below = SKIP)
 """
 
 import math
+import os
 from typing import Optional
+
+# Env-var-tunable constants (module-level so experiments can override at shell level)
+REFERENCE_DENSITY = float(os.environ.get("P4_REFERENCE_DENSITY", "0.6"))
+PRODUCE_SCORE_THRESH = float(os.environ.get("P4_PRODUCE_SCORE_THRESH", "72"))
+PRODUCE_DENSITY_THRESH = float(os.environ.get("P4_PRODUCE_DENSITY_THRESH", "60"))
+SKIP_SCORE_THRESH = float(os.environ.get("P4_SKIP_SCORE_THRESH", "35"))
 
 
 # Importance multipliers — how much each importance level contributes to density
