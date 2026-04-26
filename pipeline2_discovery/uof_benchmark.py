@@ -61,10 +61,16 @@ MPV_CACHE = UOF_DIR / "mpv_cached.csv"
 RESULTS_TSV = SCRIPT_DIR / "uof_results.tsv"
 FAILURES_JSON = SCRIPT_DIR / "uof_failures.json"
 
-# MPV public dataset (CSV mirror — schema mostly stable)
-MPV_CSV_URL = "https://mappingpoliceviolence.org/s/MPVDatasetDownload.xlsx"
-# Backup if the .xlsx URL changes — many forks publish CSV directly:
-MPV_CSV_URL_BACKUP = "https://raw.githubusercontent.com/mappingpoliceviolence/mpv-data/main/MPV-DataSet.csv"
+# Public UoF datasets in priority order. WaPo is most stable (github main).
+# MPV official URLs change frequently; user may need to manually drop a CSV.
+DATASET_URLS = [
+    # WaPo Police Shootings (fatal only, since 2015) — github main, very stable
+    "https://raw.githubusercontent.com/washingtonpost/data-police-shootings/master/v2/fatal-police-shootings-data.csv",
+    # MPV mirrors (try these too — community forks, varying availability)
+    "https://raw.githubusercontent.com/dvilela/mpv-data/main/MPV-DataSet.csv",
+    "https://raw.githubusercontent.com/mappingpoliceviolence/mpv-data/main/MPV-DataSet.csv",
+    "https://mappingpoliceviolence.org/s/MPVDatasetDownload.xlsx",
+]
 
 
 # ─────────────────────────────────────────────────────────────
