@@ -5,30 +5,7 @@
     "agency": "",
     "gt_video_link": "",
     "n_sources_found": 0,
-    "elapsed_sec": 41.8,
-    "bodycam_recall": {
-      "applicable": true,
-      "mode": "flag",
-      "found_video_source": false,
-      "score": 0.0
-    },
-    "source_domain_recall": {
-      "applicable": false,
-      "score": 0.0
-    },
-    "precision": {
-      "applicable": false,
-      "score": 0.0
-    },
-    "confidence": "low"
-  },
-  {
-    "name": "Adrian Joseph Shaffer",
-    "jurisdiction": "Boulder, Boulder, CO",
-    "agency": "",
-    "gt_video_link": "",
-    "n_sources_found": 0,
-    "elapsed_sec": 13.0,
+    "elapsed_sec": 45.5,
     "bodycam_recall": {
       "applicable": true,
       "mode": "flag",
