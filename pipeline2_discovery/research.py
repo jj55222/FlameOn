@@ -1187,14 +1187,32 @@ def research_case(defendant_names, jurisdiction):
         _allocate_brave_cap_for_case()
 
     # Feature flags — env-toggleable supplemental sources for A/B experiments.
-    # Defaults: portal_harness ON (low-risk additive); supplementals ON (parity with prior).
+    # Defaults: portal_harness + cib_cache ON (zero-cost, additive); supplementals ON (parity).
     USE_PORTAL_HARNESS = os.environ.get("FLAMEON_USE_PORTAL_HARNESS", "1") != "0"
+    USE_CIB_CACHE = os.environ.get("FLAMEON_USE_CIB_CACHE", "1") != "0"
     USE_WIKIPEDIA = os.environ.get("FLAMEON_USE_WIKIPEDIA", "1") != "0"
     USE_DAILYMOTION = os.environ.get("FLAMEON_USE_DAILYMOTION", "1") != "0"
     USE_REDDIT = os.environ.get("FLAMEON_USE_REDDIT", "1") != "0"
+    USE_LLM_RERANK = os.environ.get("FLAMEON_USE_LLM_RERANK", "0") == "1"
 
     all_sources = []
     notes = []
+
+    # CIB cache (zero API cost — file read + token match against pre-scraped agency
+    # publishing pages, e.g. LAPD CIV, SDPD CIV, LBPD SB1421, Mesa CIB).
+    notes.append("=== CIB Cache ===")
+    if USE_CIB_CACHE:
+        try:
+            from parsers import search_cib_cache
+            cib_sources = search_cib_cache(defendant_names, jurisdiction)
+            notes.append(f"  Found {len(cib_sources)} cached CIB/OIS results")
+            all_sources.extend(cib_sources)
+        except ImportError:
+            notes.append("  (parsers.search_cib_cache not available)")
+        except Exception as e:
+            notes.append(f"  (cib_cache error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_CIB_CACHE=0)")
 
     # Native portal harnesses (zero API credits — plain requests + stdlib parser).
     # Currently covers NextRequest (10 agencies, working) and best-effort GovQA
