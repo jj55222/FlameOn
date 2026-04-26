@@ -229,8 +229,54 @@ def parse_jurisdiction(jurisdiction):
 # MuckRock API
 # ──────────────────────────────────────────────────────────────
 
-def query_muckrock(search_term, status="done", page_size=10):
-    """Query MuckRock FOIA API for completed requests."""
+# Cache agency_id → jurisdiction_slug/id mapping to avoid repeated lookups
+_muckrock_agency_cache = {}
+
+def _muckrock_resolve_url(req):
+    """
+    Build a working MuckRock URL from a v2 request record.
+    Format: /foi/<jurisdiction-slug>-<jurisdiction-id>/<request-slug>-<request-id>/
+    """
+    req_id = req.get("id")
+    req_slug = req.get("slug", "")
+    agency_id = req.get("agency")
+    if not req_id or not req_slug or not agency_id:
+        return ""
+    if agency_id not in _muckrock_agency_cache:
+        try:
+            headers = {}
+            if MUCKROCK_API_TOKEN:
+                headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
+            a_resp = requests.get(
+                f"{MUCKROCK_BASE}agencies/{agency_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            a_resp.raise_for_status()
+            jur_id = a_resp.json().get("jurisdiction")
+            j_resp = requests.get(
+                f"{MUCKROCK_BASE}jurisdictions/{jur_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            j_resp.raise_for_status()
+            jdata = j_resp.json()
+            _muckrock_agency_cache[agency_id] = (jdata.get("slug", ""), jdata.get("id", ""))
+        except Exception:
+            _muckrock_agency_cache[agency_id] = ("", "")
+    jslug, jid = _muckrock_agency_cache[agency_id]
+    if not jslug or not jid:
+        return ""
+    return f"https://www.muckrock.com/foi/{jslug}-{jid}/{req_slug}-{req_id}/"
+
+
+def query_muckrock(search_term, status=None, page_size=10, has_files=False):
+    """
+    Query MuckRock API v2/requests endpoint for FOIA requests.
+    v2 uses 'requests' not 'foia' (v1 name). Full-text search via 'search' param.
+    Set has_files=True to filter for requests with actual attachments.
+    Enriches each result with a resolved absolute_url.
+    """
     if not check_budget("muckrock"):
         return []
     rate_limit("muckrock", 1.1)
@@ -239,54 +285,121 @@ def query_muckrock(search_term, status="done", page_size=10):
     if MUCKROCK_API_TOKEN:
         headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
     try:
+        params = {"format": "json", "search": search_term, "page_size": page_size}
+        if status:
+            params["status"] = status
         resp = requests.get(
-            f"{MUCKROCK_BASE}foia/",
-            params={"format": "json", "search": search_term,
-                    "status": status, "page_size": page_size},
+            f"{MUCKROCK_BASE}requests/",
+            params=params,
             headers=headers, timeout=REQUEST_TIMEOUT,
         )
         resp.raise_for_status()
-        return resp.json().get("results", [])
+        results = resp.json().get("results", [])
+        for r in results:
+            r["absolute_url"] = _muckrock_resolve_url(r)
+        if has_files:
+            results = [r for r in results if r.get("files") and len(r.get("files", [])) > 0]
+        return results
     except Exception:
         return []
 
+
 def search_muckrock(names, jurisdiction):
-    """Build and execute MuckRock queries. Returns source list."""
+    """
+    Build and execute MuckRock queries. Returns source list.
+    FOIA requests are indexed by REQUEST title, not by defendant name.
+    Better strategy: search jurisdiction + evidence type, then filter by name.
+
+    Two lanes:
+      Lane A (broad): existing name + jurisdiction queries, no status filter
+      Lane B (high-signal): same queries restricted to status="done" + has_files=True
+                            — FOIA requests that actually released downloadable artifacts.
+                            These get a relevance boost and a file_count hint.
+    """
     sources = []
     n = parse_names(names)
     j = parse_jurisdiction(jurisdiction)
     queries = []
-    if j["city"] and n["clean_primary"]:
-        queries.append(f"{n['clean_primary']} {j['city']}")
-    if j["state_abbrev"] and n["clean_primary"]:
-        queries.append(f"{n['clean_primary']} {j['state_abbrev']}")
     if n["clean_primary"]:
         queries.append(n["clean_primary"])
+    if j["city"]:
+        queries.append(f"{j['city']} bodycam")
+        queries.append(f"{j['city']} police shooting")
+
+    def _score_result(r, high_signal=False):
+        url = r.get("absolute_url") or r.get("url", "")
+        if url and not url.startswith("http"):
+            url = f"https://www.muckrock.com{url}"
+        if not url:
+            return None
+        title = (r.get("title", "") or "").lower()
+        desc = (r.get("description", "") or "").lower()
+        combined = f"{title} {desc}"
+        relevance = 0.0
+        if n["clean_primary"].lower() in combined:
+            relevance = 0.9
+        elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
+            relevance = 0.5
+        elif j["city"].lower() in combined and any(
+            kw in combined for kw in ["shooting", "bodycam", "police", "homicide"]
+        ):
+            relevance = 0.3
+        if relevance < 0.3:
+            return None
+        file_count = len(r.get("files") or [])
+        if high_signal:
+            relevance = min(1.0, relevance + 0.15)
+            if file_count >= 3:
+                relevance = min(1.0, relevance + 0.05)
+        return url, relevance, file_count
 
     seen_urls = set()
+
+    # Lane A — broad
     for query in queries[:3]:
         results = query_muckrock(query)
         for r in results:
-            url = r.get("absolute_url") or r.get("url", "")
-            if not url or url in seen_urls:
+            scored = _score_result(r, high_signal=False)
+            if not scored:
                 continue
-            title = (r.get("title", "") or "").lower()
-            desc = (r.get("description", "") or "").lower()
-            combined = f"{title} {desc}"
-            relevance = 0.0
-            if n["clean_primary"].lower() in combined:
-                relevance = 0.9
-            elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
-                relevance = 0.5
-            elif j["city"].lower() in combined and any(kw in combined for kw in ["shooting", "bodycam", "police", "homicide"]):
-                relevance = 0.3
-            if relevance >= 0.3:
-                seen_urls.add(url)
-                sources.append({
-                    "url": url, "type": "muckrock_foia",
-                    "relevance_score": relevance,
-                    "description": r.get("title", ""), "api": "muckrock",
-                })
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": False,
+            })
+
+    # Lane B — high-signal (completed FOIA with files attached)
+    for query in queries[:3]:
+        results = query_muckrock(query, status="done", has_files=True)
+        for r in results:
+            scored = _score_result(r, high_signal=True)
+            if not scored:
+                continue
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                # Upgrade in place
+                for s in sources:
+                    if s["url"] == url:
+                        s["relevance_score"] = max(s["relevance_score"], relevance)
+                        s["file_count"] = max(s.get("file_count", 0), file_count)
+                        s["high_signal"] = True
+                        break
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": True,
+            })
+
     return sources
 
 
