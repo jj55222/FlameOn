@@ -243,10 +243,15 @@ YOUR TASK:
 2. Pick the best narrative_arc_recommendation from: {valid_arcs}
    Prefer Pass 1's detected_structure_hint unless the arc_patterns strongly suggest a different structure would perform better.
 
-3. Decide the verdict — PRODUCE, HOLD, or SKIP:
-   - PRODUCE: narrative_score ≥ 72, AND at least one critical moment (contradiction/reveal/procedural_violation), AND clear arc fit.
-   - SKIP: narrative_score < 35, OR no high/critical moments, OR case is purely political/protest content without criminal narrative, OR lacks artifact diversity.
-   - HOLD: everything else — default on uncertainty.
+3. Decide the verdict — PRODUCE, HOLD, or SKIP. Use these calibrated thresholds:
+   - PRODUCE: narrative_score >= {produce_score_thresh}, AND moment_density_score >= {produce_density_thresh}, AND
+     at least one critical/high-importance moment of type contradiction/reveal/procedural_violation,
+     AND artifact_completeness_score >= 50 (case has an artifact combo with some winner-pattern fit).
+     If those are met, agree with PRODUCE — do NOT demote based on "feel". The math is calibrated.
+   - SKIP: narrative_score < {skip_score_thresh}, OR zero critical/high moments,
+     OR purely political/protest content without criminal arc,
+     OR single-source admin/procedural material.
+   - HOLD: everything else — true uncertainty, NOT a default fallback.
 
 4. Write content_pitch:
    - For PRODUCE: one paragraph (3-5 sentences) selling why this case works. Mention the hook, the key contradiction/reveal, and the emotional stakes.
