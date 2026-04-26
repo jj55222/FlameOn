@@ -362,6 +362,7 @@ def aggregate(results):
     bc_exact = sum(1 for r in results if r and r.get("bodycam_recall", {}).get("exact"))
     bc_video_id = sum(1 for r in results if r and r.get("bodycam_recall", {}).get("same_video_id"))
     bc_domain = sum(1 for r in results if r and r.get("bodycam_recall", {}).get("same_domain"))
+    bc_flag_hit = sum(1 for r in results if r and r.get("bodycam_recall", {}).get("found_video_source"))
 
     def _mean(xs):
         return round(sum(xs) / len(xs) * 100, 2) if xs else 0.0
