@@ -117,19 +117,23 @@ def parse_mpv_row(row):
 # ─────────────────────────────────────────────────────────────
 
 def download_mpv():
-    """Try to download MPV CSV. Returns path to cached file."""
+    """Try to download a UoF dataset to local cache. Returns path or None."""
     import requests
-    for url in (MPV_CSV_URL_BACKUP, MPV_CSV_URL):
-        print(f"  Trying {url}...")
+    for url in DATASET_URLS:
+        print(f"  Trying {url[:80]}...")
         try:
             r = requests.get(url, timeout=30)
             if r.status_code == 200 and len(r.content) > 1000:
                 MPV_CACHE.write_bytes(r.content)
                 print(f"  Saved {len(r.content):,} bytes to {MPV_CACHE}")
+                # Note dataset source for downstream debugging
+                (UOF_DIR / "source.txt").write_text(url)
                 return MPV_CACHE
+            print(f"    HTTP {r.status_code}, {len(r.content)} bytes")
         except Exception as e:
-            print(f"  Failed: {e}")
-    print("[ERR] Could not download MPV. Place MPV CSV manually at:", MPV_CACHE)
+            print(f"    Failed: {e}")
+    print(f"[ERR] All sources failed. Place a UoF CSV manually at: {MPV_CACHE}")
+    print(f"      Schema: name + date + city + state + agency + (optional) video_link/source_link")
     return None
 
 
