@@ -122,6 +122,40 @@ BRAVE_MAX_PER_CASE = 11              # max Brave queries per individual case (ma
 _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
 _brave_case_calls = 0                 # reset per case in research_case()
 
+# ──────────────────────────────────────────────────────────────
+# Brave per-case fair-share allocator
+# ──────────────────────────────────────────────────────────────
+# Problem: under static caps, early cases burn budget and tail cases get 0.
+# Fix: orchestrator declares set_case_slice(N). Each new case gets a dynamic
+# per-case cap = remaining_budget / remaining_cases, bounded by BRAVE_MAX_PER_CASE.
+_case_slice_total = 0
+_cases_started = 0
+_current_case_brave_cap = None  # set when research_case begins
+
+def set_case_slice(n_cases):
+    """Declare total cases in this run. Call ONCE before first research_case()."""
+    global _case_slice_total, _cases_started
+    _case_slice_total = max(0, int(n_cases))
+    _cases_started = 0
+
+def _allocate_brave_cap_for_case():
+    """Compute this case's Brave cap from live remaining budget / remaining cases."""
+    global _cases_started, _current_case_brave_cap
+    used = _api_call_counts.get("brave", 0)
+    remaining_budget = max(0, BRAVE_MAX_CALLS_PER_RUN - used)
+    cases_remaining = max(1, _case_slice_total - _cases_started)
+    fair = remaining_budget // cases_remaining
+    if remaining_budget <= 0:
+        _current_case_brave_cap = 0
+    else:
+        _current_case_brave_cap = max(1, min(BRAVE_MAX_PER_CASE, fair))
+    _cases_started += 1
+    return _current_case_brave_cap
+
+def get_current_case_brave_cap():
+    """Return current case's Brave cap (for logging/debug)."""
+    return _current_case_brave_cap if _current_case_brave_cap is not None else BRAVE_MAX_PER_CASE
+
 def check_budget(api):
     """Returns True if we're within budget for this API."""
     caps = {
@@ -142,8 +176,11 @@ def get_budget_report():
 
 def reset_budget():
     """Reset call counts (call at start of each evaluate.py run)."""
-    global _api_call_counts
+    global _api_call_counts, _case_slice_total, _cases_started, _current_case_brave_cap
     _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+    _case_slice_total = 0
+    _cases_started = 0
+    _current_case_brave_cap = None
 
 # Rate limiting — tracks last call time per API
 _last_call = {"muckrock": 0, "courtlistener": 0, "youtube": 0, "brave": 0, "reddit": 0}
