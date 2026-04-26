@@ -484,7 +484,18 @@ def main():
     parser.add_argument("--baseline-score", type=float, default=63.0,
                         help="Floor for the cross-validate gate (default 63.0). "
                              "Historical peak is 63.62 (Exp 23). Use 63.62 for strict mode.")
+    parser.add_argument("--rerank", action="store_true",
+                        help="Enable LLM cross-API rerank (sets FLAMEON_USE_LLM_RERANK=1 "
+                             "for the run). Adds ~$0.01-0.02/case via OpenRouter.")
+    parser.add_argument("--rerank-model", default=None,
+                        help="Override P2_RERANK_MODEL (default: moonshotai/kimi-k2.6).")
     args = parser.parse_args()
+
+    # Apply rerank flag to env BEFORE the research module imports start firing
+    if args.rerank:
+        os.environ["FLAMEON_USE_LLM_RERANK"] = "1"
+    if args.rerank_model:
+        os.environ["P2_RERANK_MODEL"] = args.rerank_model
 
     if args.download:
         if not download_mpv():
