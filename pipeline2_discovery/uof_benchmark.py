@@ -477,6 +477,13 @@ def main():
     parser.add_argument("--log", action="store_true", help="Append result to uof_results.tsv")
     parser.add_argument("--hypothesis", default="baseline", help="Short label for this run")
     parser.add_argument("--changes", default="none", help="What changed since last run")
+    parser.add_argument("--cross-validate-calibration", action="store_true",
+                        help="After the UoF run, also run the 38-case calibration scorer "
+                             "(evaluate.py). Exits 1 if research_score regresses below "
+                             "--baseline-score. Anti-overfit gate.")
+    parser.add_argument("--baseline-score", type=float, default=63.0,
+                        help="Floor for the cross-validate gate (default 63.0). "
+                             "Historical peak is 63.62 (Exp 23). Use 63.62 for strict mode.")
     args = parser.parse_args()
 
     if args.download:
