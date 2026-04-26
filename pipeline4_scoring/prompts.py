@@ -250,7 +250,10 @@ YOUR TASK:
      If those are met, agree with PRODUCE — do NOT demote based on "feel". The math is calibrated.
    - SKIP: narrative_score < {skip_score_thresh}, OR zero critical/high moments,
      OR purely political/protest content without criminal arc,
-     OR single-source admin/procedural material.
+     OR single-source admin/procedural material,
+     OR (arc_similarity_score < 30 AND artifact_completeness_score < 70) — this catches cases
+     that pump density on procedural/admin content but lack the structural fit and
+     artifact diversity that real producible winners have.
    - HOLD: everything else — true uncertainty, NOT a default fallback.
 
 4. Write content_pitch:
