@@ -90,19 +90,37 @@ def _save_brave_quota(state):
 
 def _update_quota_from_response(state, resp):
     """
-    Parse x-ratelimit-remaining header after a successful Brave call.
-    Header format: "per_second_remaining, monthly_remaining"
-    e.g. "49, 1234"  or  "0, 0" when exhausted.
-    Returns updated state dict.
+    Parse Brave rate-limit headers after a successful call.
+
+    Brave returns paired values for two windows (typically per-second and
+    per-month), e.g.:
+      x-ratelimit-limit:     "1, 2000"   (free tier: 1/sec, 2000/month)
+      x-ratelimit-limit:     "50, 0"     (paid tier: 50/sec, NO monthly cap — 0 = unlimited)
+      x-ratelimit-remaining: matching counters
+
+    When the monthly limit is 0 we treat the monthly window as unlimited and
+    clear monthly_remaining so the local guard doesn't block on a 0 that
+    means "no cap". The spend cap is still enforced separately.
     """
-    header = resp.headers.get("x-ratelimit-remaining", "")
-    if header:
-        parts = [p.strip() for p in header.split(",")]
-        if len(parts) >= 2:
-            try:
-                state["monthly_remaining"] = int(parts[1])
-            except ValueError:
-                pass
+    rem_header = resp.headers.get("x-ratelimit-remaining", "")
+    lim_header = resp.headers.get("x-ratelimit-limit", "")
+    rem_parts = [p.strip() for p in rem_header.split(",")] if rem_header else []
+    lim_parts = [p.strip() for p in lim_header.split(",")] if lim_header else []
+    if len(rem_parts) >= 2 and len(lim_parts) >= 2:
+        try:
+            month_limit = int(lim_parts[1])
+            if month_limit > 0:
+                state["monthly_remaining"] = int(rem_parts[1])
+            else:
+                state["monthly_remaining"] = None
+        except ValueError:
+            pass
+    elif len(rem_parts) >= 2:
+        # Limit header missing — fall back to old behavior (best effort)
+        try:
+            state["monthly_remaining"] = int(rem_parts[1])
+        except ValueError:
+            pass
     state["calls_this_month"] = state.get("calls_this_month", 0) + 1
     state["estimated_spend"] = state.get("estimated_spend", 0.0) + BRAVE_COST_PER_REQUEST
     return state
