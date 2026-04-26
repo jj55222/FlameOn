@@ -189,38 +189,57 @@ def _yt_video_id(url):
 
 def score_bodycam_recall(record, agent_sources):
     """
-    Did the agent find content corresponding to record.video_link?
-    Returns dict with: exact (bool), same_video_id (bool), same_domain (bool), score (0-1).
+    Test whether the agent found bodycam-related content. Two ground-truth modes:
+
+    A) URL ground truth (record.video_link present, e.g. MPV):
+        score against exact URL → same video_id → same domain hierarchy.
+    B) Flag ground truth (record.body_camera_flag=True, e.g. WaPo):
+        score 1.0 if agent returned ANY video-typed source from a "bodycam-likely"
+        domain (youtube, dailymotion, agency portals); 0 otherwise.
     """
     gt_url = record.get("video_link", "")
-    if not gt_url:
-        return {"applicable": False, "score": 0.0}
 
-    gt_domain = _domain(gt_url)
-    gt_yt_id = _yt_video_id(gt_url)
+    # Mode A: URL ground truth
+    if gt_url:
+        gt_domain = _domain(gt_url)
+        gt_yt_id = _yt_video_id(gt_url)
+        exact = False
+        same_video_id = False
+        same_domain = False
+        for s in agent_sources or []:
+            url = s.get("url", "")
+            if not url:
+                continue
+            if url == gt_url:
+                exact = True
+                break
+            if gt_yt_id and gt_yt_id == _yt_video_id(url):
+                same_video_id = True
+            if gt_domain and gt_domain == _domain(url):
+                same_domain = True
+        if exact:
+            return {"applicable": True, "mode": "url", "exact": True, "same_video_id": True, "same_domain": True, "score": 1.0}
+        if same_video_id:
+            return {"applicable": True, "mode": "url", "exact": False, "same_video_id": True, "same_domain": True, "score": 0.85}
+        if same_domain:
+            return {"applicable": True, "mode": "url", "exact": False, "same_video_id": False, "same_domain": True, "score": 0.4}
+        return {"applicable": True, "mode": "url", "exact": False, "same_video_id": False, "same_domain": False, "score": 0.0}
 
-    exact = False
-    same_video_id = False
-    same_domain = False
-    for s in agent_sources or []:
-        url = s.get("url", "")
-        if not url:
-            continue
-        if url == gt_url:
-            exact = True
-            break
-        if gt_yt_id and gt_yt_id == _yt_video_id(url):
-            same_video_id = True
-        if gt_domain and gt_domain == _domain(url):
-            same_domain = True
+    # Mode B: flag ground truth (any video-typed source counts)
+    if record.get("body_camera_flag"):
+        VIDEO_DOMAINS = {"youtube.com", "youtu.be", "dailymotion.com", "tiktok.com", "vimeo.com",
+                         "facebook.com", "courttv.com"}
+        VIDEO_TYPES = {"bodycam_footage", "interrogation_footage", "court_footage", "video_footage", "general_footage"}
+        for s in agent_sources or []:
+            domain = _domain(s.get("url", ""))
+            stype = s.get("type", "")
+            if domain in VIDEO_DOMAINS or any(v in domain for v in VIDEO_DOMAINS):
+                return {"applicable": True, "mode": "flag", "found_video_source": True, "score": 1.0}
+            if stype in VIDEO_TYPES:
+                return {"applicable": True, "mode": "flag", "found_video_source": True, "score": 1.0}
+        return {"applicable": True, "mode": "flag", "found_video_source": False, "score": 0.0}
 
-    if exact:
-        return {"applicable": True, "exact": True, "same_video_id": True, "same_domain": True, "score": 1.0}
-    if same_video_id:
-        return {"applicable": True, "exact": False, "same_video_id": True, "same_domain": True, "score": 0.85}
-    if same_domain:
-        return {"applicable": True, "exact": False, "same_video_id": False, "same_domain": True, "score": 0.4}
-    return {"applicable": True, "exact": False, "same_video_id": False, "same_domain": False, "score": 0.0}
+    return {"applicable": False, "score": 0.0}
 
 
 def score_source_domain_recall(record, agent_sources):
