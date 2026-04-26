@@ -1289,6 +1289,27 @@ def research_case(defendant_names, jurisdiction):
     all_sources = deduped
     all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
 
+    # Optional LLM re-ranker (semantic relevance scoring, replaces keyword scores).
+    # Off by default — opt in with FLAMEON_USE_LLM_RERANK=1. ~$0.01-0.02/case via
+    # OpenRouter. Falls back gracefully on any error (sources unchanged).
+    notes.append("=== LLM Rerank ===")
+    if USE_LLM_RERANK and all_sources:
+        try:
+            from llm_rerank import rerank_sources
+            before = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            all_sources = rerank_sources(defendant_names, jurisdiction, all_sources)
+            # Re-sort after scores updated
+            all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
+            after = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            ok = sum(1 for s in all_sources if s.get("_rerank_succeeded"))
+            notes.append(f"  Reranked {ok}/{len(all_sources)} sources; high-rel {before} -> {after}")
+        except ImportError:
+            notes.append("  (llm_rerank not available)")
+        except Exception as e:
+            notes.append(f"  (rerank error: {e})")
+    else:
+        notes.append("  (disabled — set FLAMEON_USE_LLM_RERANK=1 to enable)")
+
     evidence = detect_evidence_types(all_sources)
     confidence = assess_confidence(all_sources, evidence)
 
