@@ -144,9 +144,13 @@ def download_mpv():
 
 
 def load_mpv(require_video=True):
-    """Load MPV records from cache. Returns list of normalized dicts."""
+    """
+    Load UoF records from cache.
+    require_video=True keeps records that have EITHER a video_link URL
+    OR body_camera_flag=True (binary "bodycam exists" signal from WaPo).
+    """
     if not MPV_CACHE.exists():
-        print(f"[INFO] MPV cache missing. Run with --download or place CSV at {MPV_CACHE}")
+        print(f"[INFO] UoF cache missing. Run with --download or place CSV at {MPV_CACHE}")
         return []
     records = []
     with open(MPV_CACHE, "r", encoding="utf-8", errors="replace") as f:
@@ -155,7 +159,7 @@ def load_mpv(require_video=True):
             r = parse_mpv_row(row)
             if not r["name"]:
                 continue
-            if require_video and not r["video_link"]:
+            if require_video and not r["video_link"] and not r["body_camera_flag"]:
                 continue
             records.append(r)
     return records
