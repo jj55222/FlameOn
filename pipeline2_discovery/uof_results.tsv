@@ -1,0 +1,2 @@
+experiment_id	timestamp	sample_size	free_only	bodycam_recall_pct	bodycam_exact_hits	bodycam_video_id_hits	bodycam_domain_hits	source_domain_recall_pct	precision_pct	total_seconds	hypothesis	changes_made	commit_hash
+0	2026-04-26T17:54:29Z	50	1	96.00	0	0	0	0.00	44.70	1679.3	phase_a_baseline	after A1-A4 re-apply: MuckRock has_files lane, Brave fair-share allocator, portal_harness wired, FLAMEON_USE_* flags. Brave in spend-cap blocked state, so this is effectively free-API baseline.	bfd3706
