@@ -374,6 +374,7 @@ def aggregate(results):
         "bodycam_exact_hits": bc_exact,
         "bodycam_video_id_hits": bc_video_id,
         "bodycam_domain_hits": bc_domain,
+        "bodycam_flag_video_hits": bc_flag_hit,
         "source_domain_recall_pct": _mean(sd_scores),
         "precision_pct": _mean(pr_scores),
     }
