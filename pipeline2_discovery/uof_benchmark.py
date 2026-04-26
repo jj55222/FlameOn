@@ -563,6 +563,63 @@ def main():
                 total_seconds=total, hypothesis=args.hypothesis, changes=args.changes)
     write_failures(results)
 
+    if args.cross_validate_calibration and not args.dry_run:
+        cross_validate_calibration(args)
+
+
+def cross_validate_calibration(args):
+    """
+    Run the 38-case calibration scorer (evaluate.py) after a UoF benchmark
+    completes. Exits 1 if research_score < args.baseline_score.
+
+    Note: this shares the same persistent Brave quota with the UoF run that
+    just finished. If the UoF run depleted Brave budget, calibration will
+    score lower than it would on a fresh quota. Check brave_quota.json if
+    the gate fails unexpectedly.
+    """
+    print()
+    print("=" * 60)
+    print("  CROSS-VALIDATING AGAINST 38-CASE CALIBRATION")
+    print("  (anti-overfit gate)")
+    print("=" * 60)
+
+    try:
+        from evaluate import evaluate, log_result
+    except ImportError as e:
+        print(f"  [ERR] Cannot import evaluate.py: {e}")
+        sys.exit(2)
+
+    cal = evaluate(verbose=False)
+    if cal is None:
+        print("  [ERR] Calibration evaluate() returned None")
+        sys.exit(2)
+
+    cal_score = float(cal["research_score"])
+    threshold = args.baseline_score
+
+    log_result(
+        cal,
+        hypothesis=f"cross-validate (uof: {args.hypothesis})",
+        changes_made=args.changes,
+        commit_hash=_git_hash(),
+    )
+
+    print()
+    print(f"  Calibration score:  {cal_score:.2f}")
+    print(f"  Baseline floor:     {threshold:.2f}  (historical peak 63.62, Exp 23)")
+
+    if cal_score < threshold:
+        delta = threshold - cal_score
+        print()
+        print(f"  REGRESSION  ({cal_score:.2f} < {threshold:.2f}, delta -{delta:.2f})")
+        print(f"     This change appears to be overfitting to UoF.")
+        print(f"     Revert pipeline2_discovery/research.py before committing.")
+        sys.exit(1)
+
+    margin = cal_score - threshold
+    print()
+    print(f"  PASSED  ({cal_score:.2f} >= {threshold:.2f}, margin +{margin:.2f})")
+
 
 if __name__ == "__main__":
     main()
