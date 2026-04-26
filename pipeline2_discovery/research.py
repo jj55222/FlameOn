@@ -1186,8 +1186,35 @@ def research_case(defendant_names, jurisdiction):
     if _case_slice_total > 0:
         _allocate_brave_cap_for_case()
 
+    # Feature flags — env-toggleable supplemental sources for A/B experiments.
+    # Defaults: portal_harness ON (low-risk additive); supplementals ON (parity with prior).
+    USE_PORTAL_HARNESS = os.environ.get("FLAMEON_USE_PORTAL_HARNESS", "1") != "0"
+    USE_WIKIPEDIA = os.environ.get("FLAMEON_USE_WIKIPEDIA", "1") != "0"
+    USE_DAILYMOTION = os.environ.get("FLAMEON_USE_DAILYMOTION", "1") != "0"
+    USE_REDDIT = os.environ.get("FLAMEON_USE_REDDIT", "1") != "0"
+
     all_sources = []
     notes = []
+
+    # Native portal harnesses (zero API credits — plain requests + stdlib parser).
+    # Currently covers NextRequest (10 agencies, working) and best-effort GovQA
+    # (13 agencies, mostly gated → returns []). Replaces wasteful Firecrawl extracts
+    # for jurisdictions with known portal shapes.
+    notes.append("=== Native Portal Harnesses ===")
+    if USE_PORTAL_HARNESS:
+        try:
+            from portal_harnesses import search_all_portals_for_jurisdiction
+            harness_sources = search_all_portals_for_jurisdiction(
+                defendant_names, jurisdiction, limit=15,
+            )
+            notes.append(f"  Found {len(harness_sources)} native portal results")
+            all_sources.extend(harness_sources)
+        except ImportError:
+            notes.append("  (portal_harnesses not available)")
+        except Exception as e:
+            notes.append(f"  (portal harness error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_PORTAL_HARNESS=0)")
 
     notes.append("=== MuckRock FOIA ===")
     mr_sources = search_muckrock(defendant_names, jurisdiction)
@@ -1210,20 +1237,28 @@ def research_case(defendant_names, jurisdiction):
     all_sources.extend(yt_sources)
 
     notes.append("=== Wikipedia ===")
-    wiki_sources = search_wikipedia(defendant_names)
-    notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
-    all_sources.extend(wiki_sources)
+    if USE_WIKIPEDIA:
+        wiki_sources = search_wikipedia(defendant_names)
+        notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
+        all_sources.extend(wiki_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_WIKIPEDIA=0)")
 
     notes.append("=== DailyMotion ===")
-    dm_sources = search_dailymotion(defendant_names)
-    notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
-    all_sources.extend(dm_sources)
+    if USE_DAILYMOTION:
+        dm_sources = search_dailymotion(defendant_names)
+        notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
+        all_sources.extend(dm_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_DAILYMOTION=0)")
 
     notes.append("=== Reddit (PRAW) ===")
-    if len(all_sources) < 20:
+    if USE_REDDIT and len(all_sources) < 20:
         reddit_sources = search_reddit(defendant_names, jurisdiction)
         notes.append(f"  Found {len(reddit_sources)} Reddit posts")
         all_sources.extend(reddit_sources)
+    elif not USE_REDDIT:
+        notes.append("  (disabled via FLAMEON_USE_REDDIT=0)")
 
     # Deduplicate by URL
     seen = set()
