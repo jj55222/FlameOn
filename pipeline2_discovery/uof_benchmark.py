@@ -85,6 +85,7 @@ COUNTY_COLS = ["county", "County"]
 AGENCY_COLS = ["agency_responsible", "Agency responsible for death", "Agency"]
 VIDEO_COLS = ["video_link", "Video", "video"]
 SOURCE_COLS = ["source_links", "URL of image of victim", "Link to news article or photo of officer"]
+BODYCAM_FLAG_COLS = ["body_camera", "Body Camera", "bodycam"]
 
 
 def _first_col(row, candidates):
@@ -98,8 +99,12 @@ def _first_col(row, candidates):
     return ""
 
 
+def _truthy(s):
+    return (s or "").strip().lower() in ("true", "t", "1", "yes", "y")
+
+
 def parse_mpv_row(row):
-    """Normalize an MPV CSV row to our schema."""
+    """Normalize a UoF CSV row to our schema (works for MPV and WaPo)."""
     return {
         "name": _first_col(row, NAME_COLS),
         "date": _first_col(row, DATE_COLS),
@@ -109,6 +114,7 @@ def parse_mpv_row(row):
         "agency": _first_col(row, AGENCY_COLS),
         "video_link": _first_col(row, VIDEO_COLS),
         "source_link": _first_col(row, SOURCE_COLS),
+        "body_camera_flag": _truthy(_first_col(row, BODYCAM_FLAG_COLS)),
     }
 
 
