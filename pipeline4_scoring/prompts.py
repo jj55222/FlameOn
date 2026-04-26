@@ -291,7 +291,15 @@ def render_pass2(
     combined_score: float,
     winner_count: int = 10,
 ) -> tuple:
-    """Render Pass 2 system + user messages."""
+    """Render Pass 2 system + user messages.
+    Verdict thresholds in the prompt match scoring_math env-var settings so
+    Pass 2 doesn't override deterministic verdicts using stale numbers.
+    """
+    import os
+    produce_score_thresh = os.environ.get("P4_PRODUCE_SCORE_THRESH", "40")
+    produce_density_thresh = os.environ.get("P4_PRODUCE_DENSITY_THRESH", "20")
+    skip_score_thresh = os.environ.get("P4_SKIP_SCORE_THRESH", "15")
+
     user = PASS2_USER_TEMPLATE.format(
         case_id=merged_transcript["case_id"],
         total_sec=merged_transcript["total_duration_sec"],
@@ -309,6 +317,9 @@ def render_pass2(
         combined=combined_score,
         valid_arcs=", ".join(VALID_ARC_TYPES),
         valid_arcs_pipe="|".join(VALID_ARC_TYPES),
+        produce_score_thresh=produce_score_thresh,
+        produce_density_thresh=produce_density_thresh,
+        skip_score_thresh=skip_score_thresh,
     )
     return PASS2_SYSTEM, user
 
