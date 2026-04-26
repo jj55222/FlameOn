@@ -27,6 +27,10 @@ CLI:
 
     # Dry run (no network, prints plan)
     python uof_benchmark.py --sample 5 --dry-run
+
+    # Anti-overfit gate: after UoF, also run the 38-case calibration scorer.
+    # Exits non-zero if calibration regresses below --baseline-score (default 63.0).
+    python uof_benchmark.py --sample 50 --cross-validate-calibration
 """
 
 import argparse
