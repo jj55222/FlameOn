@@ -3,3 +3,5 @@ experiment_id	timestamp	sample_size	free_only	bodycam_recall_pct	bodycam_exact_h
 1	2026-04-26T19:38:59Z	15	0	93.33	0	0	0	0.00	45.73	842.1	rerank_AB_baseline	FLAMEON_USE_LLM_RERANK=0 (default)	8905e6c
 2	2026-04-26T20:07:07Z	15	0	93.33	0	0	0	0.00	60.18	1641.6	rerank_AB_qwen	FLAMEON_USE_LLM_RERANK=1, P2_RERANK_MODEL=qwen/qwen3.6-plus	8905e6c
 3	2026-04-26T20:21:26Z	15	0	93.33	0	0	0	0.00	45.77	671.4	rerank_AB_brave_only	Brave ON, FLAMEON_USE_LLM_RERANK=0	de8dd22
+4	2026-04-26T20:52:32Z	15	0	93.33	0	0	0	0.00	42.31	1006.8	rerank_AB_brave_real	Brave ON (paid key, parser patched), rerank OFF	49deea7
+5	2026-04-26T21:21:22Z	15	0	93.33	0	0	0	0.00	38.78	1717.6	rerank_AB_brave_qwen	Brave ON, FLAMEON_USE_LLM_RERANK=1, P2_RERANK_MODEL=qwen/qwen3.6-plus	49deea7

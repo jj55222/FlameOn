@@ -1,0 +1,60 @@
+FlameOn AutoResearch Evaluation
+==================================================
+Cases: 38 | Time budget: 1600s
+Tiers: 15 ENOUGH, 5 BORDERLINE, 18 INSUFFICIENT
+
+  [1/38] Researching: Keonte Gathron... done (45.9s, 13 sources, medium confidence)
+  [2/38] Researching: Min Jian Guan... done (44.2s, 7 sources, medium confidence)
+  [3/38] Researching: Roger Dale Boshers... done (42.8s, 0 sources, low confidence)
+  [4/38] Researching: Kitt Crenshaw, Arthur Gerrans, James Cro... done (42.9s, 36 sources, high confidence)
+  [5/38] Researching: Christa Gail Pike, Tadaryl Shipp, Shadol... done (44.0s, 49 sources, high confidence)
+  [6/38] Researching: Manuel Marin, Roberto "Bam Bam" Isaac, A... done (44.6s, 46 sources, high confidence)
+  [7/38] Researching: Braulio Gonzalez... done (48.8s, 38 sources, high confidence)
+  [8/38] Researching: Armando Botell... done (48.7s, 8 sources, low confidence)
+  [9/38] Researching: Jorge Barahona... done (45.4s, 46 sources, high confidence)
+  [10/38] Researching: Julius Dwight Mozie... done (46.8s, 9 sources, medium confidence)
+  [11/38] Researching: Keivon McBride... done (43.5s, 8 sources, medium confidence)
+  [12/38] Researching: Steven Dexter Gangoo... done (43.5s, 5 sources, medium confidence)
+  [13/38] Researching: Antonio Glass, Jerimaine Bryant, Curtis ... done (45.1s, 36 sources, high confidence)
+  [14/38] Researching: Carmen Barahona, Jorge Barahona... done (43.2s, 48 sources, high confidence)
+  [15/38] Researching: Dr. Prentiss Madden... done (44.0s, 14 sources, medium confidence)
+  [16/38] Researching: William D. Foster... done (46.1s, 46 sources, medium confidence)
+  [17/38] Researching: Mariam Coulibaly... done (50.7s, 29 sources, medium confidence)
+  [18/38] Researching: Jeffrey Epstein, Ghislaine Maxwell, Sara... done (75.2s, 113 sources, high confidence)
+  [19/38] Researching: Michael Edwin Harding... done (36.2s, 28 sources, medium confidence)
+  [20/38] Researching: Jeffrey Epstein, Nadia Marcinkova, Sarah... done (58.3s, 113 sources, high confidence)
+  [21/38] Researching: Joseph Concialdi... done (46.5s, 15 sources, medium confidence)
+  [22/38] Researching: William James McElroy Jr.... done (47.7s, 27 sources, high confidence)
+  [23/38] Researching: Robert Hood... done (44.4s, 51 sources, high confidence)
+  [24/38] Researching: Miguel Antonio Mondaca... done (43.2s, 3 sources, medium confidence)
+  [25/38] Researching: Louis Broadway-Phillips... done (45.4s, 3 sources, medium confidence)
+  [26/38] Researching: Kyle Matthew Thompson... done (47.2s, 17 sources, medium confidence)
+  [27/38] Researching: William Bracy, Murray Hooper, Ed McCall,... done (44.4s, 53 sources, high confidence)
+  [28/38] Researching: Alan Matthew Champagne... done (35.8s, 38 sources, high confidence)
+  [29/38] Researching: Thomas Michael Riley... done (44.1s, 29 sources, high confidence)
+  [30/38] Researching: Angela D. McAnulty... done (35.8s, 28 sources, high confidence)
+  [31/38] Researching: Miguel Antonio Mondaca... done (42.8s, 3 sources, medium confidence)
+  [32/38] Researching: Marvin G. Johnson... done (42.3s, 59 sources, high confidence)
+  [33/38] Researching: Letecia Stauch... done (43.3s, 64 sources, high confidence)
+  [34/38] Researching: Carla Marie Faith, Christina Swauger... done (42.1s, 38 sources, high confidence)
+  [35/38] Researching: Joshua Carrier... done (42.7s, 32 sources, high confidence)
+  [36/38] Researching: Katelynne Dianna Leigh Nelson, Carla Fai... done (46.2s, 17 sources, high confidence)
+  TIME BUDGET EXCEEDED at case 36/38
+
+==================================================
+Scoring (36/38 cases researched, 1635.0s total)
+
+  Evidence Recall:    66.67 (x40%)
+  Source Discovery:   55.41 (x30%)
+  Precision:          51.97 (x20%)
+  Tier Accuracy:      57.89 (x10%)
+Traceback (most recent call last):
+  File "C:\FlameON\FlameOn-main\pipeline2_discovery\evaluate.py", line 530, in <module>
+    result = evaluate(
+             ^^^^^^^^^
+  File "C:\FlameON\FlameOn-main\pipeline2_discovery\evaluate.py", line 392, in evaluate
+    print(f"  {'\u2500'*40}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-41: character maps to <undefined>
