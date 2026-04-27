@@ -122,6 +122,34 @@ STATE_ABBREV = {
 # avoids false matches against words like "txt", "atx" that contain state codes.
 _ABBREV_PATTERN = re.compile(r",\s*([A-Z]{2})\b|\s([A-Z]{2})\s")
 
+# National-tier news/legal-publication domains that routinely cover cases from
+# multiple states. Their coverage of one case often mentions OTHER places by
+# context (precedent, comparison, prior reporting) — that's not a name-collision
+# signal. We avoid hard-demoting these to ×0.2; they get the soft ×0.7 instead.
+NATIONAL_NEWS_DOMAINS = {
+    "nytimes.com", "washingtonpost.com", "wsj.com", "usatoday.com",
+    "cnn.com", "foxnews.com", "nbcnews.com", "cbsnews.com", "abcnews.go.com",
+    "msnbc.com", "bbc.com", "bbc.co.uk", "reuters.com", "apnews.com",
+    "bloomberg.com", "newsweek.com", "time.com", "theguardian.com",
+    "huffpost.com", "vice.com", "vox.com", "theatlantic.com", "newyorker.com",
+    "politico.com", "thehill.com", "dailybeast.com", "businessinsider.com",
+    "courttv.com", "lawandcrime.com", "abovethelaw.com",
+    "courtlistener.com", "casetext.com", "justia.com", "findlaw.com",
+    "pacer.gov", "documentcloud.org", "scribd.com",
+    "youtube.com", "youtu.be",  # platform domain — content origin is in the channel/title
+    "wikipedia.org", "en.wikipedia.org",
+    "reddit.com", "old.reddit.com",
+    "podcasts.apple.com", "spotify.com",  # podcast platforms
+}
+
+
+def _is_national_news(url):
+    """True if the URL is from a national-tier publication or cross-jurisdictional platform."""
+    if not url:
+        return False
+    url_lower = url.lower()
+    return any(d in url_lower for d in NATIONAL_NEWS_DOMAINS)
+
 
 def _detect_states_in_text(text):
     """Return set of US state names mentioned in text (lowercase)."""

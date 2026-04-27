@@ -30,3 +30,4 @@ experiment_id	timestamp	research_score	evidence_recall	source_discovery	precisio
 28	2026-04-24T20:11:40Z	55.94	64.67	39.19	58.69	65.79	38	38	1459.8	EXP-28: minimal stack — disable Exa/Wikipedia/DailyMotion/Reddit/portal_cache/portal_harness; core-4 only + MuckRock has_files lane	env FLAMEON_USE_* flags disable all supplementals. Keeps MuckRock (with has_files lane), CourtListener, Brave, YouTube. Hypothesis: supplementals are polluting precision/discovery	
 29	2026-04-26T22:47:36Z	62.85	70.67	59.46	52.79	61.84	38	38	1736.7	rerank_eval_baseline_clean	rerank OFF, post-CIB-cache, paid Brave, parser patch	
 30	2026-04-27T00:45:33Z	44.08	42.67	37.84	53.95	48.68	38	26	3604.0	rerank_eval_variant_qwen	rerank ON, qwen3.6-plus, post-CIB-cache, paid Brave, parser patch	
+31	2026-04-27T03:23:08Z	61.40	68.00	59.46	52.85	57.89	38	38	3123.7	filter_iter1	jurisdiction_filter ON (rule-based, 50-state gazetteer)	
