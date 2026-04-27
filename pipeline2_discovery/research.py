@@ -1329,6 +1329,32 @@ def research_case(defendant_names, jurisdiction):
     else:
         notes.append("  (disabled — set FLAMEON_USE_LLM_RERANK=1 to enable)")
 
+    # Jurisdiction-aware false-positive filter — demotes sources whose geographic
+    # context conflicts with the case's jurisdiction. Targets the recurring
+    # false-HIGH failure mode (e.g. Braulio Gonzalez/Miami case matching other
+    # Braulio Gonzalez cases in Houston, Phoenix, etc.). Sources are kept in
+    # the pool (preserves recall) but down-weighted below the high_relevance
+    # threshold so they don't drive assess_confidence to HIGH.
+    notes.append("=== Jurisdiction Filter ===")
+    if USE_JURISDICTION_FILTER and all_sources:
+        try:
+            from jurisdiction_filter import apply_jurisdiction_filter
+            before = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            all_sources = apply_jurisdiction_filter(
+                all_sources, jurisdiction,
+                parse_jurisdiction_fn=parse_jurisdiction,
+            )
+            all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
+            after = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            n_demoted = sum(1 for s in all_sources if "_jurisdiction_filter_mult" in s)
+            notes.append(f"  Demoted {n_demoted}/{len(all_sources)}; high-rel {before} -> {after}")
+        except ImportError:
+            notes.append("  (jurisdiction_filter not available)")
+        except Exception as e:
+            notes.append(f"  (filter error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_JURISDICTION_FILTER=0)")
+
     evidence = detect_evidence_types(all_sources)
     confidence = assess_confidence(all_sources, evidence)
 
