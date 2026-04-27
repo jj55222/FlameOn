@@ -1309,6 +1309,28 @@ def research_case(defendant_names, jurisdiction):
     all_sources = deduped
     all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
 
+    # Per-source identity scoring (cherry-picked from case-graph fork).
+    # Annotates each source with `identity_score` and `identity_matched_fields`
+    # so assess_confidence can require defendant_full_name match (not just
+    # last_name + state) before counting a source as high_relevance. Targets
+    # the same false-HIGH failure mode as the jurisdiction filter, but at the
+    # identity-anchor level (catches same-city same-name collisions the geo
+    # filter can't). Pure annotation — does not modify relevance_score.
+    notes.append("=== Identity Scoring ===")
+    if USE_IDENTITY_SCORING and all_sources:
+        try:
+            from identity_score import apply_identity_scoring
+            apply_identity_scoring(all_sources, defendant_names, jurisdiction)
+            n_full = sum(1 for s in all_sources
+                         if "defendant_full_name" in (s.get("identity_matched_fields") or []))
+            notes.append(f"  Annotated {len(all_sources)} sources; full-name matches: {n_full}")
+        except ImportError:
+            notes.append("  (identity_score not available)")
+        except Exception as e:
+            notes.append(f"  (identity scoring error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_IDENTITY_SCORING=0)")
+
     # Optional LLM re-ranker (semantic relevance scoring, replaces keyword scores).
     # Off by default — opt in with FLAMEON_USE_LLM_RERANK=1. ~$0.01-0.02/case via
     # OpenRouter. Falls back gracefully on any error (sources unchanged).
