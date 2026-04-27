@@ -1159,9 +1159,42 @@ def detect_evidence_types(sources):
 # ──────────────────────────────────────────────────────────────
 
 def assess_confidence(sources, evidence):
-    """Confidence based on evidence breadth, source quality, API diversity."""
+    """
+    Confidence based on evidence breadth, source quality, API diversity, and
+    (when available) identity verification.
+
+    Identity-aware behavior (active when sources carry `identity_matched_fields`):
+      - high_relevance counts ONLY sources whose identity match includes
+        `defendant_full_name`. Stops wrong-person sources (sharing only
+        last_name + state) from inflating the HIGH-tier signal.
+      - Multi-case gate: if 3+ DISTINCT case numbers appear across full-name
+        matched sources, the agent has likely surfaced multiple distinct
+        cases under the same name (same-city collision OR multi-prior-history
+        defendant). Caps the result at MEDIUM regardless of evidence breadth.
+
+    Falls back to the legacy keyword-only computation when sources lack
+    identity annotations (FLAMEON_USE_IDENTITY_SCORING=0 or import failure).
+    """
     evidence_count = sum(1 for v in evidence.values() if v)
-    high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
+
+    has_identity_data = any("identity_matched_fields" in s for s in sources)
+    if has_identity_data:
+        try:
+            from identity_score import has_full_name_match, count_distinct_case_numbers
+            high_relevance = sum(
+                1 for s in sources
+                if s.get("relevance_score", 0) >= 0.5 and has_full_name_match(s)
+            )
+            n_distinct_cases = count_distinct_case_numbers(sources)
+        except ImportError:
+            high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
+            n_distinct_cases = 0
+    else:
+        high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
+        n_distinct_cases = 0
+
+    # Multi-case ambiguity gate — only triggers when identity data is present.
+    multi_case_ambiguous = n_distinct_cases >= 3
 
     # Count footage/audio evidence sources (PATH 1 — yt-dlp typed sources, strongest signal)
     # Court dockets are excluded because CourtListener finds docket results for almost anyone.
@@ -1173,14 +1206,19 @@ def assess_confidence(sources, evidence):
     api_set = set(s.get("api", "") for s in sources if s.get("relevance_score", 0) >= 0.5)
     api_diversity = len(api_set - {""})
 
-    # High: requires evidence breadth + actual footage sources (not just dockets/keyword matches)
-    if high_relevance >= 3 and evidence_count >= 3 and typed_footage >= 1:
+    # High: requires evidence breadth + actual footage sources, AND no multi-case ambiguity.
+    if high_relevance >= 3 and evidence_count >= 3 and typed_footage >= 1 and not multi_case_ambiguous:
         return "high"
-    # High fallback: very strong API diversity across 3+ APIs with lots of evidence
-    if high_relevance >= 5 and evidence_count >= 4 and api_diversity >= 3:
+    # High fallback: very strong API diversity across 3+ APIs with lots of evidence.
+    if high_relevance >= 5 and evidence_count >= 4 and api_diversity >= 3 and not multi_case_ambiguous:
         return "high"
     # Medium: requires at least 1 evidence type + 1 high-confidence source + 2+ sources total
     elif evidence_count >= 1 and high_relevance >= 1 and len(sources) >= 2:
+        return "medium"
+    # Medium-fallback: multi-case ambiguity with broad coverage = "found something
+    # but can't disambiguate" — better than LOW for a case the agent clearly
+    # has data on, even if scattered across multiple legal proceedings.
+    elif multi_case_ambiguous and len(sources) >= 5:
         return "medium"
     else:
         return "low"
