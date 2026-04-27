@@ -1213,6 +1213,7 @@ def research_case(defendant_names, jurisdiction):
     USE_REDDIT = os.environ.get("FLAMEON_USE_REDDIT", "1") != "0"
     USE_LLM_RERANK = os.environ.get("FLAMEON_USE_LLM_RERANK", "0") == "1"
     USE_JURISDICTION_FILTER = os.environ.get("FLAMEON_USE_JURISDICTION_FILTER", "1") != "0"
+    USE_IDENTITY_SCORING = os.environ.get("FLAMEON_USE_IDENTITY_SCORING", "1") != "0"
 
     all_sources = []
     notes = []
