@@ -268,6 +268,13 @@ def apply_jurisdiction_filter(sources, jurisdiction, parse_jurisdiction_fn=None)
     n_demoted = 0
     for src in sources:
         mult = detect_conflict(src, case_state, case_city)
+        # National-news / cross-jurisdictional platform whitelist: cap the
+        # demotion at the soft tier (×0.7) so legitimate national coverage of
+        # the case doesn't get crushed by a single out-of-state mention in the
+        # snippet (e.g. NYT covering a Miami case may mention "Houston" as
+        # comparison; that's not a wrong-person signal).
+        if mult == 0.2 and _is_national_news(src.get("url", "")):
+            mult = 0.7
         if mult < 1.0:
             src["_jurisdiction_filter_mult"] = mult
             src["_jurisdiction_pre_score"] = src.get("relevance_score", 0.0)
