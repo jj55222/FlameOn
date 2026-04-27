@@ -1,0 +1,81 @@
+FlameOn AutoResearch Evaluation
+==================================================
+Cases: 38 | Time budget: 3600s
+Tiers: 15 ENOUGH, 5 BORDERLINE, 18 INSUFFICIENT
+
+  [1/38] Researching: Keonte Gathron... done (47.8s, 13 sources, medium confidence)
+  [2/38] Researching: Min Jian Guan... done (44.0s, 7 sources, medium confidence)
+  [3/38] Researching: Roger Dale Boshers... done (42.7s, 0 sources, low confidence)
+  [4/38] Researching: Kitt Crenshaw, Arthur Gerrans, James Cro... done (41.4s, 35 sources, high confidence)
+  [5/38] Researching: Christa Gail Pike, Tadaryl Shipp, Shadol... done (41.3s, 49 sources, high confidence)
+  [6/38] Researching: Manuel Marin, Roberto "Bam Bam" Isaac, A... done (43.0s, 47 sources, high confidence)
+  [7/38] Researching: Braulio Gonzalez... done (42.8s, 37 sources, high confidence)
+  [8/38] Researching: Armando Botell... done (44.0s, 8 sources, low confidence)
+  [9/38] Researching: Jorge Barahona... done (44.1s, 47 sources, high confidence)
+  [10/38] Researching: Julius Dwight Mozie... done (45.0s, 9 sources, medium confidence)
+  [11/38] Researching: Keivon McBride... done (43.2s, 8 sources, medium confidence)
+  [12/38] Researching: Steven Dexter Gangoo... ERROR: Unable to download API page: <urllib3.connection.HTTPSConnection object at 0x000002D219061520>: Failed to resolve 'www.youtube.com' ([Errno 11001] getaddrinfo failed) (caused by TransportError("<urllib3.connection.HTTPSConnection object at 0x000002D219061520>: Failed to resolve 'www.youtube.com' ([Errno 11001] getaddrinfo failed)"))
+done (34557.9s, 5 sources, medium confidence)
+  TIME BUDGET EXCEEDED at case 12/38
+
+==================================================
+Scoring (12/38 cases researched, 35051.8s total)
+
+  Evidence Recall:    13.33 (x40%)
+  Source Discovery:    8.11 (x30%)
+  Precision:          50.38 (x20%)
+  Tier Accuracy:      31.58 (x10%)
+  ────────────────────────────────────────
+  RESEARCH SCORE:     21.00 / 100
+
+  ────────────────────────────────────────
+  EFFICIENCY REPORT
+  API calls:    MR=0 CL=0 Brave=0 YT=0 (free)
+  Est. cost:    $0.00
+  Score/call:   0.000
+  Score/$:      ∞ (free)
+  Time:         35052s (922.4s/case)
+
+==================================================
+Per-case breakdown:
+
+  Keonte Gathron                        [INSUFFICIENT] conf=medium sources=13  bod:N✓ int:N✓ cou:Y✗ doc:Y✗ dis:N✓
+  Min Jian Guan                         [ENOUGH      ] conf=medium sources=7   bod:N✗ int:N✗ cou:Y✓ doc:Y✓ dis:N✓
+  Roger Dale Boshers                    [INSUFFICIENT] conf=low    sources=0   bod:N✓ int:N✓ cou:N✓ doc:N✓ dis:N✓
+  Kitt Crenshaw, Arthur Gerrans, Jame   [INSUFFICIENT] conf=high   sources=35  bod:N✓ int:Y✗ cou:Y✗ doc:Y✓ dis:Y✗
+  Christa Gail Pike, Tadaryl Shipp, S   [ENOUGH      ] conf=high   sources=49  bod:N✗ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Manuel Marin, Roberto "Bam Bam" Isa   [ENOUGH      ] conf=high   sources=47  bod:Y✓ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Braulio Gonzalez                      [INSUFFICIENT] conf=high   sources=37  bod:Y✓ int:N✗ cou:Y✗ doc:Y✗ dis:Y✗
+  Armando Botell                        [INSUFFICIENT] conf=low    sources=8   bod:N✓ int:N✓ cou:N✓ doc:N✓ dis:N✓
+  Jorge Barahona                        [BORDERLINE  ] conf=high   sources=47  bod:Y✗ int:Y✓ cou:Y✗ doc:Y✓ dis:Y✗
+  Julius Dwight Mozie                   [INSUFFICIENT] conf=medium sources=9   bod:Y✗ int:N✓ cou:N✓ doc:Y✓ dis:N✓
+  Keivon McBride                        [INSUFFICIENT] conf=medium sources=8   bod:N✓ int:N✓ cou:N✓ doc:Y✓ dis:N✓
+  Steven Dexter Gangoo                  [INSUFFICIENT] conf=medium sources=5   bod:Y✗ int:N✓ cou:Y✗ doc:N✓ dis:N✓
+  Antonio Glass, Jerimaine Bryant, Cu   [INSUFFICIENT] NO RESULT
+  Carmen Barahona, Jorge Barahona       [INSUFFICIENT] NO RESULT
+  Dr. Prentiss Madden                   [ENOUGH      ] NO RESULT
+  William D. Foster                     [ENOUGH      ] NO RESULT
+  Mariam Coulibaly                      [INSUFFICIENT] NO RESULT
+  Jeffrey Epstein, Ghislaine Maxwell,   [ENOUGH      ] NO RESULT
+  Michael Edwin Harding                 [ENOUGH      ] NO RESULT
+  Jeffrey Epstein, Nadia Marcinkova,    [ENOUGH      ] NO RESULT
+  Joseph Concialdi                      [BORDERLINE  ] NO RESULT
+  William James McElroy Jr.             [ENOUGH      ] NO RESULT
+  Robert Hood                           [ENOUGH      ] NO RESULT
+  Miguel Antonio Mondaca                [INSUFFICIENT] NO RESULT
+  Louis Broadway-Phillips               [INSUFFICIENT] NO RESULT
+  Kyle Matthew Thompson                 [BORDERLINE  ] NO RESULT
+  William Bracy, Murray Hooper, Ed Mc   [INSUFFICIENT] NO RESULT
+  Alan Matthew Champagne                [ENOUGH      ] NO RESULT
+  Thomas Michael Riley                  [BORDERLINE  ] NO RESULT
+  Angela D. McAnulty                    [ENOUGH      ] NO RESULT
+  Miguel Antonio Mondaca                [INSUFFICIENT] NO RESULT
+  Marvin G. Johnson                     [ENOUGH      ] NO RESULT
+  Letecia Stauch                        [ENOUGH      ] NO RESULT
+  Carla Marie Faith, Christina Swauge   [BORDERLINE  ] NO RESULT
+  Joshua Carrier                        [INSUFFICIENT] NO RESULT
+  Katelynne Dianna Leigh Nelson, Carl   [INSUFFICIENT] NO RESULT
+  Anthony Darrell Dugard Hines          [ENOUGH      ] NO RESULT
+  Ashley Traister, Brooke Shoemaker,    [INSUFFICIENT] NO RESULT
+
+Logged experiment #32 → results.tsv
