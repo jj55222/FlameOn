@@ -36,16 +36,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "prompt",
-            "prompt": "The user asked Claude to build a complete pipeline. Check: (1) All files written? (2) --dry-run works? (3) Code parses? (4) Output matches schema? If ANY incomplete: {\"ok\": false, \"reason\": \"what remains\"}. If stop_hook_active is true OR all pass: {\"ok\": true}."
-          }
-        ]
-      }
     ]
   }
 }
