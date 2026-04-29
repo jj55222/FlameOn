@@ -5,6 +5,286 @@
 
   "definitions": {
 
+    "case_packet": {
+      "description": "Pipeline 2 canonical output. This is the downstream-ready packet emitted after identity locking, outcome resolution, artifact claims, and verified artifact URL resolution.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "input",
+        "case_identity",
+        "sources",
+        "artifact_claims",
+        "verified_artifacts",
+        "scores",
+        "verdict",
+        "next_actions",
+        "risk_flags"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable internal identifier for this case packet."
+        },
+        "input": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["mode"],
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "manual_defendant_jurisdiction",
+                "wapo_uof_row",
+                "muckrock_request",
+                "courtlistener_docket",
+                "youtube",
+                "news_article",
+                "agency_ois_page",
+                "unknown"
+              ]
+            },
+            "raw": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "missing_fields": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "candidate_queries": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "case_identity": {
+          "$ref": "#/definitions/case_packet_identity"
+        },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/case_packet_source" }
+        },
+        "artifact_claims": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/case_packet_artifact_claim" },
+          "description": "Claims found in source text. A claim is not a verified artifact URL."
+        },
+        "verified_artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/case_packet_verified_artifact" },
+          "description": "Concrete public URLs/files/embeds that have been deterministically associated with the case."
+        },
+        "scores": {
+          "$ref": "#/definitions/case_packet_scores"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["PRODUCE", "HOLD", "SKIP"]
+        },
+        "next_actions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "case_packet_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defendant_names",
+        "victim_names",
+        "agency",
+        "jurisdiction",
+        "incident_date",
+        "case_numbers",
+        "charges",
+        "outcome_status",
+        "identity_confidence",
+        "identity_anchors"
+      ],
+      "properties": {
+        "defendant_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "victim_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "agency": {
+          "type": ["string", "null"]
+        },
+        "jurisdiction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["city", "county", "state"],
+          "properties": {
+            "city": { "type": ["string", "null"] },
+            "county": { "type": ["string", "null"] },
+            "state": { "type": ["string", "null"] }
+          }
+        },
+        "incident_date": {
+          "type": ["string", "null"],
+          "description": "Known incident date if available. Prefer ISO-8601 strings when normalized."
+        },
+        "case_numbers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "charges": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "outcome_status": {
+          "type": "string",
+          "enum": ["unknown", "charged", "convicted", "sentenced", "closed", "dismissed", "acquitted"]
+        },
+        "identity_confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "identity_anchors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "case_packet_source": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["url", "title", "source_type", "source_authority"],
+      "properties": {
+        "url": { "type": "string" },
+        "title": { "type": "string" },
+        "snippet": { "type": "string" },
+        "source_type": {
+          "type": "string",
+          "enum": ["web", "news", "official", "court", "foia", "video", "document", "api", "unknown"]
+        },
+        "source_authority": {
+          "type": "string",
+          "enum": ["official", "court", "foia", "news", "third_party", "unknown"]
+        },
+        "matched_case_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "case_packet_artifact_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_type", "claim_label", "claim_source_url", "claim_text", "confidence"],
+      "properties": {
+        "artifact_type": {
+          "type": "string",
+          "enum": ["bodycam", "interrogation", "court_video", "docket_docs", "dispatch_911", "dash_cam", "other"]
+        },
+        "claim_label": {
+          "type": "string",
+          "enum": ["artifact_released", "artifact_requested", "artifact_withheld", "artifact_mentioned_only", "no_artifact"]
+        },
+        "claim_source_url": {
+          "type": "string",
+          "description": "The source that made the claim. This is not necessarily the artifact URL."
+        },
+        "claim_text": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+
+    "case_packet_verified_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_type", "artifact_url", "source_authority", "downloadable", "matched_case_fields", "confidence"],
+      "properties": {
+        "artifact_type": {
+          "type": "string",
+          "enum": ["bodycam", "interrogation", "court_video", "docket_docs", "dispatch_911", "dash_cam", "other"]
+        },
+        "artifact_url": {
+          "type": "string",
+          "description": "The public URL/file/embed for the actual artifact."
+        },
+        "claim_source_url": {
+          "type": "string",
+          "description": "Optional source URL that first claimed this artifact existed."
+        },
+        "source_authority": {
+          "type": "string",
+          "enum": ["official", "court", "foia", "news", "third_party", "unknown"]
+        },
+        "downloadable": {
+          "type": "boolean"
+        },
+        "matched_case_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+
+    "case_packet_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity_score", "outcome_score", "artifact_score", "actionability_score"],
+      "properties": {
+        "identity_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "outcome_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "artifact_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "actionability_score": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+
+    "case_packet_legacy_evaluate_shape": {
+      "description": "Compatibility shape for the immutable legacy evaluate.py scorer.",
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["evidence_found", "sources_found", "confidence"],
+      "properties": {
+        "evidence_found": {
+          "type": "object",
+          "required": ["bodycam", "interrogation", "court_video", "docket_docs", "dispatch_911"],
+          "properties": {
+            "bodycam": { "type": "boolean" },
+            "interrogation": { "type": "boolean" },
+            "court_video": { "type": "boolean" },
+            "docket_docs": { "type": "boolean" },
+            "dispatch_911": { "type": "boolean" }
+          }
+        },
+        "sources_found": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+
     "p2_to_p3_case": {
       "description": "Pipeline 2 (Discovery) → Pipeline 3 (Audio). One per case.",
       "type": "object",

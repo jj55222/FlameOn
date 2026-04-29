@@ -1,0 +1,74 @@
+{
+  "case_id": "manual_min_jian_guan_sf_2026",
+  "input": {
+    "mode": "manual_defendant_jurisdiction",
+    "raw": {
+      "defendant_names": "Min Jian Guan",
+      "jurisdiction": "San Francisco, San Francisco, CA"
+    },
+    "missing_fields": [],
+    "candidate_queries": [
+      "\"Min Jian Guan\" San Francisco CA case",
+      "\"Min Jian Guan\" bodycam interrogation 911"
+    ]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": [],
+    "agency": null,
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": null,
+    "case_numbers": [],
+    "charges": [],
+    "outcome_status": "unknown",
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "sources": [
+    {
+      "url": "https://example.org/news/min-jian-guan-case",
+      "title": "Example source that mentions the case",
+      "snippet": "The article says video was released, but does not embed or link the artifact.",
+      "source_type": "news",
+      "source_authority": "news",
+      "matched_case_fields": ["defendant_full_name", "city"]
+    }
+  ],
+  "artifact_claims": [
+    {
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_released",
+      "claim_source_url": "https://example.org/news/min-jian-guan-case",
+      "claim_text": "Police released body-worn camera footage in the case.",
+      "confidence": 0.72
+    }
+  ],
+  "verified_artifacts": [
+    {
+      "artifact_type": "bodycam",
+      "artifact_url": "https://www.youtube.com/watch?v=ytap7WQnLK4",
+      "claim_source_url": "https://example.org/news/min-jian-guan-case",
+      "source_authority": "third_party",
+      "downloadable": true,
+      "matched_case_fields": ["defendant_full_name"],
+      "confidence": 0.81
+    }
+  ],
+  "scores": {
+    "identity_score": 20.0,
+    "outcome_score": 0.0,
+    "artifact_score": 65.0,
+    "actionability_score": 42.5
+  },
+  "verdict": "HOLD",
+  "next_actions": [
+    "Corroborate identity from court or official source before PRODUCE."
+  ],
+  "risk_flags": [
+    "identity_not_locked"
+  ]
+}

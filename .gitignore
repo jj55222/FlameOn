@@ -26,6 +26,19 @@ Thumbs.db
 *.mp3
 *.mp4
 *.webm
+*.m4a
+*.sqlite
+*.db
+*.jsonl.tmp
+*.html
+*.pdf
+
+# FlameOn experiment artifacts
+autoresearch/.cache/
+autoresearch/.runs/
+autoresearch/.artifacts/
+autoresearch/.tmp/
+autoresearch/.logs/
 
 # Claude Code local settings
 .claude/settings.local.json
