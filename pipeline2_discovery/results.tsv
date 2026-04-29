@@ -33,3 +33,4 @@ experiment_id	timestamp	research_score	evidence_recall	source_discovery	precisio
 31	2026-04-27T03:23:08Z	61.40	68.00	59.46	52.85	57.89	38	38	3123.7	filter_iter1	jurisdiction_filter ON (rule-based, 50-state gazetteer)	
 32	2026-04-27T13:14:57Z	21.00	13.33	8.11	50.38	31.58	38	12	35051.8	filter_iter2	jurisdiction_filter ON + national-news whitelist (cap demote at 0.7 for NYT/CNN/YouTube/etc)	
 33	2026-04-27T22:11:30Z	63.51	72.00	59.46	51.44	65.79	38	38	2242.9	cherry_pick_v1	identity_scoring ON + multi-case ambiguity gate + jurisdiction filter ON (national-news whitelist)	
+34	2026-04-29T18:15:28Z	62.86	69.33	59.46	52.89	67.11	38	38	1810.0	cherry_pick_v2_threshold4	identity_scoring + multi-case gate (raised 3->4) + jurisdiction filter w/ national-news whitelist	
