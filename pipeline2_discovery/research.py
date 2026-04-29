@@ -1194,7 +1194,11 @@ def assess_confidence(sources, evidence):
         n_distinct_cases = 0
 
     # Multi-case ambiguity gate — only triggers when identity data is present.
-    multi_case_ambiguous = n_distinct_cases >= 3
+    # Threshold tuned 3→4: cherry_pick_v1 demoted Marvin Johnson + Angela McAnulty
+    # (legitimate ENOUGH cases with long legal histories) on 3+ distinct case
+    # numbers. Bumping to 4 preserves the demote on Katelynne Nelson (INSUFF) +
+    # Miguel Mondaca (INSUFF) which had 5+ distinct cases each.
+    multi_case_ambiguous = n_distinct_cases >= 4
 
     # Count footage/audio evidence sources (PATH 1 — yt-dlp typed sources, strongest signal)
     # Court dockets are excluded because CourtListener finds docket results for almost anyone.
