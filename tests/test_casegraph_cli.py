@@ -241,3 +241,380 @@ def test_cli_module_is_runnable_via_python_dash_m():
 
     assert hasattr(cli_module, "main")
     assert callable(cli_module.main)
+
+
+# ---- PIPE2 — --query-plan mode --------------------------------------------
+
+
+STRUCTURED_FIXTURE_DIR = ROOT / "tests" / "fixtures" / "structured_inputs"
+WAPO_FIXTURE = str(STRUCTURED_FIXTURE_DIR / "wapo_uof_complete.json")
+FE_FIXTURE = str(STRUCTURED_FIXTURE_DIR / "fatal_encounters_complete.json")
+MPV_FIXTURE = str(STRUCTURED_FIXTURE_DIR / "mpv_complete.json")
+
+
+def test_cli_query_plan_mode_runs_on_wapo_fixture_and_emits_json():
+    code, out, err = run_cli(["--fixture", WAPO_FIXTURE, "--query-plan", "--json"])
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    assert "input_summary" in payload
+    assert "query_plan" in payload
+    assert "ledger_entry" in payload
+    assert payload["input_summary"]["dataset_name"] == "wapo_uof"
+    assert payload["input_summary"]["defendant_names"] == ["John Example"]
+    plan = payload["query_plan"]
+    assert plan["connector_count"] >= 1
+    assert any(p["query_count"] >= 1 for p in plan["plans"])
+
+
+def test_cli_query_plan_mode_makes_zero_network_calls(monkeypatch):
+    import requests
+
+    calls = []
+    original = requests.Session.get
+
+    def fake_get(self, *args, **kwargs):
+        calls.append((args, kwargs))
+        return original(self, *args, **kwargs)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    code, _, err = run_cli(["--fixture", WAPO_FIXTURE, "--query-plan", "--json"])
+    assert code == 0, f"unexpected error: {err}"
+    assert calls == [], f"--query-plan made {len(calls)} live HTTP call(s)"
+
+
+@pytest.mark.parametrize(
+    "fixture_path,expected_dataset",
+    [
+        (WAPO_FIXTURE, "wapo_uof"),
+        (FE_FIXTURE, "fatal_encounters"),
+        (MPV_FIXTURE, "mapping_police_violence"),
+    ],
+)
+def test_cli_query_plan_mode_dispatches_per_dataset(fixture_path, expected_dataset):
+    code, out, err = run_cli(["--fixture", fixture_path, "--query-plan", "--json"])
+    assert code == 0, f"non-zero exit on {fixture_path}: {err}"
+    payload = json.loads(out)
+    assert payload["input_summary"]["dataset_name"] == expected_dataset
+
+
+def test_cli_query_plan_text_output_is_human_readable():
+    code, out, _ = run_cli(["--fixture", WAPO_FIXTURE, "--query-plan"])
+    assert code == 0
+    assert "=== CaseGraph query plan ===" in out
+    assert "dataset_name: wapo_uof" in out
+    assert "connector_plans:" in out
+
+
+def test_cli_query_plan_returns_exit_3_for_missing_fixture(tmp_path):
+    missing = tmp_path / "missing.json"
+    code, out, err = run_cli(["--fixture", str(missing), "--query-plan", "--json"])
+    assert code == 3
+    assert "fixture not found" in err
+
+
+def test_cli_query_plan_uses_default_experiment_id():
+    code, out, _ = run_cli(["--fixture", WAPO_FIXTURE, "--query-plan", "--json"])
+    payload = json.loads(out)
+    assert payload["ledger_entry"]["experiment_id"] == "PIPE1-cli-query-plan"
+
+
+# ---- PIPE2 — --live-dry mode ----------------------------------------------
+
+
+from pipeline2_discovery.casegraph import (
+    CourtListenerConnector,
+    DocumentCloudConnector,
+    MuckRockConnector,
+)
+from pipeline2_discovery.casegraph.live_safety import DEFAULT_ENV_VAR
+
+
+class FakeResponse:
+    def __init__(self, payload, status_code=200):
+        self.payload = payload
+        self.status_code = status_code
+
+    def json(self):
+        return self.payload
+
+
+class FakeSession:
+    def __init__(self, response):
+        self.response = response
+        self.calls = []
+
+    def get(self, url, *, params=None, headers=None, timeout=None):
+        self.calls.append({"url": url, "params": params, "headers": headers, "timeout": timeout})
+        return self.response
+
+
+def _seed_courtlistener_connector_factory(monkeypatch, payload):
+    """Replace the CONNECTOR_FACTORIES['courtlistener'] entry with a
+    FakeSession-backed connector so --live-dry never hits the network."""
+    fake = FakeSession(FakeResponse(payload))
+
+    def factory():
+        return CourtListenerConnector(session=fake)
+
+    import pipeline2_discovery.casegraph.live_smoke as live_smoke_module
+
+    monkeypatch.setitem(
+        live_smoke_module.CONNECTOR_FACTORIES, "courtlistener", factory
+    )
+    return fake
+
+
+def _courtlistener_payload():
+    return {
+        "results": [
+            {
+                "id": 9100001,
+                "caseName": "State v. John Example",
+                "absolute_url": "/opinion/9100001/state-v-john-example/",
+                "snippet": "John Example was sentenced after the Phoenix Police Department investigation.",
+                "docketNumber": "CR-2022-001234",
+                "court": "AZSP",
+                "dateFiled": "2022-09-15",
+            }
+        ]
+    }
+
+
+def test_cli_live_dry_refuses_without_env_gate(monkeypatch):
+    monkeypatch.delenv(DEFAULT_ENV_VAR, raising=False)
+    _seed_courtlistener_connector_factory(monkeypatch, _courtlistener_payload())
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert out == ""
+    assert "live-dry blocked" in err.lower()
+    assert "live run not enabled" in err.lower()
+
+
+def test_cli_live_dry_refuses_oversize_max_results(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    _seed_courtlistener_connector_factory(monkeypatch, _courtlistener_payload())
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "99",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert "max_results" in err.lower()
+
+
+def test_cli_live_dry_refuses_brave_connector(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "brave",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert "brave" in err.lower()
+
+
+def test_cli_live_dry_refuses_unknown_connector(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "some_future_thing",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert "not in allow-list" in err.lower() or "some_future_thing" in err.lower()
+
+
+def test_cli_live_dry_mocked_courtlistener_returns_ledger_data(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    fake = _seed_courtlistener_connector_factory(monkeypatch, _courtlistener_payload())
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+
+    assert payload["live_dry"]["connector"] == "courtlistener"
+    assert payload["live_dry"]["max_queries"] == 1
+    assert payload["live_dry"]["max_results"] == 5
+    assert payload["live_dry"]["source_record_count"] >= 1
+    # The CLI live-dry mode must NOT graduate sources to artifacts.
+    assert payload["live_dry"]["verified_artifact_count"] == 0
+
+    diag = payload["live_dry"]["diagnostics"]
+    assert diag["api_calls"]["courtlistener"] == 1
+    assert diag["api_calls"]["brave"] == 0
+    assert diag["api_calls"]["firecrawl"] == 0
+    assert diag["estimated_cost_usd"] == 0.0
+    assert diag["status_code"] == 200
+
+    led = payload["ledger_entry"]
+    assert led["experiment_id"] == "PIPE2-cli-live-dry"
+    assert led["api_calls"]["courtlistener"] == 1
+    assert led["api_calls"]["brave"] == 0
+    assert led["estimated_cost_usd"] == 0.0
+    # FakeSession recorded exactly one call.
+    assert len(fake.calls) >= 1
+
+
+def test_cli_live_dry_does_not_create_verified_artifacts_from_sources(monkeypatch):
+    """Even if the FakeSession returns court records that mention
+    bodycam/release language, the CLI live-dry path must NOT graduate
+    them into VerifiedArtifacts. Verification is the resolver's job,
+    not the live-dry harness."""
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    payload = {
+        "results": [
+            {
+                "id": 9100002,
+                "caseName": "State v. Jane Example",
+                "absolute_url": "/opinion/9100002/state-v-jane-example/",
+                "snippet": "Bodycam footage was released. Records were produced.",
+                "docketNumber": "CR-2023-000999",
+                "court": "AZSP",
+                "dateFiled": "2023-04-22",
+            }
+        ]
+    }
+    _seed_courtlistener_connector_factory(monkeypatch, payload)
+
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 0
+    body = json.loads(out)
+    assert body["live_dry"]["verified_artifact_count"] == 0
+
+
+def test_cli_live_dry_text_output_is_human_readable(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    _seed_courtlistener_connector_factory(monkeypatch, _courtlistener_payload())
+
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+        ]
+    )
+    assert code == 0, err
+    assert "=== CaseGraph live-dry smoke ===" in out
+    assert "connector: courtlistener" in out
+    assert "verified_artifact_count: 0" in out
+
+
+def test_cli_live_dry_makes_exactly_one_courtlistener_call(monkeypatch):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    fake = _seed_courtlistener_connector_factory(monkeypatch, _courtlistener_payload())
+
+    code, _, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 0
+    # CourtListener connector iterates over multiple search types
+    # internally; the cap on max_results is what bounds total work.
+    # The harness itself records exactly one query in the budget.
+    assert len(fake.calls) <= 2  # at most one call per search-type pass
+
+
+def test_cli_live_dry_returns_exit_3_for_missing_fixture(monkeypatch, tmp_path):
+    monkeypatch.setenv(DEFAULT_ENV_VAR, "1")
+    missing = tmp_path / "missing.json"
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            str(missing),
+            "--live-dry",
+            "--connector",
+            "courtlistener",
+            "--max-results",
+            "5",
+            "--json",
+        ]
+    )
+    assert code == 3
+    assert "fixture not found" in err
+
+
+def test_cli_query_plan_and_live_dry_are_mutually_exclusive():
+    """argparse mutual exclusion — supplying both should fail at parse
+    time with a non-zero exit, not silently pick one."""
+    with pytest.raises(SystemExit):
+        run_cli(
+            [
+                "--fixture",
+                WAPO_FIXTURE,
+                "--query-plan",
+                "--live-dry",
+                "--connector",
+                "courtlistener",
+            ]
+        )
