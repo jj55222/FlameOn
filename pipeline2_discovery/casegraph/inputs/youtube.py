@@ -102,13 +102,81 @@ ARTIFACT_PATTERNS = {
         r"\bbody camera\b",
         r"\bbody[- ]worn camera\b",
         r"\bBWC\b",
+        r"\bBWC footage\b",
+        r"\bBWC video\b",
+        r"\bofficer[- ]worn camera\b",
+        r"\bbodycam footage\b",
+        r"\bbodycam video\b",
     ],
-    "dashcam": [r"\bdashcam\b", r"\bdash cam\b"],
-    "dispatch_911": [r"\b911 call\b", r"\b911 audio\b", r"\bdispatch audio\b", r"\bdispatch recording\b"],
-    "interrogation": [r"\binterrogation\b", r"\bconfession\b", r"\bpolice interview\b", r"\bdetective interview\b"],
-    "surveillance_video": [r"\bsurveillance video\b", r"\bsecurity video\b", r"\bsurveillance footage\b"],
-    "court_video": [r"\bcourt video\b", r"\btrial video\b", r"\bsentencing video\b", r"\bcourt audio\b"],
-    "critical_incident_video": [r"\bcritical incident video\b", r"\bofficial incident video\b"],
+    "dashcam": [
+        r"\bdashcam\b",
+        r"\bdash cam\b",
+        r"\bdash camera\b",
+        r"\bdashcam footage\b",
+        r"\bin[- ]car video\b",
+        r"\bin[- ]car camera\b",
+        r"\bpatrol car video\b",
+        r"\bcruiser cam\b",
+    ],
+    "dispatch_911": [
+        r"\b911 call\b",
+        r"\b911 audio\b",
+        r"\b911 dispatch\b",
+        r"\b911 recording\b",
+        r"\bdispatch audio\b",
+        r"\bdispatch recording\b",
+        r"\bdispatch call\b",
+        r"\bemergency dispatch\b",
+        r"\bemergency call audio\b",
+        r"\bradio traffic\b",
+    ],
+    "interrogation": [
+        r"\binterrogation\b",
+        r"\binterrogation video\b",
+        r"\binterrogation footage\b",
+        r"\bconfession\b",
+        r"\bconfession video\b",
+        r"\bconfession recording\b",
+        r"\bpolice interview\b",
+        r"\bdetective interview\b",
+        r"\bcustodial interview\b",
+        r"\binterview footage\b",
+        r"\binterview recording\b",
+        r"\bquestioning video\b",
+        r"\bquestioning recording\b",
+    ],
+    "surveillance_video": [
+        r"\bsurveillance video\b",
+        r"\bsurveillance footage\b",
+        r"\bsecurity video\b",
+        r"\bsecurity footage\b",
+        r"\bsecurity camera footage\b",
+        r"\bCCTV footage\b",
+        r"\bCCTV video\b",
+        r"\bstore surveillance\b",
+        r"\bbusiness surveillance\b",
+    ],
+    "court_video": [
+        r"\bcourt video\b",
+        r"\bcourt audio\b",
+        r"\bcourtroom video\b",
+        r"\bcourtroom footage\b",
+        r"\btrial video\b",
+        r"\btrial footage\b",
+        r"\bhearing video\b",
+        r"\bhearing footage\b",
+        r"\barraignment video\b",
+        r"\bsentencing video\b",
+        r"\bsentencing footage\b",
+        r"\bsentencing hearing video\b",
+    ],
+    "critical_incident_video": [
+        r"\bcritical incident video\b",
+        r"\bofficial incident video\b",
+        r"\bcritical incident report video\b",
+        r"\bOIS video\b",
+        r"\bofficer[- ]involved shooting video\b",
+    ],
 }
 
 INCIDENT_DESCRIPTOR_PATTERNS = [
@@ -143,6 +211,13 @@ class YouTubeInputParseResult:
     # never silently overwritten — conflicts surface as risk flags here
     # so downstream gates can treat them as ambiguous until corroborated.
     segment_conflicts: Dict[str, Dict[str, List[str]]] = field(default_factory=dict)
+    # Audit trail for artifact_signals: maps each detected category
+    # (bodycam, interrogation, dispatch_911, etc.) to the actual matched
+    # text snippets that triggered the detection. Lets reviewers see WHY
+    # a signal was raised. Detected signals are claims/leads only — never
+    # VerifiedArtifacts. The parser will not download, fetch transcripts
+    # live, or call any LLM.
+    artifact_portfolio: Dict[str, List[str]] = field(default_factory=dict)
 
 
 def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult:
@@ -171,7 +246,7 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
     case_numbers = _extract_case_numbers(text)
     charges = _extract_charges(text)
     outcome_terms = _extract_outcome_terms(text)
-    artifact_signals = _extract_artifact_signals(text)
+    artifact_signals, artifact_portfolio = _extract_artifact_signals_with_portfolio(text)
     descriptors = _extract_incident_descriptors(text)
     segment_conflicts = _detect_segment_conflicts(segments)
 
@@ -192,6 +267,8 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
     risk_flags = _risk_flags(candidate_fields, missing_fields)
     for conflict_field in segment_conflicts:
         risk_flags.append(f"conflicting_{conflict_field}_across_segments")
+    if len(artifact_portfolio) >= 2:
+        risk_flags.append("multiple_artifact_signals")
     risk_flags = _dedupe(risk_flags)
 
     raw_input = {
@@ -218,6 +295,7 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
         incident_descriptors=descriptors,
         risk_flags=risk_flags,
         segment_conflicts=segment_conflicts,
+        artifact_portfolio=artifact_portfolio,
     )
 
 
@@ -423,6 +501,34 @@ def _extract_artifact_signals(text: str) -> List[str]:
         if any(re.search(pattern, text, re.I) for pattern in patterns):
             signals.append(signal)
     return signals
+
+
+def _extract_artifact_signals_with_portfolio(text: str) -> Tuple[List[str], Dict[str, List[str]]]:
+    """Detect artifact-type mentions in the combined text AND record the
+    actual matched substrings per category.
+
+    Returns (signals, portfolio):
+    - signals: list of category names (same order/contents as
+      `_extract_artifact_signals`).
+    - portfolio: {category: [matched_text, ...]} — one entry per
+      detected category, listing every distinct lower-cased substring
+      that triggered the match. Used by callers/reviewers as an
+      audit trail. Detected signals are claims/leads only, never
+      VerifiedArtifacts.
+    """
+    signals: List[str] = []
+    portfolio: Dict[str, List[str]] = {}
+    for signal, patterns in ARTIFACT_PATTERNS.items():
+        matched: List[str] = []
+        for pattern in patterns:
+            for match in re.finditer(pattern, text, re.I):
+                snippet = re.sub(r"\s+", " ", match.group(0)).strip().lower()
+                if snippet and snippet not in matched:
+                    matched.append(snippet)
+        if matched:
+            signals.append(signal)
+            portfolio[signal] = matched
+    return signals, portfolio
 
 
 def _extract_incident_descriptors(text: str) -> List[str]:

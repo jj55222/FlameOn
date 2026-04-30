@@ -1,0 +1,11 @@
+{
+  "title": "Bodycam, dashcam, 911 audio: full incident package",
+  "description": "Includes BWC footage, in-car video, the dispatch call, and a courtroom video clip from the sentencing hearing.",
+  "transcript": "The officer's interview footage and a separate confession video were also released. Surveillance footage from a nearby store shows the same encounter, and the OIS video was filed by the agency. The investigator referenced 911 audio during questioning.",
+  "channel": "Case Footage Archive",
+  "video_url": "https://www.youtube.com/watch?v=multi_artifact_fixture",
+  "published_date": "2024-04-24",
+  "metadata": {
+    "fixture": "multi_artifact_transcript"
+  }
+}
