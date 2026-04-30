@@ -1,0 +1,44 @@
+{
+  "case_id": "scenario_weak_identity_media_blocked",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
+    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "missing_fields": ["agency", "incident_date", "case_numbers"],
+    "candidate_queries": ["\"Min Jian Guan\" bodycam"]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": [],
+    "agency": null,
+    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "incident_date": null,
+    "case_numbers": [],
+    "charges": [],
+    "outcome_status": "sentenced",
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "sources": [],
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "bodycam_weak_001",
+      "artifact_type": "bodycam",
+      "artifact_url": "https://www.youtube.com/watch?v=fixtureweak",
+      "source_url": "https://www.youtube.com/watch?v=fixtureweak",
+      "source_authority": "third_party",
+      "downloadable": true,
+      "format": "video",
+      "matched_case_fields": [],
+      "confidence": 0.62,
+      "verification_method": "public_url_pattern",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    }
+  ],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": []
+}

@@ -1,0 +1,44 @@
+{
+  "case_id": "scenario_charged_with_media_hold",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
+    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "missing_fields": [],
+    "candidate_queries": ["\"Min Jian Guan\" bodycam charged"]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": ["Example Victim"],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "incident_date": "2024-04-21",
+    "case_numbers": ["CR-1005"],
+    "charges": ["murder"],
+    "outcome_status": "charged",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "jurisdiction", "agency"]
+  },
+  "sources": [],
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "bodycam_charged_001",
+      "artifact_type": "bodycam",
+      "artifact_url": "https://example.org/artifacts/bodycam_charged_001.mp4",
+      "source_url": "https://example.org/official/bodycam",
+      "source_authority": "official",
+      "downloadable": true,
+      "format": "video",
+      "matched_case_fields": ["defendant_full_name", "agency"],
+      "confidence": 0.9,
+      "verification_method": "file_extension",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    }
+  ],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": []
+}

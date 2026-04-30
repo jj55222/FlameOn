@@ -1,0 +1,41 @@
+{
+  "case_id": "scenario_protected_nonpublic_blocked",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
+    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "missing_fields": [],
+    "candidate_queries": ["\"Min Jian Guan\" protected bodycam"]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": [],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "incident_date": "2024-04-21",
+    "case_numbers": ["CR-1006"],
+    "charges": ["murder"],
+    "outcome_status": "sentenced",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "jurisdiction", "agency"]
+  },
+  "sources": [],
+  "artifact_claims": [
+    {
+      "claim_id": "claim_protected_bodycam",
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_withheld",
+      "claim_source_id": "foia_001",
+      "claim_source_url": "https://example.org/foia/bodycam-denied",
+      "supporting_snippet": "The body camera video is protected from disclosure.",
+      "claim_confidence": 0.75,
+      "risk_flags": ["protected_or_nonpublic"],
+      "next_actions": ["Seek public release or alternate public source."]
+    }
+  ],
+  "verified_artifacts": [],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": ["protected_or_nonpublic"]
+}

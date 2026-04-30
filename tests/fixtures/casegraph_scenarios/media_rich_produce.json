@@ -1,0 +1,72 @@
+{
+  "case_id": "scenario_media_rich_produce",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
+    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "missing_fields": [],
+    "candidate_queries": ["\"Min Jian Guan\" bodycam 911"]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": ["Example Victim"],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "incident_date": "2024-04-21",
+    "case_numbers": ["CR-1001"],
+    "charges": ["murder"],
+    "outcome_status": "sentenced",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "jurisdiction", "agency", "case_number"]
+  },
+  "sources": [],
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "bodycam_001",
+      "artifact_type": "bodycam",
+      "artifact_url": "https://example.org/artifacts/bodycam_001.mp4",
+      "source_url": "https://example.org/official/bodycam",
+      "source_authority": "official",
+      "downloadable": false,
+      "format": "video",
+      "matched_case_fields": ["defendant_full_name", "agency"],
+      "confidence": 0.9,
+      "verification_method": "file_extension",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    },
+    {
+      "artifact_id": "dispatch_001",
+      "artifact_type": "dispatch_911",
+      "artifact_url": "https://example.org/artifacts/dispatch_001.mp3",
+      "source_url": "https://example.org/records/dispatch",
+      "source_authority": "third_party",
+      "downloadable": false,
+      "format": "audio",
+      "matched_case_fields": ["defendant_full_name"],
+      "confidence": 0.78,
+      "verification_method": "file_extension",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    },
+    {
+      "artifact_id": "complaint_001",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://example.org/artifacts/complaint_001.pdf",
+      "source_url": "https://example.org/court/complaint",
+      "source_authority": "court",
+      "downloadable": true,
+      "format": "pdf",
+      "matched_case_fields": ["defendant_full_name", "case_number"],
+      "confidence": 0.86,
+      "verification_method": "file_extension",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    }
+  ],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": []
+}

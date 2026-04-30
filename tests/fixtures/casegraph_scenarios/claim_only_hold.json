@@ -1,0 +1,41 @@
+{
+  "case_id": "scenario_claim_only_hold",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
+    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "missing_fields": [],
+    "candidate_queries": ["\"Min Jian Guan\" bodycam released"]
+  },
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": [],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "incident_date": "2024-04-21",
+    "case_numbers": ["CR-1003"],
+    "charges": ["murder"],
+    "outcome_status": "convicted",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "jurisdiction", "agency"]
+  },
+  "sources": [],
+  "artifact_claims": [
+    {
+      "claim_id": "claim_bodycam_released",
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_released",
+      "claim_source_id": "news_001",
+      "claim_source_url": "https://example.org/news/bodycam-released",
+      "supporting_snippet": "Police released bodycam footage.",
+      "claim_confidence": 0.82,
+      "risk_flags": [],
+      "next_actions": []
+    }
+  ],
+  "verified_artifacts": [],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": []
+}
