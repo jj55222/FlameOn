@@ -81,9 +81,12 @@ from .resolvers import (
     CourtListenerDocumentResolution,
     DocumentCloudFileResolution,
     MuckRockFileResolution,
+    RESOLVER_NAMES,
+    ResolverOrchestrationResult,
     resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
+    run_metadata_only_resolvers,
 )
 from .routers import route_manual_defendant_jurisdiction
 from .scoring import ActionabilityResult, score_case_packet
@@ -124,6 +127,8 @@ __all__ = [
     "PAID_CONNECTORS",
     "PlannedQuery",
     "QueryPlanResult",
+    "RESOLVER_NAMES",
+    "ResolverOrchestrationResult",
     "RunLedgerEntry",
     "Scores",
     "SourceRecord",
@@ -162,6 +167,7 @@ __all__ = [
     "resolve_outcome",
     "run_capped_live_smoke",
     "run_capped_multi_connector_smoke",
+    "run_metadata_only_resolvers",
     "safe_live_budget_for",
     "score_case_packet",
     "validate_connector_source_record",
