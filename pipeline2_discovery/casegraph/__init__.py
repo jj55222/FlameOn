@@ -95,11 +95,13 @@ from .agent_loop import (
 from .run_compare import compare_run_bundles
 from .validation import run_validation_manifest, validate_entry
 from .resolvers import (
+    AgencyOISFileResolution,
     CourtListenerDocumentResolution,
     DocumentCloudFileResolution,
     MuckRockFileResolution,
     RESOLVER_NAMES,
     ResolverOrchestrationResult,
+    resolve_agency_ois_files,
     resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
@@ -111,6 +113,7 @@ from .scoring import ActionabilityResult, score_case_packet
 __all__ = [
     "ActionabilityResult",
     "AgencyOISConnector",
+    "AgencyOISFileResolution",
     "ArtifactClaim",
     "BACKLOG",
     "BACKLOG_VERSION",
@@ -188,6 +191,7 @@ __all__ = [
     "plan_queries_from_structured_result",
     "plan_queries_from_youtube_result",
     "read_completed_ids_from_ledger",
+    "resolve_agency_ois_files",
     "resolve_courtlistener_documents",
     "resolve_documentcloud_files",
     "route_manual_defendant_jurisdiction",
