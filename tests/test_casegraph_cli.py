@@ -618,3 +618,242 @@ def test_cli_query_plan_and_live_dry_are_mutually_exclusive():
                 "courtlistener",
             ]
         )
+
+
+# ---- PIPE3 — --multi-source-dry-run mode ----------------------------------
+
+
+def test_cli_multi_source_dry_run_works_with_structured_fixture():
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock,documentcloud",
+            "--json",
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    assert payload["input_summary"]["dataset_name"] == "wapo_uof"
+    multi = payload["multi_source_dry_run"]
+    assert multi["connectors"] == ["courtlistener", "muckrock", "documentcloud"]
+    assert multi["max_results"] == 5
+    assert len(multi["per_connector"]) == 3
+    assert multi["total_source_records"] == 0
+    assert multi["total_verified_artifacts"] == 0
+    assert multi["total_estimated_cost_usd"] == 0.0
+
+
+def test_cli_multi_source_dry_run_returns_per_connector_summaries():
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock",
+            "--json",
+        ]
+    )
+    payload = json.loads(out)
+    per_connector = payload["multi_source_dry_run"]["per_connector"]
+    assert {entry["connector"] for entry in per_connector} == {"courtlistener", "muckrock"}
+    for entry in per_connector:
+        assert "max_results" in entry
+        assert "planned_query_count" in entry
+        assert entry["source_record_count"] == 0
+        assert entry["verified_artifact_count"] == 0
+        assert entry["estimated_cost_usd"] == 0.0
+    # At least one connector should produce a planned query for the
+    # WaPo fixture (defendant + agency + jurisdiction all present).
+    assert sum(e["planned_query_count"] for e in per_connector) >= 1
+
+
+def test_cli_multi_source_dry_run_refuses_unsupported_connector():
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,some_future_thing",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert out == ""
+    assert "some_future_thing" in err
+
+
+def test_cli_multi_source_dry_run_refuses_brave_by_default():
+    code, _, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,brave",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert "brave" in err.lower()
+
+
+def test_cli_multi_source_dry_run_refuses_firecrawl_by_default():
+    code, _, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "firecrawl",
+            "--json",
+        ]
+    )
+    assert code == 5
+    assert "firecrawl" in err.lower()
+
+
+def test_cli_multi_source_dry_run_makes_zero_network_calls(monkeypatch):
+    import requests
+
+    calls = []
+    original = requests.Session.get
+
+    def fake_get(self, *args, **kwargs):
+        calls.append((args, kwargs))
+        return original(self, *args, **kwargs)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    code, _, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock,documentcloud",
+            "--json",
+        ]
+    )
+    assert code == 0, err
+    assert calls == [], f"--multi-source-dry-run made {len(calls)} live HTTP call(s)"
+
+
+def test_cli_multi_source_dry_run_does_not_create_verified_artifacts():
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock,documentcloud",
+            "--json",
+        ]
+    )
+    payload = json.loads(out)
+    assert payload["multi_source_dry_run"]["total_verified_artifacts"] == 0
+    # The assembled CasePacket from the fixture alone never carries
+    # verified artifacts.
+    assert payload["packet_summary"]["verified_artifact_count"] == 0
+
+
+def test_cli_multi_source_dry_run_does_not_produce_from_fixture_alone():
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock,documentcloud",
+            "--json",
+        ]
+    )
+    payload = json.loads(out)
+    assert payload["result"]["verdict"] != "PRODUCE"
+
+
+def test_cli_multi_source_dry_run_empty_connectors_returns_exit_4():
+    code, out, err = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "",
+            "--json",
+        ]
+    )
+    assert code == 4
+    assert "connectors" in err.lower()
+
+
+def test_cli_multi_source_dry_run_text_output_is_human_readable():
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock",
+        ]
+    )
+    assert code == 0
+    assert "=== CaseGraph multi-source dry run ===" in out
+    assert "connectors: courtlistener, muckrock" in out
+    assert "total_source_records: 0" in out
+    assert "total_verified_artifacts: 0" in out
+
+
+def test_cli_multi_source_dry_run_uses_default_experiment_id():
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            WAPO_FIXTURE,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener",
+            "--json",
+        ]
+    )
+    payload = json.loads(out)
+    assert payload["ledger_entry"]["experiment_id"] == "PIPE3-cli-multisource-dry-run"
+    assert payload["ledger_entry"]["estimated_cost_usd"] == 0.0
+    # Zero api_calls — purely a planning preview.
+    for provider, count in payload["ledger_entry"]["api_calls"].items():
+        assert count == 0, f"unexpected api_calls.{provider} = {count}"
+
+
+@pytest.mark.parametrize("fixture_path", [WAPO_FIXTURE, FE_FIXTURE, MPV_FIXTURE])
+def test_cli_multi_source_dry_run_dispatches_per_dataset(fixture_path):
+    code, out, _ = run_cli(
+        [
+            "--fixture",
+            fixture_path,
+            "--multi-source-dry-run",
+            "--connectors",
+            "courtlistener,muckrock",
+            "--json",
+        ]
+    )
+    assert code == 0
+    payload = json.loads(out)
+    multi = payload["multi_source_dry_run"]
+    assert len(multi["per_connector"]) == 2
+
+
+def test_cli_multi_source_and_other_modes_are_mutually_exclusive():
+    with pytest.raises(SystemExit):
+        run_cli(
+            [
+                "--fixture",
+                WAPO_FIXTURE,
+                "--multi-source-dry-run",
+                "--query-plan",
+                "--connectors",
+                "courtlistener",
+            ]
+        )

@@ -45,6 +45,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, TextIO
 
+from .assembly import StructuredAssemblyResult, assemble_structured_case_packet
 from .inputs import (
     StructuredInputParseResult,
     parse_fatal_encounters_case_input,
@@ -52,7 +53,12 @@ from .inputs import (
     parse_wapo_uof_case_input,
 )
 from .ledger import RunLedgerEntry, build_run_ledger_entry
-from .live_safety import LiveRunBlocked, LiveRunConfig
+from .live_safety import (
+    ALLOWED_FREE_CONNECTORS,
+    PAID_CONNECTORS,
+    LiveRunBlocked,
+    LiveRunConfig,
+)
 from .live_smoke import LiveSmokeResult, run_capped_live_smoke
 from .models import (
     ArtifactClaim,
@@ -338,6 +344,126 @@ def build_query_plan_payload(
     }
 
 
+def _validate_dry_run_connectors(connectors: List[str]) -> None:
+    """Mirror the live-safety connector allow-list for no-live dry runs.
+
+    Rejects the same paid / unknown connectors that ``validate_live_run``
+    would reject, but without requiring the live env gate (since no
+    network call will be made). Brave / Firecrawl always rejected
+    because they're metered providers and the multi-source dry run is
+    deliberately scoped to free connectors only.
+    """
+    for connector in connectors:
+        if connector in PAID_CONNECTORS:
+            raise LiveRunBlocked(
+                f"connector {connector!r} is paid and refused in --multi-source-dry-run"
+            )
+        if connector not in ALLOWED_FREE_CONNECTORS:
+            raise LiveRunBlocked(
+                f"connector {connector!r} not in allow-list "
+                f"{sorted(ALLOWED_FREE_CONNECTORS)}"
+            )
+
+
+def _per_connector_dry_summary(
+    connectors: List[str],
+    plan: "QueryPlanResult",
+    *,
+    max_results: int,
+) -> List[Dict[str, Any]]:
+    """For each requested connector, surface what WOULD be sent.
+
+    A no-live dry run records zero source records and zero verified
+    artifacts — the fields are explicit so callers can assert on them
+    without having to introspect missing keys.
+    """
+    summaries: List[Dict[str, Any]] = []
+    for connector in connectors:
+        connector_plan = next(
+            (cp for cp in plan.plans if cp.connector_name == connector), None
+        )
+        planned_queries = (
+            [
+                {"query": q.query, "reason": q.reason}
+                for q in connector_plan.queries
+            ]
+            if connector_plan
+            else []
+        )
+        summaries.append(
+            {
+                "connector": connector,
+                "max_results": max_results,
+                "planned_query_count": len(planned_queries),
+                "first_planned_query": (
+                    planned_queries[0]["query"] if planned_queries else None
+                ),
+                "planned_queries": planned_queries,
+                "missing_field_requirements": (
+                    list(connector_plan.missing_field_requirements)
+                    if connector_plan
+                    else []
+                ),
+                "rationale": (connector_plan.rationale if connector_plan else "no plan generated"),
+                "source_record_count": 0,
+                "verified_artifact_count": 0,
+                "estimated_cost_usd": 0.0,
+            }
+        )
+    return summaries
+
+
+def build_multi_source_dry_run_payload(
+    parsed: StructuredInputParseResult,
+    *,
+    connectors: List[str],
+    max_results: int,
+    experiment_id: str,
+    wallclock_seconds: float = 0.0,
+) -> Dict[str, Any]:
+    """Build the structured payload for --multi-source-dry-run mode.
+
+    Pure: parses the fixture, builds the connector query plan,
+    assembles a structured CasePacket with zero sources, scores it,
+    and emits a RunLedgerEntry. No network. Verified artifacts stay
+    zero — the harness alone never invokes any resolver."""
+    plan = plan_queries_from_structured_result(parsed)
+    per_connector = _per_connector_dry_summary(
+        connectors, plan, max_results=max_results
+    )
+    assembly = assemble_structured_case_packet(parsed)
+    report = build_actionability_report([assembly.packet])
+    ledger_entry = build_run_ledger_entry(
+        experiment_id=experiment_id,
+        packet=assembly.packet,
+        api_calls={},
+        wallclock_seconds=wallclock_seconds,
+        notes=[
+            "multi-source-dry-run",
+            f"connectors={','.join(connectors)}",
+            f"max_results={max_results}",
+        ],
+    )
+    return {
+        "input_summary": _structured_summary(parsed),
+        "multi_source_dry_run": {
+            "connectors": list(connectors),
+            "max_results": max_results,
+            "per_connector": per_connector,
+            "total_planned_queries": sum(
+                entry["planned_query_count"] for entry in per_connector
+            ),
+            "total_source_records": 0,
+            "total_verified_artifacts": 0,
+            "total_estimated_cost_usd": 0.0,
+        },
+        "packet_summary": _packet_summary(assembly.packet),
+        "result": _result_summary(assembly.actionability),
+        "report": report,
+        "ledger_entry": ledger_entry.to_dict(),
+    }
+
+
 def build_live_dry_payload(
     parsed: StructuredInputParseResult,
     *,
@@ -424,10 +550,29 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
             "Requires FLAMEON_RUN_LIVE_CASEGRAPH=1."
         ),
     )
+    mode_group.add_argument(
+        "--multi-source-dry-run",
+        dest="multi_source_dry_run",
+        action="store_true",
+        help=(
+            "No-live multi-connector dry run from a structured-row fixture. "
+            "Emits the planned per-connector query, an assembled CasePacket "
+            "summary, an actionability report, and a ledger entry. "
+            "Refuses Brave / Firecrawl / unknown connectors."
+        ),
+    )
     parser.add_argument(
         "--connector",
         default="courtlistener",
         help="Connector for --live-dry (default: courtlistener).",
+    )
+    parser.add_argument(
+        "--connectors",
+        default="",
+        help=(
+            "Comma-separated connector names for --multi-source-dry-run "
+            "(e.g. courtlistener,muckrock,documentcloud)."
+        ),
     )
     parser.add_argument(
         "--max-queries",
@@ -561,6 +706,96 @@ def _run_query_plan_mode(args, *, out, err) -> int:
     return EXIT_OK
 
 
+def _format_multi_source_text(payload: Dict[str, Any]) -> str:
+    inp = payload["input_summary"]
+    multi = payload["multi_source_dry_run"]
+    res = payload["result"]
+    led = payload["ledger_entry"]
+    lines = [
+        "=== CaseGraph multi-source dry run ===",
+        f"input_type: {inp['input_type']}",
+        f"dataset_name: {inp['dataset_name']}",
+        f"defendant_names: {', '.join(inp['defendant_names']) or '(none)'}",
+        f"agency: {inp['agency'] or '(none)'}",
+        "",
+        f"connectors: {', '.join(multi['connectors'])}",
+        f"max_results per connector: {multi['max_results']}",
+        f"total_planned_queries: {multi['total_planned_queries']}",
+        f"total_source_records: {multi['total_source_records']}",
+        f"total_verified_artifacts: {multi['total_verified_artifacts']}",
+        f"total_estimated_cost_usd: {multi['total_estimated_cost_usd']}",
+        "",
+    ]
+    for entry in multi["per_connector"]:
+        lines.append(f"  - {entry['connector']}: {entry['planned_query_count']} planned, max_results={entry['max_results']}")
+        if entry["first_planned_query"]:
+            lines.append(f"      first query: {entry['first_planned_query']}")
+        if entry["missing_field_requirements"]:
+            lines.append(f"      missing: {', '.join(entry['missing_field_requirements'])}")
+        if entry["rationale"]:
+            lines.append(f"      rationale: {entry['rationale']}")
+    lines.extend(
+        [
+            "",
+            f"verdict: {res['verdict']}",
+            f"actionability_score: {res['actionability_score']}",
+            f"reason_codes: {', '.join(res['reason_codes']) or '(none)'}",
+            "",
+            f"ledger.experiment_id: {led['experiment_id']}",
+            f"ledger.api_calls: {led['api_calls']}",
+            f"ledger.estimated_cost_usd: {led['estimated_cost_usd']}",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def _run_multi_source_dry_run_mode(args, *, out, err) -> int:
+    raw_connectors = (args.connectors or "").strip()
+    if not raw_connectors:
+        err.write(
+            "error: --multi-source-dry-run requires --connectors=<comma-separated list>\n"
+        )
+        return EXIT_FIXTURE_INVALID
+    connectors = [c.strip() for c in raw_connectors.split(",") if c.strip()]
+    if not connectors:
+        err.write(
+            "error: --multi-source-dry-run requires at least one valid connector name\n"
+        )
+        return EXIT_FIXTURE_INVALID
+
+    try:
+        _validate_dry_run_connectors(connectors)
+    except LiveRunBlocked as exc:
+        err.write(f"error: multi-source dry run refused — {exc}\n")
+        return EXIT_LIVE_BLOCKED
+
+    fixture_path = Path(args.fixture)
+    started = time.perf_counter()
+    try:
+        parsed = _parse_structured_fixture(fixture_path)
+    except FileNotFoundError as exc:
+        err.write(f"error: {exc}\n")
+        return EXIT_FIXTURE_MISSING
+    except (ValueError, json.JSONDecodeError) as exc:
+        err.write(f"error: {exc}\n")
+        return EXIT_FIXTURE_INVALID
+
+    payload = build_multi_source_dry_run_payload(
+        parsed,
+        connectors=connectors,
+        max_results=int(args.max_results),
+        experiment_id=args.experiment_id or "PIPE3-cli-multisource-dry-run",
+        wallclock_seconds=round(time.perf_counter() - started, 4),
+    )
+
+    if args.json:
+        out.write(json.dumps(payload, separators=(",", ": "), sort_keys=False))
+        out.write("\n")
+    else:
+        out.write(_format_multi_source_text(payload))
+    return EXIT_OK
+
+
 def _run_live_dry_mode(args, *, out, err) -> int:
     fixture_path = Path(args.fixture)
     started = time.perf_counter()
@@ -616,6 +851,8 @@ def main(
         return _run_live_dry_mode(args, out=out, err=err)
     if args.query_plan:
         return _run_query_plan_mode(args, out=out, err=err)
+    if args.multi_source_dry_run:
+        return _run_multi_source_dry_run_mode(args, out=out, err=err)
     return _run_default_mode(args, out=out, err=err)
 
 
