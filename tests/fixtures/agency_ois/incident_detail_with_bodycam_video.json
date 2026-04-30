@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-014",
+  "title": "Critical Incident Briefing 2024-OIS-014",
+  "narrative": "On 2024-05-12 officers responded to a call at an address in Phoenix. The subject, John Example, was sentenced to 25 years in 2024 for the underlying offense. Body-worn camera (BWC) footage is included in the briefing video below.",
+  "subjects": ["John Example"],
+  "incident_date": "2024-05-12",
+  "case_number": "2024-OIS-014",
+  "outcome_text": "subject sentenced 2024",
+  "media_links": [
+    {
+      "url": "https://www.phoenix.gov/police/media/2024-OIS-014-briefing.mp4",
+      "label": "Critical Incident Briefing video",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

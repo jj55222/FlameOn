@@ -1,0 +1,27 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-040",
+  "title": "Critical Incident Briefing 2024-OIS-040 (Protected Source)",
+  "narrative": "The video evidence in this matter is hosted on a restricted-access portal pending litigation review. The PDF report is available on the public site.",
+  "subjects": ["Maria Example"],
+  "incident_date": "2024-11-02",
+  "case_number": "2024-OIS-040",
+  "outcome_text": "case under litigation",
+  "media_links": [
+    {
+      "url": "https://portal.phoenix.gov/login?redirect=/oa/2024-OIS-040.mp4",
+      "label": "BWC video (login required)",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [
+    {
+      "url": "https://www.phoenix.gov/police/docs/2024-OIS-040-public-summary.pdf",
+      "label": "Public Summary",
+      "type": "incident_summary"
+    }
+  ],
+  "claims": []
+}

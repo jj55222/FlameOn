@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-022",
+  "title": "Critical Incident Briefing 2024-OIS-022 (Document Only)",
+  "narrative": "On 2024-07-04 officers responded to an in-custody death. The internal affairs report has been released as a PDF; no video has been released as of this posting.",
+  "subjects": ["Jane Example"],
+  "incident_date": "2024-07-04",
+  "case_number": "2024-OIS-022",
+  "outcome_text": "investigation closed without charges",
+  "media_links": [],
+  "document_links": [
+    {
+      "url": "https://www.phoenix.gov/police/docs/2024-OIS-022-IA-report.pdf",
+      "label": "Internal Affairs Report",
+      "type": "ia_report"
+    }
+  ],
+  "claims": []
+}

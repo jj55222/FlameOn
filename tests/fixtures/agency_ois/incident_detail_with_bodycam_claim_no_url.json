@@ -1,0 +1,20 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-031",
+  "title": "Critical Incident Briefing 2024-OIS-031 (Pending Release)",
+  "narrative": "Body-worn camera footage will be released in the standard 60-day window. The investigation is pending review by the County Attorney.",
+  "subjects": ["Robert Example"],
+  "incident_date": "2024-09-18",
+  "case_number": "2024-OIS-031",
+  "outcome_text": "investigation pending",
+  "media_links": [],
+  "document_links": [],
+  "claims": [
+    {
+      "text": "Body-worn camera footage will be released in the standard 60-day window.",
+      "label": "release_pending"
+    }
+  ]
+}

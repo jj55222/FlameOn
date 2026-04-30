@@ -18,7 +18,7 @@ from .assembly import (
     assemble_weak_input_case_packet,
 )
 from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
-from .connectors import ConnectorError, ConnectorUnavailable, CourtListenerConnector, DocumentCloudConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
+from .connectors import AgencyOISConnector, ConnectorError, ConnectorUnavailable, CourtListenerConnector, DocumentCloudConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
 from .identity import IdentityResolution, resolve_identity
 from .inputs import (
     StructuredInputParseResult,
@@ -110,6 +110,7 @@ from .scoring import ActionabilityResult, score_case_packet
 
 __all__ = [
     "ActionabilityResult",
+    "AgencyOISConnector",
     "ArtifactClaim",
     "BACKLOG",
     "BACKLOG_VERSION",
