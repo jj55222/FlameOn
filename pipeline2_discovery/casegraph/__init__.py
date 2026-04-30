@@ -24,6 +24,7 @@ from .inputs import (
     StructuredInputParseResult,
     YouTubeInputParseResult,
     parse_fatal_encounters_case_input,
+    parse_mapping_police_violence_case_input,
     parse_wapo_uof_case_input,
     parse_youtube_case_input,
 )
@@ -85,6 +86,7 @@ __all__ = [
     "export_p2_to_p5",
     "extract_artifact_claims",
     "parse_fatal_encounters_case_input",
+    "parse_mapping_police_violence_case_input",
     "parse_wapo_uof_case_input",
     "parse_youtube_case_input",
     "plan_queries_from_structured_result",

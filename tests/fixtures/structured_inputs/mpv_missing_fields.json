@@ -1,0 +1,11 @@
+{
+  "id": "mpv-fixture-002",
+  "dataset": "mapping_police_violence",
+  "Victim's age": 19,
+  "Victim's gender": "Male",
+  "Victim's race": "Hispanic",
+  "Date of Incident (month/day/year)": "01/14/2024",
+  "State": "NV",
+  "Agency responsible for death": "Las Vegas Metropolitan Police Department",
+  "Cause of death": "Gunshot"
+}

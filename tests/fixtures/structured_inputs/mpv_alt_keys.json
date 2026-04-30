@@ -1,0 +1,16 @@
+{
+  "id": "mpv-fixture-003",
+  "dataset_name": "mapping_police_violence",
+  "victim_name": "Lina Doe",
+  "victim_age": 45,
+  "victim_race": "Asian",
+  "victim_gender": "Female",
+  "agency_responsible_for_death": "Seattle Police Department",
+  "city": "Seattle",
+  "county": "King",
+  "state": "Washington",
+  "date_of_incident": "2023-09-12",
+  "cause_of_death": "Tasered",
+  "body_camera": "No",
+  "url_of_news_article": "https://www.example-news.test/seattle/lina-doe"
+}

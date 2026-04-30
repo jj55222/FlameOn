@@ -1,0 +1,23 @@
+{
+  "id": "mpv-fixture-001",
+  "dataset": "mapping_police_violence",
+  "Victim's name": "Jordan Example",
+  "Victim's age": 33,
+  "Victim's gender": "Male",
+  "Victim's race": "Black",
+  "Date of Incident (month/day/year)": "07/30/2022",
+  "Street Address of Incident": "555 Main St",
+  "City": "Memphis",
+  "State": "TN",
+  "Zipcode": "38103",
+  "County": "Shelby",
+  "Agency responsible for death": "Memphis Police Department",
+  "Cause of death": "Gunshot",
+  "Description / Circumstances of killing": "Officers responded to a domestic disturbance call.",
+  "Official disposition of death (justified or other)": "Pending investigation",
+  "Charges Brought": "None",
+  "Symptoms of mental illness?": "Unknown",
+  "Armed/Unarmed Status": "Allegedly armed",
+  "Body Camera (Source: WaPo)": "Yes",
+  "Link to article": "https://www.example-news.test/memphis/jordan-example"
+}
