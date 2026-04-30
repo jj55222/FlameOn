@@ -27,8 +27,10 @@ from .models import (
 from .outcome import OutcomeResolution, resolve_outcome
 from .resolvers import MuckRockFileResolution, resolve_muckrock_released_files
 from .routers import route_manual_defendant_jurisdiction
+from .scoring import ActionabilityResult, score_case_packet
 
 __all__ = [
+    "ActionabilityResult",
     "ArtifactClaim",
     "CaseIdentity",
     "CaseInput",
@@ -56,5 +58,6 @@ __all__ = [
     "resolve_identity",
     "resolve_muckrock_released_files",
     "resolve_outcome",
+    "score_case_packet",
     "validate_connector_source_record",
 ]
