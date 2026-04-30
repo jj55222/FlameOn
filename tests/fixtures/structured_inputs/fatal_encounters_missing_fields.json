@@ -1,0 +1,11 @@
+{
+  "id": "fatal-encounters-fixture-002",
+  "dataset": "fatal_encounters",
+  "age": 41,
+  "Race": "White",
+  "Gender": "Male",
+  "Date of injury resulting in death (month/day/year)": "11/22/2023",
+  "State": "OH",
+  "Agency or agencies involved": "Columbus Division of Police",
+  "Cause of death": "Vehicle"
+}

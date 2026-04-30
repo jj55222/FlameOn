@@ -1,0 +1,13 @@
+{
+  "id": "fatal-encounters-fixture-003",
+  "dataset_name": "fatal_encounters",
+  "person": "Marcus Doe",
+  "agency": "Houston Police Department",
+  "city": "Houston",
+  "county": "Harris",
+  "state": "Texas",
+  "date_of_injury": "2020-08-30",
+  "highest_level_of_force": "Tasered",
+  "cause_of_death": "Tasered",
+  "url_of_news_article": "https://www.example-news.test/houston-marcus-doe"
+}

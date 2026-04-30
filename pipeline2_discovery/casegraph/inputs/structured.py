@@ -22,6 +22,56 @@ CAUSE_KEYS = ["cause", "category", "cause_category", "armed", "weapon", "threat_
 SOURCE_URL_KEYS = ["source_url", "url", "article_url", "source"]
 DATASET_KEYS = ["dataset", "dataset_name"]
 
+# Fatal Encounters dataset uses long, parenthesized human-readable column
+# names (the public FE CSV) plus a few snake_case aliases that researchers
+# commonly use after pre-processing. Listed in priority order.
+FATAL_ENCOUNTERS_SUBJECT_NAME_KEYS = [
+    "Person",
+    "Subject's name",
+    "person",
+    "subject_name",
+    "name",
+]
+FATAL_ENCOUNTERS_AGENCY_KEYS = [
+    "Agency or agencies involved",
+    "agency_or_agencies_involved",
+    "agency",
+]
+FATAL_ENCOUNTERS_CITY_KEYS = [
+    "Location of death (city)",
+    "location_of_death_city",
+    "city",
+]
+FATAL_ENCOUNTERS_COUNTY_KEYS = [
+    "Location of death (county)",
+    "location_of_death_county",
+    "county",
+]
+FATAL_ENCOUNTERS_STATE_KEYS = ["State", "state"]
+FATAL_ENCOUNTERS_DATE_KEYS = [
+    "Date of injury resulting in death (month/day/year)",
+    "date_of_injury_resulting_in_death",
+    "date_of_injury",
+    "incident_date",
+    "date",
+]
+FATAL_ENCOUNTERS_INCIDENT_TYPE_KEYS = [
+    "Highest level of force",
+    "highest_level_of_force",
+    "incident_type",
+]
+FATAL_ENCOUNTERS_CAUSE_KEYS = ["Cause of death", "cause_of_death", "cause"]
+FATAL_ENCOUNTERS_SOURCE_URL_KEYS = [
+    "Link to news article or photo of official document",
+    "url_of_news_article",
+    "url_of_official_release",
+    "source_url",
+    "url",
+]
+FATAL_ENCOUNTERS_DEMOGRAPHIC_AGE_KEYS = ["age", "Age"]
+FATAL_ENCOUNTERS_DEMOGRAPHIC_RACE_KEYS = ["race", "Race"]
+FATAL_ENCOUNTERS_DEMOGRAPHIC_GENDER_KEYS = ["gender", "Gender"]
+
 
 @dataclass
 class StructuredInputParseResult:
@@ -45,6 +95,70 @@ def parse_wapo_uof_case_input(row: Dict[str, Any]) -> StructuredInputParseResult
     cause = _clean(_first_present(row, CAUSE_KEYS))
     source_url = _clean(_first_present(row, SOURCE_URL_KEYS))
     demographics = _demographics(row)
+    source_notes = _source_notes(dataset_name, source_url, row)
+
+    known_fields = {
+        "defendant_names": [subject_name] if subject_name else [],
+        "subject_name": subject_name,
+        "agency": agency,
+        "jurisdiction": {
+            "city": city,
+            "county": county,
+            "state": state,
+        },
+        "incident_date": incident_date,
+        "incident_type": incident_type,
+        "cause": cause,
+        "source_url": source_url,
+        "demographics": demographics,
+        "dataset_name": dataset_name,
+        "source_notes": source_notes,
+    }
+    missing_fields = _missing_fields(known_fields)
+    risk_flags = _risk_flags(known_fields, missing_fields)
+    candidate_queries = _candidate_queries(known_fields)
+
+    return StructuredInputParseResult(
+        case_input=CaseInput(
+            input_type="dataset_row",
+            raw_input=dict(row),
+            known_fields=known_fields,
+            missing_fields=missing_fields,
+            candidate_queries=candidate_queries,
+        ),
+        dataset_name=dataset_name,
+        risk_flags=risk_flags,
+        source_notes=source_notes,
+    )
+
+
+def parse_fatal_encounters_case_input(row: Dict[str, Any]) -> StructuredInputParseResult:
+    """Normalize a Fatal Encounters–style row into candidate CaseInput anchors.
+
+    Mirrors `parse_wapo_uof_case_input` but reads Fatal Encounters column
+    names (e.g. "Person", "Agency or agencies involved",
+    "Location of death (city)") and falls back to common snake_case
+    aliases. Like the WaPo parser, it never asserts identity, never
+    creates VerifiedArtifacts, never sets a verdict, and never overrides
+    outcome — every field stays a candidate anchor.
+    """
+
+    dataset_name = _clean(_first_present(row, DATASET_KEYS)) or "fatal_encounters"
+    subject_name = _clean(_first_present(row, FATAL_ENCOUNTERS_SUBJECT_NAME_KEYS))
+    agency = _clean(_first_present(row, FATAL_ENCOUNTERS_AGENCY_KEYS))
+    city = _clean(_first_present(row, FATAL_ENCOUNTERS_CITY_KEYS))
+    county = _normalize_county(_clean(_first_present(row, FATAL_ENCOUNTERS_COUNTY_KEYS)))
+    state = _normalize_state(_clean(_first_present(row, FATAL_ENCOUNTERS_STATE_KEYS)))
+    incident_date = _normalize_date(_first_present(row, FATAL_ENCOUNTERS_DATE_KEYS))
+    incident_type = _clean(_first_present(row, FATAL_ENCOUNTERS_INCIDENT_TYPE_KEYS))
+    cause = _clean(_first_present(row, FATAL_ENCOUNTERS_CAUSE_KEYS))
+    source_url = _clean(_first_present(row, FATAL_ENCOUNTERS_SOURCE_URL_KEYS))
+    demographics = _demographics_with_keys(
+        row,
+        age_keys=FATAL_ENCOUNTERS_DEMOGRAPHIC_AGE_KEYS,
+        race_keys=FATAL_ENCOUNTERS_DEMOGRAPHIC_RACE_KEYS,
+        gender_keys=FATAL_ENCOUNTERS_DEMOGRAPHIC_GENDER_KEYS,
+    )
     source_notes = _source_notes(dataset_name, source_url, row)
 
     known_fields = {
@@ -137,6 +251,32 @@ def _demographics(row: Dict[str, Any]) -> Dict[str, Any]:
         value = row.get(key)
         if value not in [None, ""]:
             demographics[key] = value
+    return demographics
+
+
+def _demographics_with_keys(
+    row: Dict[str, Any],
+    *,
+    age_keys: Iterable[str],
+    race_keys: Iterable[str],
+    gender_keys: Iterable[str],
+) -> Dict[str, Any]:
+    """Like `_demographics` but reads from configurable key lists.
+
+    Used for datasets that capitalize column names (e.g. Fatal Encounters
+    "Race"/"Gender"). The output keys are still normalized to lower-case
+    snake_case so downstream consumers see one shape.
+    """
+    demographics: Dict[str, Any] = {}
+    age = _first_present(row, age_keys)
+    if age not in [None, ""]:
+        demographics["age"] = age
+    race = _first_present(row, race_keys)
+    if race not in [None, ""]:
+        demographics["race"] = race
+    gender = _first_present(row, gender_keys)
+    if gender not in [None, ""]:
+        demographics["gender"] = gender
     return demographics
 
 

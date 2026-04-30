@@ -20,7 +20,13 @@ from .assembly import (
 from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
 from .connectors import ConnectorError, ConnectorUnavailable, CourtListenerConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
 from .identity import IdentityResolution, resolve_identity
-from .inputs import StructuredInputParseResult, YouTubeInputParseResult, parse_wapo_uof_case_input, parse_youtube_case_input
+from .inputs import (
+    StructuredInputParseResult,
+    YouTubeInputParseResult,
+    parse_fatal_encounters_case_input,
+    parse_wapo_uof_case_input,
+    parse_youtube_case_input,
+)
 from .models import (
     ArtifactClaim,
     CaseIdentity,
@@ -78,6 +84,7 @@ __all__ = [
     "export_p2_to_p4",
     "export_p2_to_p5",
     "extract_artifact_claims",
+    "parse_fatal_encounters_case_input",
     "parse_wapo_uof_case_input",
     "parse_youtube_case_input",
     "plan_queries_from_structured_result",

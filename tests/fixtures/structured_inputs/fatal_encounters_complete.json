@@ -1,0 +1,23 @@
+{
+  "id": "fatal-encounters-fixture-001",
+  "dataset": "fatal_encounters",
+  "Person": "Maria Example",
+  "age": 28,
+  "Race": "Hispanic/Latino",
+  "Gender": "Female",
+  "Date of injury resulting in death (month/day/year)": "06/14/2021",
+  "Location of injury (address)": "1200 E Speedway Blvd",
+  "Location of death (city)": "Tucson",
+  "Location of death (county)": "Pima",
+  "State": "AZ",
+  "Location of death (zip code)": "85719",
+  "Agency or agencies involved": "Tucson Police Department",
+  "Cause of death": "Gunshot",
+  "Brief description": "Officer-involved shooting following a traffic stop on East Speedway.",
+  "Highest level of force": "Lethal force",
+  "Symptoms of mental illness?": "Unknown",
+  "Armed/Unarmed": "Allegedly armed",
+  "Aggressive physical movement": "Yes",
+  "Official disposition of death (justified or other)": "Pending",
+  "Link to news article or photo of official document": "https://www.fatalencounters.org/people-search/?ic_id=12345"
+}
