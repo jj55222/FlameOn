@@ -1,0 +1,151 @@
+{
+  "manifest_version": 1,
+  "description": "PILOT1 — committed scaffold of known-case pilot targets for FUTURE controlled live runs. This manifest does NOT authorize any live call by itself. It declares what each pilot would do (seed fixture, allowed free connectors, hard caps, expected verdict without any live data) so the runner can audit pilot intentions deterministically. Every pilot is bound by allow_paid_connectors=false (Brave / Firecrawl rejected), allow_downloads=false, allow_scraping=false, allow_llm=false, allow_resolvers limited to metadata-only resolvers (no file downloads), and a per-pilot max_live_calls budget that fits inside the existing live_safety hard caps (max_queries=3, max_results=5, max_connectors=2). media_required_for_produce is always true: even with all live data, a pilot may not graduate to PRODUCE without a verified media artifact + concluded outcome + high identity.",
+  "global_constraints": {
+    "allow_paid_connectors": false,
+    "allow_downloads": false,
+    "allow_scraping": false,
+    "allow_llm": false,
+    "max_live_calls_total_default": 4,
+    "max_results_per_connector_default": 5,
+    "allowed_free_connectors": [
+      "courtlistener",
+      "documentcloud",
+      "muckrock",
+      "youtube"
+    ],
+    "paid_connectors_blocked": [
+      "brave",
+      "firecrawl"
+    ]
+  },
+  "pilots": [
+    {
+      "id": "wapo_uof_courtlistener_pilot",
+      "input_type": "structured",
+      "seed_fixture_path": "tests/fixtures/structured_inputs/wapo_uof_complete.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "court_video",
+          "docket_docs",
+          "bodycam"
+        ]
+      },
+      "allowed_connectors": [
+        "courtlistener"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "SKIP",
+      "notes": "WaPo UoF row alone cannot lock identity or graduate any artifact. Pilot would query CourtListener once for case-name corroboration; metadata-only resolvers may add document VerifiedArtifacts, but media is still required for PRODUCE."
+    },
+    {
+      "id": "fatal_encounters_muckrock_pilot",
+      "input_type": "structured",
+      "seed_fixture_path": "tests/fixtures/structured_inputs/fatal_encounters_complete.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "docket_docs"
+        ]
+      },
+      "allowed_connectors": [
+        "muckrock"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "SKIP",
+      "notes": "Fatal Encounters row alone cannot lock identity. Pilot queries MuckRock once for FOIA-related agency requests. Resolver only graduates concrete public files; release-language-only sources stay as ArtifactClaims, never VerifiedArtifacts."
+    },
+    {
+      "id": "mpv_documentcloud_pilot",
+      "input_type": "structured",
+      "seed_fixture_path": "tests/fixtures/structured_inputs/mpv_complete.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "docket_docs"
+        ]
+      },
+      "allowed_connectors": [
+        "documentcloud"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "SKIP",
+      "notes": "MPV row alone. Pilot queries DocumentCloud once for public document corroboration. Document-only finds will keep verdict at HOLD; PRODUCE requires media + concluded outcome + high identity."
+    },
+    {
+      "id": "youtube_transcript_courtlistener_pilot",
+      "input_type": "youtube",
+      "seed_fixture_path": "tests/fixtures/casegraph_scenarios/transcript_artifact_claim_hold.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "court_video",
+          "bodycam",
+          "docket_docs"
+        ]
+      },
+      "allowed_connectors": [
+        "courtlistener"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "HOLD",
+      "notes": "Weak YouTube transcript with claim language only. Without live corroboration the case is HOLD; pilot queries CourtListener once for case-name corroboration. Claim text without a URL never becomes a VerifiedArtifact."
+    },
+    {
+      "id": "manual_known_case_dual_connector_pilot",
+      "input_type": "manual",
+      "seed_fixture_path": "tests/fixtures/casegraph_scenarios/structured_verified_bodycam_produce.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "bodycam",
+          "docket_docs",
+          "court_video"
+        ]
+      },
+      "allowed_connectors": [
+        "courtlistener",
+        "documentcloud"
+      ],
+      "max_live_calls": 2,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "PRODUCE",
+      "notes": "Pre-corroborated case (verified bodycam + concluded outcome + high identity) — the seed fixture already produces. Pilot adds a 2-connector live sweep to test whether additional document artifacts are surfaced without ever downgrading the verdict or violating any gate."
+    }
+  ]
+}
