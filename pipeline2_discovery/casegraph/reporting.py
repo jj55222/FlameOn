@@ -23,7 +23,7 @@ it can run safely in any test or report context.
 from __future__ import annotations
 
 from statistics import mean, median
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple
 
 from .ledger import DEFAULT_API_CALLS, RunLedgerEntry
 from .models import CasePacket, VerifiedArtifact
@@ -249,6 +249,296 @@ def _empty_live_yield_report() -> Dict[str, Any]:
         "by_provider": {provider: _per_provider_zero() for provider in DEFAULT_API_CALLS},
         "verdict_counts": {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "unknown": 0},
         "warnings": [],
+    }
+
+
+def _empty_validation_metrics() -> Dict[str, Any]:
+    zero_stats = {"min": 0.0, "max": 0.0, "mean": 0.0, "median": 0.0, "p90": 0.0}
+    zero_confusion = {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "missing": 0}
+    return {
+        "total_entries": 0,
+        "verdict_accuracy": {
+            "correct": 0,
+            "incorrect": 0,
+            "accuracy_pct": 0.0,
+        },
+        "verdict_confusion": {
+            "PRODUCE": dict(zero_confusion),
+            "HOLD": dict(zero_confusion),
+            "SKIP": dict(zero_confusion),
+        },
+        "false_verdicts": {
+            "false_produce_count": 0,
+            "false_hold_count": 0,
+            "false_skip_count": 0,
+        },
+        "guard_counters": {
+            "document_only_produce_count": 0,
+            "claim_only_produce_count": 0,
+            "weak_identity_produce_count": 0,
+            "protected_or_pacer_produce_count": 0,
+        },
+        "artifact_yield": {
+            "total_verified_artifacts": 0,
+            "total_media_artifacts": 0,
+            "total_document_artifacts": 0,
+            "media_artifact_rate": 0.0,
+            "media_only_cases": 0,
+            "document_only_cases": 0,
+            "no_artifact_cases": 0,
+            "by_input_type": {},
+        },
+        "scenario_counts": {
+            "document_only_HOLD_count": 0,
+            "claim_only_HOLD_count": 0,
+            "weak_identity_blocked_count": 0,
+            "protected_blocked_count": 0,
+            "concluded_outcome_count": 0,
+            "media_artifact_present_count": 0,
+        },
+        "score_distribution": {
+            "research_completeness": dict(zero_stats),
+            "production_actionability": dict(zero_stats),
+            "actionability": dict(zero_stats),
+        },
+        "failure_examples": [],
+        "top_next_actions": [],
+        "top_risk_flags": [],
+        "top_reason_codes": [],
+    }
+
+
+def _top_n(counts: Dict[str, int], top_n: int, *, key: str) -> List[Dict[str, Any]]:
+    pairs = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    return [{key: name, "count": count} for name, count in pairs[:top_n]]
+
+
+def build_validation_metrics_report(
+    validation_output: Mapping[str, Any],
+    *,
+    top_n: int = 5,
+) -> Dict[str, Any]:
+    """EVAL6 — Build a deterministic metrics report from the structured
+    output of :func:`pipeline2_discovery.casegraph.validation.run_validation_manifest`.
+
+    Pure: no network, no LLM. Counts and distributions are computed
+    over the per-entry results in ``validation_output['results']``.
+    The ``guard_counters`` field is taken from the validation summary
+    when present and recomputed from the per-entry results when the
+    summary is missing.
+
+    Output is deterministic and JSON-serializable. Empty input
+    (``results == []``) yields a fully-populated report with zero
+    defaults so consumers can rely on key presence.
+    """
+
+    if not isinstance(validation_output, Mapping):
+        return _empty_validation_metrics()
+
+    results = list(validation_output.get("results") or [])
+    if not results:
+        return _empty_validation_metrics()
+
+    correct = 0
+    incorrect = 0
+    confusion: Dict[str, Dict[str, int]] = {
+        "PRODUCE": {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "missing": 0},
+        "HOLD": {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "missing": 0},
+        "SKIP": {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "missing": 0},
+    }
+    false_produce = 0
+    false_hold = 0
+    false_skip = 0
+
+    total_artifacts = 0
+    total_media = 0
+    total_document = 0
+    media_only = 0
+    document_only = 0
+    no_artifact = 0
+    by_input_type: Dict[str, Dict[str, int]] = {}
+
+    document_only_HOLD = 0
+    claim_only_HOLD = 0
+    weak_identity_blocked = 0
+    protected_blocked = 0
+    concluded_count = 0
+    media_present_count = 0
+
+    next_action_counts: Dict[str, int] = {}
+    risk_flag_counts: Dict[str, int] = {}
+    reason_code_counts: Dict[str, int] = {}
+
+    research_scores: List[float] = []
+    production_scores: List[float] = []
+    actionability_scores: List[float] = []
+
+    failure_examples: List[Dict[str, Any]] = []
+
+    document_only_produce = 0
+    claim_only_produce = 0
+    weak_identity_produce = 0
+    protected_pacer_produce = 0
+
+    for r in results:
+        expected = r.get("expected_verdict")
+        actual = r.get("actual_verdict")
+        if expected in confusion:
+            cell = actual if actual in {"PRODUCE", "HOLD", "SKIP"} else "missing"
+            confusion[expected][cell] += 1
+        if expected is not None and actual == expected:
+            correct += 1
+        else:
+            incorrect += 1
+
+        if actual == "PRODUCE" and expected != "PRODUCE":
+            false_produce += 1
+        if actual == "HOLD" and expected != "HOLD":
+            false_hold += 1
+        if actual == "SKIP" and expected != "SKIP":
+            false_skip += 1
+
+        v = int(r.get("verified_artifact_count") or 0)
+        m = int(r.get("media_artifact_count") or 0)
+        d = int(r.get("document_artifact_count") or 0)
+        total_artifacts += v
+        total_media += m
+        total_document += d
+        if v == 0:
+            no_artifact += 1
+        elif m > 0 and d == 0:
+            media_only += 1
+        elif d > 0 and m == 0:
+            document_only += 1
+
+        input_type = str(r.get("input_type") or "unknown")
+        slot = by_input_type.setdefault(
+            input_type, {"verified": 0, "media": 0, "document": 0}
+        )
+        slot["verified"] += v
+        slot["media"] += m
+        slot["document"] += d
+
+        if actual == "HOLD" and v > 0 and m == 0:
+            document_only_HOLD += 1
+        if actual == "HOLD" and v == 0:
+            claim_only_HOLD += 1
+        if r.get("identity_confidence") != "high" and actual != "PRODUCE":
+            weak_identity_blocked += 1
+        if (
+            "protected_or_nonpublic" in (r.get("risk_flags") or [])
+            or "pacer_or_paywalled" in (r.get("risk_flags") or [])
+            or "protected_or_nonpublic_only" in (r.get("risk_flags") or [])
+        ) and actual != "PRODUCE":
+            protected_blocked += 1
+        if str(r.get("outcome_status") or "") in {"sentenced", "closed", "convicted"}:
+            concluded_count += 1
+        if m > 0:
+            media_present_count += 1
+
+        if actual == "PRODUCE":
+            if m == 0:
+                document_only_produce += 1
+            if v == 0:
+                claim_only_produce += 1
+            if r.get("identity_confidence") != "high":
+                weak_identity_produce += 1
+            risk_flags_here = set(r.get("risk_flags") or [])
+            if risk_flags_here & {
+                "protected_or_nonpublic",
+                "pacer_or_paywalled",
+                "protected_or_nonpublic_only",
+            }:
+                protected_pacer_produce += 1
+
+        for code in r.get("reason_codes") or []:
+            reason_code_counts[code] = reason_code_counts.get(code, 0) + 1
+        for flag in r.get("risk_flags") or []:
+            risk_flag_counts[flag] = risk_flag_counts.get(flag, 0) + 1
+        for action in r.get("next_actions") or []:
+            next_action_counts[action] = next_action_counts.get(action, 0) + 1
+
+        research_scores.append(float(r.get("research_completeness_score") or 0.0))
+        production_scores.append(float(r.get("production_actionability_score") or 0.0))
+        actionability_scores.append(float(r.get("actionability_score") or 0.0))
+
+        if not r.get("passed", True):
+            failure_examples.append(
+                {
+                    "id": r.get("id"),
+                    "expected_verdict": expected,
+                    "actual_verdict": actual,
+                    "fail_reasons": list(r.get("fail_reasons") or []),
+                }
+            )
+
+    summary = (
+        validation_output.get("summary")
+        if isinstance(validation_output.get("summary"), Mapping)
+        else None
+    )
+    if summary is not None:
+        guard_counters = {
+            "document_only_produce_count": int(summary.get("document_only_produce_count") or document_only_produce),
+            "claim_only_produce_count": int(summary.get("claim_only_produce_count") or claim_only_produce),
+            "weak_identity_produce_count": int(summary.get("weak_identity_produce_count") or weak_identity_produce),
+            "protected_or_pacer_produce_count": int(
+                summary.get("protected_or_pacer_produce_count") or protected_pacer_produce
+            ),
+        }
+    else:
+        guard_counters = {
+            "document_only_produce_count": document_only_produce,
+            "claim_only_produce_count": claim_only_produce,
+            "weak_identity_produce_count": weak_identity_produce,
+            "protected_or_pacer_produce_count": protected_pacer_produce,
+        }
+
+    total = len(results)
+    accuracy_pct = round((correct / total) * 100, 2) if total > 0 else 0.0
+    media_rate = round(total_media / total_artifacts, 4) if total_artifacts > 0 else 0.0
+
+    return {
+        "total_entries": total,
+        "verdict_accuracy": {
+            "correct": correct,
+            "incorrect": incorrect,
+            "accuracy_pct": accuracy_pct,
+        },
+        "verdict_confusion": confusion,
+        "false_verdicts": {
+            "false_produce_count": false_produce,
+            "false_hold_count": false_hold,
+            "false_skip_count": false_skip,
+        },
+        "guard_counters": guard_counters,
+        "artifact_yield": {
+            "total_verified_artifacts": total_artifacts,
+            "total_media_artifacts": total_media,
+            "total_document_artifacts": total_document,
+            "media_artifact_rate": media_rate,
+            "media_only_cases": media_only,
+            "document_only_cases": document_only,
+            "no_artifact_cases": no_artifact,
+            "by_input_type": dict(sorted(by_input_type.items())),
+        },
+        "scenario_counts": {
+            "document_only_HOLD_count": document_only_HOLD,
+            "claim_only_HOLD_count": claim_only_HOLD,
+            "weak_identity_blocked_count": weak_identity_blocked,
+            "protected_blocked_count": protected_blocked,
+            "concluded_outcome_count": concluded_count,
+            "media_artifact_present_count": media_present_count,
+        },
+        "score_distribution": {
+            "research_completeness": _stats(research_scores),
+            "production_actionability": _stats(production_scores),
+            "actionability": _stats(actionability_scores),
+        },
+        "failure_examples": failure_examples[:top_n],
+        "top_next_actions": _top_n(next_action_counts, top_n, key="action"),
+        "top_risk_flags": _top_n(risk_flag_counts, top_n, key="flag"),
+        "top_reason_codes": _top_n(reason_code_counts, top_n, key="code"),
     }
 
 

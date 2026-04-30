@@ -69,7 +69,7 @@ from .live_smoke import (
     run_capped_multi_connector_smoke,
 )
 from .outcome import OutcomeResolution, resolve_outcome
-from .reporting import build_actionability_report, build_live_yield_report
+from .reporting import build_actionability_report, build_live_yield_report, build_validation_metrics_report
 from .query_planner import (
     ConnectorQueryPlan,
     PlannedQuery,
@@ -147,6 +147,7 @@ __all__ = [
     "build_actionability_report",
     "build_live_yield_report",
     "build_run_ledger_entry",
+    "build_validation_metrics_report",
     "compare_run_bundles",
     "estimate_cost",
     "export_legacy_evaluate_result",
