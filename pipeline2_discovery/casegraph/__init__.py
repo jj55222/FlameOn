@@ -48,6 +48,7 @@ from .ledger import (
     estimate_cost,
     normalize_api_calls,
 )
+from .media_policy import MediaClassification, classify_many, classify_media_url
 from .live_safety import (
     ALLOWED_FREE_CONNECTORS,
     ALL_KNOWN_CONNECTORS,
@@ -143,6 +144,7 @@ __all__ = [
     "MAX_CONNECTORS_HARD_CAP",
     "MAX_QUERIES_HARD_CAP",
     "MAX_RESULTS_HARD_CAP",
+    "MediaClassification",
     "MockSourceConnector",
     "MultiConnectorSmokeResult",
     "MuckRockFileResolution",
@@ -173,6 +175,8 @@ __all__ = [
     "build_pilot_validation_scoreboard",
     "build_run_ledger_entry",
     "build_validation_metrics_report",
+    "classify_many",
+    "classify_media_url",
     "compare_run_bundles",
     "estimate_cost",
     "export_legacy_evaluate_result",
