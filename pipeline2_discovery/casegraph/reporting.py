@@ -252,6 +252,181 @@ def _empty_live_yield_report() -> Dict[str, Any]:
     }
 
 
+def _empty_pilot_validation_scoreboard() -> Dict[str, Any]:
+    return {
+        "validation": {
+            "total_entries": 0,
+            "accuracy_pct": 0.0,
+            "false_produce_count": 0,
+            "guard_counters": {
+                "document_only_produce_count": 0,
+                "claim_only_produce_count": 0,
+                "weak_identity_produce_count": 0,
+                "protected_or_pacer_produce_count": 0,
+            },
+            "guard_counters_all_zero": True,
+        },
+        "pilots": {
+            "total": 0,
+            "ready_for_live": 0,
+            "blocked": 0,
+            "by_readiness_status": {},
+            "blocked_pilots": [],
+        },
+        "connector_demand": {},
+        "expected_artifact_types": {},
+        "media_required_for_produce_count": 0,
+        "total_planned_max_live_calls": 0,
+        "warnings": [],
+    }
+
+
+def build_pilot_validation_scoreboard(
+    *,
+    validation_output: Optional[Mapping[str, Any]] = None,
+    pilot_output: Optional[Mapping[str, Any]] = None,
+    top_n_blocked: int = 10,
+) -> Dict[str, Any]:
+    """EVAL7 — Merged scoreboard over DATA2 validation runner output
+    and PILOT2 readiness output.
+
+    Pure: no network. Tolerates missing or empty inputs - either side
+    may be ``None`` or carry an empty ``results`` / ``pilots`` list.
+
+    Output fields:
+    - ``validation``: total_entries, accuracy_pct, false_produce_count,
+      guard_counters (all four), guard_counters_all_zero (bool)
+    - ``pilots``: total, ready_for_live, blocked, by_readiness_status,
+      blocked_pilots (top_n_blocked entries with id / status /
+      policy_violations / budget_violations / next_actions)
+    - ``connector_demand``: count of pilots that include each connector
+      in ``allowed_connectors`` (sorted by name asc)
+    - ``expected_artifact_types``: count across all pilots'
+      ``expected_minimum.artifact_types_desired``
+    - ``media_required_for_produce_count``: how many pilots set
+      ``media_required_for_produce=true`` in expected_minimum
+    - ``total_planned_max_live_calls``: sum of pilot ``max_live_calls``
+    - ``warnings``: deterministic, sorted list. Possible warnings:
+      ``over_budget_pilot:<id>``, ``paid_connector_in_pilot:<id>``,
+      ``missing_media_required_for_produce:<id>``,
+      ``downloads_enabled_in_pilot:<id>``,
+      ``scraping_enabled_in_pilot:<id>``,
+      ``llm_enabled_in_pilot:<id>``,
+      ``validation_false_produce``,
+      ``validation_guard_counter_nonzero:<counter>``.
+    """
+    if not validation_output and not pilot_output:
+        return _empty_pilot_validation_scoreboard()
+
+    # ---- Validation roll-up ------------------------------------------------
+    validation_metrics = build_validation_metrics_report(
+        validation_output if validation_output is not None else {"results": []}
+    )
+    validation_section = {
+        "total_entries": validation_metrics["total_entries"],
+        "accuracy_pct": validation_metrics["verdict_accuracy"]["accuracy_pct"],
+        "false_produce_count": validation_metrics["false_verdicts"][
+            "false_produce_count"
+        ],
+        "guard_counters": dict(validation_metrics["guard_counters"]),
+        "guard_counters_all_zero": all(
+            v == 0 for v in validation_metrics["guard_counters"].values()
+        ),
+    }
+
+    # ---- Pilot roll-up -----------------------------------------------------
+    pilots_section = {
+        "total": 0,
+        "ready_for_live": 0,
+        "blocked": 0,
+        "by_readiness_status": {},
+        "blocked_pilots": [],
+    }
+    connector_demand: Dict[str, int] = {}
+    artifact_types: Dict[str, int] = {}
+    media_required_count = 0
+    total_planned_calls = 0
+    warnings: List[str] = []
+
+    pilot_results: List[Mapping[str, Any]] = []
+    if pilot_output is not None and isinstance(pilot_output.get("results"), list):
+        pilot_results = list(pilot_output["results"])
+        summary = pilot_output.get("summary") or {}
+        pilots_section["total"] = int(summary.get("total_pilots") or len(pilot_results))
+        pilots_section["ready_for_live"] = int(summary.get("ready_count") or 0)
+        pilots_section["blocked"] = int(summary.get("blocked_count") or 0)
+        pilots_section["by_readiness_status"] = dict(
+            sorted((summary.get("by_readiness_status") or {}).items())
+        )
+
+    blocked_entries: List[Dict[str, Any]] = []
+
+    for r in pilot_results:
+        pilot_id = r.get("id") or "<unknown>"
+        status = r.get("readiness_status") or "unknown"
+
+        for connector in r.get("allowed_connectors") or []:
+            connector_demand[connector] = connector_demand.get(connector, 0) + 1
+
+        expected_minimum = r.get("expected_minimum") or {}
+        for artifact_type in expected_minimum.get("artifact_types_desired") or []:
+            artifact_types[artifact_type] = artifact_types.get(artifact_type, 0) + 1
+        if expected_minimum.get("media_required_for_produce"):
+            media_required_count += 1
+
+        try:
+            total_planned_calls += int(r.get("max_live_calls") or 0)
+        except (TypeError, ValueError):
+            pass
+
+        for v in r.get("budget_violations") or []:
+            warnings.append(f"over_budget_pilot:{pilot_id}:{v}")
+        for v in r.get("policy_violations") or []:
+            if v.startswith("paid_connectors_listed:"):
+                warnings.append(f"paid_connector_in_pilot:{pilot_id}")
+            elif v == "media_required_for_produce_false":
+                warnings.append(f"missing_media_required_for_produce:{pilot_id}")
+            elif v == "allow_downloads_true":
+                warnings.append(f"downloads_enabled_in_pilot:{pilot_id}")
+            elif v == "allow_scraping_true":
+                warnings.append(f"scraping_enabled_in_pilot:{pilot_id}")
+            elif v == "allow_llm_true":
+                warnings.append(f"llm_enabled_in_pilot:{pilot_id}")
+            elif v.startswith("unknown_connectors_listed:"):
+                warnings.append(f"unknown_connector_in_pilot:{pilot_id}")
+
+        if status != "ready_for_live_smoke":
+            blocked_entries.append(
+                {
+                    "id": pilot_id,
+                    "status": status,
+                    "policy_violations": list(r.get("policy_violations") or []),
+                    "budget_violations": list(r.get("budget_violations") or []),
+                    "next_actions": list(r.get("next_actions") or []),
+                }
+            )
+
+    pilots_section["blocked_pilots"] = blocked_entries[:top_n_blocked]
+
+    if validation_section["false_produce_count"] > 0:
+        warnings.append("validation_false_produce")
+    for counter, value in validation_section["guard_counters"].items():
+        if value > 0:
+            warnings.append(f"validation_guard_counter_nonzero:{counter}")
+
+    warnings = sorted(set(warnings))
+
+    return {
+        "validation": validation_section,
+        "pilots": pilots_section,
+        "connector_demand": dict(sorted(connector_demand.items())),
+        "expected_artifact_types": dict(sorted(artifact_types.items())),
+        "media_required_for_produce_count": media_required_count,
+        "total_planned_max_live_calls": total_planned_calls,
+        "warnings": warnings,
+    }
+
+
 def _empty_validation_metrics() -> Dict[str, Any]:
     zero_stats = {"min": 0.0, "max": 0.0, "mean": 0.0, "median": 0.0, "p90": 0.0}
     zero_confusion = {"PRODUCE": 0, "HOLD": 0, "SKIP": 0, "missing": 0}
