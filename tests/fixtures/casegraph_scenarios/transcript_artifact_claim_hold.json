@@ -1,0 +1,69 @@
+{
+  "case_id": "scenario_transcript_artifact_claim_hold",
+  "input": {
+    "input_type": "youtube",
+    "raw_input": {
+      "title": "Department released bodycam footage",
+      "transcript": "The department released bodycam footage and played the 911 call."
+    },
+    "known_fields": {
+      "defendant_names": ["John Example"],
+      "agency": "Phoenix Police Department",
+      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "incident_date": "2022-05-12",
+      "artifact_signals": ["bodycam", "dispatch_911"]
+    },
+    "missing_fields": ["victim_names", "case_numbers"],
+    "candidate_queries": ["\"John Example\" \"Phoenix Police Department\" bodycam \"911 call\""]
+  },
+  "case_identity": {
+    "defendant_names": ["John Example"],
+    "victim_names": [],
+    "agency": "Phoenix Police Department",
+    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "incident_date": "2022-05-12",
+    "case_numbers": [],
+    "charges": ["aggravated assault"],
+    "outcome_status": "convicted",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "city", "agency", "incident_date", "source_authority"]
+  },
+  "sources": [
+    {
+      "source_id": "transcript_claim_source",
+      "url": "https://www.youtube.com/watch?v=claimfixture",
+      "title": "Bodycam released in John Example case",
+      "snippet": "The department released bodycam footage and played the 911 call.",
+      "raw_text": "The department released bodycam footage and played the 911 call.",
+      "source_type": "video",
+      "source_roles": ["claim_source", "possible_artifact_source"],
+      "source_authority": "third_party",
+      "api_name": "youtube_yt_dlp",
+      "discovered_via": "fixture",
+      "retrieved_at": "2026-04-30T00:00:00Z",
+      "case_input_id": "transcript_claim",
+      "metadata": {"fixture": true},
+      "cost_estimate": 0.0,
+      "confidence_signals": {},
+      "matched_case_fields": ["defendant_full_name", "agency"]
+    }
+  ],
+  "artifact_claims": [
+    {
+      "claim_id": "claim_transcript_bodycam_released",
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_released",
+      "claim_source_id": "transcript_claim_source",
+      "claim_source_url": "https://www.youtube.com/watch?v=claimfixture",
+      "supporting_snippet": "The department released bodycam footage and played the 911 call.",
+      "claim_confidence": 0.8,
+      "risk_flags": [],
+      "next_actions": []
+    }
+  ],
+  "verified_artifacts": [],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": ["Resolve transcript artifact claim into a public media URL."],
+  "risk_flags": ["weak_input_preliminary_packet", "candidate_fields_not_identity_lock"]
+}

@@ -123,3 +123,40 @@ def test_multi_artifact_premium_fixture_produces_above_media_rich_fixture():
     assert premium.production_actionability_score > media_rich.production_actionability_score
     assert len(premium.artifact_category_counts) >= 3
     assert {"artifact_portfolio_strong", "artifact_portfolio_premium"} & set(premium.reason_codes)
+
+
+def test_transcript_candidate_name_without_corroboration_does_not_produce():
+    packet, result = score_fixture("transcript_candidate_name_hold.json")
+
+    assert packet.input.input_type == "youtube"
+    assert packet.case_identity.identity_confidence == "low"
+    assert result.verdict != "PRODUCE"
+    assert {"weak_identity", "identity_unconfirmed"} & set(result.risk_flags)
+
+
+def test_transcript_artifact_claim_without_verified_url_holds():
+    packet, result = score_fixture("transcript_artifact_claim_hold.json")
+
+    assert packet.artifact_claims
+    assert packet.verified_artifacts == []
+    assert result.verdict == "HOLD"
+    assert "artifact_claim_unresolved" in result.reason_codes
+    assert result.verdict != "PRODUCE"
+
+
+def test_transcript_corroborated_with_verified_media_can_produce():
+    _, result = score_fixture("transcript_corroborated_media_produce.json")
+
+    assert result.verdict == "PRODUCE"
+    assert "high_identity" in result.reason_codes
+    assert "media_artifact_present" in result.reason_codes
+    assert "bodycam_present" in result.reason_codes
+
+
+def test_noisy_transcript_bodycam_language_does_not_produce():
+    packet, result = score_fixture("transcript_noisy_bodycam_not_produce.json")
+
+    assert packet.case_identity.identity_confidence == "low"
+    assert result.verdict != "PRODUCE"
+    assert {"weak_identity", "identity_unconfirmed"} & set(result.risk_flags)
+    assert "no_verified_media" in result.risk_flags

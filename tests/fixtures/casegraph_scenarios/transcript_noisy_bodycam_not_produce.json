@@ -1,0 +1,50 @@
+{
+  "case_id": "scenario_transcript_noisy_bodycam_not_produce",
+  "input": {
+    "input_type": "youtube",
+    "raw_input": {
+      "title": "Craziest bodycam interrogation ever",
+      "transcript": "This bodycam interrogation is unbelievable, but no names, agency, date, location, or case number are provided."
+    },
+    "known_fields": {
+      "defendant_names": [],
+      "agency": null,
+      "jurisdiction": {"city": null, "county": null, "state": null},
+      "incident_date": null,
+      "artifact_signals": ["bodycam", "interrogation"]
+    },
+    "missing_fields": ["defendant_names", "agency", "jurisdiction", "incident_date", "case_numbers", "charges", "outcome_status"],
+    "candidate_queries": ["bodycam interrogation"]
+  },
+  "case_identity": {
+    "defendant_names": [],
+    "victim_names": [],
+    "agency": null,
+    "jurisdiction": {"city": null, "county": null, "state": null},
+    "incident_date": null,
+    "case_numbers": [],
+    "charges": [],
+    "outcome_status": "unknown",
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "sources": [],
+  "artifact_claims": [
+    {
+      "claim_id": "claim_noisy_bodycam_mentioned",
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_mentioned_only",
+      "claim_source_id": "noisy_transcript",
+      "claim_source_url": "https://www.youtube.com/watch?v=noisyfixture",
+      "supporting_snippet": "Craziest bodycam interrogation ever",
+      "claim_confidence": 0.4,
+      "risk_flags": [],
+      "next_actions": []
+    }
+  ],
+  "verified_artifacts": [],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": ["Find identity anchors before treating noisy transcript as a case lead."],
+  "risk_flags": ["weak_input_preliminary_packet", "no_case_anchors", "artifact_signal_without_case_anchors"]
+}

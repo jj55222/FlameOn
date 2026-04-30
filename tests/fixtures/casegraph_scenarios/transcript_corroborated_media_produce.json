@@ -1,0 +1,72 @@
+{
+  "case_id": "scenario_transcript_corroborated_media_produce",
+  "input": {
+    "input_type": "youtube",
+    "raw_input": {
+      "title": "Phoenix Police Department bodycam update",
+      "transcript": "On May 12, 2022, detectives interviewed suspect John Example."
+    },
+    "known_fields": {
+      "defendant_names": ["John Example"],
+      "agency": "Phoenix Police Department",
+      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "incident_date": "2022-05-12",
+      "artifact_signals": ["bodycam"]
+    },
+    "missing_fields": ["victim_names"],
+    "candidate_queries": ["\"John Example\" \"Phoenix Police Department\" bodycam"]
+  },
+  "case_identity": {
+    "defendant_names": ["John Example"],
+    "victim_names": [],
+    "agency": "Phoenix Police Department",
+    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "incident_date": "2022-05-12",
+    "case_numbers": ["CR-2022-1001"],
+    "charges": ["aggravated assault"],
+    "outcome_status": "sentenced",
+    "identity_confidence": "high",
+    "identity_anchors": ["full_name", "city", "agency", "incident_date", "case_number", "source_authority"]
+  },
+  "sources": [
+    {
+      "source_id": "mock_court_transcript",
+      "url": "https://www.courtlistener.com/docket/transcript-produce",
+      "title": "John Example sentencing docket",
+      "snippet": "John Example was sentenced in Phoenix case CR-2022-1001.",
+      "raw_text": "John Example was sentenced in Phoenix case CR-2022-1001 for the May 12, 2022 incident investigated by Phoenix Police Department.",
+      "source_type": "court_docket",
+      "source_roles": ["identity_source", "outcome_source"],
+      "source_authority": "court",
+      "api_name": "courtlistener",
+      "discovered_via": "fixture",
+      "retrieved_at": "2026-04-30T00:00:00Z",
+      "case_input_id": "transcript_produce",
+      "metadata": {"fixture": true},
+      "cost_estimate": 0.0,
+      "confidence_signals": {},
+      "matched_case_fields": ["defendant_full_name", "case_number", "agency", "incident_date"]
+    }
+  ],
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "transcript_bodycam_001",
+      "artifact_type": "bodycam",
+      "artifact_url": "https://cdn.muckrock.com/foia_files/bodycam_john_example.mp4",
+      "source_url": "https://www.muckrock.com/foi/phoenix-100/bodycam-john-example/",
+      "source_authority": "foia",
+      "downloadable": true,
+      "format": "video",
+      "matched_case_fields": ["defendant_full_name", "agency", "incident_date"],
+      "confidence": 0.9,
+      "verification_method": "file_extension",
+      "risk_flags": [],
+      "metadata": {"fixture": true}
+    }
+  ],
+  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": []
+}
