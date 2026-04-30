@@ -46,7 +46,12 @@ from .query_planner import (
     plan_queries_from_structured_result,
     plan_queries_from_youtube_result,
 )
-from .resolvers import MuckRockFileResolution, resolve_muckrock_released_files
+from .resolvers import (
+    DocumentCloudFileResolution,
+    MuckRockFileResolution,
+    resolve_documentcloud_files,
+    resolve_muckrock_released_files,
+)
 from .routers import route_manual_defendant_jurisdiction
 from .scoring import ActionabilityResult, score_case_packet
 
@@ -63,6 +68,7 @@ __all__ = [
     "ConnectorUnavailable",
     "CourtListenerConnector",
     "DocumentCloudConnector",
+    "DocumentCloudFileResolution",
     "Jurisdiction",
     "IdentityResolution",
     "MockSourceConnector",
@@ -92,6 +98,7 @@ __all__ = [
     "parse_youtube_case_input",
     "plan_queries_from_structured_result",
     "plan_queries_from_youtube_result",
+    "resolve_documentcloud_files",
     "route_manual_defendant_jurisdiction",
     "resolve_identity",
     "resolve_muckrock_released_files",
