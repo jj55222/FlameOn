@@ -135,6 +135,14 @@ class YouTubeInputParseResult:
     outcome_terms: List[str] = field(default_factory=list)
     incident_descriptors: List[str] = field(default_factory=list)
     risk_flags: List[str] = field(default_factory=list)
+    # Per-segment view of the conflict-prone fields (incident_date, agency,
+    # location_city, defendant_names). Only populated when at least two
+    # segments disagree. Each entry is keyed by segment name (title /
+    # description / transcript) and holds the raw values that segment
+    # contributed. The combined-text extraction in candidate_fields is
+    # never silently overwritten — conflicts surface as risk flags here
+    # so downstream gates can treat them as ambiguous until corroborated.
+    segment_conflicts: Dict[str, Dict[str, List[str]]] = field(default_factory=dict)
 
 
 def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult:
@@ -154,6 +162,7 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
     metadata = payload.get("metadata") if isinstance(payload.get("metadata"), dict) else {}
 
     text = _combined_values(title, description, transcript, channel)
+    segments = {"title": title, "description": description, "transcript": transcript}
     date_mentions = _extract_dates(text)
     defendants = _extract_names(text, DEFENDANT_PATTERNS)
     victims = _extract_names(text, VICTIM_PATTERNS)
@@ -164,6 +173,7 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
     outcome_terms = _extract_outcome_terms(text)
     artifact_signals = _extract_artifact_signals(text)
     descriptors = _extract_incident_descriptors(text)
+    segment_conflicts = _detect_segment_conflicts(segments)
 
     candidate_fields = _candidate_fields(
         defendant_names=defendants,
@@ -180,6 +190,9 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
     candidate_queries = _candidate_queries(candidate_fields)
     missing_fields = _missing_fields(candidate_fields)
     risk_flags = _risk_flags(candidate_fields, missing_fields)
+    for conflict_field in segment_conflicts:
+        risk_flags.append(f"conflicting_{conflict_field}_across_segments")
+    risk_flags = _dedupe(risk_flags)
 
     raw_input = {
         "title": title,
@@ -204,7 +217,73 @@ def parse_youtube_case_input(payload: Dict[str, Any]) -> YouTubeInputParseResult
         outcome_terms=outcome_terms,
         incident_descriptors=descriptors,
         risk_flags=risk_flags,
+        segment_conflicts=segment_conflicts,
     )
+
+
+def _detect_segment_conflicts(segments: Dict[str, str]) -> Dict[str, Dict[str, List[str]]]:
+    """Scan each segment (title / description / transcript) independently and
+    flag fields where the segments disagree.
+
+    Returns a dict keyed by field name (incident_date, agency, location_city,
+    defendant_names). Each value is a per-segment view of what THAT segment
+    contributed — preserves all candidates so callers can audit which
+    segment introduced which value. Only populated for fields where two
+    or more segments produced non-empty, mutually disjoint values.
+    """
+    conflicts: Dict[str, Dict[str, List[str]]] = {}
+
+    per_segment_dates = {
+        seg: [mention["date"] for mention in _extract_dates(text)]
+        for seg, text in segments.items()
+        if text
+    }
+    if _segments_disagree(per_segment_dates):
+        conflicts["incident_date"] = per_segment_dates
+
+    per_segment_agencies = {
+        seg: _extract_agencies(text)
+        for seg, text in segments.items()
+        if text
+    }
+    if _segments_disagree(per_segment_agencies):
+        conflicts["agency"] = per_segment_agencies
+
+    per_segment_cities: Dict[str, List[str]] = {}
+    for seg, text in segments.items():
+        if not text:
+            continue
+        seg_jurisdiction = _extract_jurisdiction(text, _extract_agencies(text))
+        city = seg_jurisdiction.get("city")
+        per_segment_cities[seg] = [city] if city else []
+    if _segments_disagree(per_segment_cities):
+        conflicts["location_city"] = per_segment_cities
+
+    per_segment_names = {
+        seg: _extract_names(text, DEFENDANT_PATTERNS)
+        for seg, text in segments.items()
+        if text
+    }
+    if _segments_disagree(per_segment_names):
+        conflicts["defendant_names"] = per_segment_names
+
+    return conflicts
+
+
+def _segments_disagree(per_segment: Dict[str, List[str]]) -> bool:
+    """Return True iff at least two segments contributed non-empty value
+    sets and the agreement is not unanimous.
+
+    Disagreement: the union of all contributing segments is strictly
+    bigger than at least one segment's contribution — i.e. some value
+    appears in one segment but is missing from another segment that
+    DID contribute something.
+    """
+    non_empty = {seg: set(values) for seg, values in per_segment.items() if values}
+    if len(non_empty) < 2:
+        return False
+    union = set().union(*non_empty.values())
+    return any(values != union for values in non_empty.values())
 
 
 def _coerce_text(value: Any) -> str:
