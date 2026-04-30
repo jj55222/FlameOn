@@ -77,6 +77,7 @@ from .query_planner import (
     plan_queries_from_structured_result,
     plan_queries_from_youtube_result,
 )
+from .run_compare import compare_run_bundles
 from .resolvers import (
     CourtListenerDocumentResolution,
     DocumentCloudFileResolution,
@@ -145,6 +146,7 @@ __all__ = [
     "build_actionability_report",
     "build_live_yield_report",
     "build_run_ledger_entry",
+    "compare_run_bundles",
     "estimate_cost",
     "export_legacy_evaluate_result",
     "export_p2_to_p3",
