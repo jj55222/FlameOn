@@ -15,7 +15,7 @@ from .assembly import WeakInputAssemblyResult, assemble_weak_input_case_packet
 from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
 from .connectors import ConnectorError, ConnectorUnavailable, CourtListenerConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
 from .identity import IdentityResolution, resolve_identity
-from .inputs import YouTubeInputParseResult, parse_youtube_case_input
+from .inputs import StructuredInputParseResult, YouTubeInputParseResult, parse_wapo_uof_case_input, parse_youtube_case_input
 from .models import (
     ArtifactClaim,
     CaseIdentity,
@@ -31,6 +31,7 @@ from .query_planner import (
     ConnectorQueryPlan,
     PlannedQuery,
     QueryPlanResult,
+    plan_queries_from_structured_result,
     plan_queries_from_youtube_result,
 )
 from .resolvers import MuckRockFileResolution, resolve_muckrock_released_files
@@ -59,6 +60,7 @@ __all__ = [
     "QueryPlanResult",
     "Scores",
     "SourceRecord",
+    "StructuredInputParseResult",
     "SourceConnector",
     "VerifiedArtifact",
     "YouTubeConnector",
@@ -69,7 +71,9 @@ __all__ = [
     "export_p2_to_p4",
     "export_p2_to_p5",
     "extract_artifact_claims",
+    "parse_wapo_uof_case_input",
     "parse_youtube_case_input",
+    "plan_queries_from_structured_result",
     "plan_queries_from_youtube_result",
     "route_manual_defendant_jurisdiction",
     "resolve_identity",

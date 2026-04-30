@@ -1,0 +1,10 @@
+{
+  "dataset_name": "wapo_uof",
+  "name": "Maria Example",
+  "department": "Example City Police Department",
+  "incident_city": "Example City",
+  "incident_state": "CA",
+  "date": "May 3, 2021",
+  "manner_of_death": "shot",
+  "article_url": "https://example.test/news/maria-example"
+}

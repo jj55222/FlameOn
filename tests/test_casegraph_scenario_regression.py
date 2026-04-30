@@ -160,3 +160,40 @@ def test_noisy_transcript_bodycam_language_does_not_produce():
     assert result.verdict != "PRODUCE"
     assert {"weak_identity", "identity_unconfirmed"} & set(result.risk_flags)
     assert "no_verified_media" in result.risk_flags
+
+
+def test_structured_wapo_row_only_does_not_produce():
+    packet, result = score_fixture("structured_wapo_row_only_not_produce.json")
+
+    assert packet.input.input_type == "dataset_row"
+    assert packet.case_identity.identity_confidence == "low"
+    assert packet.verified_artifacts == []
+    assert result.verdict != "PRODUCE"
+    assert {"weak_identity", "identity_unconfirmed"} & set(result.risk_flags)
+
+
+def test_structured_official_bodycam_claim_without_verified_url_holds():
+    packet, result = score_fixture("structured_official_bodycam_claim_hold.json")
+
+    assert packet.sources
+    assert packet.artifact_claims
+    assert packet.verified_artifacts == []
+    assert result.verdict == "HOLD"
+    assert "artifact_claim_unresolved" in result.reason_codes
+    assert result.verdict != "PRODUCE"
+
+
+def test_structured_verified_bodycam_with_outcome_can_produce():
+    _, result = score_fixture("structured_verified_bodycam_produce.json")
+
+    assert result.verdict == "PRODUCE"
+    assert "high_identity" in result.reason_codes
+    assert "sentenced_or_convicted" in result.reason_codes
+    assert "bodycam_present" in result.reason_codes
+
+
+def test_structured_conflicting_corroboration_blocks_produce():
+    _, result = score_fixture("structured_conflicting_source_not_produce.json")
+
+    assert result.verdict != "PRODUCE"
+    assert "conflicting_jurisdiction" in result.risk_flags

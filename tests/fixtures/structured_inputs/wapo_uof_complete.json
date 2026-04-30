@@ -1,0 +1,16 @@
+{
+  "id": "wapo-fixture-001",
+  "dataset": "wapo_uof",
+  "subject_name": "John Example",
+  "agency": "Phoenix Police Department",
+  "city": "Phoenix",
+  "county": "Maricopa",
+  "state": "Arizona",
+  "incident_date": "2022-05-12",
+  "age": 34,
+  "race": "W",
+  "gender": "M",
+  "incident_type": "police shooting",
+  "cause": "gun",
+  "source_url": "https://www.washingtonpost.com/graphics/investigations/police-shootings-database/"
+}

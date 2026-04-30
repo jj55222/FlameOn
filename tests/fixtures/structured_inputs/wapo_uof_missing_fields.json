@@ -1,0 +1,8 @@
+{
+  "id": "wapo-fixture-002",
+  "dataset": "wapo_uof",
+  "agency": "Example County Sheriff's Office",
+  "state": "FL",
+  "incident_date": "04/21/2024",
+  "incident_type": "police shooting"
+}
