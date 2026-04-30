@@ -48,6 +48,19 @@ from .ledger import (
     estimate_cost,
     normalize_api_calls,
 )
+from .live_safety import (
+    ALLOWED_FREE_CONNECTORS,
+    ALL_KNOWN_CONNECTORS,
+    LiveRunBlocked,
+    LiveRunBudget,
+    LiveRunConfig,
+    MAX_QUERIES_HARD_CAP,
+    MAX_RESULTS_HARD_CAP,
+    PAID_CONNECTORS,
+    is_live_enabled,
+    safe_live_budget_for,
+    validate_live_run,
+)
 from .outcome import OutcomeResolution, resolve_outcome
 from .reporting import build_actionability_report
 from .query_planner import (
@@ -85,12 +98,20 @@ __all__ = [
     "DEFAULT_API_CALLS",
     "DocumentCloudConnector",
     "DocumentCloudFileResolution",
+    "ALLOWED_FREE_CONNECTORS",
+    "ALL_KNOWN_CONNECTORS",
     "Jurisdiction",
     "IdentityResolution",
+    "LiveRunBlocked",
+    "LiveRunBudget",
+    "LiveRunConfig",
+    "MAX_QUERIES_HARD_CAP",
+    "MAX_RESULTS_HARD_CAP",
     "MockSourceConnector",
     "MuckRockFileResolution",
     "MuckRockConnector",
     "OutcomeResolution",
+    "PAID_CONNECTORS",
     "PlannedQuery",
     "QueryPlanResult",
     "RunLedgerEntry",
@@ -114,6 +135,7 @@ __all__ = [
     "export_p2_to_p4",
     "export_p2_to_p5",
     "extract_artifact_claims",
+    "is_live_enabled",
     "normalize_api_calls",
     "parse_fatal_encounters_case_input",
     "parse_mapping_police_violence_case_input",
@@ -127,6 +149,8 @@ __all__ = [
     "resolve_identity",
     "resolve_muckrock_released_files",
     "resolve_outcome",
+    "safe_live_budget_for",
     "score_case_packet",
     "validate_connector_source_record",
+    "validate_live_run",
 ]
