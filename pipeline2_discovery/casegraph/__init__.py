@@ -77,6 +77,15 @@ from .query_planner import (
     plan_queries_from_structured_result,
     plan_queries_from_youtube_result,
 )
+from .agent_loop import (
+    BACKLOG,
+    BACKLOG_VERSION,
+    BacklogEntry,
+    assess_current_state,
+    plan_next_batch,
+    plan_next_experiment,
+    read_completed_ids_from_ledger,
+)
 from .run_compare import compare_run_bundles
 from .validation import run_validation_manifest, validate_entry
 from .resolvers import (
@@ -96,6 +105,9 @@ from .scoring import ActionabilityResult, score_case_packet
 __all__ = [
     "ActionabilityResult",
     "ArtifactClaim",
+    "BACKLOG",
+    "BACKLOG_VERSION",
+    "BacklogEntry",
     "CaseIdentity",
     "CaseInput",
     "CasePacket",
@@ -144,6 +156,7 @@ __all__ = [
     "append_ledger_entry",
     "assemble_structured_case_packet",
     "assemble_weak_input_case_packet",
+    "assess_current_state",
     "build_actionability_report",
     "build_live_yield_report",
     "build_run_ledger_entry",
@@ -161,8 +174,11 @@ __all__ = [
     "parse_mapping_police_violence_case_input",
     "parse_wapo_uof_case_input",
     "parse_youtube_case_input",
+    "plan_next_batch",
+    "plan_next_experiment",
     "plan_queries_from_structured_result",
     "plan_queries_from_youtube_result",
+    "read_completed_ids_from_ledger",
     "resolve_courtlistener_documents",
     "resolve_documentcloud_files",
     "route_manual_defendant_jurisdiction",
