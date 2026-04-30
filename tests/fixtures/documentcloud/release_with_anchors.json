@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "id": 7000123,
+      "title": "Phoenix Police Department incident report on John Example",
+      "description": "Records produced included the incident report and supplemental files for the John Example case in Phoenix. Documents were released by the Phoenix Police Department in May 2022.",
+      "canonical_url": "https://www.documentcloud.org/documents/7000123-phoenix-pd-john-example-incident-report",
+      "pdf_url": "https://s3.documentcloud.org/documents/7000123/phoenix-pd-john-example-incident-report.pdf",
+      "page_count": 14,
+      "language": "eng",
+      "source": {"name": "Arizona Republic"},
+      "published_at": "2022-06-30T15:00:00Z",
+      "access": "public",
+      "text_preview": "On May 12, 2022 officers from the Phoenix Police Department responded to a disturbance call. The records produced include the responding officers' bodycam transfer log."
+    }
+  ]
+}

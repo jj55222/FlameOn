@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "id": 7000124,
+      "title": "Sentencing memorandum filed in John Example case",
+      "description": "The defendant John Example was sentenced after pleading guilty to charges in Maricopa County Superior Court.",
+      "canonical_url": "https://www.documentcloud.org/documents/7000124-john-example-sentencing-memo",
+      "pdf_url": "https://s3.documentcloud.org/documents/7000124/john-example-sentencing-memo.pdf",
+      "source": "Maricopa County Public Records",
+      "published_at": "2023-02-12T18:00:00Z",
+      "access": "public",
+      "text_preview": "Order: defendant John Example sentenced to 5 years in the Arizona Department of Corrections following plea entered before the Honorable Judge Reyes."
+    }
+  ]
+}
