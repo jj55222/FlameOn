@@ -78,6 +78,7 @@ from .query_planner import (
     plan_queries_from_youtube_result,
 )
 from .run_compare import compare_run_bundles
+from .validation import run_validation_manifest, validate_entry
 from .resolvers import (
     CourtListenerDocumentResolution,
     DocumentCloudFileResolution,
@@ -170,8 +171,10 @@ __all__ = [
     "run_capped_live_smoke",
     "run_capped_multi_connector_smoke",
     "run_metadata_only_resolvers",
+    "run_validation_manifest",
     "safe_live_budget_for",
     "score_case_packet",
     "validate_connector_source_record",
+    "validate_entry",
     "validate_live_run",
 ]
