@@ -1,0 +1,11 @@
+{
+  "title": "Department update: bodycam and interrogation footage",
+  "description": "The department released bodycam footage after a public records request.",
+  "transcript": "The department released bodycam footage. The 911 call was played during a hearing. Interrogation footage shows detectives speaking with the suspect.",
+  "channel": "Public Safety Updates",
+  "video_url": "https://www.youtube.com/watch?v=artifact_language_fixture",
+  "published_date": "2023-01-05",
+  "metadata": {
+    "fixture": "transcript_artifact_language"
+  }
+}

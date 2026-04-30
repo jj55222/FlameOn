@@ -1,0 +1,11 @@
+{
+  "title": "Phoenix Police Department releases body-worn camera update",
+  "description": "Public briefing from the Phoenix Police Department.",
+  "transcript": "On May 12, 2022, officers from the Phoenix Police Department contacted suspect John Example. Detectives interviewed Example after the incident. Body-worn camera footage released by the department shows the initial contact.",
+  "channel": "Phoenix Police Department",
+  "video_url": "https://www.youtube.com/watch?v=suspect_agency_fixture",
+  "published_date": "2022-05-13",
+  "metadata": {
+    "fixture": "transcript_suspect_agency_date"
+  }
+}
