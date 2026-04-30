@@ -11,7 +11,12 @@ from .adapters import (
     export_p2_to_p4,
     export_p2_to_p5,
 )
-from .assembly import WeakInputAssemblyResult, assemble_weak_input_case_packet
+from .assembly import (
+    StructuredAssemblyResult,
+    WeakInputAssemblyResult,
+    assemble_structured_case_packet,
+    assemble_weak_input_case_packet,
+)
 from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
 from .connectors import ConnectorError, ConnectorUnavailable, CourtListenerConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
 from .identity import IdentityResolution, resolve_identity
@@ -60,11 +65,13 @@ __all__ = [
     "QueryPlanResult",
     "Scores",
     "SourceRecord",
+    "StructuredAssemblyResult",
     "StructuredInputParseResult",
     "SourceConnector",
     "VerifiedArtifact",
     "YouTubeConnector",
     "YouTubeInputParseResult",
+    "assemble_structured_case_packet",
     "assemble_weak_input_case_packet",
     "export_legacy_evaluate_result",
     "export_p2_to_p3",
