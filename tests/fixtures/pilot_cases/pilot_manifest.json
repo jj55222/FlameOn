@@ -121,6 +121,34 @@
       "notes": "Weak YouTube transcript with claim language only. Without live corroboration the case is HOLD; pilot queries CourtListener once for case-name corroboration. Claim text without a URL never becomes a VerifiedArtifact."
     },
     {
+      "id": "real_case_min_jian_guan_pilot",
+      "input_type": "manual",
+      "seed_fixture_path": "tests/fixtures/pilot_cases/real_case_min_jian_guan.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "docket_docs",
+          "court_video",
+          "bodycam"
+        ]
+      },
+      "allowed_connectors": [
+        "documentcloud"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "HOLD",
+      "is_real_case": true,
+      "real_case_source": "autoresearch/calibration_data.json case_id=1 (tier=ENOUGH); public docket records exist on justia.com and via court video on YouTube; closed case with sentenced outcome",
+      "notes": "REAL1 / Endpoint v0 - real-case pilot seed (Min Jian Guan, San Francisco, sentenced 2024). Identity is pre-locked high in the seed (name + jurisdiction + agency + case_number anchors); outcome is sentenced. Dry verdict is HOLD (no_verified_media). Pilot queries DocumentCloud once for public document corroboration; with even one document URL graduated, Endpoint v0 condition 3 is fully met (high identity + concluded outcome + verified public artifact URL + classified type)."
+    },
+    {
       "id": "manual_known_case_dual_connector_pilot",
       "input_type": "manual",
       "seed_fixture_path": "tests/fixtures/casegraph_scenarios/structured_verified_bodycam_produce.json",

@@ -136,12 +136,17 @@ def _seed_documentcloud_factory(monkeypatch, response):
 # --- Mocked tests (run in default suite) -----------------------------------
 
 
-def test_pilot_selector_picks_mpv_documentcloud_pilot():
-    """LIVE6 must run against PILOT3's selection. If the manifest or
-    selector ever changes the winner, this test breaks loudly so we
-    re-anchor before firing live."""
+def test_pilot_selector_picks_top_documentcloud_pilot():
+    """LIVE6 must run against PILOT3's selection. After REAL1 the
+    top pick is real_case_min_jian_guan_pilot; before REAL1 it was
+    mpv_documentcloud_pilot. Either is acceptable -- the constants
+    we care about are: connector=documentcloud, max_live_calls=1,
+    max_results_per_connector=5."""
     selection = select_pilot_for_live_smoke(manifest_path=PILOT_MANIFEST)
-    assert selection["selected_pilot_id"] == "mpv_documentcloud_pilot"
+    assert selection["selected_pilot_id"] in {
+        "mpv_documentcloud_pilot",
+        "real_case_min_jian_guan_pilot",
+    }
     assert selection["allowed_connectors"] == ["documentcloud"]
     assert selection["max_live_calls"] == 1
     assert selection["max_results_per_connector"] == 5

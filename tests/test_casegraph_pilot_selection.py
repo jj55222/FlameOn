@@ -94,13 +94,14 @@ def _wrap(results):
 # ---- Real manifest --------------------------------------------------------
 
 
-def test_real_manifest_selects_mpv_documentcloud_pilot():
-    """The committed pilot manifest's first-attempt winner should be
-    mpv_documentcloud_pilot: single connector documentcloud (proven
-    artifact-yield path), lowest budget tied at 1, structured-row
-    seed that defaults to SKIP without live."""
+def test_real_manifest_selects_real_case_pilot_when_present():
+    """After REAL1 lands a real-case seed (Min Jian Guan, San
+    Francisco), the selector should prefer it over the placeholder
+    mpv_documentcloud_pilot. The real-case seed scores +2 for an
+    expected HOLD verdict (vs SKIP for placeholder), so it outranks
+    the previous winner."""
     out = select_pilot_for_live_smoke(manifest_path=PILOT_MANIFEST)
-    assert out["selected_pilot_id"] == "mpv_documentcloud_pilot"
+    assert out["selected_pilot_id"] == "real_case_min_jian_guan_pilot"
     assert out["allowed_connectors"] == ["documentcloud"]
     assert out["max_live_calls"] == 1
     assert out["max_results_per_connector"] == 5
