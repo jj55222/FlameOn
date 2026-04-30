@@ -333,6 +333,125 @@ def _aggregate(results: List[Mapping[str, Any]]) -> Dict[str, Any]:
     }
 
 
+# Connectors with documented yield against structured-row queries on
+# the validation/pilot fixture corpus, ranked highest-yield first. The
+# selector prefers pilots that include any of these.
+PROVEN_ARTIFACT_CONNECTORS = ("documentcloud",)
+
+
+def _selection_score(pilot_result: Mapping[str, Any]) -> int:
+    """Deterministic score for picking the best ready pilot for the
+    first live attempt. Higher is better. Returns ``-1`` for any
+    pilot that is not ``ready_for_live_smoke`` so it can never win."""
+    if pilot_result.get("readiness_status") != "ready_for_live_smoke":
+        return -1
+    score = 100
+    allowed = list(pilot_result.get("allowed_connectors") or [])
+    if any(c in PROVEN_ARTIFACT_CONNECTORS for c in allowed):
+        score += 30
+    score -= 2 * max(0, len(allowed) - 1)
+    try:
+        score -= 5 * max(0, int(pilot_result.get("max_live_calls") or 0) - 1)
+    except (TypeError, ValueError):
+        score -= 100
+    expected = pilot_result.get("expected_verdict_without_live")
+    if expected == "HOLD":
+        score += 2
+    elif expected == "PRODUCE":
+        score += 1
+    return score
+
+
+def select_pilot_for_live_smoke(
+    *,
+    manifest_path: Optional[Path] = None,
+    pilot_output: Optional[Mapping[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Pure selection for the first known-case live-smoke attempt
+    toward Endpoint v0.
+
+    Selection criteria (deterministic):
+
+    1. ``readiness_status == 'ready_for_live_smoke'`` (blocked pilots
+       can never be selected)
+    2. lowest ``max_live_calls`` (cheapest first)
+    3. fewest connectors (prefers single-connector pilots)
+    4. has at least one connector in :data:`PROVEN_ARTIFACT_CONNECTORS`
+       (currently ``documentcloud``)
+    5. tiebreaker by alphabetical pilot id for determinism
+
+    No network calls. Returns a dict with the selected pilot's id,
+    seed_fixture_path, allowed_connectors, max_live_calls,
+    max_results_per_connector, expected_verdict_without_live,
+    actual_dry_verdict, missing_gates, selection_score, the full
+    selected per-pilot result dict, plus rationale (a short list of
+    human-readable strings) and a ``no_ready_pilot`` flag when
+    nothing is selectable.
+    """
+    if pilot_output is None:
+        pilot_output = run_pilot_manifest(manifest_path)
+
+    results = list(pilot_output.get("results") or [])
+    ready = [r for r in results if r.get("readiness_status") == "ready_for_live_smoke"]
+    if not ready:
+        return {
+            "selected_pilot_id": None,
+            "no_ready_pilot": True,
+            "candidate_count": 0,
+            "rationale": [
+                "no pilots in ready_for_live_smoke status; nothing to select"
+            ],
+        }
+
+    ranked = sorted(
+        ready,
+        key=lambda r: (-_selection_score(r), str(r.get("id") or "")),
+    )
+    selected = ranked[0]
+    selection_score = _selection_score(selected)
+
+    rationale: List[str] = []
+    rationale.append(
+        f"selected {selected['id']!r} with score {selection_score} "
+        f"out of {len(ready)} ready candidate(s)"
+    )
+    if any(c in PROVEN_ARTIFACT_CONNECTORS for c in selected.get("allowed_connectors") or []):
+        rationale.append(
+            "uses a connector in PROVEN_ARTIFACT_CONNECTORS "
+            f"({', '.join(PROVEN_ARTIFACT_CONNECTORS)}) - higher artifact-yield expectation"
+        )
+    rationale.append(
+        f"max_live_calls={selected.get('max_live_calls')}, "
+        f"max_results_per_connector={selected.get('max_results_per_connector')}"
+    )
+    rationale.append(
+        f"expected_verdict_without_live={selected.get('expected_verdict_without_live')!r}; "
+        f"actual_dry_verdict={selected.get('actual_dry_verdict')!r}"
+    )
+    if selected.get("missing_gates"):
+        rationale.append(
+            f"missing gates that live data may help fill: {selected['missing_gates']}"
+        )
+
+    return {
+        "selected_pilot_id": selected["id"],
+        "no_ready_pilot": False,
+        "candidate_count": len(ready),
+        "selection_score": selection_score,
+        "fixture_path": selected.get("seed_fixture_path"),
+        "input_type": selected.get("input_type"),
+        "allowed_connectors": list(selected.get("allowed_connectors") or []),
+        "max_live_calls": selected.get("max_live_calls"),
+        "max_results_per_connector": selected.get("max_results_per_connector"),
+        "expected_verdict_without_live": selected.get("expected_verdict_without_live"),
+        "actual_dry_verdict": selected.get("actual_dry_verdict"),
+        "expected_minimum": dict(selected.get("expected_minimum") or {}),
+        "missing_gates": list(selected.get("missing_gates") or []),
+        "selected_pilot_result": dict(selected),
+        "rationale": rationale,
+    }
+
+
 def run_pilot_manifest(
     manifest_path: Optional[Path] = None,
     *,

@@ -70,7 +70,7 @@ from .live_smoke import (
     run_capped_multi_connector_smoke,
 )
 from .outcome import OutcomeResolution, resolve_outcome
-from .pilots import assess_pilot, run_pilot_manifest
+from .pilots import assess_pilot, run_pilot_manifest, select_pilot_for_live_smoke
 from .reporting import (
     build_actionability_report,
     build_live_yield_report,
@@ -209,6 +209,7 @@ __all__ = [
     "run_validation_manifest",
     "safe_live_budget_for",
     "score_case_packet",
+    "select_pilot_for_live_smoke",
     "validate_connector_source_record",
     "validate_entry",
     "validate_live_run",
