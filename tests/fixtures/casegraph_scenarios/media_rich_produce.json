@@ -2,22 +2,53 @@
   "case_id": "scenario_media_rich_produce",
   "input": {
     "input_type": "manual",
-    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
-    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
+    "raw_input": {
+      "defendant_names": "Min Jian Guan",
+      "jurisdiction": "San Francisco, CA"
+    },
+    "known_fields": {
+      "defendant_names": [
+        "Min Jian Guan"
+      ],
+      "jurisdiction": {
+        "city": "San Francisco",
+        "county": "San Francisco",
+        "state": "CA"
+      }
+    },
     "missing_fields": [],
-    "candidate_queries": ["\"Min Jian Guan\" bodycam 911"]
+    "candidate_queries": [
+      "\"Min Jian Guan\" bodycam 911"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["Min Jian Guan"],
-    "victim_names": ["Example Victim"],
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
+    "victim_names": [
+      "Example Victim"
+    ],
     "agency": "San Francisco Police Department",
-    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
     "incident_date": "2024-04-21",
-    "case_numbers": ["CR-1001"],
-    "charges": ["murder"],
+    "case_numbers": [
+      "CR-1001"
+    ],
+    "charges": [
+      "murder"
+    ],
     "outcome_status": "sentenced",
     "identity_confidence": "high",
-    "identity_anchors": ["full_name", "jurisdiction", "agency", "case_number"]
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "agency",
+      "case_number"
+    ]
   },
   "sources": [],
   "artifact_claims": [],
@@ -30,11 +61,16 @@
       "source_authority": "official",
       "downloadable": false,
       "format": "video",
-      "matched_case_fields": ["defendant_full_name", "agency"],
+      "matched_case_fields": [
+        "defendant_full_name",
+        "agency"
+      ],
       "confidence": 0.9,
       "verification_method": "file_extension",
       "risk_flags": [],
-      "metadata": {"fixture": true}
+      "metadata": {
+        "fixture": true
+      }
     },
     {
       "artifact_id": "dispatch_001",
@@ -44,11 +80,15 @@
       "source_authority": "third_party",
       "downloadable": false,
       "format": "audio",
-      "matched_case_fields": ["defendant_full_name"],
+      "matched_case_fields": [
+        "defendant_full_name"
+      ],
       "confidence": 0.78,
       "verification_method": "file_extension",
       "risk_flags": [],
-      "metadata": {"fixture": true}
+      "metadata": {
+        "fixture": true
+      }
     },
     {
       "artifact_id": "complaint_001",
@@ -58,15 +98,44 @@
       "source_authority": "court",
       "downloadable": true,
       "format": "pdf",
-      "matched_case_fields": ["defendant_full_name", "case_number"],
+      "matched_case_fields": [
+        "defendant_full_name",
+        "case_number"
+      ],
       "confidence": 0.86,
       "verification_method": "file_extension",
       "risk_flags": [],
-      "metadata": {"fixture": true}
+      "metadata": {
+        "fixture": true
+      }
     }
   ],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
   "next_actions": [],
-  "risk_flags": []
+  "risk_flags": [],
+  "expected": {
+    "verdict": "PRODUCE",
+    "must_include_reason_codes": [
+      "media_artifact_present",
+      "high_identity",
+      "sentenced_or_convicted",
+      "production_score_threshold_met"
+    ],
+    "must_not_include_reason_codes": [
+      "document_only_hold",
+      "claim_only_hold"
+    ],
+    "must_include_risk_flags": [],
+    "must_not_include_risk_flags": [
+      "weak_identity",
+      "no_verified_media",
+      "protected_or_nonpublic"
+    ]
+  }
 }

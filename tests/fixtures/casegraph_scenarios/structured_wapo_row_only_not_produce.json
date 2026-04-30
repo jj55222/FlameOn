@@ -11,21 +11,40 @@
       "incident_date": "2022-05-12"
     },
     "known_fields": {
-      "defendant_names": ["John Example"],
+      "defendant_names": [
+        "John Example"
+      ],
       "subject_name": "John Example",
       "agency": "Phoenix Police Department",
-      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "jurisdiction": {
+        "city": "Phoenix",
+        "county": null,
+        "state": "AZ"
+      },
       "incident_date": "2022-05-12",
       "incident_type": "police shooting"
     },
-    "missing_fields": ["case_numbers", "charges", "outcome_status", "verified_artifacts"],
-    "candidate_queries": ["\"John Example\" \"Phoenix Police Department\" 2022 police shooting"]
+    "missing_fields": [
+      "case_numbers",
+      "charges",
+      "outcome_status",
+      "verified_artifacts"
+    ],
+    "candidate_queries": [
+      "\"John Example\" \"Phoenix Police Department\" 2022 police shooting"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["John Example"],
+    "defendant_names": [
+      "John Example"
+    ],
     "victim_names": [],
     "agency": "Phoenix Police Department",
-    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "jurisdiction": {
+      "city": "Phoenix",
+      "county": null,
+      "state": "AZ"
+    },
     "incident_date": "2022-05-12",
     "case_numbers": [],
     "charges": [],
@@ -36,8 +55,35 @@
   "sources": [],
   "artifact_claims": [],
   "verified_artifacts": [],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
-  "next_actions": ["Corroborate structured dataset row with official or court source."],
-  "risk_flags": ["structured_dataset_candidate_only", "candidate_fields_not_identity_lock"]
+  "next_actions": [
+    "Corroborate structured dataset row with official or court source."
+  ],
+  "risk_flags": [
+    "structured_dataset_candidate_only",
+    "candidate_fields_not_identity_lock"
+  ],
+  "expected": {
+    "verdict": "SKIP",
+    "must_include_reason_codes": [
+      "low_identity",
+      "no_verified_media"
+    ],
+    "must_not_include_reason_codes": [
+      "high_identity",
+      "media_artifact_present"
+    ],
+    "must_include_risk_flags": [
+      "weak_identity",
+      "no_verified_media",
+      "structured_dataset_candidate_only"
+    ],
+    "must_not_include_risk_flags": []
+  }
 }

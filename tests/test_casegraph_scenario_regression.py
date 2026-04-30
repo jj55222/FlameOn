@@ -52,8 +52,12 @@ def packet_from_dict(data):
 
 def load_packet(name):
     data = load_json(FIXTURE_DIR / name)
-    assert_valid_case_packet(data)
-    return packet_from_dict(data)
+    # The optional top-level "expected" field carries EVAL2 manual
+    # scenario labels and is not part of the CasePacket contract — strip
+    # it before validating against schemas/p2_case_packet.schema.json.
+    packet_data = {key: value for key, value in data.items() if key != "expected"}
+    assert_valid_case_packet(packet_data)
+    return packet_from_dict(packet_data)
 
 
 def score_fixture(name):

@@ -2,16 +2,40 @@
   "case_id": "scenario_weak_identity_media_blocked",
   "input": {
     "input_type": "manual",
-    "raw_input": {"defendant_names": "Min Jian Guan", "jurisdiction": "San Francisco, CA"},
-    "known_fields": {"defendant_names": ["Min Jian Guan"], "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"}},
-    "missing_fields": ["agency", "incident_date", "case_numbers"],
-    "candidate_queries": ["\"Min Jian Guan\" bodycam"]
+    "raw_input": {
+      "defendant_names": "Min Jian Guan",
+      "jurisdiction": "San Francisco, CA"
+    },
+    "known_fields": {
+      "defendant_names": [
+        "Min Jian Guan"
+      ],
+      "jurisdiction": {
+        "city": "San Francisco",
+        "county": "San Francisco",
+        "state": "CA"
+      }
+    },
+    "missing_fields": [
+      "agency",
+      "incident_date",
+      "case_numbers"
+    ],
+    "candidate_queries": [
+      "\"Min Jian Guan\" bodycam"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["Min Jian Guan"],
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
     "victim_names": [],
     "agency": null,
-    "jurisdiction": {"city": "San Francisco", "county": "San Francisco", "state": "CA"},
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
     "incident_date": null,
     "case_numbers": [],
     "charges": [],
@@ -34,11 +58,33 @@
       "confidence": 0.62,
       "verification_method": "public_url_pattern",
       "risk_flags": [],
-      "metadata": {"fixture": true}
+      "metadata": {
+        "fixture": true
+      }
     }
   ],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
   "next_actions": [],
-  "risk_flags": []
+  "risk_flags": [],
+  "expected": {
+    "verdict": "HOLD",
+    "must_include_reason_codes": [
+      "media_artifact_present"
+    ],
+    "must_not_include_reason_codes": [
+      "high_identity",
+      "production_score_threshold_met"
+    ],
+    "must_include_risk_flags": [
+      "weak_identity",
+      "identity_unconfirmed"
+    ],
+    "must_not_include_risk_flags": []
+  }
 }

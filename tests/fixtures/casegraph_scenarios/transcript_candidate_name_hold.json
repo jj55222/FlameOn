@@ -7,20 +7,39 @@
       "transcript": "On May 12, 2022, detectives interviewed suspect John Example."
     },
     "known_fields": {
-      "defendant_names": ["John Example"],
+      "defendant_names": [
+        "John Example"
+      ],
       "agency": "Phoenix Police Department",
-      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "jurisdiction": {
+        "city": "Phoenix",
+        "county": null,
+        "state": "AZ"
+      },
       "incident_date": "2022-05-12",
       "artifact_signals": []
     },
-    "missing_fields": ["victim_names", "case_numbers", "charges", "outcome_status"],
-    "candidate_queries": ["\"John Example\" \"Phoenix Police Department\" \"May 12, 2022\" case"]
+    "missing_fields": [
+      "victim_names",
+      "case_numbers",
+      "charges",
+      "outcome_status"
+    ],
+    "candidate_queries": [
+      "\"John Example\" \"Phoenix Police Department\" \"May 12, 2022\" case"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["John Example"],
+    "defendant_names": [
+      "John Example"
+    ],
     "victim_names": [],
     "agency": "Phoenix Police Department",
-    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "jurisdiction": {
+      "city": "Phoenix",
+      "county": null,
+      "state": "AZ"
+    },
     "incident_date": "2022-05-12",
     "case_numbers": [],
     "charges": [],
@@ -31,8 +50,34 @@
   "sources": [],
   "artifact_claims": [],
   "verified_artifacts": [],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
-  "next_actions": ["Corroborate transcript-derived candidate name with court or official records."],
-  "risk_flags": ["weak_input_preliminary_packet", "candidate_fields_not_identity_lock"]
+  "next_actions": [
+    "Corroborate transcript-derived candidate name with court or official records."
+  ],
+  "risk_flags": [
+    "weak_input_preliminary_packet",
+    "candidate_fields_not_identity_lock"
+  ],
+  "expected": {
+    "verdict": "SKIP",
+    "must_include_reason_codes": [
+      "low_identity",
+      "no_verified_media"
+    ],
+    "must_not_include_reason_codes": [
+      "high_identity",
+      "media_artifact_present"
+    ],
+    "must_include_risk_flags": [
+      "weak_identity",
+      "weak_input_preliminary_packet"
+    ],
+    "must_not_include_risk_flags": []
+  }
 }

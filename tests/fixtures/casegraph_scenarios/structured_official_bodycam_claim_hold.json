@@ -2,29 +2,58 @@
   "case_id": "scenario_structured_official_bodycam_claim_hold",
   "input": {
     "input_type": "dataset_row",
-    "raw_input": {"dataset": "wapo_uof", "subject_name": "John Example"},
+    "raw_input": {
+      "dataset": "wapo_uof",
+      "subject_name": "John Example"
+    },
     "known_fields": {
-      "defendant_names": ["John Example"],
+      "defendant_names": [
+        "John Example"
+      ],
       "subject_name": "John Example",
       "agency": "Phoenix Police Department",
-      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "jurisdiction": {
+        "city": "Phoenix",
+        "county": null,
+        "state": "AZ"
+      },
       "incident_date": "2022-05-12",
       "incident_type": "police shooting"
     },
-    "missing_fields": ["case_numbers", "outcome_status", "verified_artifacts"],
-    "candidate_queries": ["\"Phoenix Police Department\" critical incident video 2022 John Example"]
+    "missing_fields": [
+      "case_numbers",
+      "outcome_status",
+      "verified_artifacts"
+    ],
+    "candidate_queries": [
+      "\"Phoenix Police Department\" critical incident video 2022 John Example"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["John Example"],
+    "defendant_names": [
+      "John Example"
+    ],
     "victim_names": [],
     "agency": "Phoenix Police Department",
-    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "jurisdiction": {
+      "city": "Phoenix",
+      "county": null,
+      "state": "AZ"
+    },
     "incident_date": "2022-05-12",
     "case_numbers": [],
-    "charges": ["aggravated assault"],
+    "charges": [
+      "aggravated assault"
+    ],
     "outcome_status": "convicted",
     "identity_confidence": "high",
-    "identity_anchors": ["full_name", "city", "agency", "incident_date", "source_authority"]
+    "identity_anchors": [
+      "full_name",
+      "city",
+      "agency",
+      "incident_date",
+      "source_authority"
+    ]
   },
   "sources": [
     {
@@ -34,16 +63,26 @@
       "snippet": "Phoenix Police Department released bodycam footage from the May 12, 2022 incident.",
       "raw_text": "Phoenix Police Department released bodycam footage from the May 12, 2022 incident involving John Example.",
       "source_type": "official",
-      "source_roles": ["identity_source", "claim_source", "possible_artifact_source"],
+      "source_roles": [
+        "identity_source",
+        "claim_source",
+        "possible_artifact_source"
+      ],
       "source_authority": "official",
       "api_name": null,
       "discovered_via": "fixture",
       "retrieved_at": "2026-04-30T00:00:00Z",
       "case_input_id": "structured_claim",
-      "metadata": {"fixture": true},
+      "metadata": {
+        "fixture": true
+      },
       "cost_estimate": 0.0,
       "confidence_signals": {},
-      "matched_case_fields": ["defendant_full_name", "agency", "incident_date"]
+      "matched_case_fields": [
+        "defendant_full_name",
+        "agency",
+        "incident_date"
+      ]
     }
   ],
   "artifact_claims": [
@@ -60,8 +99,32 @@
     }
   ],
   "verified_artifacts": [],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
-  "next_actions": ["Resolve official bodycam claim into a public artifact URL."],
-  "risk_flags": ["structured_dataset_candidate_only"]
+  "next_actions": [
+    "Resolve official bodycam claim into a public artifact URL."
+  ],
+  "risk_flags": [
+    "structured_dataset_candidate_only"
+  ],
+  "expected": {
+    "verdict": "HOLD",
+    "must_include_reason_codes": [
+      "claim_only_hold",
+      "no_verified_media"
+    ],
+    "must_not_include_reason_codes": [
+      "media_artifact_present"
+    ],
+    "must_include_risk_flags": [
+      "structured_dataset_candidate_only",
+      "artifact_unverified"
+    ],
+    "must_not_include_risk_flags": []
+  }
 }

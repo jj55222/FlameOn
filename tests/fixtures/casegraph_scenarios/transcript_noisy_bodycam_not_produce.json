@@ -9,18 +9,39 @@
     "known_fields": {
       "defendant_names": [],
       "agency": null,
-      "jurisdiction": {"city": null, "county": null, "state": null},
+      "jurisdiction": {
+        "city": null,
+        "county": null,
+        "state": null
+      },
       "incident_date": null,
-      "artifact_signals": ["bodycam", "interrogation"]
+      "artifact_signals": [
+        "bodycam",
+        "interrogation"
+      ]
     },
-    "missing_fields": ["defendant_names", "agency", "jurisdiction", "incident_date", "case_numbers", "charges", "outcome_status"],
-    "candidate_queries": ["bodycam interrogation"]
+    "missing_fields": [
+      "defendant_names",
+      "agency",
+      "jurisdiction",
+      "incident_date",
+      "case_numbers",
+      "charges",
+      "outcome_status"
+    ],
+    "candidate_queries": [
+      "bodycam interrogation"
+    ]
   },
   "case_identity": {
     "defendant_names": [],
     "victim_names": [],
     "agency": null,
-    "jurisdiction": {"city": null, "county": null, "state": null},
+    "jurisdiction": {
+      "city": null,
+      "county": null,
+      "state": null
+    },
     "incident_date": null,
     "case_numbers": [],
     "charges": [],
@@ -43,8 +64,36 @@
     }
   ],
   "verified_artifacts": [],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
-  "next_actions": ["Find identity anchors before treating noisy transcript as a case lead."],
-  "risk_flags": ["weak_input_preliminary_packet", "no_case_anchors", "artifact_signal_without_case_anchors"]
+  "next_actions": [
+    "Find identity anchors before treating noisy transcript as a case lead."
+  ],
+  "risk_flags": [
+    "weak_input_preliminary_packet",
+    "no_case_anchors",
+    "artifact_signal_without_case_anchors"
+  ],
+  "expected": {
+    "verdict": "HOLD",
+    "must_include_reason_codes": [
+      "claim_only_hold",
+      "no_verified_media"
+    ],
+    "must_not_include_reason_codes": [
+      "high_identity",
+      "media_artifact_present"
+    ],
+    "must_include_risk_flags": [
+      "weak_identity",
+      "no_case_anchors",
+      "weak_input_preliminary_packet"
+    ],
+    "must_not_include_risk_flags": []
+  }
 }

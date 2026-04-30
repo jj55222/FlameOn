@@ -2,29 +2,59 @@
   "case_id": "scenario_structured_verified_bodycam_produce",
   "input": {
     "input_type": "dataset_row",
-    "raw_input": {"dataset": "wapo_uof", "subject_name": "John Example"},
+    "raw_input": {
+      "dataset": "wapo_uof",
+      "subject_name": "John Example"
+    },
     "known_fields": {
-      "defendant_names": ["John Example"],
+      "defendant_names": [
+        "John Example"
+      ],
       "subject_name": "John Example",
       "agency": "Phoenix Police Department",
-      "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+      "jurisdiction": {
+        "city": "Phoenix",
+        "county": null,
+        "state": "AZ"
+      },
       "incident_date": "2022-05-12",
       "incident_type": "police shooting"
     },
-    "missing_fields": ["victim_names"],
-    "candidate_queries": ["\"John Example\" Phoenix Police Department bodycam records"]
+    "missing_fields": [
+      "victim_names"
+    ],
+    "candidate_queries": [
+      "\"John Example\" Phoenix Police Department bodycam records"
+    ]
   },
   "case_identity": {
-    "defendant_names": ["John Example"],
+    "defendant_names": [
+      "John Example"
+    ],
     "victim_names": [],
     "agency": "Phoenix Police Department",
-    "jurisdiction": {"city": "Phoenix", "county": null, "state": "AZ"},
+    "jurisdiction": {
+      "city": "Phoenix",
+      "county": null,
+      "state": "AZ"
+    },
     "incident_date": "2022-05-12",
-    "case_numbers": ["CR-2022-1001"],
-    "charges": ["aggravated assault"],
+    "case_numbers": [
+      "CR-2022-1001"
+    ],
+    "charges": [
+      "aggravated assault"
+    ],
     "outcome_status": "sentenced",
     "identity_confidence": "high",
-    "identity_anchors": ["full_name", "city", "agency", "incident_date", "case_number", "source_authority"]
+    "identity_anchors": [
+      "full_name",
+      "city",
+      "agency",
+      "incident_date",
+      "case_number",
+      "source_authority"
+    ]
   },
   "sources": [
     {
@@ -34,16 +64,26 @@
       "snippet": "John Example was sentenced in Phoenix case CR-2022-1001.",
       "raw_text": "John Example was sentenced in Phoenix case CR-2022-1001 for the May 12, 2022 incident investigated by Phoenix Police Department.",
       "source_type": "court_docket",
-      "source_roles": ["identity_source", "outcome_source"],
+      "source_roles": [
+        "identity_source",
+        "outcome_source"
+      ],
       "source_authority": "court",
       "api_name": "courtlistener",
       "discovered_via": "fixture",
       "retrieved_at": "2026-04-30T00:00:00Z",
       "case_input_id": "structured_produce",
-      "metadata": {"fixture": true},
+      "metadata": {
+        "fixture": true
+      },
       "cost_estimate": 0.0,
       "confidence_signals": {},
-      "matched_case_fields": ["defendant_full_name", "case_number", "agency", "incident_date"]
+      "matched_case_fields": [
+        "defendant_full_name",
+        "case_number",
+        "agency",
+        "incident_date"
+      ]
     }
   ],
   "artifact_claims": [],
@@ -56,15 +96,43 @@
       "source_authority": "foia",
       "downloadable": true,
       "format": "video",
-      "matched_case_fields": ["defendant_full_name", "agency", "incident_date"],
+      "matched_case_fields": [
+        "defendant_full_name",
+        "agency",
+        "incident_date"
+      ],
       "confidence": 0.9,
       "verification_method": "file_extension",
       "risk_flags": [],
-      "metadata": {"fixture": true}
+      "metadata": {
+        "fixture": true
+      }
     }
   ],
-  "scores": {"identity_score": 0.0, "outcome_score": 0.0, "artifact_score": 0.0, "actionability_score": 0.0},
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
   "verdict": "HOLD",
   "next_actions": [],
-  "risk_flags": []
+  "risk_flags": [],
+  "expected": {
+    "verdict": "PRODUCE",
+    "must_include_reason_codes": [
+      "bodycam_present",
+      "media_artifact_present",
+      "production_score_threshold_met"
+    ],
+    "must_not_include_reason_codes": [
+      "document_only_hold",
+      "claim_only_hold"
+    ],
+    "must_include_risk_flags": [],
+    "must_not_include_risk_flags": [
+      "weak_identity",
+      "no_verified_media"
+    ]
+  }
 }
