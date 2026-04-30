@@ -79,6 +79,63 @@ EXIT_OK = 0
 EXIT_FIXTURE_MISSING = 3
 EXIT_FIXTURE_INVALID = 4
 EXIT_LIVE_BLOCKED = 5
+EXIT_BUNDLE_UNSAFE = 6
+
+
+# Output paths considered safe for bundle dumps. Everything in this
+# list is gitignored in the repo's .gitignore (autoresearch/.runs/ etc.).
+# Bundle files outside the repo are also accepted. Anything else
+# requires --allow-unsafe-bundle-path to opt in explicitly.
+BUNDLE_SAFE_DIRS = (
+    "autoresearch/.runs",
+    "autoresearch/.tmp",
+    "autoresearch/.artifacts",
+    "autoresearch/.cache",
+    "autoresearch/.logs",
+    ".runs",
+    ".tmp",
+    ".artifacts",
+    ".cache",
+    ".logs",
+)
+
+
+class BundlePathUnsafe(Exception):
+    """Raised when --bundle-out resolves to a path that isn't under one
+    of the gitignored artifact directories and --allow-unsafe-bundle-path
+    was not passed."""
+
+
+def _repo_root() -> Path:
+    """Resolve the repo root from this module's location."""
+    return Path(__file__).resolve().parents[2]
+
+
+def _is_safe_bundle_path(path: Path) -> bool:
+    """A bundle output path is safe iff it resolves outside the repo
+    OR resolves inside one of BUNDLE_SAFE_DIRS (gitignored)."""
+    abs_path = path.resolve()
+    repo = _repo_root()
+    try:
+        rel = abs_path.relative_to(repo)
+    except ValueError:
+        return True  # outside repo entirely
+    rel_parts = rel.parts
+    for safe in BUNDLE_SAFE_DIRS:
+        safe_parts = tuple(safe.split("/"))
+        if rel_parts[: len(safe_parts)] == safe_parts:
+            return True
+    return False
+
+
+def _validate_bundle_path(path: Path, *, allow_unsafe: bool) -> None:
+    """Refuse paths that aren't gitignored unless caller opts in."""
+    if not allow_unsafe and not _is_safe_bundle_path(path):
+        raise BundlePathUnsafe(
+            f"refusing to write bundle to {path}; path is not under one of "
+            f"the gitignored artifact directories ({', '.join(BUNDLE_SAFE_DIRS)}) "
+            "and is not outside the repo. Pass --allow-unsafe-bundle-path to override."
+        )
 
 
 def _strip_expected(data: Dict[str, Any]) -> Dict[str, Any]:
@@ -182,6 +239,137 @@ def _result_summary(result: ActionabilityResult) -> Dict[str, Any]:
         "risk_flags": list(result.risk_flags),
         "next_actions": list(result.next_actions),
     }
+
+
+def _identity_section(packet: CasePacket) -> Dict[str, Any]:
+    ident = packet.case_identity
+    return {
+        "defendant_names": list(ident.defendant_names),
+        "victim_names": list(ident.victim_names),
+        "agency": ident.agency,
+        "jurisdiction": asdict(ident.jurisdiction),
+        "incident_date": ident.incident_date,
+        "case_numbers": list(ident.case_numbers),
+        "charges": list(ident.charges),
+        "identity_confidence": ident.identity_confidence,
+        "identity_anchors": list(ident.identity_anchors),
+    }
+
+
+def _outcome_section(packet: CasePacket) -> Dict[str, Any]:
+    return {
+        "outcome_status": packet.case_identity.outcome_status,
+        "charges": list(packet.case_identity.charges),
+        "case_numbers": list(packet.case_identity.case_numbers),
+    }
+
+
+def _connector_summary_section(packet: CasePacket) -> Dict[str, Any]:
+    by_api: Dict[str, int] = {}
+    by_role: Dict[str, int] = {}
+    for source in packet.sources:
+        api = source.api_name or "unknown"
+        by_api[api] = by_api.get(api, 0) + 1
+        for role in source.source_roles:
+            by_role[role] = by_role.get(role, 0) + 1
+    return {
+        "total_source_records": len(packet.sources),
+        "by_api": dict(sorted(by_api.items())),
+        "by_role": dict(sorted(by_role.items())),
+        "source_ids": [source.source_id for source in packet.sources],
+    }
+
+
+def build_run_bundle(
+    *,
+    mode: str,
+    experiment_id: str,
+    wallclock_seconds: float,
+    packet: Optional[CasePacket] = None,
+    parsed: Optional[StructuredInputParseResult] = None,
+    query_plan: Optional[QueryPlanResult] = None,
+    multi_source_summary: Optional[Dict[str, Any]] = None,
+    smoke_diagnostics: Optional[Dict[str, Any]] = None,
+    live_yield_report: Optional[Dict[str, Any]] = None,
+    api_calls: Optional[Dict[str, int]] = None,
+    notes: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Canonical CaseGraph run bundle (PIPE5).
+
+    Always emits the canonical top-level keys; sections without data
+    are explicitly ``None`` rather than missing so downstream consumers
+    can rely on key presence. Pure: builds from already-computed inputs
+    and never makes a network call. The packet, when supplied, is not
+    mutated."""
+    if packet is None and parsed is None:
+        raise ValueError("build_run_bundle requires a packet or a parsed input")
+
+    if packet is not None:
+        input_summary: Dict[str, Any] = _input_summary(packet)
+        identity_section: Optional[Dict[str, Any]] = _identity_section(packet)
+        outcome_section: Optional[Dict[str, Any]] = _outcome_section(packet)
+        connector_summary: Optional[Dict[str, Any]] = _connector_summary_section(packet)
+        artifact_claims = [asdict(claim) for claim in packet.artifact_claims]
+        verified_artifacts = [asdict(artifact) for artifact in packet.verified_artifacts]
+        result_obj = score_case_packet(packet)
+        result_section: Optional[Dict[str, Any]] = _result_summary(result_obj)
+        actionability_report: Optional[Dict[str, Any]] = build_actionability_report([packet])
+        next_actions: List[str] = list(result_obj.next_actions)
+        risk_flags: List[str] = list(result_obj.risk_flags)
+        ledger = build_run_ledger_entry(
+            experiment_id=experiment_id,
+            packet=packet,
+            api_calls=api_calls,
+            wallclock_seconds=wallclock_seconds,
+            notes=notes,
+        )
+    else:
+        assert parsed is not None  # for type checker
+        input_summary = _structured_summary(parsed)
+        identity_section = None
+        outcome_section = None
+        connector_summary = None
+        artifact_claims = []
+        verified_artifacts = []
+        result_section = None
+        actionability_report = None
+        next_actions = []
+        risk_flags = list(parsed.risk_flags)
+        ledger = build_run_ledger_entry(
+            experiment_id=experiment_id,
+            case_id=None,
+            api_calls=api_calls,
+            wallclock_seconds=wallclock_seconds,
+            notes=notes,
+        )
+
+    return {
+        "experiment_id": experiment_id,
+        "mode": mode,
+        "wallclock_seconds": wallclock_seconds,
+        "input_summary": input_summary,
+        "query_plan": _query_plan_summary(query_plan) if query_plan is not None else None,
+        "connector_summary": connector_summary,
+        "multi_source_summary": multi_source_summary,
+        "smoke_diagnostics": smoke_diagnostics,
+        "identity": identity_section,
+        "outcome": outcome_section,
+        "artifact_claims": artifact_claims,
+        "verified_artifacts": verified_artifacts,
+        "result": result_section,
+        "actionability_report": actionability_report,
+        "live_yield_report": live_yield_report,
+        "ledger_entry": ledger.to_dict(),
+        "next_actions": next_actions,
+        "risk_flags": risk_flags,
+    }
+
+
+def _write_bundle(path: Path, bundle: Dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(bundle, f, indent=2, sort_keys=False)
+        f.write("\n")
 
 
 def build_dry_run_payload(
@@ -586,6 +774,24 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         default=5,
         help="Hard-capped at validate_live_run's MAX_RESULTS_HARD_CAP (default: 5).",
     )
+    parser.add_argument(
+        "--bundle-out",
+        dest="bundle_out",
+        default=None,
+        help=(
+            "Optional path to write a single canonical JSON run bundle "
+            "(PIPE5). Default-safe: the path must be inside one of the "
+            "gitignored artifact directories (autoresearch/.runs, .tmp, "
+            ".artifacts, .cache, .logs) or outside the repo entirely. "
+            "Use --allow-unsafe-bundle-path to override."
+        ),
+    )
+    parser.add_argument(
+        "--allow-unsafe-bundle-path",
+        dest="allow_unsafe_bundle_path",
+        action="store_true",
+        help="Allow --bundle-out to write to a non-gitignored repo path.",
+    )
     return parser.parse_args(list(argv) if argv is not None else None)
 
 
@@ -666,10 +872,12 @@ def _run_default_mode(args, *, out, err) -> int:
         err.write(f"error: {exc}\n")
         return EXIT_FIXTURE_INVALID
 
+    experiment_id = args.experiment_id or "PIPE1-cli-dry-run"
+    wallclock = round(time.perf_counter() - started, 4)
     payload = build_dry_run_payload(
         packet,
-        experiment_id=args.experiment_id or "PIPE1-cli-dry-run",
-        wallclock_seconds=round(time.perf_counter() - started, 4),
+        experiment_id=experiment_id,
+        wallclock_seconds=wallclock,
     )
 
     if args.json:
@@ -677,6 +885,15 @@ def _run_default_mode(args, *, out, err) -> int:
         out.write("\n")
     else:
         out.write(_format_text(payload))
+
+    if args.bundle_out:
+        bundle = build_run_bundle(
+            mode="default",
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock,
+            packet=packet,
+        )
+        _write_bundle(Path(args.bundle_out), bundle)
     return EXIT_OK
 
 
@@ -692,10 +909,12 @@ def _run_query_plan_mode(args, *, out, err) -> int:
         err.write(f"error: {exc}\n")
         return EXIT_FIXTURE_INVALID
 
+    experiment_id = args.experiment_id or "PIPE1-cli-query-plan"
+    wallclock = round(time.perf_counter() - started, 4)
     payload = build_query_plan_payload(
         parsed,
-        experiment_id=args.experiment_id or "PIPE1-cli-query-plan",
-        wallclock_seconds=round(time.perf_counter() - started, 4),
+        experiment_id=experiment_id,
+        wallclock_seconds=wallclock,
     )
 
     if args.json:
@@ -703,6 +922,17 @@ def _run_query_plan_mode(args, *, out, err) -> int:
         out.write("\n")
     else:
         out.write(_format_query_plan_text(payload))
+
+    if args.bundle_out:
+        plan = plan_queries_from_structured_result(parsed)
+        bundle = build_run_bundle(
+            mode="query_plan",
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock,
+            parsed=parsed,
+            query_plan=plan,
+        )
+        _write_bundle(Path(args.bundle_out), bundle)
     return EXIT_OK
 
 
@@ -780,12 +1010,14 @@ def _run_multi_source_dry_run_mode(args, *, out, err) -> int:
         err.write(f"error: {exc}\n")
         return EXIT_FIXTURE_INVALID
 
+    experiment_id = args.experiment_id or "PIPE3-cli-multisource-dry-run"
+    wallclock = round(time.perf_counter() - started, 4)
     payload = build_multi_source_dry_run_payload(
         parsed,
         connectors=connectors,
         max_results=int(args.max_results),
-        experiment_id=args.experiment_id or "PIPE3-cli-multisource-dry-run",
-        wallclock_seconds=round(time.perf_counter() - started, 4),
+        experiment_id=experiment_id,
+        wallclock_seconds=wallclock,
     )
 
     if args.json:
@@ -793,6 +1025,25 @@ def _run_multi_source_dry_run_mode(args, *, out, err) -> int:
         out.write("\n")
     else:
         out.write(_format_multi_source_text(payload))
+
+    if args.bundle_out:
+        plan = plan_queries_from_structured_result(parsed)
+        assembly = assemble_structured_case_packet(parsed)
+        bundle = build_run_bundle(
+            mode="multi_source_dry_run",
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock,
+            packet=assembly.packet,
+            parsed=parsed,
+            query_plan=plan,
+            multi_source_summary=payload["multi_source_dry_run"],
+            notes=[
+                "multi-source-dry-run",
+                f"connectors={','.join(connectors)}",
+                f"max_results={int(args.max_results)}",
+            ],
+        )
+        _write_bundle(Path(args.bundle_out), bundle)
     return EXIT_OK
 
 
@@ -820,10 +1071,11 @@ def _run_live_dry_mode(args, *, out, err) -> int:
         return EXIT_LIVE_BLOCKED
 
     wallclock_seconds = round(time.perf_counter() - started, 4)
+    experiment_id = args.experiment_id or "PIPE2-cli-live-dry"
     payload = build_live_dry_payload(
         parsed,
         config=config,
-        experiment_id=args.experiment_id or "PIPE2-cli-live-dry",
+        experiment_id=experiment_id,
         smoke_result=smoke_result,
         wallclock_seconds=wallclock_seconds,
     )
@@ -833,6 +1085,24 @@ def _run_live_dry_mode(args, *, out, err) -> int:
         out.write("\n")
     else:
         out.write(_format_live_dry_text(payload))
+
+    if args.bundle_out:
+        diagnostics = smoke_result.to_diagnostics()
+        api_calls = smoke_result.budget.to_ledger_summary().get("api_calls", {})
+        bundle = build_run_bundle(
+            mode="live_dry",
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock_seconds,
+            parsed=parsed,
+            smoke_diagnostics=diagnostics,
+            api_calls=api_calls,
+            notes=[
+                f"connector={config.connector}",
+                f"max_queries={config.max_queries}",
+                f"max_results={config.max_results}",
+            ],
+        )
+        _write_bundle(Path(args.bundle_out), bundle)
     return EXIT_OK
 
 
@@ -846,6 +1116,16 @@ def main(
     err = stderr or sys.stderr
 
     args = parse_args(argv)
+
+    if args.bundle_out:
+        try:
+            _validate_bundle_path(
+                Path(args.bundle_out),
+                allow_unsafe=args.allow_unsafe_bundle_path,
+            )
+        except BundlePathUnsafe as exc:
+            err.write(f"error: {exc}\n")
+            return EXIT_BUNDLE_UNSAFE
 
     if args.live_dry:
         return _run_live_dry_mode(args, out=out, err=err)
