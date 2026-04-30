@@ -197,7 +197,7 @@
         "raw_text": { "type": "string" },
         "source_type": {
           "type": "string",
-          "enum": ["web", "news", "official", "court", "foia", "foia_request", "video", "document", "api", "unknown"]
+          "enum": ["web", "news", "official", "court", "court_docket", "court_opinion", "court_search_result", "foia", "foia_request", "video", "document", "api", "unknown"]
         },
         "source_authority": {
           "type": "string",

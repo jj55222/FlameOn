@@ -12,7 +12,7 @@ from .adapters import (
     export_p2_to_p5,
 )
 from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
-from .connectors import ConnectorError, ConnectorUnavailable, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
+from .connectors import ConnectorError, ConnectorUnavailable, CourtListenerConnector, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
 from .identity import IdentityResolution, resolve_identity
 from .models import (
     ArtifactClaim,
@@ -38,6 +38,7 @@ __all__ = [
     "ClaimExtractionResult",
     "ConnectorError",
     "ConnectorUnavailable",
+    "CourtListenerConnector",
     "Jurisdiction",
     "IdentityResolution",
     "MockSourceConnector",
