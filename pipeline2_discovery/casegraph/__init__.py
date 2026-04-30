@@ -1,0 +1,60 @@
+"""CaseGraph rebuild surface for Pipeline 2.
+
+This package is intentionally separate from the deprecated flat-source
+`research.py` loop. It starts with deterministic, no-API normalization and
+export adapters, then later resolver experiments can plug into the same models.
+"""
+
+from .adapters import (
+    export_legacy_evaluate_result,
+    export_p2_to_p3,
+    export_p2_to_p4,
+    export_p2_to_p5,
+)
+from .claim_extraction import ClaimExtractionResult, extract_artifact_claims
+from .connectors import ConnectorError, ConnectorUnavailable, MockSourceConnector, MuckRockConnector, SourceConnector, YouTubeConnector, validate_connector_source_record
+from .identity import IdentityResolution, resolve_identity
+from .models import (
+    ArtifactClaim,
+    CaseIdentity,
+    CaseInput,
+    CasePacket,
+    Jurisdiction,
+    Scores,
+    SourceRecord,
+    VerifiedArtifact,
+)
+from .outcome import OutcomeResolution, resolve_outcome
+from .resolvers import MuckRockFileResolution, resolve_muckrock_released_files
+from .routers import route_manual_defendant_jurisdiction
+
+__all__ = [
+    "ArtifactClaim",
+    "CaseIdentity",
+    "CaseInput",
+    "CasePacket",
+    "ClaimExtractionResult",
+    "ConnectorError",
+    "ConnectorUnavailable",
+    "Jurisdiction",
+    "IdentityResolution",
+    "MockSourceConnector",
+    "MuckRockFileResolution",
+    "MuckRockConnector",
+    "OutcomeResolution",
+    "Scores",
+    "SourceRecord",
+    "SourceConnector",
+    "VerifiedArtifact",
+    "YouTubeConnector",
+    "export_legacy_evaluate_result",
+    "export_p2_to_p3",
+    "export_p2_to_p4",
+    "export_p2_to_p5",
+    "extract_artifact_claims",
+    "route_manual_defendant_jurisdiction",
+    "resolve_identity",
+    "resolve_muckrock_released_files",
+    "resolve_outcome",
+    "validate_connector_source_record",
+]

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://flameon.local/schemas/p2_to_p3.schema.json",
+  "title": "Pipeline 2 to Pipeline 3 Artifact Handoff",
+  "description": "One verified artifact/media object passed from P2 discovery to P3 audio/video preprocessing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "case_title",
+    "artifact_id",
+    "artifact_type",
+    "source_url",
+    "source_authority",
+    "downloadable",
+    "format",
+    "duration_sec",
+    "requires_manual_download",
+    "confidence",
+    "matched_case_fields"
+  ],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "case_title": { "type": "string" },
+    "artifact_id": { "type": "string", "minLength": 1 },
+    "artifact_type": {
+      "type": "string",
+      "enum": ["bodycam", "interrogation", "court_video", "dispatch_911", "other_video", "audio", "document"]
+    },
+    "source_url": { "type": "string" },
+    "source_authority": {
+      "type": "string",
+      "enum": ["official", "court", "foia", "news", "third_party"]
+    },
+    "downloadable": { "type": "boolean" },
+    "format": {
+      "type": "string",
+      "enum": ["video", "audio", "pdf", "document", "html", "unknown"]
+    },
+    "duration_sec": { "type": ["number", "null"] },
+    "requires_manual_download": { "type": "boolean" },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "matched_case_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

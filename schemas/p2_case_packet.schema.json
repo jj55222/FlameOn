@@ -1,0 +1,313 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://flameon.local/schemas/p2_case_packet.schema.json",
+  "title": "Pipeline 2 CasePacket",
+  "description": "Canonical P2 output for the CaseGraph rebuild.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "input",
+    "case_identity",
+    "sources",
+    "artifact_claims",
+    "verified_artifacts",
+    "scores",
+    "verdict",
+    "next_actions",
+    "risk_flags"
+  ],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "input": { "$ref": "#/definitions/case_input" },
+    "case_identity": { "$ref": "#/definitions/case_identity" },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/source_record" }
+    },
+    "artifact_claims": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/artifact_claim" }
+    },
+    "verified_artifacts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/verified_artifact" }
+    },
+    "scores": { "$ref": "#/definitions/scores" },
+    "verdict": {
+      "type": "string",
+      "enum": ["PRODUCE", "HOLD", "SKIP"]
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "definitions": {
+    "case_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_type", "raw_input", "known_fields", "missing_fields", "candidate_queries"],
+      "properties": {
+        "input_type": {
+          "type": "string",
+          "enum": ["manual", "dataset_row", "muckrock", "courtlistener", "youtube", "news_article", "agency_page", "unknown"]
+        },
+        "raw_input": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "known_fields": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "candidate_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "case_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defendant_names",
+        "victim_names",
+        "agency",
+        "jurisdiction",
+        "incident_date",
+        "case_numbers",
+        "charges",
+        "outcome_status",
+        "identity_confidence",
+        "identity_anchors"
+      ],
+      "properties": {
+        "defendant_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "victim_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "agency": { "type": ["string", "null"] },
+        "jurisdiction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["city", "county", "state"],
+          "properties": {
+            "city": { "type": ["string", "null"] },
+            "county": { "type": ["string", "null"] },
+            "state": { "type": ["string", "null"] }
+          }
+        },
+        "incident_date": { "type": ["string", "null"] },
+        "case_numbers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "charges": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "outcome_status": {
+          "type": "string",
+          "enum": ["unknown", "charged", "convicted", "sentenced", "closed", "dismissed", "acquitted"]
+        },
+        "identity_confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "identity_anchors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "source_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "url",
+        "title",
+        "snippet",
+        "raw_text",
+        "source_type",
+        "source_roles",
+        "source_authority",
+        "api_name",
+        "discovered_via",
+        "retrieved_at",
+        "case_input_id",
+        "metadata",
+        "cost_estimate",
+        "confidence_signals",
+        "matched_case_fields"
+      ],
+      "properties": {
+        "source_id": { "type": "string" },
+        "url": { "type": "string" },
+        "title": { "type": "string" },
+        "snippet": { "type": "string" },
+        "raw_text": { "type": "string" },
+        "source_type": {
+          "type": "string",
+          "enum": ["web", "news", "official", "court", "foia", "foia_request", "video", "document", "api", "unknown"]
+        },
+        "source_authority": {
+          "type": "string",
+          "enum": ["official", "court", "foia", "news", "third_party", "unknown"]
+        },
+        "source_roles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["identity_source", "outcome_source", "claim_source", "artifact_source", "possible_artifact_source"]
+          },
+          "uniqueItems": true
+        },
+        "api_name": { "type": ["string", "null"] },
+        "discovered_via": { "type": "string" },
+        "retrieved_at": { "type": "string" },
+        "case_input_id": { "type": ["string", "null"] },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "cost_estimate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "confidence_signals": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "matched_case_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "artifact_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "artifact_type",
+        "claim_label",
+        "claim_source_id",
+        "claim_source_url",
+        "supporting_snippet",
+        "claim_confidence",
+        "risk_flags",
+        "next_actions"
+      ],
+      "properties": {
+        "claim_id": { "type": "string" },
+        "artifact_type": {
+          "type": "string",
+          "enum": ["bodycam", "interrogation", "court_video", "dispatch_911", "docket_docs", "surveillance_video", "other_video", "audio", "document", "unknown"]
+        },
+        "claim_label": {
+          "type": "string",
+          "enum": ["artifact_released", "artifact_requested", "artifact_withheld", "artifact_mentioned_only", "no_artifact"]
+        },
+        "claim_source_id": { "type": "string" },
+        "claim_source_url": { "type": "string" },
+        "supporting_snippet": { "type": "string" },
+        "claim_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "next_actions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "verified_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "artifact_url",
+        "source_url",
+        "source_authority",
+        "downloadable",
+        "format",
+        "matched_case_fields",
+        "confidence",
+        "verification_method",
+        "risk_flags",
+        "metadata"
+      ],
+      "properties": {
+        "artifact_id": { "type": "string" },
+        "artifact_type": {
+          "type": "string",
+          "enum": ["bodycam", "interrogation", "court_video", "dispatch_911", "docket_docs", "surveillance_video", "other_video", "audio", "document", "unknown", "dash_cam", "other"]
+        },
+        "artifact_url": { "type": "string" },
+        "source_url": { "type": "string" },
+        "claim_source_url": { "type": "string" },
+        "source_authority": {
+          "type": "string",
+          "enum": ["official", "court", "foia", "news", "third_party", "unknown"]
+        },
+        "downloadable": { "type": "boolean" },
+        "format": {
+          "type": "string",
+          "enum": ["video", "audio", "pdf", "document", "html", "unknown"]
+        },
+        "matched_case_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "verification_method": {
+          "type": "string",
+          "enum": ["public_url_pattern", "muckrock_metadata", "file_extension"]
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity_score", "outcome_score", "artifact_score", "actionability_score"],
+      "properties": {
+        "identity_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "outcome_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "artifact_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "actionability_score": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    }
+  }
+}

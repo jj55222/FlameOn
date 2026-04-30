@@ -1,15 +1,32 @@
 {
-  "case_id": "manual_min_jian_guan_sf_2026",
+  "case_id": "manual_min_jian_guan_san_francisco_ca",
   "input": {
-    "mode": "manual_defendant_jurisdiction",
-    "raw": {
+    "input_type": "manual",
+    "raw_input": {
       "defendant_names": "Min Jian Guan",
       "jurisdiction": "San Francisco, San Francisco, CA"
     },
-    "missing_fields": [],
+    "known_fields": {
+      "defendant_names": ["Min Jian Guan"],
+      "jurisdiction": {
+        "city": "San Francisco",
+        "county": "San Francisco",
+        "state": "CA"
+      }
+    },
+    "missing_fields": [
+      "victim_names",
+      "agency",
+      "incident_date",
+      "case_numbers",
+      "charges",
+      "outcome_status"
+    ],
     "candidate_queries": [
-      "\"Min Jian Guan\" San Francisco CA case",
-      "\"Min Jian Guan\" bodycam interrogation 911"
+      "\"Min Jian Guan\" \"San Francisco\" \"CA\"",
+      "\"Min Jian Guan\" \"San Francisco\" court case",
+      "\"Min Jian Guan\" bodycam interrogation 911",
+      "\"Min Jian Guan\" San Francisco police"
     ]
   },
   "case_identity": {
@@ -28,47 +45,22 @@
     "identity_confidence": "low",
     "identity_anchors": []
   },
-  "sources": [
-    {
-      "url": "https://example.org/news/min-jian-guan-case",
-      "title": "Example source that mentions the case",
-      "snippet": "The article says video was released, but does not embed or link the artifact.",
-      "source_type": "news",
-      "source_authority": "news",
-      "matched_case_fields": ["defendant_full_name", "city"]
-    }
-  ],
-  "artifact_claims": [
-    {
-      "artifact_type": "bodycam",
-      "claim_label": "artifact_released",
-      "claim_source_url": "https://example.org/news/min-jian-guan-case",
-      "claim_text": "Police released body-worn camera footage in the case.",
-      "confidence": 0.72
-    }
-  ],
-  "verified_artifacts": [
-    {
-      "artifact_type": "bodycam",
-      "artifact_url": "https://www.youtube.com/watch?v=ytap7WQnLK4",
-      "claim_source_url": "https://example.org/news/min-jian-guan-case",
-      "source_authority": "third_party",
-      "downloadable": true,
-      "matched_case_fields": ["defendant_full_name"],
-      "confidence": 0.81
-    }
-  ],
+  "sources": [],
+  "artifact_claims": [],
+  "verified_artifacts": [],
   "scores": {
-    "identity_score": 20.0,
+    "identity_score": 0.0,
     "outcome_score": 0.0,
-    "artifact_score": 65.0,
-    "actionability_score": 42.5
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
   },
   "verdict": "HOLD",
   "next_actions": [
-    "Corroborate identity from court or official source before PRODUCE."
+    "Find identity_source corroborating defendant, jurisdiction, and incident details.",
+    "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status."
   ],
   "risk_flags": [
-    "identity_not_locked"
+    "identity_not_locked",
+    "no_verified_artifacts"
   ]
 }

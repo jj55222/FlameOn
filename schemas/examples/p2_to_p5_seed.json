@@ -1,0 +1,12 @@
+{
+  "case_id": "manual_min_jian_guan_san_francisco_ca",
+  "verdict": "HOLD",
+  "case_summary": "Min Jian Guan is an uncorroborated manual case seed for San Francisco, San Francisco, CA.",
+  "artifact_table": [],
+  "source_table": [],
+  "next_actions": [
+    "Find identity_source corroborating defendant, jurisdiction, and incident details.",
+    "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status."
+  ],
+  "risk_flags": ["identity_not_locked", "no_verified_artifacts"]
+}

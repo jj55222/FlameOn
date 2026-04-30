@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://flameon.local/schemas/p2_to_p4.schema.json",
+  "title": "Pipeline 2 to Pipeline 4 Case Context Handoff",
+  "description": "Case context and artifact references passed from P2 discovery to P4 transcript/narrative scoring.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "case_identity",
+    "outcome_status",
+    "charges",
+    "summary_sources",
+    "artifact_refs",
+    "known_gaps",
+    "source_quality_notes"
+  ],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "case_identity": { "type": "object" },
+    "outcome_status": {
+      "type": "string",
+      "enum": ["unknown", "charged", "convicted", "sentenced", "closed", "dismissed", "acquitted"]
+    },
+    "charges": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "summary_sources": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "known_gaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_quality_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

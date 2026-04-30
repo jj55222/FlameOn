@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://flameon.local/schemas/p2_to_p5.schema.json",
+  "title": "Pipeline 2 to Pipeline 5 Production Packet Seed",
+  "description": "Production packet seed passed from P2 discovery toward P5 assembly.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "verdict",
+    "case_summary",
+    "artifact_table",
+    "source_table",
+    "next_actions",
+    "risk_flags"
+  ],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "verdict": {
+      "type": "string",
+      "enum": ["PRODUCE", "HOLD", "SKIP"]
+    },
+    "case_summary": { "type": "string" },
+    "artifact_table": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "source_table": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

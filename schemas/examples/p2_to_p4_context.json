@@ -1,0 +1,25 @@
+{
+  "case_id": "manual_min_jian_guan_san_francisco_ca",
+  "case_identity": {
+    "defendant_names": ["Min Jian Guan"],
+    "victim_names": [],
+    "agency": null,
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": null,
+    "case_numbers": [],
+    "charges": [],
+    "outcome_status": "unknown",
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "outcome_status": "unknown",
+  "charges": [],
+  "summary_sources": [],
+  "artifact_refs": [],
+  "known_gaps": ["victim_names", "agency", "incident_date", "case_numbers", "charges", "outcome_status"],
+  "source_quality_notes": ["identity_not_locked", "no_verified_artifacts"]
+}
