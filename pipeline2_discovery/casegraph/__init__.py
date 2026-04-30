@@ -47,8 +47,10 @@ from .query_planner import (
     plan_queries_from_youtube_result,
 )
 from .resolvers import (
+    CourtListenerDocumentResolution,
     DocumentCloudFileResolution,
     MuckRockFileResolution,
+    resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
 )
@@ -67,6 +69,7 @@ __all__ = [
     "ConnectorError",
     "ConnectorUnavailable",
     "CourtListenerConnector",
+    "CourtListenerDocumentResolution",
     "DocumentCloudConnector",
     "DocumentCloudFileResolution",
     "Jurisdiction",
@@ -98,6 +101,7 @@ __all__ = [
     "parse_youtube_case_input",
     "plan_queries_from_structured_result",
     "plan_queries_from_youtube_result",
+    "resolve_courtlistener_documents",
     "resolve_documentcloud_files",
     "route_manual_defendant_jurisdiction",
     "resolve_identity",
