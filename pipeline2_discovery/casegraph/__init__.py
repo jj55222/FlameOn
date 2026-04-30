@@ -39,6 +39,7 @@ from .models import (
     VerifiedArtifact,
 )
 from .outcome import OutcomeResolution, resolve_outcome
+from .reporting import build_actionability_report
 from .query_planner import (
     ConnectorQueryPlan,
     PlannedQuery,
@@ -90,6 +91,7 @@ __all__ = [
     "YouTubeInputParseResult",
     "assemble_structured_case_packet",
     "assemble_weak_input_case_packet",
+    "build_actionability_report",
     "export_legacy_evaluate_result",
     "export_p2_to_p3",
     "export_p2_to_p4",
