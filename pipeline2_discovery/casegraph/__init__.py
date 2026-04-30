@@ -61,7 +61,13 @@ from .live_safety import (
     safe_live_budget_for,
     validate_live_run,
 )
-from .live_smoke import LiveSmokeResult, run_capped_live_smoke
+from .live_smoke import (
+    MAX_CONNECTORS_HARD_CAP,
+    LiveSmokeResult,
+    MultiConnectorSmokeResult,
+    run_capped_live_smoke,
+    run_capped_multi_connector_smoke,
+)
 from .outcome import OutcomeResolution, resolve_outcome
 from .reporting import build_actionability_report
 from .query_planner import (
@@ -107,9 +113,11 @@ __all__ = [
     "LiveRunBudget",
     "LiveRunConfig",
     "LiveSmokeResult",
+    "MAX_CONNECTORS_HARD_CAP",
     "MAX_QUERIES_HARD_CAP",
     "MAX_RESULTS_HARD_CAP",
     "MockSourceConnector",
+    "MultiConnectorSmokeResult",
     "MuckRockFileResolution",
     "MuckRockConnector",
     "OutcomeResolution",
@@ -152,6 +160,7 @@ __all__ = [
     "resolve_muckrock_released_files",
     "resolve_outcome",
     "run_capped_live_smoke",
+    "run_capped_multi_connector_smoke",
     "safe_live_budget_for",
     "score_case_packet",
     "validate_connector_source_record",

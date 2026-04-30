@@ -29,7 +29,7 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass, field
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Set
 
 from .connectors import (
     CourtListenerConnector,
@@ -54,6 +54,11 @@ CONNECTOR_FACTORIES: Dict[str, Callable[[], SourceConnector]] = {
     "documentcloud": DocumentCloudConnector,
     "youtube": YouTubeConnector,
 }
+
+# LIVE4 — explicit cap on the number of connectors a multi-connector
+# smoke may invoke. Tighter than ALLOWED_FREE_CONNECTORS since the
+# initial pass deliberately scopes to two providers.
+MAX_CONNECTORS_HARD_CAP: int = 2
 
 
 @dataclass
@@ -174,8 +179,127 @@ def run_capped_live_smoke(
     )
 
 
+@dataclass
+class MultiConnectorSmokeResult:
+    """Aggregate of multiple :class:`LiveSmokeResult` runs.
+
+    LIVE4 caps the number of connectors at
+    :data:`MAX_CONNECTORS_HARD_CAP` (currently 2). Each per-connector
+    `LiveSmokeResult` is preserved on ``per_connector`` and the
+    aggregated counters are pre-computed for ledger emission.
+    """
+
+    per_connector: List[LiveSmokeResult]
+    total_live_calls: int
+    total_source_records: int
+    total_verified_artifacts: int
+    total_wallclock_seconds: float
+    total_estimated_cost_usd: float
+    api_calls: Dict[str, int]
+    errors: List[str] = field(default_factory=list)
+
+    def to_diagnostics(self) -> Dict[str, Any]:
+        """Stable, ledger-friendly diagnostics dict for a multi-connector smoke."""
+        return {
+            "connectors": [r.connector for r in self.per_connector],
+            "total_live_calls": self.total_live_calls,
+            "total_source_records": self.total_source_records,
+            "total_verified_artifacts": self.total_verified_artifacts,
+            "total_wallclock_seconds": round(self.total_wallclock_seconds, 4),
+            "total_estimated_cost_usd": round(self.total_estimated_cost_usd, 4),
+            "api_calls": dict(self.api_calls),
+            "per_connector": [r.to_diagnostics() for r in self.per_connector],
+            "errors": list(self.errors),
+        }
+
+
+def run_capped_multi_connector_smoke(
+    case_input,
+    *,
+    configs: List[LiveRunConfig],
+    connectors: Optional[List[SourceConnector]] = None,
+    env: Optional[Dict[str, str]] = None,
+) -> MultiConnectorSmokeResult:
+    """Run capped live smokes across at most :data:`MAX_CONNECTORS_HARD_CAP`
+    connectors, sequentially.
+
+    Each config goes through :func:`validate_live_run` BEFORE any
+    connector instance is touched. The `connectors` argument, when
+    supplied, must align positionally with `configs` (same length) so
+    tests can inject FakeSession-backed connectors per slot.
+
+    Returns a :class:`MultiConnectorSmokeResult` with per-connector
+    diagnostics and aggregated counters. Verified artifacts stay 0 —
+    the harness deliberately doesn't run a resolver. Brave / Firecrawl
+    / LLM all stay at 0 (validate_live_run rejects those configs
+    upstream).
+    """
+    if not isinstance(configs, list):
+        configs = list(configs)
+    if not configs:
+        raise LiveRunBlocked("at least one LiveRunConfig is required")
+    if len(configs) > MAX_CONNECTORS_HARD_CAP:
+        raise LiveRunBlocked(
+            f"multi-connector smoke capped at {MAX_CONNECTORS_HARD_CAP} connectors; "
+            f"got {len(configs)}"
+        )
+
+    seen_connectors: Set[str] = set()
+    for cfg in configs:
+        if cfg.connector in seen_connectors:
+            raise LiveRunBlocked(
+                f"duplicate connector {cfg.connector!r} in multi-connector smoke; "
+                "each connector can only run once per smoke"
+            )
+        seen_connectors.add(cfg.connector)
+
+    if connectors is not None and len(connectors) != len(configs):
+        raise LiveRunBlocked(
+            "if `connectors` is supplied it must align positionally with `configs`"
+        )
+
+    api_calls: Dict[str, int] = {}
+    per_connector: List[LiveSmokeResult] = []
+    total_live_calls = 0
+    total_sources = 0
+    total_artifacts = 0
+    total_wall = 0.0
+    total_cost = 0.0
+    errors: List[str] = []
+
+    for idx, cfg in enumerate(configs):
+        injected = connectors[idx] if connectors is not None else None
+        smoke_result = run_capped_live_smoke(
+            case_input, config=cfg, connector=injected, env=env
+        )
+        per_connector.append(smoke_result)
+        total_live_calls += smoke_result.budget.query_count
+        total_sources += smoke_result.source_count
+        total_artifacts += smoke_result.verified_artifact_count
+        total_wall += smoke_result.budget.wallclock_seconds
+        total_cost += smoke_result.budget.estimated_cost_usd
+        for provider, count in smoke_result.budget.api_calls.items():
+            api_calls[provider] = api_calls.get(provider, 0) + int(count)
+        if smoke_result.last_error:
+            errors.append(f"{smoke_result.connector}: {smoke_result.last_error}")
+
+    return MultiConnectorSmokeResult(
+        per_connector=per_connector,
+        total_live_calls=total_live_calls,
+        total_source_records=total_sources,
+        total_verified_artifacts=total_artifacts,
+        total_wallclock_seconds=round(total_wall, 4),
+        total_estimated_cost_usd=round(total_cost, 4),
+        api_calls=api_calls,
+        errors=errors,
+    )
+
+
 __all__ = [
     "CONNECTOR_FACTORIES",
     "LiveSmokeResult",
+    "MAX_CONNECTORS_HARD_CAP",
+    "MultiConnectorSmokeResult",
     "run_capped_live_smoke",
+    "run_capped_multi_connector_smoke",
 ]
