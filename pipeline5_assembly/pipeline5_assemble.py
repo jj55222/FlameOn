@@ -249,25 +249,37 @@ def render_markdown(brief):
     lines.append(f"**Recommended arc:** {brief.get('narrative_arc_recommendation', 'chronological')}")
     lines.append("")
 
-    # Case summary
-    lines.append("## Case summary")
-    lines.append("")
-    if cs.get("defendant"):
-        lines.append(f"- **Defendant:** {cs['defendant']}")
-    if cs.get("jurisdiction"):
-        lines.append(f"- **Jurisdiction:** {cs['jurisdiction']}")
-    if cs.get("charges"):
-        lines.append(f"- **Charges:** {', '.join(cs['charges'])}")
-    if cs.get("incident_date"):
-        lines.append(f"- **Incident date:** {cs['incident_date']}")
-    if cs.get("confidence_tier"):
-        lines.append(f"- **P2 tier:** {cs['confidence_tier']}")
-    if cs.get("research_score") is not None:
-        lines.append(f"- **P2 research_score:** {cs['research_score']:.1f}")
-    if cs.get("summary_text"):
+    # Case summary -- suppress entire section when no P2 research
+    # data is available. Renders only when at least one case-summary
+    # field has content.
+    case_summary_has_content = any([
+        cs.get("defendant"),
+        cs.get("jurisdiction"),
+        cs.get("charges"),
+        cs.get("incident_date"),
+        cs.get("confidence_tier"),
+        cs.get("research_score") is not None,
+        cs.get("summary_text"),
+    ])
+    if case_summary_has_content:
+        lines.append("## Case summary")
         lines.append("")
-        lines.append(cs["summary_text"])
-    lines.append("")
+        if cs.get("defendant"):
+            lines.append(f"- **Defendant:** {cs['defendant']}")
+        if cs.get("jurisdiction"):
+            lines.append(f"- **Jurisdiction:** {cs['jurisdiction']}")
+        if cs.get("charges"):
+            lines.append(f"- **Charges:** {', '.join(cs['charges'])}")
+        if cs.get("incident_date"):
+            lines.append(f"- **Incident date:** {cs['incident_date']}")
+        if cs.get("confidence_tier"):
+            lines.append(f"- **P2 tier:** {cs['confidence_tier']}")
+        if cs.get("research_score") is not None:
+            lines.append(f"- **P2 research_score:** {cs['research_score']:.1f}")
+        if cs.get("summary_text"):
+            lines.append("")
+            lines.append(cs["summary_text"])
+        lines.append("")
 
     # Content pitch
     if brief.get("content_pitch"):
@@ -276,31 +288,52 @@ def render_markdown(brief):
         lines.append(brief["content_pitch"])
         lines.append("")
 
-    # Production caveats (advisory — never modifies the verdict)
+    # Production caveats (advisory -- never modifies the verdict).
+    # Build per-bullet first; emit the section heading only if at
+    # least one bullet survives. This handles the edge case where
+    # `has_any` is True solely because of `resolution_gate_applied`
+    # but the gate-cap bullet's defensive guard suppresses it (e.g.
+    # synthetic / malformed input where pre_gate_verdict equals the
+    # emitted verdict). Keeps the production_caveats JSON unchanged.
     caveats = brief.get("production_caveats") or {}
     if caveats.get("has_any"):
-        lines.append("## Production caveats")
-        lines.append("")
-        lines.append("> Advisory notes for human review — these do NOT "
-                     "modify or override the verdict above.")
-        lines.append("")
+        caveat_bullets = []
         flag = caveats.get("production_status_flag")
         status = caveats.get("resolution_status")
         if flag:
-            lines.append(f"- **Production note: {flag}** "
-                         f"(`resolution_status` = `{status}`)")
+            caveat_bullets.append(
+                f"- **Production note: {flag}** "
+                f"(`resolution_status` = `{status}`)"
+            )
         if caveats.get("degraded"):
-            lines.append("- **Pass 2 fallback** — the LLM judgment "
-                         "step failed; verdict fell back to "
-                         "deterministic-only scoring. Treat as "
-                         "lower-confidence.")
+            caveat_bullets.append(
+                "- **Pass 2 fallback** -- the LLM judgment step "
+                "failed; verdict fell back to deterministic-only "
+                "scoring. Treat as lower-confidence."
+            )
         if caveats.get("resolution_gate_applied"):
-            pre = caveats.get("pre_gate_verdict") or "?"
-            emitted = brief.get("verdict") or "?"
-            lines.append(f"- **Verdict capped by resolution gate** "
-                         f"— would have been `{pre}` without the gate; "
-                         f"emitted as `{emitted}`.")
-        lines.append("")
+            pre = caveats.get("pre_gate_verdict")
+            emitted = brief.get("verdict")
+            # Only render the cap line when the cap actually changed
+            # the verdict. In real runs apply_resolution_gate sets
+            # gate_applied=True only when pre != emitted, but be
+            # defensive against synthetic / malformed inputs.
+            if pre and emitted and pre != emitted:
+                caveat_bullets.append(
+                    f"- **Verdict capped by resolution gate** -- "
+                    f"would have been `{pre}` without the gate; "
+                    f"emitted as `{emitted}`."
+                )
+        if caveat_bullets:
+            lines.append("## Production caveats")
+            lines.append("")
+            lines.append(
+                "> Advisory notes for human review -- these do NOT "
+                "modify or override the verdict above."
+            )
+            lines.append("")
+            lines.extend(caveat_bullets)
+            lines.append("")
 
     # Artifact completeness
     ac = brief.get("artifact_completeness") or {}
