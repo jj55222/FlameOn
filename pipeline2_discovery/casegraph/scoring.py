@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Dict, Iterable, List, Set
 
+from .media_relevance import classify_media_relevance
 from .models import ArtifactClaim, CasePacket, SourceRecord, VerifiedArtifact
 
 
@@ -289,6 +290,38 @@ def _next_actions(packet: CasePacket, media_artifacts: List[VerifiedArtifact]) -
     return actions
 
 
+def _add_media_quality_advisories(
+    *,
+    verdict: str,
+    media_artifacts: List[VerifiedArtifact],
+    risks: List[str],
+    reasons: List[str],
+    actions: List[str],
+) -> None:
+    """Append advisory-only media relevance warnings.
+
+    These flags are deliberately added after the core verdict is
+    computed so media-quality rollout cannot silently change existing
+    PRODUCE/HOLD/SKIP behavior.
+    """
+
+    if not media_artifacts:
+        return
+
+    relevance = [classify_media_relevance(artifact) for artifact in media_artifacts]
+    if any("media_query_artifact_type_mismatch" in r.risk_flags for r in relevance):
+        _append_unique(risks, ["media_query_artifact_type_mismatch"])
+        _append_unique(reasons, ["query_artifact_type_not_confirmed_by_metadata"])
+        _append_unique(actions, ["manually_verify_media_relevance"])
+
+    if verdict == "PRODUCE" and all(
+        r.media_relevance_tier in {"C", "unknown"} for r in relevance
+    ):
+        _append_unique(risks, ["produce_based_on_weak_or_uncertain_media"])
+        _append_unique(reasons, ["produce_based_on_weak_or_uncertain_media"])
+        _append_unique(actions, ["manually_verify_media_relevance"])
+
+
 def _verdict(
     packet: CasePacket,
     production_score: float,
@@ -368,6 +401,13 @@ def score_case_packet(packet: CasePacket) -> ActionabilityResult:
         _append_unique(reasons, ["claim_only_hold"])
     if verdict == "HOLD" and document_artifacts and not media_artifacts:
         _append_unique(reasons, ["document_only_hold"])
+    _add_media_quality_advisories(
+        verdict=verdict,
+        media_artifacts=media_artifacts,
+        risks=risks,
+        reasons=reasons,
+        actions=actions,
+    )
 
     aggregate = round((production_score * 0.65) + (research_score * 0.35), 2)
     return ActionabilityResult(
