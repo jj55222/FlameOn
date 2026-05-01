@@ -119,6 +119,54 @@ def _fmt_timestamp(sec):
     return f"{m}:{s:02d}"
 
 
+_VIDEO_SHARING_HOSTS = ("youtube.com", "youtu.be", "vimeo.com")
+
+
+def _source_download_command(source):
+    """Pure helper: derive a download/action instruction for one P2
+    source dict. No network calls, no URL fetching, no classification
+    beyond what the source dict itself carries.
+
+    Returns the human-facing command string. Three categories:
+      - YouTube / Vimeo / video-sharing hosts -> ``yt-dlp "URL"``
+      - format in {video, audio, document}    -> ``Direct download: URL``
+      - everything else (webpage, unknown)     -> ``Open/review manually: URL``
+
+    The ``requires_download`` flag escalates a video/audio source to
+    yt-dlp regardless of host (e.g., MuckRock CDN videos that need
+    extraction).
+    """
+    if not source:
+        return "Open/review manually: (no url)"
+    url = (source.get("url") or "").strip()
+    if not url:
+        return "Open/review manually: (no url)"
+
+    url_lower = url.lower()
+    if any(h in url_lower for h in _VIDEO_SHARING_HOSTS):
+        return f'yt-dlp "{url}"'
+
+    fmt = (source.get("format") or "").lower()
+    requires_dl = bool(source.get("requires_download", False))
+
+    if requires_dl and fmt in {"video", "audio"}:
+        return f'yt-dlp "{url}"'
+
+    if fmt in {"video", "audio", "document"}:
+        return f"Direct download: {url}"
+
+    return f"Open/review manually: {url}"
+
+
+def _with_download_command(source):
+    """Return a copy of ``source`` with a ``download_command`` field
+    added. Pure -- the input dict is never mutated, mirroring the
+    ``_add_clip_boundaries`` pattern."""
+    out = dict(source) if source else {}
+    out["download_command"] = _source_download_command(source)
+    return out
+
+
 def _add_clip_boundaries(moment):
     """Return a copy of `moment` with `clip_start_sec` / `clip_end_sec`
     fields added for editor convenience.
@@ -232,11 +280,13 @@ def build_brief(verdict, case_research, transcripts, weights):
         )
     ]
 
-    # Sources grouped by evidence type (makes markdown brief cleaner)
+    # Sources grouped by evidence type (makes markdown brief cleaner).
+    # Each source is enriched with a download_command for editor
+    # convenience; original case_research source dicts are not mutated.
     sources_by_type = {}
     for s in p2_sources:
         et = s.get("evidence_type", "other")
-        sources_by_type.setdefault(et, []).append(s)
+        sources_by_type.setdefault(et, []).append(_with_download_command(s))
 
     brief = {
         "case_id": case_id,
@@ -434,8 +484,14 @@ def render_markdown(brief):
             lines.append(f"### {et} ({len(items)})")
             lines.append("")
             for s in items:
-                note = f" — {s['notes']}" if s.get("notes") else ""
-                lines.append(f"- [{s.get('source_domain') or s.get('url','')}]({s.get('url','')}){note}")
+                domain = s.get("source_domain") or s.get("url", "")
+                url = s.get("url", "")
+                cmd = s.get("download_command") or ""
+                note = f" -- {s['notes']}" if s.get("notes") else ""
+                if cmd:
+                    lines.append(f"- [{domain}]({url}) -- `{cmd}`{note}")
+                else:
+                    lines.append(f"- [{domain}]({url}){note}")
             lines.append("")
 
     # Transcripts manifest
