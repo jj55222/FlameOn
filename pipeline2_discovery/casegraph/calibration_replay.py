@@ -180,6 +180,12 @@ def _metrics(
         "documentcloud_supported_count": _count_connector(rows, "documentcloud"),
         "courtlistener_supported_count": _count_connector(rows, "courtlistener"),
         "likely_firecrawl_needed_count": sum(1 for row in rows if _needs_firecrawl_known_url(row)),
+        "ready_for_portal_fetch_count": sum(
+            1 for row in rows if _needs_firecrawl_known_url(row) and bool(row.known_source_urls)
+        ),
+        "needs_seed_url_discovery_count": sum(
+            1 for row in rows if _needs_firecrawl_known_url(row) and not row.known_source_urls
+        ),
         "failure_reason_counts": _failure_counts(case_results),
     }
 
@@ -244,4 +250,3 @@ def _top_next_work_items(failure_counts: Dict[str, int]) -> List[Dict[str, Any]]
 
 def replay_to_jsonable(result: CalibrationReplayResult) -> Dict[str, Any]:
     return result.to_dict()
-
