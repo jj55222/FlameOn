@@ -53,7 +53,13 @@ from transcript_loader import (
 )
 from llm_backends import LLMBackend, LLMError, repair_truncated_json
 from prompts import render_pass1, render_pass2, DRY_RUN_PASS1_STUB, VALID_MOMENT_TYPES, VALID_ARC_TYPES
-from scoring_math import compute_all, equal_weight_fallback
+from scoring_math import (
+    RESOLUTION_VERDICT_CEILING,
+    VALID_RESOLUTION_STATUSES,
+    apply_resolution_gate,
+    compute_all,
+    equal_weight_fallback,
+)
 
 
 DEFAULT_PASS1_MODEL = os.environ.get(
@@ -101,6 +107,66 @@ def load_case_research(path):
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"  [WARN] Failed to load case research from {path}: {e}")
         return None
+
+
+def load_resolution_labels(path=None):
+    """Load Pipeline 4 resolution_labels.json -- the manual backfill of
+    resolution_status per case_id used until Pipeline 2 sets the field
+    natively from court dockets.
+
+    Loaded fresh on each score_case call (not cached at module level):
+    the file is small, and notebook / long-session runs need to see
+    edits without an interpreter restart.
+
+    Returns a dict keyed by case_id (the contents of the JSON's "labels"
+    field), or {} if the file is missing / unreadable / malformed.
+    """
+    if path is None:
+        path = Path(__file__).parent / "resolution_labels.json"
+    if not Path(path).exists():
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("labels", {}) or {}
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"  [WARN] Failed to load resolution_labels from {path}: {e}")
+        return {}
+
+
+def _resolve_resolution_status(case_id, case_research, labels, pass1):
+    """Resolve resolution_status via the four-tier priority chain.
+
+    Returns (status, source_label) where status is always a valid enum
+    value (defaulting to "missing" when nothing resolves -- fail closed)
+    and source_label records which tier supplied it.
+
+    Priority:
+      1. case_research.resolution_status   -> "case_research"
+      2. labels[case_id].resolution_status -> "labels_file"
+      3. pass1.resolution_status_hint      -> "pass1_hint"
+      4. "missing"                         -> "default_missing"
+
+    Invalid / unknown values at any tier fall through. Pass 2's
+    downgrade-only clamp is applied separately by the caller (after
+    this returns) so the audit trail records pre-Pass-2 source first
+    and the pass2_downgrade flip second.
+    """
+    if case_research:
+        v = case_research.get("resolution_status")
+        if v in VALID_RESOLUTION_STATUSES:
+            return v, "case_research"
+    if labels:
+        label = labels.get(case_id)
+        if label:
+            v = label.get("resolution_status")
+            if v in VALID_RESOLUTION_STATUSES:
+                return v, "labels_file"
+    if pass1:
+        v = pass1.get("resolution_status_hint")
+        if v in VALID_RESOLUTION_STATUSES:
+            return v, "pass1_hint"
+    return "missing", "default_missing"
 
 
 # ─────────────────────────────────────────────────────────────
@@ -452,6 +518,55 @@ def score_case(
     else:
         final_verdict = llm_verdict
 
+    # Resolution gate (post-reconciliation verdict ceiling).
+    # Read env at orchestration layer; pure gate fn lives in scoring_math.
+    # Default OFF -- env var P4_RESOLUTION_GATE must be "1" to enable.
+    gate_enabled = os.environ.get("P4_RESOLUTION_GATE", "0") == "1"
+    resolution_labels = load_resolution_labels()
+    resolution_status, resolution_source = _resolve_resolution_status(
+        case_id=case_id,
+        case_research=case_research,
+        labels=resolution_labels,
+        pass1=pass1,
+    )
+
+    # Pass 2 may downgrade only -- never upgrade. A downgrade is allowed
+    # iff Pass 2's status is valid AND maps to a STRICTLY LOWER verdict
+    # ceiling than the currently-resolved status. Invalid / absent /
+    # less-restrictive Pass 2 values are silently ignored.
+    p2_status = pass2.get("resolution_status") if pass2 else None
+    if p2_status in VALID_RESOLUTION_STATUSES:
+        _rank = {"SKIP": 0, "HOLD": 1, "PRODUCE": 2}
+        current_rank = _rank[RESOLUTION_VERDICT_CEILING[resolution_status]]
+        p2_rank = _rank[RESOLUTION_VERDICT_CEILING[p2_status]]
+        if p2_rank < current_rank:
+            resolution_status = p2_status
+            resolution_source = "pass2_downgrade"
+
+    pre_gate_verdict = final_verdict
+    final_verdict, gate_applied = apply_resolution_gate(
+        final_verdict, resolution_status, gate_enabled=gate_enabled,
+    )
+
+    # Visible log of gate decision -- enabled or not, the resolved
+    # status is always recorded so audit-from-stdout works either way.
+    if gate_enabled:
+        if gate_applied:
+            print(
+                f"  [Gate] resolution={resolution_status} (source={resolution_source}) "
+                f"-> ceiling={final_verdict} (was {pre_gate_verdict})"
+            )
+        else:
+            print(
+                f"  [Gate] resolution={resolution_status} (source={resolution_source}) "
+                f"-> no change (verdict={final_verdict})"
+            )
+    else:
+        print(
+            f"  [Gate] disabled (P4_RESOLUTION_GATE=0); resolution={resolution_status} "
+            f"(source={resolution_source}) recorded but not enforced"
+        )
+
     # Source references for p4_to_p5_verdict schema
     transcript_refs = merged.get("transcript_refs", [])
     source_refs = [case_research.get("case_id", "")] if case_research else []
@@ -470,6 +585,7 @@ def score_case(
     verdict = {
         "case_id": case_id,
         "verdict": final_verdict,
+        "resolution_status": resolution_status,
         "narrative_score": scoring["narrative_score"],
         "confidence": pass2.get("confidence", scoring["confidence"]),
         "key_moments": [
@@ -498,6 +614,10 @@ def score_case(
             "llm_verdict": llm_verdict,
             "reasoning_summary": pass2.get("reasoning_summary", ""),
             "degraded": degraded,
+            "resolution_source": resolution_source,
+            "resolution_gate_enabled": gate_enabled,
+            "resolution_gate_applied": gate_applied,
+            "pre_gate_verdict": pre_gate_verdict,
             "n_sources": len(merged["sources"]),
             "n_pass1_moments": len(pass1.get("moments", [])),
             "n_final_moments": len(pass2.get("final_moments", [])),
@@ -554,10 +674,17 @@ def _dry_run_output(merged, weights, pass1_backend, pass2_backend):
 
 
 def _error_verdict(merged, weights, error_str):
-    """Build a minimal verdict when Pass 1 completely fails."""
+    """Build a minimal verdict when Pass 1 completely fails.
+
+    Schema is intentionally aligned with the success-path verdict so
+    downstream consumers (Pipeline 5, batch_summary.tsv) don't have to
+    branch on success/error. resolution_* fields default to the
+    fail-closed missing posture with the gate disabled.
+    """
     return {
         "case_id": merged["case_id"],
         "verdict": "HOLD",
+        "resolution_status": "missing",
         "narrative_score": 0,
         "confidence": 0.1,
         "key_moments": [],
@@ -578,6 +705,10 @@ def _error_verdict(merged, weights, error_str):
         "source_refs": [],
         "_pipeline4_metadata": {
             "_error": error_str,
+            "resolution_source": "default_missing",
+            "resolution_gate_enabled": False,
+            "resolution_gate_applied": False,
+            "pre_gate_verdict": "HOLD",
             "scored_at": datetime.utcnow().isoformat() + "Z",
         },
     }
@@ -600,8 +731,25 @@ def write_verdict(verdict, output_dir):
     return out_path
 
 
+# Header for batch_summary.tsv. Mismatch against an existing file
+# triggers auto-rotation (see ``append_batch_summary``) so we never
+# emit ragged rows when columns are added across versions.
+BATCH_SUMMARY_HEADER = (
+    "case_id\tverdict\tnarrative_score\tconfidence\tn_sources\t"
+    "n_moments\tdensity\tarc\tartifact\tunique\tscored_at\t"
+    "resolution_status\tgate_applied\tpre_gate_verdict\n"
+)
+
+
 def append_batch_summary(verdict, output_dir):
-    """Append a row to batch_summary.tsv."""
+    """Append a row to batch_summary.tsv.
+
+    Auto-rotates the TSV when the existing on-disk header doesn't match
+    BATCH_SUMMARY_HEADER (e.g. column added across versions). The old
+    file is renamed to batch_summary.tsv.bak.<UTC-timestamp> so
+    historical rows are never lost; a fresh file with the current
+    header is then created. No manual cleanup required.
+    """
     if verdict is None:
         return
     output_dir = Path(output_dir)
@@ -618,15 +766,33 @@ def append_batch_summary(verdict, output_dir):
         floor = SUBSCORE_MISSING_FLOOR.get(name, 0.0)
         return f"{floor:.1f}"
 
+    # Auto-rotate on header drift. Only inspects the first line so cost
+    # is negligible. Failure to read is logged but doesn't abort -- we
+    # then fall through to append, preserving prior behaviour for
+    # unreadable-but-extant files.
+    if summary_path.exists():
+        try:
+            with open(summary_path, "r", encoding="utf-8") as f:
+                existing_header = f.readline()
+            if existing_header != BATCH_SUMMARY_HEADER:
+                ts = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+                backup = summary_path.with_suffix(f".tsv.bak.{ts}")
+                summary_path.rename(backup)
+                print(
+                    f"  [TSV] batch_summary.tsv header changed -- old file rotated to "
+                    f"{backup.name}; starting fresh with current schema."
+                )
+        except OSError as e:
+            print(f"  [WARN] Failed to inspect existing batch_summary.tsv: {e}")
+
     is_new = not summary_path.exists()
     with open(summary_path, "a", encoding="utf-8") as f:
         if is_new:
-            f.write(
-                "case_id\tverdict\tnarrative_score\tconfidence\tn_sources\t"
-                "n_moments\tdensity\tarc\tartifact\tunique\tscored_at\n"
-            )
+            f.write(BATCH_SUMMARY_HEADER)
         bd = verdict.get("scoring_breakdown", {})
         meta = verdict.get("_pipeline4_metadata", {})
+        gate_applied = meta.get("resolution_gate_applied", False)
+        pre_gate = meta.get("pre_gate_verdict", verdict.get("verdict", ""))
         f.write(
             f"{verdict['case_id']}\t{verdict['verdict']}\t"
             f"{verdict.get('narrative_score', 0):.1f}\t{verdict.get('confidence', 0):.2f}\t"
@@ -635,7 +801,10 @@ def append_batch_summary(verdict, output_dir):
             f"{_fmt_subscore(bd.get('arc_similarity_score'), 'arc_similarity_score')}\t"
             f"{_fmt_subscore(bd.get('artifact_completeness_score'), 'artifact_completeness_score')}\t"
             f"{_fmt_subscore(bd.get('uniqueness_score'), 'uniqueness_score')}\t"
-            f"{meta.get('scored_at', '')}\n"
+            f"{meta.get('scored_at', '')}\t"
+            f"{verdict.get('resolution_status', 'missing')}\t"
+            f"{'true' if gate_applied else 'false'}\t"
+            f"{pre_gate}\n"
         )
 
 

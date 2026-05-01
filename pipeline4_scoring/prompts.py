@@ -133,7 +133,8 @@ Extract the following and return a single JSON object with EXACTLY this structur
       "timestamp_sec": 45.2
     }}
   ],
-  "detected_structure_hint": "chronological|cold_open|parallel_timeline|reveal_structure|escalation"
+  "detected_structure_hint": "chronological|cold_open|parallel_timeline|reveal_structure|escalation",
+  "resolution_status_hint": "confirmed_final_outcome|charges_filed_pending|ongoing_or_unclear (OMIT THIS FIELD if uncertain)"
 }}
 
 RULES:
@@ -161,7 +162,8 @@ RULES:
    - "escalation" — opens calm and steadily escalates without re-ordering
    - "parallel_timeline" — alternates between two timelines (e.g. investigation thread vs. suspect-life thread)
    - "reveal_structure" — only when the structure is explicitly built around delaying ONE specific revelation (rare; do not over-pick this)
-9. Return ONLY the JSON object. No prose before or after. No markdown. No thinking blocks.
+9. resolution_status_hint (OPTIONAL, omit if uncertain): if the transcript or sources EXPLICITLY state a final court disposition (sentence, conviction, plea, dismissal, acquittal), set "confirmed_final_outcome". If charges have been filed but no final outcome appears in the transcript, set "charges_filed_pending". If only investigation / no-charges / unclear status is mentioned, set "ongoing_or_unclear". When in doubt, OMIT THIS FIELD ENTIRELY -- the orchestration layer falls back to "missing" which is the safe default. Do not guess.
+10. Return ONLY the JSON object. No prose before or after. No markdown. No thinking blocks.
 """
 
 
