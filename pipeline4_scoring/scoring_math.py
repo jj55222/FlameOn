@@ -480,3 +480,88 @@ def compute_all(
         "estimated_runtime_min": runtime_min,
         "missing_recommended_artifacts": missing,
     }
+
+
+# ---------------------------------------------------------------------------
+# Resolution-status verdict-ceiling gate
+# ---------------------------------------------------------------------------
+#
+# Production-readiness gate applied at the orchestration layer AFTER the
+# four-subscore math and AFTER LLM/deterministic verdict reconciliation.
+# It does NOT alter narrative_score; it only caps the emitted verdict
+# based on whether the case has a court-final disposition. Editorial
+# doctrine: a case missing final criminal/court disposition is not
+# production-ready, regardless of how strong its narrative metrics are.
+#
+# Pure functions only. The caller (pipeline4_score.score_case) reads the
+# P4_RESOLUTION_GATE env var and passes the resulting bool as
+# ``gate_enabled`` -- this module never touches the environment so the
+# gate stays trivially testable.
+#
+# See ARCHITECTURE.md "Resolution gate" for the full doctrine.
+
+VALID_RESOLUTION_STATUSES = (
+    "confirmed_final_outcome",
+    "charges_filed_pending",
+    "ongoing_or_unclear",
+    "missing",
+)
+
+# Maximum verdict each resolution_status permits. The gate caps a
+# reconciled verdict at the listed ceiling -- never upgrades.
+RESOLUTION_VERDICT_CEILING = {
+    "confirmed_final_outcome": "PRODUCE",
+    "charges_filed_pending": "HOLD",
+    "ongoing_or_unclear": "SKIP",
+    "missing": "SKIP",
+}
+
+# Severity ordering used to compare a verdict against its ceiling.
+# PRODUCE is strongest, SKIP is weakest. A verdict whose rank is <=
+# the ceiling rank is already at-or-below the ceiling and passes
+# through unchanged.
+_VERDICT_RANK = {"SKIP": 0, "HOLD": 1, "PRODUCE": 2}
+
+
+def apply_resolution_gate(
+    verdict: str,
+    resolution_status: Optional[str],
+    gate_enabled: bool = False,
+) -> tuple:
+    """
+    Cap ``verdict`` at the ceiling permitted by ``resolution_status``.
+
+    Pure function -- no env reads. The orchestration layer is responsible
+    for reading ``P4_RESOLUTION_GATE`` and passing the resulting bool as
+    ``gate_enabled``.
+
+    Returns ``(emitted_verdict, gate_applied)``:
+      * ``emitted_verdict`` -- the verdict after the ceiling has been
+        applied (or the unchanged input if the gate is disabled or the
+        verdict is already at-or-below the ceiling).
+      * ``gate_applied`` -- True iff the ceiling actually changed the
+        verdict; False otherwise (gate off, no-op clamp, or status
+        unrecognized but verdict already at-or-below the missing-fallback
+        ceiling).
+
+    Behaviour:
+      * gate_enabled=False -> returns (verdict, False) unchanged
+      * resolution_status is None or not in VALID_RESOLUTION_STATUSES
+        -> treated as "missing" (fail-closed) so unknown / mis-typed
+        statuses cannot accidentally promote a case
+      * verdict already at-or-below ceiling -> returns (verdict, False)
+      * verdict above ceiling -> returns (ceiling, True)
+    """
+    if not gate_enabled:
+        return verdict, False
+
+    if resolution_status not in RESOLUTION_VERDICT_CEILING:
+        # Unknown / None status -> fail closed under the missing ceiling.
+        ceiling = RESOLUTION_VERDICT_CEILING["missing"]
+    else:
+        ceiling = RESOLUTION_VERDICT_CEILING[resolution_status]
+
+    if _VERDICT_RANK.get(verdict, 0) <= _VERDICT_RANK[ceiling]:
+        return verdict, False
+
+    return ceiling, True

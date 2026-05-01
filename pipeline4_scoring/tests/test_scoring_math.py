@@ -28,9 +28,11 @@ from scoring_math import (
     PRODUCE_DENSITY_THRESH,
     PRODUCE_SCORE_THRESH,
     REFERENCE_DENSITY,
+    RESOLUTION_VERDICT_CEILING,
     SKIP_SCORE_THRESH,
     SUBSCORE_MISSING_FLOOR,
     VALID_MOMENT_TYPES,
+    VALID_RESOLUTION_STATUSES,
     arc_similarity_score,
     artifact_completeness_score,
     combine,
@@ -539,6 +541,24 @@ def test_subscore_missing_floors_are_non_negative_and_below_50():
     for name, floor in SUBSCORE_MISSING_FLOOR.items():
         assert 0.0 <= floor < 50.0, (
             f"floor for {name} = {floor} — must be in [0, 50)"
+        )
+
+
+def test_resolution_verdict_ceiling_keys_match_valid_statuses():
+    """``RESOLUTION_VERDICT_CEILING`` must cover every status in
+    ``VALID_RESOLUTION_STATUSES``. The orchestration layer looks up
+    statuses against this map; an absent key would silently fall through
+    to the missing-fallback ceiling and mask a real enum drift. This
+    sanity test fails fast on drift and forces the author to keep them
+    in sync.
+
+    Detailed gate behaviour lives in ``test_resolution_gate.py`` --
+    this test is the constants-side mirror of that contract."""
+    assert set(RESOLUTION_VERDICT_CEILING) == set(VALID_RESOLUTION_STATUSES)
+    valid_verdicts = {"PRODUCE", "HOLD", "SKIP"}
+    for status, ceiling in RESOLUTION_VERDICT_CEILING.items():
+        assert ceiling in valid_verdicts, (
+            f"Ceiling {ceiling!r} for status {status!r} is not a valid verdict"
         )
 
 
