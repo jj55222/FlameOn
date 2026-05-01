@@ -76,6 +76,12 @@ from .live_smoke import (
 )
 from .outcome import OutcomeResolution, resolve_outcome
 from .pilots import assess_pilot, run_pilot_manifest, select_pilot_for_live_smoke
+from .primary_media_candidates import (
+    PrimaryMediaCandidate,
+    PrimaryMediaCandidateReport,
+    default_primary_media_source_paths,
+    mine_primary_media_candidates,
+)
 from .reporting import (
     build_actionability_report,
     build_live_yield_report,
@@ -159,6 +165,8 @@ __all__ = [
     "OutcomeResolution",
     "PAID_CONNECTORS",
     "PlannedQuery",
+    "PrimaryMediaCandidate",
+    "PrimaryMediaCandidateReport",
     "QueryPlanResult",
     "RESOLVER_NAMES",
     "ResolverOrchestrationResult",
@@ -188,6 +196,7 @@ __all__ = [
     "classify_media_relevance",
     "classify_media_relevance_many",
     "compare_run_bundles",
+    "default_primary_media_source_paths",
     "estimate_cost",
     "export_legacy_evaluate_result",
     "export_p2_to_p3",
@@ -195,6 +204,7 @@ __all__ = [
     "export_p2_to_p5",
     "extract_artifact_claims",
     "is_live_enabled",
+    "mine_primary_media_candidates",
     "normalize_api_calls",
     "parse_fatal_encounters_case_input",
     "parse_mapping_police_violence_case_input",
