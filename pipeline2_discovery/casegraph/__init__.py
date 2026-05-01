@@ -79,6 +79,7 @@ from .pilots import assess_pilot, run_pilot_manifest, select_pilot_for_live_smok
 from .reporting import (
     build_actionability_report,
     build_live_yield_report,
+    build_media_quality_report,
     build_pilot_validation_scoreboard,
     build_validation_metrics_report,
 )
@@ -178,6 +179,7 @@ __all__ = [
     "assess_pilot",
     "build_actionability_report",
     "build_live_yield_report",
+    "build_media_quality_report",
     "build_pilot_validation_scoreboard",
     "build_run_ledger_entry",
     "build_validation_metrics_report",

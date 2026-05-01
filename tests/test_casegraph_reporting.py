@@ -66,6 +66,7 @@ EXPECTED_TOP_LEVEL_KEYS = {
     "reason_code_counts",
     "input_type_breakdown",
     "produce_eligible_inventory",
+    "media_quality",
 }
 
 EXPECTED_GUARD_KEYS = {
@@ -96,6 +97,8 @@ def test_empty_packet_list_returns_zero_filled_report():
     assert report["reason_code_counts"] == {}
     assert report["input_type_breakdown"] == {}
     assert report["produce_eligible_inventory"] == []
+    assert report["media_quality"]["total_media_artifacts"] == 0
+    assert report["media_quality"]["tier_counts"] == {"A": 0, "B": 0, "C": 0, "unknown": 0}
 
 
 def test_single_media_rich_packet_counts_produce_and_inventory():
