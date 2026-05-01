@@ -81,7 +81,7 @@ score_case(merged, weights, case_research, pass1_backend, pass2_backend)
 | `P4_PRODUCE_DENSITY_THRESH` | `20` (V9b) | min moment_density for PRODUCE |
 | `P4_SKIP_SCORE_THRESH` | `15` (V9b) | below this → SKIP |
 | `P4_TRUST_DETERMINISTIC_PRODUCE` | `0` | when 1, math-says-PRODUCE wins over LLM-says-HOLD |
-| `P4_RESOLUTION_GATE` | `0` | when 1, applies the resolution-status verdict ceiling — caps verdicts whose case lacks a confirmed court disposition (see "Critical contract 5: Resolution gate" below). Default OFF. |
+| `P4_RESOLUTION_GATE` | `0` | OPTIONAL conservative mode. When `1`, applies a verdict ceiling based on `resolution_status` (see "Critical contract 5" below). Default OFF — the default scoring path treats resolution status as advisory metadata only, surfaced via the `production_status_flag` field. |
 | `P4_PARALLEL` | `1` | concurrent cases in evaluate.py |
 
 ## Critical contracts (DON'T BREAK)
@@ -187,32 +187,52 @@ signals per the editorial spec but currently land implicitly
 uniqueness). Promoting them to explicit subscores is a structural
 change for a future pass.
 
-Resolution status, however, IS now explicit — but as a verdict-layer
-gate, not a subscore. See "Critical contract 5: Resolution gate" below.
+Resolution status is now an explicit signal — primarily as an
+ADVISORY FLAG (default doctrine), with an optional verdict-ceiling
+GATE available for conservative workflows. See "Critical contract 5"
+below.
 
-### 5. Resolution gate (production-readiness verdict ceiling)
+### 5. Resolution gate (optional) and advisory flag (default)
 
-The resolution gate is a production-readiness check layered above the
-four-subscore math. It does NOT alter `narrative_score`; it only caps
-the emitted verdict based on whether the case has a confirmed court
-disposition. Editorial doctrine: a case with strong narrative metrics
-but no court-final outcome is not production-ready, regardless of how
-strong the narrative looks.
+**Default doctrine — advisory only.** Resolution / sentencing / final
+adjudication is recorded as ADVISORY metadata on the verdict. It does
+NOT alter `narrative_score`, the deterministic verdict, the LLM
+verdict, the reconciliation, or the emitted final verdict. The default
+scorer measures narrative quality / winner-likeness ("is this a
+strong story?"), NOT court-disposition production clearance. The
+advisory output is the `production_status_flag` field — emitted on
+every verdict, no env var needed.
 
-**Default OFF.** Enabled by setting `P4_RESOLUTION_GATE=1`. With the
-gate disabled, `resolution_status` is still resolved and recorded in
-the verdict + TSV (the audit trail) but the verdict is unchanged.
+**Why advisory and not a hard cap by default?** The calibration set
+is composed of known YouTube winners — emulation targets. A pending
+case can be a narrative winner exactly the same way a sentenced case
+can. Pulling sentencing into pass/fail would conflate two unrelated
+signals (story quality + court status). The advisory split keeps them
+distinct: `narrative_score` / `verdict` says "is this a strong
+story?"; `production_status_flag` says "what's the production
+caveat?". The producer / Pipeline 5 reads the flag and decides.
 
-**Resolution status enum and verdict ceilings:**
+**Optional gate (`P4_RESOLUTION_GATE=1`).** A verdict-ceiling gate
+(`apply_resolution_gate`) is implemented and tested, but DEFAULT OFF.
+Conservative production workflows that explicitly want pending cases
+capped may enable it. With the gate disabled (default),
+`resolution_status` is still resolved and recorded as advisory
+metadata, but the verdict is unchanged.
 
-| Status | Meaning | Verdict ceiling |
-|---|---|---|
-| `confirmed_final_outcome` | Conviction, plea, acquittal, dismissal, sentencing, or any final court disposition | `PRODUCE` (no cap) |
-| `charges_filed_pending` | Charges filed but no final disposition yet | `HOLD` |
-| `ongoing_or_unclear` | Investigation only / no charges / status unknown | `SKIP` |
-| `missing` | No resolution data could be resolved (fail-closed default) | `SKIP` |
+**Resolution status enum, advisory flag (default), and verdict ceiling (optional gate):**
 
-The ceiling map lives in `RESOLUTION_VERDICT_CEILING` in `scoring_math.py`.
+| Status | Meaning | `production_status_flag` (default, always emitted) | Verdict ceiling (only when gate ON) |
+|---|---|---|---|
+| `confirmed_final_outcome` | Conviction, plea, acquittal, dismissal, sentencing, or any final court disposition | `null` (no flag — case is ready) | `PRODUCE` (no cap) |
+| `charges_filed_pending` | Charges filed but no final disposition yet | `"pending_case_review"` | `HOLD` |
+| `ongoing_or_unclear` | Investigation only / no charges / status unknown | `"ongoing_status_review"` | `SKIP` |
+| `missing` | No resolution data could be resolved (fail-closed default) | `"resolution_unknown"` | `SKIP` |
+
+The advisory flag map lives in `RESOLUTION_PRODUCTION_FLAG` in
+`scoring_math.py` (always emitted on every verdict). The verdict-ceiling
+map lives in `RESOLUTION_VERDICT_CEILING` (only consulted when
+`P4_RESOLUTION_GATE=1`). Unknown / `None` / invalid statuses fail
+closed to `"resolution_unknown"` on the flag side.
 
 **Resolution source priority** (`pipeline4_score._resolve_resolution_status`):
 
@@ -242,17 +262,44 @@ The orchestration layer (`pipeline4_score.score_case`) reads
 `P4_RESOLUTION_GATE` and passes the bool. This keeps the gate trivially
 testable without env-stubbing and prevents test pollution across runs.
 
-**New verdict JSON fields (additive — Pipeline 5 + existing readers
+**Verdict JSON fields (additive — Pipeline 5 + existing readers
 unaffected):**
 
 - `resolution_status` (top-level) — the resolved enum value
-- `_pipeline4_metadata.resolution_source` — which tier supplied it
+- `production_status_flag` (top-level) — human-friendly advisory flag
+  (always present; `null` for confirmed cases means "no flag needed";
+  consumers can always look up the key without dispatching on absence)
+- `_pipeline4_metadata.resolution_source` — which tier supplied the status
 - `_pipeline4_metadata.resolution_gate_enabled` — was the gate ON
 - `_pipeline4_metadata.resolution_gate_applied` — did the ceiling fire
 - `_pipeline4_metadata.pre_gate_verdict` — verdict BEFORE the cap
 
 `pre_gate_verdict` is always recorded so audits can answer "what would
 the verdict have been without the gate?" even on gate-OFF runs.
+
+**Worked example (default doctrine, gate OFF) — strong pending case:**
+
+```json
+{
+  "verdict": "PRODUCE",
+  "narrative_score": 73.3,
+  "resolution_status": "charges_filed_pending",
+  "production_status_flag": "pending_case_review",
+  "_pipeline4_metadata": {
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE"
+  }
+}
+```
+
+`verdict` says "this is a strong story." `production_status_flag`
+says "but there is a production caveat — pending case review needed."
+The producer / Pipeline 5 sees both signals and decides. The default
+doctrine does NOT auto-demote pending cases; the case is allowed to
+remain `PRODUCE` because narrative quality and court status are
+independent signals.
 
 **New `batch_summary.tsv` columns (auto-rotated on schema mismatch):**
 
@@ -267,12 +314,14 @@ match `BATCH_SUMMARY_HEADER`, it renames the old file to
 the current header. Historical rows are preserved in the backup; no
 manual cleanup needed; no ragged-row TSV ever produced.
 
-**Why this is separate from the subscore math:** missing resolution is
-not a "weak narrative" signal — it's a production-risk signal. Putting
-it in `combine()` would dilute it into one weighted voice among five.
-A hard ceiling matches the editorial doctrine: incomplete cases must
-not reach `PRODUCE`, regardless of how strong the narrative looks. The
-gate also lets the four-subscore weighting stay untouched.
+**Why this is separate from the subscore math:** resolution status
+is not a "narrative quality" signal — it's a production / legal /
+research caveat. Putting it in `combine()` would conflate two
+unrelated signals into one weighted voice. The default approach
+surfaces it as an independent advisory flag; the optional gate
+provides a conservative verdict ceiling on top of that. Either way,
+the four-subscore weighting and `narrative_score` itself stay
+untouched.
 
 **Guardrails:**
 
@@ -290,11 +339,21 @@ entry to `RESOLUTION_VERDICT_CEILING`. The
 `test_resolution_verdict_ceiling_keys_match_valid_statuses` test fails
 fast if the dict goes out of sync with `VALID_RESOLUTION_STATUSES`.
 
-Calibration impact: with the gate OFF (default), no calibration scores
-move. Switching the gate ON caps any case whose `resolution_status` is
-`charges_filed_pending` (→ HOLD) or `ongoing_or_unclear` / `missing`
-(→ SKIP). Run with the gate OFF first and compare against the gate-ON
-diff before flipping the default.
+**Calibration framing.** A full V9b configuration run (gate OFF,
+default doctrine) recognized **9/9 known YouTube winners as PRODUCE**
+— the calibration recovers the historical signal. This is the correct
+result: the calibration set is composed of emulation targets, and
+those 9 cases are all narrative winners regardless of court status (3
+of them happen to be pending — they are still narrative winners). With
+the optional gate enabled, those 3 pending cases would cap to HOLD,
+but that is conservative-mode behavior, not the default doctrine. The
+default surfaces the same information as a non-blocking advisory flag
+instead.
+
+Pending status is NOT determinant for narrative pass/fail. A pending
+case may correctly be `verdict=PRODUCE` with
+`production_status_flag="pending_case_review"` — strong story,
+visible production caveat.
 
 ## Output format gotchas
 
@@ -312,14 +371,20 @@ diff before flipping the default.
 - `_pipeline4_metadata.degraded=True` flags cases where Pass 2 failed
   and we fell back to deterministic-only verdict + top-10 Pass 1
   moments. Treat these as lower-confidence.
-- `resolution_status` (top-level) and four `_pipeline4_metadata` fields
-  (`resolution_source`, `resolution_gate_enabled`,
-  `resolution_gate_applied`, `pre_gate_verdict`) are added by the
-  resolution gate. They're recorded REGARDLESS of whether the gate is
-  enabled — when the gate is OFF, `resolution_gate_applied` is always
-  `False` and `pre_gate_verdict` equals the emitted verdict, but the
-  resolved status + source are still surfaced for audit. See "Critical
-  contract 5: Resolution gate" above.
+- `resolution_status`, `production_status_flag` (top-level) plus four
+  `_pipeline4_metadata` fields (`resolution_source`,
+  `resolution_gate_enabled`, `resolution_gate_applied`,
+  `pre_gate_verdict`) are added by the resolution layer.
+  `production_status_flag` is the DEFAULT advisory output — `null`
+  for `confirmed_final_outcome`, otherwise a short string consumers
+  display as a non-blocking caveat (e.g. `"pending_case_review"`).
+  The four `resolution_*` gate fields are advisory by default too:
+  when `P4_RESOLUTION_GATE=0` (the default), `resolution_gate_applied`
+  is always `False` and `pre_gate_verdict` equals the emitted verdict,
+  but the resolved status + source are still surfaced for audit. See
+  "Critical contract 5" above for the full doctrine — the gate is
+  optional / conservative-mode only; sentencing and final adjudication
+  are NOT determinant for narrative pass/fail in the default doctrine.
 - `batch_summary.tsv` has 14 columns (the original 11 plus
   `resolution_status`, `gate_applied`, `pre_gate_verdict`). The header
   is enforced via the `BATCH_SUMMARY_HEADER` constant. If
