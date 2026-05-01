@@ -119,6 +119,40 @@ def _fmt_timestamp(sec):
     return f"{m}:{s:02d}"
 
 
+def _add_clip_boundaries(moment):
+    """Return a copy of `moment` with `clip_start_sec` / `clip_end_sec`
+    fields added for editor convenience.
+
+    Defaults:
+      clip_start_sec = max(0, timestamp_sec - 5)
+      clip_end_sec   = (end_timestamp_sec + 3) if end_timestamp_sec
+                       exists else (timestamp_sec + 3)
+
+    Original `timestamp_sec` / `end_timestamp_sec` are preserved
+    unchanged. Returns the moment dict unmodified (no clip_* fields)
+    if `timestamp_sec` is missing or not numeric -- defensive against
+    malformed key_moments entries from older P4 verdicts or edge cases.
+    """
+    out = dict(moment)
+    ts = moment.get("timestamp_sec")
+    if ts is None:
+        return out
+    try:
+        ts_f = float(ts)
+    except (TypeError, ValueError):
+        return out
+    out["clip_start_sec"] = max(0.0, ts_f - 5.0)
+    end_ts = moment.get("end_timestamp_sec")
+    if end_ts is not None:
+        try:
+            out["clip_end_sec"] = float(end_ts) + 3.0
+        except (TypeError, ValueError):
+            out["clip_end_sec"] = ts_f + 3.0
+    else:
+        out["clip_end_sec"] = ts_f + 3.0
+    return out
+
+
 def _assemble_production_caveats(verdict):
     """Read advisory caveats off the P4 verdict + metadata.
 
@@ -186,11 +220,17 @@ def build_brief(verdict, case_research, transcripts, weights):
         if arc_patterns and not verdict.get("narrative_arc_recommendation"):
             narrative_arc = arc_patterns[0]["structure_type"]
 
-    # Key moments ordered by timestamp for editor-friendly timeline view
-    key_moments = sorted(
-        verdict.get("key_moments", []) or [],
-        key=lambda m: (m.get("source_idx", 0), m.get("timestamp_sec") or 0),
-    )
+    # Key moments ordered by timestamp for editor-friendly timeline view.
+    # Each moment is enriched with clip_start_sec / clip_end_sec for
+    # editor convenience; original timestamp_sec / end_timestamp_sec
+    # are preserved unchanged.
+    key_moments = [
+        _add_clip_boundaries(m)
+        for m in sorted(
+            verdict.get("key_moments", []) or [],
+            key=lambda m: (m.get("source_idx", 0), m.get("timestamp_sec") or 0),
+        )
+    ]
 
     # Sources grouped by evidence type (makes markdown brief cleaner)
     sources_by_type = {}
@@ -362,16 +402,27 @@ def render_markdown(brief):
             )
         lines.append("")
 
-        # Transcript excerpts separately (often long)
-        excerpts = [m for m in brief["key_moments"] if m.get("transcript_excerpt")]
-        if excerpts:
-            lines.append("### Moment excerpts")
-            lines.append("")
-            for m in excerpts:
-                t = _fmt_timestamp(m.get("timestamp_sec"))
-                lines.append(f"- **[{t}]** {m.get('description', '')}")
+        # Moment details: clip-boundary suggestion per moment
+        # (always rendered when boundaries exist), plus optional
+        # transcript excerpt below the clip line. Replaces the prior
+        # "Moment excerpts" block so every moment surfaces its
+        # editor-friendly clip range, not just moments that happen
+        # to carry an excerpt.
+        lines.append("### Moment details")
+        lines.append("")
+        for m in brief["key_moments"]:
+            t = _fmt_timestamp(m.get("timestamp_sec"))
+            desc = (m.get("description") or "")
+            lines.append(f"- **[{t}]** {desc}")
+            clip_start_sec = m.get("clip_start_sec")
+            clip_end_sec = m.get("clip_end_sec")
+            if clip_start_sec is not None and clip_end_sec is not None:
+                clip_start = _fmt_timestamp(clip_start_sec)
+                clip_end = _fmt_timestamp(clip_end_sec)
+                lines.append(f"  Clip suggestion: {clip_start} -> {clip_end}")
+            if m.get("transcript_excerpt"):
                 lines.append(f"  > {m['transcript_excerpt']}")
-            lines.append("")
+        lines.append("")
 
     # Sources grouped by evidence_type
     sbt = brief.get("sources_by_type") or {}
