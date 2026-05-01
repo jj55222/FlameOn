@@ -337,3 +337,95 @@ def test_score_case_pass1_hint_used_when_only_source(monkeypatch):
     assert verdict["resolution_status"] == "ongoing_or_unclear"
     assert verdict["_pipeline4_metadata"]["resolution_source"] == "pass1_hint"
     assert verdict["verdict"] == "SKIP"  # ongoing_or_unclear caps at SKIP
+
+
+# ----------------------------------------------------------------------
+# production_status_flag — advisory field (default doctrine)
+# ----------------------------------------------------------------------
+#
+# These prove the orchestration layer emits the advisory flag in the
+# verdict dict for each resolution_status. The flag is the DEFAULT
+# advisory output -- it does NOT alter the verdict (which the gate
+# does, optionally). A gate-OFF run still emits the flag.
+
+
+def test_score_case_emits_production_status_flag_field_always(monkeypatch):
+    """The production_status_flag field is ALWAYS present on the verdict
+    dict, even when its value is None (confirmed_final_outcome). This
+    keeps the JSON schema stable -- consumers can always look up the key
+    instead of dispatching on field absence."""
+    verdict = _run(monkeypatch)
+    assert "production_status_flag" in verdict
+
+
+def test_score_case_emits_none_flag_for_confirmed_final_outcome(monkeypatch):
+    """confirmed_final_outcome -> None (serialises to JSON null).
+    Indicates 'no flag needed; case is ready'."""
+    labels = {"test_case_001": {"resolution_status": "confirmed_final_outcome"}}
+    verdict = _run(monkeypatch, gate_env="0", labels=labels)
+    assert verdict["resolution_status"] == "confirmed_final_outcome"
+    assert verdict["production_status_flag"] is None
+
+
+def test_score_case_emits_pending_review_flag_for_charges_filed_pending(monkeypatch):
+    """The headline product behaviour: a strong narrative case with
+    charges_filed_pending status keeps verdict=PRODUCE (gate OFF) AND
+    surfaces the production_status_flag = 'pending_case_review' so
+    Pipeline 5 / production teams see the caveat without the gate
+    forcing a HOLD."""
+    labels = {"test_case_001": {"resolution_status": "charges_filed_pending"}}
+    verdict = _run(
+        monkeypatch, gate_env="0",
+        det_verdict="PRODUCE", llm_verdict="PRODUCE",
+        labels=labels,
+    )
+    # Verdict NOT capped (gate is OFF — the default doctrine).
+    assert verdict["verdict"] == "PRODUCE"
+    assert verdict["resolution_status"] == "charges_filed_pending"
+    # Advisory flag IS surfaced for downstream review.
+    assert verdict["production_status_flag"] == "pending_case_review"
+
+
+def test_score_case_emits_ongoing_review_flag(monkeypatch):
+    """ongoing_or_unclear -> 'ongoing_status_review' advisory."""
+    pass1 = _fake_pass1(hint="ongoing_or_unclear")
+    verdict = _run(monkeypatch, gate_env="0", pass1=pass1, labels={})
+    assert verdict["resolution_status"] == "ongoing_or_unclear"
+    assert verdict["production_status_flag"] == "ongoing_status_review"
+
+
+def test_score_case_emits_resolution_unknown_flag_for_default_missing(monkeypatch):
+    """When no source supplies a status (fail-closed default), the
+    verdict still carries the advisory flag instead of None — so
+    consumers can distinguish 'confirmed (no flag)' from 'unknown (flag
+    is resolution_unknown)' by reading the flag, not the absence of
+    the field."""
+    # No case_research, no labels match, no pass1 hint -> fall through to
+    # default_missing.
+    verdict = _run(monkeypatch, gate_env="0", labels={})
+    assert verdict["resolution_status"] == "missing"
+    assert verdict["_pipeline4_metadata"]["resolution_source"] == "default_missing"
+    assert verdict["production_status_flag"] == "resolution_unknown"
+
+
+def test_score_case_flag_independent_of_gate_state(monkeypatch):
+    """The advisory flag is recorded regardless of gate state. A pending
+    case under gate ON is still tagged with the same flag — only the
+    verdict differs (capped by the gate)."""
+    labels = {"test_case_001": {"resolution_status": "charges_filed_pending"}}
+    verdict_off = _run(
+        monkeypatch, gate_env="0",
+        det_verdict="PRODUCE", llm_verdict="PRODUCE",
+        labels=labels,
+    )
+    verdict_on = _run(
+        monkeypatch, gate_env="1",
+        det_verdict="PRODUCE", llm_verdict="PRODUCE",
+        labels=labels,
+    )
+    # Same advisory flag in both modes
+    assert verdict_off["production_status_flag"] == "pending_case_review"
+    assert verdict_on["production_status_flag"] == "pending_case_review"
+    # Verdicts differ — gate ON caps PRODUCE -> HOLD; gate OFF does not.
+    assert verdict_off["verdict"] == "PRODUCE"
+    assert verdict_on["verdict"] == "HOLD"

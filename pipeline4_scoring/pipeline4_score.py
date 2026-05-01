@@ -59,6 +59,7 @@ from scoring_math import (
     apply_resolution_gate,
     compute_all,
     equal_weight_fallback,
+    production_status_flag,
 )
 
 
@@ -586,6 +587,7 @@ def score_case(
         "case_id": case_id,
         "verdict": final_verdict,
         "resolution_status": resolution_status,
+        "production_status_flag": production_status_flag(resolution_status),
         "narrative_score": scoring["narrative_score"],
         "confidence": pass2.get("confidence", scoring["confidence"]),
         "key_moments": [
@@ -685,6 +687,7 @@ def _error_verdict(merged, weights, error_str):
         "case_id": merged["case_id"],
         "verdict": "HOLD",
         "resolution_status": "missing",
+        "production_status_flag": "resolution_unknown",
         "narrative_score": 0,
         "confidence": 0.1,
         "key_moments": [],
