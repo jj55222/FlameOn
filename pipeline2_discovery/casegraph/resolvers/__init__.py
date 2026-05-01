@@ -7,6 +7,7 @@ from .orchestrator import (
     ResolverOrchestrationResult,
     run_metadata_only_resolvers,
 )
+from .youtube_media import YouTubeMediaResolution, resolve_youtube_media_sources
 
 __all__ = [
     "AgencyOISFileResolution",
@@ -15,9 +16,11 @@ __all__ = [
     "MuckRockFileResolution",
     "RESOLVER_NAMES",
     "ResolverOrchestrationResult",
+    "YouTubeMediaResolution",
     "resolve_agency_ois_files",
     "resolve_courtlistener_documents",
     "resolve_documentcloud_files",
     "resolve_muckrock_released_files",
+    "resolve_youtube_media_sources",
     "run_metadata_only_resolvers",
 ]

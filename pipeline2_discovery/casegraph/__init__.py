@@ -114,10 +114,12 @@ from .resolvers import (
     MuckRockFileResolution,
     RESOLVER_NAMES,
     ResolverOrchestrationResult,
+    YouTubeMediaResolution,
     resolve_agency_ois_files,
     resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
+    resolve_youtube_media_sources,
     run_metadata_only_resolvers,
 )
 from .routers import route_manual_defendant_jurisdiction
@@ -179,6 +181,7 @@ __all__ = [
     "VerifiedArtifact",
     "YouTubeConnector",
     "YouTubeInputParseResult",
+    "YouTubeMediaResolution",
     "aggregate_ledger",
     "append_ledger_entry",
     "assemble_structured_case_packet",
@@ -222,6 +225,7 @@ __all__ = [
     "resolve_identity",
     "resolve_muckrock_released_files",
     "resolve_outcome",
+    "resolve_youtube_media_sources",
     "run_capped_live_smoke",
     "run_capped_multi_connector_smoke",
     "run_metadata_only_resolvers",
