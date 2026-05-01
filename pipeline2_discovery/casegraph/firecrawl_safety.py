@@ -8,8 +8,9 @@ preflight checks.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+import os
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Mapping, Optional
 from urllib.parse import urlparse
 
 from .portal_profiles import BLOCKED_ACCESS_PATTERNS, PortalProfileManifest, load_portal_profiles
@@ -43,6 +44,30 @@ class FetchSafetyDecision:
     max_links: int
     estimated_cost: float = 0.0
     safety_flags: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class KnownUrlLiveSmokeTarget:
+    target_id: str
+    url: str
+    profile_id: str
+    fetcher: str = "firecrawl"
+    max_pages: int = 1
+    max_links: int = 10
+
+
+@dataclass
+class KnownUrlLiveSmokeDecision:
+    target_id: str
+    execution_status: str
+    skip_reason: Optional[str]
+    required_env_vars: list[str]
+    safety_preflight_status: str
+    safety_decision: Dict[str, Any]
+    live_call_allowed: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -101,6 +126,77 @@ def evaluate_fetch_safety(
 
 
 def firecrawl_safety_to_jsonable(decision: FetchSafetyDecision) -> Dict[str, Any]:
+    return decision.to_dict()
+
+
+def evaluate_known_url_live_smoke_skeleton(
+    target: KnownUrlLiveSmokeTarget,
+    *,
+    env: Optional[Mapping[str, str]] = None,
+    portal_manifest: Optional[PortalProfileManifest] = None,
+    repo_root: Optional[Path] = None,
+) -> KnownUrlLiveSmokeDecision:
+    """Default-off preflight for a future known-URL portal live smoke.
+
+    This function never fetches. It only verifies that the explicit live
+    gates are present and that FIRE1 safety would allow the target.
+    """
+
+    environment = os.environ if env is None else env
+    required = ["FLAMEON_RUN_LIVE_CASEGRAPH", "FLAMEON_RUN_LIVE_PORTAL_FETCH"]
+    missing = [name for name in required if environment.get(name) != "1"]
+    if missing:
+        return KnownUrlLiveSmokeDecision(
+            target_id=target.target_id,
+            execution_status="skipped",
+            skip_reason="missing_env_gates:" + ",".join(missing),
+            required_env_vars=required,
+            safety_preflight_status="not_run",
+            safety_decision={},
+            live_call_allowed=False,
+        )
+
+    safety = evaluate_fetch_safety(
+        PortalFetchSafetyRequest(
+            url=target.url,
+            profile_id=target.profile_id,
+            fetcher=target.fetcher,
+            max_pages=target.max_pages,
+            max_links=target.max_links,
+            known_url=True,
+            dry_run=False,
+            live_env_gate=True,
+            broad_search_mode=False,
+            allow_downloads=False,
+            allow_private_or_login=False,
+            allow_llm=False,
+            download_intent=False,
+        ),
+        portal_manifest=portal_manifest,
+        repo_root=repo_root,
+    )
+    if not safety.fetch_allowed:
+        return KnownUrlLiveSmokeDecision(
+            target_id=target.target_id,
+            execution_status="blocked",
+            skip_reason=safety.blocked_reason,
+            required_env_vars=required,
+            safety_preflight_status="blocked",
+            safety_decision=safety.to_dict(),
+            live_call_allowed=False,
+        )
+    return KnownUrlLiveSmokeDecision(
+        target_id=target.target_id,
+        execution_status="ready_for_future_live_fetch",
+        skip_reason=None,
+        required_env_vars=required,
+        safety_preflight_status="allowed",
+        safety_decision=safety.to_dict(),
+        live_call_allowed=True,
+    )
+
+
+def known_url_live_smoke_to_jsonable(decision: KnownUrlLiveSmokeDecision) -> Dict[str, Any]:
     return decision.to_dict()
 
 
