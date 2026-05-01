@@ -173,10 +173,15 @@ explicit subscores is a structural change for a future pass.
 
 ## Output format gotchas
 
-- `scoring_breakdown` may contain `None` for `arc_similarity_score`.
-  Downstream readers must handle this. The TSV writer uses
-  `_fmt_subscore` which renders None as `0.0`; the JSON verdict
-  preserves None as `null`.
+- `scoring_breakdown` may contain `None` for `arc_similarity_score`
+  or `artifact_completeness_score`. Downstream readers must handle
+  this. The TSV writer (`append_batch_summary`) uses `_fmt_subscore`
+  which renders None as the per-subscore floor value (numeric, e.g.
+  `15.0`) so TSV columns stay machine-parseable. The human-facing
+  run log uses `_fmt` which renders None as `MISS:floor=N` (label
+  form, e.g. `arc=MISS:floor=15`) so missing-data penalties are
+  visible during review. The JSON verdict preserves None as `null`
+  so downstream consumers can still detect missingness.
 - `verdict["scoring_breakdown"]` is JSON-serialized verbatim from
   `compute_all`'s output; no transformation between.
 - `_pipeline4_metadata.degraded=True` flags cases where Pass 2 failed
