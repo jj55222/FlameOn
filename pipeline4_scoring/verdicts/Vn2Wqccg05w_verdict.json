@@ -1,0 +1,111 @@
+{
+  "case_id": "Vn2Wqccg05w",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 90.35,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2070,
+      "end_timestamp_sec": 2090,
+      "description": "Cassandra slips up by mentioning the family members are dead before being told.",
+      "importance": "critical",
+      "transcript_excerpt": "Do you really think Kane killed them or hurt them?"
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2850,
+      "end_timestamp_sec": 2870,
+      "description": "Kane confesses to cleaning up the crime scene but blames the murders on others.",
+      "importance": "critical",
+      "transcript_excerpt": "I [__] up your crime scene and I'm sorry for that."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 1710,
+      "end_timestamp_sec": 1730,
+      "description": "Cassandra claims she only recently met Kane, but photos prove they've known each other for years.",
+      "importance": "critical",
+      "transcript_excerpt": "Even though Cassandra insisted she had only recently met Cain, investigators discover an older Facebook photo of the two together."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 735,
+      "end_timestamp_sec": 745,
+      "description": "Kane claims to have spoken to the sergeant, which the sergeant denies.",
+      "importance": "critical",
+      "transcript_excerpt": "The way the text message reads was that you had made contact with me and I know for sure that that didn't happen."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 1470,
+      "end_timestamp_sec": 1490,
+      "description": "Police find condoms and pregnancy tests near the wellhouse.",
+      "importance": "high",
+      "transcript_excerpt": "Condoms and pregnancy tests stored with cleaning supplies near the wellhouse and septic area."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 2650,
+      "end_timestamp_sec": 2670,
+      "description": "Kane realizes Cassandra has confessed and is no longer protecting him.",
+      "importance": "high",
+      "transcript_excerpt": "And I'm not so sure that she wasn't involved in it to be honest with you."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 1265,
+      "end_timestamp_sec": 1285,
+      "description": "Samantha shares a recording of Kane's domestic abuse.",
+      "importance": "high",
+      "transcript_excerpt": "Is this your neck? Is this your neck?"
+    }
+  ],
+  "content_pitch": "This case delivers a masterclass in investigative unraveling, opening with a chilling welfare check that quickly escalates to the discovery of human remains in a burned vehicle. The narrative hinges on a devastating contradiction when Cassandra Douglas claims she just met the suspect, only to be trapped by photographic evidence and a fatal slip-up revealing she knew the victims were dead. With raw interrogation footage, 911 calls, and bodycam discoveries, the video captures the exact moment the suspects' alibis collapse under mounting forensic and psychological pressure.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 18.9,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 86.62,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 57.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\Vn2Wqccg05w_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scores are exceptionally high across all metrics, with a 90.3 narrative score and perfect artifact completeness matching a top-tier winner combination. The case features multiple critical contradictions and reveals that drive a classic cold-open structure, making it a clear production candidate.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 5,
+    "n_pass1_moments": 9,
+    "n_final_moments": 7,
+    "scored_at": "2026-05-01T21:46:52.669623Z"
+  }
+}

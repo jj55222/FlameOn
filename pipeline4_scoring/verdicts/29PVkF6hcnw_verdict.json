@@ -1,0 +1,111 @@
+{
+  "case_id": "29PVkF6hcnw",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 82.3,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 336,
+      "end_timestamp_sec": 353,
+      "description": "Jim claims Angela suspected he drugged her, framing it as a crazy accusation.",
+      "importance": "critical",
+      "transcript_excerpt": "And then he said, 'And I think she thinks that I drugged her.' I was like, 'Oh, that's crazy.'"
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 580,
+      "end_timestamp_sec": 598,
+      "description": "Sister reveals Jim previously sedated Angela 6 years ago to attempt suicide.",
+      "importance": "critical",
+      "transcript_excerpt": "She said that he had sedated her... injecting himself with something that would end not only his marriage, but his life."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 1199,
+      "end_timestamp_sec": 1216,
+      "description": "Jim tells sister he will not allow an autopsy if Angela dies.",
+      "importance": "high",
+      "transcript_excerpt": "I'm not allowing him to do an autopsy... I'm not letting him cut on her."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 1794,
+      "end_timestamp_sec": 1821,
+      "description": "Office manager finds potassium cyanide in a package Jim ordered.",
+      "importance": "critical",
+      "transcript_excerpt": "I saw that it said potassium cyanide... I looked up like what cyanide poisoning was... that was everything that his wife was going through."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 2043,
+      "end_timestamp_sec": 2065,
+      "description": "Jim lies to business partner about the contents of the package.",
+      "importance": "critical",
+      "transcript_excerpt": "He goes, 'Oh, it was a ring for it was a ring for Angie.'... I said, 'Jim, potassium cyanide was in the package.'"
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 2486,
+      "end_timestamp_sec": 2526,
+      "description": "Jim makes inappropriate jokes about his wife's death and laundry.",
+      "importance": "high",
+      "transcript_excerpt": "Now that mom's gone, can we watch Shark NATO?... I just did all of her laundry... I stuck everything in the same load just to stick it to her."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2943,
+      "end_timestamp_sec": 2943,
+      "description": "Jim accuses his dying wife of being the one who caused her own death.",
+      "importance": "critical",
+      "transcript_excerpt": "It's to put the person away that caused this to your wife. And that that's that's person is my wife."
+    }
+  ],
+  "content_pitch": "This case delivers a chilling cold-open narrative built on a husband's calculated attempt to poison his wife with potassium cyanide, masked as a romantic gift. The interrogation footage captures Jim's brazen contradictions as he lies to his business partner about the package's contents while simultaneously making grotesque jokes about his dying wife's laundry. With a perfect artifact combination of bodycam, interrogation, and court video, the escalating tension and psychological unraveling provide a highly engaging, winner-caliber true crime story.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 14.7,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "court_video",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 70.26,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 42.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\29PVkF6hcnw_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scores strongly exceed all PRODUCE thresholds, with a narrative score of 82.3 and perfect artifact completeness. The case features a high-density sequence of critical reveals and contradictions, supported by a cold-open structure that aligns with top-performing winner patterns.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 5,
+    "n_pass1_moments": 7,
+    "n_final_moments": 7,
+    "scored_at": "2026-05-01T21:50:11.812703Z"
+  }
+}

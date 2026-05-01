@@ -1,0 +1,93 @@
+{
+  "case_id": "JBRHS5vErpg",
+  "verdict": "PRODUCE",
+  "resolution_status": "charges_filed_pending",
+  "narrative_score": 73.32,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 404,
+      "end_timestamp_sec": 446,
+      "description": "Police discover the infant deceased in a bassinet, initially mistaken for a doll.",
+      "importance": "critical",
+      "transcript_excerpt": "In the corner of the room, in a small bassinet, officers saw what they assumed was a baby doll. But the truth was far more devastating."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 600,
+      "end_timestamp_sec": 628,
+      "description": "Surviving 2-year-old found alive but severely malnourished in a crib.",
+      "importance": "critical",
+      "transcript_excerpt": "Miraculously, she was still alive, though she could barely stand. The toddler appeared severely malnourished."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 1528,
+      "end_timestamp_sec": 1547,
+      "description": "Friend Sophia disputes the existence of the sitter 'KK'.",
+      "importance": "critical",
+      "transcript_excerpt": "I don't believe there's a sitter... She's a liar. There was no sitter."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 2334,
+      "end_timestamp_sec": 2346,
+      "description": "Grandparents reveal they contacted CPS, but were told it was a 'low-risk' situation.",
+      "importance": "high",
+      "transcript_excerpt": "The person that's the case manager went over saw the apartment and he he tells us that well there's not much that we can do"
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 902,
+      "end_timestamp_sec": 924,
+      "description": "Kylia attempts to record her own arrest, leading to a confrontation with the deputy.",
+      "importance": "high",
+      "transcript_excerpt": "I was coming to surrender myself... I do deserve the right to have my own video"
+    }
+  ],
+  "content_pitch": "The video opens with a chilling 911 call and bodycam footage of officers discovering a deceased infant initially mistaken for a doll, immediately hooking viewers with visceral stakes. The narrative pivots on a devastating contradiction: the mother’s claim of a babysitter collapses when detectives reveal the alleged sitter was incarcerated at the time of the death. With raw interrogation footage, a surviving malnourished toddler, and a tense arrest confrontation, this case delivers a tightly wound, emotionally charged arc that perfectly aligns with our highest-performing cold-open structure.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 10.5,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 47.8,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 42.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\JBRHS5vErpg_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The case scores a 73.3 narrative score with a 100% arc similarity to our top-performing cold-open pattern and a complete artifact stack including bodycam, 911 audio, and interrogation. It features multiple critical reveals and a central contradiction that dismantles the suspect's alibi, easily clearing all PRODUCE thresholds.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 5,
+    "n_pass1_moments": 5,
+    "n_final_moments": 5,
+    "scored_at": "2026-05-01T21:49:24.985152Z"
+  }
+}

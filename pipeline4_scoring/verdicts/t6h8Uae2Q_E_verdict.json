@@ -1,0 +1,111 @@
+{
+  "case_id": "t6h8Uae2Q_E",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 80.69,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 332,
+      "end_timestamp_sec": 350,
+      "description": "Daniel reports a break-in, which the narrator identifies as the first step of his murder plot.",
+      "importance": "critical",
+      "transcript_excerpt": "I saw someone run out, jump over my gate... we realized the spare key that we keep in the garage isn't there."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 3042,
+      "end_timestamp_sec": 3055,
+      "description": "Crystal's daughter reveals the stalker was trying to frame Crystal for killing Daniel.",
+      "importance": "critical",
+      "transcript_excerpt": "he's making it sound like she's helping him... helping him like try to kill your dad."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 3721,
+      "end_timestamp_sec": 3745,
+      "description": "Detective notices all cameras were turned off for a 2-hour window during the murder.",
+      "importance": "critical",
+      "transcript_excerpt": "All of the home's cameras shut off at 8:15 a.m. and they stay off until 10:15 a.m."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 2206,
+      "end_timestamp_sec": 2216,
+      "description": "Medics discover a stab wound on Crystal's chest, contradicting the initial assumption of a fall.",
+      "importance": "high",
+      "transcript_excerpt": "What's that? Gas on the chest... Yeah, that's a stab."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 2427,
+      "end_timestamp_sec": 2435,
+      "description": "Officers find tape over the Ring doorbell, indicating premeditation.",
+      "importance": "high",
+      "transcript_excerpt": "a strip of blue tape had been placed over the Ring doorbell camera."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 1224,
+      "end_timestamp_sec": 1240,
+      "description": "Daniel admits to the detective that he and Crystal are having a rough patch.",
+      "importance": "high",
+      "transcript_excerpt": "she and I are going through a rough patch kind of on the rocks."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 3838,
+      "end_timestamp_sec": 3845,
+      "description": "Detective Martinez notices Daniel is crying without tears.",
+      "importance": "high",
+      "transcript_excerpt": "Daniel is crying, but there are no tears."
+    }
+  ],
+  "content_pitch": "This case delivers a masterclass in deceptive alibis, opening with a husband's frantic report of a break-in that quickly unravels into a calculated murder plot. The narrative hinges on a devastating contradiction: Daniel Krug claims an external intruder, but forensic details like taped cameras and a staged stalking campaign expose his premeditation. With a detective systematically dismantling his tearless performance and a victim's family caught in the crossfire, the emotional stakes and structural precision guarantee high retention.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 14.7,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 68.73,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 32.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\t6h8Uae2Q_E_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scores strongly exceed all PRODUCE thresholds, with a narrative score of 80.7 and perfect artifact/arc alignment. The case features multiple critical reveals and contradictions supported by high-value bodycam and interrogation footage, making it a clear winner for production.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 5,
+    "n_pass1_moments": 7,
+    "n_final_moments": 7,
+    "scored_at": "2026-05-01T21:46:57.150057Z"
+  }
+}

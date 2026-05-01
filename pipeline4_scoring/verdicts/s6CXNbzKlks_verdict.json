@@ -1,0 +1,103 @@
+{
+  "case_id": "s6CXNbzKlks",
+  "verdict": "PRODUCE",
+  "resolution_status": "charges_filed_pending",
+  "narrative_score": 67.64,
+  "confidence": 0.92,
+  "key_moments": [
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 439,
+      "end_timestamp_sec": 451,
+      "description": "Officer notices a faint, strange odor at the carport but dismisses it.",
+      "importance": "critical",
+      "transcript_excerpt": "Coming from the carport, a faint strange odor drifts through the space."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 1,
+      "timestamp_sec": 611,
+      "end_timestamp_sec": 648,
+      "description": "Grandson's timeline (4 months) contradicts friend's timeline (2 months).",
+      "importance": "high",
+      "transcript_excerpt": "It now sounds like Craig hasn't been missing for 2 months as previously believed... Instead, he hasn't been seen for over 4 months."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 1093,
+      "end_timestamp_sec": 1105,
+      "description": "Dena's story about Mexico contradicts neighbor's report of separation.",
+      "importance": "high",
+      "transcript_excerpt": "clarifying that her husband is actually in Mexico with another woman... different from what her neighbor reported."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 2,
+      "timestamp_sec": 1396,
+      "end_timestamp_sec": 1404,
+      "description": "Ex-husband claims Dena threatened to kill Craig.",
+      "importance": "critical",
+      "transcript_excerpt": "she did state in front of me and my wife, if I could kill Craig and get away with it, I'd do it."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2331,
+      "end_timestamp_sec": 2341,
+      "description": "Dena claims she cannot access the safe containing $1.5 million.",
+      "importance": "high",
+      "transcript_excerpt": "Craig keeps all our money in cash. I can't get in the safe"
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 2526,
+      "end_timestamp_sec": 2537,
+      "description": "Deputy Roger stands over the spot where the body was hidden.",
+      "importance": "critical",
+      "transcript_excerpt": "he has no idea that he is standing in the very spot where Craig's body remained for days"
+    }
+  ],
+  "content_pitch": "A routine welfare check spirals into a complex homicide investigation when a wife's bizarre Mexico alibi clashes with family members' claims of violent threats. The narrative hinges on a critical reveal: a deputy unknowingly stands directly over the hidden body while interviewing the suspect, who simultaneously claims she cannot access a safe holding $1.5 million. With a fractured family, a missing husband, and a seasoned detective's intuition, this case delivers a tightly wound cold_open structure that perfectly matches our highest-performing winner patterns.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 12.6,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": [
+      "documents"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 55.58,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 58.56,
+    "uniqueness_score": 37.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\s6CXNbzKlks_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scoring yields a strong 67.6 narrative score with high moment density and a proven cold_open arc structure. The case features multiple critical contradictions and reveals, supported by a diverse artifact mix that comfortably clears the production threshold. The math confirms this is a calibrated winner with no structural weaknesses.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 4,
+    "n_pass1_moments": 6,
+    "n_final_moments": 6,
+    "scored_at": "2026-05-01T21:46:41.021110Z"
+  }
+}
