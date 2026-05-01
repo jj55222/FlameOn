@@ -293,10 +293,10 @@ def test_connector_yields_count_matches_fixtures():
     for r in records:
         kind = r.metadata.get("fixture_kind")
         by_kind[kind] = by_kind.get(kind, 0) + 1
-    # 5 page records (one per fixture)
-    assert by_kind.get("agency_page", 0) == 5
-    # 2 media links across the fixture set (bodycam_video + protected_link)
-    assert by_kind.get("agency_media_link", 0) == 2
+    # 8 page records (one per fixture)
+    assert by_kind.get("agency_page", 0) == 8
+    # 5 media links across the fixture set (mp4, protected, YouTube, Vimeo, 911 audio)
+    assert by_kind.get("agency_media_link", 0) == 5
     # 2 document links (pdf-only + protected-link's pdf)
     assert by_kind.get("agency_document_link", 0) == 2
     # 1 claim (bodycam_claim_no_url)

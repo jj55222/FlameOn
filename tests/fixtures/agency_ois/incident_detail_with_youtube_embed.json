@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-050",
+  "title": "Critical Incident Briefing 2024-OIS-050 (YouTube Embed)",
+  "narrative": "The department published an official critical incident briefing with body-worn camera footage via the embedded YouTube player.",
+  "subjects": ["YouTube Example"],
+  "incident_date": "2024-12-01",
+  "case_number": "2024-OIS-050",
+  "outcome_text": "investigation closed",
+  "media_links": [
+    {
+      "url": "https://www.youtube.com/watch?v=officialBWC050",
+      "label": "Official body-worn camera critical incident video",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

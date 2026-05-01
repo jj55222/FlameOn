@@ -84,6 +84,20 @@ OFFICIAL_TERMS = (
 )
 
 PROTECTED_RISKS = {"protected_or_nonpublic", "pacer_or_paywalled"}
+QUERY_METADATA_KEYS = {
+    "query",
+    "query_used",
+    "search_query",
+    "planned_query",
+    "discovered_query",
+}
+INTERNAL_METADATA_KEYS = {
+    "api_name",
+    "discovered_via",
+    "fixture_kind",
+    "source_id",
+    "verification_method",
+}
 
 
 @dataclass
@@ -138,28 +152,20 @@ def _metadata_text(
     include_query: bool,
 ) -> str:
     metadata = artifact.metadata or {}
-    query_keys = {
-        "query",
-        "query_used",
-        "search_query",
-        "planned_query",
-        "discovered_query",
-    }
     parts: List[str] = [
-        artifact.artifact_id,
         artifact.artifact_type,
         artifact.artifact_url,
         artifact.source_url or "",
         artifact.source_authority,
         artifact.format,
-        artifact.verification_method,
-        " ".join(artifact.matched_case_fields),
         " ".join(artifact.risk_flags),
     ]
     for key, value in metadata.items():
-        if not include_query and str(key).lower() in query_keys:
+        normalized_key = str(key).lower()
+        if normalized_key in INTERNAL_METADATA_KEYS:
             continue
-        parts.extend(_flatten_metadata(key))
+        if not include_query and normalized_key in QUERY_METADATA_KEYS:
+            continue
         parts.extend(_flatten_metadata(value))
     if source is not None:
         parts.extend(
@@ -167,32 +173,28 @@ def _metadata_text(
                 source.url,
                 source.title,
                 source.snippet,
-                source.source_type,
+                source.raw_text,
                 source.source_authority,
-                " ".join(source.source_roles),
-                source.api_name or "",
-                source.discovered_via,
-                " ".join(source.matched_case_fields),
             ]
         )
         for key, value in source.metadata.items():
-            if not include_query and str(key).lower() in query_keys:
+            normalized_key = str(key).lower()
+            if normalized_key in INTERNAL_METADATA_KEYS:
                 continue
-            parts.extend(_flatten_metadata(key))
+            if not include_query and normalized_key in QUERY_METADATA_KEYS:
+                continue
             parts.extend(_flatten_metadata(value))
     return " ".join(part for part in parts if part).lower()
 
 
 def _query_text(artifact: VerifiedArtifact, source: Optional[SourceRecord]) -> str:
     metadata = artifact.metadata or {}
-    keys = ("query", "query_used", "search_query", "planned_query", "discovered_query")
     parts: List[str] = []
-    for key in keys:
+    for key in QUERY_METADATA_KEYS:
         parts.extend(_flatten_metadata(metadata.get(key)))
     if source is not None:
-        for key in keys:
+        for key in QUERY_METADATA_KEYS:
             parts.extend(_flatten_metadata(source.metadata.get(key)))
-        parts.append(source.discovered_via)
     return " ".join(part for part in parts if part).lower()
 
 

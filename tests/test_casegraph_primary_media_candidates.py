@@ -20,14 +20,21 @@ def test_miner_finds_ranked_official_agency_ois_bodycam_candidate():
 
     assert report.total_candidates >= 1
     top = report.candidates[0]
-    assert top.case_name == "John Example"
     assert top.agency == "Phoenix Police Department"
-    assert top.expected_artifact_type == "bodycam"
-    assert "bodycam" in top.media_signal_terms
     assert "agency_ois" in top.likely_connector_path
-    assert any(url.endswith(".mp4") for url in top.known_urls)
     assert top.confidence_media_is_tier_a >= 0.75
     assert "generic_youtube_or_video_host_only" not in top.risk_flags
+
+    john = next(candidate for candidate in report.candidates if candidate.case_name == "John Example")
+    assert john.expected_artifact_type == "bodycam"
+    assert "bodycam" in john.media_signal_terms
+    assert "agency_ois" in john.likely_connector_path
+    assert any(url.endswith(".mp4") for url in john.known_urls)
+    assert john.confidence_media_is_tier_a >= 0.75
+
+    claim_only = next(candidate for candidate in report.candidates if candidate.case_name == "Robert Example")
+    assert "claim_signal_not_verified_artifact" in claim_only.risk_flags
+    assert claim_only.confidence_media_is_tier_a < john.confidence_media_is_tier_a
 
 
 def test_miner_does_not_invent_media_claims_for_document_only_fixture():
