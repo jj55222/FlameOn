@@ -1,0 +1,120 @@
+{
+  "_schema_version": 1,
+  "_purpose": "Manual resolution_status backfill for Pipeline 4 calibration cases. Read by score_case() as a fallback when case_research lacks the resolution_status field. Not intended for production once Pipeline 2 sets resolution_status natively from court dockets.",
+  "_generated_at": "2026-05-01",
+  "_known_verification_caveats": [
+    "t6h8Uae2Q_E (Krug) — single-source: conviction + life sentence claim is backed only by 95rockfm.com (a Colorado radio station's web summary). Recommend stronger corroboration (court docket, major outlet) before relying on this label for production decisions. Confidence kept at medium for this reason.",
+    "fsL0ag9ySao (Anglin) — source staleness: latest cited source is mid-2025, ~10 months before today (2026-05-01). Reasonable chance the case has progressed (trial set, plea entered, etc.). Verify Luna County / NM 6th Judicial District docket before treating as authoritative for live runs.",
+    "All charges_filed_pending entries — by definition pending cases can move to verdict at any time. If a case has been resolved since its latest cited source, the label is stale and should be re-classified to confirmed_final_outcome. Operationally safe in either direction: gate ON would cap a stale-pending case at HOLD (which is at worst conservative), not erroneously promote anything to PRODUCE."
+  ],
+  "labels": {
+    "t6h8Uae2Q_E": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://95rockfm.com/colorado-smartest-killer/",
+      "identified_case": "Daniel Krug (killed wife Kristil Krug, 2023-12-14)",
+      "jurisdiction": "Broomfield, CO (17th Judicial District)",
+      "confidence": "medium",
+      "note": "Cited source states 'arrested and convicted of murder and is currently serving a life sentence'. Single-source — only one secondary outlet corroborated. Confidence kept at medium until court docket or major-outlet coverage is added."
+    },
+    "Vn2Wqccg05w": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.nbcnews.com/news/us-news/hell-wheels-teen-killed-boyfriend-friend-crash-sentenced-15-years-life-rcna100928",
+      "identified_case": "Mackenzie Shirilla (intentionally crashed at 100mph killing Dominic Russo and Davion Flanagan, 2022-07)",
+      "jurisdiction": "Strongsville, OH (Cuyahoga County)",
+      "confidence": "high",
+      "note": "Convicted Aug 2023, sentenced two concurrent 15-life. Direct appeal upheld Sep 2024 (cleveland19.com). Further appeal denied Mar 2026 (cleveland19.com). Multiple national outlets, dedicated Wikipedia entry."
+    },
+    "s6CXNbzKlks": {
+      "resolution_status": "charges_filed_pending",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.courttv.com/news/woman-charged-with-murder-after-missing-husbands-body-found-in-carport/",
+      "identified_case": "Deana Thetford (killed husband Craig Thetford, 60, body found 2025-06-17 in Cloudcroft NM carport)",
+      "jurisdiction": "Otero County, NM",
+      "confidence": "high",
+      "note": "Charged 2025-07-08 with first-degree murder and tampering with evidence. Reported as pre-trial as of March 2026. Calibration-relevant: gate ON would cap this case at HOLD — one of the three cases where the gate actually fires."
+    },
+    "QHAYwcCeKms": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://lawandcrime.com/crime/79-year-old-man-gets-life-sentence-for-stabbing-bus-driver-wife-to-death-after-argument-about-shoulder-surgery/",
+      "identified_case": "Harold 'Bud' Seidenfaden (79, stabbed wife Debra Seidenfaden, 60, in their Elko RV 2021-02-07)",
+      "jurisdiction": "Houston County, GA",
+      "confidence": "high",
+      "note": "Bench trial. Judge Bo Adams found guilty of felony murder + possession of knife during commission of felony. Sentenced to life with possibility of parole + 5yr probation consecutive. Spelling correction: case_id-implied 'Faden' is actually 'Seidenfaden'."
+    },
+    "6Ghe55PHc58": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.wwnytv.com/2025/12/30/man-sentenced-life-prison-without-parole-murder-3-year-old-girl/",
+      "identified_case": "Devin O'Brien (30, murdered 3-year-old girl 2024-09 in Sandusky OH)",
+      "jurisdiction": "Erie County, OH (Common Pleas Court)",
+      "confidence": "high",
+      "note": "Plea deal entered 2025-12-29: pleaded guilty, recommended life without parole. Sentencing reported same day per WWNY TV headline. Cross-confirmed by Sandusky Register, Fox 8, WTOL 11."
+    },
+    "cgCYon_kKno": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.10tv.com/article/news/local/teens-sentenced-for-killing-photographer-with-falling-log-at-hocking-hills/530-a4213bab-5fe3-4b2e-8fb8-28e444f42799",
+      "identified_case": "Jordan Buckley + Jaden Churchheus (both 17, rolled 75-lb log off cliff killing photographer Victoria Schafer 2019-09-02 at Hocking Hills State Park)",
+      "jurisdiction": "Hocking County, OH (Common Pleas)",
+      "confidence": "high",
+      "note": "Plea deal: convicted on involuntary manslaughter. Sentenced October 2020 to 3 years juvenile detention with stayed adult sentence (3-4.5 years) pending successful juvenile completion. The stayed adult sentence is a supervision condition, not an open case — judicial disposition is final."
+    },
+    "JBRHS5vErpg": {
+      "resolution_status": "charges_filed_pending",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.yakimaherald.com/news/local/crime_and_courts/truly-horrific-yakima-woman-charged-with-manslaughter-in-starvation-death-of-infant-daughter/article_4932dd60-f56e-11ef-adb2-6fc72061fa37.html",
+      "identified_case": "Kyleah Rose Tolle (20, baby Elowyn died at 7mo, 2yo found severely malnourished, Feb 2025)",
+      "jurisdiction": "Yakima County, WA (Superior Court)",
+      "confidence": "high",
+      "note": "Charged with first-degree manslaughter, first-degree criminal mistreatment, family abandonment. Pleaded not guilty. Latest cited status: case proceeding through Yakima County Superior Court as of early 2026. Calibration-relevant: gate ON would cap at HOLD."
+    },
+    "fsL0ag9ySao": {
+      "resolution_status": "charges_filed_pending",
+      "source": "manual_backfill",
+      "evidence_url": "https://6thda.com/news-article/bruce-and-suzanne-anglin-held-without-bond-for-child-abuse/",
+      "identified_case": "Bruce + Samantha (also reported as Suzanne) Anglin (locked 6yo daughter in shed in 100-degree heat 2025-06-20 in Deming NM)",
+      "jurisdiction": "Luna County, NM (6th Judicial District)",
+      "confidence": "medium",
+      "note": "Both charged with child abuse. Held without bond per pre-trial detention hearing 2025-07-03; both pleaded not guilty. Primary source is the 6th Judicial DA's official news release. Latest cited update mid-2025 (~10 months stale relative to 2026-05-01) — verify current docket before relying on this label for live runs. Calibration-relevant: gate ON would cap at HOLD."
+    },
+    "29PVkF6hcnw": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.cpr.org/2025/07/30/colorado-dentist-convicted-of-murder-after-poisoning-wife/",
+      "identified_case": "James Craig (Aurora dentist, poisoned wife Angela Craig with cyanide and tetrahydrozoline, March 2023)",
+      "jurisdiction": "Arapahoe County, CO (18th Judicial District)",
+      "confidence": "high",
+      "note": "Convicted of first-degree murder by jury 2025-07-30. Sentenced same day to life without parole + 33 years consecutive on cover-up charges. Cross-confirmed by NPR, CPR, CBS Colorado, US News, ABC7."
+    },
+    "mesa_mckellips_2022_01_02_groq": {
+      "resolution_status": "missing",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.12news.com/article/news/local/valley/man-with-knife-fatally-shot-during-encounter-with-mesa-police-near-mckellips-and-country-club/75-5d13a455-fbc1-4632-bbe6-78d1dafd6887",
+      "identified_case": "Officer-involved fatal shooting of Caleb Stanford (26) by Mesa PD on McKellips Rd 2022-01-03 (case_id off by one day, likely UTC vs local)",
+      "jurisdiction": "Mesa, AZ (Maricopa County)",
+      "confidence": "by_design_admin_case",
+      "note": "Suspect deceased on scene/at hospital; no officer criminally charged in any cited source. Per project doctrine: OIS / admin-review cases map to missing until/unless a dedicated OIS enum is added. Suspect death creates incident finality but not the criminal final disposition this enum captures. Operationally inert: math already SKIP (12.18); gate also SKIP."
+    },
+    "pastor_shooting_wife": {
+      "resolution_status": "confirmed_final_outcome",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.clickorlando.com/news/local/2024/07/25/orlando-pastor-found-guilty-of-wifes-murder-at-credit-union-sentenced-to-life-in-prison/",
+      "identified_case": "Sylvester Ofori (39, killed estranged wife Barbara Tommey, 27, outside Navy Federal Credit Union 2020-09-08)",
+      "jurisdiction": "Orange County, FL (9th Judicial Circuit)",
+      "confidence": "high",
+      "note": "Three-day trial. Found guilty of first-degree murder with a firearm 2024-07-25. Orange County judge imposed life sentence same day. No appeal mentioned. Death threat in transcript ('If I don't kill your sister...') matches Pass 1 transcript excerpt verbatim — same case confirmed."
+    },
+    "sfdpa_0409-18": {
+      "resolution_status": "missing",
+      "source": "manual_backfill",
+      "evidence_url": "https://www.sf.gov/departments--department-police-accountability",
+      "identified_case": "SF Department of Police Accountability administrative review of officers Sherry + Bradford for use-of-force at protest (case #0409, year 2018)",
+      "jurisdiction": "San Francisco, CA (administrative — DPA, not court)",
+      "confidence": "by_design_admin_case",
+      "note": "Per project doctrine: admin cases map to missing until/unless a dedicated admin enum is added. Specific DPA case file 0409-18 not findable via public WebSearch (DPA cases are not all published publicly). General DPA URL provided as best-available reference. Operationally inert: math already SKIP (14.96); gate also SKIP."
+    }
+  }
+}
