@@ -119,6 +119,160 @@ def _fmt_timestamp(sec):
     return f"{m}:{s:02d}"
 
 
+# Importance ordering used by the deterministic beat sheet selector.
+_BEAT_IMPORTANCE_RANK = {"critical": 4, "high": 3, "medium": 2, "low": 1}
+
+# Moment types that make good cold-open / hook beats.
+_BEAT_HOOK_TYPES = {"reveal", "emotional_peak", "tension_shift"}
+
+# Approximate runtime fractions per beat. Sum to 1.0. Tuned to mirror
+# the typical winner-channel pacing called out in CLAUDE.md (cold open
+# short, escalation longest, climax tight, aftermath light).
+_BEAT_RUNTIME_FRACTIONS = [
+    ("hook",        0.00, 0.15),
+    ("setup",       0.15, 0.30),
+    ("escalation",  0.30, 0.65),
+    ("climax",      0.65, 0.85),
+    ("aftermath",   0.85, 1.00),
+]
+
+# Generic descriptions used when no key_moment is available for a beat
+# slot. Keeps the brief useful even when P4 returned few moments.
+_BEAT_GENERIC_DESCRIPTION = {
+    "hook":       "Open with case context or strongest available beat",
+    "setup":      "Establish stakes, defendant, jurisdiction",
+    "escalation": "Build to the central conflict / contradiction",
+    "climax":     "Land the strongest narrative moment",
+    "aftermath":  "Outcome / context wrap",
+}
+
+
+def _build_beat_sheet(narrative_arc, estimated_runtime_min, key_moments):
+    """Pure helper: build a deterministic 5-beat sheet from
+    P4 verdict signals.
+
+    The beat sheet is an EDITORIAL SUGGESTION, not a scoring decision.
+    It does not call an LLM, never mutates inputs, and falls back to
+    generic beat rows when key_moments is empty or sparse.
+
+    Selection order:
+      1. hook   -- highest-importance reveal/emotional_peak/tension_shift,
+                   else first chronological critical/high
+      2. climax -- highest-importance critical/high not yet used by hook
+      3. escalation -- next best high/medium not yet used
+      4. setup  -- earliest chronological remaining moment
+      5. aftermath -- latest chronological remaining moment
+
+    Each beat is assigned an approximate minute range from
+    estimated_runtime_min via _BEAT_RUNTIME_FRACTIONS. Defaults to a
+    12-minute runtime if estimated_runtime_min is missing or invalid.
+    """
+    try:
+        runtime = float(estimated_runtime_min) if estimated_runtime_min else 12.0
+    except (TypeError, ValueError):
+        runtime = 12.0
+    if runtime <= 0:
+        runtime = 12.0
+
+    moments = list(key_moments or [])
+
+    def _imp_rank(m):
+        return _BEAT_IMPORTANCE_RANK.get(m.get("importance", ""), 0)
+
+    def _chrono_key(m):
+        return (m.get("source_idx", 0), m.get("timestamp_sec") or 0)
+
+    used_ids = set()
+
+    def _select_hook():
+        eligible = [m for m in moments
+                    if m.get("moment_type") in _BEAT_HOOK_TYPES]
+        if eligible:
+            return max(eligible, key=_imp_rank)
+        eligible = [m for m in moments
+                    if m.get("importance") in {"critical", "high"}]
+        if eligible:
+            return min(eligible, key=_chrono_key)
+        return None
+
+    def _select_climax():
+        eligible = [m for m in moments
+                    if m.get("importance") in {"critical", "high"}
+                    and id(m) not in used_ids]
+        if eligible:
+            return max(eligible, key=_imp_rank)
+        return None
+
+    def _select_escalation():
+        eligible = [m for m in moments
+                    if m.get("importance") in {"high", "medium"}
+                    and id(m) not in used_ids]
+        if eligible:
+            return max(eligible, key=_imp_rank)
+        return None
+
+    def _select_setup():
+        eligible = [m for m in moments if id(m) not in used_ids]
+        if eligible:
+            return min(eligible, key=_chrono_key)
+        return None
+
+    def _select_aftermath():
+        eligible = [m for m in moments if id(m) not in used_ids]
+        if eligible:
+            return max(eligible, key=_chrono_key)
+        return None
+
+    hook = _select_hook()
+    if hook is not None:
+        used_ids.add(id(hook))
+    climax = _select_climax()
+    if climax is not None:
+        used_ids.add(id(climax))
+    escalation = _select_escalation()
+    if escalation is not None:
+        used_ids.add(id(escalation))
+    setup = _select_setup()
+    if setup is not None:
+        used_ids.add(id(setup))
+    aftermath = _select_aftermath()
+    if aftermath is not None:
+        used_ids.add(id(aftermath))
+
+    selections = {
+        "hook": hook, "setup": setup, "escalation": escalation,
+        "climax": climax, "aftermath": aftermath,
+    }
+
+    beats = []
+    for name, start_pct, end_pct in _BEAT_RUNTIME_FRACTIONS:
+        m = selections[name]
+        beat = {
+            "beat": name,
+            "start_min": round(runtime * start_pct, 1),
+            "end_min": round(runtime * end_pct, 1),
+        }
+        if m is not None:
+            beat["moment_type"] = m.get("moment_type")
+            beat["moment_importance"] = m.get("importance")
+            beat["moment_description"] = m.get("description") or _BEAT_GENERIC_DESCRIPTION[name]
+            beat["moment_timestamp_sec"] = m.get("timestamp_sec")
+            beat["moment_source_idx"] = m.get("source_idx", 0)
+        else:
+            beat["moment_type"] = None
+            beat["moment_importance"] = None
+            beat["moment_description"] = _BEAT_GENERIC_DESCRIPTION[name]
+            beat["moment_timestamp_sec"] = None
+            beat["moment_source_idx"] = None
+        beats.append(beat)
+
+    return {
+        "narrative_arc": narrative_arc,
+        "estimated_runtime_min": runtime,
+        "beats": beats,
+    }
+
+
 _VIDEO_SHARING_HOSTS = ("youtube.com", "youtu.be", "vimeo.com")
 
 
@@ -309,6 +463,11 @@ def build_brief(verdict, case_research, transcripts, weights):
         "artifact_completeness": verdict.get("artifact_completeness", {}),
         "scoring_breakdown": verdict.get("scoring_breakdown", {}),
         "key_moments": key_moments,
+        "beat_sheet": _build_beat_sheet(
+            narrative_arc=narrative_arc,
+            estimated_runtime_min=verdict.get("estimated_runtime_min"),
+            key_moments=key_moments,
+        ),
         "sources_by_type": sources_by_type,
         "transcripts": transcript_manifest,
         "production_caveats": _assemble_production_caveats(verdict),
@@ -472,6 +631,34 @@ def render_markdown(brief):
                 lines.append(f"  Clip suggestion: {clip_start} -> {clip_end}")
             if m.get("transcript_excerpt"):
                 lines.append(f"  > {m['transcript_excerpt']}")
+        lines.append("")
+
+    # Narrative Arc + Suggested Beat Sheet (deterministic editorial
+    # suggestion -- not a scoring decision; never modifies the verdict).
+    bs = brief.get("beat_sheet") or {}
+    beats = bs.get("beats") or []
+    if beats:
+        arc = bs.get("narrative_arc") or "chronological"
+        lines.append(f"## Narrative Arc: {arc}")
+        lines.append("")
+        lines.append("### Suggested Beat Sheet")
+        lines.append("")
+        lines.append("| Beat | Timing (min) | Moment | Description |")
+        lines.append("| --- | --- | --- | --- |")
+        for beat in beats:
+            name = beat.get("beat", "?")
+            start_min = beat.get("start_min", 0)
+            end_min = beat.get("end_min", 0)
+            mtype = beat.get("moment_type")
+            imp = beat.get("moment_importance")
+            if mtype:
+                moment_label = f"{mtype} / {imp}" if imp else mtype
+            else:
+                moment_label = "(generic)"
+            desc = (beat.get("moment_description") or "").replace("|", r"\|")[:160]
+            lines.append(
+                f"| {name} | {start_min} - {end_min} | {moment_label} | {desc} |"
+            )
         lines.append("")
 
     # Sources grouped by evidence_type
