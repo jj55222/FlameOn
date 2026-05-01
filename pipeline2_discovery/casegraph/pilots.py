@@ -273,6 +273,10 @@ def assess_pilot(
         "policy_violations": policy_violations,
         "budget_violations": budget_violations,
         "readiness_status": readiness,
+        "is_real_case": bool(pilot.get("is_real_case")),
+        "primary_media_candidate_id": pilot.get("primary_media_candidate_id"),
+        "blocker": pilot.get("blocker"),
+        "expected_live_query_plan": list(pilot.get("expected_live_query_plan") or []),
         "next_actions": _next_actions(
             readiness=readiness,
             pilot=pilot,
@@ -337,6 +341,7 @@ def _aggregate(results: List[Mapping[str, Any]]) -> Dict[str, Any]:
 # the validation/pilot fixture corpus, ranked highest-yield first. The
 # selector prefers pilots that include any of these.
 PROVEN_ARTIFACT_CONNECTORS = ("documentcloud",)
+PRIMARY_MEDIA_LIVE_CONNECTORS = ("youtube", "muckrock", "documentcloud", "courtlistener")
 
 
 def _selection_score(pilot_result: Mapping[str, Any]) -> int:
@@ -449,6 +454,129 @@ def select_pilot_for_live_smoke(
         "missing_gates": list(selected.get("missing_gates") or []),
         "selected_pilot_result": dict(selected),
         "rationale": rationale,
+    }
+
+
+def _primary_media_selection_score(pilot_result: Mapping[str, Any]) -> int:
+    if pilot_result.get("readiness_status") != READINESS_READY:
+        return -1
+    if not pilot_result.get("is_real_case"):
+        return -1
+    if pilot_result.get("blocker"):
+        return -1
+
+    expected_minimum = pilot_result.get("expected_minimum") or {}
+    if not expected_minimum.get("tier_a_media_required"):
+        return -1
+    if not expected_minimum.get("media_required_for_produce"):
+        return -1
+
+    allowed = list(pilot_result.get("allowed_connectors") or [])
+    if not allowed:
+        return -1
+    if any(connector not in PRIMARY_MEDIA_LIVE_CONNECTORS for connector in allowed):
+        return -1
+
+    desired = set(expected_minimum.get("artifact_types_desired") or [])
+    tier_a_desired = {
+        "bodycam",
+        "dashcam",
+        "interrogation",
+        "dispatch_911",
+        "surveillance",
+        "surveillance_video",
+        "critical_incident_video",
+        "police_interview",
+    }
+    if not (desired & tier_a_desired):
+        return -1
+
+    score = 100
+    if "youtube" in allowed:
+        score += 20
+    if "muckrock" in allowed:
+        score += 16
+    if "documentcloud" in allowed:
+        # DocumentCloud may carry media links, but it is usually a document
+        # yield path, so keep it behind direct media connectors for Endpoint v2.
+        score += 6
+    if "courtlistener" in allowed:
+        score += 4
+    score -= 2 * max(0, len(allowed) - 1)
+    try:
+        score -= 5 * max(0, int(pilot_result.get("max_live_calls") or 0) - 1)
+    except (TypeError, ValueError):
+        return -1
+    if pilot_result.get("expected_verdict_without_live") == "HOLD":
+        score += 3
+    if "media_artifact_present" in (pilot_result.get("missing_gates") or []):
+        score += 4
+    if pilot_result.get("primary_media_candidate_id"):
+        score += 2
+    return score
+
+
+def select_primary_media_pilot_for_live_smoke(
+    *,
+    manifest_path: Optional[Path] = None,
+    pilot_output: Optional[Mapping[str, Any]] = None,
+) -> Dict[str, Any]:
+    """Select a real Endpoint v2 primary-media pilot.
+
+    This selector is stricter than the general Endpoint v0 selector:
+    it only considers real cases that explicitly require Tier A media
+    and have at least one currently supported free live connector.
+    Synthetic fixtures and agency-OIS-only paths are intentionally
+    filtered out.
+    """
+    if pilot_output is None:
+        pilot_output = run_pilot_manifest(manifest_path)
+
+    results = list(pilot_output.get("results") or [])
+    candidates = [
+        result for result in results
+        if _primary_media_selection_score(result) >= 0
+    ]
+    if not candidates:
+        return {
+            "selected_pilot_id": None,
+            "no_ready_pilot": True,
+            "candidate_count": 0,
+            "rationale": [
+                "no real ready Tier A primary-media pilot with a supported live connector"
+            ],
+        }
+
+    ranked = sorted(
+        candidates,
+        key=lambda result: (
+            -_primary_media_selection_score(result),
+            str(result.get("id") or ""),
+        ),
+    )
+    selected = ranked[0]
+    selection_score = _primary_media_selection_score(selected)
+    return {
+        "selected_pilot_id": selected["id"],
+        "no_ready_pilot": False,
+        "candidate_count": len(candidates),
+        "selection_score": selection_score,
+        "fixture_path": selected.get("seed_fixture_path"),
+        "input_type": selected.get("input_type"),
+        "allowed_connectors": list(selected.get("allowed_connectors") or []),
+        "max_live_calls": selected.get("max_live_calls"),
+        "max_results_per_connector": selected.get("max_results_per_connector"),
+        "expected_verdict_without_live": selected.get("expected_verdict_without_live"),
+        "actual_dry_verdict": selected.get("actual_dry_verdict"),
+        "expected_minimum": dict(selected.get("expected_minimum") or {}),
+        "missing_gates": list(selected.get("missing_gates") or []),
+        "selected_pilot_result": dict(selected),
+        "rationale": [
+            f"selected real Tier A primary-media pilot {selected['id']!r} with score {selection_score}",
+            f"allowed_connectors={selected.get('allowed_connectors')}",
+            f"max_live_calls={selected.get('max_live_calls')}, max_results_per_connector={selected.get('max_results_per_connector')}",
+            f"missing gates that live data may help fill: {selected.get('missing_gates') or []}",
+        ],
     }
 
 
