@@ -119,6 +119,38 @@ def _fmt_timestamp(sec):
     return f"{m}:{s:02d}"
 
 
+def _assemble_production_caveats(verdict):
+    """Read advisory caveats off the P4 verdict + metadata.
+
+    Pure read-only — never modifies the verdict. All lookups defensive
+    so verdict files predating Batch 2 (no resolution_status, no
+    production_status_flag) still produce a valid (empty) caveats dict.
+
+    Returns a dict with the full caveat surface plus a `has_any` flag
+    that controls whether render_markdown emits the Production caveats
+    section. `has_any` is True iff at least one human-relevant caveat
+    fires: a non-null production_status_flag, a Pass-2-fallback
+    `degraded` run, or a gate-applied verdict cap.
+    """
+    verdict = verdict or {}
+    md = verdict.get("_pipeline4_metadata") or {}
+    caveats = {
+        "resolution_status": verdict.get("resolution_status"),
+        "production_status_flag": verdict.get("production_status_flag"),
+        "degraded": bool(md.get("degraded", False)),
+        "resolution_gate_enabled": md.get("resolution_gate_enabled"),
+        "resolution_gate_applied": md.get("resolution_gate_applied"),
+        "pre_gate_verdict": md.get("pre_gate_verdict"),
+        "resolution_source": md.get("resolution_source"),
+    }
+    caveats["has_any"] = bool(
+        caveats["production_status_flag"]
+        or caveats["degraded"]
+        or caveats["resolution_gate_applied"]
+    )
+    return caveats
+
+
 def build_brief(verdict, case_research, transcripts, weights):
     """
     Merge all upstream outputs into a unified brief dict.
@@ -189,6 +221,7 @@ def build_brief(verdict, case_research, transcripts, weights):
         "key_moments": key_moments,
         "sources_by_type": sources_by_type,
         "transcripts": transcript_manifest,
+        "production_caveats": _assemble_production_caveats(verdict),
         "_inputs": {
             "p2_case_research_present": case_research is not None,
             "p3_transcripts_count": len(transcript_manifest),
@@ -241,6 +274,32 @@ def render_markdown(brief):
         lines.append("## Pitch")
         lines.append("")
         lines.append(brief["content_pitch"])
+        lines.append("")
+
+    # Production caveats (advisory — never modifies the verdict)
+    caveats = brief.get("production_caveats") or {}
+    if caveats.get("has_any"):
+        lines.append("## Production caveats")
+        lines.append("")
+        lines.append("> Advisory notes for human review — these do NOT "
+                     "modify or override the verdict above.")
+        lines.append("")
+        flag = caveats.get("production_status_flag")
+        status = caveats.get("resolution_status")
+        if flag:
+            lines.append(f"- **Production note: {flag}** "
+                         f"(`resolution_status` = `{status}`)")
+        if caveats.get("degraded"):
+            lines.append("- **Pass 2 fallback** — the LLM judgment "
+                         "step failed; verdict fell back to "
+                         "deterministic-only scoring. Treat as "
+                         "lower-confidence.")
+        if caveats.get("resolution_gate_applied"):
+            pre = caveats.get("pre_gate_verdict") or "?"
+            emitted = brief.get("verdict") or "?"
+            lines.append(f"- **Verdict capped by resolution gate** "
+                         f"— would have been `{pre}` without the gate; "
+                         f"emitted as `{emitted}`.")
         lines.append("")
 
     # Artifact completeness
