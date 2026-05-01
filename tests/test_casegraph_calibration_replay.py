@@ -26,7 +26,7 @@ def test_replay_scoreboard_counts_current_capabilities():
     metrics = result.metrics
 
     assert metrics["identity_ready_count"] == 38
-    assert metrics["outcome_ready_count"] == 0
+    assert metrics["outcome_ready_count"] == 11
     assert metrics["document_artifact_expected_count"] == 27
     assert metrics["media_artifact_expected_count"] == 27
     assert metrics["tier_a_media_expected_count"] == 26
@@ -42,7 +42,7 @@ def test_replay_failure_taxonomy_is_complete_and_deterministic():
 
     assert set(counts) == set(FAILURE_REASONS)
     assert counts["missing_identity_seed"] == 0
-    assert counts["missing_outcome_seed"] == 38
+    assert counts["missing_outcome_seed"] == 27
     assert counts["tier_a_media_possible"] == 26
     assert counts["needs_firecrawl_known_url"] == 34
     assert counts["document_only_expected"] == 5
@@ -54,9 +54,10 @@ def test_replay_identifies_top_next_work_items():
     result = run_calibration_replay(repo_root=ROOT)
     top = result.top_next_work_items
 
-    assert top[0]["reason"] == "missing_outcome_seed"
-    assert top[0]["count"] == 38
-    assert top[1]["reason"] == "needs_firecrawl_known_url"
+    assert top[0]["reason"] == "needs_firecrawl_known_url"
+    assert top[0]["count"] == 34
+    assert top[1]["reason"] == "missing_outcome_seed"
+    assert top[1]["count"] == 27
     assert top[2]["reason"] == "tier_a_media_possible"
 
 
@@ -65,8 +66,9 @@ def test_replay_case_results_include_next_actions():
 
     alan = next(case for case in result.case_results if case.title == "Alan Matthew Champagne")
     assert alan.identity_ready is True
-    assert alan.outcome_ready is False
+    assert alan.outcome_ready is True
     assert "tier_a_media_possible" in alan.failure_reasons
+    assert "missing_outcome_seed" not in alan.failure_reasons
     assert "verify_primary_media_artifact_url" in alan.next_actions
 
     negative = next(case for case in result.case_results if "no_known_artifact_signal" in case.failure_reasons)
@@ -80,7 +82,7 @@ def test_replay_result_is_json_serializable():
     decoded = json.loads(encoded)
 
     assert decoded["total_cases"] == 38
-    assert decoded["metrics"]["failure_reason_counts"]["missing_outcome_seed"] == 38
+    assert decoded["metrics"]["failure_reason_counts"]["missing_outcome_seed"] == 27
 
 
 def test_replay_makes_no_network_calls(monkeypatch):
@@ -96,4 +98,3 @@ def test_replay_makes_no_network_calls(monkeypatch):
 
     run_calibration_replay(repo_root=ROOT)
     assert calls == []
-
