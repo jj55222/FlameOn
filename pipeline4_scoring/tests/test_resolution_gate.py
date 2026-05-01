@@ -11,9 +11,11 @@ from __future__ import annotations
 import pytest
 
 from scoring_math import (
+    RESOLUTION_PRODUCTION_FLAG,
     RESOLUTION_VERDICT_CEILING,
     VALID_RESOLUTION_STATUSES,
     apply_resolution_gate,
+    production_status_flag,
 )
 
 
@@ -306,3 +308,65 @@ def test_resolve_handles_empty_dict_case_research():
     )
     assert status == "charges_filed_pending"
     assert source == "labels_file"
+
+
+# ---- production_status_flag (advisory mapping, default doctrine) ----------
+#
+# These exercise the human-friendly advisory flag that consumers
+# (Pipeline 5, production review tooling) read instead of interpreting
+# the four-value resolution_status enum themselves. The flag is the
+# DEFAULT advisory output -- it never alters verdicts. The verdict
+# ceiling gate (apply_resolution_gate, tested above) remains available
+# as an opt-in conservative mode but is not the default doctrine.
+
+
+def test_production_flag_confirmed_final_outcome_returns_none():
+    """Confirmed cases get None (no flag needed). Consumers display
+    nothing for these — the case is ready."""
+    assert production_status_flag("confirmed_final_outcome") is None
+
+
+def test_production_flag_charges_filed_pending_returns_pending_review():
+    """Pending cases get the 'pending_case_review' advisory. Verdict
+    is unaffected; this is purely a human-facing note."""
+    assert production_status_flag("charges_filed_pending") == "pending_case_review"
+
+
+def test_production_flag_ongoing_or_unclear_returns_ongoing_review():
+    assert production_status_flag("ongoing_or_unclear") == "ongoing_status_review"
+
+
+def test_production_flag_missing_returns_resolution_unknown():
+    assert production_status_flag("missing") == "resolution_unknown"
+
+
+@pytest.mark.parametrize("bad_input", [None, "", "garbage", "PRODUCE", "totally_made_up"])
+def test_production_flag_unknown_input_falls_back_to_resolution_unknown(bad_input):
+    """Defensive: unknown / None / empty / typo statuses must NOT
+    return None (which would conflate them with confirmed cases).
+    They fail closed to 'resolution_unknown' so consumers always see
+    a recognizable string for unexpected input."""
+    assert production_status_flag(bad_input) == "resolution_unknown"
+
+
+def test_production_flag_constants_cover_all_valid_statuses():
+    """RESOLUTION_PRODUCTION_FLAG must have an entry for every status
+    in VALID_RESOLUTION_STATUSES. A drift here would mean a valid
+    status falls through to the 'resolution_unknown' default — a
+    silent regression that this test catches at import time."""
+    assert set(RESOLUTION_PRODUCTION_FLAG) == set(VALID_RESOLUTION_STATUSES)
+
+
+def test_production_flag_values_are_none_or_short_strings():
+    """Each flag value is either None (confirmed -> no flag) or a
+    short snake_case string (advisory note). Defensive against future
+    edits that accidentally introduce verdict-like values, dicts, or
+    objects that downstream consumers can't render."""
+    for status, flag in RESOLUTION_PRODUCTION_FLAG.items():
+        assert flag is None or isinstance(flag, str), (
+            f"flag for {status!r} = {flag!r} — must be None or str"
+        )
+        if isinstance(flag, str):
+            assert flag and " " not in flag, (
+                f"flag for {status!r} = {flag!r} — should be a non-empty snake_case identifier"
+            )

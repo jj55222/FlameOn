@@ -565,3 +565,48 @@ def apply_resolution_gate(
         return verdict, False
 
     return ceiling, True
+
+
+# ---------------------------------------------------------------------------
+# Advisory production-status flag (default doctrine)
+# ---------------------------------------------------------------------------
+#
+# RESOLUTION_PRODUCTION_FLAG translates resolution_status into a
+# human-friendly production note. This is the DEFAULT advisory output --
+# not a verdict ceiling, not a pass/fail. Pipeline 5 / production teams
+# read this field as a short string ("pending_case_review", etc.) and
+# decide downstream how to handle the case. It does NOT alter
+# narrative_score or verdict.
+#
+# The resolution gate (apply_resolution_gate above) remains available
+# as an OPTIONAL conservative mode via P4_RESOLUTION_GATE=1, but it is
+# NOT the default scoring path. Default doctrine: adjudication status
+# is advisory metadata, not determinant.
+#
+# None for confirmed cases means "no flag needed -- case is ready".
+# All other entries are short strings consumers can display as warnings.
+
+RESOLUTION_PRODUCTION_FLAG = {
+    "confirmed_final_outcome": None,
+    "charges_filed_pending": "pending_case_review",
+    "ongoing_or_unclear": "ongoing_status_review",
+    "missing": "resolution_unknown",
+}
+
+
+def production_status_flag(resolution_status):
+    """Map ``resolution_status`` to a human-friendly production flag.
+
+    Pure function -- the inverse of "verdict ceiling": this never
+    changes the verdict, only annotates it. ``None`` for confirmed
+    cases means "no flag needed". Unknown / ``None`` / invalid statuses
+    fail closed to ``"resolution_unknown"`` so consumers always see a
+    recognizable advisory string instead of ``None`` for unexpected
+    input.
+
+    See ARCHITECTURE.md "Resolution gate / advisory flag" for the full
+    doctrine.
+    """
+    if resolution_status not in RESOLUTION_PRODUCTION_FLAG:
+        return "resolution_unknown"
+    return RESOLUTION_PRODUCTION_FLAG[resolution_status]
