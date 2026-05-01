@@ -36,6 +36,7 @@ def test_replay_scoreboard_counts_current_capabilities():
     assert metrics["courtlistener_supported_count"] == 17
     assert metrics["ready_for_portal_fetch_count"] == 30
     assert metrics["needs_seed_url_discovery_count"] == 4
+    assert metrics["outcome_plan_ready_count"] == 27
 
 
 def test_replay_failure_taxonomy_is_complete_and_deterministic():

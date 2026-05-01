@@ -17,6 +17,7 @@ from .calibration_profile import (
     SUPPORTED_LIVE_CONNECTORS,
     profile_calibration_set,
 )
+from .outcome_seed_plan import build_outcome_seed_plan_report
 from .portal_profiles import PortalProfileManifest, load_portal_profiles
 
 
@@ -162,6 +163,9 @@ def _metrics(
     rows: Sequence[CalibrationProfileRow],
     case_results: Sequence[CalibrationReplayCase],
 ) -> Dict[str, Any]:
+    outcome_plan_report = build_outcome_seed_plan_report(
+        CalibrationProfileReport(total_cases=len(rows), profile_rows=list(rows))
+    )
     return {
         "total_cases": len(rows),
         "profileable_cases": len(case_results),
@@ -186,6 +190,7 @@ def _metrics(
         "needs_seed_url_discovery_count": sum(
             1 for row in rows if _needs_firecrawl_known_url(row) and not row.known_source_urls
         ),
+        "outcome_plan_ready_count": outcome_plan_report.outcome_plan_ready_count,
         "failure_reason_counts": _failure_counts(case_results),
     }
 
