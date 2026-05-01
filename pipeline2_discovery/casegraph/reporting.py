@@ -234,6 +234,114 @@ def build_media_quality_report(packets: Iterable[CasePacket]) -> Dict[str, Any]:
     return report
 
 
+def build_endpoint_v2_status_report(
+    *,
+    endpoint_v0_status: Optional[Mapping[str, Any]] = None,
+    endpoint_v1_status: Optional[Mapping[str, Any]] = None,
+    endpoint_v11_media_quality: Optional[Mapping[str, Any]] = None,
+    endpoint_v2_status: Optional[Mapping[str, Any]] = None,
+    live_yield_report: Optional[Mapping[str, Any]] = None,
+) -> Dict[str, Any]:
+    """EVAL9 - deterministic Endpoint v2 status summary.
+
+    The report is advisory and no-live. It compares prior endpoint
+    milestones, summarizes the current official-primary media attempt,
+    and emits concrete blockers/next actions without changing scoring
+    or verdict behavior.
+    """
+
+    v0 = dict(endpoint_v0_status or {})
+    v1 = dict(endpoint_v1_status or {})
+    v11 = dict(endpoint_v11_media_quality or {})
+    v2 = dict(endpoint_v2_status or {})
+    live = dict(live_yield_report or {})
+
+    tier_counts = {"A": 0, "B": 0, "C": 0, "unknown": 0}
+    for tier, count in dict(v2.get("media_relevance_tiers") or {}).items():
+        tier_counts[tier if tier in tier_counts else "unknown"] += int(count or 0)
+
+    risk_flags = list(v2.get("risk_flags") or [])
+    reason_codes = list(v2.get("reason_codes") or [])
+    blockers = list(v2.get("blockers") or [])
+    if not bool(v2.get("endpoint_v2_achieved")):
+        if int(v2.get("verified_artifact_count") or 0) == 0 and "no_verified_artifacts" not in blockers:
+            blockers.append("no_verified_artifacts")
+        if tier_counts["A"] == 0 and "no_verified_tier_a_media" not in blockers:
+            blockers.append("no_verified_tier_a_media")
+        if v2.get("verdict") and v2.get("verdict") != "PRODUCE" and "verdict_not_produce" not in blockers:
+            blockers.append("verdict_not_produce")
+
+    weak_advisory_count = 0
+    for value in risk_flags + reason_codes:
+        if value in {
+            "produce_based_on_weak_or_uncertain_media",
+            "weak_or_uncertain_media",
+            "media_query_artifact_type_mismatch",
+        }:
+            weak_advisory_count += 1
+
+    connector = v2.get("connector_used") or "unknown"
+    connector_yields = {
+        connector: {
+            "source_records": int(v2.get("source_records_returned") or 0),
+            "verified_artifacts": int(v2.get("verified_artifact_count") or 0),
+            "media_artifacts": int(v2.get("media_artifact_count") or 0),
+        }
+    }
+    if live.get("by_provider"):
+        for provider, payload in live.get("by_provider", {}).items():
+            if provider not in connector_yields:
+                connector_yields[provider] = {
+                    "source_records": int(payload.get("source_records") or payload.get("result_count") or 0),
+                    "verified_artifacts": int(payload.get("verified_artifacts") or 0),
+                    "media_artifacts": 0,
+                }
+
+    next_actions: List[str] = []
+    if "no_verified_tier_a_media" in blockers:
+        next_actions.append("Find a supported live path that returns concrete Tier A media URLs.")
+    if connector == "youtube" and int(v2.get("source_records_returned") or 0) == 0:
+        next_actions.append("Install or enable yt-dlp in the repo venv before retrying the capped YouTube pilot.")
+    if "unsupported_agency_ois_only_path" in blockers:
+        next_actions.append("Implement a live agency_ois connector or choose a supported-source seed.")
+    if not next_actions and not bool(v2.get("endpoint_v2_achieved")):
+        next_actions.append("Review blockers and rerun LIVE9 under the selected pilot budget.")
+
+    return {
+        "endpoint_v0": {
+            "achieved": bool(v0.get("endpoint_v0_fully_achieved") or v0.get("achieved")),
+            "verified_artifact_count": int(v0.get("verified_artifact_count") or 0),
+            "document_artifact_count": int(v0.get("document_artifact_count") or 0),
+        },
+        "endpoint_v1": {
+            "achieved": bool(v1.get("endpoint_v1_achieved") or v1.get("achieved")),
+            "media_artifact_count": int(v1.get("media_artifact_count") or 0),
+            "verdict": v1.get("verdict"),
+        },
+        "endpoint_v1_1": {
+            "weak_media_warning_count": len(v11.get("warnings") or []),
+            "tier_counts": dict(v11.get("tier_counts") or {}),
+        },
+        "endpoint_v2": {
+            "achieved": bool(v2.get("endpoint_v2_achieved")),
+            "pilot_id": v2.get("pilot_id"),
+            "connector_used": connector,
+            "query": v2.get("query"),
+            "tier_a_media_count": tier_counts["A"],
+            "tier_b_media_count": tier_counts["B"],
+            "tier_c_or_unknown_media_count": tier_counts["C"] + tier_counts["unknown"],
+            "weak_media_advisory_count": weak_advisory_count,
+            "official_source_likelihood": v2.get("official_source_likelihood"),
+            "connector_yields": connector_yields,
+            "live_call_count": int(v2.get("live_calls_used") or live.get("total_live_calls") or 0),
+            "cost": float(v2.get("estimated_cost_usd") or live.get("total_estimated_cost_usd") or 0.0),
+            "verdict": v2.get("verdict"),
+            "blockers": sorted(set(blockers)),
+            "next_actions": next_actions,
+        },
+    }
+
+
 def build_actionability_report(packets: Iterable[CasePacket]) -> Dict[str, Any]:
     """Build a structured no-live report from a packet collection.
 

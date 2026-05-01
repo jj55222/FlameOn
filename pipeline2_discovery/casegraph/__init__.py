@@ -84,6 +84,7 @@ from .primary_media_candidates import (
 )
 from .reporting import (
     build_actionability_report,
+    build_endpoint_v2_status_report,
     build_live_yield_report,
     build_media_quality_report,
     build_pilot_validation_scoreboard,
@@ -189,6 +190,7 @@ __all__ = [
     "assess_current_state",
     "assess_pilot",
     "build_actionability_report",
+    "build_endpoint_v2_status_report",
     "build_live_yield_report",
     "build_media_quality_report",
     "build_pilot_validation_scoreboard",
