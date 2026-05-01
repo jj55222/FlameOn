@@ -149,6 +149,36 @@
       "notes": "REAL1 / Endpoint v0 - real-case pilot seed (Min Jian Guan, San Francisco, sentenced 2024). Identity is pre-locked high in the seed (name + jurisdiction + agency + case_number anchors); outcome is sentenced. Dry verdict is HOLD (no_verified_media). Pilot queries DocumentCloud once for public document corroboration; with even one document URL graduated, Endpoint v0 condition 3 is fully met (high identity + concluded outcome + verified public artifact URL + classified type)."
     },
     {
+      "id": "media_case_christa_gail_pike_pilot",
+      "input_type": "manual",
+      "seed_fixture_path": "tests/fixtures/pilot_cases/media_case_christa_gail_pike.json",
+      "expected_minimum": {
+        "identity_lock_required": true,
+        "outcome_required": true,
+        "media_required_for_produce": true,
+        "artifact_types_desired": [
+          "bodycam",
+          "court_video",
+          "interrogation",
+          "dispatch_911",
+          "video_footage"
+        ]
+      },
+      "allowed_connectors": [
+        "youtube"
+      ],
+      "max_live_calls": 1,
+      "max_results_per_connector": 5,
+      "allow_resolvers": true,
+      "allow_downloads": false,
+      "allow_scraping": false,
+      "allow_llm": false,
+      "expected_verdict_without_live": "HOLD",
+      "is_real_case": true,
+      "real_case_source": "autoresearch/calibration_data.json case_id=4 (tier=ENOUGH); 5 known YouTube media URLs in verified_sources; closed murder conviction (1996, Tennessee)",
+      "notes": "MEDIA3 / Endpoint v1 - first media-yield pilot. YouTube as primary connector (calibration shows 5 known YouTube videos for this case). Identity pre-locked high; outcome convicted. Dry HOLD. Live YouTube query + resolve_youtube_files should graduate at least one media VerifiedArtifact (artifact_type bodycam | court_video | video_footage; format=video). Media-only verdict still HOLD until media + identity + outcome all clear; PRODUCE only if all gates pass."
+    },
+    {
       "id": "manual_known_case_dual_connector_pilot",
       "input_type": "manual",
       "seed_fixture_path": "tests/fixtures/casegraph_scenarios/structured_verified_bodycam_produce.json",

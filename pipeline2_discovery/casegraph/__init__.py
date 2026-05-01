@@ -48,6 +48,7 @@ from .ledger import (
     estimate_cost,
     normalize_api_calls,
 )
+from .media_candidates import find_media_candidates
 from .media_policy import MediaClassification, classify_many, classify_media_url
 from .live_safety import (
     ALLOWED_FREE_CONNECTORS,
@@ -102,10 +103,12 @@ from .resolvers import (
     MuckRockFileResolution,
     RESOLVER_NAMES,
     ResolverOrchestrationResult,
+    YouTubeFileResolution,
     resolve_agency_ois_files,
     resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
+    resolve_youtube_files,
     run_metadata_only_resolvers,
 )
 from .routers import route_manual_defendant_jurisdiction
@@ -163,6 +166,7 @@ __all__ = [
     "SourceConnector",
     "VerifiedArtifact",
     "YouTubeConnector",
+    "YouTubeFileResolution",
     "YouTubeInputParseResult",
     "aggregate_ledger",
     "append_ledger_entry",
@@ -184,6 +188,7 @@ __all__ = [
     "export_p2_to_p4",
     "export_p2_to_p5",
     "extract_artifact_claims",
+    "find_media_candidates",
     "is_live_enabled",
     "normalize_api_calls",
     "parse_fatal_encounters_case_input",
@@ -201,6 +206,7 @@ __all__ = [
     "route_manual_defendant_jurisdiction",
     "resolve_identity",
     "resolve_muckrock_released_files",
+    "resolve_youtube_files",
     "resolve_outcome",
     "run_capped_live_smoke",
     "run_capped_multi_connector_smoke",
