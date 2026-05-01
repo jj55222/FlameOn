@@ -214,3 +214,95 @@ def test_resolution_ceiling_values_are_valid_verdicts():
         assert ceiling in valid, (
             f"Ceiling {ceiling!r} for status {status!r} is not a valid verdict"
         )
+
+
+# ---- _resolve_resolution_status priority chain ----------------------------
+#
+# These tests exercise the orchestration-layer helper that picks
+# resolution_status from up to four sources. The helper is the bridge
+# between the pure gate (apply_resolution_gate, tested above) and the
+# score_case wiring (tested in test_score_case_resolution.py).
+
+from pipeline4_score import _resolve_resolution_status
+
+
+def test_resolve_case_research_beats_labels_and_pass1():
+    """Tier 1: case_research.resolution_status wins over both labels
+    file and pass1 hint."""
+    cr = {"resolution_status": "confirmed_final_outcome"}
+    labels = {"abc": {"resolution_status": "ongoing_or_unclear"}}
+    pass1 = {"resolution_status_hint": "missing"}
+    status, source = _resolve_resolution_status("abc", cr, labels, pass1)
+    assert status == "confirmed_final_outcome"
+    assert source == "case_research"
+
+
+def test_resolve_labels_beats_pass1_when_case_research_absent():
+    """Tier 2: labels file wins over pass1 hint when case_research is
+    None or has no usable status."""
+    labels = {"abc": {"resolution_status": "charges_filed_pending"}}
+    pass1 = {"resolution_status_hint": "confirmed_final_outcome"}
+    status, source = _resolve_resolution_status("abc", None, labels, pass1)
+    assert status == "charges_filed_pending"
+    assert source == "labels_file"
+
+
+def test_resolve_pass1_hint_beats_default_missing():
+    """Tier 3: pass1.resolution_status_hint is used when case_research
+    and labels both lack the status."""
+    pass1 = {"resolution_status_hint": "ongoing_or_unclear"}
+    status, source = _resolve_resolution_status("abc", None, {}, pass1)
+    assert status == "ongoing_or_unclear"
+    assert source == "pass1_hint"
+
+
+def test_resolve_default_missing_when_all_tiers_empty():
+    """Tier 4 (fallback): no source supplies a status -> 'missing'
+    with source 'default_missing'. Fail-closed posture."""
+    status, source = _resolve_resolution_status("abc", None, {}, None)
+    assert status == "missing"
+    assert source == "default_missing"
+
+
+def test_resolve_invalid_case_research_status_falls_through_to_labels():
+    """An unrecognized value at tier 1 falls through to tier 2 instead
+    of silently becoming 'missing' -- defensive against typos / drift
+    in upstream P2 schema."""
+    cr = {"resolution_status": "totally_made_up"}
+    labels = {"abc": {"resolution_status": "confirmed_final_outcome"}}
+    status, source = _resolve_resolution_status("abc", cr, labels, None)
+    assert status == "confirmed_final_outcome"
+    assert source == "labels_file"
+
+
+def test_resolve_invalid_at_all_tiers_falls_to_default():
+    """All tiers present but with garbage values -> 'missing' /
+    'default_missing'. Belt-and-suspenders defensive default."""
+    cr = {"resolution_status": "garbage_a"}
+    labels = {"abc": {"resolution_status": "garbage_b"}}
+    pass1 = {"resolution_status_hint": "garbage_c"}
+    status, source = _resolve_resolution_status("abc", cr, labels, pass1)
+    assert status == "missing"
+    assert source == "default_missing"
+
+
+def test_resolve_returns_missing_when_label_for_other_case_id():
+    """labels keyed on a DIFFERENT case_id should not match the lookup;
+    must not leak status across cases."""
+    labels = {"different_case": {"resolution_status": "confirmed_final_outcome"}}
+    status, source = _resolve_resolution_status("abc", None, labels, None)
+    assert status == "missing"
+    assert source == "default_missing"
+
+
+def test_resolve_handles_empty_dict_case_research():
+    """case_research dict without resolution_status key falls through
+    cleanly without KeyError."""
+    status, source = _resolve_resolution_status(
+        "abc",
+        {"sources": [], "defendant": "x"},
+        {"abc": {"resolution_status": "charges_filed_pending"}},
+        None,
+    )
+    assert status == "charges_filed_pending"
+    assert source == "labels_file"
