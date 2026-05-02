@@ -39,14 +39,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, TextIO
+from typing import Any, Dict, Iterable, List, Mapping, Optional, TextIO
 
 from .adapters import export_p2_to_p3, export_p2_to_p4, export_p2_to_p5
 from .assembly import StructuredAssemblyResult, assemble_structured_case_packet
+from .claim_extraction import extract_artifact_claims
+from .connectors.agency_ois import AgencyOISConnector
+from .identity import resolve_identity
 from .inputs import (
     StructuredInputParseResult,
     parse_fatal_encounters_case_input,
@@ -71,8 +75,13 @@ from .models import (
     SourceRecord,
     VerifiedArtifact,
 )
+from .outcome import resolve_outcome
+from .portal_executor import execute_mock_portal_plan
+from .portal_fetch_plan import PortalFetchPlan
 from .query_planner import QueryPlanResult, plan_queries_from_structured_result
 from .reporting import build_actionability_report
+from .resolvers import run_metadata_only_resolvers
+from .routers import route_manual_defendant_jurisdiction
 from .scoring import ActionabilityResult, score_case_packet
 
 
@@ -680,6 +689,318 @@ def build_multi_source_dry_run_payload(
     }
 
 
+_LIVE_URL_SCHEMES = ("http://", "https://")
+_AGENCY_NAME_SUFFIXES = (
+    " Police Department",
+    " Sheriff's Office",
+    " Sheriff Department",
+    " Sheriff's Department",
+    " Sheriff",
+    " Department of Public Safety",
+    " PD",
+)
+
+
+def _looks_like_live_url(value: str) -> bool:
+    """True when --fixture's value is an http(s) URL rather than a path.
+
+    --portal-replay refuses live URLs by design. This is the explicit
+    guard that surfaces a clear error before any I/O happens.
+    """
+    lowered = (value or "").strip().lower()
+    return any(lowered.startswith(scheme) for scheme in _LIVE_URL_SCHEMES)
+
+
+def _load_portal_payload(path: Path) -> Dict[str, Any]:
+    """Load and minimally validate a portal-replay payload fixture.
+
+    Accepts agency-OIS shaped pages (page_type / subjects / media_links
+    / etc.) and manifest-supplied source_records lists. Raises the same
+    exceptions the default-mode loader does so the dispatcher can map
+    them to consistent exit codes.
+    """
+    if not path.exists():
+        raise FileNotFoundError(f"fixture not found: {path}")
+    with path.open("r", encoding="utf-8") as f:
+        raw = json.load(f)
+    if not isinstance(raw, dict):
+        raise ValueError(f"portal payload root is not a JSON object: {path}")
+    if not (
+        raw.get("page_type")
+        or raw.get("portal_profile_id")
+        or isinstance(raw.get("source_records"), list)
+    ):
+        raise ValueError(
+            "portal payload must declare page_type, portal_profile_id, "
+            "or source_records"
+        )
+    return dict(raw)
+
+
+def _portal_profile_id(payload: Mapping[str, Any]) -> str:
+    """Resolve the canonical portal_profile_id for a payload, falling
+    back to agency_ois_detail when only ``page_type`` is set."""
+    declared = str(payload.get("portal_profile_id") or "")
+    if declared:
+        return declared
+    if payload.get("page_type"):
+        return "agency_ois_detail"
+    return ""
+
+
+def _portal_plan_from_payload(payload: Mapping[str, Any], *, fixture_path: Path) -> PortalFetchPlan:
+    """Build a minimal PortalFetchPlan suitable for the offline executor.
+
+    No fetcher actually runs; the plan is shaped to mirror the executor's
+    expectations and to seed identity/title fields. Derived from the
+    payload contents, never from caller-supplied flags."""
+    profile_id = _portal_profile_id(payload) or "agency_ois_detail"
+    seed_url = str(payload.get("url") or "")
+    title = ""
+    subjects = payload.get("subjects") or []
+    if isinstance(subjects, list) and subjects:
+        title = str(subjects[0])
+    elif payload.get("title"):
+        title = str(payload["title"])
+    case_id = int(payload.get("case_id") or 0) or hash(fixture_path.name) % 1_000_000
+    return PortalFetchPlan(
+        case_id=case_id,
+        title=title,
+        portal_profile_id=profile_id,
+        seed_url=seed_url or None,
+        seed_url_exists=bool(seed_url),
+        fetcher="firecrawl",
+        max_pages=1,
+        max_links=10,
+        allowed_domain=urlparse_netloc(seed_url),
+    )
+
+
+def urlparse_netloc(url: str) -> Optional[str]:
+    """Tiny helper around urlparse to keep the call sites readable."""
+    if not url:
+        return None
+    from urllib.parse import urlparse
+
+    netloc = urlparse(url).netloc.lower()
+    return netloc or None
+
+
+def _source_record_from_dict(raw: Mapping[str, Any]) -> SourceRecord:
+    return SourceRecord(
+        source_id=str(raw["source_id"]),
+        url=str(raw.get("url") or ""),
+        title=str(raw.get("title") or ""),
+        snippet=str(raw.get("snippet") or ""),
+        raw_text=str(raw.get("raw_text") or raw.get("snippet") or ""),
+        source_type=str(raw.get("source_type") or "unknown"),
+        source_authority=str(raw.get("source_authority") or "unknown"),
+        source_roles=list(raw.get("source_roles") or []),
+        api_name=raw.get("api_name"),
+        discovered_via=str(raw.get("discovered_via") or ""),
+        case_input_id=raw.get("case_input_id"),
+        metadata=dict(raw.get("metadata") or {}),
+        cost_estimate=float(raw.get("cost_estimate") or 0.0),
+        confidence_signals=dict(raw.get("confidence_signals") or {}),
+        matched_case_fields=list(raw.get("matched_case_fields") or []),
+    )
+
+
+def _portal_payload_source_records(payload: Mapping[str, Any]) -> List[SourceRecord]:
+    """Public-API replay of portal_executor's record dispatch.
+
+    Mirrors the executor: manifest-supplied source_records lists load
+    directly; agency-shaped pages flow through AgencyOISConnector.
+    """
+    records_field = payload.get("source_records")
+    if isinstance(records_field, list):
+        return [_source_record_from_dict(item) for item in records_field]
+    profile_id = _portal_profile_id(payload)
+    if profile_id.startswith("agency_ois") or payload.get("page_type"):
+        subjects = payload.get("subjects") or []
+        if isinstance(subjects, str):
+            subjects = [subjects]
+        case_input = CaseInput(
+            input_type="manual",
+            raw_input={"defendant_names": ", ".join(str(s) for s in subjects)},
+            known_fields={"defendant_names": list(subjects)},
+        )
+        return list(AgencyOISConnector([dict(payload)]).fetch(case_input))
+    return []
+
+
+def _derive_defendant_string(payload: Mapping[str, Any]) -> str:
+    subjects = payload.get("subjects") or []
+    if isinstance(subjects, list) and subjects:
+        return str(subjects[0])
+    return "Generic Subject"
+
+
+def _derive_jurisdiction_string(payload: Mapping[str, Any]) -> str:
+    """Best-effort city derivation from agency name. Identical pattern
+    to the PR #8 portal-replay-to-handoffs harness so this CLI mode and
+    the integration tests stay in lockstep."""
+    agency = str(payload.get("agency") or "")
+    if not agency:
+        return "Unknown"
+    city = agency
+    for tag in _AGENCY_NAME_SUFFIXES:
+        if tag in city:
+            city = city.replace(tag, "").strip()
+            break
+    return f"{city}, AZ" if city else "Unknown"
+
+
+def _build_portal_packet(payload: Mapping[str, Any]) -> CasePacket:
+    """Build a CasePacket from a portal payload via the public manual
+    router, then attach portal-extracted SourceRecords."""
+    defendant = _derive_defendant_string(payload)
+    jurisdiction = _derive_jurisdiction_string(payload)
+    packet = route_manual_defendant_jurisdiction(defendant, jurisdiction)
+    packet.sources = list(_portal_payload_source_records(payload))
+    return packet
+
+
+def _portal_input_summary(
+    payload: Mapping[str, Any], *, fixture_path: Path
+) -> Dict[str, Any]:
+    return {
+        "input_type": "portal_replay",
+        "fixture_path": _relative_fixture_path(fixture_path),
+        "portal_profile_id": _portal_profile_id(payload) or None,
+        "subjects": list(payload.get("subjects") or []),
+        "agency": payload.get("agency"),
+        "incident_date": payload.get("incident_date"),
+        "case_number": payload.get("case_number"),
+        "page_type": payload.get("page_type"),
+        "page_url": payload.get("url"),
+    }
+
+
+def _relative_fixture_path(fixture_path: Path) -> str:
+    repo = _repo_root()
+    try:
+        return os.fspath(fixture_path.resolve().relative_to(repo)).replace(os.sep, "/")
+    except ValueError:
+        return os.fspath(fixture_path.resolve())
+
+
+def _portal_replay_section(
+    payload: Mapping[str, Any], exec_result: Any, *, fixture_path: Path
+) -> Dict[str, Any]:
+    return {
+        "portal_profile_id": _portal_profile_id(payload) or None,
+        "fixture_path": _relative_fixture_path(fixture_path),
+        "source_records_count": len(getattr(exec_result, "extracted_source_records", []) or []),
+        "artifact_claims_count": len(getattr(exec_result, "artifact_claims", []) or []),
+        "candidate_urls_count": len(getattr(exec_result, "candidate_artifact_urls", []) or []),
+        "rejected_urls_count": len(getattr(exec_result, "rejected_urls", []) or []),
+        "executor_status": getattr(exec_result, "execution_status", "unknown"),
+        "executor_risk_flags": list(getattr(exec_result, "risk_flags", []) or []),
+        "executor_next_actions": list(getattr(exec_result, "next_actions", []) or []),
+    }
+
+
+def build_portal_replay_payload(
+    payload: Mapping[str, Any],
+    *,
+    fixture_path: Path,
+    experiment_id: str = "PIPE3-cli-portal-replay",
+    wallclock_seconds: float = 0.0,
+    emit_handoffs: bool = False,
+) -> Dict[str, Any]:
+    """Build the structured payload printed by --portal-replay mode.
+
+    Pure: runs the executor against the saved payload (no fetch), then
+    threads the extracted SourceRecords through the existing public
+    assembly pipeline (resolve_identity / resolve_outcome / claim
+    extraction / metadata-only resolvers / score). When ``emit_handoffs``
+    is True, attaches the schema-validated P2 -> P3/P4/P5 exports under
+    a top-level ``handoffs`` key, matching default-mode shape (PR #6).
+    """
+    plan = _portal_plan_from_payload(payload, fixture_path=fixture_path)
+    exec_result = execute_mock_portal_plan(plan, payload)
+    packet = _build_portal_packet(payload)
+    resolve_identity(packet)
+    resolve_outcome(packet)
+    extract_artifact_claims(packet)
+    run_metadata_only_resolvers(packet)
+    result = score_case_packet(packet)
+    report = build_actionability_report([packet])
+    ledger_entry = build_run_ledger_entry(
+        experiment_id=experiment_id,
+        packet=packet,
+        wallclock_seconds=wallclock_seconds,
+        notes=[
+            "portal-replay",
+            f"profile={_portal_profile_id(payload) or 'unknown'}",
+            f"fixture={_relative_fixture_path(fixture_path)}",
+        ],
+    )
+    output: Dict[str, Any] = {
+        "input_summary": _portal_input_summary(payload, fixture_path=fixture_path),
+        "packet_summary": _packet_summary(packet),
+        "result": _result_summary(result),
+        "report": report,
+        "ledger_entry": ledger_entry.to_dict(),
+        "portal_replay": _portal_replay_section(
+            payload, exec_result, fixture_path=fixture_path
+        ),
+    }
+    if emit_handoffs:
+        output["handoffs"] = build_handoffs(packet)
+    return output
+
+
+def _format_portal_replay_text(payload: Dict[str, Any]) -> str:
+    inp = payload["input_summary"]
+    pkt = payload["packet_summary"]
+    res = payload["result"]
+    pr = payload["portal_replay"]
+    led = payload["ledger_entry"]
+    lines = [
+        "=== CaseGraph portal replay (offline) ===",
+        f"fixture_path: {pr['fixture_path']}",
+        f"portal_profile_id: {pr['portal_profile_id'] or '(none)'}",
+        f"page_url: {inp['page_url'] or '(none)'}",
+        f"subjects: {', '.join(inp['subjects']) or '(none)'}",
+        f"agency: {inp['agency'] or '(none)'}",
+        "",
+        f"executor_status: {pr['executor_status']}",
+        f"source_records: {pr['source_records_count']}    "
+        f"artifact_claims: {pr['artifact_claims_count']}",
+        f"candidate_urls: {pr['candidate_urls_count']}    "
+        f"rejected_urls: {pr['rejected_urls_count']}",
+        f"executor_risk_flags: {', '.join(pr['executor_risk_flags']) or '(none)'}",
+        "",
+        f"case_id: {pkt['case_id']}",
+        f"identity_confidence: {pkt['identity_confidence']}    "
+        f"outcome_status: {pkt['outcome_status']}",
+        f"verified_artifacts: {pkt['verified_artifact_count']} "
+        f"({', '.join(pkt['verified_artifact_types']) or 'none'})",
+        "",
+        f"verdict: {res['verdict']}",
+        f"actionability_score: {res['actionability_score']}",
+        f"reason_codes: {', '.join(res['reason_codes']) or '(none)'}",
+        f"risk_flags: {', '.join(res['risk_flags']) or '(none)'}",
+        "",
+        f"ledger.experiment_id: {led['experiment_id']}",
+        f"ledger.api_calls: {led['api_calls']}",
+        f"ledger.estimated_cost_usd: {led['estimated_cost_usd']}",
+    ]
+    if "handoffs" in payload:
+        handoffs = payload["handoffs"]
+        lines.extend(
+            [
+                "",
+                f"handoffs.p2_to_p3 rows: {len(handoffs['p2_to_p3'])}",
+                f"handoffs.p2_to_p4.case_id: {handoffs['p2_to_p4'].get('case_id')}",
+                f"handoffs.p2_to_p5.verdict: {handoffs['p2_to_p5'].get('verdict')}",
+            ]
+        )
+    return "\n".join(lines) + "\n"
+
+
 def build_live_dry_payload(
     parsed: StructuredInputParseResult,
     *,
@@ -775,6 +1096,18 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
             "Emits the planned per-connector query, an assembled CasePacket "
             "summary, an actionability report, and a ledger entry. "
             "Refuses Brave / Firecrawl / unknown connectors."
+        ),
+    )
+    mode_group.add_argument(
+        "--portal-replay",
+        dest="portal_replay",
+        action="store_true",
+        help=(
+            "Offline portal-replay mode. --fixture must point at a saved "
+            "portal payload JSON (agency_ois page or manifest source_records "
+            "list). Runs the executor + assembly + scoring chain on saved "
+            "data only. Refuses http:// / https:// fixture values; no "
+            "network, no Firecrawl, no browser automation."
         ),
     )
     parser.add_argument(
@@ -1148,6 +1481,81 @@ def _run_live_dry_mode(args, *, out, err) -> int:
     return EXIT_OK
 
 
+def _run_portal_replay_mode(args, *, out, err) -> int:
+    """Offline portal-replay mode handler.
+
+    Refuses live URLs explicitly; loads the saved fixture; runs the
+    deterministic executor + assembly + scoring chain via
+    ``build_portal_replay_payload``; emits JSON or text. Bundle output
+    is intentionally not extended in this PR (deferred follow-up); if
+    --bundle-out is also passed, a default-shape bundle is written
+    that does NOT carry a portal_replay section.
+    """
+    if _looks_like_live_url(str(args.fixture or "")):
+        err.write(
+            "error: --portal-replay refuses live URLs; pass a saved fixture "
+            "path instead\n"
+        )
+        return EXIT_LIVE_BLOCKED
+
+    fixture_path = Path(args.fixture)
+    started = time.perf_counter()
+    try:
+        payload = _load_portal_payload(fixture_path)
+    except FileNotFoundError as exc:
+        err.write(f"error: {exc}\n")
+        return EXIT_FIXTURE_MISSING
+    except (ValueError, json.JSONDecodeError) as exc:
+        err.write(f"error: {exc}\n")
+        return EXIT_FIXTURE_INVALID
+
+    experiment_id = args.experiment_id or "PIPE3-cli-portal-replay"
+    wallclock = round(time.perf_counter() - started, 4)
+    emit_handoffs = bool(getattr(args, "emit_handoffs", False))
+    output = build_portal_replay_payload(
+        payload,
+        fixture_path=fixture_path,
+        experiment_id=experiment_id,
+        wallclock_seconds=wallclock,
+        emit_handoffs=emit_handoffs,
+    )
+
+    if args.json:
+        out.write(json.dumps(output, separators=(",", ": "), sort_keys=False))
+        out.write("\n")
+    else:
+        out.write(_format_portal_replay_text(output))
+
+    if args.bundle_out:
+        # Bundle shape is intentionally unchanged in this PR — the
+        # bundle gets the canonical packet/result/identity sections
+        # via build_run_bundle, but no portal_replay section. Adding
+        # bundle-aware portal output is a tracked follow-up.
+        packet = _build_portal_packet(payload)
+        # Re-run the offline pipeline on the new packet for the bundle
+        # (the JSON output already mutated its own packet; we keep the
+        # bundle's view independent so callers can't observe in-place
+        # state from the JSON write step).
+        resolve_identity(packet)
+        resolve_outcome(packet)
+        extract_artifact_claims(packet)
+        run_metadata_only_resolvers(packet)
+        bundle = build_run_bundle(
+            mode="portal_replay",
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock,
+            packet=packet,
+            handoffs=build_handoffs(packet) if emit_handoffs else None,
+            notes=[
+                "portal-replay",
+                f"profile={_portal_profile_id(payload) or 'unknown'}",
+                f"fixture={_relative_fixture_path(fixture_path)}",
+            ],
+        )
+        _write_bundle(Path(args.bundle_out), bundle)
+    return EXIT_OK
+
+
 def main(
     argv: Optional[Iterable[str]] = None,
     *,
@@ -1169,6 +1577,8 @@ def main(
             err.write(f"error: {exc}\n")
             return EXIT_BUNDLE_UNSAFE
 
+    if args.portal_replay:
+        return _run_portal_replay_mode(args, out=out, err=err)
     if args.live_dry:
         return _run_live_dry_mode(args, out=out, err=err)
     if args.query_plan:
