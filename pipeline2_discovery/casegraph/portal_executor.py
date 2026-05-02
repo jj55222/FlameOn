@@ -112,10 +112,32 @@ def portal_execution_to_jsonable(result: PortalExecutionResult) -> Dict[str, Any
 
 
 def _records_from_payload(page_payload: Mapping[str, Any]) -> List[SourceRecord]:
+    if isinstance(page_payload.get("source_records"), list):
+        return [_source_record_from_mapping(item) for item in page_payload["source_records"]]
     profile_id = str(page_payload.get("portal_profile_id") or "")
     if profile_id in {"agency_ois_detail", "agency_ois_listing"} or page_payload.get("page_type"):
         return list(AgencyOISConnector([page_payload]).fetch(_case_input(page_payload)))
     return [_generic_page_record(page_payload)]
+
+
+def _source_record_from_mapping(item: Mapping[str, Any]) -> SourceRecord:
+    return SourceRecord(
+        source_id=str(item.get("source_id") or "portal_manifest_source"),
+        url=str(item.get("url") or ""),
+        title=str(item.get("title") or ""),
+        snippet=str(item.get("snippet") or ""),
+        raw_text=str(item.get("raw_text") or item.get("snippet") or ""),
+        source_type=str(item.get("source_type") or "portal_manifest_source"),
+        source_authority=str(item.get("source_authority") or "unknown"),
+        source_roles=list(item.get("source_roles") or []),
+        api_name=item.get("api_name"),
+        discovered_via=str(item.get("discovered_via") or "portal_replay_manifest"),
+        case_input_id=item.get("case_input_id"),
+        metadata=dict(item.get("metadata") or {}),
+        cost_estimate=float(item.get("cost_estimate") or 0.0),
+        confidence_signals=dict(item.get("confidence_signals") or {}),
+        matched_case_fields=list(item.get("matched_case_fields") or []),
+    )
 
 
 def _case_input(page_payload: Mapping[str, Any]) -> CaseInput:

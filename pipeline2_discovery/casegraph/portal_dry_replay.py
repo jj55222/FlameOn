@@ -10,6 +10,7 @@ No live fetches, no Firecrawl calls, no scraping, and no downloads.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+import json
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence
 
@@ -56,6 +57,35 @@ class PortalDryReplayReport:
         }
 
 
+@dataclass
+class PortalReplayManifestEntry:
+    case_id: int
+    portal_profile_id: str
+    mocked_payload_fixture: str
+    expected_source_records: int
+    expected_artifact_claims: int
+    expected_candidate_urls: int
+    expected_rejected_urls: int
+    expected_resolver_actions: int
+    expected_blockers: List[str] = field(default_factory=list)
+    notes: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class PortalReplayManifest:
+    version: int
+    entries: List[PortalReplayManifestEntry] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "version": self.version,
+            "entries": [entry.to_dict() for entry in self.entries],
+        }
+
+
 def build_portal_dry_replay_report(
     *,
     plans: Optional[Sequence[PortalFetchPlan]] = None,
@@ -87,6 +117,48 @@ def build_portal_dry_replay_report(
 
 def portal_dry_replay_to_jsonable(report: PortalDryReplayReport) -> Dict[str, Any]:
     return report.to_dict()
+
+
+def default_portal_replay_manifest_path(repo_root: Optional[Path] = None) -> Path:
+    root = Path(repo_root) if repo_root else Path(__file__).resolve().parents[2]
+    return root / "tests" / "fixtures" / "portal_replay" / "portal_replay_manifest.json"
+
+
+def load_portal_replay_manifest(
+    path: Optional[Path] = None,
+    *,
+    repo_root: Optional[Path] = None,
+) -> PortalReplayManifest:
+    manifest_path = Path(path) if path else default_portal_replay_manifest_path(repo_root)
+    with manifest_path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+    return PortalReplayManifest(
+        version=int(data.get("version", 1)),
+        entries=[
+            PortalReplayManifestEntry(**entry)
+            for entry in data.get("entries", [])
+            if isinstance(entry, Mapping)
+        ],
+    )
+
+
+def run_portal_replay_manifest(
+    manifest: Optional[PortalReplayManifest] = None,
+    *,
+    repo_root: Optional[Path] = None,
+) -> PortalDryReplayReport:
+    root = Path(repo_root) if repo_root else Path(__file__).resolve().parents[2]
+    loaded = manifest or load_portal_replay_manifest(repo_root=root)
+    plans = [_plan_for_manifest_entry(entry) for entry in loaded.entries]
+    payloads = {
+        entry.case_id: _load_payload_fixture(root, entry.mocked_payload_fixture)
+        for entry in loaded.entries
+    }
+    return build_portal_dry_replay_report(
+        plans=plans,
+        mocked_payloads_by_case_id=payloads,
+        repo_root=root,
+    )
 
 
 def _run_plan(
@@ -154,6 +226,47 @@ def _run_plan(
         blockers=list(dict.fromkeys(blockers)),
         next_actions=list(dict.fromkeys(next_actions)),
     )
+
+
+def _plan_for_manifest_entry(entry: PortalReplayManifestEntry) -> PortalFetchPlan:
+    max_links = 5 if entry.portal_profile_id == "youtube_agency_channel" else 25
+    fetcher = "requests" if entry.portal_profile_id == "youtube_agency_channel" else "firecrawl"
+    seed_url = (
+        f"https://www.youtube.com/watch?v=portalReplay{entry.case_id}"
+        if entry.portal_profile_id == "youtube_agency_channel"
+        else f"https://www.phoenix.gov/police/critical-incidents/replay-{entry.case_id}"
+    )
+    return PortalFetchPlan(
+        case_id=entry.case_id,
+        title=f"portal_replay_case_{entry.case_id}",
+        portal_profile_id=entry.portal_profile_id,
+        seed_url=seed_url,
+        seed_url_exists=True,
+        fetcher=fetcher,
+        max_pages=1,
+        max_links=max_links,
+        allowed_domain="www.phoenix.gov",
+        expected_artifact_types=[],
+        resolver_policy={
+            "metadata_only": True,
+            "require_public_url": True,
+            "allow_downloads": False,
+            "allow_scraping": False,
+            "allow_login": False,
+        },
+        needs_seed_url_discovery=False,
+        blocked_reason=None,
+        safety_flags=["portal_replay_manifest"],
+    )
+
+
+def _load_payload_fixture(root: Path, relative_path: str) -> Mapping[str, Any]:
+    path = root / relative_path
+    with path.open("r", encoding="utf-8") as f:
+        payload = json.load(f)
+    if isinstance(payload, Mapping):
+        return payload
+    raise ValueError(f"portal replay payload fixture must be a JSON object: {path}")
 
 
 def _safety_request_for(plan: PortalFetchPlan) -> PortalFetchSafetyRequest:
