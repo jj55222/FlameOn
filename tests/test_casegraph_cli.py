@@ -109,7 +109,7 @@ def test_cli_includes_report_aggregation_over_single_packet():
         ("transcript_corroborated_media_produce.json", "PRODUCE"),
         ("document_only_hold.json", "HOLD"),
         ("claim_only_hold.json", "HOLD"),
-        ("charged_with_media_hold.json", "HOLD"),
+        ("charged_with_media_hold.json", "PRODUCE"),
         ("protected_nonpublic_blocked.json", "HOLD"),
         ("transcript_artifact_claim_hold.json", "HOLD"),
         ("transcript_noisy_bodycam_not_produce.json", "HOLD"),

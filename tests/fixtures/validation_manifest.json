@@ -156,17 +156,25 @@
     },
     {
       "id": "charged_with_media_hold",
-      "category": "outcome_unconcluded_HOLD",
+      "category": "outcome_unconcluded_advisory_PRODUCE",
       "fixture_path": "tests/fixtures/casegraph_scenarios/charged_with_media_hold.json",
       "input_type": "manual",
-      "expected_verdict": "HOLD",
-      "must_include_reason_codes": [],
-      "must_not_include_reason_codes": [
-        "sentenced_or_convicted"
+      "expected_verdict": "PRODUCE",
+      "must_include_reason_codes": [
+        "outcome_not_concluded",
+        "outcome_not_concluded_advisory",
+        "produce_with_pending_outcome"
       ],
-      "must_include_risk_flags": [],
+      "must_not_include_reason_codes": [
+        "sentenced_or_convicted",
+        "outcome_gate_strict_mode_active"
+      ],
+      "must_include_risk_flags": [
+        "outcome_not_concluded_advisory",
+        "produce_with_pending_outcome"
+      ],
       "must_not_include_risk_flags": [],
-      "notes": "Defendant only charged (not yet sentenced / convicted / closed). Must HOLD even when media is present — the outcome gate is not satisfied.",
+      "notes": "Defendant only charged (not yet sentenced / convicted / closed) but identity is high and verified media exists. Default doctrine: PRODUCE with advisory caveats surfaced via outcome_not_concluded_advisory + produce_with_pending_outcome. Strict-mode behavior (P2_OUTCOME_GATE=1) is covered separately by test_charged_with_media_fixture_holds_under_strict_outcome_gate.",
       "live_allowed": false
     },
     {

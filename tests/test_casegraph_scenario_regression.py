@@ -103,12 +103,31 @@ def test_weak_identity_media_fixture_is_blocked_from_produce():
     assert result.production_actionability_score < 70
 
 
-def test_charged_with_media_fixture_holds():
+def test_charged_with_media_fixture_produces_with_advisory():
+    """Default doctrine: charged + verified media + high identity +
+    no severe risks PRODUCEs, with advisory caveats surfaced. The
+    fixture file name (``charged_with_media_hold.json``) reflects the
+    legacy strict-mode behavior — kept intact so the strict-mode test
+    below can replay the same data."""
+    _, result = score_fixture("charged_with_media_hold.json")
+
+    assert result.verdict == "PRODUCE"
+    # Legacy reason code still surfaces.
+    assert "outcome_not_concluded" in result.reason_codes
+    # New advisory signals surface.
+    assert "outcome_not_concluded_advisory" in result.reason_codes
+    assert "produce_with_pending_outcome" in result.reason_codes
+
+
+def test_charged_with_media_fixture_holds_under_strict_outcome_gate(monkeypatch):
+    """Conservative mode: ``P2_OUTCOME_GATE=1`` restores the legacy
+    HOLD verdict for the same fixture data."""
+    monkeypatch.setenv("P2_OUTCOME_GATE", "1")
     _, result = score_fixture("charged_with_media_hold.json")
 
     assert result.verdict == "HOLD"
     assert "outcome_not_concluded" in result.reason_codes
-    assert result.verdict != "PRODUCE"
+    assert "outcome_gate_strict_mode_active" in result.reason_codes
 
 
 def test_protected_nonpublic_fixture_is_blocked():

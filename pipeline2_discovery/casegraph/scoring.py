@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import asdict, dataclass, field
 from typing import Dict, Iterable, List, Set
 
@@ -8,6 +9,19 @@ from .models import ArtifactClaim, CasePacket, SourceRecord, VerifiedArtifact
 
 
 CONCLUDED_OUTCOMES = {"sentenced", "closed", "convicted"}
+
+
+def is_outcome_gate_enabled() -> bool:
+    """Return True when strict outcome gating is active.
+
+    The env flag is read every call (not cached at import time) so
+    tests can monkeypatch ``os.environ`` cleanly without module
+    reloads. Default is OFF: non-concluded outcomes can PRODUCE if all
+    other PRODUCE criteria pass, and advisory signals surface the
+    caution. Set ``P2_OUTCOME_GATE=1`` to restore the legacy
+    conservative behavior where only ``CONCLUDED_OUTCOMES`` can PRODUCE.
+    """
+    return os.environ.get("P2_OUTCOME_GATE", "0") == "1"
 MEDIA_ARTIFACT_TYPES = {
     "bodycam",
     "dash_cam",
@@ -290,6 +304,42 @@ def _next_actions(packet: CasePacket, media_artifacts: List[VerifiedArtifact]) -
     return actions
 
 
+def _add_outcome_advisories(
+    *,
+    packet: CasePacket,
+    verdict: str,
+    risks: List[str],
+    reasons: List[str],
+    actions: List[str],
+) -> None:
+    """Append advisory-only outcome/status signals.
+
+    Surfaces outcome caution as flags/reason-codes regardless of
+    whether the optional ``P2_OUTCOME_GATE`` blocks PRODUCE. Downstream
+    consumers (P4/P5) read these to render a production-caution flag
+    next to the verdict. Added after ``_verdict`` so it never shifts
+    the decision itself — the gate is in ``_verdict``.
+    """
+    outcome_status = packet.case_identity.outcome_status
+    is_concluded = outcome_status in CONCLUDED_OUTCOMES
+    strict_mode = is_outcome_gate_enabled()
+
+    if not is_concluded:
+        _append_unique(risks, ["outcome_not_concluded_advisory"])
+        _append_unique(reasons, ["outcome_not_concluded_advisory"])
+
+    if verdict == "PRODUCE" and not is_concluded:
+        _append_unique(risks, ["produce_with_pending_outcome"])
+        _append_unique(reasons, ["produce_with_pending_outcome"])
+        _append_unique(
+            actions,
+            ["Treat as production-ready with a pending-outcome caveat; verify outcome before publish."],
+        )
+
+    if strict_mode:
+        _append_unique(reasons, ["outcome_gate_strict_mode_active"])
+
+
 def _add_media_quality_advisories(
     *,
     verdict: str,
@@ -331,13 +381,18 @@ def _verdict(
 ) -> str:
     identity = packet.case_identity
     severe_risks = SEVERE_PRODUCTION_RISKS & set(risks)
-    if (
+    base_produce = (
         identity.identity_confidence == "high"
-        and identity.outcome_status in CONCLUDED_OUTCOMES
-        and media_artifacts
+        and bool(media_artifacts)
         and production_score >= 70.0
         and not severe_risks
-    ):
+    )
+    # Outcome is advisory by default (P2 verdict reflects identity +
+    # verified artifact actionability). Strict mode reinstates the
+    # legacy behavior where only CONCLUDED_OUTCOMES can PRODUCE.
+    if is_outcome_gate_enabled():
+        base_produce = base_produce and identity.outcome_status in CONCLUDED_OUTCOMES
+    if base_produce:
         return "PRODUCE"
 
     if "conflicting_jurisdiction" in risks:
@@ -401,6 +456,13 @@ def score_case_packet(packet: CasePacket) -> ActionabilityResult:
         _append_unique(reasons, ["claim_only_hold"])
     if verdict == "HOLD" and document_artifacts and not media_artifacts:
         _append_unique(reasons, ["document_only_hold"])
+    _add_outcome_advisories(
+        packet=packet,
+        verdict=verdict,
+        risks=risks,
+        reasons=reasons,
+        actions=actions,
+    )
     _add_media_quality_advisories(
         verdict=verdict,
         media_artifacts=media_artifacts,

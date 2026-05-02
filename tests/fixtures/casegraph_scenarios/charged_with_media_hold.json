@@ -82,17 +82,24 @@
   "next_actions": [],
   "risk_flags": [],
   "expected": {
-    "verdict": "HOLD",
+    "verdict": "PRODUCE",
     "must_include_reason_codes": [
       "outcome_not_concluded",
+      "outcome_not_concluded_advisory",
+      "produce_with_pending_outcome",
       "media_artifact_present"
     ],
     "must_not_include_reason_codes": [
-      "sentenced_or_convicted"
+      "sentenced_or_convicted",
+      "outcome_gate_strict_mode_active"
     ],
-    "must_include_risk_flags": [],
+    "must_include_risk_flags": [
+      "outcome_not_concluded_advisory",
+      "produce_with_pending_outcome"
+    ],
     "must_not_include_risk_flags": [
-      "weak_identity"
+      "weak_identity",
+      "no_verified_media"
     ]
   }
 }
