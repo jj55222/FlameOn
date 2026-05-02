@@ -94,6 +94,9 @@ def test_mock_court_source_can_corroborate_identity_and_outcome():
 
 def test_artifact_claim_source_does_not_verify_artifact():
     parsed = parsed_fixture("transcript_suspect_agency_date.json")
+    # Claim-only source: carries claim_source but NOT
+    # possible_artifact_source. Release language must extract an
+    # ArtifactClaim without graduating a VerifiedArtifact.
     claim_source = source(
         "The Phoenix Police Department released bodycam footage from the John Example incident.",
         source_id="mock_youtube_claim",
@@ -101,7 +104,7 @@ def test_artifact_claim_source_does_not_verify_artifact():
         title="Bodycam released in John Example case",
         source_type="video",
         source_authority="third_party",
-        source_roles=["claim_source", "possible_artifact_source"],
+        source_roles=["claim_source"],
         api_name="youtube_yt_dlp",
         matched_case_fields=["defendant_full_name", "agency"],
     )
