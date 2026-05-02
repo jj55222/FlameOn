@@ -1,0 +1,101 @@
+{
+  "case_id": "cgCYon_kKno",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 75.26,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 324,
+      "end_timestamp_sec": 332,
+      "description": "Investigator informs the mother that the crash is a homicide investigation.",
+      "importance": "critical",
+      "transcript_excerpt": "What we're looking at this as as a homicide investigation to be honest... because of what happened and we think somebody else intentionally caused the act."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 1350,
+      "end_timestamp_sec": 1360,
+      "description": "The father attempts to delay the arrest, leading to a standoff.",
+      "importance": "high",
+      "transcript_excerpt": "I'd rather just get an appointment and bring him down tomorrow... No, I don't think so."
+    },
+    {
+      "moment_type": "procedural_violation",
+      "source_idx": 0,
+      "timestamp_sec": 1620,
+      "end_timestamp_sec": 1635,
+      "description": "Father instructs his son to only say 'lawyer'.",
+      "importance": "medium",
+      "transcript_excerpt": "You don't say a word to anybody. The only word you know is lawyer."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 1726,
+      "end_timestamp_sec": 1735,
+      "description": "Joe Kanig invokes his right to counsel immediately.",
+      "importance": "critical",
+      "transcript_excerpt": "I'd prefer to have a lawyer with me."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 2115,
+      "end_timestamp_sec": 2120,
+      "description": "Zach claims he was home watching Rick and Morty, but cannot name a character.",
+      "importance": "high",
+      "transcript_excerpt": "Finished Rick and Morty... Tell me the name of the character... I have no idea."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2820,
+      "end_timestamp_sec": 2830,
+      "description": "Investigator reveals the murder charge to Zach.",
+      "importance": "critical",
+      "transcript_excerpt": "You've been implicated in throwing the rock that hit Alexa Martell in the head and killed her."
+    }
+  ],
+  "content_pitch": "A seemingly tragic car accident is rapidly reclassified as a homicide when deputies connect it to a reckless rock-throwing spree miles away. The investigation quickly pivots to intense interrogations where shifting alibis and immediate lawyer requests expose a group of teenagers trying to cover up their fatal mistake. With a perfect cold_open structure and a winning artifact combination of bodycam, interrogation, and documents, this case delivers high-stakes reveals and undeniable contradictions that will drive massive viewer retention.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 12.6,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 51.9,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 45.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\cgCYon_kKno_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scoring strongly supports production, with a narrative score of 75.3, perfect arc similarity, and a 1.0x artifact multiplier for the exact combo available. The case features multiple critical reveals and high-value contradictions that align flawlessly with the top-performing cold_open structure, guaranteeing strong engagement.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 4,
+    "n_pass1_moments": 6,
+    "n_final_moments": 6,
+    "scored_at": "2026-05-01T21:48:39.355237Z"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "case_id": "fsL0ag9ySao",
+  "verdict": "PRODUCE",
+  "resolution_status": "charges_filed_pending",
+  "narrative_score": 61.17,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 501,
+      "end_timestamp_sec": 521,
+      "description": "Child reveals she is only left alone when she is 'bad'.",
+      "importance": "critical",
+      "transcript_excerpt": "Do your parents always leave you alone? >> Only when you're bad."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 2246,
+      "end_timestamp_sec": 2254,
+      "description": "Samantha claims the shed was locked when she left, revealing she knew about the shed before detectives mentioned it.",
+      "importance": "critical",
+      "transcript_excerpt": "When I left this morning, the shed was locked. >> So, I never mentioned a shed. You brought up a shed."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 1337,
+      "end_timestamp_sec": 1351,
+      "description": "Bruce demands the police take the child away, calling her a 'problem'.",
+      "importance": "critical",
+      "transcript_excerpt": "Why don't you take her and keep her? Cuz I don't want her here no more."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 2342,
+      "end_timestamp_sec": 2354,
+      "description": "Samantha shifts from defensive to fearful of her husband.",
+      "importance": "high",
+      "transcript_excerpt": "I don't want to get hurt. You don't want to get hurt. Who's going to hurt you? Are you scared of your husband?"
+    }
+  ],
+  "content_pitch": "This case opens with a chilling discovery of a child locked in a shed, immediately establishing high emotional stakes and a clear criminal arc. The interrogation footage delivers a devastating contradiction when Samantha inadvertently reveals prior knowledge of the locked shed, while Bruce's callous dismissal of his daughter's welfare fuels intense viewer outrage. With a perfect cold_open structure and a strong mix of bodycam and interrogation artifacts, the narrative naturally escalates into a gripping psychological breakdown that aligns precisely with top-performing channel winners.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 8.4,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": [
+      "documents"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 41.03,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 52.77,
+    "uniqueness_score": 42.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\fsL0ag9ySao_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The case comfortably exceeds all PRODUCE thresholds, boasting a 61.2 narrative score, 41.0 moment density, and a 52.8 artifact completeness score. The presence of critical contradiction and reveal moments, combined with a 100% match to the high-performing cold_open arc pattern, guarantees a highly engaging video structure.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 3,
+    "n_pass1_moments": 4,
+    "n_final_moments": 4,
+    "scored_at": "2026-05-01T21:49:41.429087Z"
+  }
+}

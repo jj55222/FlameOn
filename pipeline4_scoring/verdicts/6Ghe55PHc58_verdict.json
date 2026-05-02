@@ -1,0 +1,102 @@
+{
+  "case_id": "6Ghe55PHc58",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 75.61,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 915,
+      "end_timestamp_sec": 935,
+      "description": "Devon admits to blood in the house, claiming he cut his own wrists.",
+      "importance": "critical",
+      "transcript_excerpt": "I just didn't want someone to come in here and be like, 'Hey, there's like drops of blood.' ... I cut my wrist here."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 3107,
+      "end_timestamp_sec": 3117,
+      "description": "Devon admits to sleepwalking and talking in his sleep, potentially explaining his 'blackouts'.",
+      "importance": "high",
+      "transcript_excerpt": "A thing that I am nervous about around people is I I sleepwalk and I talk in my sleep."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 199,
+      "end_timestamp_sec": 206,
+      "description": "Devon pauses 911 call to care for his sick dog instead of searching for the missing child.",
+      "importance": "high",
+      "transcript_excerpt": "I got to carry my dog inside. She's dying and sick. Hold on. It's okay, Chloe."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 1130,
+      "end_timestamp_sec": 1145,
+      "description": "Officers realize Devon is not searching for the child and is acting suspiciously.",
+      "importance": "high",
+      "transcript_excerpt": "He's not even looking for this kid, man. Like, he's sweating balls right now."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 1545,
+      "end_timestamp_sec": 1557,
+      "description": "Officer discovers the body and reacts with immediate distress.",
+      "importance": "critical",
+      "transcript_excerpt": "She's in the [__] I just felt her face. God damn it."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 2926,
+      "end_timestamp_sec": 2934,
+      "description": "Miranda is informed by Devon that her daughter was murdered.",
+      "importance": "critical",
+      "transcript_excerpt": "She was murdered. ... Please tell me no. YOU'RE NOT THIS IS NOT TRUE."
+    }
+  ],
+  "content_pitch": "This case opens with a chilling 911 call where the father pauses to tend to his sick dog while his toddler is missing, immediately establishing a deeply unsettling hook. The narrative escalates through Devon’s increasingly contradictory claims about blood and sleepwalking, which detectives systematically dismantle using hard forensic evidence. The emotional core peaks with the devastating discovery of the child’s body and the mother’s raw, heartbreaking reaction, delivering a complete and gripping true-crime arc.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 12.6,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "documents",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 53.53,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 100.0,
+    "uniqueness_score": 42.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\6Ghe55PHc58_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scores strongly indicate a high-performing narrative, with a 75.6 combined narrative score and perfect artifact completeness matching a proven winner combination. The case features multiple critical reveals and emotional peaks that align perfectly with the cold_open structure, satisfying all PRODUCE thresholds without ambiguity.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 5,
+    "n_pass1_moments": 6,
+    "n_final_moments": 6,
+    "scored_at": "2026-05-01T21:48:27.755540Z"
+  }
+}

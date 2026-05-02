@@ -1,0 +1,103 @@
+{
+  "case_id": "QHAYwcCeKms",
+  "verdict": "PRODUCE",
+  "resolution_status": "confirmed_final_outcome",
+  "narrative_score": 71.62,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 905,
+      "end_timestamp_sec": 912,
+      "description": "Narrator reveals there was no active shooter, only a wounded homeowner.",
+      "importance": "critical",
+      "transcript_excerpt": "In reality, there's no active shooter at all. Only a wounded homeowner and several family members inside the residence."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 3124,
+      "end_timestamp_sec": 3129,
+      "description": "Daniel claims he fired a warning shot in the air.",
+      "importance": "critical",
+      "transcript_excerpt": "boom, I shot one in the air. I'm like get the out of here."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 108,
+      "end_timestamp_sec": 112,
+      "description": "Matthew realizes his wife has died.",
+      "importance": "critical",
+      "transcript_excerpt": "Please. She's She didn't make it. SHE DIED."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 2304,
+      "end_timestamp_sec": 2308,
+      "description": "Gabriella describes the shooting as a maniac attacking her family.",
+      "importance": "high",
+      "transcript_excerpt": "This maniac comes at me ready to shoot me and my husband."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 1712,
+      "end_timestamp_sec": 1716,
+      "description": "Discovery that CCTV cameras are missing from the basement.",
+      "importance": "high",
+      "transcript_excerpt": "Officers already spotted multiple cameras around the house, making the absence of any in the basement suspicious."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2097,
+      "end_timestamp_sec": 2101,
+      "description": "Elona confirms Daniel had an affair with Kimberly.",
+      "importance": "high",
+      "transcript_excerpt": "I know he was with the lady, but as far as I know, they were like done."
+    }
+  ],
+  "content_pitch": "This case delivers a masterclass in the cold_open structure, hooking viewers immediately with a chaotic confrontation before unraveling a complex web of infidelity and fatal misjudgments. The narrative hinges on a critical contradiction between the suspect's claim of a warning shot and forensic evidence, amplified by the devastating emotional peak when the husband learns his wife has died. With high-density reveals, adversarial interrogations, and a confirmed 40-year sentence, the footage provides everything needed for a gripping, high-retention true crime video.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 14.7,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "interrogation",
+      "narration"
+    ],
+    "missing_recommended": [
+      "documents"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 61.78,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 58.56,
+    "uniqueness_score": 52.0
+  },
+  "transcript_refs": [
+    "C:\\FlameON\\FlameOn-main\\pipeline1_winners\\winners\\QHAYwcCeKms_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "PRODUCE",
+    "llm_verdict": "PRODUCE",
+    "reasoning_summary": "The deterministic scoring strongly supports production, with a narrative score of 71.6 and perfect arc similarity to the high-performing cold_open pattern. The case features multiple critical reveals and contradictions alongside a solid artifact mix, easily clearing all calibrated thresholds for a PRODUCE verdict.",
+    "degraded": false,
+    "resolution_source": "labels_file",
+    "resolution_gate_enabled": false,
+    "resolution_gate_applied": false,
+    "pre_gate_verdict": "PRODUCE",
+    "n_sources": 4,
+    "n_pass1_moments": 7,
+    "n_final_moments": 6,
+    "scored_at": "2026-05-01T21:48:08.487303Z"
+  }
+}
