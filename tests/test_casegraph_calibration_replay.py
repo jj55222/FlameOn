@@ -37,6 +37,9 @@ def test_replay_scoreboard_counts_current_capabilities():
     assert metrics["ready_for_portal_fetch_count"] == 30
     assert metrics["needs_seed_url_discovery_count"] == 4
     assert metrics["outcome_plan_ready_count"] == 27
+    assert metrics["outcome_corrob_attempted_count"] == 0
+    assert metrics["outcome_corrob_corroborated_count"] == 0
+    assert metrics["proposed_missing_outcome_seed_count"] == 27
 
 
 def test_replay_failure_taxonomy_is_complete_and_deterministic():
@@ -86,6 +89,7 @@ def test_replay_result_is_json_serializable():
 
     assert decoded["total_cases"] == 38
     assert decoded["metrics"]["failure_reason_counts"]["missing_outcome_seed"] == 27
+    assert "outcome_corrob_status" in decoded["case_results"][0]
 
 
 def test_replay_makes_no_network_calls(monkeypatch):

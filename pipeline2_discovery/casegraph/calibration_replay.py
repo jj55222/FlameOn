@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence
 
 from .calibration_profile import (
     CalibrationProfileReport,
@@ -17,6 +17,8 @@ from .calibration_profile import (
     SUPPORTED_LIVE_CONNECTORS,
     profile_calibration_set,
 )
+from .outcome_corrob_executor import execute_mock_outcome_corroboration
+from .outcome_seed_plan import OutcomeSeedPlan
 from .outcome_seed_plan import build_outcome_seed_plan_report
 from .portal_profiles import PortalProfileManifest, load_portal_profiles
 
@@ -64,6 +66,10 @@ class CalibrationReplayCase:
     portal_profiles_needed: List[str] = field(default_factory=list)
     failure_reasons: List[str] = field(default_factory=list)
     next_actions: List[str] = field(default_factory=list)
+    outcome_corrob_status: str = "not_attempted"
+    outcome_corrob_confidence: float = 0.0
+    outcome_corrob_source_type: Optional[str] = None
+    outcome_corrob_supporting_snippet: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -91,13 +97,24 @@ def run_calibration_replay(
     profile_report: Optional[CalibrationProfileReport] = None,
     portal_manifest: Optional[PortalProfileManifest] = None,
     *,
+    outcome_corrob_payloads: Optional[Mapping[int, Mapping[str, Any]]] = None,
     repo_root: Optional[Path] = None,
 ) -> CalibrationReplayResult:
     profiles = profile_report or profile_calibration_set(repo_root=repo_root)
     portals = portal_manifest or load_portal_profiles(repo_root=repo_root)
     known_portals = set(portals.profile_ids)
 
-    case_results = [_replay_case(row, known_portals) for row in profiles.profile_rows]
+    outcome_plan_report = build_outcome_seed_plan_report(profiles, portals, repo_root=repo_root)
+    outcome_plans = {plan.case_id: plan for plan in outcome_plan_report.plans}
+    case_results = [
+        _replay_case(
+            row,
+            known_portals,
+            outcome_plan=outcome_plans.get(row.case_id),
+            outcome_payload=(outcome_corrob_payloads or {}).get(row.case_id),
+        )
+        for row in profiles.profile_rows
+    ]
     metrics = _metrics(profiles.profile_rows, case_results)
     failure_counts = _failure_counts(case_results)
     top_items = _top_next_work_items(failure_counts)
@@ -110,7 +127,13 @@ def run_calibration_replay(
     )
 
 
-def _replay_case(row: CalibrationProfileRow, known_portals: Sequence[str]) -> CalibrationReplayCase:
+def _replay_case(
+    row: CalibrationProfileRow,
+    known_portals: Sequence[str],
+    *,
+    outcome_plan: Optional[OutcomeSeedPlan] = None,
+    outcome_payload: Optional[Mapping[str, Any]] = None,
+) -> CalibrationReplayCase:
     identity_ready = bool(row.title.strip())
     outcome_ready = row.outcome_status.lower() not in {"", "unknown", "unresolved"}
     missing_portals = [
@@ -146,6 +169,15 @@ def _replay_case(row: CalibrationProfileRow, known_portals: Sequence[str]) -> Ca
         failures.append("needs_seed_url_discovery")
 
     failures = [reason for reason in FAILURE_REASONS if reason in failures]
+    corrob = _outcome_corrob_diagnostic(
+        row,
+        outcome_plan=outcome_plan,
+        outcome_payload=outcome_payload,
+    )
+    actions = _next_actions(failures)
+    for action in corrob["next_actions"]:
+        if action not in actions:
+            actions.append(action)
     return CalibrationReplayCase(
         case_id=row.case_id,
         title=row.title,
@@ -155,7 +187,11 @@ def _replay_case(row: CalibrationProfileRow, known_portals: Sequence[str]) -> Ca
         likely_connector_path=list(row.likely_connector_path),
         portal_profiles_needed=list(row.portal_profiles_needed),
         failure_reasons=failures,
-        next_actions=_next_actions(failures),
+        next_actions=actions,
+        outcome_corrob_status=corrob["status"],
+        outcome_corrob_confidence=corrob["confidence"],
+        outcome_corrob_source_type=corrob["source_type"],
+        outcome_corrob_supporting_snippet=corrob["supporting_snippet"],
     )
 
 
@@ -191,6 +227,18 @@ def _metrics(
             1 for row in rows if _needs_firecrawl_known_url(row) and not row.known_source_urls
         ),
         "outcome_plan_ready_count": outcome_plan_report.outcome_plan_ready_count,
+        "outcome_corrob_attempted_count": sum(
+            1 for case in case_results
+            if case.outcome_corrob_status not in {"not_attempted", "no_mock_payload"}
+        ),
+        "outcome_corrob_corroborated_count": sum(
+            1 for case in case_results if case.outcome_corrob_status.startswith("corroborated_")
+        ),
+        "proposed_missing_outcome_seed_count": max(
+            0,
+            _failure_counts(case_results)["missing_outcome_seed"]
+            - sum(1 for case in case_results if case.outcome_corrob_status.startswith("corroborated_")),
+        ),
         "failure_reason_counts": _failure_counts(case_results),
     }
 
@@ -234,6 +282,51 @@ def _next_actions(failures: Sequence[str]) -> List[str]:
     if "no_known_artifact_signal" in failures:
         actions.append("park_until_artifact_signal_exists")
     return list(dict.fromkeys(actions))
+
+
+def _outcome_corrob_diagnostic(
+    row: CalibrationProfileRow,
+    *,
+    outcome_plan: Optional[OutcomeSeedPlan],
+    outcome_payload: Optional[Mapping[str, Any]],
+) -> Dict[str, Any]:
+    if row.outcome_seed_status != "unknown":
+        return {
+            "status": "not_attempted",
+            "confidence": 0.0,
+            "source_type": None,
+            "supporting_snippet": "",
+            "next_actions": [],
+        }
+    if outcome_plan is None:
+        return {
+            "status": "not_attempted",
+            "confidence": 0.0,
+            "source_type": None,
+            "supporting_snippet": "",
+            "next_actions": ["Create an outcome seed plan before mocked corroboration."],
+        }
+    if outcome_payload is None:
+        return {
+            "status": "no_mock_payload",
+            "confidence": 0.0,
+            "source_type": None,
+            "supporting_snippet": "",
+            "next_actions": ["Add mocked outcome corroboration payload for replay diagnostics."],
+        }
+
+    result = execute_mock_outcome_corroboration(outcome_plan, outcome_payload)
+    if result.extracted_outcome_status == "unknown":
+        status = "ambiguous"
+    else:
+        status = f"corroborated_{result.extracted_outcome_status}"
+    return {
+        "status": status,
+        "confidence": result.confidence,
+        "source_type": result.source_type,
+        "supporting_snippet": result.supporting_snippet,
+        "next_actions": list(result.next_actions),
+    }
 
 
 def _top_next_work_items(failure_counts: Dict[str, int]) -> List[Dict[str, Any]]:
