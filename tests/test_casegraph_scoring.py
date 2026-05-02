@@ -149,7 +149,37 @@ def test_weak_identity_blocks_produce_even_with_verified_media():
     assert {"weak_identity", "identity_unconfirmed"} <= set(result.risk_flags)
 
 
-def test_charged_but_not_concluded_stays_hold_with_media():
+def test_charged_but_not_concluded_produces_with_advisory_caveats():
+    """Default doctrine: outcome is advisory. A charged case with high
+    identity + verified media + production_score >= 70 + no severe
+    risks PRODUCEs, but advisory signals must surface so downstream
+    consumers can render a production-caution flag."""
+    packet = base_packet(identity="high", outcome="charged")
+    packet.verified_artifacts.append(artifact("bodycam_001", "bodycam", fmt="video", authority="official"))
+
+    result = score_case_packet(packet)
+
+    assert result.verdict == "PRODUCE"
+    # Pre-existing legacy reason code still surfaces.
+    assert "outcome_not_concluded" in result.reason_codes
+    # New advisory signals surface on every non-concluded case.
+    assert "outcome_not_concluded_advisory" in result.reason_codes
+    assert "outcome_not_concluded_advisory" in result.risk_flags
+    # PRODUCE-with-pending-outcome adds a production-caution flag.
+    assert "produce_with_pending_outcome" in result.reason_codes
+    assert "produce_with_pending_outcome" in result.risk_flags
+    assert any(
+        "pending-outcome" in action.lower() for action in result.next_actions
+    ), "advisory next_action describing the pending-outcome caveat must surface"
+    # Strict-mode marker must NOT appear in default mode.
+    assert "outcome_gate_strict_mode_active" not in result.reason_codes
+
+
+def test_charged_with_media_holds_under_strict_outcome_gate(monkeypatch):
+    """Conservative mode: ``P2_OUTCOME_GATE=1`` reinstates the legacy
+    hard gate. Same packet shape that PRODUCEs by default must HOLD
+    when strict mode is active, and the strict-mode marker surfaces."""
+    monkeypatch.setenv("P2_OUTCOME_GATE", "1")
     packet = base_packet(identity="high", outcome="charged")
     packet.verified_artifacts.append(artifact("bodycam_001", "bodycam", fmt="video", authority="official"))
 
@@ -157,6 +187,25 @@ def test_charged_but_not_concluded_stays_hold_with_media():
 
     assert result.verdict == "HOLD"
     assert "outcome_not_concluded" in result.reason_codes
+    assert "outcome_not_concluded_advisory" in result.reason_codes
+    assert "outcome_gate_strict_mode_active" in result.reason_codes
+    # Strict mode blocked PRODUCE — so the produce-with-pending caveat
+    # must NOT appear (it only fires when the verdict is PRODUCE).
+    assert "produce_with_pending_outcome" not in result.reason_codes
+
+
+def test_dismissed_with_media_produces_with_advisory_caveats():
+    """Doctrine extends to other non-concluded statuses: a dismissed
+    case with high identity + verified media still PRODUCEs by
+    default, with advisory caveats."""
+    packet = base_packet(identity="high", outcome="dismissed")
+    packet.verified_artifacts.append(artifact("bodycam_002", "bodycam", fmt="video", authority="official"))
+
+    result = score_case_packet(packet)
+
+    assert result.verdict == "PRODUCE"
+    assert "outcome_not_concluded_advisory" in result.reason_codes
+    assert "produce_with_pending_outcome" in result.reason_codes
 
 
 def test_protected_or_nonpublic_only_does_not_produce():
