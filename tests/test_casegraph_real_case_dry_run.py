@@ -32,7 +32,7 @@ from pipeline2_discovery.casegraph import (
     score_case_packet,
     select_pilot_for_live_smoke,
 )
-from pipeline2_discovery.casegraph.cli import _load_fixture
+from pipeline2_discovery.casegraph.cli import _load_fixture, build_run_bundle
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -152,19 +152,40 @@ def _build_gate_forecast() -> dict:
 # ---- Dry bundle deliverable ---------------------------------------------
 
 
-def test_real2_dry_bundle_exists_under_ignored_runs_dir():
-    assert DRY_BUNDLE_PATH.exists(), (
-        f"REAL2 dry bundle not found at {DRY_BUNDLE_PATH}. "
-        "Generate it via: .venv/Scripts/python.exe -m "
-        "pipeline2_discovery.casegraph.cli --fixture "
-        "tests/fixtures/pilot_cases/real_case_min_jian_guan.json "
-        "--bundle-out autoresearch/.runs/live7/real_case_dry_bundle.json "
-        "--json --experiment-id REAL2-real-case-dry-run"
+@pytest.fixture()
+def real2_dry_bundle_path(tmp_path: Path) -> Path:
+    """Build the REAL2 dry bundle inside pytest's temp directory.
+
+    The historical LIVE7 bundle lives under autoresearch/.runs, which
+    is intentionally gitignored. Tests must be reproducible from a clean
+    checkout, so they generate their own no-live bundle instead of
+    expecting that local artifact to exist.
+    """
+    packet = _load_fixture(SEED_PATH)
+    bundle = build_run_bundle(
+        mode="default",
+        experiment_id="REAL2-real-case-dry-run",
+        wallclock_seconds=0.0,
+        packet=packet,
     )
+    path = tmp_path / "real_case_dry_bundle.json"
+    path.write_text(json.dumps(bundle, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+    return path
 
 
-def test_real2_dry_bundle_has_canonical_top_level_keys():
-    bundle = json.loads(DRY_BUNDLE_PATH.read_text(encoding="utf-8"))
+@pytest.fixture()
+def real2_dry_bundle(real2_dry_bundle_path: Path) -> dict:
+    return json.loads(real2_dry_bundle_path.read_text(encoding="utf-8"))
+
+
+def test_real2_dry_bundle_generated_under_pytest_tmp_path(real2_dry_bundle_path: Path):
+    assert real2_dry_bundle_path.exists()
+    assert "autoresearch" not in real2_dry_bundle_path.parts
+    assert ".runs" not in real2_dry_bundle_path.parts
+
+
+def test_real2_dry_bundle_has_canonical_top_level_keys(real2_dry_bundle: dict):
+    bundle = real2_dry_bundle
     for key in (
         "experiment_id",
         "mode",
@@ -184,15 +205,15 @@ def test_real2_dry_bundle_has_canonical_top_level_keys():
     assert bundle["mode"] == "default"
 
 
-def test_real2_dry_bundle_has_high_identity_and_concluded_outcome():
-    bundle = json.loads(DRY_BUNDLE_PATH.read_text(encoding="utf-8"))
+def test_real2_dry_bundle_has_high_identity_and_concluded_outcome(real2_dry_bundle: dict):
+    bundle = real2_dry_bundle
     assert bundle["identity"]["identity_confidence"] == "high"
     assert bundle["outcome"]["outcome_status"] == "sentenced"
     assert bundle["verified_artifacts"] == []
 
 
-def test_real2_dry_bundle_verdict_is_hold():
-    bundle = json.loads(DRY_BUNDLE_PATH.read_text(encoding="utf-8"))
+def test_real2_dry_bundle_verdict_is_hold(real2_dry_bundle: dict):
+    bundle = real2_dry_bundle
     assert bundle["result"]["verdict"] == "HOLD"
     assert "no_verified_media" in bundle["result"]["risk_flags"]
     assert "high_identity" in bundle["result"]["reason_codes"]

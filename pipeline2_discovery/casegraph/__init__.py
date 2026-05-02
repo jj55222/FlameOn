@@ -48,8 +48,12 @@ from .ledger import (
     estimate_cost,
     normalize_api_calls,
 )
-from .media_candidates import find_media_candidates
 from .media_policy import MediaClassification, classify_many, classify_media_url
+from .media_relevance import (
+    MediaRelevanceResult,
+    classify_media_relevance,
+    classify_media_relevance_many,
+)
 from .live_safety import (
     ALLOWED_FREE_CONNECTORS,
     ALL_KNOWN_CONNECTORS,
@@ -72,9 +76,17 @@ from .live_smoke import (
 )
 from .outcome import OutcomeResolution, resolve_outcome
 from .pilots import assess_pilot, run_pilot_manifest, select_pilot_for_live_smoke
+from .primary_media_candidates import (
+    PrimaryMediaCandidate,
+    PrimaryMediaCandidateReport,
+    default_primary_media_source_paths,
+    mine_primary_media_candidates,
+)
 from .reporting import (
     build_actionability_report,
+    build_endpoint_v2_status_report,
     build_live_yield_report,
+    build_media_quality_report,
     build_pilot_validation_scoreboard,
     build_validation_metrics_report,
 )
@@ -103,12 +115,12 @@ from .resolvers import (
     MuckRockFileResolution,
     RESOLVER_NAMES,
     ResolverOrchestrationResult,
-    YouTubeFileResolution,
+    YouTubeMediaResolution,
     resolve_agency_ois_files,
     resolve_courtlistener_documents,
     resolve_documentcloud_files,
     resolve_muckrock_released_files,
-    resolve_youtube_files,
+    resolve_youtube_media_sources,
     run_metadata_only_resolvers,
 )
 from .routers import route_manual_defendant_jurisdiction
@@ -148,6 +160,7 @@ __all__ = [
     "MAX_QUERIES_HARD_CAP",
     "MAX_RESULTS_HARD_CAP",
     "MediaClassification",
+    "MediaRelevanceResult",
     "MockSourceConnector",
     "MultiConnectorSmokeResult",
     "MuckRockFileResolution",
@@ -155,6 +168,8 @@ __all__ = [
     "OutcomeResolution",
     "PAID_CONNECTORS",
     "PlannedQuery",
+    "PrimaryMediaCandidate",
+    "PrimaryMediaCandidateReport",
     "QueryPlanResult",
     "RESOLVER_NAMES",
     "ResolverOrchestrationResult",
@@ -166,8 +181,8 @@ __all__ = [
     "SourceConnector",
     "VerifiedArtifact",
     "YouTubeConnector",
-    "YouTubeFileResolution",
     "YouTubeInputParseResult",
+    "YouTubeMediaResolution",
     "aggregate_ledger",
     "append_ledger_entry",
     "assemble_structured_case_packet",
@@ -175,21 +190,26 @@ __all__ = [
     "assess_current_state",
     "assess_pilot",
     "build_actionability_report",
+    "build_endpoint_v2_status_report",
     "build_live_yield_report",
+    "build_media_quality_report",
     "build_pilot_validation_scoreboard",
     "build_run_ledger_entry",
     "build_validation_metrics_report",
     "classify_many",
     "classify_media_url",
+    "classify_media_relevance",
+    "classify_media_relevance_many",
     "compare_run_bundles",
+    "default_primary_media_source_paths",
     "estimate_cost",
     "export_legacy_evaluate_result",
     "export_p2_to_p3",
     "export_p2_to_p4",
     "export_p2_to_p5",
     "extract_artifact_claims",
-    "find_media_candidates",
     "is_live_enabled",
+    "mine_primary_media_candidates",
     "normalize_api_calls",
     "parse_fatal_encounters_case_input",
     "parse_mapping_police_violence_case_input",
@@ -206,8 +226,8 @@ __all__ = [
     "route_manual_defendant_jurisdiction",
     "resolve_identity",
     "resolve_muckrock_released_files",
-    "resolve_youtube_files",
     "resolve_outcome",
+    "resolve_youtube_media_sources",
     "run_capped_live_smoke",
     "run_capped_multi_connector_smoke",
     "run_metadata_only_resolvers",

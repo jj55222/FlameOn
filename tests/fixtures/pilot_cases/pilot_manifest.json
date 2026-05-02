@@ -149,19 +149,18 @@
       "notes": "REAL1 / Endpoint v0 - real-case pilot seed (Min Jian Guan, San Francisco, sentenced 2024). Identity is pre-locked high in the seed (name + jurisdiction + agency + case_number anchors); outcome is sentenced. Dry verdict is HOLD (no_verified_media). Pilot queries DocumentCloud once for public document corroboration; with even one document URL graduated, Endpoint v0 condition 3 is fully met (high identity + concluded outcome + verified public artifact URL + classified type)."
     },
     {
-      "id": "media_case_christa_gail_pike_pilot",
+      "id": "primary_media_alan_champagne_youtube_pilot",
       "input_type": "manual",
-      "seed_fixture_path": "tests/fixtures/pilot_cases/media_case_christa_gail_pike.json",
+      "seed_fixture_path": "tests/fixtures/pilot_cases/primary_media_case_alan_champagne_youtube.json",
       "expected_minimum": {
         "identity_lock_required": true,
         "outcome_required": true,
         "media_required_for_produce": true,
+        "tier_a_media_required": true,
         "artifact_types_desired": [
           "bodycam",
-          "court_video",
           "interrogation",
-          "dispatch_911",
-          "video_footage"
+          "dispatch_911"
         ]
       },
       "allowed_connectors": [
@@ -175,8 +174,22 @@
       "allow_llm": false,
       "expected_verdict_without_live": "HOLD",
       "is_real_case": true,
-      "real_case_source": "autoresearch/calibration_data.json case_id=4 (tier=ENOUGH); 5 known YouTube media URLs in verified_sources; closed murder conviction (1996, Tennessee)",
-      "notes": "MEDIA3 / Endpoint v1 - first media-yield pilot. YouTube as primary connector (calibration shows 5 known YouTube videos for this case). Identity pre-locked high; outcome convicted. Dry HOLD. Live YouTube query + resolve_youtube_files should graduate at least one media VerifiedArtifact (artifact_type bodycam | court_video | video_footage; format=video). Media-only verdict still HOLD until media + identity + outcome all clear; PRODUCE only if all gates pass."
+      "real_case_source": "autoresearch/calibration_data.json case_id=27 (tier=ENOUGH); ground_truth marks bodycam, interrogation, court_video, docket_docs, and dispatch_911 as YES with public YouTube and court/news sources",
+      "primary_media_candidate_id": "calibration_data_27_27",
+      "expected_live_query_plan": [
+        {
+          "connector": "youtube",
+          "query": "\"Alan Matthew Champagne\" bodycam",
+          "expected_artifact_types": [
+            "bodycam",
+            "interrogation",
+            "dispatch_911"
+          ],
+          "expected_media_relevance_tier": "A",
+          "max_results": 5
+        }
+      ],
+      "notes": "PRIMARY2_REAL / Endpoint v2 scaffold. Real calibration case with supported YouTube live path and Tier A ground-truth media signals. The dry seed deliberately includes identity/outcome anchors only; YouTube URLs must be returned by the live connector and graduated by a metadata-only resolver before the case can PRODUCE."
     },
     {
       "id": "manual_known_case_dual_connector_pilot",

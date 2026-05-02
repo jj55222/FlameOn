@@ -48,9 +48,10 @@ from .documentcloud_files import (
     resolve_documentcloud_files,
 )
 from .muckrock_files import MuckRockFileResolution, resolve_muckrock_released_files
+from .youtube_media import YouTubeMediaResolution, resolve_youtube_media_sources
 
 
-RESOLVER_NAMES = ("muckrock", "documentcloud", "courtlistener")
+RESOLVER_NAMES = ("muckrock", "documentcloud", "courtlistener", "youtube")
 
 
 @dataclass
@@ -186,6 +187,12 @@ def run_metadata_only_resolvers(
         result.per_resolver["courtlistener"] = courtlistener_result
         result.resolvers_run.append("courtlistener")
         _absorb(result, courtlistener_result, seen_urls=seen_urls, packet=packet_or_sources if is_packet else None)
+
+    if "youtube" in enabled:
+        youtube_result = resolve_youtube_media_sources(packet_or_sources if is_packet else sources)
+        result.per_resolver["youtube"] = youtube_result
+        result.resolvers_run.append("youtube")
+        _absorb(result, youtube_result, seen_urls=seen_urls, packet=packet_or_sources if is_packet else None)
 
     inspected: List[str] = []
     for resolver_result in result.per_resolver.values():

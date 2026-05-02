@@ -1,0 +1,20 @@
+{
+  "portal_profile_id": "youtube_agency_channel",
+  "source_records": [
+    {
+      "source_id": "portal_replay::generic_youtube",
+      "url": "https://www.youtube.com/watch?v=genericWeak001",
+      "title": "Community update video",
+      "snippet": "A general public information video with no primary-evidence context.",
+      "raw_text": "A general public information video.",
+      "source_type": "video_host",
+      "source_authority": "media",
+      "source_roles": ["possible_artifact_source"],
+      "api_name": "youtube",
+      "metadata": {
+        "media_link_type": "video",
+        "fixture_kind": "generic_weak_media"
+      }
+    }
+  ]
+}

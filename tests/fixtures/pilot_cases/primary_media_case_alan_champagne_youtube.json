@@ -1,0 +1,120 @@
+{
+  "case_id": "primary_media_case_alan_champagne_youtube",
+  "input": {
+    "input_type": "manual",
+    "raw_input": {
+      "defendant_names": "Alan Matthew Champagne",
+      "jurisdiction": "Maricopa County, AZ",
+      "calibration_case_id": 27
+    },
+    "known_fields": {
+      "defendant_names": ["Alan Matthew Champagne"],
+      "jurisdiction": {
+        "city": null,
+        "county": "Maricopa",
+        "state": "AZ"
+      }
+    },
+    "missing_fields": [
+      "agency",
+      "incident_date",
+      "case_number",
+      "official_primary_media_url"
+    ],
+    "candidate_queries": [
+      "\"Alan Matthew Champagne\" bodycam",
+      "\"Alan Matthew Champagne\" interrogation",
+      "\"Alan Matthew Champagne\" confession",
+      "\"Alan Matthew Champagne\" 911"
+    ]
+  },
+  "case_identity": {
+    "defendant_names": ["Alan Matthew Champagne"],
+    "victim_names": [],
+    "agency": null,
+    "jurisdiction": {
+      "city": null,
+      "county": "Maricopa",
+      "state": "AZ"
+    },
+    "incident_date": null,
+    "case_numbers": [],
+    "charges": ["murder"],
+    "outcome_status": "convicted",
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "official_court_opinion_url",
+      "calibration_case_id_27"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "alan_champagne_azcourts_opinion",
+      "url": "https://www.azcourts.gov/Portals/0/OpinionFiles/Supreme/2019/State%20v.%20Champagne%20FILED.pdf",
+      "title": "State v. Champagne",
+      "snippet": "Arizona court opinion for State v. Alan Matthew Champagne.",
+      "raw_text": "Arizona court opinion identifies Alan Matthew Champagne in Maricopa County.",
+      "source_type": "court",
+      "source_authority": "court",
+      "source_roles": ["identity_source", "outcome_source"],
+      "api_name": null,
+      "discovered_via": "calibration_data.json case_id=27 verified_sources",
+      "retrieved_at": "2026-05-01T00:00:00Z",
+      "case_input_id": "primary_media_case_alan_champagne_youtube",
+      "metadata": {
+        "calibration_case_id": 27,
+        "source_kind": "court_opinion"
+      },
+      "cost_estimate": 0.0,
+      "confidence_signals": {
+        "identity_anchor_present": true,
+        "outcome_anchor_present": true
+      },
+      "matched_case_fields": ["defendant_full_name", "jurisdiction"]
+    },
+    {
+      "source_id": "alan_champagne_azcentral_convicted",
+      "url": "https://www.azcentral.com/story/news/local/phoenix-breaking/2017/08/14/penalty-phase-continues-alan-champagne-convicted-phoenix-couples-murder-2011/565523001/",
+      "title": "Penalty phase continues for Alan Champagne, convicted in Phoenix couple's murder",
+      "snippet": "News source records Alan Champagne's conviction in the Phoenix couple murder case.",
+      "raw_text": "Alan Champagne was convicted in the Phoenix couple murder case.",
+      "source_type": "news",
+      "source_authority": "news",
+      "source_roles": ["identity_source", "outcome_source"],
+      "api_name": null,
+      "discovered_via": "calibration_data.json case_id=27 verified_sources",
+      "retrieved_at": "2026-05-01T00:00:00Z",
+      "case_input_id": "primary_media_case_alan_champagne_youtube",
+      "metadata": {
+        "calibration_case_id": 27,
+        "source_kind": "news_outcome"
+      },
+      "cost_estimate": 0.0,
+      "confidence_signals": {
+        "identity_anchor_present": true,
+        "outcome_anchor_present": true
+      },
+      "matched_case_fields": ["defendant_full_name", "jurisdiction"]
+    }
+  ],
+  "artifact_claims": [],
+  "verified_artifacts": [],
+  "scores": {
+    "identity_score": 0.0,
+    "outcome_score": 0.0,
+    "artifact_score": 0.0,
+    "actionability_score": 0.0
+  },
+  "verdict": "HOLD",
+  "next_actions": [],
+  "risk_flags": [],
+  "expected": {
+    "verdict": "HOLD",
+    "must_include_reason_codes": ["high_identity", "sentenced_or_convicted"],
+    "must_include_risk_flags": ["no_verified_media"],
+    "must_not_include_risk_flags": ["weak_identity", "produce_based_on_weak_or_uncertain_media"],
+    "notes": "Real calibration case 27. Dry seed has high identity and convicted outcome anchors but no pre-verified media. LIVE9_REAL must find a concrete public Tier A media URL through the supported YouTube connector before PRODUCE."
+  }
+}

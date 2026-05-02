@@ -26,6 +26,7 @@ from statistics import mean, median
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple
 
 from .ledger import DEFAULT_API_CALLS, RunLedgerEntry
+from .media_relevance import MediaRelevanceResult, classify_media_relevance
 from .models import CasePacket, VerifiedArtifact
 from .scoring import (
     MEDIA_ARTIFACT_TYPES,
@@ -42,6 +43,8 @@ PROTECTED_RISK_FLAGS = {
     "protected_or_nonpublic_only",
     "pacer_or_paywalled",
 }
+
+TIER_ORDER = {"A": 3, "B": 2, "C": 1, "unknown": 0}
 
 
 def _is_media_artifact(artifact: VerifiedArtifact) -> bool:
@@ -92,6 +95,250 @@ def _empty_report() -> Dict[str, Any]:
         "reason_code_counts": {},
         "input_type_breakdown": {},
         "produce_eligible_inventory": [],
+        "media_quality": _empty_media_quality_report(),
+    }
+
+
+def _empty_media_quality_report() -> Dict[str, Any]:
+    return {
+        "total_media_artifacts": 0,
+        "tier_counts": {"A": 0, "B": 0, "C": 0, "unknown": 0},
+        "primary_source_media_count": 0,
+        "secondary_source_media_count": 0,
+        "weak_or_uncertain_media_count": 0,
+        "official_source_likelihood_counts": {"high": 0, "medium": 0, "low": 0},
+        "needs_manual_review_count": 0,
+        "media_risk_flags": {},
+        "media_reason_codes": {},
+        "produce_media_basis_counts": {"A": 0, "B": 0, "C": 0, "unknown": 0, "none": 0},
+        "produce_cases": [],
+        "warnings": [],
+        "top_media_artifacts": [],
+    }
+
+
+def _likelihood_bucket(value: float) -> str:
+    if value >= 0.7:
+        return "high"
+    if value >= 0.35:
+        return "medium"
+    return "low"
+
+
+def _increment_counts(counts: Dict[str, int], values: Iterable[str]) -> None:
+    for value in values:
+        counts[value] = counts.get(value, 0) + 1
+
+
+def _highest_tier(results: List[MediaRelevanceResult]) -> str:
+    if not results:
+        return "none"
+    return max((r.media_relevance_tier for r in results), key=lambda tier: TIER_ORDER.get(tier, -1))
+
+
+def _is_youtube_artifact(artifact: VerifiedArtifact) -> bool:
+    url = artifact.artifact_url.lower()
+    return "youtube.com/" in url or "youtu.be/" in url
+
+
+def build_media_quality_report(packets: Iterable[CasePacket]) -> Dict[str, Any]:
+    """Summarize media relevance quality across CasePackets.
+
+    Advisory only: this report never changes scoring or verdicts. It
+    grades already-verified media artifacts with the metadata-only
+    MEDIA4 classifier and emits warnings when production depends on
+    weak or uncertain media.
+    """
+
+    packet_list = list(packets)
+    if not packet_list:
+        return _empty_media_quality_report()
+
+    report = _empty_media_quality_report()
+    top_media: List[Dict[str, Any]] = []
+    warnings: List[str] = []
+
+    for packet in packet_list:
+        result = score_case_packet(packet)
+        media_artifacts = [a for a in packet.verified_artifacts if _is_media_artifact(a)]
+        relevance_results = [classify_media_relevance(a) for a in media_artifacts]
+
+        if result.verdict == "PRODUCE":
+            highest = _highest_tier(relevance_results)
+            report["produce_media_basis_counts"][highest] += 1
+            weak_only = bool(relevance_results) and all(
+                r.media_relevance_tier in {"C", "unknown"} for r in relevance_results
+            )
+            report["produce_cases"].append(
+                {
+                    "case_id": packet.case_id,
+                    "highest_media_relevance_tier": highest,
+                    "media_relevance_tiers": [r.media_relevance_tier for r in relevance_results],
+                    "weak_or_uncertain_media_only": weak_only,
+                    "needs_manual_review": any(r.needs_manual_review for r in relevance_results),
+                }
+            )
+            if weak_only:
+                warnings.append(f"produce_based_only_on_weak_or_uncertain_media:{packet.case_id}")
+        elif not relevance_results:
+            # Non-PRODUCE rows with no media are not production basis,
+            # but the key remains explicit for downstream consumers.
+            pass
+
+        if media_artifacts and all(_is_youtube_artifact(a) for a in media_artifacts):
+            if not any(r.primary_source_likelihood >= 0.7 or r.official_source_likelihood >= 0.7 for r in relevance_results):
+                warnings.append(f"all_media_youtube_no_official_or_primary:{packet.case_id}")
+
+        for artifact, relevance in zip(media_artifacts, relevance_results):
+            report["total_media_artifacts"] += 1
+            tier = relevance.media_relevance_tier
+            report["tier_counts"][tier] = report["tier_counts"].get(tier, 0) + 1
+            if relevance.primary_source_likelihood >= 0.7:
+                report["primary_source_media_count"] += 1
+            if tier == "B":
+                report["secondary_source_media_count"] += 1
+            if tier in {"C", "unknown"}:
+                report["weak_or_uncertain_media_count"] += 1
+            bucket = _likelihood_bucket(relevance.official_source_likelihood)
+            report["official_source_likelihood_counts"][bucket] += 1
+            if relevance.needs_manual_review:
+                report["needs_manual_review_count"] += 1
+            _increment_counts(report["media_risk_flags"], relevance.risk_flags)
+            _increment_counts(report["media_reason_codes"], relevance.reason_codes)
+            for warning in relevance.mismatch_warnings:
+                warnings.append(f"{warning}:{packet.case_id}:{artifact.artifact_id}")
+            top_media.append(
+                {
+                    "case_id": packet.case_id,
+                    "artifact_id": artifact.artifact_id,
+                    "artifact_url": artifact.artifact_url,
+                    "artifact_type": artifact.artifact_type,
+                    "media_relevance_tier": relevance.media_relevance_tier,
+                    "media_relevance_score": relevance.media_relevance_score,
+                    "primary_source_likelihood": relevance.primary_source_likelihood,
+                    "official_source_likelihood": relevance.official_source_likelihood,
+                    "needs_manual_review": relevance.needs_manual_review,
+                    "reason_codes": list(relevance.reason_codes),
+                    "risk_flags": list(relevance.risk_flags),
+                    "mismatch_warnings": list(relevance.mismatch_warnings),
+                }
+            )
+
+    report["media_risk_flags"] = dict(sorted(report["media_risk_flags"].items(), key=lambda kv: (-kv[1], kv[0])))
+    report["media_reason_codes"] = dict(sorted(report["media_reason_codes"].items(), key=lambda kv: (-kv[1], kv[0])))
+    report["warnings"] = sorted(set(warnings))
+    report["top_media_artifacts"] = sorted(
+        top_media,
+        key=lambda item: (-item["media_relevance_score"], item["case_id"], item["artifact_id"]),
+    )[:10]
+    return report
+
+
+def build_endpoint_v2_status_report(
+    *,
+    endpoint_v0_status: Optional[Mapping[str, Any]] = None,
+    endpoint_v1_status: Optional[Mapping[str, Any]] = None,
+    endpoint_v11_media_quality: Optional[Mapping[str, Any]] = None,
+    endpoint_v2_status: Optional[Mapping[str, Any]] = None,
+    live_yield_report: Optional[Mapping[str, Any]] = None,
+) -> Dict[str, Any]:
+    """EVAL9 - deterministic Endpoint v2 status summary.
+
+    The report is advisory and no-live. It compares prior endpoint
+    milestones, summarizes the current official-primary media attempt,
+    and emits concrete blockers/next actions without changing scoring
+    or verdict behavior.
+    """
+
+    v0 = dict(endpoint_v0_status or {})
+    v1 = dict(endpoint_v1_status or {})
+    v11 = dict(endpoint_v11_media_quality or {})
+    v2 = dict(endpoint_v2_status or {})
+    live = dict(live_yield_report or {})
+
+    tier_counts = {"A": 0, "B": 0, "C": 0, "unknown": 0}
+    for tier, count in dict(v2.get("media_relevance_tiers") or {}).items():
+        tier_counts[tier if tier in tier_counts else "unknown"] += int(count or 0)
+
+    risk_flags = list(v2.get("risk_flags") or [])
+    reason_codes = list(v2.get("reason_codes") or [])
+    blockers = list(v2.get("blockers") or [])
+    if not bool(v2.get("endpoint_v2_achieved")):
+        if int(v2.get("verified_artifact_count") or 0) == 0 and "no_verified_artifacts" not in blockers:
+            blockers.append("no_verified_artifacts")
+        if tier_counts["A"] == 0 and "no_verified_tier_a_media" not in blockers:
+            blockers.append("no_verified_tier_a_media")
+        if v2.get("verdict") and v2.get("verdict") != "PRODUCE" and "verdict_not_produce" not in blockers:
+            blockers.append("verdict_not_produce")
+
+    weak_advisory_count = 0
+    for value in risk_flags + reason_codes:
+        if value in {
+            "produce_based_on_weak_or_uncertain_media",
+            "weak_or_uncertain_media",
+            "media_query_artifact_type_mismatch",
+        }:
+            weak_advisory_count += 1
+
+    connector = v2.get("connector_used") or "unknown"
+    connector_yields = {
+        connector: {
+            "source_records": int(v2.get("source_records_returned") or 0),
+            "verified_artifacts": int(v2.get("verified_artifact_count") or 0),
+            "media_artifacts": int(v2.get("media_artifact_count") or 0),
+        }
+    }
+    if live.get("by_provider"):
+        for provider, payload in live.get("by_provider", {}).items():
+            if provider not in connector_yields:
+                connector_yields[provider] = {
+                    "source_records": int(payload.get("source_records") or payload.get("result_count") or 0),
+                    "verified_artifacts": int(payload.get("verified_artifacts") or 0),
+                    "media_artifacts": 0,
+                }
+
+    next_actions: List[str] = []
+    if "no_verified_tier_a_media" in blockers:
+        next_actions.append("Find a supported live path that returns concrete Tier A media URLs.")
+    if connector == "youtube" and int(v2.get("source_records_returned") or 0) == 0:
+        next_actions.append("Install or enable yt-dlp in the repo venv before retrying the capped YouTube pilot.")
+    if "unsupported_agency_ois_only_path" in blockers:
+        next_actions.append("Implement a live agency_ois connector or choose a supported-source seed.")
+    if not next_actions and not bool(v2.get("endpoint_v2_achieved")):
+        next_actions.append("Review blockers and rerun LIVE9 under the selected pilot budget.")
+
+    return {
+        "endpoint_v0": {
+            "achieved": bool(v0.get("endpoint_v0_fully_achieved") or v0.get("achieved")),
+            "verified_artifact_count": int(v0.get("verified_artifact_count") or 0),
+            "document_artifact_count": int(v0.get("document_artifact_count") or 0),
+        },
+        "endpoint_v1": {
+            "achieved": bool(v1.get("endpoint_v1_achieved") or v1.get("achieved")),
+            "media_artifact_count": int(v1.get("media_artifact_count") or 0),
+            "verdict": v1.get("verdict"),
+        },
+        "endpoint_v1_1": {
+            "weak_media_warning_count": len(v11.get("warnings") or []),
+            "tier_counts": dict(v11.get("tier_counts") or {}),
+        },
+        "endpoint_v2": {
+            "achieved": bool(v2.get("endpoint_v2_achieved")),
+            "pilot_id": v2.get("pilot_id"),
+            "connector_used": connector,
+            "query": v2.get("query"),
+            "tier_a_media_count": tier_counts["A"],
+            "tier_b_media_count": tier_counts["B"],
+            "tier_c_or_unknown_media_count": tier_counts["C"] + tier_counts["unknown"],
+            "weak_media_advisory_count": weak_advisory_count,
+            "official_source_likelihood": v2.get("official_source_likelihood"),
+            "connector_yields": connector_yields,
+            "live_call_count": int(v2.get("live_calls_used") or live.get("total_live_calls") or 0),
+            "cost": float(v2.get("estimated_cost_usd") or live.get("total_estimated_cost_usd") or 0.0),
+            "verdict": v2.get("verdict"),
+            "blockers": sorted(set(blockers)),
+            "next_actions": next_actions,
+        },
     }
 
 
@@ -220,6 +467,7 @@ def build_actionability_report(packets: Iterable[CasePacket]) -> Dict[str, Any]:
         "reason_code_counts": dict(sorted(reason_counts.items(), key=lambda kv: (-kv[1], kv[0]))),
         "input_type_breakdown": dict(sorted(input_types.items())),
         "produce_eligible_inventory": inventory,
+        "media_quality": build_media_quality_report(packet_list),
     }
 
 

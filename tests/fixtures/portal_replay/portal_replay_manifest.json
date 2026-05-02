@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "case_id": 31,
+      "portal_profile_id": "agency_ois_detail",
+      "mocked_payload_fixture": "tests/fixtures/agency_ois/incident_detail_with_youtube_embed.json",
+      "expected_source_records": 2,
+      "expected_artifact_claims": 2,
+      "expected_candidate_urls": 1,
+      "expected_rejected_urls": 0,
+      "expected_resolver_actions": 1,
+      "expected_blockers": [],
+      "notes": ["agency OIS official page with YouTube embed and bodycam context"]
+    },
+    {
+      "case_id": 32,
+      "portal_profile_id": "agency_ois_detail",
+      "mocked_payload_fixture": "tests/fixtures/agency_ois/incident_detail_with_bodycam_claim_no_url.json",
+      "expected_source_records": 2,
+      "expected_artifact_claims": 2,
+      "expected_candidate_urls": 0,
+      "expected_rejected_urls": 0,
+      "expected_resolver_actions": 0,
+      "expected_blockers": [],
+      "notes": ["claim-only agency OIS page; claim_source is not artifact_source"]
+    },
+    {
+      "case_id": 33,
+      "portal_profile_id": "agency_ois_detail",
+      "mocked_payload_fixture": "tests/fixtures/agency_ois/incident_detail_with_pdf.json",
+      "expected_source_records": 2,
+      "expected_artifact_claims": 0,
+      "expected_candidate_urls": 1,
+      "expected_rejected_urls": 0,
+      "expected_resolver_actions": 1,
+      "expected_blockers": [],
+      "notes": ["document-only agency OIS page; dry replay must not produce"]
+    },
+    {
+      "case_id": 34,
+      "portal_profile_id": "agency_ois_detail",
+      "mocked_payload_fixture": "tests/fixtures/agency_ois/incident_detail_with_protected_link.json",
+      "expected_source_records": 3,
+      "expected_artifact_claims": 1,
+      "expected_candidate_urls": 1,
+      "expected_rejected_urls": 1,
+      "expected_resolver_actions": 2,
+      "expected_blockers": ["protected_or_nonpublic"],
+      "notes": ["protected media link rejected while public PDF remains candidate"]
+    },
+    {
+      "case_id": 37,
+      "portal_profile_id": "youtube_agency_channel",
+      "mocked_payload_fixture": "tests/fixtures/portal_replay/generic_youtube_weak_media.json",
+      "expected_source_records": 1,
+      "expected_artifact_claims": 0,
+      "expected_candidate_urls": 1,
+      "expected_rejected_urls": 0,
+      "expected_resolver_actions": 1,
+      "expected_blockers": [],
+      "notes": ["generic weak YouTube media benchmark shape"]
+    }
+  ]
+}

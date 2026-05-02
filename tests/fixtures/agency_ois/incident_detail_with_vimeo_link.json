@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov/police",
+  "url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-051",
+  "title": "Critical Incident Briefing 2024-OIS-051 (Vimeo)",
+  "narrative": "The sheriff and police department released official dashcam and BWC briefing footage on Vimeo for this critical incident.",
+  "subjects": ["Vimeo Example"],
+  "incident_date": "2024-12-02",
+  "case_number": "2024-OIS-051",
+  "outcome_text": "district attorney review closed",
+  "media_links": [
+    {
+      "url": "https://vimeo.com/123456789",
+      "label": "Official dashcam and bodycam briefing footage",
+      "type": "dashcam"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}
