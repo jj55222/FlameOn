@@ -14,7 +14,7 @@ from .query_planner import (
     plan_queries_from_structured_result,
     plan_queries_from_youtube_result,
 )
-from .resolvers import MuckRockFileResolution, resolve_muckrock_released_files
+from .resolvers import ResolverOrchestrationResult, run_metadata_only_resolvers
 from .scoring import ActionabilityResult, score_case_packet
 
 
@@ -25,7 +25,7 @@ class WeakInputAssemblyResult:
     identity_resolution: IdentityResolution
     outcome_resolution: OutcomeResolution
     claim_extraction: ClaimExtractionResult
-    artifact_resolution: MuckRockFileResolution
+    artifact_resolution: ResolverOrchestrationResult
     actionability: ActionabilityResult
 
 
@@ -36,7 +36,7 @@ class StructuredAssemblyResult:
     identity_resolution: IdentityResolution
     outcome_resolution: OutcomeResolution
     claim_extraction: ClaimExtractionResult
-    artifact_resolution: MuckRockFileResolution
+    artifact_resolution: ResolverOrchestrationResult
     actionability: ActionabilityResult
 
 
@@ -69,7 +69,7 @@ def assemble_weak_input_case_packet(
     identity_resolution = resolve_identity(packet)
     outcome_resolution = resolve_outcome(packet)
     claim_extraction = extract_artifact_claims(packet)
-    artifact_resolution = resolve_muckrock_released_files(packet)
+    artifact_resolution = run_metadata_only_resolvers(packet)
     actionability = score_case_packet(packet)
 
     return WeakInputAssemblyResult(
@@ -113,7 +113,7 @@ def assemble_structured_case_packet(
     identity_resolution = resolve_identity(packet)
     outcome_resolution = resolve_outcome(packet)
     claim_extraction = extract_artifact_claims(packet)
-    artifact_resolution = resolve_muckrock_released_files(packet)
+    artifact_resolution = run_metadata_only_resolvers(packet)
     actionability = score_case_packet(packet)
 
     return StructuredAssemblyResult(

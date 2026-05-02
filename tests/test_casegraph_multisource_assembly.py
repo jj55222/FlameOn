@@ -207,7 +207,7 @@ def test_structured_fixture_alone_does_not_produce():
     assert result.actionability.verdict != "PRODUCE"
 
 
-def test_structured_plus_court_source_lifts_outcome_but_no_artifacts():
+def test_structured_plus_court_source_lifts_outcome_but_no_media_artifacts():
     parsed = load_structured()
     result = assemble_structured_case_packet(
         parsed, sources=[courtlistener_identity_outcome_source()]
@@ -215,7 +215,16 @@ def test_structured_plus_court_source_lifts_outcome_but_no_artifacts():
 
     assert result.packet.case_identity.identity_confidence == "high"
     assert result.packet.case_identity.outcome_status == "sentenced"
-    assert result.packet.verified_artifacts == []
+    # Assembly chains the CourtListener resolver: a public /opinion/
+    # URL graduates into a docket_docs document artifact. The court
+    # source still does NOT yield a media artifact, so verdict stays
+    # below PRODUCE and the no_verified_media risk flag survives.
+    media_artifacts = [
+        a
+        for a in result.packet.verified_artifacts
+        if a.artifact_type in {"bodycam", "interrogation", "court_video", "dispatch_911"}
+    ]
+    assert media_artifacts == [], "court source must not yield a media artifact"
     assert result.actionability.verdict != "PRODUCE"
     assert "no_verified_media" in result.actionability.risk_flags
 
@@ -364,7 +373,16 @@ def test_weak_youtube_plus_claim_only_does_not_produce():
     result = assemble_weak_input_case_packet(parsed, sources=sources)
     bodycam_claims = [c for c in result.packet.artifact_claims if c.artifact_type == "bodycam"]
     assert bodycam_claims, "claim should appear"
-    assert result.packet.verified_artifacts == []
+    # The CL /opinion/ URL graduates into a docket_docs document via
+    # assembly's orchestrator wiring, but no media artifact graduates
+    # (MuckRock claim-only has no released_files metadata). With media
+    # missing, verdict stays below PRODUCE.
+    media_artifacts = [
+        a
+        for a in result.packet.verified_artifacts
+        if a.artifact_type in {"bodycam", "interrogation", "court_video", "dispatch_911"}
+    ]
+    assert media_artifacts == [], "no media artifact should graduate from claim-only inputs"
     assert result.actionability.verdict != "PRODUCE"
 
 
@@ -437,3 +455,107 @@ def test_running_resolvers_twice_is_idempotent_per_url():
     resolve_muckrock_released_files(result.packet)
     after = len(result.packet.verified_artifacts)
     assert after == initial, "resolver re-run must not duplicate artifacts"
+
+
+# ---- Assembly-level orchestrator wiring ---------------------------------
+
+
+def test_assembly_graduates_documentcloud_artifact_without_explicit_resolver_call():
+    """Assembly chains the DocumentCloud resolver via the orchestrator.
+    A public DocumentCloud source must produce a VerifiedArtifact
+    inside assembly itself — no manual resolve_documentcloud_files call
+    required."""
+    parsed = load_structured()
+    sources = [
+        courtlistener_identity_outcome_source(),
+        documentcloud_public_document_source(),
+    ]
+    result = assemble_structured_case_packet(parsed, sources=sources)
+
+    documentcloud_artifacts = [
+        a for a in result.packet.verified_artifacts
+        if a.source_authority == "documentcloud"
+    ]
+    assert documentcloud_artifacts, (
+        "DocumentCloud public PDF should graduate inside assembly"
+    )
+    # Document-only -> HOLD even with high identity + concluded outcome.
+    assert result.actionability.verdict == "HOLD"
+    assert "document_only_hold" in result.actionability.reason_codes
+
+
+def test_assembly_graduates_youtube_media_artifact_via_orchestrator():
+    """Assembly chains the YouTube resolver via the orchestrator. A
+    public YouTube source carrying possible_artifact_source role and a
+    real watch URL must produce a VerifiedArtifact inside assembly
+    itself."""
+    parsed = load_structured()
+    youtube_source = _source(
+        source_id="yt_assembly_bodycam",
+        url="https://www.youtube.com/watch?v=phx_bodycam_assembly",
+        title="Phoenix Police Department bodycam — John Example",
+        snippet="Official bodycam footage released by Phoenix PD.",
+        api_name="youtube_yt_dlp",
+        source_authority="third_party",
+        source_type="video",
+        source_roles=["claim_source", "possible_artifact_source"],
+        metadata={
+            "video_id": "phx_bodycam_assembly",
+            "channel": "Phoenix Police Department",
+        },
+        matched_case_fields=["defendant_full_name", "agency"],
+    )
+    result = assemble_structured_case_packet(
+        parsed,
+        sources=[courtlistener_identity_outcome_source(), youtube_source],
+    )
+
+    youtube_artifacts = [
+        a for a in result.packet.verified_artifacts
+        if "youtube.com" in a.artifact_url
+    ]
+    assert youtube_artifacts, "YouTube source should graduate inside assembly"
+    assert youtube_artifacts[0].artifact_type == "bodycam"
+    assert youtube_artifacts[0].format == "video"
+
+
+def test_assembly_dedupes_artifact_urls_across_resolvers():
+    """The orchestrator wired into assembly dedupes artifact URLs
+    across resolvers. A single URL surfaced by two resolver paths must
+    yield only one VerifiedArtifact in the assembled packet."""
+    parsed = load_structured()
+    shared_url = "https://www.documentcloud.org/documents/9900001-cross-resolver-shared"
+    muckrock_pointing_at_shared = _source(
+        source_id="mr_pointing_at_dc",
+        url="https://www.muckrock.com/foi/example/9900001/",
+        title="MuckRock production referencing a DocumentCloud-hosted file",
+        snippet="Records produced include a public DocumentCloud-hosted PDF.",
+        api_name="muckrock",
+        source_authority="foia",
+        source_type="foia_request",
+        source_roles=["claim_source", "possible_artifact_source"],
+        metadata={"released_files": [{"url": shared_url, "name": "shared"}]},
+    )
+    documentcloud_with_same_url = _source(
+        source_id="dc_with_same_url",
+        url=shared_url,
+        title="DocumentCloud document independently surfaced",
+        snippet="Public document.",
+        api_name="documentcloud",
+        source_authority="documentcloud",
+        source_type="documentcloud_document",
+        source_roles=["claim_source", "possible_artifact_source"],
+        metadata={"canonical_url": shared_url, "access": "public"},
+    )
+
+    result = assemble_structured_case_packet(
+        parsed, sources=[muckrock_pointing_at_shared, documentcloud_with_same_url]
+    )
+    matching = [
+        a for a in result.packet.verified_artifacts
+        if a.artifact_url == shared_url
+    ]
+    assert len(matching) == 1, (
+        "cross-resolver dedupe must collapse the shared URL to a single artifact; "
+        f"got {[a.artifact_url for a in result.packet.verified_artifacts]}"
+    )

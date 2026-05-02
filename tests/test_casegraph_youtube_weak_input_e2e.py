@@ -129,6 +129,10 @@ def test_e2e_corroborating_identity_source_lifts_identity_but_no_media_no_produc
 
 
 def test_e2e_bodycam_claim_source_does_not_create_verified_artifact():
+    # A claim-only source carries claim_source but NOT
+    # possible_artifact_source — it describes an artifact in text but
+    # is not itself a candidate public artifact URL. Assembly must
+    # extract an ArtifactClaim and never graduate a VerifiedArtifact.
     claim_source = _source(
         "The Phoenix Police Department released bodycam footage from the John Example incident.",
         source_id="mock_claim_e2e",
@@ -136,7 +140,7 @@ def test_e2e_bodycam_claim_source_does_not_create_verified_artifact():
         title="Bodycam released in John Example case",
         source_type="video",
         source_authority="third_party",
-        source_roles=["claim_source", "possible_artifact_source"],
+        source_roles=["claim_source"],
         api_name="youtube_yt_dlp",
         matched_case_fields=["defendant_full_name", "agency"],
     )
@@ -148,6 +152,44 @@ def test_e2e_bodycam_claim_source_does_not_create_verified_artifact():
     assert result.packet.verified_artifacts == []
     assert result.actionability.verdict != "PRODUCE"
     assert "artifact_claim_unresolved" in result.actionability.reason_codes
+
+
+def test_e2e_youtube_possible_artifact_source_graduates_through_assembly():
+    # Sibling to the claim-only test above: the same YouTube URL with
+    # possible_artifact_source role IS a candidate public artifact.
+    # Assembly's orchestrator wiring must graduate it via the YouTube
+    # media resolver into a VerifiedArtifact.
+    artifact_source = _source(
+        "Phoenix PD releases bodycam footage from the John Example incident.",
+        source_id="mock_yt_artifact_e2e",
+        url="https://www.youtube.com/watch?v=e2e_bodycam_artifact",
+        title="Phoenix Police Department bodycam — John Example",
+        source_type="video",
+        source_authority="third_party",
+        source_roles=["claim_source", "possible_artifact_source"],
+        api_name="youtube_yt_dlp",
+        metadata={"video_id": "e2e_bodycam_artifact", "channel": "Phoenix Police Department"},
+        matched_case_fields=["defendant_full_name", "agency"],
+    )
+
+    result = run_e2e("transcript_suspect_agency_date.json", mock_sources=[artifact_source])
+
+    youtube_artifacts = [
+        a for a in result.packet.verified_artifacts
+        if "youtube.com" in a.artifact_url
+    ]
+    assert youtube_artifacts, (
+        "YouTube source with possible_artifact_source role should graduate via assembly"
+    )
+    assert youtube_artifacts[0].artifact_type == "bodycam"
+    assert youtube_artifacts[0].format == "video"
+    # Same artifact URL also lands on the assembly result's
+    # ResolverOrchestrationResult (Option A: artifact_resolution is now
+    # the orchestrator aggregate).
+    assert any(
+        a.artifact_url == youtube_artifacts[0].artifact_url
+        for a in result.artifact_resolution.verified_artifacts
+    )
 
 
 def test_e2e_full_happy_path_with_verified_media_produces():

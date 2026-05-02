@@ -278,14 +278,19 @@ def test_courtlistener_opinion_is_resolved_through_orchestrator():
     result = assemble_structured_case_packet(
         parsed, sources=[courtlistener_identity_outcome_source()]
     )
-    # Assembly does NOT chain CourtListener resolver by default.
+    # Assembly chains the CourtListener resolver via the orchestrator,
+    # so the /opinion/ URL graduates inside assembly itself.
+    cl_artifacts = [a for a in result.packet.verified_artifacts if a.source_authority == "court"]
+    assert cl_artifacts, "expected at least one court-authority artifact from assembly"
+    assert all(a.artifact_type == "docket_docs" for a in cl_artifacts)
+    # Re-running the orchestrator must not duplicate the artifact.
     pre = len(result.packet.verified_artifacts)
     orch = run_metadata_only_resolvers(result.packet)
     post = len(result.packet.verified_artifacts)
-    assert post > pre, "CourtListener opinion URL should yield a document artifact"
-    cl_artifacts = [a for a in result.packet.verified_artifacts if a.source_authority == "court"]
-    assert cl_artifacts, "expected at least one court-authority artifact"
-    assert all(a.artifact_type == "docket_docs" for a in cl_artifacts)
+    assert post == pre, "orchestrator re-run must dedupe CourtListener artifact"
+    assert orch.verified_artifact_count == 0, (
+        "orchestrator re-run aggregate must report zero new artifacts"
+    )
 
 
 # ---- Claim-text-only invariant ------------------------------------------
