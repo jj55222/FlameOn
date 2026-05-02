@@ -428,3 +428,75 @@ def test_bundle_validate_unsafe_path_helper_directly():
     # becomes ``C:\some\absolute\path\...`` which is outside the repo
     # and therefore safe.
     assert cli._is_safe_bundle_path(outside) is True
+
+
+# ---- --emit-handoffs in the run bundle ---------------------------------
+
+
+def test_default_mode_bundle_omits_handoffs_without_flag(tmp_path):
+    """Without --emit-handoffs the bundle must NOT carry the handoffs
+    key — this guards backwards-compatible bundle output and protects
+    every existing REQUIRED_BUNDLE_KEYS expectation."""
+    bundle_path = tmp_path / "bundle.json"
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, _, err = run_cli(
+        ["--fixture", fixture, "--json", "--bundle-out", str(bundle_path)]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle(bundle_path)
+    assert "handoffs" not in bundle
+
+
+def test_default_mode_bundle_includes_handoffs_when_flag_passed(tmp_path):
+    """With --emit-handoffs and --bundle-out, the bundle must include
+    the handoffs key alongside every existing REQUIRED_BUNDLE_KEYS
+    section."""
+    bundle_path = tmp_path / "bundle.json"
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, _, err = run_cli(
+        [
+            "--fixture",
+            fixture,
+            "--json",
+            "--emit-handoffs",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle(bundle_path)
+    # Existing canonical keys still all present.
+    for key in REQUIRED_BUNDLE_KEYS:
+        assert key in bundle, f"missing canonical bundle key {key!r}"
+    handoffs = bundle.get("handoffs")
+    assert handoffs is not None, "bundle should include handoffs under --emit-handoffs"
+    assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
+    # Sanity: P3 rows for media_rich_produce.json should be non-empty.
+    assert handoffs["p2_to_p3"], "P3 rows should be non-empty for media-rich fixture"
+
+
+def test_build_run_bundle_handoffs_param_is_optional_and_additive():
+    """Direct unit test of build_run_bundle: omitting handoffs leaves
+    the bundle unchanged; passing a handoffs dict adds exactly that
+    one top-level key."""
+    fixture = Path(FIXTURE_DIR / "media_rich_produce.json")
+    packet = cli._load_fixture(fixture)
+    no_handoffs = cli.build_run_bundle(
+        mode="default",
+        experiment_id="test-no-handoffs",
+        wallclock_seconds=0.0,
+        packet=packet,
+    )
+    handoffs = cli.build_handoffs(packet)
+    with_handoffs = cli.build_run_bundle(
+        mode="default",
+        experiment_id="test-with-handoffs",
+        wallclock_seconds=0.0,
+        packet=packet,
+        handoffs=handoffs,
+    )
+    assert "handoffs" not in no_handoffs
+    assert with_handoffs["handoffs"] == handoffs
+    # Every other key matches modulo experiment_id.
+    extra_keys = set(with_handoffs.keys()) - set(no_handoffs.keys())
+    assert extra_keys == {"handoffs"}

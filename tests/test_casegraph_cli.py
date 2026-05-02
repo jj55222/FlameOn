@@ -857,3 +857,94 @@ def test_cli_multi_source_and_other_modes_are_mutually_exclusive():
                 "courtlistener",
             ]
         )
+
+
+# ---- --emit-handoffs ----------------------------------------------------
+
+
+SCHEMA_DIR = ROOT / "schemas"
+
+
+def _assert_valid(schema_path: Path, instance):
+    """Validate a payload against a JSON schema. Skips silently when
+    jsonschema is not importable so the test suite stays runnable in
+    minimal environments — but in CI it is installed and validation
+    runs."""
+    try:
+        from jsonschema import Draft7Validator  # type: ignore
+    except ImportError:  # pragma: no cover
+        pytest.skip("jsonschema not installed")
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    errors = sorted(Draft7Validator(schema).iter_errors(instance), key=lambda e: e.path)
+    assert not errors, "; ".join(f"{list(e.path)}: {e.message}" for e in errors)
+
+
+def test_cli_default_mode_omits_handoffs_without_flag():
+    """Without --emit-handoffs the JSON payload must NOT carry the
+    handoffs key — this guards backwards-compatible CLI output."""
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, out, _ = run_cli(["--fixture", fixture, "--json"])
+    assert code == 0
+    payload = json.loads(out)
+    assert "handoffs" not in payload
+
+
+def test_cli_emit_handoffs_includes_all_three_handoff_keys():
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, out, err = run_cli(["--fixture", fixture, "--json", "--emit-handoffs"])
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    handoffs = payload.get("handoffs")
+    assert handoffs is not None, "expected top-level handoffs key under --emit-handoffs"
+    assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
+
+
+def test_cli_emit_handoffs_p3_rows_validate_against_schema():
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, out, _ = run_cli(["--fixture", fixture, "--json", "--emit-handoffs"])
+    assert code == 0
+    p3_rows = json.loads(out)["handoffs"]["p2_to_p3"]
+    assert isinstance(p3_rows, list)
+    assert p3_rows, "media-rich fixture should yield at least one P2->P3 row"
+    schema_path = SCHEMA_DIR / "p2_to_p3.schema.json"
+    for row in p3_rows:
+        _assert_valid(schema_path, row)
+
+
+def test_cli_emit_handoffs_p4_validates_against_schema():
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, out, _ = run_cli(["--fixture", fixture, "--json", "--emit-handoffs"])
+    assert code == 0
+    p4 = json.loads(out)["handoffs"]["p2_to_p4"]
+    _assert_valid(SCHEMA_DIR / "p2_to_p4.schema.json", p4)
+    assert p4["case_id"] == "scenario_media_rich_produce"
+    assert p4["outcome_status"] == "sentenced"
+
+
+def test_cli_emit_handoffs_p5_validates_against_schema():
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, out, _ = run_cli(["--fixture", fixture, "--json", "--emit-handoffs"])
+    assert code == 0
+    p5 = json.loads(out)["handoffs"]["p2_to_p5"]
+    _assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", p5)
+    assert p5["case_id"] == "scenario_media_rich_produce"
+    assert p5["verdict"] in {"PRODUCE", "HOLD", "SKIP"}
+
+
+def test_cli_emit_handoffs_does_not_mutate_existing_payload_keys():
+    """The flag is purely additive: every key that appears in the
+    no-flag payload must still appear (with identical structure modulo
+    timing fields) when the flag is set."""
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    _, out_plain, _ = run_cli(["--fixture", fixture, "--json"])
+    _, out_with, _ = run_cli(["--fixture", fixture, "--json", "--emit-handoffs"])
+    plain = json.loads(out_plain)
+    with_handoffs = json.loads(out_with)
+    assert set(plain.keys()) <= set(with_handoffs.keys())
+    assert set(with_handoffs.keys()) - set(plain.keys()) == {"handoffs"}
+    # Same verdict / scores regardless of flag.
+    assert plain["result"]["verdict"] == with_handoffs["result"]["verdict"]
+    assert (
+        plain["packet_summary"]["case_id"]
+        == with_handoffs["packet_summary"]["case_id"]
+    )

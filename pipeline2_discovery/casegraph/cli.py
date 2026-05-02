@@ -45,6 +45,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, TextIO
 
+from .adapters import export_p2_to_p3, export_p2_to_p4, export_p2_to_p5
 from .assembly import StructuredAssemblyResult, assemble_structured_case_packet
 from .inputs import (
     StructuredInputParseResult,
@@ -293,6 +294,7 @@ def build_run_bundle(
     live_yield_report: Optional[Dict[str, Any]] = None,
     api_calls: Optional[Dict[str, int]] = None,
     notes: Optional[List[str]] = None,
+    handoffs: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Canonical CaseGraph run bundle (PIPE5).
 
@@ -343,7 +345,7 @@ def build_run_bundle(
             notes=notes,
         )
 
-    return {
+    bundle: Dict[str, Any] = {
         "experiment_id": experiment_id,
         "mode": mode,
         "wallclock_seconds": wallclock_seconds,
@@ -363,6 +365,9 @@ def build_run_bundle(
         "next_actions": next_actions,
         "risk_flags": risk_flags,
     }
+    if handoffs is not None:
+        bundle["handoffs"] = handoffs
+    return bundle
 
 
 def _write_bundle(path: Path, bundle: Dict[str, Any]) -> None:
@@ -372,16 +377,36 @@ def _write_bundle(path: Path, bundle: Dict[str, Any]) -> None:
         f.write("\n")
 
 
+def build_handoffs(packet: CasePacket) -> Dict[str, Any]:
+    """Build the canonical P2 handoff bundle for a CasePacket.
+
+    Pure: delegates to the existing schema-validated adapters. Returned
+    shape mirrors the per-handoff schemas under ``schemas/`` and is
+    nested under a single top-level ``handoffs`` key when surfaced via
+    the CLI or run bundle.
+    """
+    return {
+        "p2_to_p3": export_p2_to_p3(packet),
+        "p2_to_p4": export_p2_to_p4(packet),
+        "p2_to_p5": export_p2_to_p5(packet),
+    }
+
+
 def build_dry_run_payload(
     packet: CasePacket,
     *,
     experiment_id: str = "PIPE1-cli-dry-run",
     wallclock_seconds: float = 0.0,
+    emit_handoffs: bool = False,
 ) -> Dict[str, Any]:
     """Build the structured payload printed by the CLI.
 
     Pure: scores and reports run via deterministic helpers and never
-    mutate the supplied packet."""
+    mutate the supplied packet. When ``emit_handoffs`` is True, a
+    top-level ``handoffs`` object containing the schema-validated
+    P2→P3/P4/P5 exports is included; otherwise the payload shape is
+    unchanged from prior CLI behavior.
+    """
     result = score_case_packet(packet)
     report = build_actionability_report([packet])
     ledger_entry = build_run_ledger_entry(
@@ -389,13 +414,16 @@ def build_dry_run_payload(
         packet=packet,
         wallclock_seconds=wallclock_seconds,
     )
-    return {
+    payload: Dict[str, Any] = {
         "input_summary": _input_summary(packet),
         "packet_summary": _packet_summary(packet),
         "result": _result_summary(result),
         "report": report,
         "ledger_entry": ledger_entry.to_dict(),
     }
+    if emit_handoffs:
+        payload["handoffs"] = build_handoffs(packet)
+    return payload
 
 
 def _format_text(payload: Dict[str, Any]) -> str:
@@ -792,6 +820,17 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         action="store_true",
         help="Allow --bundle-out to write to a non-gitignored repo path.",
     )
+    parser.add_argument(
+        "--emit-handoffs",
+        dest="emit_handoffs",
+        action="store_true",
+        help=(
+            "Include the schema-validated P2->P3, P2->P4, and P2->P5 "
+            "handoff payloads under a top-level 'handoffs' key in the "
+            "default-mode JSON output (and in the run bundle when "
+            "--bundle-out is also passed). Default mode only."
+        ),
+    )
     return parser.parse_args(list(argv) if argv is not None else None)
 
 
@@ -874,10 +913,12 @@ def _run_default_mode(args, *, out, err) -> int:
 
     experiment_id = args.experiment_id or "PIPE1-cli-dry-run"
     wallclock = round(time.perf_counter() - started, 4)
+    emit_handoffs = bool(getattr(args, "emit_handoffs", False))
     payload = build_dry_run_payload(
         packet,
         experiment_id=experiment_id,
         wallclock_seconds=wallclock,
+        emit_handoffs=emit_handoffs,
     )
 
     if args.json:
@@ -892,6 +933,7 @@ def _run_default_mode(args, *, out, err) -> int:
             experiment_id=experiment_id,
             wallclock_seconds=wallclock,
             packet=packet,
+            handoffs=build_handoffs(packet) if emit_handoffs else None,
         )
         _write_bundle(Path(args.bundle_out), bundle)
     return EXIT_OK
