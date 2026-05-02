@@ -39,6 +39,7 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 from ..models import CasePacket, SourceRecord, VerifiedArtifact
+from .agency_ois_files import AgencyOISFileResolution, resolve_agency_ois_files
 from .courtlistener_documents import (
     CourtListenerDocumentResolution,
     resolve_courtlistener_documents,
@@ -51,7 +52,7 @@ from .muckrock_files import MuckRockFileResolution, resolve_muckrock_released_fi
 from .youtube_media import YouTubeMediaResolution, resolve_youtube_media_sources
 
 
-RESOLVER_NAMES = ("muckrock", "documentcloud", "courtlistener", "youtube")
+RESOLVER_NAMES = ("muckrock", "documentcloud", "courtlistener", "youtube", "agency_ois")
 
 
 @dataclass
@@ -193,6 +194,12 @@ def run_metadata_only_resolvers(
         result.per_resolver["youtube"] = youtube_result
         result.resolvers_run.append("youtube")
         _absorb(result, youtube_result, seen_urls=seen_urls, packet=packet_or_sources if is_packet else None)
+
+    if "agency_ois" in enabled:
+        agency_ois_result = resolve_agency_ois_files(packet_or_sources if is_packet else sources)
+        result.per_resolver["agency_ois"] = agency_ois_result
+        result.resolvers_run.append("agency_ois")
+        _absorb(result, agency_ois_result, seen_urls=seen_urls, packet=packet_or_sources if is_packet else None)
 
     inspected: List[str] = []
     for resolver_result in result.per_resolver.values():

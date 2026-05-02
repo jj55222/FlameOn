@@ -121,11 +121,13 @@ def test_public_pdf_graduates_to_document_artifact():
     assert art.metadata["media_or_document"] == "document"
 
 
-def test_youtube_watch_url_graduates_to_video_footage_artifact():
+def test_youtube_watch_url_graduates_to_other_video_artifact():
     """YouTube watch URLs should be recognized as media candidates
     when supplied via an agency_ois SourceRecord with role
-    possible_artifact_source. artifact_type defaults to video_footage
-    when no link_type hint is present."""
+    possible_artifact_source. artifact_type defaults to the
+    schema-canonical "other_video" when no link_type hint is present
+    (the CasePacket / p2_to_p3 schemas both enumerate "other_video"
+    but not "video_footage")."""
     src = SourceRecord(
         source_id="agency_ois::media::yt::1",
         url="https://www.youtube.com/watch?v=abc12345",
@@ -141,7 +143,7 @@ def test_youtube_watch_url_graduates_to_video_footage_artifact():
     assert len(result.verified_artifacts) == 1
     art = result.verified_artifacts[0]
     assert art.format == "video"
-    assert art.artifact_type == "video_footage"
+    assert art.artifact_type == "other_video"
 
 
 def test_mp3_url_graduates_to_audio_dispatch_artifact():
@@ -303,20 +305,24 @@ def test_resolver_works_against_bare_source_list():
 # ---- Orchestrator co-existence ------------------------------------------
 
 
-def test_orchestrator_no_regression_against_agency_sources():
-    """The existing run_metadata_only_resolvers orchestrator only runs
-    muckrock/documentcloud/courtlistener resolvers; agency-OIS sources
-    should pass through it without producing artifacts (since none of
-    those resolvers match) and the orchestrator must not raise."""
+def test_orchestrator_includes_agency_ois_resolver():
+    """The run_metadata_only_resolvers orchestrator now chains the
+    agency-OIS resolver alongside MuckRock / DocumentCloud /
+    CourtListener / YouTube. An agency-OIS public bodycam source must
+    graduate into a media VerifiedArtifact through the orchestrator."""
     from pipeline2_discovery.casegraph import run_metadata_only_resolvers
+    from pipeline2_discovery.casegraph.resolvers import RESOLVER_NAMES
 
+    assert "agency_ois" in RESOLVER_NAMES
     records = _connector_records(
         "incident_detail_with_bodycam_video.json"
     )
     out = run_metadata_only_resolvers(records)
-    # Existing orchestrator doesn't know about agency_ois yet, so no
-    # artifacts; the test just guards against a regression / crash.
-    assert out.verified_artifacts == []
+    assert "agency_ois" in out.resolvers_run
+    media = [a for a in out.verified_artifacts if a.format == "video"]
+    assert media, "agency-OIS .mp4 should graduate via the orchestrator"
+    assert any(a.source_authority == "official" for a in media)
+    assert any(a.artifact_type == "bodycam" for a in media)
 
 
 # ---- No network ---------------------------------------------------------

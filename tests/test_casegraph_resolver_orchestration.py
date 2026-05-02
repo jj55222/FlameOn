@@ -293,6 +293,36 @@ def test_courtlistener_opinion_is_resolved_through_orchestrator():
     )
 
 
+def test_agency_ois_media_is_resolved_through_orchestrator():
+    """An agency-OIS public bodycam source must graduate into a media
+    VerifiedArtifact via run_metadata_only_resolvers. The agency-OIS
+    resolver is one of the canonical RESOLVER_NAMES."""
+    assert "agency_ois" in RESOLVER_NAMES
+    agency_source = _source(
+        source_id="agency_ois::media::orch::1",
+        url="https://www.phoenix.gov/police/critical-incidents/2024-OIS-014/bwc.mp4",
+        title="Phoenix PD bodycam release",
+        snippet="Body-worn camera footage published by Phoenix PD.",
+        api_name="agency_ois",
+        source_authority="official",
+        source_type="agency_media:bodycam_briefing",
+        source_roles=["possible_artifact_source"],
+        metadata={
+            "agency": "Phoenix Police Department",
+            "case_number": "2024-OIS-014",
+            "media_link_type": "bodycam_briefing",
+            "host_page_url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-014",
+        },
+        matched_case_fields=["agency"],
+    )
+    out = run_metadata_only_resolvers([agency_source])
+    assert "agency_ois" in out.resolvers_run
+    media = [a for a in out.verified_artifacts if a.format == "video"]
+    assert media, "agency-OIS .mp4 should graduate via the orchestrator"
+    assert any(a.artifact_type == "bodycam" for a in media)
+    assert any(a.source_authority == "official" for a in media)
+
+
 # ---- Claim-text-only invariant ------------------------------------------
 
 

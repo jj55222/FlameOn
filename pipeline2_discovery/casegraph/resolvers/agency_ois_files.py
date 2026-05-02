@@ -156,7 +156,10 @@ def _infer_artifact_type(*, url: str, link_type_hint: str, format_: str) -> str:
     if format_ == "audio":
         return "dispatch_911"
     if format_ == "video":
-        return "video_footage"
+        # Use the schema-canonical generic-video type so graduated
+        # artifacts validate against the CasePacket schema enum (which
+        # includes "other_video" but not "video_footage").
+        return "other_video"
     if format_ in {"pdf", "document"}:
         return "docket_docs"
     return "docket_docs"

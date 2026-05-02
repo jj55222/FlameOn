@@ -559,3 +559,39 @@ def test_assembly_dedupes_artifact_urls_across_resolvers():
         "cross-resolver dedupe must collapse the shared URL to a single artifact; "
         f"got {[a.artifact_url for a in result.packet.verified_artifacts]}"
     )
+
+
+def test_assembly_graduates_agency_ois_media_via_orchestrator():
+    """Assembly chains the agency-OIS resolver via the orchestrator. A
+    public agency-OIS bodycam source must graduate inside assembly
+    itself, with source_authority="official" and the schema-canonical
+    artifact_type derived from the agency's link_type hint."""
+    parsed = load_structured()
+    agency_source = _source(
+        source_id="agency_ois::media::assembly::1",
+        url="https://www.phoenix.gov/police/critical-incidents/2024-OIS-014/bwc.mp4",
+        title="Phoenix PD bodycam release",
+        snippet="Body-worn camera footage published by Phoenix PD.",
+        api_name="agency_ois",
+        source_authority="official",
+        source_type="agency_media:bodycam_briefing",
+        source_roles=["possible_artifact_source"],
+        metadata={
+            "agency": "Phoenix Police Department",
+            "case_number": "2024-OIS-014",
+            "media_link_type": "bodycam_briefing",
+            "host_page_url": "https://www.phoenix.gov/police/critical-incidents/2024-OIS-014",
+        },
+        matched_case_fields=["agency"],
+    )
+    result = assemble_structured_case_packet(
+        parsed, sources=[courtlistener_identity_outcome_source(), agency_source]
+    )
+
+    agency_media = [
+        a for a in result.packet.verified_artifacts
+        if a.source_authority == "official" and a.format == "video"
+    ]
+    assert agency_media, "agency-OIS media should graduate inside assembly"
+    assert agency_media[0].artifact_type == "bodycam"
+    assert agency_media[0].artifact_url.endswith(".mp4")
