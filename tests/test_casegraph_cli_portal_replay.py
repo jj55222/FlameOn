@@ -42,6 +42,7 @@ BODYCAM_FIXTURE = str(AGENCY_OIS_DIR / "incident_detail_with_bodycam_video.json"
 CLAIM_ONLY_FIXTURE = str(AGENCY_OIS_DIR / "incident_detail_with_bodycam_claim_no_url.json")
 PROTECTED_FIXTURE = str(AGENCY_OIS_DIR / "incident_detail_with_protected_link.json")
 PDF_FIXTURE = str(AGENCY_OIS_DIR / "incident_detail_with_pdf.json")
+SHERIFF_BODYCAM_FIXTURE = str(AGENCY_OIS_DIR / "incident_detail_sheriff_bodycam_video.json")
 
 REQUIRED_PORTAL_REPLAY_KEYS = (
     "portal_profile_id",
@@ -674,3 +675,250 @@ def test_portal_replay_bundle_with_emit_handoffs_includes_both_sections(tmp_path
     assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
     # P3 should have at least one row for case_id=31 (YouTube embed).
     assert handoffs["p2_to_p3"], "case_id=31 should yield at least one P3 row"
+
+
+# ---- enrich_portal_replay_identity helper unit tests -------------------
+#
+# The helper lifts agency / incident_date / case_number from a saved
+# agency_ois portal payload onto a manual-router-built CasePacket so
+# resolve_identity can anchor on those structured fields. Pure: only
+# fills blank values, never overwrites, ignores None / empty strings,
+# coerces non-string inputs.
+
+
+def _empty_portal_packet():
+    """Fresh manual-router packet with no defendant; mirrors the empty
+    state route_manual_defendant_jurisdiction yields before enrichment."""
+    from pipeline2_discovery.casegraph.routers import (
+        route_manual_defendant_jurisdiction,
+    )
+
+    return route_manual_defendant_jurisdiction("Test Subject", "Phoenix, AZ")
+
+
+def test_enrich_identity_fills_blank_agency_incident_date_case_number():
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    payload = {
+        "agency": "Maricopa County Sheriff's Office",
+        "incident_date": "2024-09-22",
+        "case_number": "2024-MCSO-009",
+    }
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.case_identity.agency == "Maricopa County Sheriff's Office"
+    assert packet.case_identity.incident_date == "2024-09-22"
+    assert packet.case_identity.case_numbers == ["2024-MCSO-009"]
+
+
+def test_enrich_identity_does_not_overwrite_existing_fields():
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    packet.case_identity.agency = "Pre-existing Agency"
+    packet.case_identity.incident_date = "2020-01-01"
+    packet.case_identity.case_numbers = ["EXISTING-001"]
+    payload = {
+        "agency": "Other Agency",
+        "incident_date": "2024-09-22",
+        "case_number": "2024-MCSO-009",
+    }
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.case_identity.agency == "Pre-existing Agency"
+    assert packet.case_identity.incident_date == "2020-01-01"
+    assert packet.case_identity.case_numbers == ["EXISTING-001"]
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        {},
+        {"agency": None, "incident_date": None, "case_number": None},
+        {"agency": "", "incident_date": "", "case_number": ""},
+        {"agency": "   ", "incident_date": "  ", "case_number": "\t"},
+    ],
+)
+def test_enrich_identity_ignores_missing_none_and_empty_values(payload):
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.case_identity.agency is None
+    assert packet.case_identity.incident_date is None
+    assert packet.case_identity.case_numbers == []
+
+
+def test_enrich_identity_coerces_non_string_case_number_to_string():
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    payload = {"case_number": 12345}
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.case_identity.case_numbers == ["12345"]
+
+
+def test_enrich_identity_strips_whitespace_around_string_values():
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    payload = {
+        "agency": "  Phoenix Police Department  ",
+        "incident_date": "  2024-12-01\n",
+        "case_number": "\t2024-OIS-050\t",
+    }
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.case_identity.agency == "Phoenix Police Department"
+    assert packet.case_identity.incident_date == "2024-12-01"
+    assert packet.case_identity.case_numbers == ["2024-OIS-050"]
+
+
+def test_enrich_identity_does_not_mutate_source_records_or_artifacts():
+    from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
+
+    packet = _empty_portal_packet()
+    sources_before = list(packet.sources)
+    artifacts_before = list(packet.verified_artifacts)
+    payload = {
+        "agency": "Phoenix Police Department",
+        "incident_date": "2024-12-01",
+        "case_number": "2024-OIS-050",
+    }
+    enrich_portal_replay_identity(packet, payload)
+    assert packet.sources == sources_before
+    assert packet.verified_artifacts == artifacts_before
+
+
+# ---- Case 38: realistic sheriff-office bodycam fixture -----------------
+#
+# Case 38 was added in PR #14 with a hand-authored realistic agency_ois
+# payload (Maricopa County Sheriff's Office, public bodycam .mp4). The
+# media graduates and the page surfaces a concluded outcome ("subject
+# pleaded guilty 2024"). Pre-enrichment, identity stayed at MEDIUM
+# because the manual router never lifted agency / incident_date /
+# case_number off the page payload onto case_identity. This block
+# locks in the post-enrichment behavior: HIGH identity and a PRODUCE
+# verdict driven by an honest score >= 70, never a forced flip.
+
+
+def _payload_keys_for_case_38():
+    """Return (verdict, identity_confidence, production_score, p3_count,
+    types) extracted from the manifest-entry CLI run with handoffs."""
+    code, out, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            "38",
+            "--emit-handoffs",
+            "--json",
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    return payload
+
+
+def test_case_38_manifest_entry_yields_high_identity_confidence():
+    payload = _payload_keys_for_case_38()
+    assert payload["packet_summary"]["identity_confidence"] == "high", (
+        "case 38 should reach HIGH identity confidence after agency_ois "
+        "payload metadata is enriched onto case_identity. "
+        f"Got: {payload['packet_summary']['identity_confidence']!r}, "
+        f"verdict={payload['result']['verdict']!r}, "
+        f"production={payload['result']['production_actionability_score']}"
+    )
+
+
+def test_case_38_manifest_entry_keeps_bodycam_graduation():
+    """Regression guard for PR #14 behavior: enrichment must not
+    perturb media graduation."""
+    payload = _payload_keys_for_case_38()
+    types = set(payload["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types, (
+        f"case 38 must still graduate bodycam after enrichment; got {sorted(types)}"
+    )
+    assert payload["packet_summary"]["verified_artifact_count"] == 1
+
+
+def test_case_38_manifest_entry_p3_row_count_is_one():
+    payload = _payload_keys_for_case_38()
+    handoffs = payload["handoffs"]
+    assert len(handoffs["p2_to_p3"]) == 1, (
+        f"case 38 should yield exactly one P3 row (the bodycam media); "
+        f"got {len(handoffs['p2_to_p3'])}"
+    )
+
+
+def test_case_38_manifest_entry_produces_when_score_above_threshold():
+    """If honest enrichment lifts production_actionability_score over
+    70.0 (the PRODUCE threshold in scoring._verdict), the verdict must
+    be PRODUCE. If not, the test reports the actual score so we don't
+    silently force the flip."""
+    payload = _payload_keys_for_case_38()
+    score = payload["result"]["production_actionability_score"]
+    verdict = payload["result"]["verdict"]
+    if score >= 70.0:
+        assert verdict == "PRODUCE", (
+            f"case 38 production score {score} >= 70 but verdict is "
+            f"{verdict!r}; PRODUCE gate is identity == high (got "
+            f"{payload['packet_summary']['identity_confidence']!r}) AND "
+            f"media present AND no severe risks. "
+            f"risks={payload['result']['risk_flags']}"
+        )
+    else:
+        # The recommendation is to honestly report rather than force.
+        # If we fall here the inspection prediction was wrong; surface it.
+        pytest.fail(
+            f"case 38 production_actionability_score={score} (< 70). "
+            f"Identity enrichment did not raise the score over the "
+            f"PRODUCE threshold. verdict={verdict!r}"
+        )
+
+
+def test_case_38_direct_fixture_mode_yields_high_identity_and_produce():
+    """Direct --fixture mode must reach the same identity/verdict as
+    manifest-entry mode; both routes go through _build_portal_packet
+    so they share the enrichment helper."""
+    code, out, err = run_cli(
+        ["--portal-replay", "--fixture", SHERIFF_BODYCAM_FIXTURE, "--json"]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    assert payload["packet_summary"]["identity_confidence"] == "high"
+    types = set(payload["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types
+    score = payload["result"]["production_actionability_score"]
+    verdict = payload["result"]["verdict"]
+    if score >= 70.0:
+        assert verdict == "PRODUCE", (
+            f"production score {score} but verdict {verdict!r}"
+        )
+
+
+# ---- Regression guard: existing non-PRODUCE manifest cases ------------
+#
+# Cases 32 (claim only, no URL), 33 (PDF only), 34 (protected media +
+# public PDF), and 37 (generic weak YouTube) must continue to NOT
+# PRODUCE after enrichment, since none of them surface graduating
+# media — identity confidence may rise but the PRODUCE boolean gate
+# also requires media artifacts.
+
+
+@pytest.mark.parametrize("case_id", [32, 33, 34, 37])
+def test_manifest_case_remains_non_produce_after_enrichment(case_id):
+    code, out, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            str(case_id),
+            "--json",
+        ]
+    )
+    assert code == 0, f"case_id={case_id} non-zero exit: {err}"
+    payload = json.loads(out)
+    verdict = payload["result"]["verdict"]
+    assert verdict != "PRODUCE", (
+        f"case_id={case_id} flipped to PRODUCE after identity enrichment; "
+        f"identity={payload['packet_summary']['identity_confidence']!r} "
+        f"types={payload['packet_summary']['verified_artifact_types']} "
+        f"score={payload['result']['production_actionability_score']}"
+    )

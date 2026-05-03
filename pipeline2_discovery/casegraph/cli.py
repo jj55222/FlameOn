@@ -907,13 +907,65 @@ def _derive_jurisdiction_string(payload: Mapping[str, Any]) -> str:
     return f"{city}, AZ" if city else "Unknown"
 
 
+def _coerce_identity_string(value: Any) -> Optional[str]:
+    """Coerce an arbitrary payload value to a stripped, non-empty
+    string, or return None for None / non-stringifiable empties."""
+    if value is None:
+        return None
+    coerced = str(value).strip()
+    return coerced or None
+
+
+def enrich_portal_replay_identity(
+    packet: CasePacket, payload: Mapping[str, Any]
+) -> None:
+    """Populate blank ``case_identity`` fields from a saved portal
+    payload (agency_ois page shape).
+
+    The manual router (``route_manual_defendant_jurisdiction``) only
+    accepts defendant + jurisdiction strings, so portal-replay packets
+    arrive at ``resolve_identity`` with no agency / incident_date /
+    case_numbers even though the saved agency_ois payload typically
+    surfaces all three. This helper lifts those facts onto
+    ``packet.case_identity`` before identity resolution and scoring.
+
+    Rules:
+    - Only fills fields the manual router left blank/empty.
+    - Never overwrites existing ``case_identity`` values.
+    - Coerces values to ``str``.
+    - Ignores None / empty / whitespace-only values.
+
+    Does not mutate source records, scoring inputs, resolvers, or the
+    artifact graduation chain.
+    """
+    identity = packet.case_identity
+
+    if not identity.agency:
+        agency = _coerce_identity_string(payload.get("agency"))
+        if agency:
+            identity.agency = agency
+
+    if not identity.incident_date:
+        incident_date = _coerce_identity_string(payload.get("incident_date"))
+        if incident_date:
+            identity.incident_date = incident_date
+
+    if not identity.case_numbers:
+        case_number = _coerce_identity_string(payload.get("case_number"))
+        if case_number:
+            identity.case_numbers = [case_number]
+
+
 def _build_portal_packet(payload: Mapping[str, Any]) -> CasePacket:
     """Build a CasePacket from a portal payload via the public manual
-    router, then attach portal-extracted SourceRecords."""
+    router, then attach portal-extracted SourceRecords and lift
+    agency_ois identity facts (agency / incident_date / case_number)
+    onto ``case_identity`` so ``resolve_identity`` can anchor on them."""
     defendant = _derive_defendant_string(payload)
     jurisdiction = _derive_jurisdiction_string(payload)
     packet = route_manual_defendant_jurisdiction(defendant, jurisdiction)
     packet.sources = list(_portal_payload_source_records(payload))
+    enrich_portal_replay_identity(packet, payload)
     return packet
 
 
