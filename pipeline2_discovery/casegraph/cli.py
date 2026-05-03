@@ -393,18 +393,28 @@ def _write_bundle(path: Path, bundle: Dict[str, Any]) -> None:
         f.write("\n")
 
 
-def build_handoffs(packet: CasePacket) -> Dict[str, Any]:
+def build_handoffs(
+    packet: CasePacket,
+    *,
+    score_result: Optional[ActionabilityResult] = None,
+) -> Dict[str, Any]:
     """Build the canonical P2 handoff bundle for a CasePacket.
 
-    Pure: delegates to the existing schema-validated adapters. Returned
-    shape mirrors the per-handoff schemas under ``schemas/`` and is
-    nested under a single top-level ``handoffs`` key when surfaced via
-    the CLI or run bundle.
+    Pure: delegates to the schema-validated adapters. ``score_result``
+    is threaded into ``export_p2_to_p4`` and ``export_p2_to_p5`` so the
+    P4 ``source_quality_notes`` and the P5 ``risk_flags`` /
+    ``next_actions`` carry the same freshly computed advisory signals
+    the CLI emits in its ``result`` section. When the caller hasn't
+    already computed an ``ActionabilityResult``, this helper computes
+    one internally via the pure ``score_case_packet`` (no packet
+    mutation).
     """
+    if score_result is None:
+        score_result = score_case_packet(packet)
     return {
         "p2_to_p3": export_p2_to_p3(packet),
-        "p2_to_p4": export_p2_to_p4(packet),
-        "p2_to_p5": export_p2_to_p5(packet),
+        "p2_to_p4": export_p2_to_p4(packet, score_result=score_result),
+        "p2_to_p5": export_p2_to_p5(packet, score_result=score_result),
     }
 
 

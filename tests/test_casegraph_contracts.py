@@ -103,6 +103,128 @@ def test_manual_router_downstream_exports_validate():
     assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", export_p2_to_p5(packet))
 
 
+# ---- score_result kwarg merges advisory signals (PR #12) ---------------
+#
+# The exporters accept an optional ActionabilityResult so freshly
+# computed advisory risk_flags / next_actions reach the P4 / P5
+# handoffs. score_case_packet stays pure; the packet is never mutated.
+# When the kwarg is omitted, the exports are byte-identical to PR #11
+# behavior — locked by the backwards-compat tests below.
+
+
+class _FakeScoreResult:
+    """Test-only stand-in for ActionabilityResult. The adapter only
+    reads .risk_flags and .next_actions via getattr, so any object
+    exposing those attributes is sufficient — keeps the contracts
+    test free of the scoring import."""
+
+    def __init__(self, risk_flags=None, next_actions=None):
+        self.risk_flags = list(risk_flags or [])
+        self.next_actions = list(next_actions or [])
+
+
+def test_export_p2_to_p5_merges_score_result_advisories():
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    score_result = _FakeScoreResult(
+        risk_flags=[
+            "outcome_not_concluded_advisory",
+            "produce_with_pending_outcome",
+        ],
+        next_actions=[
+            "Treat as production-ready with a pending-outcome caveat; "
+            "verify outcome before publish.",
+        ],
+    )
+
+    out = export_p2_to_p5(packet, score_result=score_result)
+
+    # Schema still validates — the canonical fields are unconstrained
+    # string arrays, so adding advisories doesn't break the contract.
+    assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", out)
+    risks = set(out["risk_flags"])
+    actions_text = " ".join(out["next_actions"]).lower()
+    assert "outcome_not_concluded_advisory" in risks
+    assert "produce_with_pending_outcome" in risks
+    assert "pending-outcome" in actions_text
+    # Existing packet-level entries must be preserved at the front.
+    assert out["risk_flags"][: len(packet.risk_flags)] == list(packet.risk_flags)
+
+
+def test_export_p2_to_p4_merges_score_result_into_source_quality_notes():
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    score_result = _FakeScoreResult(
+        risk_flags=[
+            "outcome_not_concluded_advisory",
+            "produce_with_pending_outcome",
+        ],
+    )
+
+    out = export_p2_to_p4(packet, score_result=score_result)
+
+    assert_valid(SCHEMA_DIR / "p2_to_p4.schema.json", out)
+    notes = set(out["source_quality_notes"])
+    assert "outcome_not_concluded_advisory" in notes
+    assert "produce_with_pending_outcome" in notes
+    assert (
+        out["source_quality_notes"][: len(packet.risk_flags)]
+        == list(packet.risk_flags)
+    )
+
+
+def test_export_p2_to_p5_without_score_result_kwarg_is_backwards_compat():
+    """Backwards-compat invariant: omitting the score_result kwarg
+    must produce identical output to today's behavior. Direct callers
+    in test_manual_router_downstream_exports_validate and external
+    consumers continue to work unchanged."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+
+    no_kwarg = export_p2_to_p5(packet)
+    explicit_none = export_p2_to_p5(packet, score_result=None)
+    assert no_kwarg == explicit_none
+    # Locks the legacy field shape: stored packet values only,
+    # nothing from any score_result.
+    assert no_kwarg["risk_flags"] == list(packet.risk_flags)
+    assert no_kwarg["next_actions"] == list(packet.next_actions)
+
+
+def test_export_p2_to_p4_without_score_result_kwarg_is_backwards_compat():
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+
+    no_kwarg = export_p2_to_p4(packet)
+    explicit_none = export_p2_to_p4(packet, score_result=None)
+    assert no_kwarg == explicit_none
+    assert no_kwarg["source_quality_notes"] == list(packet.risk_flags)
+
+
+def test_score_case_packet_remains_pure_after_handoff_export():
+    """Score result advisories are merged into the EXPORT, never into
+    the packet. Calling score_case_packet (via the public API) and
+    then exporting must leave packet.risk_flags / packet.next_actions
+    unchanged — the documented purity contract."""
+    from pipeline2_discovery.casegraph import score_case_packet
+
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    pre_risk_flags = list(packet.risk_flags)
+    pre_next_actions = list(packet.next_actions)
+
+    score_result = score_case_packet(packet)
+    export_p2_to_p4(packet, score_result=score_result)
+    export_p2_to_p5(packet, score_result=score_result)
+
+    assert packet.risk_flags == pre_risk_flags
+    assert packet.next_actions == pre_next_actions
+
+
 def test_legacy_adapter_exports_old_shape_and_dry_hole_stays_low():
     packet = route_manual_defendant_jurisdiction("Min Jian Guan", "San Francisco, San Francisco, CA")
     legacy_output = export_legacy_evaluate_result(packet)
