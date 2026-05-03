@@ -308,6 +308,7 @@ def build_run_bundle(
     api_calls: Optional[Dict[str, int]] = None,
     notes: Optional[List[str]] = None,
     handoffs: Optional[Dict[str, Any]] = None,
+    portal_replay: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Canonical CaseGraph run bundle (PIPE5).
 
@@ -380,6 +381,8 @@ def build_run_bundle(
     }
     if handoffs is not None:
         bundle["handoffs"] = handoffs
+    if portal_replay is not None:
+        bundle["portal_replay"] = portal_replay
     return bundle
 
 
@@ -1639,15 +1642,13 @@ def _run_portal_replay_mode(args, *, out, err) -> int:
         out.write(_format_portal_replay_text(output))
 
     if args.bundle_out:
-        # Bundle shape is intentionally unchanged in this PR — the
-        # bundle gets the canonical packet/result/identity sections
-        # via build_run_bundle, but no portal_replay section. Adding
-        # bundle-aware portal output is a tracked follow-up.
+        # The bundle's portal_replay section reuses the JSON output's
+        # section verbatim — it depends only on payload + exec_result +
+        # fixture_path + manifest_entry, none of which a fresh packet
+        # could change. We still build a fresh packet for the bundle's
+        # canonical sections so the bundle's view is independent of
+        # the JSON write step's packet state.
         packet = _build_portal_packet(payload)
-        # Re-run the offline pipeline on the new packet for the bundle
-        # (the JSON output already mutated its own packet; we keep the
-        # bundle's view independent so callers can't observe in-place
-        # state from the JSON write step).
         resolve_identity(packet)
         resolve_outcome(packet)
         extract_artifact_claims(packet)
@@ -1658,6 +1659,7 @@ def _run_portal_replay_mode(args, *, out, err) -> int:
             wallclock_seconds=wallclock,
             packet=packet,
             handoffs=build_handoffs(packet) if emit_handoffs else None,
+            portal_replay=output["portal_replay"],
             notes=[
                 "portal-replay",
                 f"profile={_portal_profile_id(payload) or 'unknown'}",
