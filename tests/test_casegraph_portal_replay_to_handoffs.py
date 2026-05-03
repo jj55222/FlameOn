@@ -59,6 +59,7 @@ from pipeline2_discovery.casegraph import (
     run_metadata_only_resolvers,
     score_case_packet,
 )
+from pipeline2_discovery.casegraph.cli import enrich_portal_replay_identity
 from pipeline2_discovery.casegraph.portal_executor import execute_mock_portal_plan
 from pipeline2_discovery.casegraph.portal_fetch_plan import PortalFetchPlan
 
@@ -190,12 +191,15 @@ def _derive_jurisdiction_string(payload: Mapping[str, Any]) -> str:
 
 def _build_packet_from_payload(payload: Mapping[str, Any]) -> CasePacket:
     """Build a CasePacket from a portal payload via the public manual
-    router, then attach the portal-extracted SourceRecords."""
+    router, attach the portal-extracted SourceRecords, and lift
+    agency_ois identity facts via the shared CLI helper so this harness
+    stays in lockstep with --portal-replay mode."""
     subjects = payload.get("subjects") or []
     defendant = subjects[0] if (isinstance(subjects, list) and subjects) else "Generic Subject"
     jurisdiction = _derive_jurisdiction_string(payload)
     packet = route_manual_defendant_jurisdiction(str(defendant), jurisdiction)
     packet.sources = list(_portal_source_records(payload))
+    enrich_portal_replay_identity(packet, payload)
     return packet
 
 
