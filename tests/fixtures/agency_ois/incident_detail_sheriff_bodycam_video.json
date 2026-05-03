@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Maricopa County Sheriff's Office",
+  "agency_url_root": "https://www.mcso.org",
+  "url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+  "title": "Critical Incident Briefing 2024-MCSO-009",
+  "narrative": "On 2024-09-22 Maricopa County Sheriff's Office deputies responded to a residence in unincorporated Maricopa County. The subject, Renee Example, was charged with multiple offenses and pleaded guilty in 2024 to case number 2024-MCSO-009. Body-worn camera (BWC) footage from the responding deputies is included in the briefing video below.",
+  "subjects": ["Renee Example"],
+  "incident_date": "2024-09-22",
+  "case_number": "2024-MCSO-009",
+  "outcome_text": "subject pleaded guilty 2024",
+  "media_links": [
+    {
+      "url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+      "label": "Critical Incident Briefing video",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}
