@@ -1,0 +1,34 @@
+{
+  "target_id": "sheriff_bodycam_dummy",
+  "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-001",
+  "profile_id": "agency_ois_detail",
+  "fetcher": "mock",
+  "max_pages": 1,
+  "max_links": 5,
+  "allowed_domains": ["example-public-sheriff.gov"],
+  "expected_response_status": 200,
+  "save_raw_payload": true,
+  "save_extracted_payload": true,
+  "replay_through_portal_replay": true,
+  "mock_response": {
+    "page_type": "incident_detail",
+    "agency": "Example County Sheriff's Office",
+    "agency_url_root": "https://example-public-sheriff.gov",
+    "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-001",
+    "title": "Critical Incident Briefing 2024-EX-001 (mock)",
+    "narrative": "On 2024-09-22 Example County Sheriff's Office deputies responded to a residence in unincorporated Example County. The subject, Pat Mock, was charged with multiple offenses and pleaded guilty in 2024 to case number 2024-EX-001. Body-worn camera (BWC) footage from the responding deputies is included in the briefing video below.",
+    "subjects": ["Pat Mock"],
+    "incident_date": "2024-09-22",
+    "case_number": "2024-EX-001",
+    "outcome_text": "subject pleaded guilty 2024",
+    "media_links": [
+      {
+        "url": "https://example-public-sheriff.gov/critical-incidents/media/2024-EX-001-briefing.mp4",
+        "label": "Critical Incident Briefing video (mock)",
+        "type": "bodycam_briefing"
+      }
+    ],
+    "document_links": [],
+    "claims": []
+  }
+}
