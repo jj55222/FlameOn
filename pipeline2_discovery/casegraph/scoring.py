@@ -2,13 +2,63 @@ from __future__ import annotations
 
 import os
 from dataclasses import asdict, dataclass, field
-from typing import Dict, Iterable, List, Set
+from typing import Any, Dict, Iterable, List, Set, Union
 
 from .media_relevance import classify_media_relevance
 from .models import ArtifactClaim, CasePacket, SourceRecord, VerifiedArtifact
 
 
 CONCLUDED_OUTCOMES = {"sentenced", "closed", "convicted"}
+
+# Router-default risk flags that become operator-facing noise once the
+# packet has actually been resolved. They are added by
+# ``route_manual_defendant_jurisdiction`` to mark a fresh manual packet
+# as uncorroborated; once identity reaches HIGH or a VerifiedArtifact
+# graduates, they no longer reflect packet state. We strip them from
+# scorer / handoff outputs only when the packet's current state
+# contradicts them — never for low/medium identity packets, never for
+# packets without artifacts, never for any other risk flag.
+_ROUTER_DEFAULT_STALE_FLAGS = ("identity_not_locked", "no_verified_artifacts")
+
+
+def _packet_identity_confidence(packet: Union[CasePacket, Dict[str, Any]]) -> str:
+    if isinstance(packet, dict):
+        identity = packet.get("case_identity") or {}
+        return str(identity.get("identity_confidence") or "low")
+    return packet.case_identity.identity_confidence
+
+
+def _packet_verified_artifact_count(packet: Union[CasePacket, Dict[str, Any]]) -> int:
+    if isinstance(packet, dict):
+        return len(packet.get("verified_artifacts") or [])
+    return len(packet.verified_artifacts)
+
+
+def is_stale_router_default(
+    flag: str, packet: Union[CasePacket, Dict[str, Any]]
+) -> bool:
+    """Return True iff ``flag`` is a router-default risk flag whose
+    precondition no longer applies given current packet state.
+
+    Only ``identity_not_locked`` and ``no_verified_artifacts`` are
+    filterable; every other flag passes through unchanged. Accepts
+    either a ``CasePacket`` dataclass or a packet-shaped dict so callers
+    in both ``scoring`` (dataclass) and ``adapters`` (dict via
+    ``_packet_dict``) can share one predicate.
+    """
+    if flag == "identity_not_locked":
+        return _packet_identity_confidence(packet) == "high"
+    if flag == "no_verified_artifacts":
+        return _packet_verified_artifact_count(packet) > 0
+    return False
+
+
+def filter_stale_router_defaults(
+    flags: Iterable[str], packet: Union[CasePacket, Dict[str, Any]]
+) -> List[str]:
+    """Return a new list with stale router-default flags removed,
+    preserving order and deduplication of every other entry."""
+    return [f for f in flags if not is_stale_router_default(f, packet)]
 
 
 def is_outcome_gate_enabled() -> bool:
@@ -288,7 +338,7 @@ def _generated_risks(packet: CasePacket, media_artifacts: List[VerifiedArtifact]
         _append_unique(risks, ["artifact_unverified"])
     if document_artifacts and not media_artifacts:
         _append_unique(risks, ["document_only"])
-    return risks
+    return filter_stale_router_defaults(risks, packet)
 
 
 def _next_actions(packet: CasePacket, media_artifacts: List[VerifiedArtifact]) -> List[str]:
