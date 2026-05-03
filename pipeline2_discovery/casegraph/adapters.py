@@ -135,17 +135,25 @@ def export_p2_to_p5(
 ) -> Dict[str, Any]:
     """Export a CasePacket as the P2->P5 production-seed handoff.
 
-    When ``score_result`` (an ``ActionabilityResult``) is supplied,
-    fresh advisory signals from ``score_result.risk_flags`` and
-    ``score_result.next_actions`` are merged into the export's
-    ``risk_flags`` and ``next_actions`` so downstream P5 consumers see
-    the same caution context the CLI's ``result`` section shows.
-    Existing packet-level entries are kept first; fresh entries are
-    appended only when not already present.
+    When ``score_result`` (an ``ActionabilityResult``) is supplied:
+      - the export's ``verdict`` is sourced from
+        ``score_result.verdict`` so the handoff reflects the fresh
+        scorer output rather than the packet's stored router default
+        (which stays "HOLD" for portal-replay packets even after the
+        scorer reaches PRODUCE);
+      - fresh advisory signals from ``score_result.risk_flags`` and
+        ``score_result.next_actions`` are merged into the export's
+        ``risk_flags`` and ``next_actions`` so downstream P5 consumers
+        see the same caution context the CLI's ``result`` section
+        shows.
+
+    Existing packet-level risk_flags / next_actions entries are kept
+    first; fresh entries are appended only when not already present.
 
     When ``score_result`` is None, the export is byte-identical to
-    pre-merge behavior — every existing direct call site continues to
-    work unchanged.
+    pre-PR behavior — every existing direct call site continues to
+    work unchanged: ``verdict`` falls back to the packet's stored
+    value, and ``risk_flags`` / ``next_actions`` mirror the packet.
     """
     packet_data = _packet_dict(packet)
     case_title = _case_title(packet_data)
@@ -162,9 +170,13 @@ def export_p2_to_p5(
     if location:
         case_summary += f" for {location}"
     case_summary += "."
+    verdict = packet_data["verdict"]
     risk_flags = list(packet_data.get("risk_flags", []))
     next_actions = list(packet_data.get("next_actions", []))
     if score_result is not None:
+        fresh_verdict = getattr(score_result, "verdict", None)
+        if fresh_verdict:
+            verdict = fresh_verdict
         risk_flags = _merge_unique(
             risk_flags,
             getattr(score_result, "risk_flags", None),
@@ -175,7 +187,7 @@ def export_p2_to_p5(
         )
     return {
         "case_id": packet_data["case_id"],
-        "verdict": packet_data["verdict"],
+        "verdict": verdict,
         "case_summary": case_summary,
         "artifact_table": list(packet_data.get("verified_artifacts", [])),
         "source_table": list(packet_data.get("sources", [])),

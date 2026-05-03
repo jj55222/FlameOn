@@ -113,14 +113,15 @@ def test_manual_router_downstream_exports_validate():
 
 
 class _FakeScoreResult:
-    """Test-only stand-in for ActionabilityResult. The adapter only
-    reads .risk_flags and .next_actions via getattr, so any object
-    exposing those attributes is sufficient — keeps the contracts
-    test free of the scoring import."""
+    """Test-only stand-in for ActionabilityResult. The adapter reads
+    .verdict, .risk_flags, and .next_actions via getattr, so any
+    object exposing those attributes is sufficient — keeps the
+    contracts test free of the scoring import."""
 
-    def __init__(self, risk_flags=None, next_actions=None):
+    def __init__(self, risk_flags=None, next_actions=None, verdict=None):
         self.risk_flags = list(risk_flags or [])
         self.next_actions = list(next_actions or [])
+        self.verdict = verdict
 
 
 def test_export_p2_to_p5_merges_score_result_advisories():
@@ -191,6 +192,8 @@ def test_export_p2_to_p5_without_score_result_kwarg_is_backwards_compat():
     # nothing from any score_result.
     assert no_kwarg["risk_flags"] == list(packet.risk_flags)
     assert no_kwarg["next_actions"] == list(packet.next_actions)
+    # Verdict stays sourced from packet.verdict when no result threaded.
+    assert no_kwarg["verdict"] == packet.verdict
 
 
 def test_export_p2_to_p4_without_score_result_kwarg_is_backwards_compat():
@@ -241,3 +244,100 @@ def test_legacy_adapter_exports_old_shape_and_dry_hole_stays_low():
         "sources_found": [],
         "confidence": "low",
     }
+
+
+# ---- score_result.verdict threading into P5 export --------------------
+#
+# Doctrine: scoring stays pure; the packet's stored verdict is the
+# router default for portal-replay packets ("HOLD") regardless of the
+# fresh scorer outcome. When a caller threads an ActionabilityResult,
+# the P5 export should reflect the freshly computed verdict so
+# downstream consumers don't see HOLD next to a PRODUCE production
+# score. Without the kwarg, the export remains byte-identical to the
+# pre-threading shape.
+
+
+def test_export_p2_to_p5_uses_fresh_verdict_when_score_result_supplied():
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    # The manual router pins packet.verdict to "HOLD" by default.
+    assert packet.verdict == "HOLD"
+    score_result = _FakeScoreResult(verdict="PRODUCE")
+
+    out = export_p2_to_p5(packet, score_result=score_result)
+
+    assert out["verdict"] == "PRODUCE", (
+        "P5 export verdict must reflect score_result.verdict when threaded"
+    )
+    # Schema still validates the canonical PRODUCE/HOLD/SKIP enum.
+    assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", out)
+    # The packet itself must NOT be mutated by exporting.
+    assert packet.verdict == "HOLD"
+
+
+def test_export_p2_to_p5_falls_back_to_packet_verdict_when_score_result_lacks_verdict():
+    """Defensive: a score_result without a populated verdict (None or
+    empty string) must not silently overwrite the packet verdict — the
+    export should fall back to the stored value."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    score_result = _FakeScoreResult(verdict=None)
+
+    out = export_p2_to_p5(packet, score_result=score_result)
+    assert out["verdict"] == packet.verdict
+
+
+def test_export_p2_to_p5_verdict_threading_works_for_skip():
+    """The SKIP verdict path: scorer concludes SKIP for a
+    conflicting-jurisdiction case. The export should surface SKIP
+    rather than the packet's stored HOLD."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    score_result = _FakeScoreResult(verdict="SKIP")
+
+    out = export_p2_to_p5(packet, score_result=score_result)
+    assert out["verdict"] == "SKIP"
+    assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", out)
+
+
+def test_export_p2_to_p4_verdict_unchanged_by_score_result():
+    """P4 has no verdict field; threading score_result must not
+    introduce one or otherwise alter the schema-required keys."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    score_result = _FakeScoreResult(verdict="PRODUCE", risk_flags=["x"])
+
+    out = export_p2_to_p4(packet, score_result=score_result)
+    assert "verdict" not in out
+    assert_valid(SCHEMA_DIR / "p2_to_p4.schema.json", out)
+
+
+def test_export_p2_to_p5_verdict_does_not_mutate_packet_or_score_result():
+    """Pure invariant: exporting must not touch either input."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    pre_packet_verdict = packet.verdict
+    pre_packet_risks = list(packet.risk_flags)
+    pre_packet_actions = list(packet.next_actions)
+    score_result = _FakeScoreResult(
+        verdict="PRODUCE",
+        risk_flags=["fresh_advisory"],
+        next_actions=["fresh action"],
+    )
+    pre_score_verdict = score_result.verdict
+    pre_score_risks = list(score_result.risk_flags)
+    pre_score_actions = list(score_result.next_actions)
+
+    export_p2_to_p5(packet, score_result=score_result)
+
+    assert packet.verdict == pre_packet_verdict
+    assert packet.risk_flags == pre_packet_risks
+    assert packet.next_actions == pre_packet_actions
+    assert score_result.verdict == pre_score_verdict
+    assert score_result.risk_flags == pre_score_risks
+    assert score_result.next_actions == pre_score_actions

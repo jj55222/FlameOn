@@ -228,7 +228,28 @@ def _input_summary(packet: CasePacket) -> Dict[str, Any]:
     }
 
 
-def _packet_summary(packet: CasePacket) -> Dict[str, Any]:
+def _packet_summary(
+    packet: CasePacket,
+    *,
+    score_result: Optional[ActionabilityResult] = None,
+) -> Dict[str, Any]:
+    """Summarize the packet for JSON / text CLI output.
+
+    ``packet_verdict`` is the verdict stored on the CasePacket itself.
+    For default-mode CasePacket fixtures it carries the fixture's
+    hand-set value; for any path through
+    ``route_manual_defendant_jurisdiction`` (notably portal-replay) it
+    is pinned to the router default ``"HOLD"`` regardless of what the
+    scorer concludes — and ``score_case_packet`` is documented as pure,
+    so it never writes back to ``packet.verdict``.
+
+    ``score_verdict`` is the verdict from the freshly computed
+    ``ActionabilityResult`` when one is threaded through. It is
+    ``None`` when the caller has no result on hand. Surfacing both
+    side by side lets operator-facing JSON make the stored / fresh
+    distinction visible without mutating the packet or changing
+    scoring purity.
+    """
     return {
         "case_id": packet.case_id,
         "source_count": len(packet.sources),
@@ -238,6 +259,7 @@ def _packet_summary(packet: CasePacket) -> Dict[str, Any]:
         "identity_confidence": packet.case_identity.identity_confidence,
         "outcome_status": packet.case_identity.outcome_status,
         "packet_verdict": packet.verdict,
+        "score_verdict": score_result.verdict if score_result is not None else None,
     }
 
 
@@ -442,13 +464,13 @@ def build_dry_run_payload(
     )
     payload: Dict[str, Any] = {
         "input_summary": _input_summary(packet),
-        "packet_summary": _packet_summary(packet),
+        "packet_summary": _packet_summary(packet, score_result=result),
         "result": _result_summary(result),
         "report": report,
         "ledger_entry": ledger_entry.to_dict(),
     }
     if emit_handoffs:
-        payload["handoffs"] = build_handoffs(packet)
+        payload["handoffs"] = build_handoffs(packet, score_result=result)
     return payload
 
 
@@ -699,7 +721,9 @@ def build_multi_source_dry_run_payload(
             "total_verified_artifacts": 0,
             "total_estimated_cost_usd": 0.0,
         },
-        "packet_summary": _packet_summary(assembly.packet),
+        "packet_summary": _packet_summary(
+            assembly.packet, score_result=assembly.actionability
+        ),
         "result": _result_summary(assembly.actionability),
         "report": report,
         "ledger_entry": ledger_entry.to_dict(),
@@ -1055,7 +1079,7 @@ def build_portal_replay_payload(
     )
     output: Dict[str, Any] = {
         "input_summary": _portal_input_summary(payload, fixture_path=fixture_path),
-        "packet_summary": _packet_summary(packet),
+        "packet_summary": _packet_summary(packet, score_result=result),
         "result": _result_summary(result),
         "report": report,
         "ledger_entry": ledger_entry.to_dict(),
@@ -1067,7 +1091,7 @@ def build_portal_replay_payload(
         ),
     }
     if emit_handoffs:
-        output["handoffs"] = build_handoffs(packet)
+        output["handoffs"] = build_handoffs(packet, score_result=result)
     return output
 
 

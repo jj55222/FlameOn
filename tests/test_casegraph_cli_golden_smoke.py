@@ -336,3 +336,39 @@ def test_claim_only_handoffs_validate_with_zero_p3_rows(claim_only_run):
         f"expected zero P3 rows for claim-only fixture; got "
         f"{len(handoffs['p2_to_p3'])} row(s)"
     )
+
+
+# ---- P5 verdict coherence with root result.verdict --------------------
+#
+# Pre-Option F doctrine: P5 handoff verdict reads packet.verdict (the
+# stored router default), so for fixtures whose stored verdict differs
+# from the fresh score, P5 was visibly contradictory to result.verdict.
+# After Option F, build_handoffs threads score_result through the P5
+# export, so the two surfaces must agree across every golden-smoke
+# fixture. This locks the contract in beyond the loose enum-membership
+# check in test_casegraph_cli.py.
+
+
+@pytest.mark.parametrize(
+    "run_fixture_name",
+    [
+        "media_rich_run",
+        "charged_advisory_run",
+        "document_only_run",
+        "weak_identity_run",
+        "protected_run",
+        "claim_only_run",
+    ],
+)
+def test_p5_handoff_verdict_matches_root_result_verdict(
+    run_fixture_name, request
+):
+    run = request.getfixturevalue(run_fixture_name)
+    payload = run.payload
+    assert payload is not None
+    p5_verdict = payload["handoffs"]["p2_to_p5"]["verdict"]
+    result_verdict = payload["result"]["verdict"]
+    assert p5_verdict == result_verdict, (
+        f"P5 handoff verdict ({p5_verdict!r}) must match root result "
+        f"verdict ({result_verdict!r}) for {run_fixture_name}"
+    )
