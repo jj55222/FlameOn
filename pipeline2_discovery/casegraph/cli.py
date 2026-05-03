@@ -44,7 +44,7 @@ import sys
 import time
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Mapping, Optional, TextIO
+from typing import Any, Dict, Iterable, List, Mapping, Optional, TextIO, Tuple
 
 from .adapters import export_p2_to_p3, export_p2_to_p4, export_p2_to_p5
 from .assembly import StructuredAssemblyResult, assemble_structured_case_packet
@@ -76,6 +76,10 @@ from .models import (
     VerifiedArtifact,
 )
 from .outcome import resolve_outcome
+from .portal_dry_replay import (
+    PortalReplayManifestEntry,
+    load_portal_replay_manifest,
+)
 from .portal_executor import execute_mock_portal_plan
 from .portal_fetch_plan import PortalFetchPlan
 from .query_planner import QueryPlanResult, plan_queries_from_structured_result
@@ -711,6 +715,45 @@ def _looks_like_live_url(value: str) -> bool:
     return any(lowered.startswith(scheme) for scheme in _LIVE_URL_SCHEMES)
 
 
+class _PortalManifestEntryNotFound(Exception):
+    """Raised when --portal-manifest-entry references a case_id that
+    isn't in the canonical portal replay manifest."""
+
+
+def _resolve_portal_manifest_entry(case_id: int) -> Tuple[PortalReplayManifestEntry, Path]:
+    """Look up a manifest entry by case_id and return (entry,
+    manifest_path). Manifest path is the canonical default path used
+    by ``load_portal_replay_manifest`` (no override flag in this PR).
+    """
+    repo_root = _repo_root()
+    manifest = load_portal_replay_manifest(repo_root=repo_root)
+    for entry in manifest.entries:
+        if entry.case_id == case_id:
+            manifest_path = (
+                repo_root / "tests" / "fixtures" / "portal_replay" / "portal_replay_manifest.json"
+            )
+            return entry, manifest_path
+    raise _PortalManifestEntryNotFound(
+        f"manifest has no entry with case_id={case_id}"
+    )
+
+
+def _require_fixture_argument(args, *, mode_label: str, err) -> Optional[int]:
+    """Per-mode guard: each non-portal-replay mode requires --fixture.
+
+    Returns ``None`` when the input is fine; otherwise emits a clear
+    inline error to ``err`` and returns the exit code the dispatcher
+    should propagate. Replaces argparse's prior auto-required error
+    so the message matches the rest of our exit-code surface.
+    """
+    if args.fixture:
+        return None
+    err.write(
+        f"error: --{mode_label} requires --fixture <path>\n"
+    )
+    return EXIT_FIXTURE_INVALID
+
+
 def _load_portal_payload(path: Path) -> Dict[str, Any]:
     """Load and minimally validate a portal-replay payload fixture.
 
@@ -886,9 +929,13 @@ def _relative_fixture_path(fixture_path: Path) -> str:
 
 
 def _portal_replay_section(
-    payload: Mapping[str, Any], exec_result: Any, *, fixture_path: Path
+    payload: Mapping[str, Any],
+    exec_result: Any,
+    *,
+    fixture_path: Path,
+    manifest_entry: Optional[Mapping[str, Any]] = None,
 ) -> Dict[str, Any]:
-    return {
+    section: Dict[str, Any] = {
         "portal_profile_id": _portal_profile_id(payload) or None,
         "fixture_path": _relative_fixture_path(fixture_path),
         "source_records_count": len(getattr(exec_result, "extracted_source_records", []) or []),
@@ -899,6 +946,9 @@ def _portal_replay_section(
         "executor_risk_flags": list(getattr(exec_result, "risk_flags", []) or []),
         "executor_next_actions": list(getattr(exec_result, "next_actions", []) or []),
     }
+    if manifest_entry is not None:
+        section["manifest_entry"] = dict(manifest_entry)
+    return section
 
 
 def build_portal_replay_payload(
@@ -908,6 +958,7 @@ def build_portal_replay_payload(
     experiment_id: str = "PIPE3-cli-portal-replay",
     wallclock_seconds: float = 0.0,
     emit_handoffs: bool = False,
+    manifest_entry: Optional[Mapping[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Build the structured payload printed by --portal-replay mode.
 
@@ -944,7 +995,10 @@ def build_portal_replay_payload(
         "report": report,
         "ledger_entry": ledger_entry.to_dict(),
         "portal_replay": _portal_replay_section(
-            payload, exec_result, fixture_path=fixture_path
+            payload,
+            exec_result,
+            fixture_path=fixture_path,
+            manifest_entry=manifest_entry,
         ),
     }
     if emit_handoffs:
@@ -1052,12 +1106,26 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--fixture",
-        required=True,
+        default=None,
         help=(
             "Path to a JSON fixture. Default mode expects a CasePacket "
             "fixture (e.g. tests/fixtures/casegraph_scenarios/...). "
-            "--query-plan and --live-dry expect a structured-row fixture "
-            "(e.g. tests/fixtures/structured_inputs/wapo_uof_complete.json)."
+            "--query-plan and --live-dry expect a structured-row fixture. "
+            "--portal-replay expects a portal payload fixture; --portal-replay "
+            "may instead use --portal-manifest-entry to resolve a saved "
+            "fixture by manifest case_id."
+        ),
+    )
+    parser.add_argument(
+        "--portal-manifest-entry",
+        dest="portal_manifest_entry",
+        type=int,
+        default=None,
+        help=(
+            "Integer case_id from the canonical portal replay manifest "
+            "(tests/fixtures/portal_replay/portal_replay_manifest.json). "
+            "Only meaningful with --portal-replay. Mutually exclusive with "
+            "--fixture in portal-replay mode."
         ),
     )
     parser.add_argument(
@@ -1233,6 +1301,9 @@ def _format_live_dry_text(payload: Dict[str, Any]) -> str:
 
 
 def _run_default_mode(args, *, out, err) -> int:
+    missing = _require_fixture_argument(args, mode_label="fixture", err=err)
+    if missing is not None:
+        return missing
     fixture_path = Path(args.fixture)
     started = time.perf_counter()
     try:
@@ -1273,6 +1344,9 @@ def _run_default_mode(args, *, out, err) -> int:
 
 
 def _run_query_plan_mode(args, *, out, err) -> int:
+    missing = _require_fixture_argument(args, mode_label="query-plan", err=err)
+    if missing is not None:
+        return missing
     fixture_path = Path(args.fixture)
     started = time.perf_counter()
     try:
@@ -1355,6 +1429,9 @@ def _format_multi_source_text(payload: Dict[str, Any]) -> str:
 
 
 def _run_multi_source_dry_run_mode(args, *, out, err) -> int:
+    missing = _require_fixture_argument(args, mode_label="multi-source-dry-run", err=err)
+    if missing is not None:
+        return missing
     raw_connectors = (args.connectors or "").strip()
     if not raw_connectors:
         err.write(
@@ -1423,6 +1500,9 @@ def _run_multi_source_dry_run_mode(args, *, out, err) -> int:
 
 
 def _run_live_dry_mode(args, *, out, err) -> int:
+    missing = _require_fixture_argument(args, mode_label="live-dry", err=err)
+    if missing is not None:
+        return missing
     fixture_path = Path(args.fixture)
     started = time.perf_counter()
     try:
@@ -1484,21 +1564,52 @@ def _run_live_dry_mode(args, *, out, err) -> int:
 def _run_portal_replay_mode(args, *, out, err) -> int:
     """Offline portal-replay mode handler.
 
-    Refuses live URLs explicitly; loads the saved fixture; runs the
-    deterministic executor + assembly + scoring chain via
+    Accepts either ``--fixture <path>`` (PR #9 direct mode) or
+    ``--portal-manifest-entry <case_id>`` (manifest convenience mode);
+    exactly one of those must be supplied. Refuses live URLs
+    explicitly; loads the saved fixture; runs the deterministic
+    executor + assembly + scoring chain via
     ``build_portal_replay_payload``; emits JSON or text. Bundle output
     is intentionally not extended in this PR (deferred follow-up); if
     --bundle-out is also passed, a default-shape bundle is written
     that does NOT carry a portal_replay section.
     """
-    if _looks_like_live_url(str(args.fixture or "")):
+    fixture_arg = args.fixture
+    manifest_case_id = getattr(args, "portal_manifest_entry", None)
+    if fixture_arg and manifest_case_id is not None:
+        err.write(
+            "error: --fixture and --portal-manifest-entry are mutually "
+            "exclusive in --portal-replay mode; pass exactly one\n"
+        )
+        return EXIT_FIXTURE_INVALID
+    if not fixture_arg and manifest_case_id is None:
+        err.write(
+            "error: --portal-replay requires exactly one of --fixture <path> "
+            "or --portal-manifest-entry <case_id>\n"
+        )
+        return EXIT_FIXTURE_INVALID
+
+    manifest_entry_metadata: Optional[Dict[str, Any]] = None
+    if manifest_case_id is not None:
+        try:
+            entry, manifest_path = _resolve_portal_manifest_entry(int(manifest_case_id))
+        except _PortalManifestEntryNotFound as exc:
+            err.write(f"error: {exc}\n")
+            return EXIT_FIXTURE_MISSING
+        fixture_arg = str(_repo_root() / entry.mocked_payload_fixture)
+        manifest_entry_metadata = {
+            "case_id": entry.case_id,
+            "manifest_path": _relative_fixture_path(manifest_path),
+        }
+
+    if _looks_like_live_url(str(fixture_arg or "")):
         err.write(
             "error: --portal-replay refuses live URLs; pass a saved fixture "
             "path instead\n"
         )
         return EXIT_LIVE_BLOCKED
 
-    fixture_path = Path(args.fixture)
+    fixture_path = Path(fixture_arg)
     started = time.perf_counter()
     try:
         payload = _load_portal_payload(fixture_path)
@@ -1518,6 +1629,7 @@ def _run_portal_replay_mode(args, *, out, err) -> int:
         experiment_id=experiment_id,
         wallclock_seconds=wallclock,
         emit_handoffs=emit_handoffs,
+        manifest_entry=manifest_entry_metadata,
     )
 
     if args.json:
