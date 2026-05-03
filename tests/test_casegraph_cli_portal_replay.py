@@ -384,3 +384,173 @@ def test_default_mode_unchanged_when_portal_replay_not_passed():
         assert key in payload
     assert payload["packet_summary"]["case_id"] == "scenario_media_rich_produce"
     assert payload["result"]["verdict"] == "PRODUCE"
+
+
+# ---- Manifest-entry mode -----------------------------------------------
+#
+# `--portal-replay --portal-manifest-entry <case_id>` resolves the saved
+# fixture from tests/fixtures/portal_replay/portal_replay_manifest.json.
+# Direct fixture mode (PR #9) stays valid; the manifest-entry path is
+# additive.
+
+
+def test_portal_replay_manifest_entry_resolves_known_case_id():
+    code, out, err = run_cli(
+        ["--portal-replay", "--portal-manifest-entry", "31", "--json"]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    pr = payload["portal_replay"]
+    # Fixture path must match the manifest's mocked_payload_fixture.
+    assert pr["fixture_path"].endswith(
+        "tests/fixtures/agency_ois/incident_detail_with_youtube_embed.json"
+    )
+    # manifest_entry only appears in manifest mode.
+    assert "manifest_entry" in pr
+    assert pr["manifest_entry"]["case_id"] == 31
+    assert pr["manifest_entry"]["manifest_path"].endswith(
+        "tests/fixtures/portal_replay/portal_replay_manifest.json"
+    )
+
+
+def test_portal_replay_manifest_entry_runs_full_chain():
+    """Case 31 exercises the YouTube-embed agency_ois fixture, which
+    PR #8 proved graduates as a bodycam VerifiedArtifact."""
+    code, out, _ = run_cli(
+        ["--portal-replay", "--portal-manifest-entry", "31", "--json"]
+    )
+    assert code == 0
+    payload = json.loads(out)
+    types = set(payload["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types, (
+        f"manifest case_id=31 should graduate bodycam media; got {sorted(types)}"
+    )
+
+
+def test_portal_replay_manifest_entry_emit_handoffs_validates():
+    code, out, _ = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            "31",
+            "--emit-handoffs",
+            "--json",
+        ]
+    )
+    assert code == 0
+    handoffs = json.loads(out)["handoffs"]
+    assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
+    assert handoffs["p2_to_p3"], "case_id=31 should yield at least one P3 row"
+    for row in handoffs["p2_to_p3"]:
+        _assert_valid("p2_to_p3.schema.json", row)
+    _assert_valid("p2_to_p4.schema.json", handoffs["p2_to_p4"])
+    _assert_valid("p2_to_p5.schema.json", handoffs["p2_to_p5"])
+
+
+def test_portal_replay_direct_fixture_does_not_emit_manifest_entry_key():
+    """Backwards-compat guard: PR #9's direct-fixture mode must NOT
+    include portal_replay.manifest_entry in its JSON output."""
+    code, out, _ = run_cli(
+        ["--portal-replay", "--fixture", BODYCAM_FIXTURE, "--json"]
+    )
+    assert code == 0
+    pr = json.loads(out)["portal_replay"]
+    assert "manifest_entry" not in pr
+
+
+def test_portal_replay_unknown_manifest_case_id_returns_exit_3():
+    code, _, err = run_cli(
+        ["--portal-replay", "--portal-manifest-entry", "9999", "--json"]
+    )
+    assert code == cli.EXIT_FIXTURE_MISSING
+    assert "9999" in err
+    assert "case_id" in err.lower()
+
+
+def test_portal_replay_requires_fixture_or_manifest_entry():
+    """--portal-replay alone, with no --fixture and no
+    --portal-manifest-entry, must fail clearly with EXIT_FIXTURE_INVALID."""
+    code, _, err = run_cli(["--portal-replay", "--json"])
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "exactly one" in err.lower() or "requires" in err.lower()
+
+
+def test_portal_replay_rejects_both_fixture_and_manifest_entry():
+    code, _, err = run_cli(
+        [
+            "--portal-replay",
+            "--fixture",
+            BODYCAM_FIXTURE,
+            "--portal-manifest-entry",
+            "31",
+            "--json",
+        ]
+    )
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "mutually exclusive" in err.lower()
+
+
+def test_portal_replay_manifest_mode_makes_zero_network_calls(monkeypatch):
+    """Run all 5 manifest case_ids back-to-back under a
+    requests.Session.get monkeypatch and assert no HTTP calls."""
+    import requests
+
+    calls = []
+    original = requests.Session.get
+
+    def fake_get(self, *args, **kwargs):
+        calls.append((args, kwargs))
+        return original(self, *args, **kwargs)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    for case_id in (31, 32, 33, 34, 37):
+        code, _, err = run_cli(
+            [
+                "--portal-replay",
+                "--portal-manifest-entry",
+                str(case_id),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
+        assert code == 0, f"case_id={case_id} failed: {err}"
+
+    assert calls == [], (
+        f"manifest-entry portal-replay made {len(calls)} live HTTP call(s)"
+    )
+
+
+# ---- Per-mode --fixture validation (no longer argparse-required) -------
+#
+# The argparse `--fixture` argument was relaxed from required=True to
+# required=False so --portal-manifest-entry can stand alone in
+# portal-replay mode. Every other mode still demands --fixture; the
+# error message is now an inline EXIT_FIXTURE_INVALID instead of
+# argparse's auto-generated SystemExit.
+
+
+def test_default_mode_without_fixture_returns_exit_4_with_clear_error():
+    code, _, err = run_cli(["--json"])
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "--fixture" in err
+
+
+def test_query_plan_without_fixture_returns_exit_4():
+    code, _, err = run_cli(["--query-plan", "--json"])
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "--fixture" in err
+
+
+def test_multi_source_without_fixture_returns_exit_4():
+    code, _, err = run_cli(
+        ["--multi-source-dry-run", "--connectors", "courtlistener", "--json"]
+    )
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "--fixture" in err
+
+
+def test_live_dry_without_fixture_returns_exit_4():
+    code, _, err = run_cli(["--live-dry", "--json"])
+    assert code == cli.EXIT_FIXTURE_INVALID
+    assert "--fixture" in err
