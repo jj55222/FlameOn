@@ -60,6 +60,18 @@
       "expected_resolver_actions": 1,
       "expected_blockers": [],
       "notes": ["generic weak YouTube media benchmark shape"]
+    },
+    {
+      "case_id": 38,
+      "portal_profile_id": "agency_ois_detail",
+      "mocked_payload_fixture": "tests/fixtures/agency_ois/incident_detail_sheriff_bodycam_video.json",
+      "expected_source_records": 2,
+      "expected_artifact_claims": 1,
+      "expected_candidate_urls": 1,
+      "expected_rejected_urls": 0,
+      "expected_resolver_actions": 1,
+      "expected_blockers": [],
+      "notes": ["realistic sheriff-office incident detail with public bodycam .mp4; exercises jurisdiction derivation with the 'Sheriff's Office' agency suffix"]
     }
   ]
 }
