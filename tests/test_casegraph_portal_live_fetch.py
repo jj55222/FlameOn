@@ -548,3 +548,404 @@ def test_orchestrator_makes_zero_network_calls(monkeypatch, tmp_path):
     run_portal_live(target, env=GATED_ENV, repo_root=ROOT, payloads_dir=tmp_path)
 
     assert calls == [], f"orchestrator triggered {len(calls)} live HTTP call(s)"
+
+
+# ---- requests fetcher path (HTML wrapper extraction) -----------------
+#
+# These tests cover the full requests path end-to-end with the network
+# monkey-patched. The fixture sheriff_bodycam_requests_dummy.json has
+# fetcher="requests" and no mock_response — the orchestrator must
+# call requests.Session.get (mocked), receive the HTML wrapper, and
+# extract the embedded agency_ois JSON marker block.
+
+
+REQUESTS_TARGET_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_requests_dummy.json"
+)
+
+
+def _agency_ois_marker_html(agency_ois_payload: dict) -> str:
+    """Build a minimal HTML body with the canonical
+    ``flameon-agency-ois`` JSON marker block embedded inside it."""
+    return (
+        "<html><head><title>Mock</title></head><body>"
+        "<h1>Mock Critical Incident</h1>"
+        "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+        + json.dumps(agency_ois_payload)
+        + "</script>"
+        "</body></html>"
+    )
+
+
+def _agency_ois_payload_for_requests_fixture() -> dict:
+    return {
+        "page_type": "incident_detail",
+        "agency": "Example County Sheriff's Office",
+        "agency_url_root": "https://example-public-sheriff.gov",
+        "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-002",
+        "title": "Critical Incident Briefing 2024-EX-002 (mock-html)",
+        "narrative": (
+            "On 2024-09-22 Example County Sheriff's Office deputies responded "
+            "to a residence in unincorporated Example County. The subject, "
+            "Pat Mock, was charged with multiple offenses and pleaded guilty "
+            "in 2024 to case number 2024-EX-002. Body-worn camera (BWC) "
+            "footage from the responding deputies is included in the briefing "
+            "video below."
+        ),
+        "subjects": ["Pat Mock"],
+        "incident_date": "2024-09-22",
+        "case_number": "2024-EX-002",
+        "outcome_text": "subject pleaded guilty 2024",
+        "media_links": [
+            {
+                "url": "https://example-public-sheriff.gov/critical-incidents/media/2024-EX-002-briefing.mp4",
+                "label": "Critical Incident Briefing video (mock-html)",
+                "type": "bodycam_briefing",
+            }
+        ],
+        "document_links": [],
+        "claims": [],
+    }
+
+
+def _patch_requests_get(monkeypatch, factory):
+    """Monkey-patch ``requests.Session.get`` and record calls."""
+    import requests
+
+    calls = []
+
+    def fake_get(self, url, *args, **kwargs):
+        calls.append({"url": url, "args": args, "kwargs": kwargs})
+        return factory(url, **kwargs)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+    return calls
+
+
+class _FakeResponse:
+    def __init__(self, *, status_code=200, headers=None, text="", url=""):
+        self.status_code = status_code
+        self.headers = headers or {}
+        self.text = text
+        self.url = url
+
+
+def test_run_portal_live_with_requests_fetcher_completes_via_html_marker(monkeypatch, tmp_path):
+    """Full requests path: fetcher returns HTML, extractor parses the
+    agency_ois marker block, payloads are saved, status=completed."""
+    payload = _agency_ois_payload_for_requests_fixture()
+    html = _agency_ois_marker_html(payload)
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html; charset=utf-8"},
+            text=html,
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "completed", (
+        f"expected completed; blocked_reason={result.blocked_reason!r}"
+    )
+    assert len(calls) == 1, "requests fetcher must do exactly one Session.get call"
+    assert result.fetch_result.fetcher == "requests"
+    assert result.fetch_result.api_calls == {"requests": 1}
+
+    # Raw payload is the HTML wrapper.
+    raw = result.fetch_result.raw_payload
+    assert raw["content_type"] == "text/html"
+    assert raw["status_code"] == 200
+    assert "flameon-agency-ois" in raw["text"]
+
+    # Extracted payload is the agency_ois shape from inside the marker.
+    assert result.extracted_payload["page_type"] == "incident_detail"
+    assert result.extracted_payload["agency"] == "Example County Sheriff's Office"
+    assert result.extracted_payload["case_number"] == "2024-EX-002"
+
+    # Both files were saved.
+    assert result.raw_payload_path.exists()
+    assert result.extracted_payload_path.exists()
+
+
+def test_run_portal_live_with_requests_extracted_payload_replays_through_portal_replay(
+    monkeypatch, tmp_path
+):
+    """The roundtrip invariant: a saved extracted payload from the
+    requests path must be replayable through ``--portal-replay``."""
+    from pipeline2_discovery.casegraph.cli import build_portal_replay_payload
+
+    payload = _agency_ois_payload_for_requests_fixture()
+    html = _agency_ois_marker_html(payload)
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text=html,
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+    assert result.status == "completed"
+
+    with result.extracted_payload_path.open("r", encoding="utf-8") as f:
+        replay_input = json.load(f)
+    replay = build_portal_replay_payload(
+        replay_input,
+        fixture_path=result.extracted_payload_path,
+        emit_handoffs=True,
+    )
+
+    types = set(replay["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types
+    assert replay["packet_summary"]["identity_confidence"] == "high"
+    assert replay["result"]["verdict"] == "PRODUCE"
+    assert replay["handoffs"]["p2_to_p5"]["verdict"] == "PRODUCE"
+
+
+def test_run_portal_live_with_requests_blocks_on_html_without_marker(monkeypatch, tmp_path):
+    """HTML body without the canonical marker block → extract fails →
+    orchestrator surfaces ``blocked_reason="extract_failed:..."``."""
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text="<html><body>no marker here</body></html>",
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert (result.blocked_reason or "").startswith("extract_failed:")
+    assert "html_marker_block_missing" in result.blocked_reason
+    # Raw payload is still saved (operator diagnostic), extracted is not.
+    assert result.raw_payload_path is not None
+    assert result.extracted_payload_path is None
+
+
+def test_run_portal_live_with_requests_blocks_on_malformed_marker_json(monkeypatch, tmp_path):
+    bad_html = (
+        "<html><body>"
+        "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+        "{this-is-not-json"
+        "</script>"
+        "</body></html>"
+    )
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text=bad_html,
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert "html_marker_block_payload_invalid" in (result.blocked_reason or "")
+
+
+def test_run_portal_live_with_requests_blocks_on_unexpected_status(monkeypatch, tmp_path):
+    """Status code != target.expected_response_status → orchestrator
+    surfaces ``unexpected_status_code`` and skips save+extract."""
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=403,
+            headers={"Content-Type": "text/html"},
+            text="<html>denied</html>",
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert "unexpected_status_code:403" in (result.blocked_reason or "")
+    assert result.raw_payload_path is None
+    assert result.extracted_payload_path is None
+
+
+def test_run_portal_live_with_requests_blocks_without_env_gates(monkeypatch, tmp_path):
+    """No env gates → safety preflight blocks BEFORE the fetcher is
+    constructed → ``requests.Session.get`` is never called."""
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text="",
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env={},  # no gates
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert "missing_env_gates" in (result.blocked_reason or "")
+    assert calls == [], "requests.Session.get must not be called when blocked"
+
+
+def test_run_portal_live_with_requests_blocks_when_safety_blocks(monkeypatch, tmp_path):
+    """Even with env gates set, safety preflight failures (e.g. cap
+    exceeded) must short-circuit before the requests session is hit."""
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text="",
+            url=url,
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    target.max_pages = 999  # blow past the profile cap
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert "max_pages_exceeds_profile_cap" in (result.blocked_reason or "")
+    assert calls == [], "safety block must prevent the session from being hit"
+
+
+def test_run_portal_live_with_requests_surfaces_timeout(monkeypatch, tmp_path):
+    import requests
+
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: (_ for _ in ()).throw(
+            requests.exceptions.Timeout("simulated")
+        ),
+    )
+
+    target = load_portal_live_target(REQUESTS_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert (result.blocked_reason or "").startswith("timeout:")
+
+
+# ---- extractor unit (HTML path) --------------------------------------
+
+
+def test_extract_to_agency_ois_parses_html_marker_block():
+    payload = {"page_type": "incident_detail", "agency": "X", "url": "https://example/"}
+    html = _agency_ois_marker_html(payload)
+    raw = {
+        "content_type": "text/html",
+        "url": "https://example/",
+        "status_code": 200,
+        "text": html,
+    }
+    out = extract_to_agency_ois(raw)
+    assert out == payload
+
+
+def test_extract_to_agency_ois_html_path_rejects_when_marker_missing():
+    raw = {
+        "content_type": "text/html",
+        "url": "https://example/",
+        "status_code": 200,
+        "text": "<html><body>nothing</body></html>",
+    }
+    with pytest.raises(ValueError, match="html_marker_block_missing"):
+        extract_to_agency_ois(raw)
+
+
+def test_extract_to_agency_ois_html_path_rejects_empty_marker_block():
+    raw = {
+        "content_type": "text/html",
+        "url": "https://example/",
+        "status_code": 200,
+        "text": (
+            "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+            "</script>"
+        ),
+    }
+    with pytest.raises(ValueError, match="html_marker_block_empty"):
+        extract_to_agency_ois(raw)
+
+
+def test_extract_to_agency_ois_html_path_rejects_invalid_json():
+    raw = {
+        "content_type": "text/html",
+        "url": "https://example/",
+        "status_code": 200,
+        "text": (
+            "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+            "{nope"
+            "</script>"
+        ),
+    }
+    with pytest.raises(ValueError, match="html_marker_block_payload_invalid"):
+        extract_to_agency_ois(raw)
+
+
+def test_extract_to_agency_ois_html_path_rejects_payload_without_required_keys():
+    raw = {
+        "content_type": "text/html",
+        "url": "https://example/",
+        "status_code": 200,
+        "text": (
+            "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+            "{\"random\": \"junk\"}"
+            "</script>"
+        ),
+    }
+    with pytest.raises(ValueError, match="html_marker_block_payload_invalid"):
+        extract_to_agency_ois(raw)

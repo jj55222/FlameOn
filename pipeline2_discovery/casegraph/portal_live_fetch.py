@@ -25,11 +25,27 @@ network call (their ``_scrape`` method is monkey-patched in tests).
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Optional
 from urllib.parse import urlparse
+
+
+# Convention for the requests-fetcher HTML extraction path: a saved or
+# served agency_ois fixture page may embed its canonical JSON shape in
+# a <script type="application/json" id="flameon-agency-ois">...</script>
+# block. The extractor parses the block contents directly. Real agency
+# pages won't carry this marker; richer HTML extraction (BeautifulSoup
+# / per-template scraping) is a follow-up PR concern.
+_AGENCY_OIS_HTML_MARKER_PATTERN = re.compile(
+    r'<script[^>]*\btype=["\']application/json["\'][^>]*'
+    r'\bid=["\']flameon-agency-ois["\'][^>]*>'
+    r'(?P<body>.*?)'
+    r'</script>',
+    re.DOTALL | re.IGNORECASE,
+)
 
 from .firecrawl_safety import (
     KnownUrlLiveSmokeDecision,
@@ -248,27 +264,85 @@ def run_portal_live(
 
 
 def extract_to_agency_ois(raw: Mapping[str, Any]) -> Dict[str, Any]:
-    """Validate and pass through a fetch raw payload into the
-    agency_ois fixture shape that ``--portal-replay --fixture <path>``
-    can consume.
+    """Convert a fetch raw payload into the agency_ois fixture shape
+    that ``--portal-replay --fixture <path>`` can consume.
 
-    For the ``mock`` fetcher (this PR's only success path), the raw
-    payload is already shaped like an agency_ois fixture; the
-    extractor confirms the minimum required keys are present and
-    returns a copy. Real fetchers (Firecrawl HTML / requests HTML)
-    will need richer extraction in a follow-up PR.
+    Two input shapes are recognised:
+
+    1. **Already-extracted agency_ois shape** (mock fetcher and any
+       caller that already produced the canonical fields). Detected
+       by ``page_type`` / ``portal_profile_id`` / ``source_records``
+       at the top level. Returned as a copy.
+
+    2. **Requests-fetcher HTML wrapper** with the shape
+       ``{content_type, url, status_code, text}`` where
+       ``content_type`` starts with ``text/html``. The extractor
+       searches the HTML body for a
+       ``<script type="application/json" id="flameon-agency-ois">``
+       block and parses its contents as agency_ois JSON. This is the
+       smallest acceptable path for the requests fetcher; real
+       public-page HTML scraping is a follow-up PR.
+
+    Anything else raises ``ValueError`` and the orchestrator surfaces
+    the failure as ``status="blocked"`` with
+    ``blocked_reason="extract_failed:..."``.
     """
     if not isinstance(raw, Mapping):
         raise ValueError("raw payload must be a JSON object")
+
     has_page_type = bool(raw.get("page_type"))
     has_profile = bool(raw.get("portal_profile_id"))
     has_source_records = isinstance(raw.get("source_records"), list)
-    if not (has_page_type or has_profile or has_source_records):
+    if has_page_type or has_profile or has_source_records:
+        return dict(raw)
+
+    content_type = str(raw.get("content_type") or "").lower()
+    body = raw.get("text")
+    if content_type.startswith("text/html") and isinstance(body, str):
+        return _extract_from_html_marker_block(body)
+
+    raise ValueError(
+        "extracted payload must declare page_type, portal_profile_id, "
+        "or source_records (agency_ois shape required)"
+    )
+
+
+def _extract_from_html_marker_block(html: str) -> Dict[str, Any]:
+    """Parse the agency_ois JSON marker block out of an HTML body.
+
+    Raises ``ValueError`` with a stable prefix
+    (``html_marker_*`` or ``html_marker_block_payload_invalid``) so
+    operator-facing diagnostics stay grep-able.
+    """
+    match = _AGENCY_OIS_HTML_MARKER_PATTERN.search(html)
+    if not match:
         raise ValueError(
-            "extracted payload must declare page_type, portal_profile_id, "
-            "or source_records (agency_ois shape required)"
+            "html_marker_block_missing: HTML body lacks a "
+            "<script type=\"application/json\" id=\"flameon-agency-ois\"> block"
         )
-    return dict(raw)
+    body = match.group("body").strip()
+    if not body:
+        raise ValueError("html_marker_block_empty: marker block is empty")
+    try:
+        payload = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"html_marker_block_payload_invalid: {exc.msg}"
+        ) from None
+    if not isinstance(payload, dict):
+        raise ValueError(
+            "html_marker_block_payload_invalid: marker block must be a JSON object"
+        )
+    if not (
+        payload.get("page_type")
+        or payload.get("portal_profile_id")
+        or isinstance(payload.get("source_records"), list)
+    ):
+        raise ValueError(
+            "html_marker_block_payload_invalid: marker block must declare "
+            "page_type, portal_profile_id, or source_records"
+        )
+    return payload
 
 
 def build_live_fetch_section(result: PortalLiveResult) -> Dict[str, Any]:

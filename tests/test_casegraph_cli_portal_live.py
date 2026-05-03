@@ -32,6 +32,9 @@ from pipeline2_discovery.casegraph import cli
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET_FIXTURE = ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_dummy.json"
+REQUESTS_TARGET_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_requests_dummy.json"
+)
 GATED_ENV = {
     "FLAMEON_RUN_LIVE_CASEGRAPH": "1",
     "FLAMEON_RUN_LIVE_PORTAL_FETCH": "1",
@@ -564,6 +567,296 @@ def test_portal_live_makes_zero_network_calls(monkeypatch, tmp_path):
         )
 
     assert calls == [], f"--portal-live triggered {len(calls)} live HTTP call(s)"
+
+
+# ---- requests fetcher path (CLI surface) -----------------------------
+#
+# The CLI runs the same _run_portal_live_mode handler regardless of
+# fetcher; these tests prove the requests fetcher works end-to-end at
+# the CLI surface with a monkey-patched session, no real network.
+
+
+class _FakeResponse:
+    def __init__(self, *, status_code=200, headers=None, text="", url=""):
+        self.status_code = status_code
+        self.headers = headers or {}
+        self.text = text
+        self.url = url
+
+
+def _agency_ois_marker_html(payload: dict) -> str:
+    return (
+        "<html><body>"
+        "<script type=\"application/json\" id=\"flameon-agency-ois\">"
+        + json.dumps(payload)
+        + "</script>"
+        "</body></html>"
+    )
+
+
+def _requests_payload_for_dummy_fixture() -> dict:
+    return {
+        "page_type": "incident_detail",
+        "agency": "Example County Sheriff's Office",
+        "agency_url_root": "https://example-public-sheriff.gov",
+        "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-002",
+        "title": "Critical Incident Briefing 2024-EX-002 (mock-html)",
+        "narrative": (
+            "On 2024-09-22 Example County Sheriff's Office deputies responded "
+            "to a residence in unincorporated Example County. The subject, "
+            "Pat Mock, was charged with multiple offenses and pleaded guilty "
+            "in 2024 to case number 2024-EX-002. Body-worn camera (BWC) "
+            "footage from the responding deputies is included in the briefing "
+            "video below."
+        ),
+        "subjects": ["Pat Mock"],
+        "incident_date": "2024-09-22",
+        "case_number": "2024-EX-002",
+        "outcome_text": "subject pleaded guilty 2024",
+        "media_links": [
+            {
+                "url": "https://example-public-sheriff.gov/critical-incidents/media/2024-EX-002-briefing.mp4",
+                "label": "Critical Incident Briefing video (mock-html)",
+                "type": "bodycam_briefing",
+            }
+        ],
+        "document_links": [],
+        "claims": [],
+    }
+
+
+def _patch_requests_get(monkeypatch, factory):
+    import requests
+
+    calls = []
+
+    def fake_get(self, url, *args, **kwargs):
+        calls.append({"url": url, "args": args, "kwargs": kwargs})
+        return factory(url, **kwargs)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+    return calls
+
+
+def test_portal_live_requests_fetcher_completes_with_html_marker(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    payload = _requests_payload_for_dummy_fixture()
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html; charset=utf-8"},
+            text=_agency_ois_marker_html(payload),
+            url=url,
+        ),
+    )
+
+    with _patched_env(GATED_ENV):
+        code, out, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
+
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    assert len(calls) == 1, "requests fetcher must do exactly one Session.get call"
+    out_payload = json.loads(out)
+    live = out_payload["live_fetch"]
+    assert live["status"] == "completed"
+    assert live["fetcher"] == "requests"
+    assert live["api_calls"] == {"requests": 1}
+    assert live["estimated_cost_usd"] == 0.0
+    assert live["status_code"] == 200
+    assert live["target_domain_status"] == "allowed"
+    assert live["replayed"] is True
+
+    # Replay output is threaded into the same envelope.
+    assert out_payload["result"]["verdict"] == "PRODUCE"
+    assert out_payload["packet_summary"]["identity_confidence"] == "high"
+    assert "bodycam" in out_payload["packet_summary"]["verified_artifact_types"]
+    assert out_payload["handoffs"]["p2_to_p5"]["verdict"] == "PRODUCE"
+
+
+def test_portal_live_requests_fetcher_blocks_on_html_without_marker(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text="<html><body>no marker</body></html>",
+            url=url,
+        ),
+    )
+
+    with _patched_env(GATED_ENV):
+        code, out, _ = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--json",
+            ]
+        )
+
+    assert code == cli.EXIT_LIVE_BLOCKED
+    payload = json.loads(out)
+    assert payload["live_fetch"]["status"] == "blocked"
+    assert "html_marker_block_missing" in payload["live_fetch"]["blocked_reason"]
+
+
+def test_portal_live_requests_fetcher_blocks_on_404(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=404,
+            headers={"Content-Type": "text/html"},
+            text="not found",
+            url=url,
+        ),
+    )
+
+    with _patched_env(GATED_ENV):
+        code, out, _ = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--json",
+            ]
+        )
+
+    assert code == cli.EXIT_LIVE_BLOCKED
+    payload = json.loads(out)
+    assert "unexpected_status_code:404" in payload["live_fetch"]["blocked_reason"]
+
+
+def test_portal_live_requests_fetcher_blocks_without_env_gates(monkeypatch, tmp_path):
+    """Cold path: no env gates → safety preflight blocks, no
+    requests.Session.get invocation."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(status_code=200, url=url),
+    )
+
+    with _cleared_env(["FLAMEON_RUN_LIVE_CASEGRAPH", "FLAMEON_RUN_LIVE_PORTAL_FETCH"]):
+        code, out, _ = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--json",
+            ]
+        )
+
+    assert code == cli.EXIT_LIVE_BLOCKED
+    payload = json.loads(out)
+    assert "missing_env_gates" in payload["live_fetch"]["blocked_reason"]
+    assert calls == [], "requests.Session.get must not be called when blocked"
+
+
+def test_portal_live_requests_fetcher_bundle_includes_live_fetch_and_portal_replay(
+    monkeypatch, tmp_path
+):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path / "live",
+    )
+    payload = _requests_payload_for_dummy_fixture()
+    _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text=_agency_ois_marker_html(payload),
+            url=url,
+        ),
+    )
+    bundle_path = tmp_path / "bundle.json"
+
+    with _patched_env(GATED_ENV):
+        code, _, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+                "--bundle-out",
+                str(bundle_path),
+            ]
+        )
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+
+    assert bundle["mode"] == "portal_live"
+    assert bundle["live_fetch"]["fetcher"] == "requests"
+    assert bundle["live_fetch"]["status"] == "completed"
+    assert "portal_replay" in bundle
+    assert "handoffs" in bundle
+    assert bundle["result"]["verdict"] == "PRODUCE"
+    assert bundle["handoffs"]["p2_to_p5"]["verdict"] == "PRODUCE"
+
+
+def test_portal_live_requests_makes_zero_real_network_calls(monkeypatch, tmp_path):
+    """Cold + hot paths under monkey-patched Session.get: at most one
+    wrapper call (the hot path), and never a real network round trip."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    payload = _requests_payload_for_dummy_fixture()
+    calls = _patch_requests_get(
+        monkeypatch,
+        lambda url, **kwargs: _FakeResponse(
+            status_code=200,
+            headers={"Content-Type": "text/html"},
+            text=_agency_ois_marker_html(payload),
+            url=url,
+        ),
+    )
+
+    # Cold (no env): no wrapper invocation.
+    run_cli(
+        [
+            "--portal-live",
+            "--target-fixture",
+            str(REQUESTS_TARGET_FIXTURE),
+            "--json",
+        ]
+    )
+    assert len(calls) == 0
+
+    # Hot (env set): exactly one wrapper invocation.
+    with _patched_env(GATED_ENV):
+        run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(REQUESTS_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
+    assert len(calls) == 1
 
 
 # ---- default mode unaffected -----------------------------------------
