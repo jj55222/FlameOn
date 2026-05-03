@@ -500,3 +500,64 @@ def test_build_run_bundle_handoffs_param_is_optional_and_additive():
     # Every other key matches modulo experiment_id.
     extra_keys = set(with_handoffs.keys()) - set(no_handoffs.keys())
     assert extra_keys == {"handoffs"}
+
+
+# ---- portal_replay= param (PR #11) -------------------------------------
+
+
+def test_build_run_bundle_portal_replay_param_is_optional_and_additive():
+    """Direct unit test of build_run_bundle's portal_replay param.
+
+    Mirrors the handoffs= test above: omitting portal_replay leaves the
+    bundle structurally unchanged; supplying a portal_replay dict adds
+    exactly that one top-level key. Backwards-compat guarantees:
+    REQUIRED_BUNDLE_KEYS still all present in both bundles."""
+    fixture = Path(FIXTURE_DIR / "media_rich_produce.json")
+    packet = cli._load_fixture(fixture)
+    no_portal = cli.build_run_bundle(
+        mode="default",
+        experiment_id="test-no-portal",
+        wallclock_seconds=0.0,
+        packet=packet,
+    )
+    fake_portal_replay = {
+        "portal_profile_id": "agency_ois_detail",
+        "fixture_path": "tests/fixtures/agency_ois/incident_detail_with_bodycam_video.json",
+        "source_records_count": 2,
+        "artifact_claims_count": 0,
+        "candidate_urls_count": 1,
+        "rejected_urls_count": 0,
+        "executor_status": "completed",
+        "executor_risk_flags": [],
+        "executor_next_actions": [],
+    }
+    with_portal = cli.build_run_bundle(
+        mode="portal_replay",
+        experiment_id="test-with-portal",
+        wallclock_seconds=0.0,
+        packet=packet,
+        portal_replay=fake_portal_replay,
+    )
+    assert "portal_replay" not in no_portal
+    assert with_portal["portal_replay"] == fake_portal_replay
+    # Canonical bundle keys still present in both.
+    for key in REQUIRED_BUNDLE_KEYS:
+        assert key in no_portal
+        assert key in with_portal
+    # Adding portal_replay must not displace any other key.
+    extra_keys = set(with_portal.keys()) - set(no_portal.keys())
+    assert extra_keys == {"portal_replay"}
+
+
+def test_default_mode_bundle_omits_portal_replay_without_flag(tmp_path):
+    """Backwards-compat guard: default-mode CLI runs (no
+    --portal-replay) must NOT carry a portal_replay key in the
+    bundle. Locks the opt-in invariant from the operator surface."""
+    bundle_path = tmp_path / "bundle.json"
+    fixture = str(FIXTURE_DIR / "media_rich_produce.json")
+    code, _, err = run_cli(
+        ["--fixture", fixture, "--json", "--bundle-out", str(bundle_path)]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle(bundle_path)
+    assert "portal_replay" not in bundle

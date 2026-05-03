@@ -554,3 +554,123 @@ def test_live_dry_without_fixture_returns_exit_4():
     code, _, err = run_cli(["--live-dry", "--json"])
     assert code == cli.EXIT_FIXTURE_INVALID
     assert "--fixture" in err
+
+
+# ---- --bundle-out includes portal_replay (PR #11) ----------------------
+#
+# Direct fixture mode + --bundle-out: bundle gains the portal_replay
+# section that was previously written only to JSON output. Manifest-
+# entry mode additionally surfaces portal_replay.manifest_entry in
+# the bundle. --emit-handoffs is independently composable.
+
+
+REQUIRED_BUNDLE_CANONICAL_KEYS = (
+    "experiment_id",
+    "mode",
+    "wallclock_seconds",
+    "input_summary",
+    "query_plan",
+    "connector_summary",
+    "multi_source_summary",
+    "smoke_diagnostics",
+    "identity",
+    "outcome",
+    "artifact_claims",
+    "verified_artifacts",
+    "result",
+    "actionability_report",
+    "live_yield_report",
+    "ledger_entry",
+    "next_actions",
+    "risk_flags",
+)
+
+
+def _read_bundle_file(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def test_portal_replay_direct_fixture_bundle_includes_portal_replay_section(tmp_path):
+    bundle_path = tmp_path / "bundle.json"
+    code, _, err = run_cli(
+        [
+            "--portal-replay",
+            "--fixture",
+            BODYCAM_FIXTURE,
+            "--json",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle_file(bundle_path)
+    # Canonical bundle keys still all present.
+    for key in REQUIRED_BUNDLE_CANONICAL_KEYS:
+        assert key in bundle, f"missing canonical bundle key {key!r}"
+    # portal_replay section now lives in the bundle too.
+    assert "portal_replay" in bundle
+    pr = bundle["portal_replay"]
+    for key in REQUIRED_PORTAL_REPLAY_KEYS:
+        assert key in pr, f"missing portal_replay key {key!r}"
+    # Direct fixture mode does NOT include manifest_entry — that's
+    # the manifest-entry mode marker.
+    assert "manifest_entry" not in pr
+    assert pr["fixture_path"].endswith(
+        "tests/fixtures/agency_ois/incident_detail_with_bodycam_video.json"
+    )
+    assert bundle["mode"] == "portal_replay"
+
+
+def test_portal_replay_manifest_entry_bundle_includes_manifest_entry(tmp_path):
+    bundle_path = tmp_path / "bundle.json"
+    code, _, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            "31",
+            "--json",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle_file(bundle_path)
+    pr = bundle["portal_replay"]
+    assert "manifest_entry" in pr, (
+        "manifest-entry mode must surface portal_replay.manifest_entry "
+        "in the bundle"
+    )
+    assert pr["manifest_entry"]["case_id"] == 31
+    assert pr["manifest_entry"]["manifest_path"].endswith(
+        "tests/fixtures/portal_replay/portal_replay_manifest.json"
+    )
+    # Resolved fixture path matches the manifest's mocked_payload_fixture.
+    assert pr["fixture_path"].endswith(
+        "tests/fixtures/agency_ois/incident_detail_with_youtube_embed.json"
+    )
+
+
+def test_portal_replay_bundle_with_emit_handoffs_includes_both_sections(tmp_path):
+    bundle_path = tmp_path / "bundle.json"
+    code, _, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            "31",
+            "--emit-handoffs",
+            "--json",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle_file(bundle_path)
+    # Both opt-in sections present alongside every canonical key.
+    for key in REQUIRED_BUNDLE_CANONICAL_KEYS:
+        assert key in bundle, f"missing canonical bundle key {key!r}"
+    assert "portal_replay" in bundle
+    assert "handoffs" in bundle
+    handoffs = bundle["handoffs"]
+    assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
+    # P3 should have at least one row for case_id=31 (YouTube embed).
+    assert handoffs["p2_to_p3"], "case_id=31 should yield at least one P3 row"
