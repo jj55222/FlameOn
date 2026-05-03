@@ -475,6 +475,60 @@ def test_default_mode_bundle_includes_handoffs_when_flag_passed(tmp_path):
     assert handoffs["p2_to_p3"], "P3 rows should be non-empty for media-rich fixture"
 
 
+# ---- Bundle / handoff verdict coherence (Option F) --------------------
+#
+# bundle["result"]["verdict"] is the fresh scorer outcome.
+# bundle["handoffs"]["p2_to_p5"]["verdict"] used to read packet.verdict
+# (the stored router default), which created PRODUCE-vs-HOLD
+# contradictions for portal-replay packets and any default-mode fixture
+# where stored verdict didn't already match the fresh score. With the
+# P5 export now threading score_result.verdict, the two must agree.
+
+
+def _bundle_for(tmp_path, fixture_name):
+    bundle_path = tmp_path / f"{fixture_name.replace('.json', '')}_bundle.json"
+    code, _, err = run_cli(
+        [
+            "--fixture",
+            str(FIXTURE_DIR / fixture_name),
+            "--json",
+            "--emit-handoffs",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit on {fixture_name}: {err}"
+    return _read_bundle(bundle_path)
+
+
+def test_produce_fixture_bundle_p5_verdict_matches_result_verdict(tmp_path):
+    bundle = _bundle_for(tmp_path, "media_rich_produce.json")
+    assert bundle["result"]["verdict"] == "PRODUCE"
+    p5_verdict = bundle["handoffs"]["p2_to_p5"]["verdict"]
+    assert p5_verdict == bundle["result"]["verdict"], (
+        f"bundle p5 verdict ({p5_verdict!r}) must match bundle result verdict "
+        f"({bundle['result']['verdict']!r})"
+    )
+
+
+def test_hold_fixture_bundle_p5_verdict_matches_result_verdict(tmp_path):
+    bundle = _bundle_for(tmp_path, "claim_only_hold.json")
+    assert bundle["result"]["verdict"] == "HOLD"
+    assert (
+        bundle["handoffs"]["p2_to_p5"]["verdict"]
+        == bundle["result"]["verdict"]
+    )
+
+
+def test_document_only_fixture_bundle_p5_verdict_matches_result_verdict(tmp_path):
+    bundle = _bundle_for(tmp_path, "document_only_hold.json")
+    assert bundle["result"]["verdict"] == "HOLD"
+    assert (
+        bundle["handoffs"]["p2_to_p5"]["verdict"]
+        == bundle["result"]["verdict"]
+    )
+
+
 def test_build_run_bundle_handoffs_param_is_optional_and_additive():
     """Direct unit test of build_run_bundle: omitting handoffs leaves
     the bundle unchanged; passing a handoffs dict adds exactly that

@@ -894,6 +894,78 @@ def test_case_38_direct_fixture_mode_yields_high_identity_and_produce():
         )
 
 
+# ---- Stored vs fresh verdict surfaces (Option F) ----------------------
+#
+# packet.verdict is the manual-router default ("HOLD") for portal-replay
+# packets and is never updated, since score_case_packet is documented
+# as pure. The CLI now exposes both the stored value and the fresh
+# scorer verdict in JSON output, and threads score_result.verdict into
+# the P5 handoff so downstream automation no longer sees PRODUCE under
+# result.verdict next to HOLD under handoffs.p2_to_p5.verdict.
+
+
+def test_case_38_packet_summary_exposes_both_stored_and_fresh_verdict():
+    payload = _payload_keys_for_case_38()
+    pkt = payload["packet_summary"]
+    # Stored router default — always HOLD for portal-replay packets.
+    assert pkt["packet_verdict"] == "HOLD", (
+        f"portal-replay packet should keep router default HOLD; got {pkt['packet_verdict']!r}"
+    )
+    # Fresh scorer verdict — should match payload["result"]["verdict"].
+    assert pkt["score_verdict"] == payload["result"]["verdict"]
+    assert pkt["score_verdict"] == "PRODUCE", (
+        f"case 38 score_verdict should be PRODUCE; got {pkt['score_verdict']!r}"
+    )
+
+
+def test_case_38_p5_handoff_verdict_matches_result_verdict():
+    """P5 handoff verdict must reflect the fresh scorer outcome, not
+    the packet's stored router default. This is the most painful
+    contradiction PR resolves."""
+    payload = _payload_keys_for_case_38()
+    p5_verdict = payload["handoffs"]["p2_to_p5"]["verdict"]
+    result_verdict = payload["result"]["verdict"]
+    assert p5_verdict == result_verdict, (
+        f"P5 handoff verdict ({p5_verdict!r}) must match result.verdict "
+        f"({result_verdict!r}) when score_result is threaded"
+    )
+    assert p5_verdict == "PRODUCE"
+
+
+def test_case_38_direct_fixture_packet_summary_and_p5_verdict_coherent():
+    """Direct --fixture mode must reach the same coherence as
+    manifest-entry mode. Both go through build_portal_replay_payload
+    which now threads score_result into _packet_summary and handoffs."""
+    code, out, err = run_cli(
+        [
+            "--portal-replay",
+            "--fixture",
+            SHERIFF_BODYCAM_FIXTURE,
+            "--emit-handoffs",
+            "--json",
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    payload = json.loads(out)
+    pkt = payload["packet_summary"]
+    assert pkt["packet_verdict"] == "HOLD"
+    assert pkt["score_verdict"] == "PRODUCE"
+    assert payload["result"]["verdict"] == "PRODUCE"
+    assert payload["handoffs"]["p2_to_p5"]["verdict"] == "PRODUCE"
+
+
+def test_portal_replay_score_verdict_present_even_without_emit_handoffs():
+    """score_verdict is part of the JSON output's packet_summary, not
+    the handoffs payload. It must appear regardless of --emit-handoffs."""
+    code, out, _ = run_cli(
+        ["--portal-replay", "--fixture", SHERIFF_BODYCAM_FIXTURE, "--json"]
+    )
+    assert code == 0
+    payload = json.loads(out)
+    assert "score_verdict" in payload["packet_summary"]
+    assert payload["packet_summary"]["score_verdict"] == "PRODUCE"
+
+
 # ---- Regression guard: existing non-PRODUCE manifest cases ------------
 #
 # Cases 32 (claim only, no URL), 33 (PDF only), 34 (protected media +
