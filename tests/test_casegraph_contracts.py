@@ -341,3 +341,210 @@ def test_export_p2_to_p5_verdict_does_not_mutate_packet_or_score_result():
     assert score_result.verdict == pre_score_verdict
     assert score_result.risk_flags == pre_score_risks
     assert score_result.next_actions == pre_score_actions
+
+
+# ---- Stale router-default risk-flag filter ---------------------------
+#
+# Doctrine: the manual router seeds packet.risk_flags with
+# ["identity_not_locked", "no_verified_artifacts"] to mark a fresh
+# manual case as uncorroborated. Once identity actually resolves to
+# HIGH or a VerifiedArtifact graduates, those flags are stale. The
+# filter strips them only from result/export views and never touches
+# packet.risk_flags itself, preserving score_case_packet purity. Other
+# flags pass through unchanged.
+
+
+def _packet_with_high_identity_and_one_artifact():
+    """Build a router packet, then directly set identity_confidence to
+    'high' and append one VerifiedArtifact so the predicate's
+    contradiction conditions are met. We mutate the packet here in the
+    test only — production code never does this."""
+    from pipeline2_discovery.casegraph.models import VerifiedArtifact
+
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    packet.case_identity.identity_confidence = "high"
+    packet.verified_artifacts.append(
+        VerifiedArtifact(
+            artifact_id="test_artifact_001",
+            artifact_type="bodycam",
+            artifact_url="https://example.gov/bwc.mp4",
+            source_authority="official",
+            downloadable=True,
+            format="video",
+        )
+    )
+    return packet
+
+
+def test_is_stale_router_default_handles_known_router_flags():
+    from pipeline2_discovery.casegraph.scoring import is_stale_router_default
+
+    fresh = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    # identity=low, artifacts=[] → neither flag is stale.
+    assert is_stale_router_default("identity_not_locked", fresh) is False
+    assert is_stale_router_default("no_verified_artifacts", fresh) is False
+
+    resolved = _packet_with_high_identity_and_one_artifact()
+    # identity=high, artifacts has 1 → both flags are stale.
+    assert is_stale_router_default("identity_not_locked", resolved) is True
+    assert is_stale_router_default("no_verified_artifacts", resolved) is True
+
+
+def test_is_stale_router_default_does_not_strip_unrelated_flags():
+    from pipeline2_discovery.casegraph.scoring import is_stale_router_default
+
+    resolved = _packet_with_high_identity_and_one_artifact()
+    for unrelated in (
+        "weak_identity",
+        "protected_or_nonpublic",
+        "protected_or_nonpublic_only",
+        "conflicting_jurisdiction",
+        "conflicting_outcome_signals",
+        "artifact_unverified",
+        "outcome_not_concluded_advisory",
+        "produce_with_pending_outcome",
+        "no_verified_media",
+        "document_only",
+        "weak_input_preliminary_packet",
+        "dataset:wapo_uof",
+    ):
+        assert is_stale_router_default(unrelated, resolved) is False, (
+            f"filter incorrectly classified {unrelated!r} as stale"
+        )
+
+
+def test_is_stale_router_default_medium_identity_does_not_strip():
+    from pipeline2_discovery.casegraph.scoring import is_stale_router_default
+
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    packet.case_identity.identity_confidence = "medium"
+    # Medium ≠ "locked"; the router's framing still applies.
+    assert is_stale_router_default("identity_not_locked", packet) is False
+
+
+def test_is_stale_router_default_accepts_dict_or_dataclass():
+    from pipeline2_discovery.casegraph.scoring import is_stale_router_default
+
+    packet = _packet_with_high_identity_and_one_artifact()
+    packet_dict = packet.to_dict()
+    assert is_stale_router_default("identity_not_locked", packet_dict) is True
+    assert is_stale_router_default("no_verified_artifacts", packet_dict) is True
+    assert is_stale_router_default("identity_not_locked", packet) is True
+    assert is_stale_router_default("no_verified_artifacts", packet) is True
+
+
+def test_filter_stale_router_defaults_preserves_order_and_other_flags():
+    from pipeline2_discovery.casegraph.scoring import filter_stale_router_defaults
+
+    packet = _packet_with_high_identity_and_one_artifact()
+    flags = [
+        "identity_not_locked",
+        "outcome_not_concluded_advisory",
+        "no_verified_artifacts",
+        "produce_with_pending_outcome",
+    ]
+    out = filter_stale_router_defaults(flags, packet)
+    assert out == ["outcome_not_concluded_advisory", "produce_with_pending_outcome"]
+
+
+def test_filter_stale_router_defaults_is_noop_for_fresh_router_packet():
+    from pipeline2_discovery.casegraph.scoring import filter_stale_router_defaults
+
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    flags = list(packet.risk_flags)
+    assert filter_stale_router_defaults(flags, packet) == flags
+
+
+def test_export_p2_to_p5_strips_stale_flags_when_packet_state_contradicts():
+    packet = _packet_with_high_identity_and_one_artifact()
+    score_result = _FakeScoreResult(
+        verdict="PRODUCE",
+        risk_flags=[
+            "identity_not_locked",
+            "no_verified_artifacts",
+            "outcome_not_concluded_advisory",
+        ],
+    )
+
+    out = export_p2_to_p5(packet, score_result=score_result)
+    assert "identity_not_locked" not in out["risk_flags"]
+    assert "no_verified_artifacts" not in out["risk_flags"]
+    assert "outcome_not_concluded_advisory" in out["risk_flags"]
+    assert_valid(SCHEMA_DIR / "p2_to_p5.schema.json", out)
+    # Packet itself must stay untouched.
+    assert "identity_not_locked" in packet.risk_flags
+    assert "no_verified_artifacts" in packet.risk_flags
+
+
+def test_export_p2_to_p4_strips_stale_flags_when_packet_state_contradicts():
+    packet = _packet_with_high_identity_and_one_artifact()
+    score_result = _FakeScoreResult(
+        risk_flags=[
+            "identity_not_locked",
+            "no_verified_artifacts",
+            "outcome_not_concluded_advisory",
+        ],
+    )
+
+    out = export_p2_to_p4(packet, score_result=score_result)
+    notes = out["source_quality_notes"]
+    assert "identity_not_locked" not in notes
+    assert "no_verified_artifacts" not in notes
+    assert "outcome_not_concluded_advisory" in notes
+    assert_valid(SCHEMA_DIR / "p2_to_p4.schema.json", out)
+
+
+def test_export_p2_to_p5_keeps_stale_flags_when_packet_state_does_not_contradict():
+    """A fresh manual-router packet still legitimately carries both
+    flags — strip-conditions are not met. This locks the conservative
+    scoping and keeps the schema example fixture (an 'empty manual
+    seed') byte-identical."""
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+
+    out = export_p2_to_p5(packet)
+    assert "identity_not_locked" in out["risk_flags"]
+    assert "no_verified_artifacts" in out["risk_flags"]
+
+
+def test_export_p2_to_p4_keeps_stale_flags_when_packet_state_does_not_contradict():
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+
+    out = export_p2_to_p4(packet)
+    assert "identity_not_locked" in out["source_quality_notes"]
+    assert "no_verified_artifacts" in out["source_quality_notes"]
+
+
+def test_score_case_packet_result_risk_flags_excludes_stale_for_resolved_packet():
+    from pipeline2_discovery.casegraph import score_case_packet
+
+    packet = _packet_with_high_identity_and_one_artifact()
+    result = score_case_packet(packet)
+    assert "identity_not_locked" not in result.risk_flags
+    assert "no_verified_artifacts" not in result.risk_flags
+    # Packet was not mutated.
+    assert "identity_not_locked" in packet.risk_flags
+    assert "no_verified_artifacts" in packet.risk_flags
+
+
+def test_score_case_packet_result_risk_flags_keeps_stale_for_unresolved_packet():
+    from pipeline2_discovery.casegraph import score_case_packet
+
+    packet = route_manual_defendant_jurisdiction(
+        "Min Jian Guan", "San Francisco, San Francisco, CA"
+    )
+    result = score_case_packet(packet)
+    # Identity is low and there are no artifacts — the flags still apply.
+    assert "identity_not_locked" in result.risk_flags
+    assert "no_verified_artifacts" in result.risk_flags

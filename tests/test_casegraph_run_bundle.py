@@ -529,6 +529,49 @@ def test_document_only_fixture_bundle_p5_verdict_matches_result_verdict(tmp_path
     )
 
 
+# ---- Stale router-default risk-flag filter in bundle output ----------
+#
+# Case 38 portal-replay bundle: identity resolves to high and a
+# bodycam graduates, so the two router-default flags are stale. The
+# bundle's `risk_flags`, `risk_flag_counts`, and P5 handoff risk_flags
+# must all reflect the filter.
+
+
+_STALE_ROUTER_FLAGS_BUNDLE = {"identity_not_locked", "no_verified_artifacts"}
+
+
+def test_case_38_portal_replay_bundle_excludes_stale_router_flags(tmp_path):
+    bundle_path = tmp_path / "case_38_bundle.json"
+    code, _, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            "38",
+            "--emit-handoffs",
+            "--json",
+            "--bundle-out",
+            str(bundle_path),
+        ]
+    )
+    assert code == 0, f"non-zero exit: {err}"
+    bundle = _read_bundle(bundle_path)
+    top_level_risks = set(bundle["risk_flags"])
+    assert not (top_level_risks & _STALE_ROUTER_FLAGS_BUNDLE), (
+        f"bundle.risk_flags should not carry stale router defaults; "
+        f"got {sorted(top_level_risks)}"
+    )
+    p5_risks = set(bundle["handoffs"]["p2_to_p5"]["risk_flags"])
+    assert not (p5_risks & _STALE_ROUTER_FLAGS_BUNDLE), (
+        f"bundle.handoffs.p2_to_p5.risk_flags should not carry stale router "
+        f"defaults; got {sorted(p5_risks)}"
+    )
+    p4_notes = set(bundle["handoffs"]["p2_to_p4"]["source_quality_notes"])
+    assert not (p4_notes & _STALE_ROUTER_FLAGS_BUNDLE), (
+        f"bundle.handoffs.p2_to_p4.source_quality_notes should not carry "
+        f"stale router defaults; got {sorted(p4_notes)}"
+    )
+
+
 def test_build_run_bundle_handoffs_param_is_optional_and_additive():
     """Direct unit test of build_run_bundle: omitting handoffs leaves
     the bundle unchanged; passing a handoffs dict adds exactly that

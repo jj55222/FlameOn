@@ -4,6 +4,7 @@ from dataclasses import asdict, is_dataclass
 from typing import Any, Dict, Iterable, List, Optional
 
 from .models import LEGACY_EVIDENCE_TYPES, CasePacket
+from .scoring import filter_stale_router_defaults
 
 
 def _merge_unique(existing: List[str], additions: Optional[Iterable[str]]) -> List[str]:
@@ -116,6 +117,9 @@ def export_p2_to_p4(
             source_quality_notes,
             getattr(score_result, "risk_flags", None),
         )
+    source_quality_notes = filter_stale_router_defaults(
+        source_quality_notes, packet_data
+    )
     return {
         "case_id": packet_data["case_id"],
         "case_identity": identity,
@@ -185,6 +189,7 @@ def export_p2_to_p5(
             next_actions,
             getattr(score_result, "next_actions", None),
         )
+    risk_flags = filter_stale_router_defaults(risk_flags, packet_data)
     return {
         "case_id": packet_data["case_id"],
         "verdict": verdict,

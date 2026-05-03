@@ -994,3 +994,87 @@ def test_manifest_case_remains_non_produce_after_enrichment(case_id):
         f"types={payload['packet_summary']['verified_artifact_types']} "
         f"score={payload['result']['production_actionability_score']}"
     )
+
+
+# ---- Stale router-default risk-flag filter ---------------------------
+#
+# Case 38 has high identity AND a graduated bodycam, so both
+# `identity_not_locked` and `no_verified_artifacts` are stale. The
+# filter must strip them from result, P4, P5, and bundle surfaces
+# while leaving genuine advisories (e.g. `conflicting_outcome_signals`)
+# intact. Cases without graduated media keep the flags by design.
+
+
+_STALE_ROUTER_FLAGS = {"identity_not_locked", "no_verified_artifacts"}
+
+
+def test_case_38_result_risk_flags_excludes_stale_router_defaults():
+    payload = _payload_keys_for_case_38()
+    risks = set(payload["result"]["risk_flags"])
+    assert not (risks & _STALE_ROUTER_FLAGS), (
+        f"case 38 result.risk_flags should not carry stale router defaults; "
+        f"got {sorted(risks)}"
+    )
+
+
+def test_case_38_p4_source_quality_notes_excludes_stale_router_defaults():
+    payload = _payload_keys_for_case_38()
+    notes = set(payload["handoffs"]["p2_to_p4"]["source_quality_notes"])
+    assert not (notes & _STALE_ROUTER_FLAGS), (
+        f"case 38 P4 source_quality_notes should not carry stale router defaults; "
+        f"got {sorted(notes)}"
+    )
+
+
+def test_case_38_p5_risk_flags_excludes_stale_router_defaults():
+    payload = _payload_keys_for_case_38()
+    risks = set(payload["handoffs"]["p2_to_p5"]["risk_flags"])
+    assert not (risks & _STALE_ROUTER_FLAGS), (
+        f"case 38 P5 risk_flags should not carry stale router defaults; "
+        f"got {sorted(risks)}"
+    )
+
+
+def test_case_38_advisory_flags_other_than_router_defaults_survive():
+    """The filter must be conservative: it strips only the two named
+    router defaults. Other advisory flags (e.g. conflicting_outcome_signals,
+    outcome_not_concluded_advisory if present) must survive untouched."""
+    payload = _payload_keys_for_case_38()
+    risks = set(payload["result"]["risk_flags"])
+    # The smoke output for case 38 in PR #16 carried "conflicting_outcome_signals".
+    # Lock it as a survivability witness.
+    assert "conflicting_outcome_signals" in risks, (
+        f"expected conflicting_outcome_signals to survive the filter; got {sorted(risks)}"
+    )
+
+
+@pytest.mark.parametrize("case_id", [32, 33, 34, 37])
+def test_non_resolved_cases_keep_stale_router_flags(case_id):
+    """Cases with no graduating media (and identity ≤ medium for some)
+    legitimately still need both router defaults — the filter must NOT
+    strip them. Locks the conservative scoping."""
+    code, out, err = run_cli(
+        [
+            "--portal-replay",
+            "--portal-manifest-entry",
+            str(case_id),
+            "--emit-handoffs",
+            "--json",
+        ]
+    )
+    assert code == 0, f"case_id={case_id} non-zero exit: {err}"
+    payload = json.loads(out)
+    pkt = payload["packet_summary"]
+    identity_high = pkt["identity_confidence"] == "high"
+    has_artifacts = pkt["verified_artifact_count"] > 0
+    p5_risks = set(payload["handoffs"]["p2_to_p5"]["risk_flags"])
+    if not identity_high:
+        assert "identity_not_locked" in p5_risks, (
+            f"case_id={case_id} identity!=high but identity_not_locked was stripped; "
+            f"p5_risks={sorted(p5_risks)}"
+        )
+    if not has_artifacts:
+        assert "no_verified_artifacts" in p5_risks, (
+            f"case_id={case_id} no artifacts but no_verified_artifacts was stripped; "
+            f"p5_risks={sorted(p5_risks)}"
+        )
