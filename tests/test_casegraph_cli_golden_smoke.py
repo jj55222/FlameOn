@@ -176,27 +176,19 @@ def test_charged_advisory_signals_surface_in_result_section(charged_advisory_run
     )
 
 
-def test_charged_advisory_p5_handoff_exists_and_is_consistent(charged_advisory_run):
-    """KNOWN CONSISTENCY GAP — tracked separately from this smoke PR.
+def test_charged_advisory_p5_handoff_carries_pending_outcome_advisory(charged_advisory_run):
+    """The PR #12 adapter consistency fix routes the freshly computed
+    ActionabilityResult advisories into the P5 handoff via
+    ``export_p2_to_p5(packet, score_result=...)``. The CLI's
+    ``build_handoffs`` threads ``score_result`` through, so the P5
+    handoff now mirrors the root ``result`` section's advisory
+    surface.
 
-    The freshly computed ActionabilityResult (root ``result``) carries
-    the new advisory reason codes and risk flags
-    (``outcome_not_concluded_advisory``, ``produce_with_pending_outcome``)
-    — that's locked in by ``test_charged_advisory_signals_surface_in_result_section``
-    above.
-
-    The P5 export, however, reads from ``packet.risk_flags`` and
-    ``packet.next_actions``, which are NOT mutated by the pure
-    ``score_case_packet``. So the advisory text does not currently
-    reach the P5 handoff. This is an adapter/scoring consistency
-    issue to be fixed in a separate PR; this smoke suite intentionally
-    does not assert advisory presence in P5 yet, so it stays green
-    against today's product surface.
-
-    What we DO assert here: the P5 handoff exists, validates against
-    its schema, and carries a stable case_id. Once the consistency
-    fix lands, this test should be strengthened to assert the
-    advisory surface in P5 alongside the root result.
+    This test was previously a softened "documents the gap" placeholder
+    (the gap was tracked from PR #7 onward). Now strengthened to
+    assert advisory presence directly. ``score_case_packet`` remains
+    pure — the packet itself is not mutated; the merge happens inside
+    the exporter.
     """
     payload = charged_advisory_run.payload
     assert payload is not None
@@ -204,6 +196,20 @@ def test_charged_advisory_p5_handoff_exists_and_is_consistent(charged_advisory_r
     assert isinstance(p5, dict) and p5, "p2_to_p5 should be a non-empty object"
     _assert_valid("p2_to_p5.schema.json", p5)
     assert p5["case_id"] == payload["packet_summary"]["case_id"]
+    p5_risks = set(p5.get("risk_flags") or [])
+    p5_next_actions_text = " ".join(p5.get("next_actions") or []).lower()
+    assert "outcome_not_concluded_advisory" in p5_risks, (
+        f"P5 risk_flags should carry the freshly computed advisory; "
+        f"got {sorted(p5_risks)}"
+    )
+    assert "produce_with_pending_outcome" in p5_risks, (
+        f"P5 risk_flags should carry the produce-with-pending-outcome "
+        f"advisory; got {sorted(p5_risks)}"
+    )
+    assert "pending-outcome" in p5_next_actions_text, (
+        f"P5 next_actions should describe the pending-outcome caveat; "
+        f"got {p5.get('next_actions')}"
+    )
 
 
 def test_charged_advisory_handoffs_validate(charged_advisory_run):

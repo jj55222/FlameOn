@@ -1,9 +1,28 @@
 from __future__ import annotations
 
 from dataclasses import asdict, is_dataclass
-from typing import Any, Dict, List
+from typing import Any, Dict, Iterable, List, Optional
 
 from .models import LEGACY_EVIDENCE_TYPES, CasePacket
+
+
+def _merge_unique(existing: List[str], additions: Optional[Iterable[str]]) -> List[str]:
+    """Append items from ``additions`` to ``existing`` only when not
+    already present, preserving the original order. Pure helper used
+    by the handoff adapters to splice freshly computed advisory
+    signals into the packet's stored arrays without disturbing the
+    packet itself."""
+    merged = list(existing)
+    if not additions:
+        return merged
+    seen = set(merged)
+    for item in additions:
+        if item is None:
+            continue
+        if item not in seen:
+            merged.append(item)
+            seen.add(item)
+    return merged
 
 
 def _packet_dict(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
@@ -65,7 +84,24 @@ def export_p2_to_p3(packet: CasePacket | Dict[str, Any]) -> List[Dict[str, Any]]
     return rows
 
 
-def export_p2_to_p4(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
+def export_p2_to_p4(
+    packet: CasePacket | Dict[str, Any],
+    *,
+    score_result: Optional[Any] = None,
+) -> Dict[str, Any]:
+    """Export a CasePacket as the P2->P4 context handoff.
+
+    When ``score_result`` (an ``ActionabilityResult``) is supplied,
+    advisory signals from the freshly computed
+    ``score_result.risk_flags`` are merged into ``source_quality_notes``
+    so downstream consumers see the same caution context the CLI's
+    ``result`` section shows. Existing packet-level entries are kept
+    first; fresh entries are appended only when not already present.
+
+    When ``score_result`` is None, the export is byte-identical to
+    pre-merge behavior — every existing direct call site continues to
+    work unchanged.
+    """
     packet_data = _packet_dict(packet)
     sources = packet_data.get("sources", [])
     summary_sources = [
@@ -74,6 +110,12 @@ def export_p2_to_p4(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
         if set(source.get("source_roles", [])) & {"identity_source", "outcome_source"}
     ]
     identity = packet_data["case_identity"]
+    source_quality_notes = list(packet_data.get("risk_flags", []))
+    if score_result is not None:
+        source_quality_notes = _merge_unique(
+            source_quality_notes,
+            getattr(score_result, "risk_flags", None),
+        )
     return {
         "case_id": packet_data["case_id"],
         "case_identity": identity,
@@ -82,11 +124,29 @@ def export_p2_to_p4(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
         "summary_sources": summary_sources,
         "artifact_refs": [artifact["artifact_id"] for artifact in packet_data.get("verified_artifacts", [])],
         "known_gaps": list(packet_data.get("input", {}).get("missing_fields", [])),
-        "source_quality_notes": list(packet_data.get("risk_flags", [])),
+        "source_quality_notes": source_quality_notes,
     }
 
 
-def export_p2_to_p5(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
+def export_p2_to_p5(
+    packet: CasePacket | Dict[str, Any],
+    *,
+    score_result: Optional[Any] = None,
+) -> Dict[str, Any]:
+    """Export a CasePacket as the P2->P5 production-seed handoff.
+
+    When ``score_result`` (an ``ActionabilityResult``) is supplied,
+    fresh advisory signals from ``score_result.risk_flags`` and
+    ``score_result.next_actions`` are merged into the export's
+    ``risk_flags`` and ``next_actions`` so downstream P5 consumers see
+    the same caution context the CLI's ``result`` section shows.
+    Existing packet-level entries are kept first; fresh entries are
+    appended only when not already present.
+
+    When ``score_result`` is None, the export is byte-identical to
+    pre-merge behavior — every existing direct call site continues to
+    work unchanged.
+    """
     packet_data = _packet_dict(packet)
     case_title = _case_title(packet_data)
     jurisdiction = packet_data["case_identity"].get("jurisdiction", {})
@@ -102,14 +162,25 @@ def export_p2_to_p5(packet: CasePacket | Dict[str, Any]) -> Dict[str, Any]:
     if location:
         case_summary += f" for {location}"
     case_summary += "."
+    risk_flags = list(packet_data.get("risk_flags", []))
+    next_actions = list(packet_data.get("next_actions", []))
+    if score_result is not None:
+        risk_flags = _merge_unique(
+            risk_flags,
+            getattr(score_result, "risk_flags", None),
+        )
+        next_actions = _merge_unique(
+            next_actions,
+            getattr(score_result, "next_actions", None),
+        )
     return {
         "case_id": packet_data["case_id"],
         "verdict": packet_data["verdict"],
         "case_summary": case_summary,
         "artifact_table": list(packet_data.get("verified_artifacts", [])),
         "source_table": list(packet_data.get("sources", [])),
-        "next_actions": list(packet_data.get("next_actions", [])),
-        "risk_flags": list(packet_data.get("risk_flags", [])),
+        "next_actions": next_actions,
+        "risk_flags": risk_flags,
     }
 
 
