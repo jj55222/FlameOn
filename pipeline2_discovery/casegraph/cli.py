@@ -81,7 +81,14 @@ from .portal_dry_replay import (
     load_portal_replay_manifest,
 )
 from .portal_executor import execute_mock_portal_plan
+from .portal_fetch_client import PortalLiveTarget
 from .portal_fetch_plan import PortalFetchPlan
+from .portal_live_fetch import (
+    PortalLiveResult,
+    build_live_fetch_section,
+    load_portal_live_target,
+    run_portal_live,
+)
 from .query_planner import QueryPlanResult, plan_queries_from_structured_result
 from .reporting import build_actionability_report
 from .resolvers import run_metadata_only_resolvers
@@ -331,6 +338,7 @@ def build_run_bundle(
     notes: Optional[List[str]] = None,
     handoffs: Optional[Dict[str, Any]] = None,
     portal_replay: Optional[Dict[str, Any]] = None,
+    live_fetch: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Canonical CaseGraph run bundle (PIPE5).
 
@@ -405,6 +413,8 @@ def build_run_bundle(
         bundle["handoffs"] = handoffs
     if portal_replay is not None:
         bundle["portal_replay"] = portal_replay
+    if live_fetch is not None:
+        bundle["live_fetch"] = live_fetch
     return bundle
 
 
@@ -1267,6 +1277,29 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
             "network, no Firecrawl, no browser automation."
         ),
     )
+    mode_group.add_argument(
+        "--portal-live",
+        dest="portal_live",
+        action="store_true",
+        help=(
+            "Operator-triggered portal-live scaffolding. Runs the safety "
+            "preflight + bounded fetch + extract + replay chain against a "
+            "target fixture. Default fetcher is 'mock' (zero network); "
+            "'firecrawl' / 'requests' fetchers are skeleton-only in this "
+            "PR and refuse without a follow-up wiring. Requires "
+            "FLAMEON_RUN_LIVE_CASEGRAPH=1 AND FLAMEON_RUN_LIVE_PORTAL_FETCH=1; "
+            "the 'firecrawl' fetcher additionally requires FIRECRAWL_API_KEY."
+        ),
+    )
+    parser.add_argument(
+        "--target-fixture",
+        dest="target_fixture",
+        default=None,
+        help=(
+            "Path to a portal-live target fixture JSON (e.g. "
+            "tests/fixtures/portal_live_targets/...). Required by --portal-live."
+        ),
+    )
     parser.add_argument(
         "--connector",
         default="courtlistener",
@@ -1756,6 +1789,203 @@ def _run_portal_replay_mode(args, *, out, err) -> int:
     return EXIT_OK
 
 
+def _run_portal_live_mode(args, *, out, err) -> int:
+    """Operator-triggered portal-live scaffolding handler.
+
+    The mode is deliberately conservative:
+      - --target-fixture is required.
+      - --fixture / --portal-manifest-entry are not consumed here.
+      - The orchestrator runs the safety preflight, target-domain
+        check, fetch (mocked by default), save, and extract steps. It
+        never raises for safety/fetch failures — they surface as
+        ``status="blocked"`` plus a ``blocked_reason`` we map to
+        EXIT_LIVE_BLOCKED.
+      - When the run completes and the target opted in, the extracted
+        agency_ois payload is replayed through the existing
+        ``build_portal_replay_payload`` so the JSON / bundle / handoffs
+        match offline ``--portal-replay`` shape.
+    """
+    if not args.target_fixture:
+        err.write(
+            "error: --portal-live requires --target-fixture <path>\n"
+        )
+        return EXIT_FIXTURE_INVALID
+    target_path = Path(args.target_fixture)
+    if not target_path.exists():
+        err.write(f"error: target fixture not found: {target_path}\n")
+        return EXIT_FIXTURE_MISSING
+    try:
+        target = load_portal_live_target(target_path)
+    except (ValueError, json.JSONDecodeError) as exc:
+        err.write(f"error: {exc}\n")
+        return EXIT_FIXTURE_INVALID
+
+    started = time.perf_counter()
+    live_result = run_portal_live(target)
+    wallclock = round(time.perf_counter() - started, 4)
+    experiment_id = args.experiment_id or "PIPE3-cli-portal-live"
+    emit_handoffs = bool(args.emit_handoffs)
+    live_section = build_live_fetch_section(live_result)
+
+    if live_result.status != "completed":
+        # Blocked: emit a minimal JSON describing why and exit 5.
+        payload: Dict[str, Any] = {
+            "input_summary": {
+                "input_type": "portal_live",
+                "target_fixture": _relative_fixture_path(target_path),
+                "target_id": target.target_id,
+                "url": target.url,
+                "profile_id": target.profile_id,
+                "fetcher": target.fetcher,
+            },
+            "live_fetch": live_section,
+        }
+        if args.json:
+            out.write(json.dumps(payload, separators=(",", ": "), sort_keys=False))
+            out.write("\n")
+        else:
+            out.write(_format_portal_live_blocked_text(payload))
+        err.write(
+            f"error: portal-live blocked — {live_result.blocked_reason}\n"
+        )
+        return EXIT_LIVE_BLOCKED
+
+    # Completed: thread the extracted payload through the existing
+    # portal-replay path so JSON/bundle/handoffs reuse identical shape.
+    extracted_path = (
+        live_result.extracted_payload_path
+        or target_path  # fallback shouldn't happen since save_extracted is True by default
+    )
+    replay_output: Optional[Dict[str, Any]] = None
+    if target.replay_through_portal_replay and live_result.extracted_payload is not None:
+        replay_output = build_portal_replay_payload(
+            live_result.extracted_payload,
+            fixture_path=Path(extracted_path),
+            experiment_id=experiment_id,
+            wallclock_seconds=wallclock,
+            emit_handoffs=emit_handoffs,
+        )
+
+    if replay_output is not None:
+        output: Dict[str, Any] = {
+            **replay_output,
+            "input_summary": {
+                "input_type": "portal_live",
+                "target_fixture": _relative_fixture_path(target_path),
+                "target_id": target.target_id,
+                "url": target.url,
+                "profile_id": target.profile_id,
+                "fetcher": target.fetcher,
+                "subjects": replay_output["input_summary"].get("subjects", []),
+                "agency": replay_output["input_summary"].get("agency"),
+                "incident_date": replay_output["input_summary"].get("incident_date"),
+                "case_number": replay_output["input_summary"].get("case_number"),
+                "page_type": replay_output["input_summary"].get("page_type"),
+                "page_url": replay_output["input_summary"].get("page_url"),
+            },
+            "live_fetch": live_section,
+        }
+    else:
+        output = {
+            "input_summary": {
+                "input_type": "portal_live",
+                "target_fixture": _relative_fixture_path(target_path),
+                "target_id": target.target_id,
+                "url": target.url,
+                "profile_id": target.profile_id,
+                "fetcher": target.fetcher,
+            },
+            "live_fetch": live_section,
+        }
+
+    if args.json:
+        out.write(json.dumps(output, separators=(",", ": "), sort_keys=False))
+        out.write("\n")
+    else:
+        out.write(_format_portal_live_text(output))
+
+    if args.bundle_out:
+        # When replay produced a packet, reuse it for the bundle's
+        # canonical sections; otherwise emit a packet-less bundle that
+        # still carries live_fetch.
+        bundle_kwargs: Dict[str, Any] = {
+            "mode": "portal_live",
+            "experiment_id": experiment_id,
+            "wallclock_seconds": wallclock,
+            "live_fetch": live_section,
+            "notes": [
+                "portal-live",
+                f"target_id={target.target_id}",
+                f"fetcher={target.fetcher}",
+                f"profile={target.profile_id}",
+            ],
+        }
+        if replay_output is not None and live_result.extracted_payload is not None:
+            packet = _build_portal_packet(live_result.extracted_payload)
+            resolve_identity(packet)
+            resolve_outcome(packet)
+            extract_artifact_claims(packet)
+            run_metadata_only_resolvers(packet)
+            bundle_kwargs["packet"] = packet
+            bundle_kwargs["handoffs"] = (
+                build_handoffs(packet) if emit_handoffs else None
+            )
+            bundle_kwargs["portal_replay"] = replay_output["portal_replay"]
+        else:
+            bundle_kwargs["packet"] = None
+        try:
+            bundle = build_run_bundle(**bundle_kwargs)
+        except ValueError:
+            # build_run_bundle requires packet OR parsed; without
+            # either, skip bundle write rather than crash.
+            err.write(
+                "error: bundle requires a completed packet; "
+                "--portal-live with no replay cannot emit a bundle\n"
+            )
+            return EXIT_LIVE_BLOCKED
+        _write_bundle(Path(args.bundle_out), bundle)
+    return EXIT_OK
+
+
+def _format_portal_live_text(payload: Dict[str, Any]) -> str:
+    inp = payload["input_summary"]
+    live = payload["live_fetch"]
+    lines = [
+        "=== CaseGraph portal live (mocked) ===",
+        f"target_id: {live['target_id']}",
+        f"url: {live['url']}",
+        f"fetcher: {live['fetcher']}",
+        f"status: {live['status']}",
+        f"status_code: {live['status_code']}",
+        f"raw_payload_path: {live['raw_payload_path']}",
+        f"extracted_payload_path: {live['extracted_payload_path']}",
+        f"estimated_cost_usd: {live['estimated_cost_usd']}",
+    ]
+    if "result" in payload:
+        res = payload["result"]
+        lines.extend(
+            [
+                "",
+                f"verdict: {res['verdict']}",
+                f"actionability_score: {res['actionability_score']}",
+            ]
+        )
+    return "\n".join(lines) + "\n"
+
+
+def _format_portal_live_blocked_text(payload: Dict[str, Any]) -> str:
+    live = payload["live_fetch"]
+    return (
+        "=== CaseGraph portal live (BLOCKED) ===\n"
+        f"target_id: {live['target_id']}\n"
+        f"fetcher: {live['fetcher']}\n"
+        f"status: {live['status']}\n"
+        f"blocked_reason: {live['blocked_reason']}\n"
+        f"safety_status: {live['safety_status']}\n"
+        f"target_domain_status: {live['target_domain_status']}\n"
+    )
+
+
 def main(
     argv: Optional[Iterable[str]] = None,
     *,
@@ -1779,6 +2009,8 @@ def main(
 
     if args.portal_replay:
         return _run_portal_replay_mode(args, out=out, err=err)
+    if args.portal_live:
+        return _run_portal_live_mode(args, out=out, err=err)
     if args.live_dry:
         return _run_live_dry_mode(args, out=out, err=err)
     if args.query_plan:
