@@ -205,21 +205,111 @@ class FirecrawlFetchClient:
 
 
 class RequestsFetchClient:
-    """Skeleton ``requests``-based fetcher. Deferred — always returns
-    an error result so the orchestrator can surface the limitation
-    cleanly without invoking any network call."""
+    """``requests``-based portal fetcher.
+
+    Performs exactly one ``requests.Session.get`` per ``fetch`` call,
+    with a hard timeout, no retries, no redirects beyond the standard
+    HTTP behavior, and no link-following. The orchestrator is
+    responsible for env-gating and safety preflight before invoking
+    this client; the client itself only owns its per-call discipline.
+
+    The raw payload returned wraps the response in a small dict
+    suitable for both saving to disk and downstream extraction:
+
+        {
+            "content_type": "text/html",
+            "url": "<final URL after redirects>",
+            "status_code": 200,
+            "text": "<response body>",
+        }
+
+    The orchestrator's ``extract_to_agency_ois`` knows how to convert
+    this wrapper into the agency_ois fixture shape when the body
+    contains a ``<script type="application/json" id="flameon-agency-ois">``
+    JSON marker block. Real public-page HTML extraction is a
+    follow-up PR.
+
+    Tests monkey-patch ``requests.Session.get`` at the class level so
+    no real HTTP call escapes; this client never imports a real key
+    and never reads from disk.
+    """
 
     name = "requests"
+    _DEFAULT_TIMEOUT_SECONDS: float = 30.0
+    _DEFAULT_USER_AGENT: str = "FlameOn-CaseGraph-PortalLive/1.0"
+
+    def __init__(
+        self,
+        *,
+        session: Optional[Any] = None,
+        timeout_seconds: Optional[float] = None,
+        user_agent: Optional[str] = None,
+    ) -> None:
+        # Lazy import so importing this module never fails when the
+        # ``requests`` package is unavailable in unrelated contexts.
+        import requests as _requests
+
+        self._requests = _requests
+        self._session = session if session is not None else _requests.Session()
+        self._timeout_seconds = (
+            float(timeout_seconds)
+            if timeout_seconds is not None
+            else self._DEFAULT_TIMEOUT_SECONDS
+        )
+        self._user_agent = user_agent or self._DEFAULT_USER_AGENT
 
     def fetch(self, target: PortalLiveTarget) -> PortalFetchResult:
+        started = time.perf_counter()
+        try:
+            response = self._session.get(
+                target.url,
+                timeout=self._timeout_seconds,
+                headers={"User-Agent": self._user_agent},
+                allow_redirects=True,
+            )
+        except self._requests.exceptions.Timeout as exc:
+            return self._error_result(
+                started, error=f"timeout:{type(exc).__name__}"
+            )
+        except self._requests.exceptions.ConnectionError as exc:
+            return self._error_result(
+                started, error=f"connection_error:{type(exc).__name__}"
+            )
+        except self._requests.exceptions.RequestException as exc:
+            return self._error_result(
+                started, error=f"request_failed:{type(exc).__name__}"
+            )
+        wallclock = round(time.perf_counter() - started, 6)
+        content_type_raw = ""
+        try:
+            content_type_raw = str(response.headers.get("Content-Type", ""))
+        except Exception:  # pragma: no cover - defensive
+            content_type_raw = ""
+        content_type = content_type_raw.split(";")[0].strip().lower()
+        return PortalFetchResult(
+            raw_payload={
+                "content_type": content_type,
+                "url": str(getattr(response, "url", target.url) or target.url),
+                "status_code": int(response.status_code),
+                "text": str(getattr(response, "text", "") or ""),
+            },
+            status_code=int(response.status_code),
+            fetcher=self.name,
+            wallclock_seconds=wallclock,
+            api_calls={"requests": 1},
+            estimated_cost_usd=0.0,
+            error=None,
+        )
+
+    def _error_result(self, started: float, *, error: str) -> PortalFetchResult:
         return PortalFetchResult(
             raw_payload={},
             status_code=0,
             fetcher=self.name,
-            wallclock_seconds=0.0,
-            api_calls={"requests": 0},
+            wallclock_seconds=round(time.perf_counter() - started, 6),
+            api_calls={"requests": 1},
             estimated_cost_usd=0.0,
-            error="requests_fetcher_not_yet_implemented",
+            error=error,
         )
 
 

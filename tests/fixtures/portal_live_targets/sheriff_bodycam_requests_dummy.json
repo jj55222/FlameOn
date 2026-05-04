@@ -1,0 +1,13 @@
+{
+  "target_id": "sheriff_bodycam_requests_dummy",
+  "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-002",
+  "profile_id": "agency_ois_detail",
+  "fetcher": "requests",
+  "max_pages": 1,
+  "max_links": 5,
+  "allowed_domains": ["example-public-sheriff.gov"],
+  "expected_response_status": 200,
+  "save_raw_payload": true,
+  "save_extracted_payload": true,
+  "replay_through_portal_replay": true
+}

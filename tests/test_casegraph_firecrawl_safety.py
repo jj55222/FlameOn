@@ -191,3 +191,55 @@ def test_safety_wrapper_makes_no_network_calls(monkeypatch):
         repo_root=ROOT,
     )
     assert calls == []
+
+
+def test_safety_allows_requests_against_seeded_html_metadata_profile():
+    """A ``requests``-fetcher target against an HTML profile is
+    allowed when env gates are set: the requests fetcher is strictly
+    weaker than Firecrawl scraping (which the same profile already
+    permits), so the second acceptance path in ``_fetcher_allowed``
+    lets operators pick the cheaper, JS-free path for known-static
+    pages."""
+    decision = evaluate_fetch_safety(
+        PortalFetchSafetyRequest(
+            url="https://www.phoenix.gov/police/critical-incidents/2024-OIS-050",
+            profile_id="agency_ois_detail",
+            fetcher="requests",
+            max_pages=1,
+            max_links=5,
+            known_url=True,
+            dry_run=False,
+            live_env_gate=True,
+        ),
+        repo_root=ROOT,
+    )
+
+    assert decision.fetch_allowed is True
+    assert decision.blocked_reason is None
+
+
+def test_fetcher_allowed_predicate_is_scoped_to_known_tokens():
+    """Direct unit test of the predicate. ``requests`` is accepted
+    only when the profile's allowed_fetchers list contains either an
+    ``*_api`` token or ``seeded_html_metadata``; anything else is
+    rejected. ``firecrawl`` and unknown fetcher names follow the
+    pre-existing rules unchanged."""
+    from pipeline2_discovery.casegraph.firecrawl_safety import _fetcher_allowed
+
+    # requests: API-style token allowed.
+    assert _fetcher_allowed("requests", ["youtube_metadata_api"]) is True
+    assert _fetcher_allowed("requests", ["api_metadata"]) is True
+    # requests: seeded_html_metadata allowed (new path).
+    assert _fetcher_allowed("requests", ["seeded_html_metadata"]) is True
+    # requests: neither token → rejected.
+    assert _fetcher_allowed("requests", ["only_some_other_token"]) is False
+    assert _fetcher_allowed("requests", []) is False
+
+    # firecrawl: requires seeded_html_metadata exactly.
+    assert _fetcher_allowed("firecrawl", ["seeded_html_metadata"]) is True
+    assert _fetcher_allowed("firecrawl", ["youtube_metadata_api"]) is False
+    assert _fetcher_allowed("firecrawl", []) is False
+
+    # Unknown fetcher: literal-match only.
+    assert _fetcher_allowed("custom_x", ["custom_x"]) is True
+    assert _fetcher_allowed("custom_x", ["seeded_html_metadata"]) is False

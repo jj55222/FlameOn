@@ -231,7 +231,20 @@ def _matches_protected_pattern(url: str, profile) -> bool:
 def _fetcher_allowed(fetcher: str, allowed_fetchers: list[str]) -> bool:
     allowed = {item.lower() for item in allowed_fetchers}
     if fetcher == "requests":
-        return any(item.endswith("_api") or item == "api_metadata" for item in allowed)
+        # Two acceptance paths:
+        # - API-style fetcher tokens (``*_api`` / ``api_metadata``) for
+        #   structured-API portals (CourtListener / DocumentCloud /
+        #   MuckRock / etc.).
+        # - ``seeded_html_metadata`` for HTML-page profiles. A
+        #   ``requests.Session.get`` against a static HTML page is
+        #   strictly weaker than the Firecrawl scrape that the same
+        #   profile already permits, so allowing requests here adds no
+        #   new capability beyond what Firecrawl already had — it just
+        #   lets operators pick the cheaper, JS-free fetcher when the
+        #   target page is known to be static.
+        if any(item.endswith("_api") or item == "api_metadata" for item in allowed):
+            return True
+        return "seeded_html_metadata" in allowed
     if fetcher == "firecrawl":
         return "seeded_html_metadata" in allowed
     return fetcher in allowed
