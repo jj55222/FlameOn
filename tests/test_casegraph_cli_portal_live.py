@@ -38,6 +38,16 @@ REQUESTS_TARGET_FIXTURE = (
 FETCH_ONLY_TARGET_FIXTURE = (
     ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_fetch_only_dummy.json"
 )
+PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE = (
+    ROOT
+    / "tests"
+    / "fixtures"
+    / "portal_live_targets"
+    / "phoenix_pd_2024_11_05_3rd_clarendon_cib_real_extract_required.json"
+)
+PHOENIX_HTML_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_html" / "phoenix_newsroom_3286.html"
+)
 GATED_ENV = {
     "FLAMEON_RUN_LIVE_CASEGRAPH": "1",
     "FLAMEON_RUN_LIVE_PORTAL_FETCH": "1",
@@ -1106,6 +1116,137 @@ def test_portal_live_fetch_only_makes_zero_real_network_calls(monkeypatch, tmp_p
     # Hot (env set) — exactly one call.
     with _patched_env(GATED_ENV):
         run_cli(["--portal-live", "--target-fixture", str(target_path), "--json"])
+    assert len(captured) == 1
+
+
+# ---- Phoenix newsroom extractor (CLI surface, mocked network) -------
+#
+# End-to-end CLI run with require_extraction=true against the real
+# saved Phoenix HTML. requests.Session.get is monkey-patched to return
+# the fixture HTML so no real network is touched. Locks the contract
+# that the same target fixture used for the manual fetch-only smoke
+# can be re-run later (with require_extraction=true) to produce a
+# verified bodycam media row through the existing portal-replay path.
+
+
+def test_portal_live_phoenix_extract_required_replays_via_extractor(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    html = PHOENIX_HTML_FIXTURE.read_text(encoding="utf-8")
+
+    captured = []
+
+    def fake_get(self, url, *args, **kwargs):
+        captured.append(url)
+
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html; charset=utf-8"}
+            text = html
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    import requests
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    with _patched_env(GATED_ENV):
+        code, out, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
+
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    assert len(captured) == 1, "exactly one mocked Session.get call expected"
+    payload = json.loads(out)
+
+    live = payload["live_fetch"]
+    assert live["status"] == "completed"
+    assert live["fetcher"] == "requests"
+    assert live["api_calls"] == {"requests": 1}
+    assert live["status_code"] == 200
+    assert live["target_domain_status"] == "allowed"
+    assert live["replayed"] is True
+    assert live["raw_payload_path"]
+    assert live["extracted_payload_path"]
+
+    # Replay envelope present.
+    assert payload["packet_summary"]["case_id"]
+    types = set(payload["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types, (
+        f"Phoenix CIB YouTube embed should graduate as bodycam; got {sorted(types)}"
+    )
+    # Honest verdict: Phoenix CIBs don't name subjects so identity
+    # stays below HIGH and PRODUCE is not reached. Lock the enum.
+    assert payload["result"]["verdict"] in {"PRODUCE", "HOLD", "SKIP"}
+    assert payload["packet_summary"]["identity_confidence"] != "high"
+
+    # Handoffs are emitted; P5 verdict matches root result verdict.
+    handoffs = payload["handoffs"]
+    assert sorted(handoffs.keys()) == ["p2_to_p3", "p2_to_p4", "p2_to_p5"]
+    assert handoffs["p2_to_p5"]["verdict"] == payload["result"]["verdict"]
+
+
+def test_portal_live_phoenix_extract_required_makes_zero_real_network_calls(
+    tmp_path, monkeypatch
+):
+    """Belt-and-suspenders: the only HTTP call is via the
+    monkey-patched fake; the requests fetcher itself never touches the
+    real network."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    html = PHOENIX_HTML_FIXTURE.read_text(encoding="utf-8")
+    captured = []
+
+    def fake_get(self, url, *args, **kwargs):
+        captured.append(url)
+
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html"}
+            text = html
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    import requests
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    # Cold (no env) — zero wrapper calls.
+    run_cli(
+        [
+            "--portal-live",
+            "--target-fixture",
+            str(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE),
+            "--json",
+        ]
+    )
+    assert captured == []
+
+    # Hot (env set) — exactly one wrapper call.
+    with _patched_env(GATED_ENV):
+        run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
     assert len(captured) == 1
 
 
