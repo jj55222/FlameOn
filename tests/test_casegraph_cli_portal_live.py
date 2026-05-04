@@ -35,6 +35,9 @@ TARGET_FIXTURE = ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_
 REQUESTS_TARGET_FIXTURE = (
     ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_requests_dummy.json"
 )
+FETCH_ONLY_TARGET_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_fetch_only_dummy.json"
+)
 GATED_ENV = {
     "FLAMEON_RUN_LIVE_CASEGRAPH": "1",
     "FLAMEON_RUN_LIVE_PORTAL_FETCH": "1",
@@ -857,6 +860,253 @@ def test_portal_live_requests_makes_zero_real_network_calls(monkeypatch, tmp_pat
             ]
         )
     assert len(calls) == 1
+
+
+# ---- fetch-only mode (require_extraction=false) ----------------------
+#
+# Locks the operator-facing CLI shape for the first real static-URL
+# smoke: status="completed", no replay, no result/packet_summary/handoffs
+# in the JSON envelope, raw payload saved, bundle still emitted with
+# mode=portal_live and no portal_replay/handoffs sections.
+
+
+def test_portal_live_fetch_only_mock_target_exits_zero(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    with _patched_env(GATED_ENV):
+        code, out, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(FETCH_ONLY_TARGET_FIXTURE),
+                "--json",
+            ]
+        )
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    payload = json.loads(out)
+
+    live = payload["live_fetch"]
+    assert live["status"] == "completed"
+    assert live["require_extraction"] is False
+    assert live["replayed"] is False
+    assert live["raw_payload_path"]
+    assert live["extracted_payload_path"] is None
+
+    # JSON omits the replay-derived sections (no CasePacket exists).
+    assert "result" not in payload
+    assert "packet_summary" not in payload
+    assert "handoffs" not in payload
+    assert "portal_replay" not in payload
+
+
+def test_portal_live_fetch_only_emit_handoffs_flag_does_not_emit_handoffs(tmp_path, monkeypatch):
+    """--emit-handoffs is a no-op in fetch-only mode (no packet to
+    export). The flag must not crash; the JSON simply omits handoffs."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    with _patched_env(GATED_ENV):
+        code, out, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(FETCH_ONLY_TARGET_FIXTURE),
+                "--emit-handoffs",
+                "--json",
+            ]
+        )
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    payload = json.loads(out)
+    assert "handoffs" not in payload
+
+
+def test_portal_live_fetch_only_bundle_includes_live_fetch_omits_replay_sections(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path / "live",
+    )
+    bundle_path = tmp_path / "bundle.json"
+    with _patched_env(GATED_ENV):
+        code, _, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(FETCH_ONLY_TARGET_FIXTURE),
+                "--json",
+                "--bundle-out",
+                str(bundle_path),
+            ]
+        )
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+
+    assert bundle["mode"] == "portal_live"
+    assert "live_fetch" in bundle
+    assert bundle["live_fetch"]["status"] == "completed"
+    assert bundle["live_fetch"]["require_extraction"] is False
+
+    # Packet-derived sections are explicitly None / empty.
+    assert bundle["identity"] is None
+    assert bundle["outcome"] is None
+    assert bundle["result"] is None
+    assert bundle["actionability_report"] is None
+    assert bundle["verified_artifacts"] == []
+    assert bundle["artifact_claims"] == []
+
+    # Replay/handoffs sections deliberately absent.
+    assert "portal_replay" not in bundle
+    assert "handoffs" not in bundle
+
+
+def test_portal_live_fetch_only_requests_path_with_html_without_marker(tmp_path, monkeypatch):
+    """Build a fetch-only target on the fly that uses the requests
+    fetcher; the monkey-patched session returns HTML without the
+    flameon-agency-ois marker. Without fetch-only mode this would
+    block; with require_extraction=false it must complete and save
+    the raw HTML."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path / "live",
+    )
+
+    captured = []
+
+    def fake_get(self, url, *args, **kwargs):
+        captured.append(url)
+
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html"}
+            text = "<html><body>real-page-shape, no marker</body></html>"
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    import requests
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    target_path = tmp_path / "requests_fetch_only.json"
+    target_path.write_text(
+        json.dumps(
+            {
+                "target_id": "requests_fetch_only_synth",
+                "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-FETCH-ONLY",
+                "profile_id": "agency_ois_detail",
+                "fetcher": "requests",
+                "max_pages": 1,
+                "max_links": 5,
+                "allowed_domains": ["example-public-sheriff.gov"],
+                "expected_response_status": 200,
+                "save_raw_payload": True,
+                "save_extracted_payload": False,
+                "replay_through_portal_replay": False,
+                "require_extraction": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with _patched_env(GATED_ENV):
+        code, out, err = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(target_path),
+                "--json",
+            ]
+        )
+    assert code == cli.EXIT_OK, f"stderr: {err}"
+    assert len(captured) == 1, "exactly one Session.get call expected"
+    payload = json.loads(out)
+    assert payload["live_fetch"]["status"] == "completed"
+    assert payload["live_fetch"]["fetcher"] == "requests"
+    assert payload["live_fetch"]["replayed"] is False
+    assert "result" not in payload
+
+
+def test_portal_live_fetch_only_blocks_without_env_gates(tmp_path, monkeypatch):
+    """Cold path: env unset → safety preflight blocks before fetcher
+    is constructed. The fetch-only flag does not bypass safety."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path,
+    )
+    with _cleared_env(["FLAMEON_RUN_LIVE_CASEGRAPH", "FLAMEON_RUN_LIVE_PORTAL_FETCH"]):
+        code, out, _ = run_cli(
+            [
+                "--portal-live",
+                "--target-fixture",
+                str(FETCH_ONLY_TARGET_FIXTURE),
+                "--json",
+            ]
+        )
+    assert code == cli.EXIT_LIVE_BLOCKED
+    payload = json.loads(out)
+    assert payload["live_fetch"]["status"] == "blocked"
+    assert "missing_env_gates" in payload["live_fetch"]["blocked_reason"]
+
+
+def test_portal_live_fetch_only_makes_zero_real_network_calls(monkeypatch, tmp_path):
+    """Cold + hot fetch-only paths: zero real HTTP calls, exactly one
+    wrapper invocation on the requests hot path."""
+    monkeypatch.setattr(
+        "pipeline2_discovery.casegraph.portal_live_fetch._default_payloads_dir",
+        lambda repo_root: tmp_path / "live",
+    )
+
+    captured = []
+
+    def fake_get(self, url, *args, **kwargs):
+        captured.append(url)
+
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html"}
+            text = "<html></html>"
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    import requests
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    # Cold (env unset) on the requests fetch-only target — no calls.
+    target_path = tmp_path / "fo.json"
+    target_path.write_text(
+        json.dumps(
+            {
+                "target_id": "fo",
+                "url": "https://example-public-sheriff.gov/x",
+                "profile_id": "agency_ois_detail",
+                "fetcher": "requests",
+                "max_pages": 1,
+                "max_links": 5,
+                "allowed_domains": ["example-public-sheriff.gov"],
+                "expected_response_status": 200,
+                "save_raw_payload": True,
+                "save_extracted_payload": False,
+                "replay_through_portal_replay": False,
+                "require_extraction": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+    run_cli(["--portal-live", "--target-fixture", str(target_path), "--json"])
+    assert captured == []
+
+    # Hot (env set) — exactly one call.
+    with _patched_env(GATED_ENV):
+        run_cli(["--portal-live", "--target-fixture", str(target_path), "--json"])
+    assert len(captured) == 1
 
 
 # ---- default mode unaffected -----------------------------------------

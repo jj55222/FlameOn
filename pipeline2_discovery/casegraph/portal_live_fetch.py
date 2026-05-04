@@ -77,6 +77,12 @@ def load_portal_live_target(path: Path) -> PortalLiveTarget:
     allowed_domains = data.get("allowed_domains") or []
     if not isinstance(allowed_domains, list):
         raise ValueError("target fixture allowed_domains must be a list")
+    if "require_extraction" in data and not isinstance(
+        data["require_extraction"], bool
+    ):
+        raise ValueError(
+            "target fixture require_extraction must be a boolean (true/false)"
+        )
     return PortalLiveTarget(
         target_id=str(data["target_id"]),
         url=str(data["url"]),
@@ -91,6 +97,7 @@ def load_portal_live_target(path: Path) -> PortalLiveTarget:
         replay_through_portal_replay=bool(
             data.get("replay_through_portal_replay", True)
         ),
+        require_extraction=bool(data.get("require_extraction", True)),
         mock_response=data.get("mock_response") if isinstance(
             data.get("mock_response"), dict
         ) else None,
@@ -225,6 +232,21 @@ def run_portal_live(
             timestamp=timestamp,
         )
 
+    if not target.require_extraction:
+        # Fetch-only mode: skip extract + extracted-save + replay.
+        # Operator gets the raw HTML on disk to inspect by hand.
+        return PortalLiveResult(
+            target=target,
+            safety_decision=safety_decision,
+            target_domain_status=target_domain_status,
+            fetch_result=fetch_result,
+            extracted_payload=None,
+            raw_payload_path=raw_path,
+            extracted_payload_path=None,
+            status="completed",
+            blocked_reason=None,
+        )
+
     try:
         extracted = extract_to_agency_ois(fetch_result.raw_payload)
     except ValueError as exc:
@@ -348,14 +370,21 @@ def _extract_from_html_marker_block(html: str) -> Dict[str, Any]:
 def build_live_fetch_section(result: PortalLiveResult) -> Dict[str, Any]:
     """Operator-facing JSON section. Surfaces every diagnostic the
     operator should see — fetcher, paths, status, costs — without ever
-    exposing API key contents."""
+    exposing API key contents.
+
+    ``replayed`` is True only when the run completed AND the target
+    asked for replay AND extraction actually produced a payload.
+    Fetch-only mode (``require_extraction=False``) always reports
+    ``replayed=False``; the field is also explicitly surfaced so the
+    operator can see the choice."""
     fetch_result = result.fetch_result
-    fetch_result_dict = fetch_result.to_dict() if fetch_result else None
+    extracted_present = result.extracted_payload is not None
     return {
         "target_id": result.target.target_id,
         "url": result.target.url,
         "profile_id": result.target.profile_id,
         "fetcher": result.target.fetcher,
+        "require_extraction": result.target.require_extraction,
         "raw_payload_path": _relative_or_str(result.raw_payload_path),
         "extracted_payload_path": _relative_or_str(result.extracted_payload_path),
         "status": result.status,
@@ -369,6 +398,8 @@ def build_live_fetch_section(result: PortalLiveResult) -> Dict[str, Any]:
         "replayed": (
             result.status == "completed"
             and result.target.replay_through_portal_replay
+            and result.target.require_extraction
+            and extracted_present
         ),
     }
 
