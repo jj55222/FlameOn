@@ -346,9 +346,19 @@ def build_run_bundle(
     are explicitly ``None`` rather than missing so downstream consumers
     can rely on key presence. Pure: builds from already-computed inputs
     and never makes a network call. The packet, when supplied, is not
-    mutated."""
-    if packet is None and parsed is None:
-        raise ValueError("build_run_bundle requires a packet or a parsed input")
+    mutated.
+
+    Three input modes:
+      - ``packet`` supplied: full default-mode shape, scoring runs.
+      - ``parsed`` supplied: structured-input mode, scoring stays None.
+      - neither, but ``live_fetch`` supplied: fetch-only portal-live
+        mode (no packet exists because extraction was deliberately
+        skipped). Packet-derived sections are explicitly None / empty.
+    """
+    if packet is None and parsed is None and live_fetch is None:
+        raise ValueError(
+            "build_run_bundle requires a packet, a parsed input, or live_fetch"
+        )
 
     if packet is not None:
         input_summary: Dict[str, Any] = _input_summary(packet)
@@ -369,8 +379,7 @@ def build_run_bundle(
             wallclock_seconds=wallclock_seconds,
             notes=notes,
         )
-    else:
-        assert parsed is not None  # for type checker
+    elif parsed is not None:
         input_summary = _structured_summary(parsed)
         identity_section = None
         outcome_section = None
@@ -385,6 +394,34 @@ def build_run_bundle(
             experiment_id=experiment_id,
             case_id=None,
             api_calls=api_calls,
+            wallclock_seconds=wallclock_seconds,
+            notes=notes,
+        )
+    else:
+        # Fetch-only portal-live: minimal input_summary derived from
+        # the live_fetch section so the bundle stays operator-readable
+        # without needing a packet or parsed input.
+        input_summary = {
+            "input_type": "portal_live",
+            "target_id": live_fetch.get("target_id"),
+            "url": live_fetch.get("url"),
+            "profile_id": live_fetch.get("profile_id"),
+            "fetcher": live_fetch.get("fetcher"),
+            "require_extraction": live_fetch.get("require_extraction", False),
+        }
+        identity_section = None
+        outcome_section = None
+        connector_summary = None
+        artifact_claims = []
+        verified_artifacts = []
+        result_section = None
+        actionability_report = None
+        next_actions = []
+        risk_flags = []
+        ledger = build_run_ledger_entry(
+            experiment_id=experiment_id,
+            case_id=None,
+            api_calls=api_calls or live_fetch.get("api_calls"),
             wallclock_seconds=wallclock_seconds,
             notes=notes,
         )

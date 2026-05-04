@@ -34,6 +34,17 @@ class PortalLiveTarget:
 
     ``mock_response`` is consumed only by ``MockFetchClient``; real
     fetchers ignore it.
+
+    ``require_extraction`` controls whether the orchestrator runs the
+    agency_ois extractor and the downstream replay step. The default
+    (``True``) preserves PR #19 behavior: HTML without the
+    ``flameon-agency-ois`` marker block fails extraction and the run
+    is blocked. Setting it to ``False`` enables fetch-only mode for
+    the first real static-URL smoke: the orchestrator saves the raw
+    payload, skips extraction, skips the extracted-payload save,
+    skips the replay step, and reports ``status="completed"`` so the
+    operator can inspect the saved HTML by hand and design a
+    real-page extractor in a follow-up PR.
     """
 
     target_id: str
@@ -47,6 +58,7 @@ class PortalLiveTarget:
     save_raw_payload: bool = True
     save_extracted_payload: bool = True
     replay_through_portal_replay: bool = True
+    require_extraction: bool = True
     mock_response: Optional[Dict[str, Any]] = None
 
 

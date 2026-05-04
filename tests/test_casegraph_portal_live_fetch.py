@@ -949,3 +949,248 @@ def test_extract_to_agency_ois_html_path_rejects_payload_without_required_keys()
     }
     with pytest.raises(ValueError, match="html_marker_block_payload_invalid"):
         extract_to_agency_ois(raw)
+
+
+# ---- fetch-only mode (require_extraction=false) ----------------------
+#
+# When the target opts out of extraction, the orchestrator stops
+# after saving the raw payload: no extract attempt, no extracted
+# file, no replay. Status is "completed" so the operator can inspect
+# the raw HTML and design a real-page extractor in a follow-up PR.
+
+
+FETCH_ONLY_TARGET_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_targets" / "sheriff_bodycam_fetch_only_dummy.json"
+)
+
+
+def test_load_portal_live_target_defaults_require_extraction_to_true():
+    """Backwards-compat: existing fixtures (which don't carry the new
+    field) must still load with require_extraction=True so PR #19
+    behavior is unchanged for every prior target."""
+    target = load_portal_live_target(TARGET_FIXTURE)
+    assert target.require_extraction is True
+
+
+def test_load_portal_live_target_honors_explicit_false():
+    target = load_portal_live_target(FETCH_ONLY_TARGET_FIXTURE)
+    assert target.require_extraction is False
+    assert target.replay_through_portal_replay is False
+    assert target.save_extracted_payload is False
+    assert target.save_raw_payload is True
+
+
+def test_load_portal_live_target_rejects_non_boolean_require_extraction(tmp_path):
+    bad = tmp_path / "bad.json"
+    bad.write_text(
+        json.dumps(
+            {
+                "target_id": "x",
+                "url": "https://x.example",
+                "profile_id": "agency_ois_detail",
+                "allowed_domains": ["x.example"],
+                "require_extraction": "yes",
+            }
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="require_extraction must be a boolean"):
+        load_portal_live_target(bad)
+
+
+def test_run_portal_live_fetch_only_mock_target_completes_without_extraction(tmp_path):
+    target = load_portal_live_target(FETCH_ONLY_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "completed"
+    assert result.blocked_reason is None
+    assert result.fetch_result is not None
+    assert result.fetch_result.error is None
+    # Raw saved.
+    assert result.raw_payload_path is not None
+    assert result.raw_payload_path.exists()
+    # Extracted skipped.
+    assert result.extracted_payload is None
+    assert result.extracted_payload_path is None
+
+
+def test_run_portal_live_fetch_only_requests_html_without_marker_completes(monkeypatch, tmp_path):
+    """The whole point of fetch-only mode: HTML without the
+    flameon-agency-ois marker must NOT block. The raw HTML lands on
+    disk and the orchestrator reports success."""
+    import requests
+
+    captured_urls: list[str] = []
+
+    def fake_get(self, url, *args, **kwargs):
+        captured_urls.append(url)
+
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html"}
+            text = "<html><body>arbitrary real-page HTML, no marker block here</body></html>"
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    fetch_only_target_path = tmp_path / "requests_fetch_only_target.json"
+    fetch_only_target_path.write_text(
+        json.dumps(
+            {
+                "target_id": "requests_fetch_only_synth",
+                "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-FETCH-ONLY",
+                "profile_id": "agency_ois_detail",
+                "fetcher": "requests",
+                "max_pages": 1,
+                "max_links": 5,
+                "allowed_domains": ["example-public-sheriff.gov"],
+                "expected_response_status": 200,
+                "save_raw_payload": True,
+                "save_extracted_payload": False,
+                "replay_through_portal_replay": False,
+                "require_extraction": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+    target = load_portal_live_target(fetch_only_target_path)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "completed", (
+        f"expected completed; blocked_reason={result.blocked_reason!r}"
+    )
+    assert len(captured_urls) == 1, "exactly one Session.get call expected"
+    assert result.fetch_result is not None
+    assert result.fetch_result.error is None
+    assert result.raw_payload_path is not None
+    assert result.raw_payload_path.exists()
+    assert result.extracted_payload is None
+    assert result.extracted_payload_path is None
+    saved = json.loads(result.raw_payload_path.read_text(encoding="utf-8"))
+    assert saved["status_code"] == 200
+    assert "no marker block here" in saved["text"]
+
+
+def test_run_portal_live_extraction_required_html_without_marker_still_blocks(monkeypatch, tmp_path):
+    """Regression guard: with require_extraction=true (the default),
+    HTML without the marker must still block exactly as PR #19 set
+    up. The new flag must not silently weaken the existing path."""
+    import requests
+
+    def fake_get(self, url, *args, **kwargs):
+        class _R:
+            status_code = 200
+            headers = {"Content-Type": "text/html"}
+            text = "<html><body>no marker</body></html>"
+
+            def __init__(self, u):
+                self.url = u
+
+        return _R(url)
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    target_path = tmp_path / "extraction_required_target.json"
+    target_path.write_text(
+        json.dumps(
+            {
+                "target_id": "extraction_required_synth",
+                "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-REQ",
+                "profile_id": "agency_ois_detail",
+                "fetcher": "requests",
+                "max_pages": 1,
+                "max_links": 5,
+                "allowed_domains": ["example-public-sheriff.gov"],
+                "expected_response_status": 200,
+                "save_raw_payload": True,
+                "save_extracted_payload": True,
+                "replay_through_portal_replay": True,
+                # require_extraction omitted → defaults to True
+            }
+        ),
+        encoding="utf-8",
+    )
+    target = load_portal_live_target(target_path)
+    assert target.require_extraction is True
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "blocked"
+    assert (result.blocked_reason or "").startswith("extract_failed:")
+    assert "html_marker_block_missing" in (result.blocked_reason or "")
+
+
+def test_build_live_fetch_section_fetch_only_reports_replayed_false(tmp_path):
+    target = load_portal_live_target(FETCH_ONLY_TARGET_FIXTURE)
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+    section = build_live_fetch_section(result)
+
+    assert section["status"] == "completed"
+    assert section["require_extraction"] is False
+    assert section["replayed"] is False
+    assert section["raw_payload_path"] is not None
+    assert section["extracted_payload_path"] is None
+
+
+def test_build_live_fetch_section_extraction_mode_replayed_true_when_extracted_present(tmp_path):
+    """Backwards-compat: with require_extraction=true and a successful
+    extract+replay, replayed=True (locks the existing PR #19 contract)."""
+    target = load_portal_live_target(TARGET_FIXTURE)  # mock fetcher, full path
+    result = run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+    section = build_live_fetch_section(result)
+
+    assert section["status"] == "completed"
+    assert section["require_extraction"] is True
+    assert section["replayed"] is True
+
+
+def test_run_portal_live_fetch_only_makes_zero_real_network_calls(monkeypatch, tmp_path):
+    """The fetch-only mock target uses the mock fetcher; assert the
+    requests session is never touched."""
+    import requests
+
+    calls = []
+
+    def fake_get(self, *args, **kwargs):
+        calls.append((args, kwargs))
+        return None
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    target = load_portal_live_target(FETCH_ONLY_TARGET_FIXTURE)
+    run_portal_live(
+        target,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert calls == []
