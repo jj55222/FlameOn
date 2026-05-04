@@ -1,0 +1,14 @@
+{
+  "target_id": "phoenix_pd_2024_11_05_3rd_clarendon_cib",
+  "url": "https://www.phoenix.gov/newsroom/police-department-news/3286.html",
+  "profile_id": "agency_ois_detail",
+  "fetcher": "requests",
+  "max_pages": 1,
+  "max_links": 5,
+  "allowed_domains": ["www.phoenix.gov"],
+  "expected_response_status": 200,
+  "save_raw_payload": true,
+  "save_extracted_payload": false,
+  "replay_through_portal_replay": false,
+  "require_extraction": false
+}
