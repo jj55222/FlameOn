@@ -951,6 +951,277 @@ def test_extract_to_agency_ois_html_path_rejects_payload_without_required_keys()
         extract_to_agency_ois(raw)
 
 
+# ---- Phoenix newsroom extractor dispatch ----------------------------
+#
+# The dispatcher in extract_to_agency_ois picks per-template
+# extractors before the synthetic flameon-agency-ois marker fallback
+# whenever the URL host + body class match. The Phoenix path is the
+# first per-template extractor; locks dispatch ordering so future
+# extractors layer in cleanly.
+
+
+PHOENIX_HTML_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "portal_live_html" / "phoenix_newsroom_3286.html"
+)
+PHOENIX_URL = "https://www.phoenix.gov/newsroom/police-department-news/3286.html"
+
+
+def _phoenix_html() -> str:
+    assert PHOENIX_HTML_FIXTURE.exists(), (
+        f"missing committed HTML fixture: {PHOENIX_HTML_FIXTURE}"
+    )
+    return PHOENIX_HTML_FIXTURE.read_text(encoding="utf-8")
+
+
+def test_extract_to_agency_ois_dispatches_phoenix_html_to_per_template_extractor():
+    """Real Phoenix Newsroom HTML, no synthetic marker block: the
+    dispatcher must route through the Phoenix extractor and emit
+    agency_ois fields directly."""
+    raw = {
+        "content_type": "text/html",
+        "url": PHOENIX_URL,
+        "status_code": 200,
+        "text": _phoenix_html(),
+    }
+    out = extract_to_agency_ois(raw)
+    assert out["agency"] == "Phoenix Police Department"
+    assert (
+        out["title"]
+        == "Critical Incident Briefing - November 5th - 3rd Street and Clarendon"
+    )
+    assert out["incident_date"] == "2024-11-05"
+    assert out["page_type"] == "incident_detail"
+    media_urls = [m["url"] for m in out["media_links"]]
+    assert "https://www.youtube.com/watch?v=15yKyn6BprE" in media_urls
+
+
+def test_extract_to_agency_ois_phoenix_dispatch_does_not_require_marker():
+    """Sanity guard: the saved Phoenix HTML does NOT contain the
+    flameon-agency-ois marker block. The dispatcher must succeed
+    without it."""
+    html = _phoenix_html()
+    assert 'id="flameon-agency-ois"' not in html
+    raw = {
+        "content_type": "text/html",
+        "url": PHOENIX_URL,
+        "status_code": 200,
+        "text": html,
+    }
+    out = extract_to_agency_ois(raw)
+    assert out["page_type"] == "incident_detail"
+
+
+def test_extract_to_agency_ois_non_phoenix_html_without_marker_still_blocks():
+    """Existing PR #19 contract preserved: HTML on a non-Phoenix
+    host, with no synthetic marker block, still raises with the
+    legacy ``html_marker_block_missing`` prefix."""
+    raw = {
+        "content_type": "text/html",
+        "url": "https://www.example-public-sheriff.gov/critical-incidents/x",
+        "status_code": 200,
+        "text": "<html><body>some agency page, no marker, no template</body></html>",
+    }
+    with pytest.raises(ValueError, match="html_marker_block_missing"):
+        extract_to_agency_ois(raw)
+
+
+def test_extract_to_agency_ois_phoenix_url_but_non_article_template_falls_back_to_marker():
+    """A page on www.phoenix.gov that is NOT an AEM article-detail
+    (no ``article-detail`` body class) must NOT use the Phoenix
+    extractor. It falls back to the synthetic-marker path, which
+    fails with ``html_marker_block_missing`` since this synthetic
+    page also has no marker. This is the over-broad-extraction
+    guard."""
+    raw = {
+        "content_type": "text/html",
+        "url": "https://www.phoenix.gov/services/some-other-landing",
+        "status_code": 200,
+        "text": (
+            "<html><body class=\"page basicpage\"><h1>Department landing</h1>"
+            "</body></html>"
+        ),
+    }
+    with pytest.raises(ValueError, match="html_marker_block_missing"):
+        extract_to_agency_ois(raw)
+
+
+def test_extract_to_agency_ois_phoenix_dispatch_preserves_marker_path_for_synthetic():
+    """A non-Phoenix host with a valid synthetic marker block still
+    parses cleanly (the existing marker path is not touched)."""
+    payload = {
+        "page_type": "incident_detail",
+        "agency": "Synth Agency",
+        "url": "https://other.example/x",
+    }
+    raw = {
+        "content_type": "text/html",
+        "url": "https://other.example/x",
+        "status_code": 200,
+        "text": (
+            "<html><body><script type=\"application/json\" "
+            "id=\"flameon-agency-ois\">"
+            + json.dumps(payload)
+            + "</script></body></html>"
+        ),
+    }
+    out = extract_to_agency_ois(raw)
+    assert out == payload
+
+
+# ---- orchestrator + replay (require_extraction=true, mocked client) -
+
+
+PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE = (
+    ROOT
+    / "tests"
+    / "fixtures"
+    / "portal_live_targets"
+    / "phoenix_pd_2024_11_05_3rd_clarendon_cib_real_extract_required.json"
+)
+
+
+class _FakePhoenixHtmlFetchClient:
+    """Injected fetch_client that returns the saved Phoenix HTML
+    wrapped exactly as the requests fetcher would. Zero network."""
+
+    name = "requests"
+
+    def __init__(self, html: str, *, status_code: int = 200) -> None:
+        self._html = html
+        self._status_code = status_code
+
+    def fetch(self, target):  # signature matches PortalFetchClient
+        from pipeline2_discovery.casegraph.portal_fetch_client import PortalFetchResult
+
+        return PortalFetchResult(
+            raw_payload={
+                "content_type": "text/html",
+                "url": target.url,
+                "status_code": self._status_code,
+                "text": self._html,
+            },
+            status_code=self._status_code,
+            fetcher=self.name,
+            wallclock_seconds=0.0,
+            api_calls={"requests": 1},
+            estimated_cost_usd=0.0,
+            error=None,
+        )
+
+
+def test_run_portal_live_extract_required_against_phoenix_html_completes(tmp_path):
+    target = load_portal_live_target(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE)
+    assert target.require_extraction is True
+    assert target.replay_through_portal_replay is True
+    client = _FakePhoenixHtmlFetchClient(_phoenix_html())
+
+    result = run_portal_live(
+        target,
+        fetch_client=client,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+
+    assert result.status == "completed", (
+        f"expected completed; blocked_reason={result.blocked_reason!r}"
+    )
+    # Raw + extracted both saved on disk.
+    assert result.raw_payload_path is not None and result.raw_payload_path.exists()
+    assert (
+        result.extracted_payload_path is not None
+        and result.extracted_payload_path.exists()
+    )
+    # Extracted payload is the agency_ois shape produced by the
+    # Phoenix extractor — replayable by --portal-replay --fixture <path>.
+    assert result.extracted_payload is not None
+    assert result.extracted_payload["agency"] == "Phoenix Police Department"
+    assert result.extracted_payload["incident_date"] == "2024-11-05"
+    assert result.extracted_payload["media_links"][0]["url"].endswith("v=15yKyn6BprE")
+
+
+def test_phoenix_extracted_payload_replays_through_build_portal_replay_payload(tmp_path):
+    """Round-trip: extracted payload from the real Phoenix HTML must
+    feed cleanly through the existing offline replay builder. Verdict
+    is allowed to be HOLD (Phoenix CIBs don't name subjects, so
+    identity stays below HIGH); the assertion is that the chain
+    *runs* — not that it produces PRODUCE."""
+    from pipeline2_discovery.casegraph.cli import build_portal_replay_payload
+
+    target = load_portal_live_target(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE)
+    client = _FakePhoenixHtmlFetchClient(_phoenix_html())
+    result = run_portal_live(
+        target,
+        fetch_client=client,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+    assert result.status == "completed"
+    assert result.extracted_payload is not None
+
+    replay = build_portal_replay_payload(
+        result.extracted_payload,
+        fixture_path=result.extracted_payload_path,
+        emit_handoffs=True,
+    )
+
+    # Replay envelope is the standard --portal-replay shape.
+    for key in (
+        "input_summary",
+        "packet_summary",
+        "result",
+        "report",
+        "ledger_entry",
+        "portal_replay",
+        "handoffs",
+    ):
+        assert key in replay, f"missing replay key {key!r}"
+
+    # The bodycam_briefing graduates as a verified bodycam media row.
+    types = set(replay["packet_summary"]["verified_artifact_types"])
+    assert "bodycam" in types
+
+    # Verdict must be one of the canonical enums; no constraint on
+    # PRODUCE specifically since Phoenix CIBs don't name subjects and
+    # identity stays below HIGH.
+    assert replay["result"]["verdict"] in {"PRODUCE", "HOLD", "SKIP"}
+    # Identity confidence is honest: the page has no named subject,
+    # so identity should NOT reach high (locks the "no defendant
+    # invented" guarantee from the extractor).
+    assert (
+        replay["packet_summary"]["identity_confidence"] != "high"
+    ), "Phoenix CIBs without named subjects must not reach HIGH identity"
+
+
+def test_run_portal_live_phoenix_extract_required_makes_zero_real_network_calls(
+    monkeypatch, tmp_path
+):
+    """Defensive: the injected fake client is the only fetcher used;
+    monkeypatch requests.Session.get to verify the orchestrator never
+    routes through the real network even when require_extraction=true."""
+    import requests
+
+    calls = []
+
+    def fake_get(self, *args, **kwargs):
+        calls.append((args, kwargs))
+        return None
+
+    monkeypatch.setattr(requests.Session, "get", fake_get)
+
+    target = load_portal_live_target(PHOENIX_EXTRACT_REQUIRED_TARGET_FIXTURE)
+    client = _FakePhoenixHtmlFetchClient(_phoenix_html())
+    run_portal_live(
+        target,
+        fetch_client=client,
+        env=GATED_ENV,
+        repo_root=ROOT,
+        payloads_dir=tmp_path,
+    )
+    assert calls == []
+
+
 # ---- fetch-only mode (require_extraction=false) ----------------------
 #
 # When the target opts out of extraction, the orchestrator stops

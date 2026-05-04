@@ -47,6 +47,10 @@ _AGENCY_OIS_HTML_MARKER_PATTERN = re.compile(
     re.DOTALL | re.IGNORECASE,
 )
 
+from .extractors import (
+    extract_phoenix_newsroom_to_agency_ois,
+    is_phoenix_newsroom_article_detail,
+)
 from .firecrawl_safety import (
     KnownUrlLiveSmokeDecision,
     KnownUrlLiveSmokeTarget,
@@ -320,7 +324,14 @@ def extract_to_agency_ois(raw: Mapping[str, Any]) -> Dict[str, Any]:
 
     content_type = str(raw.get("content_type") or "").lower()
     body = raw.get("text")
+    source_url = str(raw.get("url") or "")
     if content_type.startswith("text/html") and isinstance(body, str):
+        # Per-template extractors run first when the URL host + body
+        # markers match. They short-circuit so the synthetic
+        # ``flameon-agency-ois`` JSON marker block is only used as a
+        # last resort for non-real-page tests.
+        if is_phoenix_newsroom_article_detail(body, source_url):
+            return extract_phoenix_newsroom_to_agency_ois(body, source_url)
         return _extract_from_html_marker_block(body)
 
     raise ValueError(
