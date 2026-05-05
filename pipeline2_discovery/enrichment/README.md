@@ -175,13 +175,59 @@ python tools/run_enrichment_tasks.py
     [--task-type youtube_query|muckrock_query|official_source_query|outcome_query]   repeatable filter
     [--candidate-id <id>]             repeatable filter
     [--grade A|B|C|D]                 repeatable filter
-    [--max-tasks N]                   default 10
+    [--max-tasks N]                   default 10; final global cap on selected tasks
+    [--max-candidates N]              optional; cap on distinct candidates selected
+    [--tasks-per-candidate N]         optional; cap on tasks per candidate
     [--run]                           required to invoke provider; default dry-run
     [--provider mock|youtube|muckrock] default mock; youtube = yt-dlp; muckrock = MuckRock API v2 (GET-only)
     [--json]                          machine-readable stdout
 ```
 
 Both invocation forms work: `python tools/run_enrichment_tasks.py ...` and `python -m tools.run_enrichment_tasks ...` (sys.path bootstrap mirrors PR #28).
+
+### Candidate-aware sampling
+
+`--max-tasks` alone is a flat global cap that selects the lexicographically lowest-id tasks. With dataset intake emitting ~3–4 tasks per candidate, `--max-tasks 25` typically covers only 6–8 candidates (the first ~6 candidates fill up the budget; the rest are starved). The first YouTube top-25 smoke surfaced this directly: 25 selected tasks spanned 7 candidates.
+
+`--max-candidates` and `--tasks-per-candidate` enable broader sampling against the same task budget:
+
+```bash
+# Old: 25 tasks across ~6–7 candidates (lexicographically first)
+python tools/run_enrichment_tasks.py \
+    --input .tmp/dataset_intake_ranked/search_tasks.json \
+    --task-type youtube_query --grade A \
+    --max-tasks 25 \
+    --run --provider youtube --json
+
+# New: 25 tasks across 25 distinct candidates (one task each)
+python tools/run_enrichment_tasks.py \
+    --input .tmp/dataset_intake_ranked/search_tasks.json \
+    --task-type youtube_query --grade A \
+    --max-candidates 25 --tasks-per-candidate 1 --max-tasks 25 \
+    --run --provider youtube --json
+
+# New: ~3 tasks per candidate across 10 candidates (max 30 tasks)
+python tools/run_enrichment_tasks.py \
+    --input .tmp/dataset_intake_ranked/search_tasks.json \
+    --task-type youtube_query --grade A \
+    --max-candidates 10 --tasks-per-candidate 3 --max-tasks 30 \
+    --run --provider youtube --json
+```
+
+Selection semantics, in order:
+
+1. Apply `--task-type` / `--candidate-id` / `--grade` filters.
+2. Group surviving tasks by `candidate_id`.
+3. Sort candidate IDs ascending.
+4. For each candidate, sort its tasks by `(candidate_id, task_type, query)` and apply `--tasks-per-candidate` if set.
+5. Cap the candidate list to `--max-candidates` if set.
+6. Flatten and apply `--max-tasks` as a final global cap.
+
+When neither new flag is set, behaviour is unchanged from earlier versions of the runner — flat sort + `--max-tasks` cap.
+
+The summary JSON gains two new fields:
+- `selected_candidate_count` — distinct candidate IDs in the selected task list.
+- `max_candidates`, `tasks_per_candidate` — echo of the inputs (or `null` if unset).
 
 ## Result schema
 

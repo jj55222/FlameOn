@@ -118,6 +118,31 @@ def _parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         help=f"Hard cap on selected tasks per run (default: {DEFAULT_MAX_TASKS}).",
     )
     parser.add_argument(
+        "--max-candidates",
+        dest="max_candidates",
+        type=int,
+        default=None,
+        help=(
+            "Optional cap on the number of distinct candidate_id values "
+            "selected. Combined with --tasks-per-candidate this fans the "
+            "task budget out across more candidates instead of stacking it "
+            "on the few lowest candidate_ids. If omitted, behaviour is "
+            "unchanged from earlier versions of the runner."
+        ),
+    )
+    parser.add_argument(
+        "--tasks-per-candidate",
+        dest="tasks_per_candidate",
+        type=int,
+        default=None,
+        help=(
+            "Optional cap on tasks selected per candidate. Default: "
+            "unlimited per candidate. Used together with --max-candidates "
+            "to broaden coverage of grade-A pools that have multiple "
+            "tasks per candidate."
+        ),
+    )
+    parser.add_argument(
         "--run",
         dest="run",
         action="store_true",
@@ -145,16 +170,19 @@ def _parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
 def _format_human_summary(summary: dict) -> str:
     lines = [
         "=== enrichment task runner ===",
-        f"run_id:           {summary['run_id']}",
-        f"dry_run:          {summary['dry_run']}",
-        f"provider:         {summary['provider']}",
-        f"max_tasks:        {summary['max_tasks']}",
-        f"selected_count:   {summary['selected_count']}",
-        f"attempted_count:  {summary['attempted_count']}",
-        f"completed_count:  {summary['completed_count']}",
-        f"failed_count:     {summary['failed_count']}",
-        f"skipped_count:    {summary['skipped_count']}",
-        f"elapsed_seconds:  {summary['elapsed_seconds']:.3f}",
+        f"run_id:                   {summary['run_id']}",
+        f"dry_run:                  {summary['dry_run']}",
+        f"provider:                 {summary['provider']}",
+        f"max_tasks:                {summary['max_tasks']}",
+        f"max_candidates:           {summary.get('max_candidates')}",
+        f"tasks_per_candidate:      {summary.get('tasks_per_candidate')}",
+        f"selected_count:           {summary['selected_count']}",
+        f"selected_candidate_count: {summary.get('selected_candidate_count', '-')}",
+        f"attempted_count:          {summary['attempted_count']}",
+        f"completed_count:          {summary['completed_count']}",
+        f"failed_count:             {summary['failed_count']}",
+        f"skipped_count:            {summary['skipped_count']}",
+        f"elapsed_seconds:          {summary['elapsed_seconds']:.3f}",
         "",
     ]
     if summary["results"]:
@@ -190,6 +218,22 @@ def main(
     if args.max_tasks < 1:
         print(
             f"error: --max-tasks must be >= 1; got {args.max_tasks}",
+            file=err,
+        )
+        return 2
+
+    if args.max_candidates is not None and args.max_candidates < 1:
+        print(
+            f"error: --max-candidates must be >= 1 if provided; got "
+            f"{args.max_candidates}",
+            file=err,
+        )
+        return 2
+
+    if args.tasks_per_candidate is not None and args.tasks_per_candidate < 1:
+        print(
+            f"error: --tasks-per-candidate must be >= 1 if provided; got "
+            f"{args.tasks_per_candidate}",
             file=err,
         )
         return 2
@@ -250,6 +294,8 @@ def main(
         provider=provider,
         dry_run=dry_run,
         max_tasks=args.max_tasks,
+        max_candidates=args.max_candidates,
+        tasks_per_candidate=args.tasks_per_candidate,
     )
 
     if output_json is not None:

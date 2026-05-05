@@ -15,9 +15,10 @@ plugged in via the providers.py factory; the runner only sees
 """
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import asdict
 from datetime import datetime, timezone
-from typing import Iterable, List, Optional, Sequence
+from typing import Dict, Iterable, List, Optional, Sequence
 
 from .models import EnrichmentResult, EnrichmentTask, TaskStatus, TaskType
 
@@ -54,12 +55,87 @@ def _sort_key(task: EnrichmentTask):
     return (task.candidate_id, task.task_type, task.query)
 
 
+def select_tasks(
+    tasks: Iterable[EnrichmentTask],
+    *,
+    max_tasks: int,
+    max_candidates: Optional[int] = None,
+    tasks_per_candidate: Optional[int] = None,
+) -> List[EnrichmentTask]:
+    """Order and cap tasks for execution, optionally with
+    candidate-aware sampling.
+
+    Filtering by task_type / grade / candidate_id is upstream
+    (:func:`filter_tasks`); this helper does only ordering + capping.
+
+    Backward-compatible behavior (when neither ``max_candidates`` nor
+    ``tasks_per_candidate`` is set):
+
+      Sort all tasks by ``(candidate_id, task_type, query)`` and take
+      the first ``max_tasks``. This is what the v0 / v1 runner did
+      and is the right default for single-task-per-candidate inputs.
+
+    Candidate-aware behavior (when either flag is set):
+
+      1. Group tasks by ``candidate_id``.
+      2. Sort the candidate IDs ascending — deterministic.
+      3. For each candidate, sort its tasks by ``_sort_key`` and
+         optionally cap to ``tasks_per_candidate``.
+      4. Cap the candidate list to ``max_candidates``.
+      5. Flatten back to a single list (still in candidate-then-task
+         order) and apply ``max_tasks`` as a final global cap.
+
+    The candidate-aware path was added after the YouTube top-25
+    smoke (post-PR #38) revealed that a flat ``max_tasks=25`` over
+    a candidate pool with ~4 tasks per candidate touches only ~6–7
+    distinct candidates — a coverage failure mode. With
+    ``--max-candidates 25 --tasks-per-candidate 1`` the same
+    25-task budget fans out across 25 candidates instead.
+    """
+    if max_tasks < 1:
+        raise ValueError(f"max_tasks must be >= 1; got {max_tasks}")
+
+    task_list = list(tasks)
+
+    if max_candidates is None and tasks_per_candidate is None:
+        # v0 behaviour preserved exactly — flat sort + cap.
+        return sorted(task_list, key=_sort_key)[:max_tasks]
+
+    if max_candidates is not None and max_candidates < 1:
+        raise ValueError(
+            f"max_candidates must be >= 1 if provided; got {max_candidates}"
+        )
+    if tasks_per_candidate is not None and tasks_per_candidate < 1:
+        raise ValueError(
+            f"tasks_per_candidate must be >= 1 if provided; got {tasks_per_candidate}"
+        )
+
+    by_cand: Dict[str, List[EnrichmentTask]] = defaultdict(list)
+    for t in task_list:
+        by_cand[t.candidate_id].append(t)
+
+    cand_ids = sorted(by_cand.keys())
+    if max_candidates is not None:
+        cand_ids = cand_ids[: int(max_candidates)]
+
+    selected: List[EnrichmentTask] = []
+    for cid in cand_ids:
+        per = sorted(by_cand[cid], key=_sort_key)
+        if tasks_per_candidate is not None:
+            per = per[: int(tasks_per_candidate)]
+        selected.extend(per)
+
+    return selected[:max_tasks]
+
+
 def run_enrichment_batch(
     tasks: Sequence[EnrichmentTask],
     *,
     provider,
     dry_run: bool,
     max_tasks: int,
+    max_candidates: Optional[int] = None,
+    tasks_per_candidate: Optional[int] = None,
 ) -> dict:
     """Top-level batch runner. Returns the summary dict.
 
@@ -68,12 +144,18 @@ def run_enrichment_batch(
     catches exceptions thrown by ``execute`` and converts them
     to ``status="failed"`` rows so a single bad task doesn't kill
     the run.
-    """
-    if max_tasks < 1:
-        raise ValueError(f"max_tasks must be >= 1; got {max_tasks}")
 
+    ``max_candidates`` and ``tasks_per_candidate`` enable candidate-
+    aware sampling — see :func:`select_tasks`. Both default ``None``
+    to preserve the original ``max_tasks``-only behaviour.
+    """
     started = datetime.now(timezone.utc)
-    selected = sorted(tasks, key=_sort_key)[:max_tasks]
+    selected = select_tasks(
+        tasks,
+        max_tasks=max_tasks,
+        max_candidates=max_candidates,
+        tasks_per_candidate=tasks_per_candidate,
+    )
 
     results: List[EnrichmentResult] = []
     completed = 0
@@ -124,6 +206,8 @@ def run_enrichment_batch(
     finished = datetime.now(timezone.utc)
     elapsed = (finished - started).total_seconds()
 
+    selected_candidate_count = len({t.candidate_id for t in selected})
+
     return {
         "run_id": started.strftime("%Y%m%dT%H%M%SZ"),
         "started_at": started.isoformat(),
@@ -132,13 +216,16 @@ def run_enrichment_batch(
         "dry_run": dry_run,
         "provider": provider.name if provider else "(none)",
         "selected_count": len(selected),
+        "selected_candidate_count": selected_candidate_count,
         "attempted_count": len(results),
         "completed_count": completed,
         "failed_count": failed,
         "skipped_count": skipped,
         "max_tasks": max_tasks,
+        "max_candidates": max_candidates,
+        "tasks_per_candidate": tasks_per_candidate,
         "results": [asdict(r) for r in results],
     }
 
 
-__all__ = ["filter_tasks", "run_enrichment_batch"]
+__all__ = ["filter_tasks", "run_enrichment_batch", "select_tasks"]
