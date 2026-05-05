@@ -31,7 +31,12 @@ Remaining live providers are **still deferred** and raise `NotImplementedError`:
 - **Metadata only.** Runs with `extract_flat=True`, `skip_download=True`, `noplaylist=True`. No video, audio, subtitle, or caption downloads. No writes to disk.
 - **No transcripts yet.** Caption pulls are deliberately deferred to a later media-preprocessing stage.
 - **Rate limit etiquette:** the runner is sequential by design; a 10s socket timeout caps any single search.
-- **Result shape:** up to `max_results` (default 5, capped at 20) `(url, title)` pairs per task. Confidence is `medium` if any results came back, `low` otherwise. `next_actions_hint` includes `youtube_metadata` when results exist, signalling a future media-preprocessing stage to pick them up.
+- **Relevance gate.** Each yt-dlp candidate is scored against the task's identity context (subject name / agency-distinctive token / city / state name or standalone abbreviation) plus supporting domain signals (bodycam / CIB / pursuit). Candidates with no anchor match are dropped.
+  - **Anchors** (any one is sufficient to keep): subject last name, full subject name, agency-distinctive token (after stripping boilerplate like "police" / "department" / "sheriff"), city, state name or standalone state abbreviation.
+  - **Supporting signals** (boost score + confidence but never sufficient alone): "bodycam" / "body cam" / "BWC", "critical incident briefing", "dashcam" / "pursuit" / "police chase".
+  - **Confidence:** `high` when an official-channel hint is present (uploader contains "city of" / "police department" / "sheriff's office" / "official") OR when both an agency token and a subject hit are present; `medium` when an anchor is present alongside a supporting signal; `low` for state-only anchors or when nothing survived filtering.
+  - **`next_actions_hint`:** `["youtube_metadata"]` only when at least one result survives; `[]` otherwise.
+  - **Diagnostics in `notes`:** `raw_result_count`, `filtered_result_count`, `dropped_irrelevant_count`, per-kept-result `score=N anchors=...`, and up to three example `dropped reason=... title='...'` lines so an operator inspecting the JSON can see what raw YouTube returned.
 - **Failure mode:** any exception during search (network, parse, etc.) becomes `status: "failed"` with `error` set to `<ExceptionType>: <message>`; the run continues.
 - **Live invocation only with `--run --provider youtube`.** Default dry-run never imports yt-dlp or hits the network — it just reports the selected tasks.
 - **Future alternate backends.** YouTube Data API, Brave, Exa, etc. can be plugged in later as separate providers (or as a backend swap inside the same provider) without changing the runner contract.

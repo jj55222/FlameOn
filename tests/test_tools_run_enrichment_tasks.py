@@ -268,7 +268,7 @@ class _FakeYdlForCLI:
                 },
                 {
                     "id": "vid02",
-                    "title": "Second fake",
+                    "title": "Phoenix PD second fake update",
                     "url": "",
                 },
             ]
@@ -351,6 +351,84 @@ def test_youtube_run_mode_uses_monkeypatched_yt_dlp(monkeypatch, tmp_path):
     # Output files written
     assert (output_dir / "results.json").exists()
     assert (output_dir / "summary.json").exists()
+
+
+class _UnrelatedYdlForCLI:
+    """Fake yt-dlp returning topical-but-unanchored entries — the
+    relevance gate should drop everything and the CLI run should
+    surface confidence=low + empty result_urls + no youtube_metadata
+    hint."""
+
+    def __init__(self, opts):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        pass
+
+    def extract_info(self, url, *, download):
+        return {
+            "entries": [
+                {"id": "g1", "title": "Three officers resign from Centralia police", "url": ""},
+                {"id": "g2", "title": "Capitol Police officer lies in honor", "url": ""},
+                {"id": "g3", "title": "Random Florida bodycam compilation", "url": ""},
+            ]
+        }
+
+
+def test_youtube_run_mode_drops_unanchored_results(monkeypatch, tmp_path):
+    """End-to-end CLI: yt-dlp returns generic police news with no
+    Longmont/Joe-Gold anchor; relevance gate drops all → JSON shows
+    confidence=low, empty result_urls, no youtube_metadata hint."""
+    from pipeline2_discovery.enrichment import youtube_provider as yt_mod
+
+    monkeypatch.setattr(
+        yt_mod.YtDlpYouTubeSearchClient,
+        "_load_yt_dlp",
+        lambda self: _UnrelatedYdlForCLI,
+    )
+
+    inp = tmp_path / "tasks.json"
+    inp.write_text(json.dumps({
+        "generated_at": "2026-05-05T00:00:00Z",
+        "source_lane": "sfchronicle_pursuits",
+        "candidate_count": 1,
+        "task_count": 1,
+        "tasks": [{
+            "candidate_id": "sfchronicle_pursuits:0",
+            "grade": "A",
+            "task_type": "youtube_query",
+            "query": "joe william gold longmont police bodycam",
+            "context": {
+                "agency": "longmont police services",
+                "subject_name": "joe william gold",
+                "city": "longmont",
+                "state": "CO",
+            },
+        }],
+    }), encoding="utf-8")
+
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "youtube_query",
+        "--run",
+        "--provider", "youtube",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["completed_count"] == 1
+    r = payload["results"][0]
+    assert r["status"] == "completed"
+    assert r["result_urls"] == []
+    assert r["confidence"] == "low"
+    assert r["next_actions_hint"] == []
+    notes_str = " ".join(r["notes"])
+    assert "raw_result_count=3" in notes_str
+    assert "filtered_result_count=0" in notes_str
+    assert "dropped_irrelevant_count=3" in notes_str
 
 
 def test_youtube_help_still_works():
