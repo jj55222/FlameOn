@@ -576,9 +576,17 @@ def test_muckrock_run_mode_uses_monkeypatched_client(monkeypatch, tmp_path):
     assert "MUCKROCK_PARSE_RELEASED_FILES" in r["next_actions_hint"]
     assert "ARTIFACT_SEARCH" in r["next_actions_hint"]
 
-    # Fake client received exactly one GET (no other HTTP verbs).
-    assert len(fake.calls) == 1
-    assert fake.calls[0]["params"]["title"] == "longmont body-worn camera"
+    # Fake client received between 1 and 3 GETs — the provider now
+    # builds a deterministic query plan derived from the task's
+    # context. All calls are GETs against the documented base.
+    assert 1 <= len(fake.calls) <= 3
+    for call in fake.calls:
+        assert call["url"] == "https://www.muckrock.com/api_v2/requests/"
+        assert call["params"]["title"]  # non-empty
+        assert call["params"]["page_size"] >= 1
+    # The plan should include the agency-distinctive token "longmont"
+    titles_searched = {c["params"]["title"] for c in fake.calls}
+    assert "longmont" in titles_searched
 
     # Output files written
     assert (output_dir / "results.json").exists()
