@@ -161,6 +161,83 @@ For Phoenix CIB pages specifically: subjects are typically empty (Phoenix CIBs d
 
 `argparse: error: unrecognized arguments: --require-extraction` (or `--payloads-dir`, `--verbose`): you're using a flag that doesn't exist. Remove it — control extraction via the fixture's `require_extraction` field; let payloads default to `autoresearch/.runs/live_payloads/`.
 
+## Generating target fixtures from curated URL lists
+
+When you have a small list of curated official Phoenix Newsroom CIB URLs and want to drive each through `--portal-live`, hand-authoring one fixture per URL gets tedious. The `tools/generate_portal_live_targets.py` script accepts a curated JSON input and writes one (or both) target-fixture variants per accepted URL.
+
+**This is not a crawler.** The script only validates URL shapes against the lint allowlist (`pipeline2_discovery/casegraph/portal_live_target_lint.py`) and serializes fixtures. It does **not** fetch any URL. Discovery — the act of finding which Phoenix Newsroom IDs exist — remains an operator action (Google site-search, manual browsing, etc.), and any live smoke against a generated fixture is a separate operator action documented above.
+
+### Lint scope (current)
+
+The lint module accepts only:
+
+- **Scheme:** `https://` — `http://` rejected.
+- **Host:** `www.phoenix.gov` only (extend `PORTAL_LIVE_TARGET_HOSTS` in a future PR for additional agencies).
+- **Path:** `/newsroom/police-department-news/<id>.html` where `<id>` is alnum, hyphen, or underscore.
+- **No query strings**, **no fragments** (fragments are silently stripped).
+- Path/extension denylists reject `/search`, `/login`, `/auth`, `/admin`, `/private`, `/account`, plus `.pdf` / binary-media file extensions.
+
+Each rejection returns a stable snake_case reason code (`non_https_scheme`, `host_not_in_allowlist`, `query_string_not_allowed`, `denylisted_path`, `denylisted_extension:<.ext>`, `path_pattern_mismatch`, `unsafe_target_id`, etc.) so operator output groups cleanly.
+
+### Input shape
+
+A JSON file containing an array of row objects:
+
+```json
+[
+  {
+    "target_id": "phoenix_pd_2025_02_12_higley_cib",
+    "url": "https://www.phoenix.gov/newsroom/police-department-news/3369.html",
+    "agency": "Phoenix Police Department",
+    "jurisdiction": "Phoenix, Maricopa County, Arizona",
+    "notes": "Higley Rd CIB"
+  },
+  {
+    "url": "https://www.phoenix.gov/newsroom/police-department-news/3286.html"
+  }
+]
+```
+
+Only `url` is required. `target_id` is optional — supply it to override the default `phoenix_pd_newsroom_<id>` derivation; otherwise the lint derives a stable id from the URL path. `agency`, `jurisdiction`, `notes` are tolerated as free-form metadata but not read by the script.
+
+### Generator output
+
+For each accepted row the generator writes one or both fixture variants (depending on `--mode`):
+
+| Filename pattern | Variant | `target_id` field | Fixture booleans |
+|---|---|---|---|
+| `<id>_real_fetch_only.json` | fetch-only | `<id>` | `save_extracted_payload: false`, `replay_through_portal_replay: false`, `require_extraction: false` |
+| `<id>_real_extract_required.json` | extract-required | `<id>_extract_required` | all three `true` |
+
+Both variants share `profile_id: "agency_ois_detail"`, `fetcher: "requests"`, `max_pages: 1`, `max_links: 5`, `expected_response_status: 200`, `save_raw_payload: true`, and `allowed_domains: [<host>]`.
+
+The generator deduplicates by both normalized URL and `target_id` and caps acceptance at `--max-targets` (default 5) per run.
+
+### Example: dry-run
+
+```bash
+python tools/generate_portal_live_targets.py \
+    --input tools/example_phoenix_curated.json \
+    --output-dir .tmp/generated_targets \
+    --mode both \
+    --dry-run
+```
+
+Reports what would be written (and lists rejected rows with reason codes) without creating any files. The output directory is **not** created in dry-run mode.
+
+### Example: write to a gitignored output dir
+
+```bash
+python tools/generate_portal_live_targets.py \
+    --input tools/example_phoenix_curated.json \
+    --output-dir .tmp/generated_targets \
+    --mode fetch_only \
+    --max-targets 3 \
+    --json
+```
+
+Writes up to 3 `*_real_fetch_only.json` fixtures into `.tmp/generated_targets/` (which is gitignored after PR #26's safe-path cleanup) and emits a JSON report on stdout for downstream piping. To then run a live smoke against a generated fixture, follow the **Worked example: extraction-required smoke** section above with the generated fixture path. Live smokes remain a separate operator action — the generator never fetches the web.
+
 ## Hardening expectations
 
 - Live network is always opt-in via env gates.
@@ -169,3 +246,4 @@ For Phoenix CIB pages specifically: subjects are typically empty (Phoenix CIBs d
 - `requests` is the production live path; `firecrawl` is deferred.
 - Saved raw payloads are byte-faithful; extracted payloads are deterministic given the raw input.
 - The `agency_ois` extractor is **pure** (no I/O) and is the operator's first line of defence against a redesigned page template.
+- The target generator is **pure**: lint + serialize, no network. Discovery and live smoke remain explicit, separate operator actions.
