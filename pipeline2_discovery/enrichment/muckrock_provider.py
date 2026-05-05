@@ -139,13 +139,19 @@ AUDIO_TERMS: Tuple[str, ...] = (
 # These are titles that look responsive on a keyword scan but rarely
 # carry the per-incident artifacts a downstream stage cares about.
 POLICY_ONLY_TERMS: Tuple[str, ...] = (
+    # policy / procedure boilerplate
     "policy manual", "general orders", "general order",
     "all policies", "all body camera policies", "any policies",
+    "body camera policy", "body-worn camera policy", "bwc policy",
+    "medical policies", "abuse policies", "intimate partner",
+    # training
     "training materials", "training manual", "training material",
+    # admin / financial
     "audit", "annual report", "annual budget", "budget",
-    "procurement", "contract listing",
-    "body camera policy", "body-worn camera policy",
-    "bwc policy",
+    "procurement", "contract listing", "contract",
+    "communication services",
+    # rosters / org charts
+    "agency roster", "roster", "org chart",
 )
 
 # Status values MuckRock uses for "request fulfilled / records released".
@@ -169,7 +175,20 @@ YOUTUBE_URL_RE = re.compile(
 
 @dataclass
 class _ScoredResult:
-    """One MuckRock API record after scoring."""
+    """One MuckRock API record after scoring.
+
+    The flag set distinguishes ``has_released_files`` (true only when
+    the API payload actually carries ``files[]`` or explicit file URL
+    metadata) from ``is_completed_status`` (true when the request's
+    ``status`` is one of ``done`` / ``completed`` / ``complete`` /
+    ``released``). The two are NOT interchangeable: a request can be
+    marked ``done`` without ever surfacing released files (e.g.
+    "responsive records: none", policy-deflected, withdrawn). The
+    Bulmahn smoke surfaced 5 Pinal admin records all marked
+    ``status=done`` with ``file_count=0``; treating that as
+    artifact-bearing is the false-positive failure mode this gate
+    tightening is fixing.
+    """
     url: str
     title: str
     agency: str
@@ -193,6 +212,8 @@ class _ScoredResult:
     has_strong_terms: bool = False
     has_supporting_terms: bool = False
     has_released_files: bool = False
+    is_completed_status: bool = False
+    is_agency_admin_only: bool = False
     is_policy_only: bool = False
     drop_reason: Optional[str] = None
 
@@ -304,16 +325,20 @@ def _score_record(record: _ScoredResult, *, context: Dict[str, Any]) -> None:
             record.has_supporting_terms = True
             break
 
-    # Released files signal
-    if record.file_count > 0:
+    # Released files signal — STRICT: only actual files / file URLs
+    # in the API payload set has_released_files=True. Status alone
+    # does not imply artifact availability (Bulmahn lesson).
+    if record.file_count > 0 or record.file_urls:
         record.has_released_files = True
         record.score += 5
-    elif _norm(record.status) in DONE_STATUSES:
-        # Some completed requests ship file URLs but the API summary
-        # call doesn't enumerate them. "done" is treated as evidence
-        # of release for scoring; the file_count stays 0.
-        record.has_released_files = True
-        record.score += 3
+
+    # Completed-status signal — separate from artifact availability.
+    # Provides a small positive nudge (so a request truly closed by
+    # the agency ranks above an open one) but does NOT count as an
+    # artifact signal anywhere downstream.
+    if _norm(record.status) in DONE_STATUSES:
+        record.is_completed_status = True
+        record.score += 1
 
     # Policy-only demotion — strong negative, can flip a result to
     # is_policy_only=True so the caller can drop it even if anchored.
@@ -323,6 +348,20 @@ def _score_record(record: _ScoredResult, *, context: Dict[str, Any]) -> None:
             record.score -= 4
             record.matched_terms.append(f"-{term}")
             break
+
+    # "Agency-admin-only": kept by anchor (agency or city) but with no
+    # subject anchor, no actual files, and no incident / artifact term.
+    # These are the Pinal-roster / Pinal-contract / Pinal-medical-policy
+    # records that cleared the v0 gate as `high` confidence in the
+    # Bulmahn smoke. Flagging them lets the confidence + hint reducers
+    # downgrade them and the diagnostic block surface a count.
+    record.is_agency_admin_only = (
+        (record.has_agency or record.has_city)
+        and not record.has_subject
+        and not record.has_released_files
+        and not record.has_strong_terms
+        and not record.has_supporting_terms
+    )
 
     if not record.has_anchor:
         record.drop_reason = "no_anchor_match"
@@ -334,28 +373,74 @@ def _score_record(record: _ScoredResult, *, context: Dict[str, Any]) -> None:
 def _confidence_from(kept: Sequence[_ScoredResult]) -> str:
     """Reduce a kept-result list to a single confidence label.
 
-    high  — at least one anchored result that has released files OR
-            strong (OIS / CIB / in-custody) terms.
-    medium — anchored result with bodycam / pursuit / 911 supporting
-            signal but no released files and no strong terms.
-    low    — only weak (state-only) anchors, or no kept results.
+    Rubric (post-Bulmahn tightening — see PR docstring):
+
+      high if best surviving result has:
+        - subject anchor AND actual released files, OR
+        - subject anchor AND strong incident terms (OIS / CIB / in-
+          custody death), OR
+        - agency / city anchor AND actual released files AND any
+          case-relevant term (OIS / CIB / bodycam / pursuit /
+          dashcam / 911 / CAD / incident report).
+
+      medium if best surviving result has:
+        - agency / city anchor AND a case-relevant term but NO
+          actual released files, OR
+        - subject anchor with no files and no strong incident term.
+
+      low otherwise — covers: state-only anchor; agency / city
+        anchor with no case-relevant term and no files (the
+        Pinal-admin / Pinal-roster / Pinal-contract pattern);
+        completed status alone with no artifact / case term;
+        no surviving results.
     """
     if not kept:
         return "low"
     best = max(kept, key=lambda r: r.score)
-    strong_anchor = best.has_subject or best.has_agency or best.has_city
-    if strong_anchor and (best.has_released_files or best.has_strong_terms):
-        return "high"
-    if strong_anchor and best.has_supporting_terms:
-        return "medium"
+    has_files = best.has_released_files
+    has_case_term = best.has_strong_terms or best.has_supporting_terms
+
+    # Subject-anchored paths
+    if best.has_subject:
+        if has_files or best.has_strong_terms:
+            return "high"
+        return "medium"  # subject alone, no files, no strong terms
+
+    # Agency / city anchored (no subject)
+    if best.has_agency or best.has_city:
+        if has_files and has_case_term:
+            return "high"
+        if has_case_term:
+            return "medium"
+        return "low"  # agency-only with no case term — the Bulmahn pattern
+
+    # State-only or no anchor
     return "low"
 
 
 def _next_actions(kept: Sequence[_ScoredResult]) -> List[str]:
+    """Routing hints for downstream stages.
+
+    Tightened post-Bulmahn (see PR #38 docstring):
+
+    - ``MUCKROCK_PARSE_RELEASED_FILES`` is emitted **only** when at
+      least one kept result actually has files or explicit file URL
+      metadata. A request with ``status=done`` but ``file_count=0``
+      does NOT trigger the parse hint — that's the Pinal-admin
+      false-positive class.
+    - ``ARTIFACT_SEARCH`` mirrors the same gate (actual files only).
+    - ``YOUTUBE_METADATA_TRANSCRIPT`` only when a kept result's
+      metadata embeds a YouTube URL — never auto-emitted from
+      "request mentions video".
+    - ``OUTCOME_VALIDATE`` when any kept result's status is not in
+      ``DONE_STATUSES``.
+    """
     if not kept:
         return []
-    hints: List[str] = [HINT_MUCKROCK_PARSE]
-    if any(r.file_count > 0 for r in kept):
+    hints: List[str] = []
+    has_actual_files = any(r.has_released_files for r in kept)
+    if has_actual_files:
+        hints.append(HINT_MUCKROCK_PARSE)
         hints.append(HINT_ARTIFACT_SEARCH)
     if any(r.embedded_youtube_urls for r in kept):
         hints.append(HINT_YOUTUBE)
@@ -788,6 +873,7 @@ class MuckRockProvider:
         per_query_str = ",".join(
             f"{q!r}:{n}" for q, n in per_query_counts
         )
+        agency_admin_only_count = sum(1 for r in kept if r.is_agency_admin_only)
         notes: List[str] = [
             f"query_attempts={len(plan)}",
             f"raw_result_count_by_query={per_query_str}",
@@ -796,6 +882,7 @@ class MuckRockProvider:
             f"returned_result_count={len(kept)}",
             f"dropped_irrelevant_count={len(dropped)}",
             f"released_file_count={total_files}",
+            f"agency_admin_only_count={agency_admin_only_count}",
             f"policy_only_demoted={'true' if policy_only_demoted else 'false'}",
             f"api_urls={';'.join(api_urls)}",
         ]
@@ -803,10 +890,11 @@ class MuckRockProvider:
             notes.append(f"terms_matched={','.join(terms_matched)}")
         if kept:
             for r in kept:
+                tag = " admin_only" if r.is_agency_admin_only else ""
                 notes.append(
                     f"kept score={r.score} "
                     f"anchors={','.join(r.matched_anchors) or '-'} "
-                    f"files={r.file_count} status={r.status or '-'}"
+                    f"files={r.file_count} status={r.status or '-'}{tag}"
                 )
         else:
             notes.append(
