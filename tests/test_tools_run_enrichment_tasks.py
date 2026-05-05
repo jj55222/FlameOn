@@ -206,7 +206,7 @@ def test_unknown_provider_rejected(tmp_path):
     assert "unknown provider" in err
 
 
-@pytest.mark.parametrize("name", ["muckrock", "brave", "exa", "tavily"])
+@pytest.mark.parametrize("name", ["brave", "exa", "tavily"])
 def test_deferred_provider_run_mode_rejected(tmp_path, name):
     """Still-deferred providers (muckrock/brave/exa/tavily) must
     raise NotImplementedError at the harness before any execute()
@@ -221,7 +221,7 @@ def test_deferred_provider_run_mode_rejected(tmp_path, name):
     assert "follow-up PR" in err
 
 
-@pytest.mark.parametrize("name", ["muckrock", "brave", "exa", "tavily"])
+@pytest.mark.parametrize("name", ["brave", "exa", "tavily"])
 def test_deferred_provider_dry_run_does_not_raise(tmp_path, name):
     """Dry-run should accept a deferred provider name (no execute()
     is ever called) so operators can preview what a future PR's
@@ -429,6 +429,172 @@ def test_youtube_run_mode_drops_unanchored_results(monkeypatch, tmp_path):
     assert "raw_result_count=3" in notes_str
     assert "filtered_result_count=0" in notes_str
     assert "dropped_irrelevant_count=3" in notes_str
+
+
+# ---- muckrock provider (zero-network) -------------------------------
+
+
+class _FakeMuckRockClient:
+    """Fake HTTP client for the MuckRockProvider end-to-end CLI test.
+
+    Returns a single anchored 'done with files' record matching the
+    Joe-William-Gold / Longmont task context, so the gate keeps it."""
+
+    def __init__(self, results=None):
+        self._results = results if results is not None else [{
+            "id": 42,
+            "title": "Longmont Police body-worn camera release — Joe Gold incident",
+            "agency": {"name": "Longmont Police Services"},
+            "jurisdiction": {"name": "Longmont", "level": "city"},
+            "status": "done",
+            "datetime_done": "2025-01-01",
+            "files": [{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+            "absolute_url": "/foi/longmont-co-9999/42-test/",
+        }]
+        self.calls = []
+
+    def get(self, url, *, params, headers, timeout):
+        self.calls.append({
+            "url": url, "params": dict(params),
+            "headers": dict(headers), "timeout": timeout,
+        })
+
+        class _R:
+            status_code = 200
+
+            def __init__(self, body):
+                self._body = body
+
+            def json(self):
+                return self._body
+
+        return _R({"results": self._results})
+
+
+def test_muckrock_dry_run_does_not_invoke_http(monkeypatch, tmp_path):
+    """Dry-run with --provider muckrock must not instantiate the
+    real HTTP client — the runner sees the dry-run name-only stub
+    and never calls execute()."""
+    from pipeline2_discovery.enrichment import muckrock_provider as mr_mod
+
+    def boom(self):
+        raise AssertionError("HTTP client must not be loaded in dry-run")
+
+    monkeypatch.setattr(mr_mod.MuckRockProvider, "_client", boom)
+
+    inp = tmp_path / "tasks.json"
+    inp.write_text(json.dumps({
+        "generated_at": "2026-05-05T00:00:00Z",
+        "source_lane": "sfchronicle_pursuits",
+        "candidate_count": 1,
+        "task_count": 1,
+        "tasks": [{
+            "candidate_id": "x:1", "grade": "A",
+            "task_type": "muckrock_query",
+            "query": "longmont body-worn camera",
+            "context": {
+                "agency": "Longmont Police Services",
+                "subject_name": "joe william gold",
+                "city": "longmont",
+                "state": "CO",
+            },
+        }],
+    }), encoding="utf-8")
+
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "muckrock_query",
+        "--provider", "muckrock",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["dry_run"] is True
+    assert payload["provider"] == "muckrock"
+    assert all(r["status"] == "dry_run" for r in payload["results"])
+
+
+def test_muckrock_run_mode_uses_monkeypatched_client(monkeypatch, tmp_path):
+    """End-to-end CLI: --run --provider muckrock dispatches via the
+    real factory, but with a monkeypatched HTTP client so no network
+    is touched."""
+    from pipeline2_discovery.enrichment import muckrock_provider as mr_mod
+
+    fake = _FakeMuckRockClient()
+    # Patch the factory hook so get_provider("muckrock") returns a
+    # provider already wired with our fake client.
+    def _patched_factory():
+        return mr_mod.MuckRockProvider(
+            http_client=fake, sleeper=lambda _: None,
+            rate_limit_seconds=0, read_token=False,
+        )
+
+    from pipeline2_discovery.enrichment import providers as prov_mod
+    monkeypatch.setattr(prov_mod, "MuckRockProvider", _patched_factory)
+
+    inp = tmp_path / "tasks.json"
+    inp.write_text(json.dumps({
+        "generated_at": "2026-05-05T00:00:00Z",
+        "source_lane": "sfchronicle_pursuits",
+        "candidate_count": 1,
+        "task_count": 1,
+        "tasks": [{
+            "candidate_id": "x:1", "grade": "A",
+            "task_type": "muckrock_query",
+            "query": "longmont body-worn camera",
+            "context": {
+                "agency": "Longmont Police Services",
+                "subject_name": "joe william gold",
+                "city": "longmont",
+                "state": "CO",
+            },
+        }],
+    }), encoding="utf-8")
+
+    output_dir = _make_safe_output_dir(tmp_path)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "muckrock_query",
+        "--output-json", str(output_dir / "results.json"),
+        "--summary-out", str(output_dir / "summary.json"),
+        "--run",
+        "--provider", "muckrock",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["dry_run"] is False
+    assert payload["provider"] == "muckrock"
+    assert payload["completed_count"] == 1
+    assert payload["failed_count"] == 0
+
+    r = payload["results"][0]
+    assert r["status"] == "completed"
+    assert r["provider"] == "muckrock"
+    assert r["result_urls"] == ["https://www.muckrock.com/foi/longmont-co-9999/42-test/"]
+    assert r["confidence"] == "high"
+    assert "MUCKROCK_PARSE_RELEASED_FILES" in r["next_actions_hint"]
+    assert "ARTIFACT_SEARCH" in r["next_actions_hint"]
+
+    # Fake client received exactly one GET (no other HTTP verbs).
+    assert len(fake.calls) == 1
+    assert fake.calls[0]["params"]["title"] == "longmont body-worn camera"
+
+    # Output files written
+    assert (output_dir / "results.json").exists()
+    assert (output_dir / "summary.json").exists()
+
+
+def test_muckrock_help_still_works():
+    """`--help` exits 0 and lists --provider — sanity-check that
+    promoting muckrock to KNOWN_PROVIDERS didn't break argparse
+    setup."""
+    result = _run_subprocess(
+        [sys.executable, str(SCRIPT_PATH), "--provider", "muckrock", "--help"],
+    )
+    assert result.returncode == 0
+    assert "--provider" in result.stdout
+    assert "ModuleNotFoundError" not in result.stderr
 
 
 def test_youtube_help_still_works():

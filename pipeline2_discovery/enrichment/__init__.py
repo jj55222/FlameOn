@@ -32,6 +32,7 @@ from .providers import (
     DEFERRED_PROVIDERS,
     KNOWN_PROVIDERS,
     MockProvider,
+    MuckRockProvider,
     YtDlpYouTubeSearchClient,
     get_provider,
 )
@@ -49,6 +50,7 @@ __all__ = [
     "EnrichmentTask",
     "KNOWN_PROVIDERS",
     "MockProvider",
+    "MuckRockProvider",
     "YtDlpYouTubeSearchClient",
     "TaskStatus",
     "TaskType",
