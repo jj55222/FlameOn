@@ -40,5 +40,16 @@ autoresearch/.artifacts/
 autoresearch/.tmp/
 autoresearch/.logs/
 
+# Repo-root artifact directories accepted by the CaseGraph CLI's
+# --bundle-out safe-path policy (BUNDLE_SAFE_DIRS in
+# pipeline2_discovery/casegraph/cli.py). Without these, operator
+# bundles written to e.g. .tmp/portal_live/.../bundle.json get
+# captured by the auto-commit hook.
+.cache/
+.runs/
+.artifacts/
+.tmp/
+.logs/
+
 # Claude Code local settings
 .claude/settings.local.json

@@ -89,6 +89,81 @@ def _cleared_env(keys: list[str]):
                 os.environ[k] = prev
 
 
+# ---- CLI help text accuracy ------------------------------------------
+#
+# Operator-facing help text must match the shipped CLI surface. PR #23's
+# body and earlier drafts referenced flags / env vars that don't exist;
+# these tests pin the help text to the actual current contract so the
+# next stale-doc drift is caught at test time, not at operator time.
+
+
+def _portal_live_help_text() -> str:
+    """Return the full ``--help`` output without invoking argparse's
+    stdout-bound exit path. ``cli._build_parser()`` is the authoritative
+    parser used by ``cli.parse_args``."""
+    return cli._build_parser().format_help()
+
+
+def test_portal_live_help_mentions_both_env_gates():
+    """Both env gates must be discoverable from --help. Without both,
+    live HTTP is refused at runtime."""
+    text = _portal_live_help_text()
+    assert "FLAMEON_RUN_LIVE_CASEGRAPH=1" in text
+    assert "FLAMEON_RUN_LIVE_PORTAL_FETCH=1" in text
+
+
+def test_portal_live_help_does_not_reference_nonexistent_env_var():
+    """``FLAMEON_PORTAL_LIVE_FETCH_REAL_HTTP`` was used in old PR
+    bodies but does not exist anywhere in the codebase. The help text
+    must never reintroduce it."""
+    text = _portal_live_help_text()
+    assert "FLAMEON_PORTAL_LIVE_FETCH_REAL_HTTP" not in text
+
+
+def test_portal_live_help_does_not_claim_requests_fetcher_is_skeleton_only():
+    """The ``requests`` fetcher is the production live path after PR #20
+    + the Phoenix extractor in PR #23. The pre-PR-20 phrasing
+    "skeleton-only" / "refuse without a follow-up wiring" must not
+    survive in the operator-facing help text."""
+    text = _portal_live_help_text()
+    assert "skeleton-only" not in text
+    assert "refuse without a follow-up wiring" not in text
+
+
+def test_portal_live_help_documents_fixture_field_control():
+    """``require_extraction`` and ``replay_through_portal_replay`` are
+    target-fixture fields, not CLI flags. The help text must surface
+    that contract so operators don't reach for a nonexistent
+    ``--require-extraction`` flag."""
+    text = _portal_live_help_text()
+    assert "require_extraction" in text
+    assert "replay_through_portal_replay" in text
+
+
+def test_portal_live_help_does_not_advertise_nonexistent_flags():
+    """Three flags appeared in old doc-style invocations but were never
+    added to the parser: ``--require-extraction``, ``--payloads-dir``,
+    ``--verbose``. None of them should appear in --help."""
+    text = _portal_live_help_text()
+    assert "--require-extraction" not in text
+    assert "--payloads-dir" not in text
+    # ``--verbose`` is a common flag; the test only asserts it does not
+    # appear as a defined argument in our help text. argparse renders
+    # defined args with leading whitespace + the literal ``--verbose``
+    # token; check that the exact bracketed-arg form is absent.
+    assert "[--verbose" not in text and " --verbose " not in text
+
+
+def test_bundle_out_help_lists_both_repo_root_and_autoresearch_safe_paths():
+    """The safe-path policy accepts both repo-root and ``autoresearch/``
+    variants; the help text should make that explicit so operators
+    don't accidentally use a non-gitignored path."""
+    text = _portal_live_help_text()
+    assert "--bundle-out" in text
+    assert ".tmp/" in text
+    assert "autoresearch/" in text
+
+
 # ---- argparse / mutex ------------------------------------------------
 
 

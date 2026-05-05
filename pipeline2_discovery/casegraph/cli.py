@@ -1231,7 +1231,13 @@ def build_live_dry_payload(
     }
 
 
-def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
+def _build_parser() -> argparse.ArgumentParser:
+    """Construct the CaseGraph CLI argument parser.
+
+    Extracted from ``parse_args`` so help-text consumers (operator
+    docs, tests) can introspect ``parser.format_help()`` without
+    invoking argparse's stdout-bound ``--help`` exit path.
+    """
     parser = argparse.ArgumentParser(
         prog="pipeline2_discovery.casegraph.cli",
         description=(
@@ -1319,11 +1325,15 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         dest="portal_live",
         action="store_true",
         help=(
-            "Operator-triggered portal-live scaffolding. Runs the safety "
-            "preflight + bounded fetch + extract + replay chain against a "
-            "target fixture. Default fetcher is 'mock' (zero network); "
-            "'firecrawl' / 'requests' fetchers are skeleton-only in this "
-            "PR and refuse without a follow-up wiring. Requires "
+            "Operator-triggered portal-live mode. Runs the safety preflight + "
+            "bounded fetch + (optional) per-template extract + (optional) "
+            "portal-replay chain against a single target fixture. Fetcher is "
+            "selected by the target fixture's 'fetcher' field: 'mock' (zero "
+            "network; offline test path), 'requests' (live HTTP; the current "
+            "production live path), or 'firecrawl' (deferred; not the default "
+            "live path). The fixture's 'require_extraction' and "
+            "'replay_through_portal_replay' boolean fields control whether "
+            "extraction and replay run. Live network requires BOTH "
             "FLAMEON_RUN_LIVE_CASEGRAPH=1 AND FLAMEON_RUN_LIVE_PORTAL_FETCH=1; "
             "the 'firecrawl' fetcher additionally requires FIRECRAWL_API_KEY."
         ),
@@ -1334,7 +1344,11 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         default=None,
         help=(
             "Path to a portal-live target fixture JSON (e.g. "
-            "tests/fixtures/portal_live_targets/...). Required by --portal-live."
+            "tests/fixtures/portal_live_targets/...). Required by --portal-live. "
+            "The fixture controls fetcher, allowed_domains, max_pages, "
+            "require_extraction, save_raw_payload, save_extracted_payload, "
+            "and replay_through_portal_replay; there are no equivalent CLI "
+            "flags for these — edit the fixture JSON to change behavior."
         ),
     )
     parser.add_argument(
@@ -1369,9 +1383,10 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
         help=(
             "Optional path to write a single canonical JSON run bundle "
             "(PIPE5). Default-safe: the path must be inside one of the "
-            "gitignored artifact directories (autoresearch/.runs, .tmp, "
-            ".artifacts, .cache, .logs) or outside the repo entirely. "
-            "Use --allow-unsafe-bundle-path to override."
+            "gitignored artifact directories — repo-root .tmp/, .runs/, "
+            ".artifacts/, .cache/, .logs/, or any of the same names under "
+            "autoresearch/ — or outside the repo entirely. Use "
+            "--allow-unsafe-bundle-path to override."
         ),
     )
     parser.add_argument(
@@ -1391,6 +1406,11 @@ def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
             "--bundle-out is also passed). Default mode only."
         ),
     )
+    return parser
+
+
+def parse_args(argv: Optional[Iterable[str]] = None) -> argparse.Namespace:
+    parser = _build_parser()
     return parser.parse_args(list(argv) if argv is not None else None)
 
 
