@@ -31,7 +31,12 @@ from .models import (
     NextActionHint,
     SourceLane,
 )
-from .scoring import assign_grade
+from .scoring import (
+    assign_grade,
+    evidence_strength_from_grade,
+    is_federal_agency,
+    rank_key,
+)
 
 
 __all__ = [
@@ -40,4 +45,7 @@ __all__ = [
     "NextActionHint",
     "SourceLane",
     "assign_grade",
+    "evidence_strength_from_grade",
+    "is_federal_agency",
+    "rank_key",
 ]

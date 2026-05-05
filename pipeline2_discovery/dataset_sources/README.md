@@ -79,6 +79,7 @@ python tools/run_dataset_intake.py \
     --packet-stubs-dir .tmp/dataset_intake/packets \
     --top-n 25 \
     --target-states AZ,FL,TX,OH,IL,CA \
+    --exclude-federal-agencies \
     --json
 
 # 2. MuckRock curated URL list → candidates + packet stubs
@@ -93,6 +94,17 @@ python tools/run_dataset_intake.py \
 ```
 
 All output paths sit under `.tmp/` (gitignored after PR #26).
+
+## Real-dataset notes (SF Chronicle)
+
+The first operational SF Chronicle intake (3,336 rows, 12 columns) surfaced four real-world findings that drove the second-iteration cleanup PR:
+
+1. **Bimodal grade distribution.** The dataset has two distinct row shapes: enriched rows with named decedent + agency + news (≈ 2,085, all grade A) and FARS-aggregate rows with only date + state + county + fatality count (≈ 1,251, all grade D). There is essentially nothing in B or C — operators should expect to see only A and D when running this lane against the full Chronicle CSV.
+2. **Score saturation at the rubric ceiling.** Many enriched rows hit the maximum possible score (~20 of 20). The CLI's top-N selection now applies an operational [`rank_key`](scoring.py) tie-break — real-name beats placeholder; more news beats less; higher fatality count beats lower; recent incident date beats older; non-federal agency beats federal; target-state beats non-target-state; candidate_id is the stable fallback. Use `--top-n` with confidence that the top-N are operationally ranked, not just lex-sorted by row order.
+3. **Placeholder names** like `name withheld`, `name unknown`, `withheld`, `unknown`, `n/a`, `not released`, `unidentified` no longer earn the +3 name bonus and don't generate name-bearing search queries. The original raw value is preserved in `notes` (`placeholder_name_suppressed=<original>`).
+4. **Federal agencies** (U.S. Border Patrol / CBP / FBI / DEA / ATF / Homeland Security / U.S. Marshals / Secret Service) appeared frequently in the top-N. The current portal-live extractor architecture targets municipal newsrooms; federal transparency surfaces are different. Pass `--exclude-federal-agencies` to drop these for packet-author work — default behavior keeps them so other downstream consumers can still see them.
+
+For municipal/sheriff/state packet generation, the recommended invocation is the example above with `--exclude-federal-agencies` set.
 
 ## Out of scope for the initial PR
 

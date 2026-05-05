@@ -175,15 +175,100 @@ def test_search_task_seeds_empty_when_name_and_agency_missing(candidates):
 @pytest.mark.parametrize(
     "raw,expected",
     [
+        # Original formats — must keep working.
         ("2025-04-12", "2025-04-12"),
         ("4/12/2025", "2025-04-12"),
         ("12/5/2024", "2024-12-05"),
         ("not a date", None),
         ("", None),
+        # 2-digit US years: 00-49 -> 20xx, 50-99 -> 19xx.
+        ("12/26/20", "2020-12-26"),
+        ("4/12/25", "2025-04-12"),
+        ("1/1/00", "2000-01-01"),
+        ("12/31/49", "2049-12-31"),
+        ("1/1/50", "1950-01-01"),
+        ("12/31/99", "1999-12-31"),
+        # Textual months — full + abbreviated, comma + period + spaces.
+        ("December 26, 2020", "2020-12-26"),
+        ("Dec 26, 2020", "2020-12-26"),
+        ("Dec. 26, 2020", "2020-12-26"),
+        ("Dec 26 2020", "2020-12-26"),
+        ("September 1, 2025", "2025-09-01"),
+        ("Sept. 1, 2025", "2025-09-01"),
+        ("January 1, 1999", "1999-01-01"),
+        # Ordinals tolerated.
+        ("Dec 26th, 2020", "2020-12-26"),
+        ("December 1st, 2025", "2025-12-01"),
+        # Bad textual months reject cleanly.
+        ("Smarch 26, 2020", None),
+        # Garbage rejects.
+        ("Dec 99, 2020", None),
+        ("13/45/2020", None),
     ],
 )
 def test_date_normalisation(raw, expected):
     assert sfc._normalize_date(raw) == expected
+
+
+# ---- placeholder-name handling --------------------------------------
+
+
+@pytest.mark.parametrize(
+    "raw_name",
+    ["name withheld", "name unknown", "withheld", "unknown",
+     "n/a", "n.a.", "not released", "not given", "unidentified",
+     "Name Withheld", "  WITHHELD  "],
+)
+def test_placeholder_name_loses_name_bonus(raw_name):
+    """Placeholder names must NOT earn the +3 name bonus and the
+    extracted candidate's subject_name must be None."""
+    csv_text = (
+        "date,year,number_killed,name,initial_reason,person_role,"
+        "main_agency,news_urls,city,county,state,in_fars_pursuit\n"
+        f"2025-01-01,2025,2,{raw_name},traffic stop,bystander,"
+        "Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1\n"
+    )
+    candidates = sfc.parse_csv_text(csv_text)
+    c = candidates[0]
+    # subject_name is suppressed.
+    assert c.subject_name is None
+    # The +3 name bonus is suppressed; everything else still scores.
+    # Real-name version of this row scores 20; without the +3 bonus it scores 17.
+    assert c.packet_priority_score == 17
+    # Note carries the original raw value for traceability.
+    assert any("placeholder_name_suppressed=" in n for n in c.notes)
+
+
+def test_placeholder_name_does_not_generate_name_bearing_queries():
+    """When subject_name is suppressed, the search-task seeds that
+    join name + agency must NOT fire."""
+    csv_text = (
+        "date,year,number_killed,name,initial_reason,person_role,"
+        "main_agency,news_urls,city,county,state,in_fars_pursuit\n"
+        "2025-01-01,2025,2,name withheld,traffic stop,bystander,"
+        "Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1\n"
+    )
+    c = sfc.parse_csv_text(csv_text)[0]
+    # outcome queries are name-anchored — should be empty.
+    assert c.outcome_queries == []
+    # YouTube queries that need name (first two) shouldn't fire.
+    # The name-less city/agency queries can still fire.
+    assert all("name withheld" not in q for q in c.youtube_queries)
+    assert all("name withheld" not in q for q in c.muckrock_queries)
+    assert all("name withheld" not in q for q in c.official_source_queries)
+
+
+def test_real_name_still_earns_bonus_unchanged():
+    """Regression: non-placeholder names work exactly as before."""
+    csv_text = (
+        "date,year,number_killed,name,initial_reason,person_role,"
+        "main_agency,news_urls,city,county,state,in_fars_pursuit\n"
+        "2025-04-12,2025,2,John Doe,traffic stop,bystander,"
+        "Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1\n"
+    )
+    c = sfc.parse_csv_text(csv_text)[0]
+    assert c.subject_name == "John Doe"
+    assert c.packet_priority_score == 20
 
 
 # ---- news_urls split -------------------------------------------------

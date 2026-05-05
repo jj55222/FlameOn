@@ -26,6 +26,8 @@ if str(_REPO_ROOT) not in sys.path:
 
 from pipeline2_discovery.dataset_sources import (  # noqa: E402
     DatasetCandidate,
+    is_federal_agency,
+    rank_key,
 )
 from pipeline2_discovery.dataset_sources import (  # noqa: E402
     sfchronicle_pursuits,
@@ -383,7 +385,21 @@ def _parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         dest="target_states",
         default=DEFAULT_TARGET_STATES,
         help=f"Comma-separated state codes for the SF Chronicle target-state "
-             f"score bonus (default: {DEFAULT_TARGET_STATES}).",
+             f"score bonus AND for the operational rank-key tie-break "
+             f"(default: {DEFAULT_TARGET_STATES}).",
+    )
+    parser.add_argument(
+        "--exclude-federal-agencies",
+        dest="exclude_federal",
+        action="store_true",
+        help=(
+            "Drop candidates whose agency_name matches a known federal "
+            "agency (U.S. Border Patrol / CBP / FBI / DEA / ATF / "
+            "Homeland Security / U.S. Marshals / Secret Service). "
+            "Default off; municipal/sheriff/state agencies always pass. "
+            "Use this for portal-live target lead generation since the "
+            "current extractor architecture targets municipal newsrooms."
+        ),
     )
     parser.add_argument(
         "--json",
@@ -405,6 +421,7 @@ def _format_human_report(
     stub_count: int,
     task_count: int,
     top_n: int,
+    excluded_federal_count: int = 0,
 ) -> str:
     grade_counts = {"A": 0, "B": 0, "C": 0, "D": 0}
     for c in candidates:
@@ -418,8 +435,10 @@ def _format_human_report(
         f"C: {grade_counts['C']}  D: {grade_counts['D']}",
         f"top-N (stubs):    {top_n}",
         f"task_count:       {task_count}",
-        "",
     ]
+    if excluded_federal_count:
+        lines.append(f"federal excluded: {excluded_federal_count}")
+    lines.append("")
     if csv_path is not None:
         lines.append(f"wrote CSV:        {csv_path}")
     if json_path is not None:
@@ -472,9 +491,13 @@ def main(
         print(f"error: {exc}", file=err)
         return 2
 
-    candidates.sort(
-        key=lambda c: (-c.packet_priority_score, c.candidate_id)
-    )
+    excluded_federal_count = 0
+    if args.exclude_federal:
+        before = len(candidates)
+        candidates = [c for c in candidates if not is_federal_agency(c.agency_name)]
+        excluded_federal_count = before - len(candidates)
+
+    candidates.sort(key=lambda c: rank_key(c, target_states=target_states))
 
     csv_path = Path(args.output_csv) if args.output_csv else None
     json_path = Path(args.output_json) if args.output_json else None
@@ -511,6 +534,8 @@ def main(
             "top_n": args.top_n,
             "task_count": task_count,
             "stub_count": stub_count,
+            "exclude_federal_agencies": bool(args.exclude_federal),
+            "excluded_federal_count": excluded_federal_count,
             "csv_path": str(csv_path) if csv_path else None,
             "json_path": str(json_path) if json_path else None,
             "search_tasks_path": str(tasks_path) if tasks_path else None,
@@ -531,6 +556,7 @@ def main(
                 stub_count=stub_count,
                 task_count=task_count,
                 top_n=args.top_n,
+                excluded_federal_count=excluded_federal_count,
             ),
             file=out,
         )

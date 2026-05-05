@@ -268,3 +268,84 @@ def test_intake_makes_zero_network_calls(monkeypatch, tmp_path):
         "--output-json", str(tmp_path / "out.json"),
     ])
     assert code == 0
+
+
+# ---- --exclude-federal-agencies ------------------------------------
+
+
+SFC_WITH_FEDERAL_CSV = """\
+date,year,number_killed,name,initial_reason,person_role,main_agency,news_urls,city,county,state,in_fars_pursuit
+2025-04-12,2025,2,John Doe,traffic stop,bystander,Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1
+2025-05-01,2025,2,Anonymous Driver,traffic stop,passenger,U.S. Border Patrol,https://x.com/news2,San Diego,San Diego,CA,1
+2025-06-01,2025,2,Marie Roe,traffic stop,bystander,FBI,https://x.com/news3,Phoenix,Maricopa,AZ,1
+"""
+
+
+def test_exclude_federal_agencies_drops_federal_rows(tmp_path):
+    inp = _write(tmp_path / "sfc.csv", SFC_WITH_FEDERAL_CSV)
+    json_out = tmp_path / "candidates.json"
+    code, out, _err = _run([
+        "--source", "sfchronicle_pursuits",
+        "--input", str(inp),
+        "--output-json", str(json_out),
+        "--exclude-federal-agencies",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["exclude_federal_agencies"] is True
+    assert payload["excluded_federal_count"] == 2
+    candidates = json.loads(json_out.read_text(encoding="utf-8"))
+    assert len(candidates) == 1
+    assert candidates[0]["agency_name"] == "Phoenix Police Department"
+
+
+def test_exclude_federal_default_off_keeps_federal_rows(tmp_path):
+    inp = _write(tmp_path / "sfc.csv", SFC_WITH_FEDERAL_CSV)
+    json_out = tmp_path / "candidates.json"
+    code, _out, _err = _run([
+        "--source", "sfchronicle_pursuits",
+        "--input", str(inp),
+        "--output-json", str(json_out),
+    ])
+    assert code == 0
+    candidates = json.loads(json_out.read_text(encoding="utf-8"))
+    assert len(candidates) == 3
+
+
+def test_human_report_shows_federal_excluded_count(tmp_path):
+    inp = _write(tmp_path / "sfc.csv", SFC_WITH_FEDERAL_CSV)
+    code, out, _err = _run([
+        "--source", "sfchronicle_pursuits",
+        "--input", str(inp),
+        "--exclude-federal-agencies",
+    ])
+    assert code == 0
+    assert "federal excluded: 2" in out
+
+
+# ---- new ranking via rank_key ---------------------------------------
+
+
+def test_top_n_uses_operational_rank_key_not_just_score(tmp_path):
+    """Two perfect-score rows should rank by tie-breaks: real name
+    before placeholder, more news before less, etc."""
+    csv_text = """\
+date,year,number_killed,name,initial_reason,person_role,main_agency,news_urls,city,county,state,in_fars_pursuit
+2025-04-12,2025,2,name withheld,traffic stop,bystander,Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1
+2025-04-12,2025,2,Real Person,traffic stop,bystander,Phoenix Police Department,https://x.com/news,Phoenix,Maricopa,AZ,1
+"""
+    inp = _write(tmp_path / "sfc.csv", csv_text)
+    json_out = tmp_path / "candidates.json"
+    code, _out, _err = _run([
+        "--source", "sfchronicle_pursuits",
+        "--input", str(inp),
+        "--output-json", str(json_out),
+    ])
+    assert code == 0
+    cs = json.loads(json_out.read_text(encoding="utf-8"))
+    # Real-name candidate (row 1, candidate_id ":1") sorts before
+    # the placeholder candidate (row 0, candidate_id ":0") because
+    # the real-name tie-break beats the candidate_id fallback.
+    assert cs[0]["subject_name"] == "Real Person"
+    assert cs[1]["subject_name"] is None
