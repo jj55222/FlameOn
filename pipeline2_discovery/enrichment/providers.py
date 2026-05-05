@@ -1,14 +1,19 @@
 """Enrichment provider interface + Mock implementation + factory.
 
-The yt-dlp YouTube provider lives in :mod:`youtube_provider` so the
-relevance-gate helpers don't bloat this module; it is re-exported
-from here for backward compatibility with code that imports
-``YtDlpYouTubeSearchClient`` from ``pipeline2_discovery.enrichment``.
+Live provider implementations live in dedicated modules so their
+helpers don't bloat this module:
 
-Remaining live providers (MuckRock API, Brave / Exa / Tavily web
-search) are deferred to follow-up PRs and raise
-``NotImplementedError`` here so a misconfigured CLI invocation fails
-loudly at the harness level instead of silently calling out.
+- :mod:`youtube_provider` — yt-dlp metadata + relevance gate
+- :mod:`muckrock_provider` — MuckRock API v2 GET-only client +
+  anchor / supporting-term scoring
+
+Both classes are re-exported from here for backward compatibility
+with code that imports them from ``pipeline2_discovery.enrichment``.
+
+Remaining live providers (Brave / Exa / Tavily web search) are
+deferred to follow-up PRs and raise ``NotImplementedError`` here so
+a misconfigured CLI invocation fails loudly at the harness level
+instead of silently calling out.
 
 Provider contract (informal Protocol — Python's ``typing.Protocol``
 isn't strictly required, but the runner only uses ``provider.name``
@@ -24,13 +29,13 @@ import hashlib
 from typing import Tuple
 
 from .models import EnrichmentResult, EnrichmentTask, TaskStatus
+from .muckrock_provider import MuckRockProvider
 from .youtube_provider import YtDlpYouTubeSearchClient
 
 
 # Names accepted by ``get_provider``.
-KNOWN_PROVIDERS: Tuple[str, ...] = ("mock", "youtube")
+KNOWN_PROVIDERS: Tuple[str, ...] = ("mock", "youtube", "muckrock")
 DEFERRED_PROVIDERS: Tuple[str, ...] = (
-    "muckrock",
     "brave",
     "exa",
     "tavily",
@@ -80,6 +85,7 @@ def get_provider(name: str):
 
     - ``"mock"`` returns a ``MockProvider``.
     - ``"youtube"`` returns a ``YtDlpYouTubeSearchClient``.
+    - ``"muckrock"`` returns a ``MuckRockProvider``.
     - Any name in ``DEFERRED_PROVIDERS`` raises NotImplementedError
       pointing at the follow-up PR roadmap.
     - Any other name raises ValueError.
@@ -88,11 +94,13 @@ def get_provider(name: str):
         return MockProvider()
     if name == "youtube":
         return YtDlpYouTubeSearchClient()
+    if name == "muckrock":
+        return MuckRockProvider()
     if name in DEFERRED_PROVIDERS:
         raise NotImplementedError(
             f"provider {name!r} is gated to a follow-up PR; this PR ships "
-            f"the harness, the mock provider, and the yt-dlp youtube "
-            f"provider. Roadmap: PR 3 = MuckRock API, PR 4 = official-source "
+            f"the harness, the mock provider, the yt-dlp youtube provider, "
+            f"and the MuckRock API provider. Roadmap: PR 4 = official-source "
             f"web search (Brave / Exa / Tavily)."
         )
     raise ValueError(
@@ -105,6 +113,7 @@ __all__ = [
     "DEFERRED_PROVIDERS",
     "KNOWN_PROVIDERS",
     "MockProvider",
+    "MuckRockProvider",
     "YtDlpYouTubeSearchClient",
     "get_provider",
 ]
