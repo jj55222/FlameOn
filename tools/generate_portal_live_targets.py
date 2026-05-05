@@ -28,7 +28,17 @@ import sys
 from pathlib import Path
 from typing import List, Optional, Sequence
 
-from pipeline2_discovery.casegraph.portal_live_target_generator import (
+# Make the repo root importable regardless of how the script is
+# invoked. ``python tools/generate_portal_live_targets.py`` puts
+# only ``tools/`` on sys.path; ``python -m tools.generate_portal_live_targets``
+# puts the cwd on sys.path. This bootstrap normalises both forms so
+# the operator-facing direct invocation documented in
+# PORTAL_LIVE_OPERATOR.md works without surprises.
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from pipeline2_discovery.casegraph.portal_live_target_generator import (  # noqa: E402
     DEFAULT_GENERATION_MODE,
     DEFAULT_MAX_TARGETS_PER_RUN,
     GENERATION_MODES,
