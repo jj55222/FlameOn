@@ -44,27 +44,101 @@ _LOW_PRETEXT_REASONS = (
     "suspected nonviolent",
 )
 
-# Match either ISO yyyy-mm-dd or US m/d/yyyy.
+# Names the dataset uses to mark the decedent as deliberately
+# unidentified (e.g. minors, anonymisation by request). For scoring
+# and search-task purposes these are equivalent to a missing name —
+# they cannot anchor a name-bearing query, and giving them the +3
+# name bonus saturates the rubric on rows that aren't actually
+# operationally useful.
+_PLACEHOLDER_NAMES = frozenset({
+    "name withheld",
+    "name unknown",
+    "withheld",
+    "unknown",
+    "n/a",
+    "n.a.",
+    "not released",
+    "not given",
+    "unidentified",
+})
+
+
+def _is_placeholder_name(name: Optional[str]) -> bool:
+    """True if ``name`` is one of the dataset's documented stand-in
+    strings for an unidentified decedent."""
+    if not name:
+        return False
+    return name.strip().lower() in _PLACEHOLDER_NAMES
+
+# Match either ISO yyyy-mm-dd, US m/d/yyyy, US m/d/yy, or
+# textual-month forms like ``December 26, 2020`` / ``Dec. 26 2020``.
 _ISO_DATE_RE = re.compile(r"^\s*(\d{4})-(\d{1,2})-(\d{1,2})\s*$")
-_US_DATE_RE = re.compile(r"^\s*(\d{1,2})/(\d{1,2})/(\d{4})\s*$")
+_US_DATE_4_RE = re.compile(r"^\s*(\d{1,2})/(\d{1,2})/(\d{4})\s*$")
+_US_DATE_2_RE = re.compile(r"^\s*(\d{1,2})/(\d{1,2})/(\d{2})\s*$")
+_TEXTUAL_DATE_RE = re.compile(
+    r"^\s*([A-Za-z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?[,\s]\s*(\d{4})\s*$"
+)
+
+_MONTH_NAMES = {
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "may": 5, "june": 6, "july": 7, "august": 8,
+    "september": 9, "october": 10, "november": 11, "december": 12,
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
+}
 
 
 # ---- helpers --------------------------------------------------------
 
 
 def _normalize_date(raw: str) -> Optional[str]:
-    """Return ISO yyyy-mm-dd, or None if unparseable."""
-    if not raw:
+    """Return ISO yyyy-mm-dd, or None if unparseable.
+
+    Accepts:
+      ISO       2020-12-26
+      US 4-yr  12/26/2020
+      US 2-yr  12/26/20  (00-49 -> 2000-2049, 50-99 -> 1950-1999)
+      Textual   December 26, 2020 / Dec. 26, 2020 / Dec 26 2020
+    """
+    if not raw or not isinstance(raw, str):
         return None
-    m = _ISO_DATE_RE.match(raw)
+    text = raw.strip()
+    m = _ISO_DATE_RE.match(text)
     if m:
         y, mo, d = m.group(1), int(m.group(2)), int(m.group(3))
-        return f"{y}-{mo:02d}-{d:02d}"
-    m = _US_DATE_RE.match(raw)
+        if _valid_md(mo, d):
+            return f"{y}-{mo:02d}-{d:02d}"
+        return None
+    m = _US_DATE_4_RE.match(text)
     if m:
         mo, d, y = int(m.group(1)), int(m.group(2)), m.group(3)
-        return f"{y}-{mo:02d}-{d:02d}"
+        if _valid_md(mo, d):
+            return f"{y}-{mo:02d}-{d:02d}"
+        return None
+    m = _US_DATE_2_RE.match(text)
+    if m:
+        mo, d, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if _valid_md(mo, d):
+            year = 2000 + yy if yy <= 49 else 1900 + yy
+            return f"{year}-{mo:02d}-{d:02d}"
+        return None
+    m = _TEXTUAL_DATE_RE.match(text)
+    if m:
+        month_name = m.group(1).lower()
+        mo = _MONTH_NAMES.get(month_name)
+        if mo is None:
+            return None
+        d = int(m.group(2))
+        y = m.group(3)
+        if _valid_md(mo, d):
+            return f"{y}-{mo:02d}-{d:02d}"
     return None
+
+
+def _valid_md(month: int, day: int) -> bool:
+    """Sanity-check month + day. Doesn't care about leap years; the
+    upstream dataset is already validated."""
+    return 1 <= month <= 12 and 1 <= day <= 31
 
 
 def _split_news_urls(raw: str) -> List[str]:
@@ -269,7 +343,7 @@ def parse_row(
     ``row_index`` is the 0-based row position in the source CSV; used
     as the stable source_row_id when no other unique key is available.
     """
-    name = (row.get("name") or "").strip() or None
+    raw_name = (row.get("name") or "").strip() or None
     main_agency = (row.get("main_agency") or "").strip() or None
     initial_reason = (row.get("initial_reason") or "").strip() or None
     person_role = (row.get("person_role") or "").strip() or None
@@ -280,6 +354,12 @@ def parse_row(
     fatality_count = _safe_int(row.get("number_killed"))
     in_fars = _safe_int(row.get("in_fars_pursuit"))
     news_urls = _split_news_urls(row.get("news_urls") or "")
+
+    # Placeholder names ("name withheld", "unknown", etc.) are
+    # operationally equivalent to no name — they can't anchor a
+    # name-bearing search query and shouldn't earn the +3 bonus.
+    placeholder_suppressed = _is_placeholder_name(raw_name)
+    name = None if placeholder_suppressed else raw_name
 
     score = score_pursuit_row(
         name=name,
@@ -304,6 +384,8 @@ def parse_row(
     notes: List[str] = []
     if in_fars == 1:
         notes.append("in_fars_pursuit=1 (FARS reconciled)")
+    if placeholder_suppressed:
+        notes.append(f"placeholder_name_suppressed={raw_name!r}")
 
     candidate = DatasetCandidate(
         candidate_id=_stable_candidate_id(str(row_index)),
