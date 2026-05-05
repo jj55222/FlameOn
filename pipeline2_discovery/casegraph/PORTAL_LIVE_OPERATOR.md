@@ -342,6 +342,140 @@ Run **one** `--portal-live` smoke against one generated fetch-only or extract-re
 - It is **not Firecrawl**. Firecrawl remains a deferred fetcher for the live-fetch path; the scaffold workflow does not invoke it.
 - It is **not a batch smoke runner**. Live smokes remain one-at-a-time operator actions; the batch runner is a separate roadmap item.
 
+## Running a batch smoke over generated fixtures
+
+Once the curated workflow above has produced a directory of generated `*_real_extract_required.json` fixtures, the next operator step is running them through `--portal-live` *sequentially* — one HTTP call per fixture, with a courtesy delay between targets. The `tools/run_portal_live_batch.py` script handles that.
+
+**This is not a crawler.** The batch runner only consumes pre-existing local fixture JSON files. It never discovers URLs, never reads search results, never invokes Firecrawl, never runs in parallel. Live HTTP requires the same env gates the CLI requires — the batch runner inherits the parent environment and never bypasses them.
+
+### Default mode is dry-run
+
+The batch runner is dry-run-by-default. Without `--run`, it reports which fixtures it would have invoked and to where, without invoking the CaseGraph CLI or making a single HTTP call.
+
+### Hard cap on targets per run
+
+`--max-targets` (default 5) caps the number of fixtures any single batch will touch, *before* invocation. Selection is sorted alphabetically by filename, so the cap is deterministic.
+
+### Courtesy delay between targets
+
+`--delay-seconds` (default 2.0) inserts a sleep between successive fixtures — only between, never after the last. This keeps live traffic considerate of the upstream agency's site.
+
+### Stop-on-first-failure by default
+
+If a fixture's smoke fails or is blocked, the batch stops by default. Pass `--continue-on-error` to keep going through subsequent fixtures regardless. The summary records every attempted target with its outcome either way.
+
+### Output paths
+
+- `--output-dir <dir>` — required. Per-target bundles land at `<output-dir>/<target_id>/bundle.json`. Must resolve under one of the gitignored safe artifact dirs (repo-root `.tmp/`, `.runs/`, `.artifacts/`, `.cache/`, `.logs/`, or any of the same names under `autoresearch/`). The CLI's existing safe-path policy is reused.
+- `--summary-out <path>` — optional. One aggregate summary JSON across all attempted targets. Subject to the same safe-path policy.
+
+### Example: dry-run over generated fixtures
+
+```bash
+python tools/run_portal_live_batch.py \
+    --fixtures-dir .tmp/portal_live_curated/generated_targets \
+    --output-dir .tmp/portal_live_batch_dryrun \
+    --max-targets 3 \
+    --delay-seconds 2
+```
+
+Reports the first 3 sorted `*_real_extract_required.json` fixtures from the directory, marks each `[dry_run]`, creates no per-target bundles, makes no network calls.
+
+### Example: real run, three fixtures, courtesy delay
+
+```bash
+export FLAMEON_RUN_LIVE_CASEGRAPH=1
+export FLAMEON_RUN_LIVE_PORTAL_FETCH=1
+
+python tools/run_portal_live_batch.py \
+    --fixtures-dir .tmp/portal_live_curated/generated_targets \
+    --output-dir .tmp/portal_live_batch \
+    --summary-out .tmp/portal_live_batch/summary.json \
+    --max-targets 3 \
+    --delay-seconds 2 \
+    --run \
+    --json
+```
+
+For each selected fixture, the batch runner shells out to `python -m pipeline2_discovery.casegraph.cli --portal-live --target-fixture <fixture> --bundle-out <output-dir>/<target_id>/bundle.json --json`, captures the CLI's JSON output, and aggregates the per-target results. The CLI is the single source of truth for env-gate validation, KnownUrlLiveSmokeTarget preflight, allowed_domains enforcement, fetcher selection, and bundle assembly — the batch runner just orchestrates the loop and the per-target reporting.
+
+### Recommended first batch
+
+For the first real batch run, start small:
+
+```
+--max-targets 3
+--delay-seconds 2
+--pattern "*_real_extract_required.json"
+```
+
+Three fixtures = three HTTP calls + two 2-second delays = ≈10 seconds wallclock. If the summary shows `completed_count: 3` and `total_api_calls: {"requests": 3}`, the chain is operationally proven at small scale. Then bump `--max-targets` for subsequent runs as confidence grows.
+
+### Interpreting the summary JSON
+
+```json
+{
+  "run_id":           "<UTC compact timestamp>",
+  "started_at":       "<ISO-8601 with timezone>",
+  "finished_at":      "<ISO-8601 with timezone>",
+  "elapsed_seconds":  <wallclock>,
+  "dry_run":          <bool>,
+  "selected_count":   <int — fixtures matched + capped>,
+  "attempted_count":  <int — got past the load step>,
+  "completed_count":  <int — live_fetch.status == "completed">,
+  "failed_count":     <int — non-zero CLI exit, parse error, timeout, etc.>,
+  "blocked_count":    <int — live_fetch.status == "blocked"; missing env, allowed_domains, etc.>,
+  "skipped_count":    <int — fallthrough; rare>,
+  "total_api_calls":  {"requests": <int>, ...},
+  "fixtures_selected":  [<paths>],
+  "output_dir":       "<dir>",
+  "delay_seconds":    <float>,
+  "continue_on_error": <bool>,
+  "results": [
+    {
+      "target_id":        "...",
+      "fixture_path":     "...",
+      "url":              "...",
+      "fetcher":          "requests",
+      "require_extraction": true,
+      "bundle_path":      "...",
+      "status":           "completed" | "blocked" | "failed" | "dry_run" | "skipped",
+      "blocked_reason":   "...",
+      "status_code":      200,
+      "api_calls":        {"requests": 1},
+      "raw_payload_path": "...",
+      "extracted_payload_path": "...",
+      "replayed":         true,
+      "verdict":          "HOLD",
+      "reason_codes":     [...],
+      "verified_artifact_types": ["bodycam"],
+      "wallclock_seconds": 1.2,
+      "error":            null
+    },
+    ...
+  ]
+}
+```
+
+A "successful" batch usually means: `failed_count == 0`, `blocked_count == 0`, and `total_api_calls` matches your expectation (`completed_count` requests calls for an all-`requests`-fetcher batch).
+
+### Module-style invocation (equivalent)
+
+```bash
+python -m tools.run_portal_live_batch ...
+```
+
+Both invocation forms work — the script auto-bootstraps the repo root onto `sys.path` so the direct form works from the repo root without `PYTHONPATH=.` or any other shell wrapper. (Same pattern as `tools/generate_portal_live_targets.py` and `tools/scaffold_phoenix_curated_urls.py`.)
+
+### What this is NOT
+
+- Not a crawler.
+- Not a discovery layer (curated fixtures only).
+- Not Firecrawl or any other browser-automation path.
+- Not parallel — sequential by design.
+- Not a retry mechanism — one attempt per fixture; failures stop or continue based on `--continue-on-error`.
+- Not a way to bypass env gates — the CLI's `FLAMEON_RUN_LIVE_CASEGRAPH=1` AND `FLAMEON_RUN_LIVE_PORTAL_FETCH=1` are inherited from the parent environment and remain authoritative.
+
 ## Hardening expectations
 
 - Live network is always opt-in via env gates.
@@ -352,3 +486,4 @@ Run **one** `--portal-live` smoke against one generated fetch-only or extract-re
 - The `agency_ois` extractor is **pure** (no I/O) and is the operator's first line of defence against a redesigned page template.
 - The target generator is **pure**: lint + serialize, no network. Discovery and live smoke remain explicit, separate operator actions.
 - The curated-URL scaffold is **pure**: lint + reshape, no network. Acquisition and review remain explicit, manual operator actions.
+- The batch smoke runner is **sequential and bounded**: hard target cap, courtesy delay between targets, dry-run by default, stop-on-first-failure by default. Discovery and curation remain explicit, separate operator actions; the runner itself only consumes already-reviewed local fixture files.
