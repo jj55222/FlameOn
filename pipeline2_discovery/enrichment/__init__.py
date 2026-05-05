@@ -32,6 +32,7 @@ from .providers import (
     DEFERRED_PROVIDERS,
     KNOWN_PROVIDERS,
     MockProvider,
+    YtDlpYouTubeSearchClient,
     get_provider,
 )
 from .runner import filter_tasks, run_enrichment_batch
@@ -48,6 +49,7 @@ __all__ = [
     "EnrichmentTask",
     "KNOWN_PROVIDERS",
     "MockProvider",
+    "YtDlpYouTubeSearchClient",
     "TaskStatus",
     "TaskType",
     "filter_tasks",

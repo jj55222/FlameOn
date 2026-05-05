@@ -8,25 +8,40 @@ A small, **pure** harness that consumes the `search_tasks.json` document produce
 
 ## What this PR ships
 
-This skeleton PR ships **only**:
+This PR adds the **YouTube provider** on top of the harness + Mock skeleton:
 
 - The harness — task loading, validation, filtering, sorting, capping, dispatch, aggregation.
 - A `MockProvider` that returns deterministic synthetic results for tests and CLI smoke runs.
+- A `YtDlpYouTubeSearchClient` (provider name: `youtube`) — see [YouTube provider](#youtube-provider) below.
 - The CLI ([`tools/run_enrichment_tasks.py`](../../tools/run_enrichment_tasks.py)).
-- Tests covering every code path zero-network.
+- Tests covering every code path zero-network (yt-dlp is monkeypatched in tests).
 
-Live providers are **deferred to follow-up PRs** and explicitly raise `NotImplementedError`:
+Remaining live providers are **still deferred** and raise `NotImplementedError`:
 
-- **PR 2 — YouTube provider.** Handles `youtube_query` tasks. Searches via YouTube Data API or `yt-dlp`'s search interface; prefers official agency channels; returns video URLs + channel + transcript availability. Output feeds future media preprocessing.
 - **PR 3 — MuckRock API provider.** Handles `muckrock_query` tasks. API-gated and rate-limited. Returns request URLs / status / files. Output feeds the existing `muckrock_curated` parser.
 - **PR 4 — Official-source web search provider.** Handles `official_source_query` tasks. Uses Brave / Exa / Tavily search behind explicit env gates. Returns official agency URLs only. Output feeds the portal-live curated scaffold + generator.
 - **PR 5 (or later) — Outcome provider.** Handles `outcome_query` tasks. Returns court / news / prosecutor outcome candidates.
 
+## YouTube provider
+
+`youtube` (internal class `YtDlpYouTubeSearchClient`) is the in-PR live provider for `youtube_query` tasks.
+
+- **Backend:** `yt-dlp`'s `ytsearchN:<query>` pseudo-URL — **not** the YouTube Data API.
+- **No API key required.** Nothing to provision, no per-project quota burn.
+- **Metadata only.** Runs with `extract_flat=True`, `skip_download=True`, `noplaylist=True`. No video, audio, subtitle, or caption downloads. No writes to disk.
+- **No transcripts yet.** Caption pulls are deliberately deferred to a later media-preprocessing stage.
+- **Rate limit etiquette:** the runner is sequential by design; a 10s socket timeout caps any single search.
+- **Result shape:** up to `max_results` (default 5, capped at 20) `(url, title)` pairs per task. Confidence is `medium` if any results came back, `low` otherwise. `next_actions_hint` includes `youtube_metadata` when results exist, signalling a future media-preprocessing stage to pick them up.
+- **Failure mode:** any exception during search (network, parse, etc.) becomes `status: "failed"` with `error` set to `<ExceptionType>: <message>`; the run continues.
+- **Live invocation only with `--run --provider youtube`.** Default dry-run never imports yt-dlp or hits the network — it just reports the selected tasks.
+- **Future alternate backends.** YouTube Data API, Brave, Exa, etc. can be plugged in later as separate providers (or as a backend swap inside the same provider) without changing the runner contract.
+
 ## What this PR is NOT
 
 - **Not a crawler.** Reads only the local input JSON.
-- **Not a live web caller.** No network in any code path; `MockProvider` returns synthetic URLs at `mock.example.com` so misuse fails obviously.
-- **Not a YouTube / MuckRock / Brave / Exa / Tavily client.** Those names raise `NotImplementedError` if passed via `--provider`.
+- **Not a YouTube Data API caller.** The `youtube` provider uses `yt-dlp`'s metadata search, no Google API key.
+- **Not a media downloader.** Even the live `youtube` provider only returns URLs + titles; bytes pull (video / audio / captions) is a separate later stage.
+- **Not a MuckRock / Brave / Exa / Tavily client.** Those names raise `NotImplementedError` if passed via `--provider`.
 - **Not a portal-live caller.** The runner only emits next-action hints; routing happens downstream.
 
 ## Pipeline shape
@@ -44,8 +59,8 @@ list[EnrichmentTask]
 filtered tasks (sorted + capped)
     │
     ├─ provider.execute(task)           (providers.py)
-    │       MockProvider in this PR;
-    │       YouTube/MuckRock/Brave deferred
+    │       MockProvider + YtDlpYouTubeSearchClient
+    │       in this PR; MuckRock/Brave/Exa/Tavily deferred
     ▼
 list[EnrichmentResult]
     │
@@ -82,6 +97,19 @@ python tools/run_enrichment_tasks.py \
     --run \
     --provider mock \
     --json
+
+# Live YouTube run: invoke yt-dlp search per task (metadata only, no media)
+#   Requires `pip install yt-dlp`. No API key. Sequential, ~1 search per task.
+python tools/run_enrichment_tasks.py \
+    --input .tmp/dataset_intake_ranked/search_tasks.json \
+    --output-json .tmp/enrichment/results.json \
+    --summary-out .tmp/enrichment/summary.json \
+    --task-type youtube_query \
+    --grade A \
+    --max-tasks 5 \
+    --run \
+    --provider youtube \
+    --json
 ```
 
 All output paths sit under `.tmp/` (gitignored after PR #26).
@@ -98,7 +126,7 @@ python tools/run_enrichment_tasks.py
     [--grade A|B|C|D]                 repeatable filter
     [--max-tasks N]                   default 10
     [--run]                           required to invoke provider; default dry-run
-    [--provider mock]                 default mock; only mock allowed in this PR
+    [--provider mock|youtube]         default mock; youtube = yt-dlp search (metadata only, no API key)
     [--json]                          machine-readable stdout
 ```
 
@@ -146,8 +174,9 @@ Summary:
 
 ## Out of scope for this PR
 
-- **No live search providers.** YouTube, MuckRock API, Brave / Exa / Tavily — all gated; `NotImplementedError` if requested.
-- **No media downloads.** Even live providers (when added) only return URLs + metadata; bytes pull is a separate later stage.
+- **No live MuckRock / Brave / Exa / Tavily search.** Still gated; `NotImplementedError` if requested.
+- **No YouTube Data API.** The in-PR `youtube` provider uses yt-dlp metadata search only.
+- **No media downloads.** Even the live `youtube` provider only returns URLs + titles; bytes pull (video / audio / captions / transcripts) is a separate later stage.
 - **No portal-live invocations.** The runner emits hints; routing is downstream.
 - **No automatic provider selection.** Each task type currently goes through the same provider (the operator picks one); per-task-type provider routing comes when more than one provider exists.
 - **No retries / backoff.** Single attempt per task; failures land at `status: "failed"` with the exception type in `error`.

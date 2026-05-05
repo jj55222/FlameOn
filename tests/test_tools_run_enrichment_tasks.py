@@ -206,27 +206,92 @@ def test_unknown_provider_rejected(tmp_path):
     assert "unknown provider" in err
 
 
-def test_deferred_provider_run_mode_rejected(tmp_path):
-    """Live providers (youtube/muckrock/brave/exa/tavily) must
+@pytest.mark.parametrize("name", ["muckrock", "brave", "exa", "tavily"])
+def test_deferred_provider_run_mode_rejected(tmp_path, name):
+    """Still-deferred providers (muckrock/brave/exa/tavily) must
     raise NotImplementedError at the harness before any execute()
     is attempted."""
     inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
     code, _out, err = _run([
         "--input", str(inp),
         "--run",
-        "--provider", "youtube",
+        "--provider", name,
     ])
     assert code == 2
     assert "follow-up PR" in err
 
 
-def test_deferred_provider_dry_run_does_not_raise(tmp_path):
+@pytest.mark.parametrize("name", ["muckrock", "brave", "exa", "tavily"])
+def test_deferred_provider_dry_run_does_not_raise(tmp_path, name):
     """Dry-run should accept a deferred provider name (no execute()
     is ever called) so operators can preview what a future PR's
     provider would receive."""
     inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
     code, out, _err = _run([
         "--input", str(inp),
+        "--provider", name,
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["dry_run"] is True
+    assert payload["provider"] == name
+
+
+# ---- youtube provider (zero-network) --------------------------------
+
+
+class _FakeYdlForCLI:
+    """Drop-in for yt_dlp.YoutubeDL in CLI tests — captures opts and
+    returns canned entries. No network."""
+
+    captured: dict = {}
+
+    def __init__(self, opts):
+        type(self).captured["opts"] = opts
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        pass
+
+    def extract_info(self, url, *, download):
+        type(self).captured["url"] = url
+        type(self).captured["download"] = download
+        return {
+            "entries": [
+                {
+                    "id": "vid01",
+                    "title": "Phoenix bodycam fake",
+                    "url": "https://www.youtube.com/watch?v=vid01",
+                },
+                {
+                    "id": "vid02",
+                    "title": "Second fake",
+                    "url": "",
+                },
+            ]
+        }
+
+
+def test_youtube_dry_run_does_not_invoke_yt_dlp(monkeypatch, tmp_path):
+    """Dry-run must not trigger yt-dlp import or execution even with
+    --provider youtube."""
+    from pipeline2_discovery.enrichment import providers as prov_mod
+
+    def boom(self):
+        raise AssertionError("yt-dlp must not be loaded in dry-run")
+
+    monkeypatch.setattr(prov_mod.YtDlpYouTubeSearchClient, "_load_yt_dlp", boom)
+
+    inp = _write_search_tasks(tmp_path / "tasks.json", [
+        _task(cid="x:1", task_type="youtube_query", query="q1"),
+        _task(cid="x:2", task_type="youtube_query", query="q2"),
+    ])
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "youtube_query",
         "--provider", "youtube",
         "--json",
     ])
@@ -234,6 +299,70 @@ def test_deferred_provider_dry_run_does_not_raise(tmp_path):
     payload = json.loads(out)
     assert payload["dry_run"] is True
     assert payload["provider"] == "youtube"
+    assert all(r["status"] == "dry_run" for r in payload["results"])
+
+
+def test_youtube_run_mode_uses_monkeypatched_yt_dlp(monkeypatch, tmp_path):
+    """Run mode with --provider youtube dispatches to the yt-dlp
+    backed client, but with a monkeypatched fake YoutubeDL class
+    so no network is hit."""
+    from pipeline2_discovery.enrichment import providers as prov_mod
+
+    _FakeYdlForCLI.captured = {}
+    monkeypatch.setattr(
+        prov_mod.YtDlpYouTubeSearchClient,
+        "_load_yt_dlp",
+        lambda self: _FakeYdlForCLI,
+    )
+
+    inp = _write_search_tasks(tmp_path / "tasks.json", [
+        _task(cid="x:1", task_type="youtube_query", query="phoenix bodycam"),
+    ])
+    output_dir = _make_safe_output_dir(tmp_path)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "youtube_query",
+        "--output-json", str(output_dir / "results.json"),
+        "--summary-out", str(output_dir / "summary.json"),
+        "--run",
+        "--provider", "youtube",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["dry_run"] is False
+    assert payload["provider"] == "youtube"
+    assert payload["completed_count"] == 1
+    assert payload["failed_count"] == 0
+
+    r = payload["results"][0]
+    assert r["status"] == "completed"
+    assert r["provider"] == "youtube"
+    assert "https://www.youtube.com/watch?v=vid01" in r["result_urls"]
+    assert "https://www.youtube.com/watch?v=vid02" in r["result_urls"]
+    assert r["confidence"] == "medium"
+    assert "youtube_metadata" in r["next_actions_hint"]
+
+    # Verify yt-dlp was actually invoked by the fake (search url shape)
+    assert _FakeYdlForCLI.captured["url"].startswith("ytsearch")
+    assert "phoenix bodycam" in _FakeYdlForCLI.captured["url"]
+    assert _FakeYdlForCLI.captured["download"] is False
+
+    # Output files written
+    assert (output_dir / "results.json").exists()
+    assert (output_dir / "summary.json").exists()
+
+
+def test_youtube_help_still_works():
+    """`--help` exits 0 and lists --provider — sanity-check that
+    promoting youtube to KNOWN_PROVIDERS didn't break argparse
+    setup."""
+    result = _run_subprocess(
+        [sys.executable, str(SCRIPT_PATH), "--provider", "youtube", "--help"],
+    )
+    assert result.returncode == 0
+    assert "--provider" in result.stdout
+    assert "ModuleNotFoundError" not in result.stderr
 
 
 # ---- input + safe-path errors --------------------------------------
