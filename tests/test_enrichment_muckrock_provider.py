@@ -256,6 +256,10 @@ def test_parses_record_with_released_files_high_confidence():
 
 
 def test_parses_record_with_bodycam_term_in_title():
+    """Agency anchor + bodycam term, no files → medium. Tightened
+    semantics (PR #38): MUCKROCK_PARSE_RELEASED_FILES is NO LONGER
+    emitted just because a kept result exists — only when at least
+    one kept result actually has files. ARTIFACT_SEARCH likewise."""
     record = _record(
         rid=2,
         title="Longmont Police body-worn camera incident records",
@@ -266,13 +270,17 @@ def test_parses_record_with_bodycam_term_in_title():
     r = p.execute(_task())
     assert r.status == TaskStatus.COMPLETED
     assert r.confidence == "medium"
-    assert HINT_MUCKROCK_PARSE in r.next_actions_hint
-    assert HINT_OUTCOME in r.next_actions_hint  # status=ack, not done
-    # No artifact_search because file_count == 0
+    # status=ack, not done → outcome hint
+    assert HINT_OUTCOME in r.next_actions_hint
+    # No actual files → neither parse nor artifact-search hints fire
+    assert HINT_MUCKROCK_PARSE not in r.next_actions_hint
     assert HINT_ARTIFACT_SEARCH not in r.next_actions_hint
 
 
-def test_parses_record_with_strong_incident_terms_high_confidence():
+def test_parses_record_with_strong_incident_terms_medium_when_no_files():
+    """Tightened semantics (PR #38): agency anchor + strong incident
+    terms but NO files yields medium, not high. high requires actual
+    released files when there's no subject anchor."""
     record = _record(
         rid=3,
         title="Longmont officer-involved shooting investigation files",
@@ -281,9 +289,11 @@ def test_parses_record_with_strong_incident_terms_high_confidence():
     )
     p, client = _build(response=_FakeResp(json_body={"results": [record]}))
     r = p.execute(_task())
-    assert r.confidence == "high"
+    assert r.confidence == "medium"
     notes_str = " ".join(r.notes)
     assert "officer-involved shooting" in notes_str
+    # No files → no MUCKROCK_PARSE_RELEASED_FILES hint
+    assert HINT_MUCKROCK_PARSE not in r.next_actions_hint
 
 
 # ---- policy-only demotion ------------------------------------------
@@ -961,3 +971,256 @@ def test_failed_attempts_surface_as_failed_status():
     notes_str = " ".join(r.notes)
     assert "query_attempts=3" in notes_str
     assert "api_urls=" in notes_str
+
+
+# ---- confidence + hint tightening (post-Bulmahn) -------------------
+
+
+def test_status_done_alone_does_not_set_has_released_files():
+    """Tightened semantics: status=done WITHOUT files[] must NOT
+    flip has_released_files. The Bulmahn smoke surfaced 5 Pinal
+    admin records all marked status=done with file_count=0; treating
+    those as artifact-bearing was the false-positive failure mode."""
+    record = _record(
+        rid=1,
+        title="Longmont Police body-worn camera incident records",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        # NO files
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    notes_str = " ".join(r.notes)
+    assert "released_file_count=0" in notes_str
+    # Status=done alone is NOT enough to fire MUCKROCK_PARSE
+    assert HINT_MUCKROCK_PARSE not in r.next_actions_hint
+    assert HINT_ARTIFACT_SEARCH not in r.next_actions_hint
+
+
+def test_agency_only_done_no_files_is_low_confidence():
+    """The Bulmahn pattern: agency anchor + status=done + no files +
+    no incident/bodycam/pursuit term → confidence=low (was high in
+    v0). The 'agency-admin firehose' problem."""
+    record = _record(
+        rid=1,
+        title="Communication Services Contract - Arizona - 2018",
+        agency={"name": "Pinal County Sheriff's Office"},
+        status="done",
+        # NO files, NO incident/bodycam/pursuit term
+    )
+    # Use a Pinal-shaped context so 'pinal' anchors via the agency
+    # token. Subject name 'doe' is a placeholder that's too short to
+    # anchor (length 3 < 4 floor).
+    task = EnrichmentTask(
+        candidate_id="x:1", grade="A", task_type="muckrock_query",
+        query="pinal county sheriff body-worn camera",
+        context={
+            "agency": "pinal county sheriff's office",
+            "subject_name": "ann doe",
+            "city": "san tan valley",
+            "state": "AZ",
+        },
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(task)
+    # Note: the contract title now demotes via expanded
+    # POLICY_ONLY_TERMS, so it gets dropped at the gate. Either way
+    # the confidence resolves to low.
+    assert r.confidence == "low"
+
+
+def test_agency_admin_only_count_in_diagnostics():
+    """When kept results are agency-anchored admin-only (no subject,
+    no files, no incident/bodycam/pursuit), the diagnostic block
+    surfaces a count. Lets an operator see the 'we found agency
+    records but no incident artifacts' shape directly."""
+    # An admin-shaped record that survives the gate without case
+    # signal: anchor-only on agency token. Using a non-policy title
+    # so it doesn't get demoted, just to test the admin_only flag.
+    record = _record(
+        rid=1,
+        title="Longmont city budget transmittal letter 2023",
+        # 'budget' would demote via POLICY_ONLY_TERMS; use a plainer
+        # title to isolate the admin_only flag specifically.
+    )
+    record["title"] = "Longmont general records request — 2023 calendar year"
+    record["agency"] = {"name": "Longmont Police Services"}
+    record["status"] = "ack"  # not done, doesn't matter for this flag
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    notes_str = " ".join(r.notes)
+    assert "agency_admin_only_count=" in notes_str
+
+
+def test_actual_files_emit_both_parse_and_artifact_hints():
+    record = _record(
+        rid=1,
+        title="Longmont Police body-worn camera footage release",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        files=[{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert HINT_MUCKROCK_PARSE in r.next_actions_hint
+    assert HINT_ARTIFACT_SEARCH in r.next_actions_hint
+    # Status=done → no OUTCOME_VALIDATE
+    assert HINT_OUTCOME not in r.next_actions_hint
+
+
+def test_subject_plus_strong_incident_reaches_high_without_files():
+    """high path B from the spec: subject anchor + strong incident
+    term reaches high even when no files have been released yet."""
+    record = _record(
+        rid=1,
+        title="Joe William Gold officer-involved shooting investigation files",
+        agency={"name": "Longmont Police Services"},
+        status="ack",
+        # NO files
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.confidence == "high"
+
+
+def test_subject_plus_files_reaches_high():
+    """high path A from the spec: subject anchor + actual released
+    files reaches high regardless of incident term presence."""
+    record = _record(
+        rid=1,
+        title="Joe William Gold case records release",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        files=[{"ffile": "https://www.muckrock.com/files/x.pdf"}],
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.confidence == "high"
+
+
+def test_subject_alone_no_files_no_strong_terms_is_medium():
+    """medium path B from the spec: subject anchor with no files and
+    no strong incident term yields medium (not high)."""
+    record = _record(
+        rid=1,
+        title="Joe William Gold mention in records",  # subject-anchored, but no files / no strong terms
+        agency={"name": "Longmont Police Services"},
+        status="ack",
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.confidence == "medium"
+
+
+def test_agency_plus_bodycam_no_files_is_medium_not_high():
+    """medium path A: agency/city anchor + supporting term (bodycam)
+    without files → medium. Was the source of the v0 false-high."""
+    record = _record(
+        rid=1,
+        title="Longmont Police body-worn camera release request",
+        agency={"name": "Longmont Police Services"},
+        status="ack",
+        # NO files
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.confidence == "medium"
+    assert HINT_MUCKROCK_PARSE not in r.next_actions_hint
+
+
+def test_agency_plus_files_plus_case_term_reaches_high():
+    """high path C: agency/city anchor + actual released files +
+    case-relevant term."""
+    record = _record(
+        rid=1,
+        title="Longmont Police body-worn camera footage release",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        files=[{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.confidence == "high"
+
+
+def test_admin_terms_demote_contract_roster_medical_policies():
+    """The 5 specific admin titles surfaced in the Bulmahn live smoke
+    must now demote via POLICY_ONLY_TERMS. With no files and no
+    strong incident terms, they should drop."""
+    bad_titles = [
+        "Communication Services Contract - Arizona - 2018",
+        "Agency Roster",
+        "Medical Policies for Blood Borne Pathogens",
+        "Police Officer - Domestic (intimate partner) Abuse policies",
+    ]
+    records = [
+        _record(
+            rid=i, title=t,
+            agency={"name": "Longmont Police Services"},  # anchored on agency
+            status="done",  # status=done used to escape; no longer
+        )
+        for i, t in enumerate(bad_titles, start=10)
+    ]
+    p, client = _build(response=_FakeResp(json_body={"results": records}))
+    r = p.execute(_task())
+    # All four admin records should be dropped — only the agency
+    # token anchors them, and the policy_only flag fires (no files,
+    # no strong terms) so they hit drop_reason=policy_only_no_release.
+    assert r.result_urls == []
+    assert r.confidence == "low"
+
+
+def test_bulmahn_shaped_response_returns_low_no_parse_hint():
+    """End-to-end: simulate the actual Bulmahn smoke API response
+    shape — 5 Pinal admin requests, all status=done, all
+    file_count=0 — and confirm the tightened gate downgrades the
+    whole batch to confidence=low with no parse / artifact hints."""
+    bulmahn_like = [
+        {
+            "id": 54115,
+            "title": "Communication Services Contract - Arizona - 2018",
+            "slug": "communication-services-contract-arizona-2018",
+            "status": "done",
+            "agency": {"name": "Pinal County Sheriff's Office"},
+        },
+        {
+            "id": 159632, "title": "Agency Roster",
+            "slug": "agency-roster",
+            "status": "done",
+            "agency": {"name": "Pinal County Sheriff's Office"},
+        },
+        {
+            "id": 184352,
+            "title": "Medical Policies for Blood Borne Pathogens",
+            "slug": "medical-policies",
+            "status": "done",
+            "agency": {"name": "Pinal County Sheriff's Office"},
+        },
+        {
+            "id": 82312,
+            "title": "Police Officer - Domestic (intimate partner) Abuse policies",
+            "slug": "domestic-abuse-policies",
+            "status": "done",
+            "agency": {"name": "Pinal County Sheriff's Office"},
+        },
+    ]
+    bulmahn_task = EnrichmentTask(
+        candidate_id="sfchronicle_pursuits:2848", grade="A",
+        task_type="muckrock_query",
+        query="chase james bulmahn pinal county sheriff body-worn camera",
+        context={
+            "agency": "pinal county sheriff's office",
+            "subject_name": "chase james bulmahn",
+            "city": "san tan valley",
+            "state": "AZ",
+        },
+    )
+    p, client = _build(response=_FakeResp(json_body={"results": bulmahn_like}))
+    r = p.execute(bulmahn_task)
+    # All 4 records demoted via expanded POLICY_ONLY_TERMS (contract,
+    # roster, medical policies, abuse policies). With no subject
+    # anchor (no "bulmahn" in any title) and no files, all dropped.
+    assert r.confidence == "low"
+    assert r.result_urls == []
+    assert HINT_MUCKROCK_PARSE not in r.next_actions_hint
+    assert HINT_ARTIFACT_SEARCH not in r.next_actions_hint
