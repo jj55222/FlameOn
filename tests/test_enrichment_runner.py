@@ -11,6 +11,7 @@ from pipeline2_discovery.enrichment import (
     filter_tasks,
     run_enrichment_batch,
 )
+from pipeline2_discovery.enrichment.runner import select_tasks
 
 
 def _t(*, candidate_id="x:1", grade="A",
@@ -218,9 +219,166 @@ def test_run_batch_summary_carries_run_metadata():
     )
     for key in (
         "run_id", "started_at", "finished_at", "elapsed_seconds",
-        "dry_run", "provider", "selected_count", "attempted_count",
-        "completed_count", "failed_count", "skipped_count",
-        "max_tasks", "results",
+        "dry_run", "provider", "selected_count", "selected_candidate_count",
+        "attempted_count", "completed_count", "failed_count",
+        "skipped_count", "max_tasks", "max_candidates",
+        "tasks_per_candidate", "results",
     ):
         assert key in summary
     assert summary["provider"] == "mock"
+    # When neither candidate-aware flag is set, both echo as None.
+    assert summary["max_candidates"] is None
+    assert summary["tasks_per_candidate"] is None
+
+
+# ---- candidate-aware selection (post-PR #38 YouTube top-25 finding) -
+
+
+def _make_pool(n_candidates: int, tasks_per_cand: int):
+    """Build a pool of n_candidates × tasks_per_cand tasks. Candidate
+    ids are zero-padded so lexicographic order matches numeric order."""
+    out = []
+    width = max(2, len(str(n_candidates)))
+    for c in range(n_candidates):
+        cid = f"x:{c:0{width}d}"
+        for k in range(tasks_per_cand):
+            out.append(_t(
+                candidate_id=cid, query=f"q{k}",
+                task_type="youtube_query" if k % 2 == 0 else "muckrock_query",
+            ))
+    return out
+
+
+def test_select_tasks_default_matches_old_behavior():
+    """No candidate-aware flags → flat sort + max_tasks cap (the v0
+    behavior). Reproduces the YouTube top-25 coverage failure: 25
+    tasks across 4-task-per-candidate pool covers ~6–7 candidates."""
+    pool = _make_pool(n_candidates=10, tasks_per_cand=4)
+    selected = select_tasks(pool, max_tasks=25)
+    assert len(selected) == 25
+    # First 6 candidates fully consumed (24 tasks) plus 1 task from the 7th
+    cids = [t.candidate_id for t in selected]
+    assert len(set(cids)) == 7
+    # Lexicographic order preserved
+    assert cids == sorted(cids)
+
+
+def test_select_tasks_with_max_candidates_only_caps_candidate_count():
+    pool = _make_pool(n_candidates=10, tasks_per_cand=4)
+    selected = select_tasks(pool, max_tasks=100, max_candidates=3)
+    assert len({t.candidate_id for t in selected}) == 3
+    # All 4 tasks per kept candidate
+    assert len(selected) == 12
+
+
+def test_select_tasks_with_tasks_per_candidate_only_caps_tasks_per_candidate():
+    pool = _make_pool(n_candidates=10, tasks_per_cand=4)
+    selected = select_tasks(pool, max_tasks=100, tasks_per_candidate=2)
+    # All 10 candidates × 2 tasks = 20
+    assert len(selected) == 20
+    assert len({t.candidate_id for t in selected}) == 10
+    # Per-candidate cap holds
+    from collections import Counter
+    counts = Counter(t.candidate_id for t in selected)
+    assert all(c <= 2 for c in counts.values())
+
+
+def test_select_tasks_combines_max_candidates_and_tasks_per_candidate():
+    """The recommended operational shape: 25 candidates × 1 task = 25
+    distinct-candidate fan-out instead of 6-candidate stacking."""
+    pool = _make_pool(n_candidates=50, tasks_per_cand=4)
+    selected = select_tasks(
+        pool, max_tasks=25, max_candidates=25, tasks_per_candidate=1,
+    )
+    assert len(selected) == 25
+    assert len({t.candidate_id for t in selected}) == 25
+
+
+def test_select_tasks_max_tasks_acts_as_final_global_cap():
+    """When max_tasks is tighter than max_candidates × tasks_per_candidate
+    would allow, max_tasks wins."""
+    pool = _make_pool(n_candidates=50, tasks_per_cand=4)
+    selected = select_tasks(
+        pool, max_tasks=10, max_candidates=25, tasks_per_candidate=2,
+    )
+    # Would have produced 50 (25 cands × 2 tasks), capped to 10
+    assert len(selected) == 10
+
+
+def test_select_tasks_invalid_max_tasks_raises():
+    with pytest.raises(ValueError, match="max_tasks"):
+        select_tasks([_t()], max_tasks=0)
+
+
+def test_select_tasks_invalid_max_candidates_raises():
+    with pytest.raises(ValueError, match="max_candidates"):
+        select_tasks([_t()], max_tasks=10, max_candidates=0)
+
+
+def test_select_tasks_invalid_tasks_per_candidate_raises():
+    with pytest.raises(ValueError, match="tasks_per_candidate"):
+        select_tasks([_t()], max_tasks=10, tasks_per_candidate=0)
+
+
+def test_select_tasks_filtering_happens_before_grouping():
+    """The runner expects filtered tasks as input — make sure
+    select_tasks doesn't try to second-guess that. Tasks with mixed
+    task_types group by candidate cleanly."""
+    pool = _make_pool(n_candidates=3, tasks_per_cand=4)
+    # Pre-filter to youtube_query only
+    yt_only = [t for t in pool if t.task_type == "youtube_query"]
+    selected = select_tasks(
+        yt_only, max_tasks=10, max_candidates=3, tasks_per_candidate=1,
+    )
+    assert len(selected) == 3
+    assert all(t.task_type == "youtube_query" for t in selected)
+
+
+def test_select_tasks_per_candidate_order_is_deterministic():
+    pool = [
+        _t(candidate_id="x:0", task_type="youtube_query", query="q_b"),
+        _t(candidate_id="x:0", task_type="youtube_query", query="q_a"),
+        _t(candidate_id="x:0", task_type="muckrock_query", query="q_c"),
+    ]
+    selected = select_tasks(
+        pool, max_tasks=10, max_candidates=1, tasks_per_candidate=2,
+    )
+    # Sorted by (candidate_id, task_type, query): muckrock < youtube;
+    # within youtube, q_a < q_b. Cap to 2.
+    assert [(t.task_type, t.query) for t in selected] == [
+        ("muckrock_query", "q_c"),
+        ("youtube_query", "q_a"),
+    ]
+
+
+# ---- run_enrichment_batch wiring ------------------------------------
+
+
+def test_run_batch_passes_through_candidate_aware_flags():
+    pool = _make_pool(n_candidates=20, tasks_per_cand=4)
+    summary = run_enrichment_batch(
+        pool, provider=MockProvider(), dry_run=False,
+        max_tasks=25, max_candidates=10, tasks_per_candidate=2,
+    )
+    # 10 cands × 2 tasks = 20 (under the max_tasks=25 cap)
+    assert summary["selected_count"] == 20
+    assert summary["selected_candidate_count"] == 10
+    assert summary["max_candidates"] == 10
+    assert summary["tasks_per_candidate"] == 2
+
+
+def test_run_batch_dry_run_with_candidate_aware_does_not_invoke_provider():
+    pool = _make_pool(n_candidates=10, tasks_per_cand=4)
+
+    class _BoomProvider:
+        name = "mock"
+        def execute(self, task):
+            raise AssertionError("provider must not be invoked in dry-run")
+
+    summary = run_enrichment_batch(
+        pool, provider=_BoomProvider(), dry_run=True,
+        max_tasks=25, max_candidates=5, tasks_per_candidate=1,
+    )
+    assert summary["selected_count"] == 5
+    assert summary["selected_candidate_count"] == 5
+    assert all(r["status"] == "dry_run" for r in summary["results"])

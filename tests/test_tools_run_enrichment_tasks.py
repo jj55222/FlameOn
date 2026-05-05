@@ -660,6 +660,160 @@ def test_unsafe_summary_out_path_rejected(tmp_path):
     assert "safe artifact dirs" in err
 
 
+def test_max_candidates_caps_distinct_candidates(tmp_path):
+    """--max-candidates limits distinct candidate_ids selected. With
+    a pool of 10 candidates × 4 tasks each and --max-candidates=3 +
+    --tasks-per-candidate=1, we get 3 tasks across 3 candidates."""
+    tasks = []
+    for c in range(10):
+        cid = f"x:{c:02d}"
+        for k in range(4):
+            tasks.append({
+                "candidate_id": cid, "grade": "A",
+                "task_type": "youtube_query",
+                "query": f"q{k}", "context": {},
+            })
+    inp = _write_search_tasks(tmp_path / "tasks.json", tasks)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-candidates", "3",
+        "--tasks-per-candidate", "1",
+        "--max-tasks", "10",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["selected_count"] == 3
+    assert payload["selected_candidate_count"] == 3
+    cids = {r["candidate_id"] for r in payload["results"]}
+    assert len(cids) == 3
+
+
+def test_tasks_per_candidate_alone_caps_per_candidate(tmp_path):
+    tasks = []
+    for c in range(5):
+        cid = f"x:{c:02d}"
+        for k in range(4):
+            tasks.append({
+                "candidate_id": cid, "grade": "A",
+                "task_type": "youtube_query",
+                "query": f"q{k}", "context": {},
+            })
+    inp = _write_search_tasks(tmp_path / "tasks.json", tasks)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--tasks-per-candidate", "2",
+        "--max-tasks", "100",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["selected_count"] == 10  # 5 cands × 2 tasks
+    assert payload["selected_candidate_count"] == 5
+
+
+def test_max_candidates_alone_caps_candidate_count(tmp_path):
+    tasks = []
+    for c in range(10):
+        cid = f"x:{c:02d}"
+        for k in range(3):
+            tasks.append({
+                "candidate_id": cid, "grade": "A",
+                "task_type": "youtube_query",
+                "query": f"q{k}", "context": {},
+            })
+    inp = _write_search_tasks(tmp_path / "tasks.json", tasks)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-candidates", "4",
+        "--max-tasks", "100",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["selected_candidate_count"] == 4
+    assert payload["selected_count"] == 12  # 4 cands × 3 tasks
+
+
+def test_default_selection_unchanged_without_new_flags(tmp_path):
+    """Backward compat: no new flags → flat sort + max_tasks cap (the
+    pre-PR-#39 behavior). With 10 candidates × 4 tasks and
+    --max-tasks=25, we get 25 tasks across 6-7 candidates (6 fully
+    consumed = 24 + 1 from the 7th)."""
+    tasks = []
+    for c in range(10):
+        cid = f"x:{c:02d}"
+        for k in range(4):
+            tasks.append({
+                "candidate_id": cid, "grade": "A",
+                "task_type": "youtube_query",
+                "query": f"q{k}", "context": {},
+            })
+    inp = _write_search_tasks(tmp_path / "tasks.json", tasks)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-tasks", "25",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["selected_count"] == 25
+    assert payload["selected_candidate_count"] == 7
+    assert payload["max_candidates"] is None
+    assert payload["tasks_per_candidate"] is None
+
+
+def test_max_candidates_must_be_positive(tmp_path):
+    inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
+    code, _out, err = _run([
+        "--input", str(inp),
+        "--max-candidates", "0",
+    ])
+    assert code == 2
+    assert "max-candidates" in err
+
+
+def test_tasks_per_candidate_must_be_positive(tmp_path):
+    inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
+    code, _out, err = _run([
+        "--input", str(inp),
+        "--tasks-per-candidate", "0",
+    ])
+    assert code == 2
+    assert "tasks-per-candidate" in err
+
+
+def test_candidate_aware_dry_run_does_not_invoke_provider(monkeypatch, tmp_path):
+    """Dry-run with the new flags + --provider youtube must NOT
+    instantiate or invoke yt-dlp."""
+    from pipeline2_discovery.enrichment import youtube_provider as yt_mod
+
+    def boom(self):
+        raise AssertionError("yt-dlp must not be loaded in dry-run")
+
+    monkeypatch.setattr(yt_mod.YtDlpYouTubeSearchClient, "_load_yt_dlp", boom)
+
+    tasks = [{
+        "candidate_id": f"x:{c:02d}", "grade": "A",
+        "task_type": "youtube_query", "query": f"q{c}",
+        "context": {"agency": "Phoenix PD"},
+    } for c in range(5)]
+    inp = _write_search_tasks(tmp_path / "tasks.json", tasks)
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--task-type", "youtube_query",
+        "--max-candidates", "3",
+        "--tasks-per-candidate", "1",
+        "--provider", "youtube",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["dry_run"] is True
+    assert payload["selected_count"] == 3
+    assert all(r["status"] == "dry_run" for r in payload["results"])
+
+
 def test_negative_max_tasks_rejected(tmp_path):
     inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
     code, _out, err = _run([
