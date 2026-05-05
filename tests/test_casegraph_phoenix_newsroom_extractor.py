@@ -21,6 +21,7 @@ from pathlib import Path
 import pytest
 
 from pipeline2_discovery.casegraph.extractors.phoenix_newsroom_html import (
+    _html_mentions_bwc,
     extract_phoenix_newsroom_to_agency_ois,
     is_phoenix_newsroom_article_detail,
 )
@@ -261,3 +262,147 @@ def test_extractor_narrative_contains_phrases_for_identity_anchoring(phoenix_htm
     assert "Phoenix Police Department" in n
     assert "2024-11-05" in n
     assert "Body-Worn Camera" in n or "BWC" in n
+
+
+# ---- BWC source-faithfulness ----------------------------------------
+
+
+@pytest.mark.parametrize(
+    "snippet",
+    [
+        "BWC",
+        "Body-Worn Camera",
+        "Body-worn camera",
+        "body worn camera",
+        "body-worn camera",
+        "BODY-WORN CAMERA",
+        "Officer activated his bwc footage during the stop.",
+    ],
+)
+def test_html_mentions_bwc_detects_each_phrase_variant(snippet):
+    """All five spellings the extractor honours, plus all-caps and a
+    lowercase BWC, must register as a BWC mention."""
+    assert _html_mentions_bwc(f"<p>{snippet}</p>") is True
+
+
+@pytest.mark.parametrize(
+    "snippet",
+    [
+        "",
+        "<p>This page is about traffic safety.</p>",
+        # Word-boundary guard: do not match BWC embedded inside another token.
+        "<p>NCBwCNxxx is a random identifier with no boundary.</p>",
+        # No false-positive on partial phrases.
+        "<p>The body of the report</p>",
+    ],
+)
+def test_html_mentions_bwc_returns_false_when_absent(snippet):
+    assert _html_mentions_bwc(snippet) is False
+
+
+def test_html_mentions_bwc_handles_none_and_non_string():
+    assert _html_mentions_bwc(None) is False  # type: ignore[arg-type]
+    assert _html_mentions_bwc(123) is False  # type: ignore[arg-type]
+
+
+def test_extractor_narrative_includes_bwc_when_source_mentions_it(phoenix_html):
+    """3286.html source HTML mentions BWC, so the narrative may (and
+    does) describe the briefing video as Body-Worn Camera footage."""
+    out = extract_phoenix_newsroom_to_agency_ois(phoenix_html, PHOENIX_URL)
+    n = out["narrative"]
+    assert "Body-Worn Camera (BWC)" in n
+    assert "official City of Phoenix Newsroom" in n
+
+
+# Synthetic Phoenix article-detail snippet modeled on 3369.html
+# (Critical Incident Briefing - February 12, 2025 - 2400 S Higley Rd.):
+#   - same body class as the real page (extractor gate passes)
+#   - og:title in the same exact format as 3369.html
+#   - first cmp-byline = "February 26, 2025" (release)
+#   - one YouTube iframe (gAoDdfgTSi8 — the real video on 3369.html)
+#   - cmp-article__cards "Read next" container with a trailing byline
+#     that the extractor must NOT pick (regression-anchored on the
+#     observed 3369.html structure)
+#   - DELIBERATELY contains no BWC / Body-Worn Camera language
+PHOENIX_3369_BWC_ABSENT_SNIPPET = (
+    '<html><head>'
+    '<title>Critical Incident Briefing - February 12, 2025 - '
+    '2400 S Higley Rd. | City of Phoenix</title>'
+    '<meta property="og:title" '
+    'content="Critical Incident Briefing - February 12, 2025 - '
+    '2400 S Higley Rd."/>'
+    '</head>'
+    '<body class="article-detail page basicpage">'
+    '<h1>Critical Incident Briefing - February 12, 2025 - '
+    '2400 S Higley Rd.</h1>'
+    '<div class="cmp-byline"><p>February 26, 2025</p></div>'
+    '<iframe src="https://www.youtube.com/embed/gAoDdfgTSi8'
+    '?enablejsapi=1&amp;showinfo=0&amp;rel=0"></iframe>'
+    '<div class="cmp-article cmp-article__cards">'
+    '<div class="cmp-byline"><p>April 16, 2026</p></div>'
+    '</div>'
+    '</body></html>'
+)
+
+
+def test_extractor_narrative_omits_bwc_when_source_does_not_mention_it():
+    """3369.html source HTML contains none of: BWC, Body-Worn Camera,
+    Body-worn camera, body worn camera, or body-worn camera. The
+    narrative must not invent BWC content for that page. Surfaced by
+    the second Phoenix CIB live smoke (PR #24)."""
+    out = extract_phoenix_newsroom_to_agency_ois(
+        PHOENIX_3369_BWC_ABSENT_SNIPPET,
+        "https://www.phoenix.gov/newsroom/police-department-news/3369.html",
+    )
+    n = out["narrative"]
+    for forbidden in (
+        "BWC",
+        "Body-Worn Camera",
+        "Body-worn camera",
+        "body worn camera",
+        "body-worn camera",
+    ):
+        assert forbidden not in n, (
+            f"narrative for BWC-absent Phoenix page must not contain "
+            f"{forbidden!r}; got narrative: {n!r}"
+        )
+    # Neutral closing sentence still anchors the publishing channel for
+    # downstream identity scoring.
+    assert "official City of Phoenix Newsroom" in n
+
+
+def test_extractor_bwc_absent_page_still_parses_title_dates_and_media():
+    """The BWC-absent snippet must still extract title, dates, and the
+    YouTube media link cleanly. Anchors the contract that the BWC
+    conditional did not regress any other parser."""
+    out = extract_phoenix_newsroom_to_agency_ois(
+        PHOENIX_3369_BWC_ABSENT_SNIPPET,
+        "https://www.phoenix.gov/newsroom/police-department-news/3369.html",
+    )
+    assert (
+        out["title"]
+        == "Critical Incident Briefing - February 12, 2025 - 2400 S Higley Rd."
+    )
+    assert out["incident_date"] == "2025-02-12"
+    assert "Release date: 2025-02-26" in out["narrative"]
+    assert out["media_links"][0]["url"] == (
+        "https://www.youtube.com/watch?v=gAoDdfgTSi8"
+    )
+    assert out["media_links"][0]["type"] == "bodycam_briefing"
+    # Subjects honestly empty; identity stays sub-HIGH for unidentified
+    # CIBs across both BWC-present and BWC-absent variants.
+    assert out["subjects"] == []
+
+
+def test_extractor_bwc_absent_page_skips_read_next_byline():
+    """Regression: the BWC-absent snippet has a "Read next..." byline
+    of April 16, 2026 inside cmp-article__cards. The extractor must
+    cap its byline scan at the first cmp-article__cards container so
+    the article's own release date wins. Mirrors the existing 3286
+    regression at a different incident date."""
+    out = extract_phoenix_newsroom_to_agency_ois(
+        PHOENIX_3369_BWC_ABSENT_SNIPPET,
+        "https://www.phoenix.gov/newsroom/police-department-news/3369.html",
+    )
+    assert "April 16, 2026" not in out["narrative"]
+    assert "Release date: 2025-02-26" in out["narrative"]

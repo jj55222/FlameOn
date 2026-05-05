@@ -100,6 +100,7 @@ def extract_phoenix_newsroom_to_agency_ois(
     release_date = _extract_release_date(html)  # ISO yyyy-mm-dd or None
     incident_date = _extract_incident_date(title, release_date)  # or None
     media_links = _extract_media_links(html)
+    bwc_mentioned = _html_mentions_bwc(html)
 
     return {
         "page_type": "incident_detail",
@@ -111,6 +112,7 @@ def extract_phoenix_newsroom_to_agency_ois(
             title=title,
             release_date=release_date,
             incident_date=incident_date,
+            bwc_mentioned=bwc_mentioned,
         ),
         "subjects": [],
         "incident_date": incident_date,
@@ -292,27 +294,61 @@ def _extract_youtube_id(src: str) -> Optional[str]:
 # ---- narrative ------------------------------------------------------
 
 
+_BWC_PRESENCE_RE = re.compile(
+    r"\b(?:BWC|body[-\s]worn\s+camera)\b",
+    re.IGNORECASE,
+)
+
+
+def _html_mentions_bwc(html: str) -> bool:
+    """True iff the source HTML literally mentions Body-Worn Camera /
+    BWC language. Matches the bare acronym ``BWC`` or any case
+    variation of ``body-worn camera`` / ``body worn camera``.
+
+    Used to guard the narrative builder so the BWC sentence is only
+    emitted when the source page actually documents BWC footage. Phoenix
+    CIB pages vary: ``3286.html`` mentions BWC; ``3369.html`` does not.
+    The narrative must not invent source-page text either way.
+    """
+    if not html or not isinstance(html, str):
+        return False
+    return bool(_BWC_PRESENCE_RE.search(html))
+
+
 def _build_narrative(
     *,
     title: str,
     release_date: Optional[str],
     incident_date: Optional[str],
+    bwc_mentioned: bool,
 ) -> str:
     """Concise narrative blurb that surfaces the agency, the page
     title, and the parsed dates. Identity scoring later phrase-matches
     these against ``case_identity.agency`` / ``incident_date`` /
     ``case_numbers``, so this string is the operator-readable bridge
-    between the saved HTML and the assembled CasePacket."""
+    between the saved HTML and the assembled CasePacket.
+
+    The closing sentence is conditional on whether the source HTML
+    actually mentions BWC / Body-Worn Camera, so the narrative never
+    invents source-page text. Pages without BWC language get a neutral
+    publishing-channel sentence instead.
+    """
     parts = ["Phoenix Police Department Critical Incident Briefing."]
     parts.append(f"Title: {title}.")
     if incident_date:
         parts.append(f"Incident date: {incident_date}.")
     if release_date:
         parts.append(f"Release date: {release_date}.")
-    parts.append(
-        "The briefing video includes Body-Worn Camera (BWC) footage and is "
-        "published on the official City of Phoenix Newsroom."
-    )
+    if bwc_mentioned:
+        parts.append(
+            "The briefing video includes Body-Worn Camera (BWC) footage and is "
+            "published on the official City of Phoenix Newsroom."
+        )
+    else:
+        parts.append(
+            "The briefing video is published on the official City of "
+            "Phoenix Newsroom."
+        )
     return " ".join(parts)
 
 
