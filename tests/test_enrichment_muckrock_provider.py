@@ -26,14 +26,18 @@ from pipeline2_discovery.enrichment import (
 from pipeline2_discovery.enrichment.muckrock_provider import (
     AUDIO_TERMS,
     BODYCAM_TERMS,
+    DEFAULT_MAX_QUERY_ATTEMPTS,
     HINT_ARTIFACT_SEARCH,
     HINT_MUCKROCK_PARSE,
     HINT_OUTCOME,
     HINT_YOUTUBE,
     INCIDENT_TERMS,
+    MIN_LAST_NAME_LEN_FOR_QUERY,
     MUCKROCK_API_BASE,
     POLICY_ONLY_TERMS,
     PURSUIT_TERMS,
+    TOPIC_TERMS_BY_SIGNAL,
+    build_query_plan,
 )
 
 
@@ -165,11 +169,18 @@ def test_non_muckrock_task_is_skipped_cleanly():
 
 
 def test_search_url_uses_documented_base():
+    """The provider hits the documented MuckRock API base on every
+    call. Per-call ``title`` values vary because the query plan
+    derives short anchor / topic tokens from the task context — but
+    the URL itself must always resolve to MUCKROCK_API_BASE."""
     p, client = _build(response=_FakeResp(json_body={"results": []}))
     p.execute(_task(query="some query"))
-    assert client.calls[0]["url"] == MUCKROCK_API_BASE
-    assert client.calls[0]["params"]["title"] == "some query"
-    assert client.calls[0]["params"]["page_size"] >= 1
+    assert len(client.calls) >= 1
+    for call in client.calls:
+        assert call["url"] == MUCKROCK_API_BASE
+        # Each call must carry a non-empty title and a positive page size
+        assert call["params"]["title"]
+        assert call["params"]["page_size"] >= 1
 
 
 def test_request_only_uses_get_method():
@@ -448,11 +459,12 @@ def test_notes_include_raw_returned_dropped_counts():
     )
     r = p.execute(_task())
     notes_str = " ".join(r.notes)
-    assert "raw_result_count=2" in notes_str
     assert "returned_result_count=1" in notes_str
     assert "dropped_irrelevant_count=1" in notes_str
     assert "released_file_count=1" in notes_str
-    assert "api_url=" in notes_str
+    assert "api_urls=" in notes_str
+    assert "deduped_raw_result_count=" in notes_str
+    assert "query_attempts=" in notes_str
 
 
 def test_notes_include_terms_matched_for_kept_results():
@@ -583,6 +595,30 @@ def test_absolute_url_relative_path_is_normalised():
     assert r.result_urls[0].startswith("https://www.muckrock.com/foi/")
 
 
+def test_absolute_url_falls_back_to_id_and_slug_for_list_endpoint():
+    """The ``/api_v2/requests/`` list endpoint omits ``absolute_url`` /
+    ``url`` and only carries ``id`` + ``slug``. The provider must
+    construct a usable public URL from those fields — otherwise every
+    list-endpoint record gets silently dropped before scoring."""
+    record = {
+        "id": 180304,
+        "title": "Longmont Police body-worn camera footage",
+        "slug": "longmont-police-body-worn-camera-footage",
+        "status": "done",
+        "agency": 40430,  # int ID, not a dict — list endpoint shape
+        "files": [{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+        # NO absolute_url, NO url — exactly what the live API returns
+    }
+    p, client = _build(response=_FakeResp(json_body={"results": [record]}))
+    r = p.execute(_task())
+    assert r.status == TaskStatus.COMPLETED
+    # Record was NOT silently dropped — it has a constructed public URL
+    assert any(
+        "180304-longmont-police-body-worn-camera-footage" in url
+        for url in r.result_urls
+    )
+
+
 # ---- term constants --------------------------------------------
 
 
@@ -592,3 +628,336 @@ def test_constants_export_expected_terms():
     assert "pursuit" in PURSUIT_TERMS
     assert "policy manual" in POLICY_ONLY_TERMS
     assert "incident report" in AUDIO_TERMS
+
+
+# ---- query plan -----------------------------------------------------
+
+
+def test_default_max_query_attempts_is_3():
+    assert DEFAULT_MAX_QUERY_ATTEMPTS == 3
+
+
+def _qtask(query, **ctx_kwargs):
+    return EnrichmentTask(
+        candidate_id="x:1",
+        grade="A",
+        task_type="muckrock_query",
+        query=query,
+        context=_ctx(**ctx_kwargs),
+    )
+
+
+def test_query_plan_includes_agency_distinctive_token():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police body-worn camera"),
+        max_attempts=3,
+    )
+    assert "longmont" in plan
+
+
+def test_query_plan_includes_subject_last_name_when_long_enough():
+    plan = build_query_plan(
+        _qtask("joe william gold longmont police body-worn camera"),
+        max_attempts=3,
+    )
+    assert "gold" in plan  # 4 chars, passes the >=4 floor
+
+
+def test_query_plan_excludes_short_last_name():
+    plan = build_query_plan(
+        _qtask(
+            "ann doe pinal county sheriff body-worn camera",
+            subject_name="ann doe",
+        ),
+        max_attempts=3,
+    )
+    # "doe" is 3 chars — must be excluded from the plan
+    assert "doe" not in plan
+
+
+def test_query_plan_includes_topic_term_for_bodycam_query():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police body-worn camera"),
+        max_attempts=3,
+    )
+    assert "body-worn camera" in plan
+
+
+def test_query_plan_includes_topic_term_for_pursuit_query():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police pursuit"),
+        max_attempts=3,
+    )
+    assert "pursuit" in plan
+
+
+def test_query_plan_includes_topic_term_for_incident_report_query():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police incident report"),
+        max_attempts=3,
+    )
+    assert "incident report" in plan
+
+
+def test_query_plan_caps_at_max_attempts():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police body-worn camera"),
+        max_attempts=2,
+    )
+    assert len(plan) == 2
+
+
+def test_query_plan_clamps_max_attempts_to_5():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police body-worn camera"),
+        max_attempts=999,
+    )
+    assert len(plan) <= 5
+
+
+def test_query_plan_clamps_max_attempts_to_at_least_1():
+    plan = build_query_plan(
+        _qtask("joe gold longmont police body-worn camera"),
+        max_attempts=0,
+    )
+    assert len(plan) >= 1
+
+
+def test_query_plan_falls_back_to_task_query_when_no_anchors():
+    plan = build_query_plan(
+        EnrichmentTask(
+            candidate_id="x:1", grade="A",
+            task_type="muckrock_query",
+            query="some random title",
+            context={},  # no agency, no subject, no city, no state
+        ),
+        max_attempts=3,
+    )
+    # No agency token, no last name, no recognised topic → backstop
+    assert plan == ["some random title"]
+
+
+def test_query_plan_uses_longest_agency_token_first():
+    plan = build_query_plan(
+        _qtask(
+            "subject zavala county sheriff crystal city pd body-worn camera",
+            agency="zavala county sheriff's office, crystal city police department",
+        ),
+        max_attempts=3,
+    )
+    # "crystal" (7) and "zavala" (6) both eligible; "crystal" picked first
+    assert plan[0] == "crystal"
+
+
+def test_query_plan_deduplicates_overlapping_choices():
+    """If the agency-distinctive token equals the topic term canonical
+    or last name, the plan must not repeat it."""
+    plan = build_query_plan(
+        _qtask(
+            "longmont longmont longmont body-worn camera",
+            agency="longmont police",
+            subject_name="longmont",  # contrived collision
+        ),
+        max_attempts=3,
+    )
+    assert len(plan) == len(set(plan))
+
+
+# ---- multi-attempt execution ---------------------------------------
+
+
+class _MultiResp:
+    """Fake HTTP client that returns different canned results based
+    on the ``title`` query parameter, so a single test can simulate
+    a real multi-query plan against a fake MuckRock."""
+
+    def __init__(self, by_title):
+        self._by_title = by_title  # {title_query: [records]}
+        self.calls = []
+
+    def get(self, url, *, params, headers, timeout):
+        self.calls.append({
+            "url": url, "params": dict(params),
+            "headers": dict(headers), "timeout": timeout,
+        })
+        title = params.get("title", "")
+        results = self._by_title.get(title, [])
+
+        class _R:
+            status_code = 200
+
+            def __init__(self, results):
+                self._results = results
+
+            def json(self):
+                return {"results": self._results}
+
+        return _R(results)
+
+
+def test_run_mode_issues_multiple_gets_per_task():
+    """One task should produce up to max_query_attempts GETs."""
+    client = _MultiResp(by_title={})
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    p.execute(_task())
+    assert 1 <= len(client.calls) <= 3
+    # Each call hits the documented base
+    for call in client.calls:
+        assert call["url"] == MUCKROCK_API_BASE
+
+
+def test_rate_limit_sleeper_called_between_attempts():
+    sleeps = []
+    client = _MultiResp(by_title={})
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda d: sleeps.append(d),
+        rate_limit_seconds=1.0, read_token=False,
+        max_query_attempts=3,
+    )
+    p.execute(_task())
+    # One sleep per attempt
+    assert len(sleeps) == len(client.calls)
+    assert all(d == 1.0 for d in sleeps)
+
+
+def test_results_deduped_across_query_attempts():
+    """Same record returned by multiple title queries should be
+    counted once after dedupe."""
+    shared = _record(
+        rid=99,
+        title="Longmont Police body-worn camera release",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        files=[{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+    )
+    # All 3 queries return the same one record
+    client = _MultiResp(by_title={
+        "longmont": [shared],
+        "gold": [shared],
+        "body-worn camera": [shared],
+    })
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    r = p.execute(_task())
+    assert len(client.calls) == 3
+    notes_str = " ".join(r.notes)
+    assert "deduped_raw_result_count=1" in notes_str
+    # Only one URL surfaced — not three
+    assert len(r.result_urls) == 1
+
+
+def test_unanchored_broad_results_still_dropped_by_gate():
+    """A broad ?title=body-worn camera query may return real records
+    that have no Longmont anchor — the relevance gate must still
+    drop them."""
+    unanchored = _record(
+        rid=200,
+        title="Generic body-worn camera footage policy",
+        agency={"name": "Some Other PD"},
+    )
+    client = _MultiResp(by_title={
+        "longmont": [],
+        "gold": [],
+        "body-worn camera": [unanchored],
+    })
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    r = p.execute(_task())
+    assert r.result_urls == []
+    assert r.confidence == "low"
+    notes_str = " ".join(r.notes)
+    assert "deduped_raw_result_count=1" in notes_str
+    assert "returned_result_count=0" in notes_str
+
+
+def test_anchored_broad_query_hit_survives():
+    """A ?title=body-worn camera query that happens to return a
+    Longmont request should be kept by the gate."""
+    anchored = _record(
+        rid=300,
+        title="Longmont Police body-worn camera footage release",
+        agency={"name": "Longmont Police Services"},
+        status="done",
+        files=[{"ffile": "https://www.muckrock.com/files/x.mp4"}],
+    )
+    client = _MultiResp(by_title={
+        "longmont": [],
+        "gold": [],
+        "body-worn camera": [anchored],
+    })
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    r = p.execute(_task())
+    assert "/300-test/" in r.result_urls[0]
+    assert r.confidence == "high"
+
+
+def test_diagnostics_include_per_query_counts_and_api_urls():
+    """The notes block must surface raw_result_count_by_query so an
+    operator can see which broad query produced which raw fanout."""
+    record_a = _record(rid=1, title="Longmont incident bodycam",
+                       agency={"name": "Longmont Police Services"})
+    record_b = _record(rid=2, title="Generic Atlanta body-worn camera",
+                       agency={"name": "Atlanta PD"})
+    client = _MultiResp(by_title={
+        "longmont": [record_a],
+        "gold": [],
+        "body-worn camera": [record_b],
+    })
+    p = MuckRockProvider(
+        http_client=client, sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    r = p.execute(_task())
+    notes_str = " ".join(r.notes)
+    assert "query_attempts=3" in notes_str
+    assert "raw_result_count_by_query=" in notes_str
+    assert "deduped_raw_result_count=2" in notes_str
+    # api_urls is a single semicolon-joined entry covering all 3 attempts
+    assert "api_urls=" in notes_str
+    assert notes_str.count(MUCKROCK_API_BASE) == 3
+
+
+def test_query_plan_only_uses_get_method():
+    """Multi-attempt path still GET-only — no POST/PUT/PATCH/DELETE
+    introduced in the rewrite."""
+    import pipeline2_discovery.enrichment.muckrock_provider as mod
+    src = open(mod.__file__, encoding="utf-8").read()
+    assert ".post(" not in src
+    assert ".put(" not in src
+    assert ".patch(" not in src
+    assert ".delete(" not in src
+
+
+def test_failed_attempts_surface_as_failed_status():
+    """If every attempt hits a transport error, the provider returns
+    status=failed with the first failure's diagnostics."""
+    class _AllExplode:
+        def get(self, url, *, params, headers, timeout):
+            raise OSError("connection refused")
+
+    p = MuckRockProvider(
+        http_client=_AllExplode(), sleeper=lambda _: None,
+        rate_limit_seconds=0, read_token=False,
+        max_query_attempts=3,
+    )
+    r = p.execute(_task())
+    assert r.status == TaskStatus.FAILED
+    assert "OSError" in (r.error or "")
+    notes_str = " ".join(r.notes)
+    assert "query_attempts=3" in notes_str
+    assert "api_urls=" in notes_str

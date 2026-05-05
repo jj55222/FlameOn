@@ -79,6 +79,31 @@ DEFAULT_PAGE_SIZE = 20
 DEFAULT_MAX_RESULTS = 5
 DEFAULT_TIMEOUT = 15
 DEFAULT_RATE_LIMIT_SECONDS = 1.0
+DEFAULT_MAX_QUERY_ATTEMPTS = 3
+MIN_LAST_NAME_LEN_FOR_QUERY = 4
+
+# Possessive / plural variants the shared ``AGENCY_STOPWORDS``
+# (which lives in youtube_provider) misses because the apostrophe
+# defeats the membership check. Keep this list MuckRock-local so the
+# YouTube provider stays unchanged.
+EXTRA_AGENCY_STOPWORDS = frozenset({
+    "sheriff's", "officer's", "officers", "officials", "official",
+    "deputy's", "deputies", "patrol's",
+})
+
+# Canonical broad-form topic terms used in title-search queries.
+# Order: most-specific first; the picker stops at the first hit.
+TOPIC_TERMS_BY_SIGNAL: Tuple[Tuple[Tuple[str, ...], str], ...] = (
+    (("officer-involved shooting", "officer involved shooting",
+      "deputy-involved", "deputy involved"), "officer-involved shooting"),
+    (("critical incident briefing", "critical incident"), "critical incident"),
+    (("body-worn camera", "body worn camera", "bodycam", "body cam",
+      "body camera", "bwc"), "body-worn camera"),
+    (("dashcam", "dash cam", "dash-cam"), "dashcam"),
+    (("pursuit", "high-speed chase", "police chase"), "pursuit"),
+    (("incident report",), "incident report"),
+    (("911 audio", "911 call"), "911 audio"),
+)
 
 
 # ---- term sets (public for tests) -----------------------------------
@@ -384,11 +409,27 @@ def _extract_files(record: Dict[str, Any]) -> Tuple[int, List[str]]:
 
 
 def _absolute_url(record: Dict[str, Any]) -> str:
+    """Best-available public URL for a MuckRock request record.
+
+    MuckRock's ``/api_v2/requests/`` *list* endpoint omits both
+    ``absolute_url`` and ``url`` (only the *detail* endpoint includes
+    them), so we fall back to constructing a ``/foi/<id>-<slug>/`` URL
+    from ``id`` + ``slug`` when those are present. Without this
+    fallback every list-endpoint record was being silently dropped
+    before scoring — visible in the first live smoke as
+    ``deduped_raw_result_count=44`` paired with ``raw_result_count=0``.
+    """
     url = str(record.get("absolute_url") or record.get("url") or "")
     if url.startswith("http"):
         return url
     if url.startswith("/"):
         return f"https://www.muckrock.com{url}"
+    rid = record.get("id")
+    slug = str(record.get("slug") or "").strip()
+    if rid:
+        if slug:
+            return f"https://www.muckrock.com/foi/{rid}-{slug}/"
+        return f"https://www.muckrock.com/foi/{rid}/"
     return ""
 
 
@@ -409,6 +450,106 @@ def _extract_youtube_urls(text: str) -> List[str]:
     if not text:
         return []
     return list(dict.fromkeys(YOUTUBE_URL_RE.findall(text)))
+
+
+# ---- query plan ------------------------------------------------------
+
+
+def _select_topic_term(query_lower: str) -> str:
+    """Pick the most-specific canonical topic term mentioned in the
+    task's query, for re-issuing as a broad MuckRock title search.
+
+    Returns "" if the task query mentions none of the recognised
+    domain signals — in that case the caller falls back to a more
+    generic policy (e.g. drop the topic-term attempt entirely)."""
+    for needles, canonical in TOPIC_TERMS_BY_SIGNAL:
+        if any(n in query_lower for n in needles):
+            return canonical
+    return ""
+
+
+def build_query_plan(task: EnrichmentTask, max_attempts: int) -> List[str]:
+    """Generate up to ``max_attempts`` MuckRock title-search query
+    strings derived from the task's identity context + topic signal.
+
+    Priority (most-precise first; later items are added only if a
+    slot remains):
+
+    1. Strongest agency-distinctive token (longest one), e.g.
+       "longmont" from "longmont police services".
+    2. Subject last name, only when ``len(last) >= 4``.
+    3. Topic term picked from :data:`TOPIC_TERMS_BY_SIGNAL` if the
+       task query mentions any recognised domain signal.
+    4. Second agency-distinctive token (a multi-agency context like
+       "zavala county sheriff's office, crystal city police
+       department" yields "zavala" + "crystal" — both useful).
+    5. Generic fallback term ("body-worn camera") when nothing else
+       fits.
+
+    Empty list is impossible for a well-formed muckrock_query task,
+    but in the degenerate case (no agency, no subject, no topic) the
+    plan falls back to ``[task.query]`` so the caller still issues
+    one GET — preserving backward compatibility with the v0 single-
+    query behaviour.
+    """
+    max_attempts = max(1, min(int(max_attempts), 5))
+
+    ctx = task.context or {}
+    plan: List[str] = []
+
+    distinctive = _agency_distinctive_tokens(_norm(ctx.get("agency", "")))
+    distinctive = [t for t in distinctive if t not in EXTRA_AGENCY_STOPWORDS]
+    distinctive_sorted = sorted(distinctive, key=len, reverse=True)
+
+    if distinctive_sorted:
+        plan.append(distinctive_sorted[0])
+
+    last = _last_name(_norm(ctx.get("subject_name", "")))
+    if last and len(last) >= MIN_LAST_NAME_LEN_FOR_QUERY:
+        if last not in plan:
+            plan.append(last)
+
+    topic = _select_topic_term(_norm(task.query))
+    if topic and topic not in plan:
+        plan.append(topic)
+
+    # Fill remaining slots, in order: secondary agency tokens,
+    # then any topic term we haven't tried yet.
+    if len(plan) < max_attempts:
+        for tok in distinctive_sorted[1:]:
+            if len(plan) >= max_attempts:
+                break
+            if tok not in plan:
+                plan.append(tok)
+
+    if len(plan) < max_attempts:
+        # Try other recognised topic terms from the query in case the
+        # picker's first match isn't what landed.
+        q_l = _norm(task.query)
+        for needles, canonical in TOPIC_TERMS_BY_SIGNAL:
+            if len(plan) >= max_attempts:
+                break
+            if any(n in q_l for n in needles) and canonical not in plan:
+                plan.append(canonical)
+
+    if not plan:
+        # Pure backstop — never silently issue zero GETs.
+        plan.append(task.query)
+
+    return plan[:max_attempts]
+
+
+def _record_dedupe_key(record: Dict[str, Any]) -> str:
+    """Best-available stable identifier for an API record. Prefer
+    integer ``id``; fall back to ``absolute_url``; last resort title."""
+    rid = record.get("id")
+    if rid is not None:
+        return f"id:{rid}"
+    abs_url = record.get("absolute_url") or record.get("url") or ""
+    if abs_url:
+        return f"url:{abs_url}"
+    title = str(record.get("title") or "").strip().lower()
+    return f"title:{title}"
 
 
 def _build_scored(record: Dict[str, Any]) -> _ScoredResult:
@@ -475,6 +616,7 @@ class MuckRockProvider:
         page_size: int = DEFAULT_PAGE_SIZE,
         timeout: int = DEFAULT_TIMEOUT,
         rate_limit_seconds: float = DEFAULT_RATE_LIMIT_SECONDS,
+        max_query_attempts: int = DEFAULT_MAX_QUERY_ATTEMPTS,
         api_base: str = MUCKROCK_API_BASE,
         api_token_env: str = "MUCKROCK_API_TOKEN",
         read_token: bool = True,
@@ -485,6 +627,7 @@ class MuckRockProvider:
         self._page_size = max(1, min(int(page_size), 50))
         self._timeout = int(timeout)
         self._rate_limit_seconds = float(rate_limit_seconds)
+        self._max_query_attempts = max(1, min(int(max_query_attempts), 5))
         self._api_base = api_base.rstrip("/") + "/"
         self._api_token_env = api_token_env
         self._read_token = bool(read_token)
@@ -514,6 +657,38 @@ class MuckRockProvider:
 
     # ---- main ----
 
+    def _fetch_one(
+        self, query: str, *, headers: Dict[str, str],
+    ) -> Tuple[Optional[List[Dict[str, Any]]], Optional[str]]:
+        """One title-search GET. Returns ``(results, error)``.
+
+        On success ``error`` is ``None`` and ``results`` is a list
+        (possibly empty). On HTTP / transport / parse failure
+        ``results`` is ``None`` and ``error`` carries a short label.
+        """
+        params = {"title": query, "page_size": self._page_size}
+        try:
+            response = self._client().get(
+                self._api_base, params=params, headers=headers,
+                timeout=self._timeout,
+            )
+        except Exception as exc:
+            return None, f"{type(exc).__name__}: {exc}"
+
+        status_code = getattr(response, "status_code", 0)
+        if status_code != 200:
+            return None, f"http_{status_code}"
+
+        try:
+            payload = response.json()
+        except Exception as exc:
+            return None, f"json_decode_error: {type(exc).__name__}: {exc}"
+
+        raw = payload.get("results") or []
+        if not isinstance(raw, list):
+            raw = []
+        return raw, None
+
     def execute(self, task: EnrichmentTask) -> EnrichmentResult:
         if task.task_type != "muckrock_query":
             return EnrichmentResult(
@@ -528,68 +703,64 @@ class MuckRockProvider:
                 ],
             )
 
-        # Polite per-task throttle — runner is sequential anyway, but
-        # we want a soft ceiling regardless of who calls execute().
-        if self._rate_limit_seconds > 0:
-            try:
-                self._sleeper(self._rate_limit_seconds)
-            except Exception:
-                pass  # never let sleep failures kill a run
-
-        params = {"title": task.query, "page_size": self._page_size}
+        plan = build_query_plan(task, self._max_query_attempts)
         headers = self._headers()
-        api_url = self._redacted_api_url(task.query)
 
-        try:
-            client = self._client()
-            response = client.get(
-                self._api_base, params=params, headers=headers,
-                timeout=self._timeout,
-            )
-        except Exception as exc:
+        per_query_counts: List[Tuple[str, int]] = []
+        api_urls: List[str] = []
+        deduped: Dict[str, Dict[str, Any]] = {}
+
+        first_failure: Optional[Tuple[str, str, str]] = None  # (query, api_url, err)
+
+        for idx, q in enumerate(plan):
+            # Rate-limit BETWEEN attempts (and once before the first
+            # attempt) — sequential over a single task.
+            if self._rate_limit_seconds > 0:
+                try:
+                    self._sleeper(self._rate_limit_seconds)
+                except Exception:
+                    pass
+
+            api_urls.append(self._redacted_api_url(q))
+            raw, err = self._fetch_one(q, headers=headers)
+            if err is not None:
+                per_query_counts.append((q, 0))
+                if first_failure is None:
+                    first_failure = (q, api_urls[-1], err)
+                continue
+
+            assert raw is not None
+            per_query_counts.append((q, len(raw)))
+            for record in raw:
+                if not isinstance(record, dict):
+                    continue
+                key = _record_dedupe_key(record)
+                if key in deduped:
+                    continue
+                deduped[key] = record
+
+        # If every attempt failed at the transport layer, surface one
+        # representative failure rather than reporting "0 results".
+        if first_failure is not None and all(
+            err for _, _, err in [first_failure] for err in [err]
+        ) and not deduped and all(c == 0 for _, c in per_query_counts):
+            q, api_url, err = first_failure
             return EnrichmentResult(
                 candidate_id=task.candidate_id,
                 task_type=task.task_type,
                 query=task.query,
                 status=TaskStatus.FAILED,
                 provider=self.name,
-                error=f"{type(exc).__name__}: {exc}",
-                notes=[f"api_url={api_url}"],
+                error=err,
+                notes=[
+                    f"query_attempts={len(plan)}",
+                    f"api_urls={';'.join(api_urls)}",
+                    f"failed_query={q!r}",
+                ],
             )
-
-        status_code = getattr(response, "status_code", 0)
-        if status_code != 200:
-            return EnrichmentResult(
-                candidate_id=task.candidate_id,
-                task_type=task.task_type,
-                query=task.query,
-                status=TaskStatus.FAILED,
-                provider=self.name,
-                error=f"http_{status_code}",
-                notes=[f"api_url={api_url}", f"http_status={status_code}"],
-            )
-
-        try:
-            payload = response.json()
-        except Exception as exc:
-            return EnrichmentResult(
-                candidate_id=task.candidate_id,
-                task_type=task.task_type,
-                query=task.query,
-                status=TaskStatus.FAILED,
-                provider=self.name,
-                error=f"json_decode_error: {type(exc).__name__}: {exc}",
-                notes=[f"api_url={api_url}"],
-            )
-
-        raw_results = payload.get("results") or []
-        if not isinstance(raw_results, list):
-            raw_results = []
 
         scored: List[_ScoredResult] = []
-        for record in raw_results[: max(self._page_size, self._max_results)]:
-            if not isinstance(record, dict):
-                continue
+        for record in list(deduped.values())[: max(self._page_size, self._max_results) * len(plan)]:
             sr = _build_scored(record)
             if not sr.url:
                 continue
@@ -614,13 +785,19 @@ class MuckRockProvider:
             r.is_policy_only for r in dropped + kept
         )
 
+        per_query_str = ",".join(
+            f"{q!r}:{n}" for q, n in per_query_counts
+        )
         notes: List[str] = [
+            f"query_attempts={len(plan)}",
+            f"raw_result_count_by_query={per_query_str}",
+            f"deduped_raw_result_count={len(deduped)}",
             f"raw_result_count={len(scored)}",
             f"returned_result_count={len(kept)}",
             f"dropped_irrelevant_count={len(dropped)}",
             f"released_file_count={total_files}",
             f"policy_only_demoted={'true' if policy_only_demoted else 'false'}",
-            f"api_url={api_url}",
+            f"api_urls={';'.join(api_urls)}",
         ]
         if terms_matched:
             notes.append(f"terms_matched={','.join(terms_matched)}")
@@ -663,14 +840,18 @@ class MuckRockProvider:
 __all__ = [
     "AUDIO_TERMS",
     "BODYCAM_TERMS",
+    "DEFAULT_MAX_QUERY_ATTEMPTS",
     "DONE_STATUSES",
     "HINT_ARTIFACT_SEARCH",
     "HINT_MUCKROCK_PARSE",
     "HINT_OUTCOME",
     "HINT_YOUTUBE",
     "INCIDENT_TERMS",
+    "MIN_LAST_NAME_LEN_FOR_QUERY",
     "MUCKROCK_API_BASE",
     "MuckRockProvider",
     "POLICY_ONLY_TERMS",
     "PURSUIT_TERMS",
+    "TOPIC_TERMS_BY_SIGNAL",
+    "build_query_plan",
 ]
