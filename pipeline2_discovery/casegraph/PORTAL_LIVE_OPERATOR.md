@@ -252,6 +252,96 @@ python -m tools.generate_portal_live_targets --input ... --output-dir ...
 
 The script auto-bootstraps the repo root onto `sys.path` so the direct form works from the repo root without `PYTHONPATH=.` or any other shell wrapper.
 
+## Curating Phoenix Newsroom URLs
+
+The generator above takes a **curated** input JSON of Phoenix Newsroom URLs. This section covers how to acquire that input safely. **The acquisition workflow is manual on purpose** — there's no crawling, no live fetching of candidate URLs, and no automated discovery. Operators do the discovery; the helper script (`tools/scaffold_phoenix_curated_urls.py`) only validates URL shape and reshapes a manually reviewed list into the generator's input form.
+
+### Step 1: manual site-search for candidate URLs
+
+Run one of these queries in a regular browser (or Google/Bing's search interface — never via an API or scraper):
+
+```
+site:phoenix.gov/newsroom/police-department-news "Critical Incident Briefing"
+site:phoenix.gov/newsroom/police-department-news "officer-involved shooting"
+site:phoenix.gov/newsroom/police-department-news "Phoenix Police" "Critical Incident Briefing"
+```
+
+These return Phoenix Police Department CIB pages on the canonical newsroom path. Other phoenix.gov paths (parks news, water dept news, etc.) and any non-phoenix.gov result get rejected at lint.
+
+### Step 2: manual review
+
+Operator reviews each result by hand and keeps only URLs that meet **all** of these criteria:
+
+- Host is exactly `www.phoenix.gov` (no subdomains, no PDFs hosted elsewhere).
+- Path matches `/newsroom/police-department-news/<id>.html` (numeric IDs *or* slug-form IDs both work).
+- The page is a **Phoenix Police Critical Incident Briefing or officer-involved shooting briefing** — not a parks/department-news article that happens to mention police.
+- The page is *not* a PDF, a search result page, a listing/index page, or a press release that does not embed a briefing video.
+- The URL is *not* from MuckRock, news aggregators, social media, or any non-phoenix.gov host (these would all be rejected at lint anyway, but rejecting them earlier saves cycles).
+- Prefer pages with an embedded YouTube briefing video — the agency_ois resolver chain graduates that to a verified `bodycam` artifact downstream.
+
+### Step 3: paste reviewed URLs into a local file
+
+Any of these formats is accepted (auto-detected from the file extension; override with `--format`):
+
+| Format | Example file | Notes |
+|---|---|---|
+| Plain text (`*.txt`, default) | `.tmp/phoenix_search_urls.txt` | One URL per line. Blank lines and lines starting with `#` are ignored — paste with comments freely. |
+| CSV (`*.csv`) | `.tmp/phoenix_search_urls.csv` | Must have a `url` column header. Other columns are ignored at this layer. |
+| TSV (`*.tsv`) | `.tmp/phoenix_search_urls.tsv` | Same as CSV. |
+| JSON (`*.json`) | `.tmp/phoenix_search_urls.json` | Either an array of URL strings, or an array of objects each with a `url` key. |
+
+Save it under `.tmp/` so it's gitignored.
+
+### Step 4: scaffold dry-run
+
+```bash
+python tools/scaffold_phoenix_curated_urls.py \
+    --input .tmp/phoenix_search_urls.txt \
+    --output .tmp/portal_live_generator/phoenix_curated.json \
+    --rejected-output .tmp/portal_live_generator/phoenix_rejected.json \
+    --json
+```
+
+Default mode is **dry-run** — the script reports what would be accepted, rejected, and deduplicated, but **writes no files**. The `--rejected-output` path is also dry-run unless `--write-reviewed` is also passed. Inspect the output and remove anything that shouldn't end up in the curated file.
+
+### Step 5: scaffold write
+
+```bash
+python tools/scaffold_phoenix_curated_urls.py \
+    --input .tmp/phoenix_search_urls.txt \
+    --output .tmp/portal_live_generator/phoenix_curated.json \
+    --rejected-output .tmp/portal_live_generator/phoenix_rejected.json \
+    --write-reviewed \
+    --json
+```
+
+The `--write-reviewed` flag is deliberately verbose to keep operators in the loop: only pass it after reviewing the dry-run output. With it, the curated JSON gets written (and the rejected report too, when its path is supplied).
+
+### Step 6: feed the curated file to the existing generator
+
+```bash
+python tools/generate_portal_live_targets.py \
+    --input .tmp/portal_live_generator/phoenix_curated.json \
+    --output-dir .tmp/portal_live_generator/generated_targets \
+    --mode both \
+    --dry-run \
+    --json
+```
+
+(Then re-run without `--dry-run` to actually write fixtures, exactly as the generator section above documents.)
+
+### Step 7: one live smoke after human review
+
+Run **one** `--portal-live` smoke against one generated fetch-only or extract-required fixture, exactly as the *Worked example: extraction-required smoke* section above documents. This is the only step that touches the network, and it's a separate explicit operator action.
+
+### What this workflow is NOT
+
+- It is **not crawling**. Nothing in this script fetches `phoenix.gov` or any other URL.
+- It is **not browser automation**. The site-search queries are run by a human in a regular browser.
+- It is **not search-API integration**. The script never calls Google's API, Bing's API, or any other search service.
+- It is **not Firecrawl**. Firecrawl remains a deferred fetcher for the live-fetch path; the scaffold workflow does not invoke it.
+- It is **not a batch smoke runner**. Live smokes remain one-at-a-time operator actions; the batch runner is a separate roadmap item.
+
 ## Hardening expectations
 
 - Live network is always opt-in via env gates.
@@ -261,3 +351,4 @@ The script auto-bootstraps the repo root onto `sys.path` so the direct form work
 - Saved raw payloads are byte-faithful; extracted payloads are deterministic given the raw input.
 - The `agency_ois` extractor is **pure** (no I/O) and is the operator's first line of defence against a redesigned page template.
 - The target generator is **pure**: lint + serialize, no network. Discovery and live smoke remain explicit, separate operator actions.
+- The curated-URL scaffold is **pure**: lint + reshape, no network. Acquisition and review remain explicit, manual operator actions.
