@@ -14,13 +14,20 @@ from pipeline2_discovery.enrichment import (
 )
 
 
-def _t(query="John Doe Phoenix Police bodycam", task_type="youtube_query"):
+def _t(query="John Doe Phoenix Police bodycam", task_type="youtube_query",
+       agency="Phoenix Police Department", subject_name="john doe",
+       city="phoenix", state="AZ"):
     return EnrichmentTask(
         candidate_id="x:1",
         grade="A",
         task_type=task_type,
         query=query,
-        context={"agency": "Phoenix Police Department"},
+        context={
+            "agency": agency,
+            "subject_name": subject_name,
+            "city": city,
+            "state": state,
+        },
     )
 
 
@@ -105,7 +112,11 @@ def test_mock_provider_carries_explicit_synthetic_warning_in_notes():
 
 
 class _FakeYdl:
-    """Minimal yt-dlp context-manager stub that returns canned entries."""
+    """Minimal yt-dlp context-manager stub that returns canned entries.
+
+    Two of the three entries carry the default _t() context anchor
+    (city = "phoenix") so existing plumbing tests (URL fallback,
+    id-less entry skipping) aren't masked by the relevance gate."""
 
     def __init__(self, opts):
         self.opts = opts
@@ -120,8 +131,16 @@ class _FakeYdl:
         assert download is False
         return {
             "entries": [
-                {"id": "abc123", "title": "Bodycam Arrest Phoenix", "url": "https://www.youtube.com/watch?v=abc123"},
-                {"id": "def456", "title": "Interrogation Room Footage", "url": ""},
+                {
+                    "id": "abc123",
+                    "title": "Bodycam Arrest Phoenix",
+                    "url": "https://www.youtube.com/watch?v=abc123",
+                },
+                {
+                    "id": "def456",
+                    "title": "Phoenix PD Officer Update",
+                    "url": "",
+                },
                 {"id": "", "title": "No-ID entry"},  # should be skipped
             ]
         }
@@ -183,13 +202,15 @@ def test_youtube_provider_completed_status_with_results():
 def test_youtube_provider_returns_urls_and_titles():
     p = YtDlpYouTubeSearchClient(ydl_cls=_FakeYdl)
     r = p.execute(_t())
-    # Entry with empty url gets vid-id fallback; entry with no id is skipped
+    # Both anchored entries are kept, no-id entry is skipped.
+    # Order is by relevance score, not yt-dlp order, so we assert
+    # set membership rather than indexed equality.
     assert len(r.result_urls) == 2
     assert len(r.result_titles) == 2
-    assert r.result_urls[0] == "https://www.youtube.com/watch?v=abc123"
-    assert r.result_urls[1] == "https://www.youtube.com/watch?v=def456"
-    assert r.result_titles[0] == "Bodycam Arrest Phoenix"
-    assert r.result_titles[1] == "Interrogation Room Footage"
+    assert "https://www.youtube.com/watch?v=abc123" in r.result_urls
+    assert "https://www.youtube.com/watch?v=def456" in r.result_urls
+    assert "Bodycam Arrest Phoenix" in r.result_titles
+    assert "Phoenix PD Officer Update" in r.result_titles
 
 
 def test_youtube_provider_skips_entries_without_id():
@@ -282,3 +303,281 @@ def test_youtube_provider_uses_metadata_only_opts():
     # Search URL must use the ytsearchN: prefix
     assert captured["url"].startswith("ytsearch")
     assert "some query" in captured["url"]
+
+
+# ---- relevance gate (zero-network) ----------------------------------
+
+
+def _ctx(*, agency="Longmont Police Services",
+         subject_name="joe william gold", city="longmont", state="CO"):
+    return {
+        "agency": agency,
+        "subject_name": subject_name,
+        "city": city,
+        "state": state,
+    }
+
+
+def _fake_ydl_returning(entries):
+    """Build a one-shot fake YoutubeDL class that returns the given
+    yt-dlp entries from extract_info."""
+    class _FakeYdlDyn:
+        def __init__(self, opts):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            pass
+
+        def extract_info(self, url, *, download):
+            return {"entries": list(entries)}
+
+    return _FakeYdlDyn
+
+
+def _entry(*, vid, title, url=None, uploader="", description=""):
+    return {
+        "id": vid,
+        "title": title,
+        "url": url if url is not None else f"https://www.youtube.com/watch?v={vid}",
+        "uploader": uploader,
+        "description": description,
+    }
+
+
+def _exec(entries, **ctx_kwargs):
+    """Run the YouTube provider against the given canned entries
+    and a Joe-William-Gold-shaped context (overridable)."""
+    p = YtDlpYouTubeSearchClient(ydl_cls=_fake_ydl_returning(entries))
+    task = EnrichmentTask(
+        candidate_id="x:1",
+        grade="A",
+        task_type="youtube_query",
+        query="joe william gold longmont police bodycam",
+        context=_ctx(**ctx_kwargs),
+    )
+    return p.execute(task)
+
+
+def test_relevance_keeps_subject_last_name_match():
+    r = _exec([
+        _entry(vid="v1", title="Joe Gold Longmont police pursuit footage"),
+    ])
+    assert r.status == TaskStatus.COMPLETED
+    assert "https://www.youtube.com/watch?v=v1" in r.result_urls
+
+
+def test_relevance_keeps_full_subject_name_match():
+    r = _exec([
+        _entry(vid="v1", title="Bodycam: Joe William Gold arrested"),
+    ])
+    assert "https://www.youtube.com/watch?v=v1" in r.result_urls
+
+
+def test_relevance_keeps_agency_token_match_in_uploader():
+    r = _exec([
+        _entry(
+            vid="v1", title="Officer-involved shooting briefing",
+            uploader="Longmont Police Services Official",
+        ),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_keeps_city_match():
+    r = _exec([
+        _entry(vid="v1", title="Longmont incident — community update"),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_keeps_state_match():
+    r = _exec([
+        _entry(vid="v1", title="Colorado police pursuit footage"),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_drops_bodycam_only_with_no_anchor():
+    """A generic 'bodycam' result with no subject / agency / city /
+    state anchor must be dropped — bodycam is supporting, not anchor."""
+    r = _exec([
+        _entry(vid="v1", title="Top 10 Bodycam Moments of the Year"),
+    ])
+    assert r.result_urls == []
+    assert r.status == TaskStatus.COMPLETED
+
+
+def test_relevance_drops_generic_unrelated_news():
+    r = _exec([
+        _entry(vid="v1", title="Three officers resign from Centralia police"),
+        _entry(vid="v2", title="Capitol Police officer lies in honor"),
+        _entry(vid="v3", title="Cincinnati Police officer's racist outburst caught on camera"),
+    ])
+    assert r.result_urls == []
+    assert r.confidence == "low"
+    assert r.next_actions_hint == []
+
+
+def test_relevance_filters_mixed_to_only_relevant():
+    r = _exec([
+        _entry(vid="v_keep", title="Longmont Police bodycam: Joe Gold pursuit"),
+        _entry(vid="v_drop1", title="Three officers resign from Centralia police"),
+        _entry(vid="v_drop2", title="Random Florida bodycam compilation"),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v_keep"]
+
+
+def test_relevance_empty_after_filtering_returns_low_with_no_hint():
+    r = _exec([
+        _entry(vid="v1", title="Three officers resign from Centralia police"),
+    ])
+    assert r.status == TaskStatus.COMPLETED
+    assert r.result_urls == []
+    assert r.confidence == "low"
+    assert r.next_actions_hint == []
+    assert any("filtered as irrelevant" in n for n in r.notes)
+
+
+def test_relevance_notes_include_raw_filtered_dropped_counts():
+    r = _exec([
+        _entry(vid="v_keep", title="Longmont Police bodycam: Joe Gold pursuit"),
+        _entry(vid="v_drop1", title="Centralia police resign"),
+        _entry(vid="v_drop2", title="Capitol Police memorial"),
+    ])
+    notes_str = " ".join(r.notes)
+    assert "raw_result_count=3" in notes_str
+    assert "filtered_result_count=1" in notes_str
+    assert "dropped_irrelevant_count=2" in notes_str
+
+
+def test_relevance_notes_include_dropped_title_examples():
+    r = _exec([
+        _entry(vid="v_drop1", title="Centralia police resign"),
+        _entry(vid="v_drop2", title="Florida clerk armed robbery"),
+    ])
+    drop_notes = [n for n in r.notes if n.startswith("dropped ")]
+    assert len(drop_notes) >= 1
+    assert any("Centralia" in n or "Florida" in n for n in drop_notes)
+
+
+def test_relevance_official_channel_yields_high_confidence():
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Critical incident briefing — Longmont",
+            uploader="City of Longmont Police Department Official",
+        ),
+    ])
+    assert r.confidence == "high"
+    assert r.next_actions_hint == ["youtube_metadata"]
+
+
+def test_relevance_subject_plus_agency_yields_high_confidence():
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Joe William Gold — Longmont Police Services bodycam",
+        ),
+    ])
+    assert r.confidence == "high"
+
+
+def test_relevance_anchor_plus_supporting_yields_medium_confidence():
+    r = _exec([
+        _entry(vid="v1", title="Longmont police bodycam release"),
+    ])
+    # has_agency (longmont token) + city + bodycam → medium
+    assert r.confidence == "medium"
+
+
+def test_relevance_state_only_anchor_yields_low_confidence():
+    r = _exec([
+        _entry(vid="v1", title="Colorado state highway patrol report"),
+    ])
+    # state-only anchor, no supporting domain term → low
+    assert r.confidence == "low"
+
+
+def test_relevance_state_abbr_must_be_standalone_token():
+    """Bare 'CO' as a 2-letter token counts; 'co' embedded in 'company'
+    or 'cops' must NOT trigger a state anchor."""
+    r = _exec([
+        _entry(vid="v1", title="Some random company posts video about cops"),
+    ])
+    # Should NOT anchor on 'co' substring
+    assert r.result_urls == []
+
+
+def test_relevance_state_abbr_standalone_is_anchor():
+    r = _exec([
+        _entry(vid="v1", title="Police report from Boulder CO"),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_ranks_higher_score_first():
+    r = _exec([
+        # weak: state-only
+        _entry(vid="weak", title="Colorado highway patrol notes"),
+        # strong: subject + agency + bodycam
+        _entry(vid="strong", title="Joe Gold Longmont Police bodycam release"),
+    ])
+    # Both kept; strong should be ranked first
+    assert r.result_urls[0] == "https://www.youtube.com/watch?v=strong"
+
+
+def test_relevance_uploader_anchor_alone_is_enough():
+    r = _exec([
+        _entry(
+            vid="v1", title="Body-worn camera footage — June",
+            uploader="Longmont Police Services",
+        ),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_description_anchor_used():
+    r = _exec([
+        _entry(
+            vid="v1", title="Police bodycam release",
+            description="Released by the Longmont Police Services on May 1.",
+        ),
+    ])
+    assert r.result_urls == ["https://www.youtube.com/watch?v=v1"]
+
+
+def test_relevance_kept_note_includes_score_and_anchors():
+    r = _exec([
+        _entry(vid="v1", title="Joe Gold Longmont bodycam"),
+    ])
+    kept_notes = [n for n in r.notes if n.startswith("kept ")]
+    assert len(kept_notes) == 1
+    assert "score=" in kept_notes[0]
+    assert "anchors=" in kept_notes[0]
+
+
+# ---- regression: failed yt-dlp run still returns no result_urls -----
+
+
+def test_relevance_does_not_run_on_failed_yt_dlp():
+    """If yt-dlp itself raises, relevance gate is moot — status
+    must be FAILED with empty result_urls and the error captured."""
+    class _ErrYdl:
+        def __init__(self, opts): pass
+        def __enter__(self): return self
+        def __exit__(self, *_): pass
+        def extract_info(self, url, *, download):
+            raise OSError("boom")
+
+    p = YtDlpYouTubeSearchClient(ydl_cls=_ErrYdl)
+    task = EnrichmentTask(
+        candidate_id="x:1", grade="A", task_type="youtube_query",
+        query="q", context=_ctx(),
+    )
+    r = p.execute(task)
+    assert r.status == TaskStatus.FAILED
+    assert r.result_urls == []
+    assert "OSError" in (r.error or "")
