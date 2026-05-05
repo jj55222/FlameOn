@@ -4,16 +4,34 @@ The script is a thin argparse wrapper over
 ``portal_live_target_generator.generate_targets``; these tests pin
 its operator-facing surface (exit codes, --dry-run, --json output,
 file writes) so a future refactor can't silently change behavior.
+
+Two kinds of tests:
+
+  - In-process tests call ``script.main(...)`` directly — fast, but
+    they bypass Python's import-path setup and so cannot catch
+    invocation-form regressions.
+  - Subprocess tests invoke the real ``python`` interpreter with
+    either ``python tools/generate_portal_live_targets.py`` or
+    ``python -m tools.generate_portal_live_targets``. These are the
+    only tests that catch ``ModuleNotFoundError: No module named
+    'pipeline2_discovery'`` regressions when the script is run
+    directly from the repo root.
 """
 from __future__ import annotations
 
 import io
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
 from tools import generate_portal_live_targets as script
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SCRIPT_PATH = REPO_ROOT / "tools" / "generate_portal_live_targets.py"
 
 
 PHOENIX_3286 = "https://www.phoenix.gov/newsroom/police-department-news/3286.html"
@@ -198,3 +216,133 @@ def test_invalid_mode_choice_rejected_by_argparse(tmp_path):
             "--mode", "invalid_mode",
         ])
     assert exc_info.value.code == 2
+
+
+# ---- subprocess-level invocation regressions -------------------------
+#
+# These tests are the only ones that catch the direct-vs-module
+# invocation gap. ``python tools/generate_portal_live_targets.py``
+# only puts ``tools/`` on sys.path, so the script's import of
+# ``pipeline2_discovery.casegraph...`` would fail with
+# ``ModuleNotFoundError`` without the repo-root bootstrap at the top
+# of the script. The in-process tests above cannot catch this because
+# pytest's rootdir handling already places the repo root on sys.path.
+
+
+def _run_subprocess(argv, cwd=REPO_ROOT, env=None):
+    """Run the script as a real subprocess from the repo root."""
+    return subprocess.run(
+        argv,
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        env=env,
+        timeout=30,
+    )
+
+
+def test_direct_script_invocation_help_exits_zero():
+    """``python tools/generate_portal_live_targets.py --help`` must
+    succeed from the repo root. Regression guard for the
+    ModuleNotFoundError that surfaced during PR #27 operational
+    validation."""
+    result = _run_subprocess(
+        [sys.executable, str(SCRIPT_PATH), "--help"],
+    )
+    assert result.returncode == 0, (
+        f"direct --help failed:\nstdout={result.stdout!r}\n"
+        f"stderr={result.stderr!r}"
+    )
+    assert "--input" in result.stdout
+    assert "--output-dir" in result.stdout
+    assert "ModuleNotFoundError" not in result.stderr
+
+
+def test_direct_script_invocation_dry_run_exits_zero(tmp_path):
+    """End-to-end: direct script invocation runs the generator, lints
+    a real Phoenix URL, exits 0 in dry-run mode."""
+    inp = _write_input(tmp_path, [{"url": PHOENIX_3369}])
+    out_dir = tmp_path / "generated"
+    result = _run_subprocess([
+        sys.executable, str(SCRIPT_PATH),
+        "--input", str(inp),
+        "--output-dir", str(out_dir),
+        "--mode", "fetch_only",
+        "--dry-run",
+        "--json",
+    ])
+    assert result.returncode == 0, (
+        f"direct dry-run failed:\nstdout={result.stdout!r}\n"
+        f"stderr={result.stderr!r}"
+    )
+    payload = json.loads(result.stdout)
+    assert payload["accepted_count"] == 1
+    assert payload["dry_run"] is True
+    assert not out_dir.exists()
+
+
+def test_module_invocation_help_exits_zero():
+    """``python -m tools.generate_portal_live_targets --help`` must
+    keep working alongside the direct invocation."""
+    result = _run_subprocess(
+        [sys.executable, "-m", "tools.generate_portal_live_targets", "--help"],
+    )
+    assert result.returncode == 0, (
+        f"module --help failed:\nstdout={result.stdout!r}\n"
+        f"stderr={result.stderr!r}"
+    )
+    assert "--input" in result.stdout
+    assert "ModuleNotFoundError" not in result.stderr
+
+
+def test_module_invocation_dry_run_exits_zero(tmp_path):
+    inp = _write_input(tmp_path, [{"url": PHOENIX_3286}])
+    out_dir = tmp_path / "generated"
+    result = _run_subprocess([
+        sys.executable, "-m", "tools.generate_portal_live_targets",
+        "--input", str(inp),
+        "--output-dir", str(out_dir),
+        "--mode", "fetch_only",
+        "--dry-run",
+        "--json",
+    ])
+    assert result.returncode == 0, (
+        f"module dry-run failed:\nstdout={result.stdout!r}\n"
+        f"stderr={result.stderr!r}"
+    )
+    payload = json.loads(result.stdout)
+    assert payload["accepted_count"] == 1
+    assert payload["dry_run"] is True
+
+
+def test_subprocess_invocations_make_zero_real_network_calls(tmp_path):
+    """Smoke-level zero-network guard for the subprocess path. The
+    monkeypatch trick used by the in-process tests doesn't cross
+    process boundaries, so we instead assert that both invocation
+    forms succeed in dry-run with a non-trivial input and never
+    surface a network-related error in stderr. Combined with the
+    in-process monkeypatch tests above, this triangulates that no
+    code path under test reaches the network."""
+    inp = _write_input(tmp_path, [
+        {"url": PHOENIX_3369},
+        {"url": "https://www.muckrock.com/x"},  # rejected at lint
+    ])
+    out_dir = tmp_path / "generated"
+    for argv in (
+        [sys.executable, str(SCRIPT_PATH)],
+        [sys.executable, "-m", "tools.generate_portal_live_targets"],
+    ):
+        result = _run_subprocess(argv + [
+            "--input", str(inp),
+            "--output-dir", str(out_dir),
+            "--mode", "both",
+            "--dry-run",
+        ])
+        assert result.returncode == 0
+        for needle in (
+            "ConnectionError", "TimeoutError", "TLS",
+            "SSL", "Connection refused", "Name or service",
+        ):
+            assert needle not in result.stderr, (
+                f"network-related error in stderr: {needle!r}"
+            )

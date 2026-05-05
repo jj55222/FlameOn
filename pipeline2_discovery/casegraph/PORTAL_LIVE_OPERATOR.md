@@ -238,6 +238,20 @@ python tools/generate_portal_live_targets.py \
 
 Writes up to 3 `*_real_fetch_only.json` fixtures into `.tmp/generated_targets/` (which is gitignored after PR #26's safe-path cleanup) and emits a JSON report on stdout for downstream piping. To then run a live smoke against a generated fixture, follow the **Worked example: extraction-required smoke** section above with the generated fixture path. Live smokes remain a separate operator action — the generator never fetches the web.
 
+### Module-style invocation (equivalent)
+
+Both forms work and produce identical results — pick whichever fits your shell history better:
+
+```bash
+# Direct script invocation (the form shown in the examples above):
+python tools/generate_portal_live_targets.py --input ... --output-dir ...
+
+# Module-style invocation:
+python -m tools.generate_portal_live_targets --input ... --output-dir ...
+```
+
+The script auto-bootstraps the repo root onto `sys.path` so the direct form works from the repo root without `PYTHONPATH=.` or any other shell wrapper.
+
 ## Hardening expectations
 
 - Live network is always opt-in via env gates.
