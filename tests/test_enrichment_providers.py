@@ -491,13 +491,13 @@ def test_relevance_official_channel_alone_is_medium():
 
 
 def test_relevance_subject_plus_official_channel_yields_high_confidence():
-    """Path B from the new rubric: subject anchor + official agency
-    channel reaches high. Same official-channel input as the
-    medium test above, but with the subject's last name in title."""
+    """Path B from the new rubric: FULL subject anchor + official
+    agency channel reaches high. Post-#45 last-name ceiling: Path B
+    requires the full subject name (last-name-only is too weak)."""
     r = _exec([
         _entry(
             vid="v1",
-            title="Joe Gold critical incident briefing — Longmont",
+            title="Joe William Gold critical incident briefing — Longmont",
             uploader="City of Longmont Police Department Official",
         ),
     ])
@@ -650,12 +650,13 @@ def test_relevance_official_channel_plus_supporting_no_subject_is_medium():
 
 
 def test_relevance_official_channel_plus_subject_remains_high():
-    """OKCPD-shaped fixture WITH subject name in title → high
-    (Path B from the new rubric)."""
+    """OKCPD-shaped fixture WITH FULL subject name in title → high
+    (Path B from the new rubric). Post-#45 last-name ceiling: full
+    name required (last-name 'williams' alone is too weak)."""
     r = _exec([
         _entry(
             vid="v1",
-            title="OKCPD bodycam release - williams critical incident",
+            title="OKCPD bodycam release - ryan keyon williams critical incident",
             uploader="Oklahoma City Police Department Official",
         ),
     ], agency="oklahoma city police department", subject_name="ryan keyon williams",
@@ -905,3 +906,230 @@ def test_state_disambiguation_diagnostics_when_no_state_in_context():
     # And medium still reaches via the locality-only path because
     # there's no state to demand corroboration of.
     assert r.confidence == "medium"
+
+
+# ---- last-name-only ceiling (post-200-cand smoke) -------------------
+#
+# After the 200-candidate stratified-sample smoke confirmed PR #45
+# eliminated state/city collision FPs, the next remaining FP class
+# was surname-only collisions: cases where the only subject anchor is
+# a common last_name (e.g. "Johnson" → Rep. Jesse Johnson, "Taylor"
+# → Atlanta-airport bodycam case). Path A and Path B used to fire on
+# any has_subject (including last-name-only); the ceiling rule now
+# requires has_full_subject for both. Last-name-only paths ride the
+# medium tier and are subject to PR #45's state-disambiguation guard.
+
+
+def test_last_name_only_does_not_reach_high():
+    """Rule 3: last-name-only + supporting term → at most medium,
+    never high. Path A and Path B require has_full_subject; a
+    last-name match plus locality + supporting tops out at medium
+    (preserved by the richness exception when ≥2 corroborators
+    fire — mirrors the Reyes operational shape)."""
+    # Subject 'john johnson'; result has only surname Johnson.
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Officer Johnson Longmont police pursuit footage",
+        ),
+    ], subject_name="john johnson", agency="Longmont Police Services",
+       city="longmont", state="CO")
+    # Has last_name, agency_token, city, supporting (pursuit) — but
+    # NO full_subject_name. Pre-ceiling: high (Path A). Post-
+    # ceiling: medium — richness exception keeps it at medium since
+    # 2 locality corroborators (agency + city) fire.
+    assert r.confidence == "medium"
+    notes = " ".join(r.notes)
+    assert "last_name_anchor=true" in notes
+    assert "full_subject_anchor=false" in notes
+    assert "last_name_only=true" in notes
+
+
+def test_last_name_only_with_state_corroboration_can_be_medium():
+    """Rule 5: last-name-only + state + agency/city + supporting →
+    medium (state corroboration satisfies the disambiguation guard;
+    ceiling caps the high tier but allows medium)."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Officer Johnson Longmont Colorado police bodycam release",
+        ),
+    ], subject_name="john johnson", agency="Longmont Police Services",
+       city="longmont", state="CO")
+    assert r.confidence == "medium"
+    notes = " ".join(r.notes)
+    assert "last_name_only=true" in notes
+    assert "state_anchor=true" in notes
+    # State guard satisfied → not suppressed.
+    assert "last_name_only_suppressed_by_state_disambiguation=false" in notes
+
+
+def test_last_name_only_no_state_no_locality_no_full_falls_to_low():
+    """Rule 4 (extended): last-name-only + supporting but no state /
+    no locality / no date / no full subject → low under the same
+    spirit as PR #45."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Random Johnson police pursuit clip",
+        ),
+    ], subject_name="adam johnson", agency="okmulgee county sheriff's office",
+       city="mounds", state="OK")
+    # Has last_name + supporting (pursuit). No agency_token (okmulgee
+    # not in title), no city (mounds not in title), no state token,
+    # no full subject. Should demote to low.
+    assert r.confidence == "low"
+    notes = " ".join(r.notes)
+    assert "last_name_only_suppressed_by_state_disambiguation=true" in notes
+
+
+def test_full_subject_plus_supporting_still_high():
+    """Rule 1: full subject + supporting → high. Path A unchanged
+    when has_full_subject fires."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Bodycam: John Johnson arrested in Longmont police pursuit",
+        ),
+    ], subject_name="john johnson", agency="Longmont Police Services",
+       city="longmont", state="CO")
+    assert r.confidence == "high"
+    notes = " ".join(r.notes)
+    assert "full_subject_anchor=true" in notes
+
+
+def test_official_channel_plus_last_name_only_does_not_reach_high():
+    """Rule 5 (negative): last-name + official-channel without full
+    subject does NOT reach high (Path B requires full_subject).
+    Result with state corroboration falls to medium; without state
+    falls to low via state-disambiguation guard."""
+    # Variant 1: with state corroboration → medium
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Critical incident briefing: Johnson — Longmont Colorado",
+            uploader="City of Longmont Police Department Official",
+        ),
+    ], subject_name="john johnson", agency="Longmont Police Services",
+       city="longmont", state="CO")
+    assert r.confidence == "medium"
+    notes = " ".join(r.notes)
+    assert "full_subject_anchor=false" in notes
+    assert "official_channel_hint=true" in notes
+
+
+def test_last_name_only_ceiling_reyes_synthetic_full_name_remains_high():
+    """Reyes regression: synthetic fixture with FULL subject name in
+    title → high (Path A). The ceiling does not affect cases where
+    has_full_subject fires."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Family of Ivonne Reyes killed during Miami Beach police chase",
+        ),
+    ], agency="miami beach police department", subject_name="ivonne reyes",
+       city="miami beach", state="FL")
+    assert r.confidence == "high"
+    notes = " ".join(r.notes)
+    assert "full_subject_anchor=true" in notes
+
+
+def test_last_name_only_ceiling_garcia_full_name_path_b_high():
+    """Garcia regression: full subject name + official channel hint
+    → high via Path B. Confirms Path B preserved when has_full_subject
+    fires (transcripts confirm Garcia at A in real adjudication, but
+    his provider tier surfaced as medium because the BEST kept entry
+    in the live smoke lacked supporting; this synthetic fixture
+    pins Path B's full_subject + official_channel branch)."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Gustavo Garcia officer-involved shooting briefing",
+            uploader="Tulare County Sheriff's Office Official",
+        ),
+    ], agency="tulare county sheriff's office", subject_name="gustavo garcia",
+       city="porterville", state="CA")
+    assert r.confidence == "high"
+
+
+def test_last_name_only_ceiling_moreno_path_a_remains_high():
+    """Moreno regression: full subject name + supporting term → high
+    via Path A. Pins the most common high-tier configuration."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Officer Diego Moreno killed in Kent police pursuit crash",
+        ),
+    ], agency="kent police department", subject_name="diego moreno",
+       city="kent", state="WA")
+    assert r.confidence == "high"
+
+
+def test_last_name_only_ceiling_baker_full_name_remains_at_least_medium():
+    """Baker regression: full subject name + locality, no supporting.
+    Provider tier stays at medium ('subject alone → medium'); the
+    ceiling does not demote when has_full_subject fires."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Trooper George Baker hit during Hammond police chase",
+        ),
+    ], agency="hammond police department", subject_name="george baker",
+       city="hammond", state="LA")
+    # full_subject + supporting (chase) → high via Path A
+    assert r.confidence == "high"
+
+
+def test_last_name_only_ceiling_weist_full_name_remains_at_least_medium():
+    """Weist regression: full subject name + agency, no supporting.
+    Ensures the ceiling does not affect full-subject paths even
+    when supporting is absent."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Deputy Nicholas Weist memorial — Galesburg police",
+        ),
+    ], agency="galesburg police department", subject_name="nicholas weist",
+       city="geneseo", state="IL")
+    # full_subject + agency, no supporting → medium via subject path
+    # (acceptable per rule 9 — 'or whatever prior provider tier was')
+    assert r.confidence in ("medium", "high")
+    notes = " ".join(r.notes)
+    assert "full_subject_anchor=true" in notes
+
+
+def test_last_name_only_ceiling_simmons_last_name_in_synthetic_with_state_remains_medium():
+    """Simmons regression: last-name + agency + state-name + pursuit
+    (per the actual Simmons NAACP transcript). With state
+    corroboration the last-name-only path retains medium per rule 5."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Simmons family killed in St. Louis Missouri police chase",
+        ),
+    ], agency="st. louis metropolitan police department",
+       subject_name="rhonda simmons", city="st louis", state="MO")
+    # last_name + agency_token:louis + state_name:missouri + pursuit
+    # → medium via Path "(agency or city) + supporting" (Path A
+    # blocked by ceiling). State corroborates so guard doesn't fire.
+    assert r.confidence == "medium"
+    notes = " ".join(r.notes)
+    assert "last_name_only=true" in notes
+    assert "state_anchor=true" in notes
+
+
+def test_last_name_only_ceiling_diagnostics_emitted():
+    """Notes include all the new diagnostic booleans."""
+    r = _exec([
+        _entry(vid="v1", title="Officer Johnson Longmont Colorado pursuit"),
+    ], subject_name="john johnson", agency="Longmont Police Services",
+       city="longmont", state="CO")
+    notes = " ".join(r.notes)
+    for key in (
+        "full_subject_anchor=",
+        "last_name_anchor=",
+        "last_name_only=",
+        "last_name_only_ceiling_applied=",
+        "last_name_only_suppressed_by_state_disambiguation=",
+    ):
+        assert key in notes, f"missing diagnostic: {key}"
