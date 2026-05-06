@@ -132,8 +132,13 @@ class _FakeYdl:
         return {
             "entries": [
                 {
+                    # "AZ" tagged so the post-#44 state-disambiguation
+                    # guard doesn't suppress the medium tier — the
+                    # default _t() context is state="AZ", and the
+                    # guard requires state corroboration on locality-
+                    # only anchors.
                     "id": "abc123",
-                    "title": "Bodycam Arrest Phoenix",
+                    "title": "Bodycam Arrest Phoenix AZ",
                     "url": "https://www.youtube.com/watch?v=abc123",
                 },
                 {
@@ -209,7 +214,7 @@ def test_youtube_provider_returns_urls_and_titles():
     assert len(r.result_titles) == 2
     assert "https://www.youtube.com/watch?v=abc123" in r.result_urls
     assert "https://www.youtube.com/watch?v=def456" in r.result_urls
-    assert "Bodycam Arrest Phoenix" in r.result_titles
+    assert "Bodycam Arrest Phoenix AZ" in r.result_titles
     assert "Phoenix PD Officer Update" in r.result_titles
 
 
@@ -468,12 +473,17 @@ def test_relevance_official_channel_alone_is_medium():
     a supporting term but no subject anchor and no date anchor) is
     medium, NOT high. The transcript validation smoke proved the
     OKCPD-style "we have an agency briefing, but it's about a
-    different case" pattern was being over-labelled high."""
+    different case" pattern was being over-labelled high.
+
+    State-disambiguation (post-#44): the official-channel medium
+    path also requires the dataset state to be referenced. Default
+    ctx state is "CO", so we include "Colorado" in the uploader
+    string (realistic for a real channel name)."""
     r = _exec([
         _entry(
             vid="v1",
             title="Critical incident briefing — Longmont",
-            uploader="City of Longmont Police Department Official",
+            uploader="City of Longmont Colorado Police Department Official",
         ),
     ])
     assert r.confidence == "medium"
@@ -505,10 +515,13 @@ def test_relevance_subject_plus_agency_yields_high_confidence():
 
 
 def test_relevance_anchor_plus_supporting_yields_medium_confidence():
+    # State-disambiguation (PR-after-#44): locality-only anchor needs
+    # the dataset state in the result text to reach medium. Default
+    # ctx state is "CO", so we include "Colorado" in the title.
     r = _exec([
-        _entry(vid="v1", title="Longmont police bodycam release"),
+        _entry(vid="v1", title="Longmont Colorado police bodycam release"),
     ])
-    # has_agency (longmont token) + city + bodycam → medium
+    # has_agency (longmont token) + city + state_name + bodycam → medium
     assert r.confidence == "medium"
 
 
@@ -676,10 +689,12 @@ def test_relevance_agency_plus_wrong_year_does_not_fire_path_c():
     """Path C requires the year to match context.incident_date.
     A 2022 OKCPD briefing for a 2020 incident must NOT reach high
     via the date path."""
+    # State token "Colorado" included so the post-#44 state-
+    # disambiguation guard doesn't suppress the medium fallback.
     r = _exec_with_date([
         _entry(
             vid="v1",
-            title="Longmont police bodycam release 2022 case",
+            title="Longmont Colorado police bodycam release 2022 case",
         ),
     ], incident_date="2020-12-26")
     # Has agency + supporting but date doesn't match → medium, not high
@@ -689,10 +704,12 @@ def test_relevance_agency_plus_wrong_year_does_not_fire_path_c():
 def test_relevance_date_anchor_dormant_without_context_incident_date():
     """If context lacks incident_date, the date_anchor flag never
     fires regardless of years in the title."""
+    # State token "Colorado" included so the post-#44 state-
+    # disambiguation guard doesn't suppress the medium fallback.
     r = _exec([
         _entry(
             vid="v1",
-            title="Longmont police bodycam release 2020 incident",
+            title="Longmont Colorado police bodycam release 2020 incident",
         ),
     ])  # no incident_date in context
     # Path C cannot fire → falls back to medium via agency+supporting
@@ -748,3 +765,143 @@ def test_relevance_youtube_metadata_hint_pinned_when_kept_results_exist():
         _entry(vid="v2", title="Top 10 bodycam moments compilation"),
     ])
     assert r2.next_actions_hint == []
+
+
+# ---- state-disambiguation guard (post-PR #44 100-cand smoke) --------
+#
+# These tests pin the rule introduced after the 100-candidate SF
+# Chronicle smoke surfaced two collision classes:
+#   1. Same-name-different-state (Florence AL vs Florence SC,
+#      Charleston WV vs Charleston SC).
+#   2. Agency-token-as-street-name (Las Vegas "Rainbow & Charleston"
+#      intersection content matching Charleston-anchored candidates).
+#
+# Rule: when the dataset row has a known state and the best kept
+# entry matched only locality (agency_token / city) with a supporting
+# term — no subject anchor, no date anchor, no state corroboration —
+# the medium tier falls through to low.
+
+
+def test_state_disambiguation_florence_al_vs_sc_demoted_to_low():
+    """Florence AL candidate; YouTube result is Florence SC pursuit
+    content. agency_token:florence + city + supporting (pursuit) all
+    fire, but no SC/Alabama corroboration in result text. Demoted."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Five South Carolina officers shot during Florence police chase pursuit",
+        ),
+    ], agency="florence police department", subject_name="joe deewayne cothrum",
+       city="florence", state="AL")
+    assert r.confidence == "low"
+    notes = " ".join(r.notes)
+    assert "state_disambiguation_required=true" in notes
+    assert "state_disambiguation_passed=false" in notes
+    assert "locality_anchor_suppressed_by_state_disambiguation=true" in notes
+
+
+def test_state_disambiguation_charleston_street_name_collision_demoted():
+    """Charleston WV candidate; YouTube result is Las Vegas content
+    where 'Charleston' is a street name in 'Rainbow & Charleston'.
+    agency_token:charleston fires on the street, no WV corroboration."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Officer-involved shooting reported near Rainbow and Charleston pursuit",
+        ),
+    ], agency="charleston police department", subject_name="heather dawn ross",
+       city="charleston", state="WV")
+    assert r.confidence == "low"
+    notes = " ".join(r.notes)
+    assert "locality_anchor_suppressed_by_state_disambiguation=true" in notes
+
+
+def test_state_disambiguation_correct_state_locality_survives_to_medium():
+    """When the dataset state DOES appear in the result text alongside
+    the locality match, the guard does not fire and medium is
+    preserved. Florence AL result mentioning Alabama anchors state
+    and stays medium."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Florence Alabama police bodycam pursuit release",
+        ),
+    ], agency="florence police department", subject_name="joe deewayne cothrum",
+       city="florence", state="AL")
+    assert r.confidence == "medium"
+    notes = " ".join(r.notes)
+    assert "state_disambiguation_required=true" in notes
+    assert "state_disambiguation_passed=true" in notes
+    assert "locality_anchor_suppressed_by_state_disambiguation=false" in notes
+
+
+def test_state_disambiguation_subject_anchor_overrides_state_guard():
+    """A full subject name anchored with a supporting term still
+    reaches high (Path A) even with no state corroboration. The
+    state guard never gates Path A / B; only the locality-only
+    medium fallback."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Bodycam: Joe Deewayne Cothrum Florence police pursuit",
+        ),
+    ], agency="florence police department", subject_name="joe deewayne cothrum",
+       city="florence", state="AL")
+    assert r.confidence == "high"
+
+
+def test_state_disambiguation_reyes_known_positive_remains_high():
+    """Reyes regression: subject anchor (last_name reyes) +
+    pursuit term → high (Path A). State (FL) does not appear in
+    the title, but the guard never touches subject-anchored paths."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Family of Ivonne Reyes killed during police chase wants investigation",
+        ),
+    ], agency="miami beach police department", subject_name="ivonne reyes",
+       city="miami beach", state="FL")
+    assert r.confidence == "high"
+
+
+def test_state_disambiguation_garcia_known_positive_remains_high():
+    """Garcia regression: full subject name + agency_token:tulare +
+    supporting (pursuit) → high (Path A). No state in title; guard
+    must not touch this."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Visalia man Gustavo Garcia connected to Tulare County pursuit homicide",
+        ),
+    ], agency="tulare county sheriff's office", subject_name="gustavo garcia",
+       city="porterville", state="CA")
+    assert r.confidence == "high"
+
+
+def test_state_disambiguation_moreno_known_positive_remains_high():
+    """Moreno regression: full subject name + agency_token:kent +
+    pursuit term → high (Path A). No 'WA' or 'Washington' in
+    haystack; guard must not touch this."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Officer Diego Moreno killed in Kent police pursuit crash",
+        ),
+    ], agency="kent police department", subject_name="diego moreno",
+       city="kent", state="WA")
+    assert r.confidence == "high"
+
+
+def test_state_disambiguation_diagnostics_when_no_state_in_context():
+    """When the context lacks a state (state=''), the guard does
+    not fire. state_disambiguation_required=false even if the
+    locality-only path triggers."""
+    r = _exec([
+        _entry(vid="v1", title="Longmont police bodycam release"),
+    ], state="")
+    notes = " ".join(r.notes)
+    assert "state_disambiguation_required=false" in notes
+    assert "locality_anchor_suppressed_by_state_disambiguation=false" in notes
+    # And medium still reaches via the locality-only path because
+    # there's no state to demand corroboration of.
+    assert r.confidence == "medium"

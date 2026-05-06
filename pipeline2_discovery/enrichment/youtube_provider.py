@@ -258,10 +258,15 @@ def _score_entry(
     return s
 
 
-def _confidence_from(kept: Sequence[_Scored]) -> str:
+def _confidence_from(
+    kept: Sequence[_Scored],
+    *,
+    context_has_state: bool = False,
+) -> str:
     """Reduce a kept-result list to a single confidence label.
 
-    Rubric (post-PR #41 transcript-validation tightening):
+    Rubric (post-PR #41 transcript-validation tightening; state-
+    disambiguation guard added after the 100-candidate smoke):
 
       ``high`` if best surviving result has:
         - subject anchor AND a case-relevant supporting term
@@ -274,20 +279,28 @@ def _confidence_from(kept: Sequence[_Scored]) -> str:
         - official-agency-channel hint AND supporting term
           (downgrades the OKCPD-style "we have an agency briefing
           but it's about a different case" pattern), OR
-        - agency / city anchor AND supporting term, OR
+        - agency / city anchor AND supporting term — *unless* the
+          state-disambiguation guard fires (see below), OR
         - subject anchor alone (no supporting term).
 
       ``low`` otherwise — covers: state-only anchor; agency / city
         anchor with no supporting term; official-channel-only
         without supporting term; no surviving results.
 
-    The previous rubric awarded ``high`` for ``has_official_channel``
-    alone. The post-PR #40 transcript smoke proved that path
-    over-promised: official agency channels (e.g. OKCPD's Community
-    Incident Briefings) publish content for many cases; the title +
-    uploader signal alone does not mean the video is about THIS
-    candidate. ``high`` now requires either a subject-name match or
-    an incident-date match alongside the agency / channel signal.
+    State-disambiguation guard: when the dataset row has a known
+    ``state`` and the best kept result matched the locality token
+    only (agency / city) without also matching the dataset state and
+    without a subject or date anchor, the locality match is too weak
+    to be subject-grounded. Examples that motivated this guard:
+
+      - "Florence AL" candidate matching Florence SC active-shooter
+        content because both share the city token "florence".
+      - "Charleston WV" candidate matching Charleston SC OIS or a
+        Las Vegas "Rainbow & Charleston" intersection clip.
+
+    In those cases, the medium tier falls through to ``low`` instead.
+    Subject-anchored true positives (Reyes / Garcia / Moreno) ride
+    the high paths above, so they are not affected.
     """
     if not kept:
         return "low"
@@ -307,6 +320,28 @@ def _confidence_from(kept: Sequence[_Scored]) -> str:
         and best.has_supporting
     ):
         return "high"
+
+    # State-disambiguation guard: a weak locality anchor (agency /
+    # city / official-channel) plus a supporting term should only
+    # reach medium when the result also corroborates the dataset
+    # state — otherwise the anchor is too weak to be subject-
+    # grounded. Subject and date anchors override the guard.
+    locality_supporting_path = bool(
+        (
+            best.has_official_channel
+            or best.has_agency
+            or best.has_city
+        )
+        and best.has_supporting
+    )
+    if (
+        locality_supporting_path
+        and context_has_state
+        and not best.has_state
+        and not best.has_subject
+        and not best.has_date_anchor
+    ):
+        return "low"
 
     # Medium paths
     if best.has_official_channel and best.has_supporting:
@@ -452,7 +487,10 @@ class YtDlpYouTubeSearchClient:
 
         urls = [s.url for s in kept]
         titles = [s.title for s in kept]
-        confidence = _confidence_from(kept)
+
+        ctx = task.context or {}
+        context_has_state = bool(str(ctx.get("state") or "").strip())
+        confidence = _confidence_from(kept, context_has_state=context_has_state)
         next_actions = ["youtube_metadata"] if kept else []
 
         # Per-task aggregate signal axes (post-PR #41 diagnostics).
@@ -461,9 +499,32 @@ class YtDlpYouTubeSearchClient:
         any_subject = any(r.has_subject for r in kept)
         any_agency = any(r.has_agency for r in kept)
         any_city = any(r.has_city for r in kept)
+        any_state = any(r.has_state for r in kept)
         any_supporting = any(r.has_supporting for r in kept)
         any_official_channel = any(r.has_official_channel for r in kept)
         any_date_anchor = any(r.has_date_anchor for r in kept)
+
+        # State-disambiguation diagnostics: would the locality-or-
+        # official-channel medium path have fired but for the state
+        # guard? Subject/date anchors override the guard, so we only
+        # flag eligibility when none of those anchors are present.
+        best = max(kept, key=lambda r: r.score) if kept else None
+        locality_eligible_for_medium = bool(
+            best is not None
+            and (best.has_official_channel or best.has_agency or best.has_city)
+            and best.has_supporting
+            and not best.has_subject
+            and not best.has_date_anchor
+        )
+        state_disambiguation_required = bool(
+            locality_eligible_for_medium and context_has_state
+        )
+        state_disambiguation_passed = bool(
+            state_disambiguation_required and best is not None and best.has_state
+        )
+        locality_anchor_suppressed = bool(
+            state_disambiguation_required and best is not None and not best.has_state
+        )
 
         notes: List[str] = [
             f"raw_result_count={len(scored)}",
@@ -472,9 +533,13 @@ class YtDlpYouTubeSearchClient:
             f"subject_anchor={'true' if any_subject else 'false'}",
             f"agency_anchor={'true' if any_agency else 'false'}",
             f"city_anchor={'true' if any_city else 'false'}",
+            f"state_anchor={'true' if any_state else 'false'}",
             f"case_term={'true' if any_supporting else 'false'}",
             f"official_channel_hint={'true' if any_official_channel else 'false'}",
             f"date_anchor={'true' if any_date_anchor else 'false'}",
+            f"state_disambiguation_required={'true' if state_disambiguation_required else 'false'}",
+            f"state_disambiguation_passed={'true' if state_disambiguation_passed else 'false'}",
+            f"locality_anchor_suppressed_by_state_disambiguation={'true' if locality_anchor_suppressed else 'false'}",
             "high_requires_subject_or_date=true",
         ]
         if kept:
