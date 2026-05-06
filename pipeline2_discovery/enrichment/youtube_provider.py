@@ -133,6 +133,7 @@ class _Scored:
     has_state: bool = False
     has_supporting: bool = False
     has_official_channel: bool = False
+    has_date_anchor: bool = False
     drop_reason: Optional[str] = None
 
 
@@ -233,6 +234,24 @@ def _score_entry(
         s.score += 3
         s.has_official_channel = True
 
+    # ---- date anchor (post-PR #41) -----------------------------------
+    # Fires only when the task context carries an incident_date AND the
+    # video metadata mentions the same year (4-digit) or a date pattern
+    # encoding the same year. This is what distinguishes "an OKCPD
+    # briefing about THIS incident" from "an OKCPD briefing about some
+    # other 2022 case". Dataset intake doesn't currently propagate
+    # incident_date into task context, so the flag is dormant under
+    # current data — but the rubric is ready when intake adds it.
+    incident_date_raw = str(context.get("incident_date") or "").strip()
+    if incident_date_raw:
+        m = re.search(r"\b(19\d{2}|20\d{2})\b", incident_date_raw)
+        if m:
+            year = m.group(1)
+            if re.search(rf"\b{year}\b", haystack_l):
+                s.matched.append(f"date_anchor:{year}")
+                s.score += 2
+                s.has_date_anchor = True
+
     # ---- drop reason (computed even if kept, useful for diagnostics) -
     if not s.has_anchor:
         s.drop_reason = "no_anchor_match"
@@ -242,22 +261,62 @@ def _score_entry(
 def _confidence_from(kept: Sequence[_Scored]) -> str:
     """Reduce a kept-result list to a single confidence label.
 
-    - ``high``: at least one result with an official-looking agency
-      channel, OR with both an agency token and a subject hit.
-    - ``medium``: best surviving result has at least one anchor
-      *plus* a supporting (bodycam / CIB / pursuit) signal.
-    - ``low``: kept only weak (e.g. state-only) anchors, or no
-      results survived at all.
+    Rubric (post-PR #41 transcript-validation tightening):
+
+      ``high`` if best surviving result has:
+        - subject anchor AND a case-relevant supporting term
+          (bodycam / CIB / pursuit), OR
+        - subject anchor AND an official-agency-channel hint, OR
+        - agency / city anchor AND a date anchor matching the
+          context incident_date AND a supporting term.
+
+      ``medium`` if best surviving result has:
+        - official-agency-channel hint AND supporting term
+          (downgrades the OKCPD-style "we have an agency briefing
+          but it's about a different case" pattern), OR
+        - agency / city anchor AND supporting term, OR
+        - subject anchor alone (no supporting term).
+
+      ``low`` otherwise — covers: state-only anchor; agency / city
+        anchor with no supporting term; official-channel-only
+        without supporting term; no surviving results.
+
+    The previous rubric awarded ``high`` for ``has_official_channel``
+    alone. The post-PR #40 transcript smoke proved that path
+    over-promised: official agency channels (e.g. OKCPD's Community
+    Incident Briefings) publish content for many cases; the title +
+    uploader signal alone does not mean the video is about THIS
+    candidate. ``high`` now requires either a subject-name match or
+    an incident-date match alongside the agency / channel signal.
     """
     if not kept:
         return "low"
     best = max(kept, key=lambda r: r.score)
-    if best.has_official_channel:
+
+    # Path A: subject anchor + supporting term
+    if best.has_subject and best.has_supporting:
         return "high"
-    if best.has_agency and best.has_subject:
+    # Path B: subject anchor + official agency channel
+    if best.has_subject and best.has_official_channel:
         return "high"
-    if (best.has_subject or best.has_agency or best.has_city) and best.has_supporting:
+    # Path C: agency/city + date anchor + supporting term
+    # (dormant until dataset_intake propagates context.incident_date)
+    if (
+        (best.has_agency or best.has_city)
+        and best.has_date_anchor
+        and best.has_supporting
+    ):
+        return "high"
+
+    # Medium paths
+    if best.has_official_channel and best.has_supporting:
         return "medium"
+    if (best.has_agency or best.has_city) and best.has_supporting:
+        return "medium"
+    if best.has_subject:
+        return "medium"
+
+    # Low: state-only; agency-only without supporting; etc.
     return "low"
 
 
@@ -396,10 +455,27 @@ class YtDlpYouTubeSearchClient:
         confidence = _confidence_from(kept)
         next_actions = ["youtube_metadata"] if kept else []
 
+        # Per-task aggregate signal axes (post-PR #41 diagnostics).
+        # An operator inspecting JSON should be able to see at a
+        # glance which rubric paths fired across the kept set.
+        any_subject = any(r.has_subject for r in kept)
+        any_agency = any(r.has_agency for r in kept)
+        any_city = any(r.has_city for r in kept)
+        any_supporting = any(r.has_supporting for r in kept)
+        any_official_channel = any(r.has_official_channel for r in kept)
+        any_date_anchor = any(r.has_date_anchor for r in kept)
+
         notes: List[str] = [
             f"raw_result_count={len(scored)}",
             f"filtered_result_count={len(kept)}",
             f"dropped_irrelevant_count={len(dropped)}",
+            f"subject_anchor={'true' if any_subject else 'false'}",
+            f"agency_anchor={'true' if any_agency else 'false'}",
+            f"city_anchor={'true' if any_city else 'false'}",
+            f"case_term={'true' if any_supporting else 'false'}",
+            f"official_channel_hint={'true' if any_official_channel else 'false'}",
+            f"date_anchor={'true' if any_date_anchor else 'false'}",
+            "high_requires_subject_or_date=true",
         ]
         if kept:
             for s in kept:

@@ -463,7 +463,12 @@ def test_relevance_notes_include_dropped_title_examples():
     assert any("Centralia" in n or "Florida" in n for n in drop_notes)
 
 
-def test_relevance_official_channel_yields_high_confidence():
+def test_relevance_official_channel_alone_is_medium():
+    """Tightened post-PR #41: an official agency channel alone (with
+    a supporting term but no subject anchor and no date anchor) is
+    medium, NOT high. The transcript validation smoke proved the
+    OKCPD-style "we have an agency briefing, but it's about a
+    different case" pattern was being over-labelled high."""
     r = _exec([
         _entry(
             vid="v1",
@@ -471,8 +476,22 @@ def test_relevance_official_channel_yields_high_confidence():
             uploader="City of Longmont Police Department Official",
         ),
     ])
-    assert r.confidence == "high"
+    assert r.confidence == "medium"
     assert r.next_actions_hint == ["youtube_metadata"]
+
+
+def test_relevance_subject_plus_official_channel_yields_high_confidence():
+    """Path B from the new rubric: subject anchor + official agency
+    channel reaches high. Same official-channel input as the
+    medium test above, but with the subject's last name in title."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Joe Gold critical incident briefing — Longmont",
+            uploader="City of Longmont Police Department Official",
+        ),
+    ])
+    assert r.confidence == "high"
 
 
 def test_relevance_subject_plus_agency_yields_high_confidence():
@@ -581,3 +600,151 @@ def test_relevance_does_not_run_on_failed_yt_dlp():
     assert r.status == TaskStatus.FAILED
     assert r.result_urls == []
     assert "OSError" in (r.error or "")
+
+
+# ---- confidence tightening (post-PR #41) ----------------------------
+
+
+def _exec_with_date(entries, *, incident_date="2020-12-26", **ctx_kwargs):
+    """Variant of _exec that supplies an incident_date in context so
+    the date_anchor path can fire."""
+    p = YtDlpYouTubeSearchClient(ydl_cls=_fake_ydl_returning(entries))
+    ctx = _ctx(**ctx_kwargs)
+    ctx["incident_date"] = incident_date
+    task = EnrichmentTask(
+        candidate_id="x:1",
+        grade="A",
+        task_type="youtube_query",
+        query="joe william gold longmont police bodycam",
+        context=ctx,
+    )
+    return p.execute(task)
+
+
+def test_relevance_official_channel_plus_supporting_no_subject_is_medium():
+    """OKCPD-shaped fixture: official agency uploader + bodycam term,
+    no subject in title, no date anchor → medium (was high in v1).
+    Uses 'bodycam' which is in BODYCAM_TERMS so has_supporting fires."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="OKCPD bodycam release - critical incident briefing",
+            uploader="Oklahoma City Police Department Official",
+        ),
+    ], agency="oklahoma city police department", subject_name="ryan keyon williams",
+       city="oklahoma city", state="OK")
+    assert r.confidence == "medium"
+
+
+def test_relevance_official_channel_plus_subject_remains_high():
+    """OKCPD-shaped fixture WITH subject name in title → high
+    (Path B from the new rubric)."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="OKCPD bodycam release - williams critical incident",
+            uploader="Oklahoma City Police Department Official",
+        ),
+    ], agency="oklahoma city police department", subject_name="ryan keyon williams",
+       city="oklahoma city", state="OK")
+    assert r.confidence == "high"
+
+
+def test_relevance_subject_alone_no_supporting_is_medium():
+    """Subject anchor with no supporting term → medium (was medium
+    in v1 too — unchanged behaviour, but now explicitly pinned)."""
+    r = _exec([
+        _entry(vid="v1", title="Joe Gold city council appearance"),
+    ])
+    assert r.confidence == "medium"
+
+
+def test_relevance_agency_plus_date_plus_supporting_yields_high():
+    """Path C: agency anchor + date matching context.incident_date +
+    supporting term → high. Dormant under current dataset_intake
+    (which doesn't propagate incident_date) but ready for it."""
+    r = _exec_with_date([
+        _entry(
+            vid="v1",
+            title="Longmont police bodycam release December 2020 incident",
+        ),
+    ], incident_date="2020-12-26")
+    assert r.confidence == "high"
+
+
+def test_relevance_agency_plus_wrong_year_does_not_fire_path_c():
+    """Path C requires the year to match context.incident_date.
+    A 2022 OKCPD briefing for a 2020 incident must NOT reach high
+    via the date path."""
+    r = _exec_with_date([
+        _entry(
+            vid="v1",
+            title="Longmont police bodycam release 2022 case",
+        ),
+    ], incident_date="2020-12-26")
+    # Has agency + supporting but date doesn't match → medium, not high
+    assert r.confidence == "medium"
+
+
+def test_relevance_date_anchor_dormant_without_context_incident_date():
+    """If context lacks incident_date, the date_anchor flag never
+    fires regardless of years in the title."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Longmont police bodycam release 2020 incident",
+        ),
+    ])  # no incident_date in context
+    # Path C cannot fire → falls back to medium via agency+supporting
+    assert r.confidence == "medium"
+
+
+def test_relevance_generic_bodycam_unrelated_to_context_drops():
+    """Generic bodycam content with no anchor → dropped at gate;
+    confidence=low because no kept results."""
+    r = _exec([
+        _entry(vid="v1", title="Top 10 bodycam moments compilation"),
+    ])
+    assert r.result_urls == []
+    assert r.confidence == "low"
+
+
+def test_relevance_longmont_lex_smoke_remains_low():
+    """Pre-existing Longmont false-positive pattern: city-only
+    matches with no agency-distinctive token, no subject, no date
+    → low. Unchanged from v1."""
+    r = _exec([
+        _entry(vid="v1", title="Random Longmont event 2018 city report"),
+    ])  # context: longmont police services / joe william gold / longmont CO
+    # 'longmont' anchors via city + agency_token. No supporting term.
+    # → low under both old and new rubrics.
+    assert r.confidence == "low"
+
+
+def test_relevance_local_news_with_subject_remains_high():
+    """A case-specific local TV news upload with subject name +
+    pursuit term → high. The Miami Beach Reyes pattern from the
+    25-candidate smoke must continue to reach high."""
+    r = _exec([
+        _entry(
+            vid="v1",
+            title="Family of Ivonne Reyes killed during police chase wants investigation",
+        ),
+    ], agency="miami beach police department", subject_name="ivonne reyes",
+       city="miami beach", state="FL")
+    assert r.confidence == "high"
+
+
+def test_relevance_youtube_metadata_hint_pinned_when_kept_results_exist():
+    """next_actions_hint behaviour unchanged: youtube_metadata
+    fires whenever at least one result survives the anchor gate,
+    regardless of confidence tier."""
+    r = _exec([
+        _entry(vid="v1", title="Longmont police bodycam release"),
+    ])
+    assert "youtube_metadata" in r.next_actions_hint
+    # And empty kept → empty hint
+    r2 = _exec([
+        _entry(vid="v2", title="Top 10 bodycam moments compilation"),
+    ])
+    assert r2.next_actions_hint == []
