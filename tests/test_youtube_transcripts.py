@@ -537,6 +537,203 @@ def test_load_context_lookup_parses_search_tasks(tmp_path):
 # ---- end-to-end (extractor + parser + scorer) ----------------------
 
 
+class _FakeYdlPartialThenError:
+    """Simulates the live MZGgQC0JiuM behaviour: yt-dlp writes the
+    primary English VTT to disk, then raises on a secondary
+    translation language. The extractor must recover the VTT and
+    return ``status="downloaded"`` with a partial-error note."""
+
+    def __init__(self, opts):
+        self.opts = opts
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        pass
+
+    def download(self, urls):
+        from pipeline2_discovery.enrichment.youtube_transcripts import (
+            _video_id_from_url,
+        )
+        outtmpl = self.opts.get("outtmpl", "")
+        for url in urls:
+            vid = _video_id_from_url(url)
+            base = outtmpl.replace("%(id)s", vid)
+            # Write the primary English VTT first…
+            en_path = Path(base.replace(".%(ext)s", ".en.vtt"))
+            en_path.parent.mkdir(parents=True, exist_ok=True)
+            en_path.write_text(
+                "WEBVTT\n\n"
+                "00:00:00.000 --> 00:00:05.000\n"
+                "An innocent driver was hit and killed by a police "
+                "officer in Miami Beach during a pursuit.\n"
+                "00:00:05.000 --> 00:00:10.000\n"
+                "Yvonne Reyes was killed when police were in hot "
+                "pursuit of a car thief.\n",
+                encoding="utf-8",
+            )
+            # …then raise to simulate the secondary 429.
+        raise OSError("HTTP Error 429: Too Many Requests")
+
+
+def test_extractor_recovers_when_vtt_written_before_yt_dlp_raises(tmp_path):
+    """yt-dlp wrote .en.vtt then raised on a secondary translation;
+    the extractor must mark the run as downloaded, not failed."""
+    e = YouTubeCaptionExtractor(
+        ydl_factory=_FakeYdlPartialThenError, sleeper=lambda _: None,
+        rate_limit_seconds=0,
+    )
+    r = e.extract(
+        "https://www.youtube.com/watch?v=partialvid01",
+        output_dir=tmp_path,
+    )
+    assert r.status == "downloaded"
+    assert r.vtt_path is not None
+    assert Path(r.vtt_path).exists()
+    # Notes should record the partial error + recovery.
+    notes_str = " ".join(r.notes)
+    assert "partial_yt_dlp_error" in notes_str
+    assert "recovered_from_existing_vtt=true" in notes_str
+    assert "HTTP Error 429" in notes_str
+
+
+def test_extractor_recovered_vtt_parses_and_scores_high(tmp_path):
+    """End-to-end: a recovered VTT containing subject + pursuit
+    terms parses into a transcript that the scorer flags as
+    relevance=high. This validates the full
+    failure-recovery → parse → score pipeline."""
+    e = YouTubeCaptionExtractor(
+        ydl_factory=_FakeYdlPartialThenError, sleeper=lambda _: None,
+        rate_limit_seconds=0,
+    )
+    r = e.extract(
+        "https://www.youtube.com/watch?v=reyesrecov01",
+        output_dir=tmp_path,
+    )
+    assert r.status == "downloaded"
+
+    text = vtt_to_plaintext(Path(r.vtt_path).read_text(encoding="utf-8"))
+    s = score_transcript(
+        text,
+        source_query="ivonne reyes miami beach police pursuit",
+        context={
+            "subject_name": "ivonne reyes",
+            "agency": "miami beach police department",
+            "city": "miami beach",
+            "state": "FL",
+        },
+    )
+    assert s.relevance == "high"
+    # Transcript scorer's last_name path matches "reyes"
+    assert any("last_name" in m or "full_subject_name" in m for m in s.matched_terms)
+
+
+class _FakeYdlNoFileThenError:
+    """yt-dlp raises and writes NOTHING to disk — the original
+    failure case. Extractor should still return failed."""
+
+    def __init__(self, opts):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        pass
+
+    def download(self, urls):
+        raise OSError("connection refused")
+
+
+def test_extractor_still_failed_when_exception_and_no_vtt(tmp_path):
+    e = YouTubeCaptionExtractor(
+        ydl_factory=_FakeYdlNoFileThenError, sleeper=lambda _: None,
+        rate_limit_seconds=0,
+    )
+    r = e.extract(
+        "https://www.youtube.com/watch?v=novttafterr1",
+        output_dir=tmp_path,
+    )
+    assert r.status == "failed"
+    assert r.vtt_path is None
+    assert "OSError" in (r.error or "")
+
+
+def test_select_best_vtt_prefers_en_over_en_orig(tmp_path):
+    from pipeline2_discovery.enrichment.youtube_transcripts import (
+        _select_best_vtt,
+    )
+    vid = "vididabc1234"
+    video_dir = tmp_path / vid
+    video_dir.mkdir(parents=True, exist_ok=True)
+    en = video_dir / f"{vid}.en.vtt"
+    en_orig = video_dir / f"{vid}.en-orig.vtt"
+    en.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nA\n", encoding="utf-8")
+    en_orig.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nB\n", encoding="utf-8")
+    chosen = _select_best_vtt(video_dir, vid)
+    assert chosen is not None
+    assert chosen.name == f"{vid}.en.vtt"
+
+
+def test_select_best_vtt_prefers_english_over_other_languages(tmp_path):
+    from pipeline2_discovery.enrichment.youtube_transcripts import (
+        _select_best_vtt,
+    )
+    vid = "vididxyz9876"
+    video_dir = tmp_path / vid
+    video_dir.mkdir(parents=True, exist_ok=True)
+    fr = video_dir / f"{vid}.fr.vtt"
+    en_us = video_dir / f"{vid}.en-US.vtt"
+    fr.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nFR\n", encoding="utf-8")
+    en_us.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nEN-US\n", encoding="utf-8")
+    chosen = _select_best_vtt(video_dir, vid)
+    assert chosen is not None
+    # en-US is in the English bucket; fr is not. en-US wins.
+    assert chosen.name == f"{vid}.en-US.vtt"
+
+
+def test_select_best_vtt_falls_back_to_non_english_when_no_english(tmp_path):
+    from pipeline2_discovery.enrichment.youtube_transcripts import (
+        _select_best_vtt,
+    )
+    vid = "vididonlyfr1"
+    video_dir = tmp_path / vid
+    video_dir.mkdir(parents=True, exist_ok=True)
+    fr = video_dir / f"{vid}.fr.vtt"
+    fr.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nFR\n", encoding="utf-8")
+    chosen = _select_best_vtt(video_dir, vid)
+    assert chosen is not None
+    assert chosen.name == f"{vid}.fr.vtt"
+
+
+def test_select_best_vtt_skips_zero_byte_files(tmp_path):
+    from pipeline2_discovery.enrichment.youtube_transcripts import (
+        _select_best_vtt,
+    )
+    vid = "videmptyfile"
+    video_dir = tmp_path / vid
+    video_dir.mkdir(parents=True, exist_ok=True)
+    empty_en = video_dir / f"{vid}.en.vtt"
+    en_orig = video_dir / f"{vid}.en-orig.vtt"
+    empty_en.write_text("", encoding="utf-8")  # zero bytes
+    en_orig.write_text("WEBVTT\n\n00:00:00.000 --> 00:00:01.000\nA\n", encoding="utf-8")
+    chosen = _select_best_vtt(video_dir, vid)
+    # The empty .en.vtt is filtered out; .en-orig.vtt is selected.
+    assert chosen is not None
+    assert chosen.name == f"{vid}.en-orig.vtt"
+
+
+def test_select_best_vtt_returns_none_when_directory_empty(tmp_path):
+    from pipeline2_discovery.enrichment.youtube_transcripts import (
+        _select_best_vtt,
+    )
+    vid = "vidempydir01"
+    video_dir = tmp_path / vid
+    video_dir.mkdir(parents=True, exist_ok=True)
+    assert _select_best_vtt(video_dir, vid) is None
+
+
 def test_extractor_to_scorer_flow(tmp_path):
     """End-to-end: extract VTT (canned via fake yt-dlp), parse to
     plaintext, score against a context. Validates that the moving
