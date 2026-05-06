@@ -413,6 +413,63 @@ def _video_id_from_url(url: str) -> str:
     return re.sub(r"[^A-Za-z0-9_\-]+", "_", url)[:40]
 
 
+def _vtt_priority(path: Path, video_id: str) -> Tuple[int, int, str]:
+    """Sort key for VTT files in the per-video output directory.
+
+    Lower is better. Priority order (most-preferred first):
+
+    1. ``<video_id>.en.vtt``                        — manual English
+    2. ``<video_id>.en-orig.vtt``                   — yt-dlp's
+       "original" English variant for auto-generated captions
+    3. ``<video_id>.en-*.vtt``                      — any other
+       English language variant (en-US, en-GB, etc.)
+    4. ``<video_id>.<other-lang>.vtt``              — non-English,
+       last resort if no English variant exists
+    5. anything else                                — only if
+       nothing matched above
+
+    Within a priority bucket, shorter filenames win and then
+    alphabetical, so ``.en.vtt`` beats ``.en-foobar.vtt``.
+
+    Caller filters out empty files separately.
+    """
+    name = path.name
+    suffix = name[len(video_id):] if name.startswith(video_id) else name
+    suffix_l = suffix.lower()
+
+    if suffix_l == ".en.vtt":
+        bucket = 1
+    elif suffix_l == ".en-orig.vtt":
+        bucket = 2
+    elif suffix_l.startswith(".en-") or suffix_l.startswith(".en."):
+        bucket = 3
+    elif suffix_l.endswith(".vtt"):
+        bucket = 4
+    else:
+        bucket = 5
+
+    return (bucket, len(name), name)
+
+
+def _select_best_vtt(video_dir: Path, video_id: str) -> Optional[Path]:
+    """Pick the most-preferred VTT file in ``video_dir`` for
+    ``video_id``. Returns ``None`` when no usable VTT exists.
+
+    Skips zero-byte files (yt-dlp sometimes leaves a stub when a
+    download is interrupted before any subtitle data lands).
+    """
+    candidates = sorted(video_dir.glob(f"{video_id}*.vtt"))
+    if not candidates:
+        candidates = sorted(video_dir.glob("*.vtt"))
+
+    candidates = [p for p in candidates if p.stat().st_size > 0]
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda p: _vtt_priority(p, video_id))
+    return candidates[0]
+
+
 class YouTubeCaptionExtractor:
     """yt-dlp backed caption-only extractor.
 
@@ -479,41 +536,45 @@ class YouTubeCaptionExtractor:
 
         opts = self._build_opts(video_dir)
         factory = self._factory()
+
+        # yt-dlp can write a VTT to disk for the primary language
+        # and THEN raise on a secondary translation download (we've
+        # observed this with ``en-fr-<token>`` rate-limited 429s
+        # while the primary ``en`` VTT was already saved). Treat
+        # the exception as recoverable when a usable VTT is on
+        # disk.  See PR #42 / live smoke against
+        # https://www.youtube.com/watch?v=MZGgQC0JiuM.
+        partial_error: Optional[str] = None
         try:
             with factory(opts) as ydl:
                 ydl.download([url])
         except Exception as exc:
-            return CaptionExtraction(
-                status="failed",
-                video_id=video_id,
-                error=f"{type(exc).__name__}: {exc}",
-            )
+            partial_error = f"{type(exc).__name__}: {exc}"
 
-        # Find the resulting VTT file. Prefer manual ("en" without
-        # the auto-generation marker yt-dlp uses) over auto.
-        candidate_paths = sorted(video_dir.glob(f"{video_id}*.vtt"))
-        if not candidate_paths:
-            candidate_paths = sorted(video_dir.glob("*.vtt"))
-        if not candidate_paths:
+        chosen = _select_best_vtt(video_dir, video_id)
+        if chosen is None:
+            if partial_error is not None:
+                return CaptionExtraction(
+                    status="failed",
+                    video_id=video_id,
+                    error=partial_error,
+                )
             return CaptionExtraction(
                 status="no_captions_found",
                 video_id=video_id,
                 notes=[f"no vtt files found in {video_dir}"],
             )
 
-        # yt-dlp filenames look like ``<id>.<lang>.vtt``. Manually-
-        # uploaded captions use plain ``en``; auto-generated uses
-        # ``en`` too but typically with .vtt extension only — the
-        # safest priority is shortest filename (manual) wins ties.
-        chosen = sorted(
-            candidate_paths,
-            key=lambda p: (len(p.name), p.name),
-        )[0]
+        notes: List[str] = [f"selected_vtt={chosen.name}"]
+        if partial_error is not None:
+            notes.append(f"partial_yt_dlp_error={partial_error}")
+            notes.append("recovered_from_existing_vtt=true")
+
         return CaptionExtraction(
             status="downloaded",
             video_id=video_id,
             vtt_path=str(chosen),
-            notes=[f"selected_vtt={chosen.name}"],
+            notes=notes,
         )
 
 
