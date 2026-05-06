@@ -497,3 +497,180 @@ def test_parser_makes_no_network_call(monkeypatch):
     cands = parse_compilation_records([rec])
     # If parser tried to import yt_dlp, the _Boom getattr would have raised.
     assert len(cands) == 1
+
+
+# ---- headline-phrase rejection (post-real-smoke) -------------------
+
+
+@pytest.mark.parametrize("title,expected_subject_none", [
+    # 5 actual false-positive titles surfaced by the real smoke
+    ('Mom Reports "Missing" Son, But Cops Find Him In HER Car', "Mom Reports"),
+    ("Passenger Shows Up Two Days Late and Demands to Board a Flight", "Passenger Shows"),
+    ("Brat Threatens Police During Traffic Stop... It Backfires Terribly", "Brat Threatens"),
+    ("Entitled Customer Refuses to Pay for Dances at Club, Doesn't End Well", "Entitled Customer"),
+    ("Cops Fiance Flashes Fake Police Badge During DUI Arrest", "Flashes Fake"),
+])
+def test_headline_phrase_titles_no_longer_extract_subject(title, expected_subject_none):
+    """The 5 false-positive subjects from the real-metadata smoke
+    must now resolve to subject=None instead of leaking the
+    title-case headline phrase as a "subject"."""
+    rec = _video(
+        title=title,
+        description="Generic compilation channel description.",
+        uploader="Real Body Cams",
+    )
+    cands = parse_compilation_records([rec])
+    assert len(cands) == 1
+    # Must NOT extract the headline phrase as a subject
+    assert cands[0].subject_name != expected_subject_none
+    # Stronger assertion: subject should be None for these titles
+    # (no real name available anywhere in title or description).
+    assert cands[0].subject_name is None
+
+
+@pytest.mark.parametrize("title,expected_subject", [
+    ("Bodycam: Fresno Police Department arrest of Christopher Vang", "Christopher Vang"),
+    ("Family of Ivonne Reyes killed during police chase", "Ivonne Reyes"),
+    ("Bodycam: Phoenix PD pursuit of John Smith", "John Smith"),
+    ("Bodycam: Houston PD officer-involved shooting of Maria Garcia", "Maria Garcia"),
+])
+def test_real_names_still_extract_after_headline_filter(title, expected_subject):
+    """Real subject names must continue to extract after the
+    headline-phrase filter is added."""
+    rec = _video(
+        title=title,
+        description="Generic compilation channel description.",
+        uploader="Real Body Cams",
+    )
+    cands = parse_compilation_records([rec])
+    assert len(cands) == 1
+    assert cands[0].subject_name == expected_subject
+
+
+def test_grade_drops_to_d_for_smoke_shaped_records_without_subject():
+    """The 5 smoke-shaped titles previously produced score=2-3 with
+    a false-positive subject anchor inflating the grade. After
+    filtering, no subject anchor → no subject points → grade D."""
+    titles = [
+        "Mom Reports Missing Son",
+        "Passenger Shows Up Late",
+        "Brat Threatens Police",
+        "Entitled Customer Refuses",
+        "Cops Fiance Flashes Fake Badge",
+    ]
+    for title in titles:
+        rec = _video(title=title, description="Generic.", uploader="Real Body Cams")
+        cands = parse_compilation_records([rec])
+        assert len(cands) == 1
+        assert cands[0].subject_name is None
+        # Score should not have been inflated by a false subject:
+        # without a subject anchor and without an agency, the rubric's
+        # subject-bonus paths can't fire. Grade is D unless artifact
+        # terms alone happen to cross the C threshold.
+        assert cands[0].grade in ("D", "C")
+
+
+def test_search_tasks_skip_subject_queries_when_subject_filtered():
+    """When the subject is filtered as a headline phrase, the
+    generated search-task queries must not contain the false
+    headline (e.g. 'Mom Reports body-worn camera')."""
+    rec = _video(
+        title="Mom Reports Missing Son",
+        description="Generic.",
+        uploader="Real Body Cams",
+    )
+    cands = parse_compilation_records([rec])
+    c = cands[0]
+    all_queries = (
+        list(c.youtube_queries or [])
+        + list(c.muckrock_queries or [])
+        + list(c.outcome_queries or [])
+    )
+    for q in all_queries:
+        assert "Mom Reports" not in q
+        assert "mom reports" not in q.lower()
+
+
+def test_looks_like_headline_phrase_helper_directly():
+    from pipeline2_discovery.dataset_sources.compilation_leads import (
+        _looks_like_headline_phrase,
+    )
+    # Headline phrases — should be rejected
+    assert _looks_like_headline_phrase("Mom Reports") is True
+    assert _looks_like_headline_phrase("Passenger Shows") is True
+    assert _looks_like_headline_phrase("Brat Threatens") is True
+    assert _looks_like_headline_phrase("Entitled Customer") is True
+    assert _looks_like_headline_phrase("Flashes Fake") is True
+    # Real names — should NOT be rejected
+    assert _looks_like_headline_phrase("Christopher Vang") is False
+    assert _looks_like_headline_phrase("Ivonne Reyes") is False
+    assert _looks_like_headline_phrase("John Smith") is False
+    assert _looks_like_headline_phrase("Maria Garcia") is False
+    assert _looks_like_headline_phrase("Joe Gold") is False
+    assert _looks_like_headline_phrase("Michael Beaver") is False
+    assert _looks_like_headline_phrase("Chase Bulmahn") is False
+    # Empty / degenerate input
+    assert _looks_like_headline_phrase("") is True
+    assert _looks_like_headline_phrase("   ") is True
+
+
+def test_role_noun_first_word_rejected_even_with_unfamiliar_second_word():
+    """Headline filter generalises beyond the 5 specific smoke phrases:
+    any "Role Verb" / "Role Noun" with the role as the first word
+    should be rejected."""
+    from pipeline2_discovery.dataset_sources.compilation_leads import (
+        _looks_like_headline_phrase,
+    )
+    # First word is a role noun → rejected regardless of second word
+    assert _looks_like_headline_phrase("Driver Caught") is True
+    assert _looks_like_headline_phrase("Suspect Demands") is True
+    assert _looks_like_headline_phrase("Customer Yells") is True
+    # Plurals
+    assert _looks_like_headline_phrase("Cops Find") is True
+    assert _looks_like_headline_phrase("Officers Refuse") is True
+
+
+def test_action_verb_last_word_rejected_even_with_unfamiliar_first_word():
+    """Symmetric coverage: any 'X <verb>' with verb as last word
+    should be rejected even if X isn't a recognised role noun."""
+    from pipeline2_discovery.dataset_sources.compilation_leads import (
+        _looks_like_headline_phrase,
+    )
+    # Last word is an action verb → rejected
+    assert _looks_like_headline_phrase("Mary Demands") is True  # Mary not in roles, but Demands matches
+    assert _looks_like_headline_phrase("Nathan Threatens") is True
+
+
+# ---- end-to-end smoke replay ---------------------------------------
+
+
+def test_smoke_replay_5_real_titles_produce_no_subject_anchor():
+    """Reproduces the 5 real-metadata smoke records (NYDETECTIVE /
+    Real Body Cams / Crime Time Cam / ThisIsBodycam / Uncovered)
+    and asserts none of them now produce false-positive subject
+    anchors. This is the regression guard for the actual issue
+    surfaced by the live smoke."""
+    smoke_titles = [
+        ("0AI6cY3mT-k", "NYDETECTIVE",
+         "Passenger Shows Up Two Days Late and Demands to Board a Flight"),
+        ("MnUMzE22ptA", "Real Body Cams",
+         'Mom Reports "Missing" Son, But Cops Find Him In HER Car'),
+        ("SRpXpuLoh2I", "Crime Time Cam",
+         "Entitled Customer Refuses to Pay for Dances at Club, Doesn't End Well"),
+        ("vY0i0e_tkR0", "ThisIsBodycam",
+         "Cops Fiance Flashes Fake Police Badge During DUI Arrest"),
+        ("IDhNW4Bi-PI", "Uncovered",
+         "Brat Threatens Police During Traffic Stop... It Backfires Terribly"),
+    ]
+    records = [
+        _video(video_id=vid, uploader=uploader, title=title,
+               description="Channel boilerplate. No structured case info.")
+        for vid, uploader, title in smoke_titles
+    ]
+    cands = parse_compilation_records(records)
+    assert len(cands) == 5
+    for c in cands:
+        assert c.subject_name is None, (
+            f"unexpected subject anchor {c.subject_name!r} for "
+            f"{c.candidate_id} — headline filter regression"
+        )

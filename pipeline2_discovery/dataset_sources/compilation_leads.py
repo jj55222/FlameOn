@@ -223,7 +223,136 @@ NAME_STOPWORDS = frozenset({
     "bodycam", "dashcam", "camera", "footage", "video",
     # cardinal / generic
     "north", "south", "east", "west", "central",
+    # incident artifact words that show up in title-case headlines.
+    # Note: "chase" is deliberately NOT here — "Chase" is a real
+    # first name (e.g. Chase James Bulmahn from sfchronicle_pursuits:
+    # 2848). Artifact-term detection for "police chase" / "high-speed
+    # chase" lives in INCIDENT_TERMS, not in this name-side filter.
+    "arrest", "stop", "shooting", "incident",
+    "before", "after", "during",
 })
+
+
+# Everyday English short words that show up in title-case news /
+# entertainment headlines but are never personal names. Together
+# with HEADLINE_ROLE_NOUNS + HEADLINE_ACTION_VERBS, these define
+# the "this is a headline phrase, not a name" filter — see
+# :func:`_looks_like_headline_phrase`.
+HEADLINE_FILLER_TOKENS = frozenset({
+    # number words
+    "one", "two", "three", "four", "five", "six", "seven", "eight",
+    "nine", "ten",
+    # pronouns
+    "his", "her", "him", "she", "they", "them", "their", "our",
+    "your", "who", "whom", "whose", "we", "us",
+    # temporal
+    "day", "days", "week", "weeks", "month", "months", "year",
+    "years", "hour", "hours", "minute", "minutes",
+    "today", "yesterday", "tomorrow", "now", "then", "soon",
+    "again", "still",
+    # positional / directional
+    "up", "down", "out", "off", "into", "over", "under", "back",
+    "around", "ahead", "behind", "above", "below",
+    # adverbs / adjectives common in title-case
+    "late", "early", "well", "badly", "quickly", "slowly", "very",
+    "almost", "just", "even", "much", "much",
+    # quantity
+    "all", "many", "few", "some", "more", "most", "less", "least",
+    "any",
+    # conjunctions / particles
+    "but", "and", "yet", "so", "nor", "as",
+    # demonstratives
+    "this", "that", "these", "those", "here", "there",
+    # common verbs that appear standalone in title-case
+    "find", "finds", "found", "give", "gives", "gave", "take",
+    "takes", "took", "get", "gets", "got", "make", "makes", "made",
+    "say", "says", "said", "see", "sees", "saw",
+    "end", "ends", "ended", "begin", "begins", "started",
+    "backfires", "succeeded",
+    # short nouns common in entertainment-bodycam headlines
+    "son", "daughter", "child", "kid", "car", "house", "phone",
+    "club", "badge", "thing", "things", "place", "time", "way",
+    "fiance", "fiancee",
+    # generic adjectives
+    "fake", "real", "missing", "dead", "alive", "lost", "new",
+    "old", "young", "good", "bad", "best", "worst",
+    "wild", "crazy", "weird", "strange", "epic", "terribly",
+})
+
+
+# Common English nouns / role labels that show up in entertainment-
+# bodycam channel titles ("Mom Reports...", "Brat Threatens...",
+# "Entitled Customer Refuses..."). When a 2-word "subject" candidate
+# starts with one of these, it is almost never a real name; reject.
+HEADLINE_ROLE_NOUNS = frozenset({
+    "mom", "moms", "mum", "dad", "dads", "father", "mother", "parent",
+    "son", "daughter", "kid", "kids", "child", "children", "teen", "teens",
+    "boy", "girl", "man", "woman", "men", "women", "guy", "lady",
+    "couple", "neighbor", "neighbors", "stranger",
+    "passenger", "passengers", "driver", "drivers", "pedestrian",
+    "customer", "customers", "patron", "guest",
+    "suspect", "suspects", "victim", "victims",
+    "cop", "cops", "officer", "officers", "deputy", "deputies",
+    "trooper", "troopers", "detective",
+    "boss", "employee", "worker", "manager",
+    "brat", "punk", "thug", "thief", "robber", "criminal",
+    "entitled", "fake", "missing", "wild", "drunk", "angry", "young",
+    "old", "former", "new",
+})
+
+
+# Verbs and headline-action words that appear as the second word of a
+# title-case sentence ("X Reports...", "X Threatens...", "X Refuses...").
+# When a 2-word "subject" candidate ends with one of these, it is almost
+# never a real name; reject.
+HEADLINE_ACTION_VERBS = frozenset({
+    "reports", "threatens", "refuses", "demands", "flashes", "shows",
+    "pulls", "caught", "goes", "finds", "arrives", "calls", "claims",
+    "tells", "asks", "argues", "fights", "tries", "attempts",
+    "drives", "runs", "flees", "walks", "stops", "starts", "begins",
+    "ends", "leaves", "returns", "appears", "disappears",
+    "discovers", "reveals", "admits", "denies", "confronts", "exposes",
+    "warns", "yells", "screams", "kicks", "throws", "hits", "punches",
+    "shoots", "shouts",
+    "loses", "wins", "fails", "succeeds",
+    "during", "after", "before", "while", "until",
+})
+
+
+def _looks_like_headline_phrase(name: str) -> bool:
+    """Heuristic: True when ``name`` is almost certainly a title-case
+    headline phrase rather than a real subject name.
+
+    Rule: reject if **any** token is in any of the four stopword
+    sets — :data:`HEADLINE_ROLE_NOUNS`, :data:`HEADLINE_ACTION_VERBS`,
+    :data:`HEADLINE_FILLER_TOKENS`, :data:`NAME_STOPWORDS`. This is
+    deliberately conservative — a single English-headline token
+    anywhere in the candidate (e.g. "But Cops", "Two Days",
+    "Find Him", "End Well") flips the candidate to "headline phrase".
+    Real names like "Christopher Vang" / "Ivonne Reyes" / "John
+    Smith" / "Maria Garcia" / "Joe Gold" / "Michael Beaver" /
+    "Chase Bulmahn" pass cleanly because none of their tokens match.
+
+    Returns ``True`` for empty / whitespace-only input as a safety
+    fallback.
+    """
+    if not name or not name.strip():
+        return True
+    tokens = re.findall(r"[a-z]+", name.lower())
+    if not tokens:
+        return True
+    # Token-length sanity: a name token shorter than 3 chars is
+    # almost certainly a particle / pronoun (Up, He, It, To, On,
+    # An). Reject without looking at the stopword sets.
+    if any(len(t) < 3 for t in tokens):
+        return True
+    headline_universe = (
+        HEADLINE_ROLE_NOUNS
+        | HEADLINE_ACTION_VERBS
+        | HEADLINE_FILLER_TOKENS
+        | NAME_STOPWORDS
+    )
+    return any(t in headline_universe for t in tokens)
 
 
 # ---- input record + helpers -----------------------------------------
@@ -347,6 +476,12 @@ def _extract_subject_name(text: str, *, uploader: str) -> Optional[str]:
             if is_compilation_channel and _norm(cand) in uploader_l:
                 continue
             if _norm(cand) in US_STATE_POSTAL:
+                continue
+            # Reject sensational title-case headline phrases like
+            # "Mom Reports" / "Brat Threatens" / "Entitled Customer"
+            # / "Flashes Fake" — these match the proper-noun regex
+            # but are almost never real subject names.
+            if _looks_like_headline_phrase(cand):
                 continue
             return cand
     return None
@@ -811,7 +946,11 @@ def parse_compilation_input_file(path: Path) -> List[DatasetCandidate]:
 
 __all__ = [
     "COMPILATION_CHANNEL_UPLOADERS",
+    "HEADLINE_ACTION_VERBS",
+    "HEADLINE_FILLER_TOKENS",
+    "HEADLINE_ROLE_NOUNS",
     "INCIDENT_TERMS",
+    "NAME_STOPWORDS",
     "SOURCE_DATASET",
     "SOURCE_LANE",
     "STRONG_INCIDENT_TERMS",
