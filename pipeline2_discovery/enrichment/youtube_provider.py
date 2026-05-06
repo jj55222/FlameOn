@@ -128,6 +128,11 @@ class _Scored:
     matched: List[str] = field(default_factory=list)
     has_anchor: bool = False
     has_subject: bool = False
+    # has_full_subject is True only when the entire subject_name string
+    # appears contiguously in the haystack. has_subject without
+    # has_full_subject indicates a last-name-only match (a weaker
+    # anchor — see PR-after-#45 last-name ceiling).
+    has_full_subject: bool = False
     has_agency: bool = False
     has_city: bool = False
     has_state: bool = False
@@ -172,10 +177,12 @@ def _score_entry(
         s.matched.append("full_subject_name")
         s.score += 3
         s.has_subject = True
+        s.has_full_subject = True
     elif last and len(last) >= 3 and _word_re(last).search(haystack_l):
         s.matched.append("last_name")
         s.score += 2
         s.has_subject = True
+        # has_full_subject stays False — last-name-only is a weak anchor
 
     # ---- agency-distinctive token anchor -----------------------------
     for tok in distinctive:
@@ -287,32 +294,45 @@ def _confidence_from(
         anchor with no supporting term; official-channel-only
         without supporting term; no surviving results.
 
-    State-disambiguation guard: when the dataset row has a known
-    ``state`` and the best kept result matched the locality token
-    only (agency / city) without also matching the dataset state and
-    without a subject or date anchor, the locality match is too weak
-    to be subject-grounded. Examples that motivated this guard:
+    State-disambiguation guard (PR #45): when the dataset row has a
+    known ``state`` and the best kept result matched only weak
+    anchors (agency / city / official-channel-hint, OR last-name-
+    only) plus a supporting term — without state corroboration, full
+    subject name, or date anchor — the result is too weak to be
+    subject-grounded and falls through to ``low``.
 
-      - "Florence AL" candidate matching Florence SC active-shooter
-        content because both share the city token "florence".
-      - "Charleston WV" candidate matching Charleston SC OIS or a
-        Las Vegas "Rainbow & Charleston" intersection clip.
+    Last-name-only ceiling (PR-after-#45): a ``last_name`` match by
+    itself is a weak subject anchor (common surnames trigger
+    spurious matches; e.g. "Johnson" surfaces Rep. Jesse Johnson
+    coverage instead of the dataset's Adam Johnson pursuit case).
+    Path A and Path B now require ``has_full_subject`` (the entire
+    subject_name string appearing contiguously). Last-name-only
+    results can still reach ``medium`` when locality and a
+    supporting term are present, but never ``high``.
 
-    In those cases, the medium tier falls through to ``low`` instead.
-    Subject-anchored true positives (Reyes / Garcia / Moreno) ride
-    the high paths above, so they are not affected.
+    Examples motivating these guards:
+      - "Florence AL" candidate matching Florence SC content
+        (state-disambiguation).
+      - "Adam Johnson / Mounds OK" candidate matching Rep. Jesse
+        Johnson policing-comments video (last-name-only ceiling).
+
+    Subject-anchored true positives that include the FULL subject
+    name (Garcia, Moreno, Baker, Weist) ride the unchanged high
+    paths.
     """
     if not kept:
         return "low"
     best = max(kept, key=lambda r: r.score)
 
-    # Path A: subject anchor + supporting term
-    if best.has_subject and best.has_supporting:
+    # Path A: FULL subject anchor + supporting term → high.
+    # Last-name-only no longer reaches Path A (it falls through to
+    # the medium tier or to the state-disambiguation guard).
+    if best.has_full_subject and best.has_supporting:
         return "high"
-    # Path B: subject anchor + official agency channel
-    if best.has_subject and best.has_official_channel:
+    # Path B: FULL subject anchor + official agency channel → high.
+    if best.has_full_subject and best.has_official_channel:
         return "high"
-    # Path C: agency/city + date anchor + supporting term
+    # Path C: agency/city + date anchor + supporting term → high.
     # (dormant until dataset_intake propagates context.incident_date)
     if (
         (best.has_agency or best.has_city)
@@ -321,25 +341,45 @@ def _confidence_from(
     ):
         return "high"
 
-    # State-disambiguation guard: a weak locality anchor (agency /
-    # city / official-channel) plus a supporting term should only
-    # reach medium when the result also corroborates the dataset
-    # state — otherwise the anchor is too weak to be subject-
-    # grounded. Subject and date anchors override the guard.
-    locality_supporting_path = bool(
+    # State-disambiguation guard. Applies to weak-anchor paths:
+    #   - locality-only (agency / city / official-channel) + supporting, or
+    #   - last-name-only + supporting (any surrounding anchors)
+    # When the dataset row has a known state and the result text
+    # neither corroborates that state nor anchors the full subject /
+    # date, demote to low rather than awarding medium on weak anchors.
+    #
+    # Richness exception: a last-name-only result with TWO or more
+    # locality / channel / date corroborators (e.g. agency_token +
+    # city, the Reyes shape) is grounded enough to keep at medium
+    # even without state corroboration. Adam-Johnson-shape results
+    # (last-name + supporting alone, no locality) do not qualify.
+    has_last_name_only = best.has_subject and not best.has_full_subject
+    weak_anchor_path = bool(
         (
             best.has_official_channel
             or best.has_agency
             or best.has_city
+            or has_last_name_only
         )
         and best.has_supporting
     )
+    last_name_only_richness_corroborators = sum(
+        1 for flag in (
+            best.has_agency, best.has_city, best.has_state,
+            best.has_official_channel, best.has_date_anchor,
+        ) if flag
+    ) if has_last_name_only else 0
+    last_name_only_richness_satisfied = (
+        has_last_name_only
+        and last_name_only_richness_corroborators >= 2
+    )
     if (
-        locality_supporting_path
+        weak_anchor_path
         and context_has_state
         and not best.has_state
-        and not best.has_subject
+        and not best.has_full_subject
         and not best.has_date_anchor
+        and not last_name_only_richness_satisfied
     ):
         return "low"
 
@@ -497,6 +537,7 @@ class YtDlpYouTubeSearchClient:
         # An operator inspecting JSON should be able to see at a
         # glance which rubric paths fired across the kept set.
         any_subject = any(r.has_subject for r in kept)
+        any_full_subject = any(r.has_full_subject for r in kept)
         any_agency = any(r.has_agency for r in kept)
         any_city = any(r.has_city for r in kept)
         any_state = any(r.has_state for r in kept)
@@ -504,20 +545,29 @@ class YtDlpYouTubeSearchClient:
         any_official_channel = any(r.has_official_channel for r in kept)
         any_date_anchor = any(r.has_date_anchor for r in kept)
 
-        # State-disambiguation diagnostics: would the locality-or-
-        # official-channel medium path have fired but for the state
-        # guard? Subject/date anchors override the guard, so we only
-        # flag eligibility when none of those anchors are present.
+        # State-disambiguation diagnostics (PR #45) plus last-name-
+        # only ceiling diagnostics (PR-after-#45). Compute against
+        # the best kept result — that's what _confidence_from uses.
         best = max(kept, key=lambda r: r.score) if kept else None
-        locality_eligible_for_medium = bool(
+        best_has_last_name_only = bool(
             best is not None
-            and (best.has_official_channel or best.has_agency or best.has_city)
+            and best.has_subject
+            and not best.has_full_subject
+        )
+        weak_anchor_path = bool(
+            best is not None
+            and (
+                best.has_official_channel
+                or best.has_agency
+                or best.has_city
+                or best_has_last_name_only
+            )
             and best.has_supporting
-            and not best.has_subject
+            and not best.has_full_subject
             and not best.has_date_anchor
         )
         state_disambiguation_required = bool(
-            locality_eligible_for_medium and context_has_state
+            weak_anchor_path and context_has_state
         )
         state_disambiguation_passed = bool(
             state_disambiguation_required and best is not None and best.has_state
@@ -525,12 +575,44 @@ class YtDlpYouTubeSearchClient:
         locality_anchor_suppressed = bool(
             state_disambiguation_required and best is not None and not best.has_state
         )
+        # Last-name-only ceiling fired when the best kept entry has
+        # last_name but not full_subject AND would have reached high
+        # under the pre-ceiling Path A (subject + supporting) or
+        # Path B (subject + official_channel).
+        last_name_only_ceiling_applied = bool(
+            best is not None
+            and best_has_last_name_only
+            and (
+                (best.has_supporting and not best.has_state and not best.has_date_anchor)
+                or best.has_official_channel
+            )
+        )
+        # Richness corroborator count for last-name-only entries
+        # (mirrors the exception in _confidence_from).
+        last_name_only_richness_corroborators = sum(
+            1 for flag in (
+                best.has_agency, best.has_city, best.has_state,
+                best.has_official_channel, best.has_date_anchor,
+            ) if flag
+        ) if best_has_last_name_only else 0
+        last_name_only_richness_satisfied = bool(
+            best_has_last_name_only
+            and last_name_only_richness_corroborators >= 2
+        )
+        last_name_only_suppressed_by_state_disambiguation = bool(
+            best_has_last_name_only
+            and locality_anchor_suppressed
+            and not last_name_only_richness_satisfied
+        )
 
         notes: List[str] = [
             f"raw_result_count={len(scored)}",
             f"filtered_result_count={len(kept)}",
             f"dropped_irrelevant_count={len(dropped)}",
             f"subject_anchor={'true' if any_subject else 'false'}",
+            f"full_subject_anchor={'true' if any_full_subject else 'false'}",
+            f"last_name_anchor={'true' if (any_subject and not any_full_subject) else 'false'}",
+            f"last_name_only={'true' if best_has_last_name_only else 'false'}",
             f"agency_anchor={'true' if any_agency else 'false'}",
             f"city_anchor={'true' if any_city else 'false'}",
             f"state_anchor={'true' if any_state else 'false'}",
@@ -540,7 +622,9 @@ class YtDlpYouTubeSearchClient:
             f"state_disambiguation_required={'true' if state_disambiguation_required else 'false'}",
             f"state_disambiguation_passed={'true' if state_disambiguation_passed else 'false'}",
             f"locality_anchor_suppressed_by_state_disambiguation={'true' if locality_anchor_suppressed else 'false'}",
-            "high_requires_subject_or_date=true",
+            f"last_name_only_ceiling_applied={'true' if last_name_only_ceiling_applied else 'false'}",
+            f"last_name_only_suppressed_by_state_disambiguation={'true' if last_name_only_suppressed_by_state_disambiguation else 'false'}",
+            "high_requires_full_subject_or_date=true",
         ]
         if kept:
             for s in kept:
