@@ -143,6 +143,23 @@ def _parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--shuffle-seed",
+        dest="shuffle_seed",
+        type=int,
+        default=None,
+        help=(
+            "Optional integer seed for deterministic stratified-random "
+            "selection. Without this flag the runner walks the candidate "
+            "pool in lex order (the V0/V1 default). With this flag the "
+            "lex-sorted pool is shuffled with random.Random(seed) before "
+            "--max-candidates / --max-tasks truncation, so the same seed "
+            "reproduces the same selection across runs and different "
+            "seeds produce different selections. Useful for sampling "
+            "fresh grade-A candidates instead of re-walking the same "
+            "lex prefix on every smoke."
+        ),
+    )
+    parser.add_argument(
         "--run",
         dest="run",
         action="store_true",
@@ -176,6 +193,7 @@ def _format_human_summary(summary: dict) -> str:
         f"max_tasks:                {summary['max_tasks']}",
         f"max_candidates:           {summary.get('max_candidates')}",
         f"tasks_per_candidate:      {summary.get('tasks_per_candidate')}",
+        f"shuffle_seed:             {summary.get('shuffle_seed')}",
         f"selected_count:           {summary['selected_count']}",
         f"selected_candidate_count: {summary.get('selected_candidate_count', '-')}",
         f"attempted_count:          {summary['attempted_count']}",
@@ -296,6 +314,7 @@ def main(
         max_tasks=args.max_tasks,
         max_candidates=args.max_candidates,
         tasks_per_candidate=args.tasks_per_candidate,
+        shuffle_seed=args.shuffle_seed,
     )
 
     if output_json is not None:

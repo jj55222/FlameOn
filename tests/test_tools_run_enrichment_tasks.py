@@ -192,6 +192,87 @@ def test_max_tasks_caps_selection(tmp_path):
     assert payload["selected_count"] == 3
 
 
+# ---- shuffle-seed CLI ---------------------------------------------
+
+
+def test_shuffle_seed_cli_accepts_int_and_includes_in_summary(tmp_path):
+    """--shuffle-seed parses as int and appears in the JSON summary
+    as a top-level key."""
+    inp = _write_search_tasks(tmp_path / "tasks.json", [
+        _task(cid=f"x:{i:03d}", query=f"q{i}") for i in range(20)
+    ])
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-candidates", "5",
+        "--tasks-per-candidate", "1",
+        "--max-tasks", "5",
+        "--shuffle-seed", "42",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["shuffle_seed"] == 42
+    assert payload["selected_count"] == 5
+
+
+def test_shuffle_seed_cli_default_is_none(tmp_path):
+    """When --shuffle-seed is omitted, summary records None and
+    selection follows the lex order."""
+    inp = _write_search_tasks(tmp_path / "tasks.json", [
+        _task(cid=f"x:{i:03d}", query=f"q{i}") for i in range(20)
+    ])
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-candidates", "5",
+        "--tasks-per-candidate", "1",
+        "--max-tasks", "5",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    assert payload["shuffle_seed"] is None
+    cids = [r["candidate_id"] for r in payload["results"]]
+    # Default is the 5 lex-lowest candidates.
+    assert cids == ["x:000", "x:001", "x:002", "x:003", "x:004"]
+
+
+def test_shuffle_seed_cli_changes_selected_candidates(tmp_path):
+    """With --shuffle-seed 42 the selected 5 candidates should not be
+    the 5 lex-lowest IDs."""
+    inp = _write_search_tasks(tmp_path / "tasks.json", [
+        _task(cid=f"x:{i:03d}", query=f"q{i}") for i in range(50)
+    ])
+    code, out, _err = _run([
+        "--input", str(inp),
+        "--max-candidates", "5",
+        "--tasks-per-candidate", "1",
+        "--max-tasks", "5",
+        "--shuffle-seed", "42",
+        "--json",
+    ])
+    assert code == 0
+    payload = json.loads(out)
+    cids = sorted(r["candidate_id"] for r in payload["results"])
+    lex_prefix = [f"x:{i:03d}" for i in range(5)]
+    assert cids != lex_prefix
+
+
+def test_shuffle_seed_cli_invalid_value_exits_via_argparse(tmp_path):
+    """A non-integer seed exits with argparse error (code 2).
+    This invokes the script as a subprocess so argparse's stderr
+    handling is exercised end-to-end, mirroring operator usage."""
+    inp = _write_search_tasks(tmp_path / "tasks.json", [_task()])
+    proc = subprocess.run(
+        [sys.executable, str(SCRIPT_PATH),
+         "--input", str(inp),
+         "--shuffle-seed", "not-an-int",
+         "--json"],
+        capture_output=True, text=True,
+    )
+    assert proc.returncode == 2
+    assert "shuffle-seed" in proc.stderr.lower() or "invalid int" in proc.stderr.lower()
+
+
 # ---- provider gates ------------------------------------------------
 
 

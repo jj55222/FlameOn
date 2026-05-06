@@ -382,3 +382,130 @@ def test_run_batch_dry_run_with_candidate_aware_does_not_invoke_provider():
     assert summary["selected_count"] == 5
     assert summary["selected_candidate_count"] == 5
     assert all(r["status"] == "dry_run" for r in summary["results"])
+
+
+# ---- shuffle-seed (post-200-cand stratified-random sampling) --------
+
+
+def test_select_tasks_shuffle_seed_default_unchanged():
+    """When shuffle_seed=None (default), selection order matches the
+    pre-shuffle lex-sorted order exactly."""
+    pool = _make_pool(n_candidates=50, tasks_per_cand=1)
+    sel_default = select_tasks(pool, max_tasks=10, max_candidates=10,
+                               tasks_per_candidate=1)
+    sel_explicit_none = select_tasks(pool, max_tasks=10, max_candidates=10,
+                                     tasks_per_candidate=1, shuffle_seed=None)
+    assert [t.candidate_id for t in sel_default] == [t.candidate_id for t in sel_explicit_none]
+    # And the order is lex (the v0 invariant)
+    cids = [t.candidate_id for t in sel_default]
+    assert cids == sorted(cids)
+
+
+def test_select_tasks_shuffle_seed_reproducible():
+    """Same seed reproduces the same selected candidate IDs across
+    two independent calls."""
+    pool = _make_pool(n_candidates=200, tasks_per_cand=1)
+    sel_a = select_tasks(pool, max_tasks=20, max_candidates=20,
+                         tasks_per_candidate=1, shuffle_seed=42)
+    sel_b = select_tasks(pool, max_tasks=20, max_candidates=20,
+                         tasks_per_candidate=1, shuffle_seed=42)
+    assert [t.candidate_id for t in sel_a] == [t.candidate_id for t in sel_b]
+
+
+def test_select_tasks_shuffle_seed_different_seeds_differ():
+    """Different seeds produce different selected candidate IDs (or
+    at least different orders) when the pool is large enough that
+    the truncation slice can vary."""
+    pool = _make_pool(n_candidates=200, tasks_per_cand=1)
+    sel_42 = select_tasks(pool, max_tasks=20, max_candidates=20,
+                          tasks_per_candidate=1, shuffle_seed=42)
+    sel_43 = select_tasks(pool, max_tasks=20, max_candidates=20,
+                          tasks_per_candidate=1, shuffle_seed=43)
+    cids_42 = [t.candidate_id for t in sel_42]
+    cids_43 = [t.candidate_id for t in sel_43]
+    assert cids_42 != cids_43
+
+
+def test_select_tasks_shuffle_seed_avoids_lex_prefix():
+    """A shuffled selection of the first 5 candidates from a 100-cand
+    pool should not be the 5 lex-lowest IDs (overwhelmingly unlikely
+    by chance for any reasonable seed)."""
+    pool = _make_pool(n_candidates=100, tasks_per_cand=1)
+    sel = select_tasks(pool, max_tasks=5, max_candidates=5,
+                       tasks_per_candidate=1, shuffle_seed=42)
+    selected_cids = sorted(t.candidate_id for t in sel)
+    lex_prefix = sorted(sorted({t.candidate_id for t in pool})[:5])
+    assert selected_cids != lex_prefix
+
+
+def test_select_tasks_shuffle_seed_respects_tasks_per_candidate():
+    """Per-candidate cap holds under shuffle: if each candidate has
+    multiple tasks, tasks_per_candidate=1 still selects only one
+    task per candidate after shuffling."""
+    pool = _make_pool(n_candidates=50, tasks_per_cand=4)
+    sel = select_tasks(pool, max_tasks=100, max_candidates=20,
+                       tasks_per_candidate=1, shuffle_seed=42)
+    from collections import Counter
+    counts = Counter(t.candidate_id for t in sel)
+    assert all(c == 1 for c in counts.values())
+    assert len(sel) == 20
+
+
+def test_select_tasks_shuffle_seed_respects_max_candidates():
+    """max_candidates=N still limits unique candidate IDs to N
+    after shuffling."""
+    pool = _make_pool(n_candidates=200, tasks_per_cand=2)
+    sel = select_tasks(pool, max_tasks=1000, max_candidates=15,
+                       tasks_per_candidate=2, shuffle_seed=42)
+    assert len({t.candidate_id for t in sel}) == 15
+
+
+def test_select_tasks_shuffle_seed_v0_path_also_shuffles():
+    """When neither max_candidates nor tasks_per_candidate is given,
+    the v0 flat-sort+cap path also honours shuffle_seed: the lex
+    sort is followed by a deterministic shuffle before max_tasks
+    truncation."""
+    pool = _make_pool(n_candidates=100, tasks_per_cand=1)
+    sel_default = select_tasks(pool, max_tasks=5)
+    sel_seeded = select_tasks(pool, max_tasks=5, shuffle_seed=42)
+    cids_default = [t.candidate_id for t in sel_default]
+    cids_seeded = [t.candidate_id for t in sel_seeded]
+    # Default is the 5 lex-lowest.
+    assert cids_default == sorted(cids_default)
+    # Seeded picks 5 from elsewhere in the pool.
+    assert cids_seeded != cids_default
+
+
+def test_run_batch_summary_includes_shuffle_seed():
+    """run_enrichment_batch propagates shuffle_seed and reports it
+    in the summary dict so operators can audit replay-determinism."""
+    pool = _make_pool(n_candidates=20, tasks_per_cand=1)
+    summary_none = run_enrichment_batch(
+        pool, provider=MockProvider(), dry_run=True, max_tasks=5,
+    )
+    assert summary_none["shuffle_seed"] is None
+
+    summary_seeded = run_enrichment_batch(
+        pool, provider=MockProvider(), dry_run=True, max_tasks=5,
+        shuffle_seed=42,
+    )
+    assert summary_seeded["shuffle_seed"] == 42
+
+
+def test_run_batch_shuffle_seed_changes_selected_candidates():
+    """End-to-end: passing shuffle_seed through run_enrichment_batch
+    changes the candidate IDs that show up in the result rows."""
+    pool = _make_pool(n_candidates=200, tasks_per_cand=1)
+    sum_default = run_enrichment_batch(
+        pool, provider=MockProvider(), dry_run=True,
+        max_tasks=20, max_candidates=20, tasks_per_candidate=1,
+    )
+    sum_seeded = run_enrichment_batch(
+        pool, provider=MockProvider(), dry_run=True,
+        max_tasks=20, max_candidates=20, tasks_per_candidate=1,
+        shuffle_seed=42,
+    )
+    cids_default = [r["candidate_id"] for r in sum_default["results"]]
+    cids_seeded = [r["candidate_id"] for r in sum_seeded["results"]]
+    assert cids_default == sorted(cids_default)  # lex order on default
+    assert cids_seeded != cids_default            # seeded differs

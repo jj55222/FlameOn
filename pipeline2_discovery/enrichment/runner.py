@@ -15,6 +15,7 @@ plugged in via the providers.py factory; the runner only sees
 """
 from __future__ import annotations
 
+import random
 from collections import defaultdict
 from dataclasses import asdict
 from datetime import datetime, timezone
@@ -61,6 +62,7 @@ def select_tasks(
     max_tasks: int,
     max_candidates: Optional[int] = None,
     tasks_per_candidate: Optional[int] = None,
+    shuffle_seed: Optional[int] = None,
 ) -> List[EnrichmentTask]:
     """Order and cap tasks for execution, optionally with
     candidate-aware sampling.
@@ -91,15 +93,33 @@ def select_tasks(
     distinct candidates — a coverage failure mode. With
     ``--max-candidates 25 --tasks-per-candidate 1`` the same
     25-task budget fans out across 25 candidates instead.
+
+    Stratified-random sampling (post-200-cand smoke):
+
+      When ``shuffle_seed`` is provided, the sorted order produced
+      above is deterministically shuffled with ``random.Random(seed)``
+      *before* ``max_candidates`` / ``max_tasks`` truncation. This
+      lets operators sample fresh grade-A candidates instead of
+      re-walking the same lex-prefix on every smoke. The same seed
+      reproduces the same selection across runs; different seeds
+      produce different selections.
+
+      The sort-then-shuffle order matters: shuffling the *sorted*
+      output ensures the seed alone determines the final ordering
+      (independent of the input iteration order).
     """
     if max_tasks < 1:
         raise ValueError(f"max_tasks must be >= 1; got {max_tasks}")
 
     task_list = list(tasks)
+    rng = random.Random(shuffle_seed) if shuffle_seed is not None else None
 
     if max_candidates is None and tasks_per_candidate is None:
         # v0 behaviour preserved exactly — flat sort + cap.
-        return sorted(task_list, key=_sort_key)[:max_tasks]
+        ordered = sorted(task_list, key=_sort_key)
+        if rng is not None:
+            rng.shuffle(ordered)
+        return ordered[:max_tasks]
 
     if max_candidates is not None and max_candidates < 1:
         raise ValueError(
@@ -115,6 +135,8 @@ def select_tasks(
         by_cand[t.candidate_id].append(t)
 
     cand_ids = sorted(by_cand.keys())
+    if rng is not None:
+        rng.shuffle(cand_ids)
     if max_candidates is not None:
         cand_ids = cand_ids[: int(max_candidates)]
 
@@ -136,6 +158,7 @@ def run_enrichment_batch(
     max_tasks: int,
     max_candidates: Optional[int] = None,
     tasks_per_candidate: Optional[int] = None,
+    shuffle_seed: Optional[int] = None,
 ) -> dict:
     """Top-level batch runner. Returns the summary dict.
 
@@ -148,6 +171,10 @@ def run_enrichment_batch(
     ``max_candidates`` and ``tasks_per_candidate`` enable candidate-
     aware sampling — see :func:`select_tasks`. Both default ``None``
     to preserve the original ``max_tasks``-only behaviour.
+
+    ``shuffle_seed`` enables deterministic stratified-random
+    sampling — see :func:`select_tasks`. ``None`` (default)
+    preserves the lex-sorted selection order.
     """
     started = datetime.now(timezone.utc)
     selected = select_tasks(
@@ -155,6 +182,7 @@ def run_enrichment_batch(
         max_tasks=max_tasks,
         max_candidates=max_candidates,
         tasks_per_candidate=tasks_per_candidate,
+        shuffle_seed=shuffle_seed,
     )
 
     results: List[EnrichmentResult] = []
@@ -224,6 +252,7 @@ def run_enrichment_batch(
         "max_tasks": max_tasks,
         "max_candidates": max_candidates,
         "tasks_per_candidate": tasks_per_candidate,
+        "shuffle_seed": shuffle_seed,
         "results": [asdict(r) for r in results],
     }
 
