@@ -119,7 +119,18 @@ def test_cli_does_not_mutate_input_file(tmp_path):
     assert before == after, "input packets_master.jsonl was mutated"
 
 
-def test_cli_default_filter_is_grade_A(tmp_path):
+def _read_jsonl_rows(path: Path) -> list[dict]:
+    return [
+        json.loads(ln)
+        for ln in path.read_text(encoding="utf-8").splitlines()
+        if ln.strip()
+    ]
+
+
+def test_cli_default_filter_keeps_all_rows_drop_in_master(tmp_path):
+    """The enriched master is a drop-in replacement for the raw master:
+    all rows preserved in input order, with only filter-matching rows
+    enriched. Out-of-filter rows pass through verbatim."""
     pm, troot = _setup_fixture(tmp_path)
     out = tmp_path / "out"
     cli_main([
@@ -127,15 +138,21 @@ def test_cli_default_filter_is_grade_A(tmp_path):
         "--transcript-root", str(troot),
         "--output-dir", str(out),
     ])
-    enriched_lines = (out / "packets_master_enriched.jsonl").read_text(
-        encoding="utf-8"
-    ).strip().splitlines()
-    assert len(enriched_lines) == 1
-    enriched = json.loads(enriched_lines[0])
-    assert enriched["packet_id"] == "pcs-test-A1"
+    rows = _read_jsonl_rows(out / "packets_master_enriched.jsonl")
+    # Both rows preserved, in the original order.
+    assert len(rows) == 2
+    assert [r["packet_id"] for r in rows] == ["pcs-test-A1", "pcs-test-B1"]
+    # The A row got enriched.
+    assert "involved_officers" in rows[0]
+    # The B row passed through unchanged.
+    assert rows[1] == PACKETS[1]
+    assert "involved_officers" not in rows[1]
+    assert "case_outcome" not in rows[1]
 
 
-def test_cli_grade_filter_can_include_B(tmp_path):
+def test_cli_grade_filter_includes_all_grades_when_specified(tmp_path):
+    """When --grade A --grade B is passed, both grades are enriched.
+    Output still contains all rows in original order."""
     pm, troot = _setup_fixture(tmp_path)
     out = tmp_path / "out"
     cli_main([
@@ -145,10 +162,9 @@ def test_cli_grade_filter_can_include_B(tmp_path):
         "--grade", "A",
         "--grade", "B",
     ])
-    enriched_lines = (out / "packets_master_enriched.jsonl").read_text(
-        encoding="utf-8"
-    ).strip().splitlines()
-    assert len(enriched_lines) == 2
+    rows = _read_jsonl_rows(out / "packets_master_enriched.jsonl")
+    assert len(rows) == 2
+    assert [r["packet_id"] for r in rows] == ["pcs-test-A1", "pcs-test-B1"]
 
 
 def test_cli_enriched_packet_carries_new_fields(tmp_path):
@@ -159,9 +175,8 @@ def test_cli_enriched_packet_carries_new_fields(tmp_path):
         "--transcript-root", str(troot),
         "--output-dir", str(out),
     ])
-    enriched = json.loads(
-        (out / "packets_master_enriched.jsonl").read_text(encoding="utf-8").strip()
-    )
+    rows = _read_jsonl_rows(out / "packets_master_enriched.jsonl")
+    enriched = next(r for r in rows if r["packet_id"] == "pcs-test-A1")
     assert any(
         o["name"] == "Officer Terrence Sutton"
         for o in enriched.get("involved_officers", [])
@@ -173,6 +188,39 @@ def test_cli_enriched_packet_carries_new_fields(tmp_path):
     assert "convicted" in co.get("conviction_status", "")
     # Civil suit cue from transcript.
     assert "civil_suit_status" in co
+
+
+def test_cli_enriched_master_byte_stable_input_file(tmp_path):
+    """A second guard for raw-master immutability: hash the input file
+    before and after the run and assert they match. The CLI itself
+    raises sys.exit(3) if they differ; this test asserts the
+    happy path leaves the file untouched."""
+    import hashlib
+    pm, troot = _setup_fixture(tmp_path)
+    out = tmp_path / "out"
+    h_before = hashlib.sha256(pm.read_bytes()).hexdigest()
+    cli_main([
+        "--packets-master", str(pm),
+        "--transcript-root", str(troot),
+        "--output-dir", str(out),
+    ])
+    h_after = hashlib.sha256(pm.read_bytes()).hexdigest()
+    assert h_before == h_after
+
+
+def test_cli_atomic_write_leaves_no_tmp_files_on_success(tmp_path):
+    """The atomic-write helper uses ``<file>.tmp`` siblings during
+    write. After a successful run those temp files should NOT remain
+    in the output directory — the rename swaps them into place."""
+    pm, troot = _setup_fixture(tmp_path)
+    out = tmp_path / "out"
+    cli_main([
+        "--packets-master", str(pm),
+        "--transcript-root", str(troot),
+        "--output-dir", str(out),
+    ])
+    leftover = list(out.glob("*.tmp"))
+    assert leftover == []
 
 
 def test_cli_provenance_round_trip(tmp_path):

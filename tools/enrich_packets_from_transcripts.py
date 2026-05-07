@@ -118,11 +118,37 @@ def _read_jsonl(path: Path) -> list[dict]:
     return rows
 
 
-def _write_jsonl(path: Path, rows: Sequence[dict]) -> None:
+def _atomic_write_text(path: Path, text: str) -> None:
+    """Write ``text`` to ``path`` atomically.
+
+    Writes to a same-directory ``.tmp`` sibling, fsyncs, then
+    ``Path.replace`` swaps it into place. ``Path.replace`` is atomic
+    on POSIX and on Windows when source and destination are on the
+    same volume. This guarantees that a partial write — interrupted
+    by a crash, a Ctrl-C, or a disk-full failure — never produces
+    half a file at the destination path. Important here because the
+    enriched master is intended to be a drop-in replacement for the
+    raw master, and any consumer reading it concurrently must never
+    see truncated JSON.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        for row in rows:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with open(tmp, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+        f.flush()
+        try:
+            import os
+            os.fsync(f.fileno())
+        except (OSError, AttributeError):
+            # fsync is best-effort; not available everywhere
+            pass
+    tmp.replace(path)
+
+
+def _atomic_write_jsonl(path: Path, rows: Sequence[dict]) -> None:
+    """Atomic JSONL write — see ``_atomic_write_text``."""
+    body = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows)
+    _atomic_write_text(path, body)
 
 
 # ---------------------------------------------------------------------------
@@ -262,6 +288,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"[ERR] packets-master not found: {input_path}", file=sys.stderr)
         return 2
 
+    # Hash the input file BEFORE we open it. After the run we recompute
+    # and assert it matches — a defensive guarantee that the raw master
+    # was not mutated. If a future change accidentally mutates the
+    # source, this check will fail loudly rather than silently.
+    import hashlib
+    input_hash_before = hashlib.sha256(input_path.read_bytes()).hexdigest()
+
     grades = args.grade or ["A"]
     transcript_root = Path(args.transcript_root) if args.transcript_root else _REPO_ROOT
     out_dir = Path(args.output_dir)
@@ -269,12 +302,19 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     rows = _read_jsonl(input_path)
     print(f"Read {len(rows)} packet rows from {input_path}")
 
-    enriched_rows = []
-    provenance_rows = []
-    skipped = 0
+    # Drop-in enriched master: every input row is preserved in output
+    # order. Rows whose confidence_grade is in the filter get the
+    # extractor applied; rows outside the filter pass through verbatim.
+    # This makes the enriched artifact a 1:1 replacement for the raw
+    # master — order, count, and untouched packets all stable.
+    enriched_rows: list[dict] = []
+    provenance_rows: list[dict] = []
+    processed = 0
+    passthrough = 0
     for packet in rows:
         if grades and packet.get("confidence_grade") not in grades:
-            skipped += 1
+            enriched_rows.append(packet)
+            passthrough += 1
             continue
         paths = _resolve_transcript_paths(packet, transcript_root)
         texts = _read_transcript_texts(paths)
@@ -282,40 +322,58 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         prov["transcript_paths_resolved"] = [str(p) for p in paths]
         enriched_rows.append(enriched)
         provenance_rows.append(prov)
+        processed += 1
 
     print(
-        f"Processed: {len(enriched_rows)} | "
-        f"Skipped (grade filter): {skipped} | "
+        f"Processed: {processed} | "
+        f"Passthrough (grade filter): {passthrough} | "
         f"Total: {len(rows)}"
     )
 
     report = _build_validation_report(
-        enriched_rows, provenance_rows, grades, input_path
+        [r for r in enriched_rows if r.get("confidence_grade") in (grades or [])],
+        provenance_rows,
+        grades,
+        input_path,
     )
 
     if args.dry_run:
         print()
         print(report)
+        # Even in dry-run, we verify the source bytes haven't changed —
+        # the extractor must never touch the input file.
+        input_hash_after = hashlib.sha256(input_path.read_bytes()).hexdigest()
+        assert input_hash_before == input_hash_after, (
+            "raw packets_master.jsonl was mutated during dry-run — this is a bug"
+        )
         return 0
 
     out_dir.mkdir(parents=True, exist_ok=True)
     enriched_out = out_dir / "packets_master_enriched.jsonl"
     prov_out = out_dir / "PACKET_ENRICHMENT_PROVENANCE.json"
     report_out = out_dir / "EXTRACTION_VALIDATION.md"
-    _write_jsonl(enriched_out, enriched_rows)
-    prov_out.write_text(
+    _atomic_write_jsonl(enriched_out, enriched_rows)
+    _atomic_write_text(
+        prov_out,
         json.dumps({"packets": provenance_rows}, indent=2, ensure_ascii=False),
-        encoding="utf-8",
     )
-    report_out.write_text(report, encoding="utf-8")
+    _atomic_write_text(report_out, report)
 
-    # Defensive: confirm input file is byte-identical to what we read.
-    # (Belt-and-suspenders against any future edit that accidentally
-    # mutates the input — the extractor itself does not, but a future
-    # CLI change could.)
-    print(f"  [ok] {enriched_out.name}  ({len(enriched_rows)} rows)")
+    # Confirm input file is byte-identical to what we read.
+    input_hash_after = hashlib.sha256(input_path.read_bytes()).hexdigest()
+    if input_hash_before != input_hash_after:
+        print(
+            f"[ERR] raw packets_master.jsonl was mutated during enrichment "
+            f"(sha256 {input_hash_before} -> {input_hash_after})",
+            file=sys.stderr,
+        )
+        return 3
+
+    print(f"  [ok] {enriched_out.name}  ({len(enriched_rows)} rows; "
+          f"{processed} enriched, {passthrough} passthrough)")
     print(f"  [ok] {prov_out.name}")
     print(f"  [ok] {report_out.name}")
+    print(f"  [verified] raw master unchanged (sha256 {input_hash_before[:12]}...)")
     return 0
 
 
