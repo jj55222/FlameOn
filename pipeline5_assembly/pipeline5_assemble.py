@@ -903,6 +903,83 @@ def _packet_safe_id(packet):
     return str(pid).replace(":", "_").replace("/", "_")
 
 
+_KEY_PEOPLE_GAP_NOTE = (
+    "Packet schema does not carry involved_officers[] or "
+    "family_decedent[]. Hand-assembled briefs extracted "
+    "these from transcripts; adapter mode flags the gap "
+    "for follow-up."
+)
+
+_GENERIC_PRODUCTION_ANGLE = {
+    "rank": 1,
+    "title": "(packet mode: angle not synthesized — hand-curate from case_summary + transcripts)",
+    "recommended": True,
+    "risks": [],
+}
+
+
+def _normalize_officer(o):
+    """Coerce one involved_officers[] entry into a renderable dict.
+
+    Accepts either a string (name only) or a dict carrying any subset of
+    ``name / role / status / agency / badge``.
+    """
+    if isinstance(o, str):
+        return {"name": o, "role": None, "status": None, "agency": None, "badge": None}
+    if not isinstance(o, dict) or not o.get("name"):
+        return None
+    return {
+        "name": o.get("name"),
+        "role": o.get("role"),
+        "status": o.get("status"),
+        "agency": o.get("agency"),
+        "badge": o.get("badge"),
+    }
+
+
+def _normalize_relation(r):
+    """Coerce one family_decedent.primary_relations[] entry into a renderable dict."""
+    if isinstance(r, str):
+        return {"name": r, "relationship": None}
+    if not isinstance(r, dict) or not r.get("name"):
+        return None
+    return {"name": r.get("name"), "relationship": r.get("relationship")}
+
+
+def _normalize_timeline_event(ev):
+    """Coerce one timeline_events[] entry into a renderable dict."""
+    if not isinstance(ev, dict):
+        return None
+    if not (ev.get("date") or ev.get("event")):
+        return None
+    return {
+        "date": ev.get("date"),
+        "event": ev.get("event"),
+        "source": ev.get("source"),
+    }
+
+
+def _normalize_production_angle(a):
+    """Coerce one production_angles[] entry into a renderable dict."""
+    if not isinstance(a, dict) or not a.get("title"):
+        return None
+    return {
+        "rank": a.get("rank"),
+        "title": a.get("title"),
+        "recommended": bool(a.get("recommended", False)),
+        "risks": list(a.get("risks") or []),
+    }
+
+
+def _normalize_case_outcome(co):
+    """Coerce a case_outcome dict; return ``{}`` for missing/empty."""
+    if not isinstance(co, dict):
+        return {}
+    fields = ("conviction_status", "sentence", "doj_url", "civil_suit_status", "court")
+    out = {k: co.get(k) for k in fields if co.get(k)}
+    return out
+
+
 def build_packet_brief(packet, transcripts):
     """Build a brief dict from a packet stub + cached caption transcripts.
 
@@ -910,6 +987,21 @@ def build_packet_brief(packet, transcripts):
     ``.tmp/p5_briefs/`` (11 sections). All values are derived
     deterministically from the packet + transcript text — no LLM,
     no fact synthesis. Missing packet fields fall back to ``None``.
+
+    Optional structured fields (additive, all default-empty):
+      - ``involved_officers[]`` → section 4 Key people (officers).
+      - ``family_decedent``     → section 4 Key people (family + emotional anchors).
+      - ``timeline_events[]``   → section 5 Timeline (replaces synthesized
+                                  incident-only event when present).
+      - ``narrative_spine``     → section 3 Narrative spine (any subset of
+                                  setup/pursuit/death/investigation/outcome
+                                  is rendered; packet may also use the legacy
+                                  setup/incident/outcome shape).
+      - ``production_angles[]`` → section 10 Production angle (replaces the
+                                  generic hand-curation-gap placeholder).
+      - ``case_outcome``        → sections 2 Case summary and 8 Why it matters
+                                  (conviction_status / sentence / doj_url /
+                                  civil_suit_status / court).
     """
     packet = packet or {}
     transcripts = transcripts or []
@@ -940,6 +1032,69 @@ def build_packet_brief(packet, transcripts):
     gaps_from_missing = list(packet.get("missing_fields") or [])
     gaps_from_tasks = list(packet.get("next_search_tasks") or [])
 
+    # Optional structured fields — additive, with fallbacks that
+    # preserve the prior placeholder shape when absent.
+    spine_in = packet.get("narrative_spine")
+    if isinstance(spine_in, dict) and any(spine_in.values()):
+        # Pass through any non-empty keys verbatim. Renderer iterates
+        # in a stable preferred order.
+        narrative_spine = {k: v for k, v in spine_in.items() if v}
+    else:
+        narrative_spine = {
+            "setup": "(packet mode: setup not synthesized; fill from transcripts + research)",
+            "incident": packet.get("incident_type"),
+            "outcome": "(packet mode: see case_outcome / next_search_tasks)",
+        }
+
+    officers_named = [
+        n for n in (_normalize_officer(o) for o in (packet.get("involved_officers") or []))
+        if n
+    ]
+    family_in = packet.get("family_decedent") or {}
+    family_named = [
+        n for n in (_normalize_relation(r) for r in (family_in.get("primary_relations") or []))
+        if n
+    ]
+    emotional_anchors = [a for a in (family_in.get("emotional_anchors") or []) if a]
+    if officers_named or family_named or emotional_anchors:
+        key_people = {
+            "officers_named": officers_named,
+            "family_named": family_named,
+            "emotional_anchors": emotional_anchors,
+            "structured_field_missing_note": None,
+        }
+    else:
+        key_people = {
+            "officers_named": [],
+            "family_named": [],
+            "emotional_anchors": [],
+            "structured_field_missing_note": _KEY_PEOPLE_GAP_NOTE,
+        }
+
+    timeline_events_in = [
+        ev for ev in (_normalize_timeline_event(e) for e in (packet.get("timeline_events") or []))
+        if ev
+    ]
+    if timeline_events_in:
+        timeline = timeline_events_in
+    elif packet.get("incident_date"):
+        timeline = [{"date": packet.get("incident_date"), "event": packet.get("incident_type") or "incident"}]
+    else:
+        timeline = []
+
+    angles_in = [
+        a for a in (_normalize_production_angle(a) for a in (packet.get("production_angles") or []))
+        if a
+    ]
+    if angles_in:
+        production_angles = sorted(
+            angles_in, key=lambda a: (a.get("rank") if a.get("rank") is not None else 999)
+        )
+    else:
+        production_angles = [dict(_GENERIC_PRODUCTION_ANGLE)]
+
+    case_outcome = _normalize_case_outcome(packet.get("case_outcome"))
+
     brief = {
         "brief_kind": "packet_mode",
         "brief_id": f"{_packet_safe_id(packet)}_packet_brief",
@@ -956,30 +1111,10 @@ def build_packet_brief(packet, transcripts):
             "source_lane": packet.get("source_lane"),
         },
         "case_summary_text": packet.get("confidence_reason") or "",
-        "narrative_spine": {
-            # Generic placeholders — packet does not carry a structured
-            # narrative arc. The hand briefs synthesized these per-case;
-            # adapter mode signals that they are stubs.
-            "setup": "(packet mode: setup not synthesized; fill from transcripts + research)",
-            "incident": packet.get("incident_type"),
-            "outcome": "(packet mode: see case_outcome / next_search_tasks)",
-        },
-        "key_people": {
-            # Packet does not carry a structured involved_officers[] /
-            # family[] field. The hand briefs extracted these from
-            # transcripts. Adapter exposes the gap explicitly.
-            "officers_named": [],
-            "family_named": [],
-            "structured_field_missing_note": (
-                "Packet schema does not carry involved_officers[] or "
-                "family_decedent[]. Hand-assembled briefs extracted "
-                "these from transcripts; adapter mode flags the gap "
-                "for follow-up."
-            ),
-        },
-        "timeline": [
-            {"date": packet.get("incident_date"), "event": packet.get("incident_type") or "incident"},
-        ] if packet.get("incident_date") else [],
+        "case_outcome": case_outcome,
+        "narrative_spine": narrative_spine,
+        "key_people": key_people,
+        "timeline": timeline,
         "evidence_artifacts": {
             "youtube_urls": youtube_urls,
             "other_source_urls": other_urls,
@@ -992,21 +1127,13 @@ def build_packet_brief(packet, transcripts):
             "confidence_grade": packet.get("confidence_grade"),
             "confidence_reason": packet.get("confidence_reason") or "",
             "artifact_indicators": packet.get("artifact_indicators", {}),
+            "case_outcome": case_outcome,
         },
         "research_gaps": {
             "missing_fields": gaps_from_missing,
             "next_search_tasks": gaps_from_tasks,
         },
-        "production_angles": [
-            # Generic angles — adapter mode does not synthesize specific
-            # angles per case. Hand briefs proposed 3 specific titles
-            # each; the adapter flags this as a hand-curation gap.
-            {
-                "rank": 1,
-                "title": "(packet mode: angle not synthesized — hand-curate from case_summary + transcripts)",
-                "recommended": True,
-            },
-        ],
+        "production_angles": production_angles,
         "next_research_tasks": gaps_from_tasks,
         "_inputs": {
             "packet_path": packet.get("_master_source_file"),
@@ -1048,42 +1175,112 @@ def render_packet_markdown(brief):
     lines.append(f"| Source lane | {ci.get('source_lane') or '(missing)'} |")
     lines.append("")
 
-    # 2. Case summary (from confidence_reason)
+    # 2. Case summary (from confidence_reason; enriched by case_outcome when present)
     lines.append("## 2. Case summary")
     lines.append("")
     summary_text = brief.get("case_summary_text") or "(packet has no confidence_reason — fill from research)"
     lines.append(summary_text)
+    co = brief.get("case_outcome") or {}
+    if co:
+        lines.append("")
+        lines.append("**Case outcome:**")
+        if co.get("conviction_status"):
+            lines.append(f"- Conviction status: {co['conviction_status']}")
+        if co.get("sentence"):
+            lines.append(f"- Sentence: {co['sentence']}")
+        if co.get("civil_suit_status"):
+            lines.append(f"- Civil suit: {co['civil_suit_status']}")
+        if co.get("court"):
+            lines.append(f"- Court: {co['court']}")
+        if co.get("doj_url"):
+            lines.append(f"- DOJ: {co['doj_url']}")
     lines.append("")
 
     # 3. Narrative spine
-    ns = brief.get("narrative_spine", {})
+    ns = brief.get("narrative_spine", {}) or {}
     lines.append("## 3. Narrative spine")
     lines.append("")
-    lines.append(f"- **Setup**: {ns.get('setup') or '(not in packet)'}")
-    lines.append(f"- **Incident**: {ns.get('incident') or '(not in packet)'}")
-    lines.append(f"- **Outcome**: {ns.get('outcome') or '(not in packet)'}")
+    # Render keys in a stable preferred order. Supports both the legacy
+    # placeholder shape (setup/incident/outcome) and the enriched shape
+    # (setup/pursuit/death/investigation/outcome). Unknown extra keys
+    # are appended in dict order so a future field addition still surfaces.
+    _SPINE_ORDER = ("setup", "pursuit", "death", "incident", "investigation", "outcome")
+    rendered_keys = []
+    for k in _SPINE_ORDER:
+        if k in ns:
+            rendered_keys.append(k)
+    for k in ns.keys():
+        if k not in rendered_keys:
+            rendered_keys.append(k)
+    if rendered_keys:
+        for k in rendered_keys:
+            label = k.capitalize()
+            value = ns.get(k) or "(not in packet)"
+            lines.append(f"- **{label}**: {value}")
+    else:
+        lines.append("_(narrative_spine not provided; fill from transcripts + research)_")
     lines.append("")
 
-    # 4. Key people (with explicit gap note)
-    kp = brief.get("key_people", {})
+    # 4. Key people (officers + family; falls back to a gap note when packet
+    # lacks both involved_officers[] and family_decedent.primary_relations[])
+    kp = brief.get("key_people", {}) or {}
     lines.append("## 4. Key people")
     lines.append("")
-    if kp.get("officers_named") or kp.get("family_named"):
-        for o in kp.get("officers_named", []):
-            lines.append(f"- {o}")
-        for f in kp.get("family_named", []):
-            lines.append(f"- {f}")
+    officers = kp.get("officers_named") or []
+    family = kp.get("family_named") or []
+    anchors = kp.get("emotional_anchors") or []
+    if officers or family or anchors:
+        if officers:
+            lines.append("### Involved officers")
+            for o in officers:
+                if isinstance(o, dict):
+                    name = o.get("name") or "(unnamed)"
+                    bits = []
+                    if o.get("role"):
+                        bits.append(o["role"])
+                    if o.get("status"):
+                        bits.append(o["status"])
+                    if o.get("agency"):
+                        bits.append(o["agency"])
+                    if o.get("badge"):
+                        bits.append(f"badge {o['badge']}")
+                    suffix = f" — {', '.join(bits)}" if bits else ""
+                    lines.append(f"- **{name}**{suffix}")
+                else:
+                    lines.append(f"- {o}")
+            lines.append("")
+        if family:
+            lines.append("### Family / decedent")
+            for f in family:
+                if isinstance(f, dict):
+                    name = f.get("name") or "(unnamed)"
+                    rel = f.get("relationship")
+                    suffix = f" — {rel}" if rel else ""
+                    lines.append(f"- **{name}**{suffix}")
+                else:
+                    lines.append(f"- {f}")
+            lines.append("")
+        if anchors:
+            lines.append("### Emotional anchors")
+            for a in anchors:
+                lines.append(f"- {a}")
+            lines.append("")
     else:
-        lines.append(f"_{kp.get('structured_field_missing_note', 'Not available in packet schema.')}_")
-    lines.append("")
+        lines.append(f"_{kp.get('structured_field_missing_note') or 'Not available in packet schema.'}_")
+        lines.append("")
 
-    # 5. Timeline
+    # 5. Timeline (renders timeline_events[] when present, else falls back
+    # to the synthesized incident-only event)
     lines.append("## 5. Timeline")
     lines.append("")
-    timeline = brief.get("timeline", [])
+    timeline = brief.get("timeline", []) or []
     if timeline:
         for t in timeline:
-            lines.append(f"- **{t.get('date') or '(undated)'}**: {t.get('event') or ''}")
+            date = t.get("date") or "(undated)"
+            event = t.get("event") or ""
+            source = t.get("source")
+            suffix = f" _(source: {source})_" if source else ""
+            lines.append(f"- **{date}**: {event}{suffix}")
     else:
         lines.append("_(packet does not carry timeline_events[]; expand from transcripts + research)_")
     lines.append("")
@@ -1127,8 +1324,8 @@ def render_packet_markdown(brief):
             lines.append(f"> — `{chunk['source_basename']}` (chunk #{chunk['chunk_index']})")
             lines.append("")
 
-    # 8. Why this case matters
-    wm = brief.get("why_it_matters", {})
+    # 8. Why this case matters (enriched by case_outcome when present)
+    wm = brief.get("why_it_matters", {}) or {}
     lines.append("## 8. Why this case matters")
     lines.append("")
     grade = wm.get("confidence_grade") or "(unknown)"
@@ -1136,6 +1333,20 @@ def render_packet_markdown(brief):
     lines.append("")
     if wm.get("confidence_reason"):
         lines.append(wm["confidence_reason"])
+        lines.append("")
+    co_wm = wm.get("case_outcome") or {}
+    if co_wm:
+        lines.append("**Case outcome:**")
+        if co_wm.get("conviction_status"):
+            lines.append(f"- Conviction status: {co_wm['conviction_status']}")
+        if co_wm.get("sentence"):
+            lines.append(f"- Sentence: {co_wm['sentence']}")
+        if co_wm.get("civil_suit_status"):
+            lines.append(f"- Civil suit: {co_wm['civil_suit_status']}")
+        if co_wm.get("court"):
+            lines.append(f"- Court: {co_wm['court']}")
+        if co_wm.get("doj_url"):
+            lines.append(f"- DOJ: {co_wm['doj_url']}")
         lines.append("")
 
     # 9. Missing fields / research gaps
@@ -1156,13 +1367,18 @@ def render_packet_markdown(brief):
         lines.append("_(packet did not carry missing_fields or next_search_tasks)_")
         lines.append("")
 
-    # 10. Production angle (generic / hand-curation gap)
+    # 10. Production angle (renders packet's production_angles[] when present;
+    # else emits the generic hand-curation-gap placeholder)
     lines.append("## 10. Production angle")
     lines.append("")
     angles = brief.get("production_angles") or []
     for a in angles:
         rec = " (recommended)" if a.get("recommended") else ""
-        lines.append(f"- **Rank {a.get('rank')}**{rec}: {a.get('title')}")
+        rank = a.get("rank")
+        rank_label = f"Rank {rank}" if rank is not None else "Angle"
+        lines.append(f"- **{rank_label}**{rec}: {a.get('title')}")
+        for risk in (a.get("risks") or []):
+            lines.append(f"  - Risk: {risk}")
     lines.append("")
 
     # 11. Next research tasks
