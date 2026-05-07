@@ -791,18 +791,506 @@ def assemble_one(verdict_path, case_research_path, transcript_dir, weights_path,
     return brief
 
 
+# ─────────────────────────────────────────────────────────────
+# Packet-mode adapter (post-PR #47)
+# ─────────────────────────────────────────────────────────────
+#
+# Pipeline 1's stratified-random YouTube smoke produces packet stubs
+# (see ``.tmp/packet_production_smoke/packets_master.jsonl``). Those
+# stubs are P1-lane outputs and never flow through P2 → P3 → P4
+# scoring; the existing ``--verdict`` mode therefore cannot consume
+# them.
+#
+# This adapter adds an additive ``--packet`` mode that:
+#   1. Reads a single packet stub JSON.
+#   2. Loads cached YouTube caption ``.txt`` transcripts from a
+#      directory (recursively).
+#   3. Builds a deterministic brief dict mirroring the 11-section
+#      shape of the hand-assembled top-5 briefs in ``.tmp/p5_briefs/``.
+#   4. Renders Markdown with the same section layout.
+#
+# The packet-mode brief is intentionally a different output shape
+# from the verdict-mode brief — packet stubs lack the P4 scoring
+# signals (key_moments, narrative_score, beat-sheet importance
+# rankings) that the verdict-mode brief leans on. We do not invent
+# those signals; we work with what the packet carries.
+#
+# Existing ``--verdict`` mode is unchanged.
+
+
+_PACKET_MAX_PARAGRAPHS_PER_TRANSCRIPT = 6
+_PACKET_MIN_PARAGRAPH_CHARS = 40
+
+
+def _load_packet_transcripts(transcript_dir):
+    """Load cached caption ``.txt`` files from ``transcript_dir`` (recursive).
+
+    Returns a list of ``{path, text, basename, parent_dirname}`` dicts in
+    sorted-path order so output is deterministic. Empty / unreadable
+    files are skipped.
+
+    The caption text format is the output of
+    ``tools/extract_youtube_transcripts.py`` — a flat plaintext rendering
+    of the VTT captions. We do not parse speaker turns; the packet
+    pipeline never produced them.
+    """
+    td = Path(transcript_dir)
+    if not td.exists():
+        return []
+    out = []
+    for path in sorted(td.rglob("*.txt")):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        text = text.strip()
+        if not text:
+            continue
+        out.append({
+            "path": str(path),
+            "text": text,
+            "basename": path.name,
+            "parent_dirname": path.parent.name,
+        })
+    return out
+
+
+def _chunk_packet_paragraphs(text, max_chunks=_PACKET_MAX_PARAGRAPHS_PER_TRANSCRIPT):
+    """Split a caption text blob into deterministic paragraph chunks.
+
+    yt-dlp caption text often comes in short single-line fragments,
+    so we group every ~6 non-empty lines into a chunk and stop after
+    ``max_chunks``. A chunk shorter than
+    ``_PACKET_MIN_PARAGRAPH_CHARS`` is discarded as noise (header
+    fragments like ``Kind: captions`` / ``Language: en`` filter out).
+    """
+    lines = [ln.strip() for ln in (text or "").splitlines()]
+    chunks = []
+    current = []
+    GROUP = 6
+    for ln in lines:
+        if not ln:
+            if current:
+                joined = " ".join(current).strip()
+                if len(joined) >= _PACKET_MIN_PARAGRAPH_CHARS:
+                    chunks.append(joined)
+                current = []
+                if len(chunks) >= max_chunks:
+                    break
+            continue
+        # Skip VTT/file-format headers
+        if ln.lower().startswith(("kind:", "language:")):
+            continue
+        current.append(ln)
+        if len(current) >= GROUP:
+            joined = " ".join(current).strip()
+            if len(joined) >= _PACKET_MIN_PARAGRAPH_CHARS:
+                chunks.append(joined)
+            current = []
+            if len(chunks) >= max_chunks:
+                break
+    if current and len(chunks) < max_chunks:
+        joined = " ".join(current).strip()
+        if len(joined) >= _PACKET_MIN_PARAGRAPH_CHARS:
+            chunks.append(joined)
+    return chunks
+
+
+def _packet_safe_id(packet):
+    """Return a filesystem-safe id for a packet: prefer packet_id,
+    fall back to candidate_id, then a hash-ish stub."""
+    pid = packet.get("packet_id") or packet.get("candidate_id") or "packet"
+    return str(pid).replace(":", "_").replace("/", "_")
+
+
+def build_packet_brief(packet, transcripts):
+    """Build a brief dict from a packet stub + cached caption transcripts.
+
+    Output shape mirrors the hand-assembled top-5 briefs in
+    ``.tmp/p5_briefs/`` (11 sections). All values are derived
+    deterministically from the packet + transcript text — no LLM,
+    no fact synthesis. Missing packet fields fall back to ``None``.
+    """
+    packet = packet or {}
+    transcripts = transcripts or []
+
+    # Per-transcript evidence: chunk into paragraphs, keep a path
+    # provenance for every chunk.
+    transcript_evidence = []
+    for t in transcripts:
+        chunks = _chunk_packet_paragraphs(t["text"])
+        for i, chunk in enumerate(chunks):
+            transcript_evidence.append({
+                "source_path": t["path"],
+                "source_basename": t["basename"],
+                "source_video_dir": t["parent_dirname"],
+                "chunk_index": i,
+                "speaker": "unknown",
+                "kind": "cached_caption_text",
+                "excerpt": chunk,
+            })
+
+    # Source URLs — split into "official/court" vs "youtube" for the
+    # rendered brief's evidence section.
+    source_urls = list(packet.get("source_urls") or [])
+    youtube_urls = [u for u in source_urls if "youtube.com" in u or "youtu.be" in u]
+    other_urls = [u for u in source_urls if u not in youtube_urls]
+
+    # Research gaps come from packet's missing_fields + next_search_tasks.
+    gaps_from_missing = list(packet.get("missing_fields") or [])
+    gaps_from_tasks = list(packet.get("next_search_tasks") or [])
+
+    brief = {
+        "brief_kind": "packet_mode",
+        "brief_id": f"{_packet_safe_id(packet)}_packet_brief",
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "packet_id": packet.get("packet_id"),
+        "candidate_id": packet.get("candidate_id"),
+        "case_identity": {
+            "subject_or_case": packet.get("subject_or_case"),
+            "agency": packet.get("agency"),
+            "jurisdiction": packet.get("jurisdiction"),
+            "incident_type": packet.get("incident_type"),
+            "incident_date": packet.get("incident_date"),
+            "confidence_grade": packet.get("confidence_grade"),
+            "source_lane": packet.get("source_lane"),
+        },
+        "case_summary_text": packet.get("confidence_reason") or "",
+        "narrative_spine": {
+            # Generic placeholders — packet does not carry a structured
+            # narrative arc. The hand briefs synthesized these per-case;
+            # adapter mode signals that they are stubs.
+            "setup": "(packet mode: setup not synthesized; fill from transcripts + research)",
+            "incident": packet.get("incident_type"),
+            "outcome": "(packet mode: see case_outcome / next_search_tasks)",
+        },
+        "key_people": {
+            # Packet does not carry a structured involved_officers[] /
+            # family[] field. The hand briefs extracted these from
+            # transcripts. Adapter exposes the gap explicitly.
+            "officers_named": [],
+            "family_named": [],
+            "structured_field_missing_note": (
+                "Packet schema does not carry involved_officers[] or "
+                "family_decedent[]. Hand-assembled briefs extracted "
+                "these from transcripts; adapter mode flags the gap "
+                "for follow-up."
+            ),
+        },
+        "timeline": [
+            {"date": packet.get("incident_date"), "event": packet.get("incident_type") or "incident"},
+        ] if packet.get("incident_date") else [],
+        "evidence_artifacts": {
+            "youtube_urls": youtube_urls,
+            "other_source_urls": other_urls,
+            "transcript_paths": [t["path"] for t in transcripts],
+            "artifact_indicators": packet.get("artifact_indicators", {}),
+            "matched_terms": packet.get("matched_terms") or [],
+        },
+        "transcript_evidence": transcript_evidence,
+        "why_it_matters": {
+            "confidence_grade": packet.get("confidence_grade"),
+            "confidence_reason": packet.get("confidence_reason") or "",
+            "artifact_indicators": packet.get("artifact_indicators", {}),
+        },
+        "research_gaps": {
+            "missing_fields": gaps_from_missing,
+            "next_search_tasks": gaps_from_tasks,
+        },
+        "production_angles": [
+            # Generic angles — adapter mode does not synthesize specific
+            # angles per case. Hand briefs proposed 3 specific titles
+            # each; the adapter flags this as a hand-curation gap.
+            {
+                "rank": 1,
+                "title": "(packet mode: angle not synthesized — hand-curate from case_summary + transcripts)",
+                "recommended": True,
+            },
+        ],
+        "next_research_tasks": gaps_from_tasks,
+        "_inputs": {
+            "packet_path": packet.get("_master_source_file"),
+            "transcripts_loaded": len(transcripts),
+            "transcript_evidence_chunks": len(transcript_evidence),
+            "youtube_urls_count": len(youtube_urls),
+        },
+    }
+    return brief
+
+
+def render_packet_markdown(brief):
+    """Render the packet-mode brief.md mirroring the 11-section
+    structure of the hand-assembled top-5 briefs."""
+    lines = []
+    ci = brief.get("case_identity", {})
+    pid = brief.get("packet_id") or "(no packet_id)"
+
+    # 1. Header + Case identity
+    lines.append(f"# Production Brief (packet mode): {ci.get('subject_or_case') or pid}")
+    lines.append("")
+    lines.append(f"**Generated**: {brief.get('generated_at')}  ")
+    lines.append(f"**Brief mode**: packet-mode adapter (auto-generated from packet stub + cached caption transcripts; **no hand curation**)")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## 1. Case identity")
+    lines.append("")
+    lines.append(f"| Field | Value |")
+    lines.append(f"|---|---|")
+    lines.append(f"| packet_id | `{pid}` |")
+    lines.append(f"| candidate_id | `{brief.get('candidate_id') or '(none)'}` |")
+    lines.append(f"| Subject / case | {ci.get('subject_or_case') or '(missing)'} |")
+    lines.append(f"| Agency | {ci.get('agency') or '(missing)'} |")
+    lines.append(f"| Jurisdiction | {ci.get('jurisdiction') or '(missing)'} |")
+    lines.append(f"| Incident type | {ci.get('incident_type') or '(missing)'} |")
+    lines.append(f"| Incident date | {ci.get('incident_date') or '(missing)'} |")
+    lines.append(f"| Confidence grade | {ci.get('confidence_grade') or '(missing)'} |")
+    lines.append(f"| Source lane | {ci.get('source_lane') or '(missing)'} |")
+    lines.append("")
+
+    # 2. Case summary (from confidence_reason)
+    lines.append("## 2. Case summary")
+    lines.append("")
+    summary_text = brief.get("case_summary_text") or "(packet has no confidence_reason — fill from research)"
+    lines.append(summary_text)
+    lines.append("")
+
+    # 3. Narrative spine
+    ns = brief.get("narrative_spine", {})
+    lines.append("## 3. Narrative spine")
+    lines.append("")
+    lines.append(f"- **Setup**: {ns.get('setup') or '(not in packet)'}")
+    lines.append(f"- **Incident**: {ns.get('incident') or '(not in packet)'}")
+    lines.append(f"- **Outcome**: {ns.get('outcome') or '(not in packet)'}")
+    lines.append("")
+
+    # 4. Key people (with explicit gap note)
+    kp = brief.get("key_people", {})
+    lines.append("## 4. Key people")
+    lines.append("")
+    if kp.get("officers_named") or kp.get("family_named"):
+        for o in kp.get("officers_named", []):
+            lines.append(f"- {o}")
+        for f in kp.get("family_named", []):
+            lines.append(f"- {f}")
+    else:
+        lines.append(f"_{kp.get('structured_field_missing_note', 'Not available in packet schema.')}_")
+    lines.append("")
+
+    # 5. Timeline
+    lines.append("## 5. Timeline")
+    lines.append("")
+    timeline = brief.get("timeline", [])
+    if timeline:
+        for t in timeline:
+            lines.append(f"- **{t.get('date') or '(undated)'}**: {t.get('event') or ''}")
+    else:
+        lines.append("_(packet does not carry timeline_events[]; expand from transcripts + research)_")
+    lines.append("")
+
+    # 6. Evidence and artifacts
+    ev = brief.get("evidence_artifacts", {})
+    lines.append("## 6. Evidence and artifacts")
+    lines.append("")
+    if ev.get("youtube_urls"):
+        lines.append("### YouTube sources")
+        for u in ev["youtube_urls"]:
+            lines.append(f"- {u}")
+        lines.append("")
+    if ev.get("other_source_urls"):
+        lines.append("### Other sources (court / news / DOJ)")
+        for u in ev["other_source_urls"]:
+            lines.append(f"- {u}")
+        lines.append("")
+    indicators = ev.get("artifact_indicators") or {}
+    if indicators:
+        lines.append("### Artifact indicators (from packet)")
+        for k, v in indicators.items():
+            lines.append(f"- {k}: {v}")
+        lines.append("")
+    if ev.get("transcript_paths"):
+        lines.append("### Cached transcripts")
+        for p in ev["transcript_paths"]:
+            lines.append(f"- `{p}`")
+        lines.append("")
+
+    # 7. Transcript / source evidence
+    lines.append("## 7. Transcript / source evidence")
+    lines.append("")
+    te = brief.get("transcript_evidence", [])
+    if not te:
+        lines.append("_(no captioned transcripts available for this packet)_")
+    else:
+        for chunk in te:
+            lines.append(f"> {chunk['excerpt']}")
+            lines.append(f">")
+            lines.append(f"> — `{chunk['source_basename']}` (chunk #{chunk['chunk_index']})")
+            lines.append("")
+
+    # 8. Why this case matters
+    wm = brief.get("why_it_matters", {})
+    lines.append("## 8. Why this case matters")
+    lines.append("")
+    grade = wm.get("confidence_grade") or "(unknown)"
+    lines.append(f"**Confidence grade**: {grade}")
+    lines.append("")
+    if wm.get("confidence_reason"):
+        lines.append(wm["confidence_reason"])
+        lines.append("")
+
+    # 9. Missing fields / research gaps
+    rg = brief.get("research_gaps", {})
+    lines.append("## 9. Missing fields / research gaps")
+    lines.append("")
+    if rg.get("missing_fields"):
+        lines.append("### Missing fields (from packet)")
+        for m in rg["missing_fields"]:
+            lines.append(f"- {m}")
+        lines.append("")
+    if rg.get("next_search_tasks"):
+        lines.append("### Next search tasks (from packet)")
+        for t in rg["next_search_tasks"]:
+            lines.append(f"- {t}")
+        lines.append("")
+    if not rg.get("missing_fields") and not rg.get("next_search_tasks"):
+        lines.append("_(packet did not carry missing_fields or next_search_tasks)_")
+        lines.append("")
+
+    # 10. Production angle (generic / hand-curation gap)
+    lines.append("## 10. Production angle")
+    lines.append("")
+    angles = brief.get("production_angles") or []
+    for a in angles:
+        rec = " (recommended)" if a.get("recommended") else ""
+        lines.append(f"- **Rank {a.get('rank')}**{rec}: {a.get('title')}")
+    lines.append("")
+
+    # 11. Next research tasks
+    lines.append("## 11. Next research tasks")
+    lines.append("")
+    nrt = brief.get("next_research_tasks") or []
+    if nrt:
+        for t in nrt:
+            lines.append(f"- {t}")
+    else:
+        lines.append("_(none specified in packet)_")
+    lines.append("")
+
+    # Provenance footer
+    inp = brief.get("_inputs") or {}
+    lines.append("---")
+    lines.append("")
+    lines.append("## Brief metadata")
+    lines.append("")
+    lines.append("```json")
+    lines.append(json.dumps({
+        "brief_id": brief.get("brief_id"),
+        "brief_kind": brief.get("brief_kind"),
+        "packet_id": brief.get("packet_id"),
+        "candidate_id": brief.get("candidate_id"),
+        "generated_at": brief.get("generated_at"),
+        "_inputs": inp,
+    }, indent=2))
+    lines.append("```")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
+def assemble_packet(packet_path, transcript_dir, dry_run, output_dir):
+    """Top-level orchestrator for ``--packet`` mode.
+
+    Returns the brief dict on success, ``None`` on missing-input
+    failure. Mirrors the contract of ``assemble_one`` (verdict mode).
+    """
+    packet = _load_json(packet_path)
+    if not packet:
+        print(f"[ERR] packet not loadable: {packet_path}")
+        return None
+    if not isinstance(packet, dict):
+        print(f"[ERR] packet must be a JSON object, got {type(packet).__name__}: {packet_path}")
+        return None
+
+    # Locate transcripts directory. If --transcript-dir is omitted we
+    # warn (no transcripts loaded); the brief still renders with a
+    # "no captioned transcripts available" note in section 7.
+    transcripts = []
+    if transcript_dir:
+        transcripts = _load_packet_transcripts(transcript_dir)
+        if not transcripts:
+            print(f"  [WARN] no .txt transcripts found under: {transcript_dir}")
+
+    brief = build_packet_brief(packet, transcripts)
+    md = render_packet_markdown(brief)
+
+    safe_id = _packet_safe_id(packet)
+
+    if dry_run:
+        print(f"\n{'=' * 70}\n[DRY RUN] PACKET BRIEF — {safe_id}\n{'=' * 70}")
+        print(md)
+        return brief
+
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    md_path = out_dir / f"{safe_id}_packet_brief.md"
+    json_path = out_dir / f"{safe_id}_packet_brief.json"
+    md_path.write_text(md, encoding="utf-8")
+    json_path.write_text(
+        json.dumps(brief, indent=2, ensure_ascii=False, default=str),
+        encoding="utf-8",
+    )
+    # ASCII-only status markers so operator stdout works on Windows
+    # cp1252; pre-existing --verdict mode uses non-ASCII '✓' but
+    # that's out of scope for this PR.
+    print(f"  [ok] {md_path.name}")
+    print(f"  [ok] {json_path.name}")
+    return brief
+
+
 def main():
     parser = argparse.ArgumentParser(description="Pipeline 5: merge P2+P3+P4 into a production brief")
     src = parser.add_mutually_exclusive_group(required=True)
     src.add_argument("--verdict", help="Path to a single P4 verdict JSON")
     src.add_argument("--verdict-dir", help="Directory containing *_verdict.json files")
+    src.add_argument(
+        "--packet",
+        help=(
+            "Path to a single packet stub JSON (P1 packet-production lane). "
+            "Activates packet-mode brief generation, which reads cached "
+            "YouTube caption .txt transcripts from --transcript-dir and "
+            "emits a deterministic 11-section brief mirroring the hand-"
+            "assembled top-5 briefs. Default behaviour (--verdict / "
+            "--verdict-dir) is unchanged."
+        ),
+    )
 
-    parser.add_argument("--case-research", help="P2 case research JSON (auto-discovered if omitted)")
-    parser.add_argument("--transcript-dir", default=None, help=f"P3 transcript directory (default: {DEFAULT_TRANSCRIPT_DIR})")
-    parser.add_argument("--weights", default=None, help=f"P1 scoring_weights.json (default: {DEFAULT_WEIGHTS})")
+    parser.add_argument("--case-research", help="P2 case research JSON (auto-discovered if omitted; verdict mode only)")
+    parser.add_argument("--transcript-dir", default=None, help=f"P3 transcript directory (default: {DEFAULT_TRANSCRIPT_DIR}) — also used by --packet mode for cached caption .txt files")
+    parser.add_argument("--weights", default=None, help=f"P1 scoring_weights.json (default: {DEFAULT_WEIGHTS}; verdict mode only)")
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT), help=f"Output directory (default: {DEFAULT_OUTPUT})")
     parser.add_argument("--dry-run", action="store_true", help="Print brief to stdout; don't write files")
     args = parser.parse_args()
+
+    # Packet mode: short-circuit before the verdict-mode plumbing.
+    if args.packet:
+        print(f"Assembling 1 packet brief{' [DRY RUN]' if args.dry_run else ''}")
+        if not args.dry_run:
+            print(f"Output: {args.output}")
+        try:
+            b = assemble_packet(
+                packet_path=Path(args.packet),
+                transcript_dir=args.transcript_dir,
+                dry_run=args.dry_run,
+                output_dir=args.output,
+            )
+            built = 1 if b is not None else 0
+            failed = 0 if b is not None else 1
+        except Exception as e:
+            print(f"  [ERR] {e}")
+            built, failed = 0, 1
+        print(f"\n{'=' * 60}")
+        print(f"Built: {built} | Failed: {failed} | Total: 1")
+        return
 
     verdict_paths = []
     if args.verdict:
