@@ -29,3 +29,10 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# P6 documentary staging — never commit media or scratch
+.tmp/
+*.mp4
+*.mov
+*.mkv
+*.zip

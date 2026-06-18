@@ -162,23 +162,56 @@ def _match_media(etype: str, person: Optional[str], files: List[Path]) -> Option
     return ranked[0] if ranked and score(ranked[0]) > 0 else None
 
 
-def map_sources(verdict: Dict[str, Any], media_dir: Path) -> List[Source]:
+def _media_from_transcript(ref: str) -> Tuple[Optional[Path], Optional[str]]:
+    """Resolve a transcript_ref -> (media_path, evidence_type) by reading the
+    transcript JSON's own ``source_url`` / ``source_evidence_type``. Robust to
+    any filename scheme (the preferred path); returns (None, etype?) when the
+    transcript or its media isn't on disk so the caller can fall back."""
+    try:
+        p = Path(ref)
+        if not p.exists():
+            return None, None
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None, None
+    etype = data.get("source_evidence_type")
+    src = (data.get("source_url") or "").strip()
+    mp = Path(src) if src else None
+    return (mp if (mp and mp.exists()) else None), etype
+
+
+def _cam_tag(name: str) -> Optional[str]:
+    m = re.search(r"\b(bwc|icc|bodycam|dash|dashcam)[\s_\-]?(\d+[a-z]?)\b", name, re.I)
+    return f"{m.group(1).upper()}-{m.group(2)}" if m else None
+
+
+def map_sources(verdict: Dict[str, Any], media_dir: Optional[Path]) -> List[Source]:
     refs = verdict.get("transcript_refs") or []
-    files = _media_files(media_dir)
+    files = _media_files(media_dir) if media_dir and Path(media_dir).exists() else []
     sources: List[Source] = []
     for idx, ref in enumerate(refs):
         base = Path(str(ref)).name
-        etype, person = _classify_ref(base)
-        media = _match_media(etype, person, files)
+        # Preferred: media + type straight from the transcript's source_url.
+        media, etype_t = _media_from_transcript(str(ref))
+        etype_n, person = _classify_ref(base)
+        etype = etype_t or etype_n
+        if media is None and files:               # fallback: filename match
+            media = _match_media(etype, person, files)
         label_role = {
             "interrogation": "DPA Interview", "bodycam": "Body-Worn Camera",
             "court_video": "Court Video", "dispatch_911": "911 Dispatch",
-            "dash_cam": "Dash Camera",
+            "dash_cam": "Dash Camera", "911_audio": "911 Dispatch",
         }.get(etype, "Source")
-        who = f" — {person.title()}" if person else ""
+        cam = _cam_tag(base)
+        if person:
+            label = f"{label_role} — {person.title()}"
+        elif cam:
+            label = f"{label_role} ({cam})"
+        else:
+            label = label_role
         sources.append(Source(
             source_idx=idx, media_path=media, evidence_type=etype,
-            label=f"{label_role}{who}", person=person,
+            label=label, person=person,
         ))
     return sources
 
