@@ -61,8 +61,11 @@ def build_timeline(arts: List[Dict]) -> Dict:
     for a in arts:
         se = a.get("start_epoch")
         src = a.get("timestamp_source")
+        # The incident ANCHOR comes only from TRUSTED_SOURCES (OCR/filename), but
+        # D3's sanity-checked audio_xcorr stamps ARE trusted for placement.
         usable = bool(se) and anchor is not None and (
-            src in TRUSTED_SOURCES or (src == "metadata" and _day(se) == anchor_day)
+            src in TRUSTED_SOURCES or src == "audio_xcorr"
+            or (src == "metadata" and _day(se) == anchor_day)
         )
         rec = {
             "artifact_id": a["artifact_id"], "kind": a["kind"],
