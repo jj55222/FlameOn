@@ -77,6 +77,7 @@ CLIP_TAIL_PAD = 3.0
 COLD_OPEN_SEC = 12.0          # bodycam hook length
 TITLE_SEC = 5.0
 OUTCOME_SEC = 7.0
+PHASE_CARD_SEC = 3.0          # act/phase header card
 
 _FONT_CANDIDATES = {
     "bold": ["C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/segoeuib.ttf",
@@ -107,6 +108,8 @@ class Source:
     evidence_type: str            # bodycam | interrogation | court_video | ...
     label: str                    # human label, e.g. "DPA Interview — Sgt. Bradford"
     person: Optional[str] = None
+    start_epoch: Optional[float] = None   # absolute start time (D1 case_timeline)
+    phase: Optional[str] = None           # pre_incident | incident | aftermath | ...
 
 
 # Order matters: bodycam/dashcam checked before interrogation so a stray
@@ -185,7 +188,26 @@ def _cam_tag(name: str) -> Optional[str]:
     return f"{m.group(1).upper()}-{m.group(2)}" if m else None
 
 
-def map_sources(verdict: Dict[str, Any], media_dir: Optional[Path]) -> List[Source]:
+def _load_timeline_index(timeline_path: Path) -> Dict[str, Dict[str, Any]]:
+    """{artifact_id: {phase, start_epoch}} from a D1 case_timeline.json (phase)
+    joined with its sibling artifacts.json (absolute start_epoch)."""
+    tl = json.loads(Path(timeline_path).read_text(encoding="utf-8"))
+    phase_of: Dict[str, str] = {}
+    for ph, recs in (tl.get("phases") or {}).items():
+        for r in recs:
+            phase_of[r["artifact_id"]] = ph
+    epoch_of: Dict[str, float] = {}
+    arts_path = Path(timeline_path).parent / "artifacts.json"
+    if arts_path.exists():
+        for a in json.loads(arts_path.read_text(encoding="utf-8")):
+            if a.get("start_epoch"):
+                epoch_of[a["artifact_id"]] = a["start_epoch"]
+    return {aid: {"phase": phase_of.get(aid), "start_epoch": epoch_of.get(aid)}
+            for aid in set(phase_of) | set(epoch_of)}
+
+
+def map_sources(verdict: Dict[str, Any], media_dir: Optional[Path],
+                timeline_index: Optional[Dict[str, Dict[str, Any]]] = None) -> List[Source]:
     refs = verdict.get("transcript_refs") or []
     files = _media_files(media_dir) if media_dir and Path(media_dir).exists() else []
     sources: List[Source] = []
@@ -209,9 +231,11 @@ def map_sources(verdict: Dict[str, Any], media_dir: Optional[Path]) -> List[Sour
             label = f"{label_role} ({cam})"
         else:
             label = label_role
+        ti = (timeline_index or {}).get(Path(str(media)).stem, {}) if media else {}
         sources.append(Source(
             source_idx=idx, media_path=media, evidence_type=etype,
             label=label, person=person,
+            start_epoch=ti.get("start_epoch"), phase=ti.get("phase"),
         ))
     return sources
 
@@ -253,10 +277,26 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
     template = pick_template(sources, verdict)
     credit = f"Courtesy {agency}"
 
-    moments = sorted(
-        verdict.get("key_moments", []) or [],
-        key=lambda m: (m.get("source_idx", 0), m.get("timestamp_sec") or 0),
-    )
+    # Order moments. With wall-clock from the D1 timeline (D4 act-assembly), play
+    # them in TRUE chronological order across POVs and tag each with its phase;
+    # otherwise fall back to source_idx + timestamp.
+    def _abs(m: Dict[str, Any]) -> Optional[float]:
+        i = m.get("source_idx", 0)
+        s = sources[i] if 0 <= i < len(sources) else None
+        if s and s.start_epoch is not None:
+            return s.start_epoch + float(m.get("timestamp_sec") or 0)
+        return None
+    timeline_mode = any(s.start_epoch is not None for s in sources)
+    _raw = verdict.get("key_moments", []) or []
+    if timeline_mode:
+        moments = sorted(_raw, key=lambda m: (_abs(m) is None, _abs(m) or 0.0))
+    else:
+        moments = sorted(_raw, key=lambda m: (m.get("source_idx", 0), m.get("timestamp_sec") or 0))
+    _PHASE_TITLE = {"pre_incident": "The Call", "incident": "The Incident",
+                    "aftermath": "Aftermath", "transport": "Transport",
+                    "investigation": "The Investigation", "outcome": "Outcome"}
+    current_phase = None
+
     # Beat assignment: first → hook, last → climax-ish; simple + deterministic.
     timeline: List[Dict[str, Any]] = []
 
@@ -295,6 +335,11 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
             timeline.append({"kind": "gap", "reason": f"source_idx {idx} has no media",
                              "moment": m.get("description", "")})
             continue
+        if timeline_mode and src.phase and src.phase != current_phase:
+            current_phase = src.phase
+            timeline.append({"kind": "card", "card_kind": "phase",
+                             "title": _PHASE_TITLE.get(src.phase, src.phase.replace('_', ' ').title()),
+                             "subtitle": "", "dur": PHASE_CARD_SEC})
         ts = float(m.get("timestamp_sec") or 0)
         end = float(m.get("end_timestamp_sec") or ts)
         media_dur = _duration(src.media_path)
@@ -309,6 +354,7 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
             "label": src.label, "credit_line": credit,
             "transcript_excerpt": m.get("transcript_excerpt", ""),
             "description": m.get("description", ""),
+            "phase": src.phase,
             "lower_third": f"{src.label}  ·  {credit}",
         })
         # Light deterministic narration bridge before the next clip.
@@ -389,7 +435,7 @@ def render_card(out_png: Path, *, card_kind: str, title: str = "",
         d.text((W - margin - d.textlength(footer, font=f), H - 52), footer,
                font=f, fill=MUTED)
 
-    if card_kind in ("title", "outcome"):
+    if card_kind in ("title", "outcome", "phase"):
         tfont = _font("bold", 64 if card_kind == "title" else 52)
         tlines = _wrap(d, title, tfont, W - 2 * margin)
         sfont = _font("reg", 30)
@@ -556,11 +602,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--media-dir", required=True, type=Path)
     ap.add_argument("--agency", default="Releasing agency")
     ap.add_argument("--out", type=Path, default=Path(".tmp/p6_rough_cuts"))
+    ap.add_argument("--timeline", type=Path, default=None,
+                    help="D1 case_timeline.json -> chronological act ordering (D4)")
     args = ap.parse_args(argv)
 
     FFMPEG, FFPROBE = _resolve_ffmpeg()
     verdict = json.loads(args.verdict.read_text(encoding="utf-8"))
-    sources = map_sources(verdict, args.media_dir)
+    tl_index = _load_timeline_index(args.timeline) if args.timeline else None
+    sources = map_sources(verdict, args.media_dir, timeline_index=tl_index)
     support = [p for p in args.media_dir.iterdir()
                if p.suffix.lower() == ".pdf"] if args.media_dir.exists() else []
 
