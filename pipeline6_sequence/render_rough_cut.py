@@ -270,9 +270,35 @@ def pick_template(sources: List[Source], verdict: Dict[str, Any]) -> str:
     return "interrogation_led"
 
 
+# Cold-open climax-lift ranking: how dramatic a moment is as an opening hook.
+_IMPORTANCE_RANK = {"critical": 3, "high": 2, "medium": 1, "low": 0}
+_MOMENT_DRAMA = {"emotional_peak": 3, "procedural_violation": 3, "reveal": 2,
+                 "contradiction": 2, "tension_shift": 1, "detail_noticed": 0}
+COLD_OPEN_TEASE_SEC = 9.0     # max length of a climax teaser
+
+
+def _pick_climax(moments: List[Dict[str, Any]], sources: List[Source]) -> Optional[Dict[str, Any]]:
+    """The single most dramatic moment that maps to a real VIDEO source — the
+    documentary 'cold open' hook. Ranks importance, then moment-type drama, then
+    earliest. Returns None if no moment has playable video (caller falls back)."""
+    def playable(m: Dict[str, Any]) -> bool:
+        i = m.get("source_idx", 0)
+        s = sources[i] if 0 <= i < len(sources) else None
+        return bool(s and _is_video(s.media_path))
+    cand = [m for m in moments if playable(m)]
+    if not cand:
+        return None
+    return max(cand, key=lambda m: (
+        _IMPORTANCE_RANK.get((m.get("importance") or "").lower(), 0),
+        _MOMENT_DRAMA.get(m.get("moment_type") or "", 0),
+        -float(m.get("timestamp_sec") or 0),
+    ))
+
+
 def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
                      agency: str, support_docs: List[Path],
-                     doc_extract: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+                     doc_extract: Optional[Dict[str, Any]] = None,
+                     cold_open: str = "scene_set") -> Dict[str, Any]:
     case_id = verdict["case_id"]
     arc = verdict.get("narrative_arc_recommendation") or "chronological"
     template = pick_template(sources, verdict)
@@ -301,13 +327,33 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
     # Beat assignment: first → hook, last → climax-ish; simple + deterministic.
     timeline: List[Dict[str, Any]] = []
 
+    # 0. Climax-lift cold open: tease the single most dramatic moment BEFORE the
+    #    title card (a real documentary hook), then cut to black/title. Only when
+    #    --cold-open climax and a moment maps to playable video; else falls back.
+    climax_m = _pick_climax(moments, sources) if cold_open == "climax" else None
+    if climax_m is not None:
+        cs = sources[climax_m["source_idx"]]
+        cts = float(climax_m.get("timestamp_sec") or 0)
+        cend = float(climax_m.get("end_timestamp_sec") or cts)
+        cmedia_dur = _duration(cs.media_path)
+        cin = max(0.0, cts - 2.0)
+        cout = min(cmedia_dur, cin + COLD_OPEN_TEASE_SEC, cend + 2.0)
+        timeline.append({
+            "kind": "clip", "clip_id": "coldopen_climax", "source_idx": cs.source_idx,
+            "media": str(cs.media_path), "in_sec": round(cin, 2), "out_sec": round(cout, 2),
+            "beat_role": "cold_open", "label": cs.label, "credit_line": credit,
+            "moment_type": climax_m.get("moment_type"), "importance": climax_m.get("importance"),
+            "lower_third": f"{cs.label}  ·  {credit}",
+            "cold_open": True,
+        })
+
     # 1. Title card.
     timeline.append({"kind": "card", "card_kind": "title",
                      "title": f"Case {case_id.split('_')[-1].upper()}",
                      "subtitle": agency, "dur": TITLE_SEC})
 
-    # 2. Cold-open bodycam B-roll — every real bodycam/dashcam video, so the
-    #    cut opens on actual footage (up to 2 to keep the hook tight).
+    # 2. Scene-set bodycam B-roll — open on actual footage (up to 2 videos to
+    #    keep it tight). Skipped for 'climax' (already hooked) and 'none'.
     video_srcs = [s for s in sources if _is_video(s.media_path)]
     # de-dupe by media path (multiple source_idx can map to the same file)
     seen_media: set = set()
@@ -318,15 +364,16 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
             continue
         seen_media.add(key)
         cold.append(s)
-    for n, s in enumerate(cold[:2]):
-        timeline.append({
-            "kind": "clip", "clip_id": f"coldopen{n}", "source_idx": s.source_idx,
-            "media": str(s.media_path), "in_sec": 0.0,
-            "out_sec": min(COLD_OPEN_SEC, _duration(s.media_path)),
-            "beat_role": "hook", "label": s.label, "credit_line": credit,
-            "moment_type": "scene_set",
-            "lower_third": f"{s.label}  ·  {credit}",
-        })
+    if cold_open == "scene_set":
+        for n, s in enumerate(cold[:2]):
+            timeline.append({
+                "kind": "clip", "clip_id": f"coldopen{n}", "source_idx": s.source_idx,
+                "media": str(s.media_path), "in_sec": 0.0,
+                "out_sec": min(COLD_OPEN_SEC, _duration(s.media_path)),
+                "beat_role": "hook", "label": s.label, "credit_line": credit,
+                "moment_type": "scene_set",
+                "lower_third": f"{s.label}  ·  {credit}",
+            })
 
     # 3. One clip per key moment (real timecodes, real quotes).
     for n, m in enumerate(moments):
@@ -614,6 +661,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="D1 case_timeline.json -> chronological act ordering (D4)")
     ap.add_argument("--doc-extract", type=Path, default=None,
                     help="D5 doc_extract.json -> real disposition outcome card + clip directions")
+    ap.add_argument("--cold-open", choices=["scene_set", "climax", "none"], default="scene_set",
+                    help="opening style: scene_set (B-roll, default), climax "
+                         "(tease the most dramatic moment first), or none")
     args = ap.parse_args(argv)
 
     FFMPEG, FFPROBE = _resolve_ffmpeg()
@@ -629,7 +679,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"   idx {s.source_idx}: {s.evidence_type:13s} -> "
               f"{s.media_path.name if s.media_path else 'UNMATCHED'}")
 
-    paper_edit = build_paper_edit(verdict, sources, args.agency, support, doc_extract=doc_extract)
+    paper_edit = build_paper_edit(verdict, sources, args.agency, support,
+                                  doc_extract=doc_extract, cold_open=args.cold_open)
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     pe_path = out_dir / verdict["case_id"] / f"{verdict['case_id']}_paper_edit.json"
