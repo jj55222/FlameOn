@@ -271,7 +271,8 @@ def pick_template(sources: List[Source], verdict: Dict[str, Any]) -> str:
 
 
 def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
-                     agency: str, support_docs: List[Path]) -> Dict[str, Any]:
+                     agency: str, support_docs: List[Path],
+                     doc_extract: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     case_id = verdict["case_id"]
     arc = verdict.get("narrative_arc_recommendation") or "chronological"
     template = pick_template(sources, verdict)
@@ -364,17 +365,28 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
                              "after_clip_id": f"m{n}",
                              "derived_from": "verdict.key_moments"})
 
-    # 4. Outcome card (from the real content_pitch — nothing invented).
-    pitch = verdict.get("content_pitch") or ""
+    # 4. Outcome card. Prefer the REAL disposition from the case doc (D5);
+    #    else the P4 content_pitch. Nothing invented.
+    dispo = (doc_extract or {}).get("disposition") or {}
+    if dispo.get("findings"):
+        findings = "; ".join(
+            f"{f['finding']}: {re.sub(r'^[^A-Za-z]+', '', f['charge']).strip()[:45]}"
+            for f in dispo["findings"][:3])
+        disc = ", ".join(dispo.get("discipline_signals", [])[:4])
+        out_title = f"IA {doc_extract.get('ia_case_number', '')}: SUSTAINED"
+        out_sub = findings + (f".  Discipline: {disc}." if disc else ".")
+    else:
+        out_title = f"Verdict: {verdict.get('verdict', '?')}"
+        out_sub = verdict.get("content_pitch") or ""
     timeline.append({"kind": "card", "card_kind": "outcome",
-                     "title": f"Verdict: {verdict.get('verdict', '?')}",
-                     "subtitle": pitch, "dur": OUTCOME_SEC,
-                     "footer": credit})
+                     "title": out_title, "subtitle": out_sub,
+                     "dur": OUTCOME_SEC, "footer": credit})
 
-    # Supporting-doc inserts available (court production PDF) — recorded, not yet rendered.
+    # Supporting-doc inserts + clipper directions surfaced from the case doc (D5).
     inserts = [{"role": "back_claim", "doc_type": "court_production",
                 "source_path": str(p), "note": "available for on-screen citation"}
                for p in support_docs]
+    clip_directions = (doc_extract or {}).get("clip_directions", [])
 
     return {
         "case_id": case_id,
@@ -388,6 +400,7 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
                      "credit_line": credit} for s in sources],
         "timeline": timeline,
         "available_inserts": inserts,
+        "doc_clip_directions": clip_directions,
         "_inputs": {"verdict_key_moments": len(moments),
                     "sources_mapped": sum(1 for s in sources if s.media_path)},
     }
@@ -604,11 +617,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--out", type=Path, default=Path(".tmp/p6_rough_cuts"))
     ap.add_argument("--timeline", type=Path, default=None,
                     help="D1 case_timeline.json -> chronological act ordering (D4)")
+    ap.add_argument("--doc-extract", type=Path, default=None,
+                    help="D5 doc_extract.json -> real disposition outcome card + clip directions")
     args = ap.parse_args(argv)
 
     FFMPEG, FFPROBE = _resolve_ffmpeg()
     verdict = json.loads(args.verdict.read_text(encoding="utf-8"))
     tl_index = _load_timeline_index(args.timeline) if args.timeline else None
+    doc_extract = json.loads(args.doc_extract.read_text(encoding="utf-8")) if args.doc_extract else None
     sources = map_sources(verdict, args.media_dir, timeline_index=tl_index)
     support = [p for p in args.media_dir.iterdir()
                if p.suffix.lower() == ".pdf"] if args.media_dir.exists() else []
@@ -618,7 +634,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"   idx {s.source_idx}: {s.evidence_type:13s} -> "
               f"{s.media_path.name if s.media_path else 'UNMATCHED'}")
 
-    paper_edit = build_paper_edit(verdict, sources, args.agency, support)
+    paper_edit = build_paper_edit(verdict, sources, args.agency, support, doc_extract=doc_extract)
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     pe_path = out_dir / verdict["case_id"] / f"{verdict['case_id']}_paper_edit.json"
