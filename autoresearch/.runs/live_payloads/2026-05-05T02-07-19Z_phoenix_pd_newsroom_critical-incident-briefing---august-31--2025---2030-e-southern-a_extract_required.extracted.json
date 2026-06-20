@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov",
+  "url": "https://www.phoenix.gov/newsroom/police-department-news/critical-incident-briefing---august-31--2025---2030-e-southern-a.html",
+  "title": "Critical Incident Briefing - August 31, 2025 - 2030 E Southern Ave.",
+  "narrative": "Phoenix Police Department Critical Incident Briefing. Title: Critical Incident Briefing - August 31, 2025 - 2030 E Southern Ave.. Incident date: 2025-08-31. Release date: 2025-09-12. The briefing video is published on the official City of Phoenix Newsroom.",
+  "subjects": [],
+  "incident_date": "2025-08-31",
+  "case_number": "",
+  "outcome_text": null,
+  "media_links": [
+    {
+      "url": "https://www.youtube.com/watch?v=CLa40-eWDHE",
+      "label": "Critical Incident Briefing video (Phoenix Newsroom)",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

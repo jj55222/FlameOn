@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov",
+  "url": "https://www.phoenix.gov/newsroom/police-department-news/critical-incident-briefing---may-25--2025---2500-e-cactus-road.html",
+  "title": "Critical Incident Briefing \u2013 May 25, 2025 \u2013 2500 E Cactus Road",
+  "narrative": "Phoenix Police Department Critical Incident Briefing. Title: Critical Incident Briefing \u2013 May 25, 2025 \u2013 2500 E Cactus Road. Incident date: 2025-05-25. Release date: 2025-06-06. The briefing video is published on the official City of Phoenix Newsroom.",
+  "subjects": [],
+  "incident_date": "2025-05-25",
+  "case_number": "",
+  "outcome_text": null,
+  "media_links": [
+    {
+      "url": "https://www.youtube.com/watch?v=LjB4fHM09Ms",
+      "label": "Critical Incident Briefing video (Phoenix Newsroom)",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

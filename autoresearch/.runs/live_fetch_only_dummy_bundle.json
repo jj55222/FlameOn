@@ -1,0 +1,77 @@
+{
+  "experiment_id": "PIPE3-cli-portal-live",
+  "mode": "portal_live",
+  "wallclock_seconds": 0.0028,
+  "input_summary": {
+    "input_type": "portal_live",
+    "target_id": "sheriff_bodycam_fetch_only_dummy",
+    "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-003",
+    "profile_id": "agency_ois_detail",
+    "fetcher": "mock",
+    "require_extraction": false
+  },
+  "query_plan": null,
+  "connector_summary": null,
+  "multi_source_summary": null,
+  "smoke_diagnostics": null,
+  "identity": null,
+  "outcome": null,
+  "artifact_claims": [],
+  "verified_artifacts": [],
+  "result": null,
+  "actionability_report": null,
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "PIPE3-cli-portal-live",
+    "timestamp": "2026-05-04T20:15:27Z",
+    "case_id": null,
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 0,
+      "mock": 1
+    },
+    "wallclock_seconds": 0.0028,
+    "source_record_count": 0,
+    "verified_artifact_count": 0,
+    "media_artifact_count": 0,
+    "document_artifact_count": 0,
+    "estimated_cost_usd": 0.0,
+    "verdict": null,
+    "research_completeness_score": null,
+    "production_actionability_score": null,
+    "actionability_score": null,
+    "notes": [
+      "portal-live",
+      "target_id=sheriff_bodycam_fetch_only_dummy",
+      "fetcher=mock",
+      "profile=agency_ois_detail"
+    ]
+  },
+  "next_actions": [],
+  "risk_flags": [],
+  "live_fetch": {
+    "target_id": "sheriff_bodycam_fetch_only_dummy",
+    "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-003",
+    "profile_id": "agency_ois_detail",
+    "fetcher": "mock",
+    "require_extraction": false,
+    "raw_payload_path": "autoresearch/.runs/live_payloads/2026-05-04T20-15-27Z_sheriff_bodycam_fetch_only_dummy.raw.json",
+    "extracted_payload_path": null,
+    "status": "completed",
+    "blocked_reason": null,
+    "status_code": 200,
+    "estimated_cost_usd": 0.0,
+    "api_calls": {
+      "mock": 1
+    },
+    "wallclock_seconds": 1e-06,
+    "safety_status": "allowed",
+    "target_domain_status": "allowed",
+    "replayed": false
+  }
+}

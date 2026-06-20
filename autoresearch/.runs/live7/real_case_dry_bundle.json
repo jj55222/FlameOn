@@ -1,0 +1,187 @@
+{
+  "experiment_id": "REAL2-real-case-dry-run",
+  "mode": "default",
+  "wallclock_seconds": 0.147,
+  "input_summary": {
+    "input_type": "manual",
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": null,
+    "candidate_query_count": 3,
+    "missing_field_count": 0
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 0,
+    "by_api": {},
+    "by_role": {},
+    "source_ids": []
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": null,
+  "identity": {
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
+    "victim_names": [],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": "2024-04-21",
+    "case_numbers": [
+      "CR-1001"
+    ],
+    "charges": [
+      "murder"
+    ],
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "agency",
+      "case_number"
+    ]
+  },
+  "outcome": {
+    "outcome_status": "sentenced",
+    "charges": [
+      "murder"
+    ],
+    "case_numbers": [
+      "CR-1001"
+    ]
+  },
+  "artifact_claims": [],
+  "verified_artifacts": [],
+  "result": {
+    "verdict": "HOLD",
+    "research_completeness_score": 68.0,
+    "production_actionability_score": 35.0,
+    "actionability_score": 46.55,
+    "component_scores": {
+      "identity": 20.0,
+      "outcome": 15.0,
+      "artifact_claims": 0.0,
+      "verified_media_artifacts": 0.0,
+      "verified_document_artifacts": 0.0,
+      "artifact_portfolio": 0.0,
+      "downstream_readiness": 0.0,
+      "research_documents": 13.0,
+      "source_quality_diversity": 0.0,
+      "gap_clarity": 10.0
+    },
+    "artifact_category_counts": {},
+    "reason_codes": [
+      "high_identity",
+      "sentenced_or_convicted",
+      "no_verified_media"
+    ],
+    "risk_flags": [
+      "no_verified_media"
+    ],
+    "next_actions": [
+      "Locate verified media/audio/video artifact before production."
+    ]
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 0,
+      "HOLD": 1,
+      "SKIP": 0
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 0,
+      "document_only_holds": 0,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 0,
+      "no_verified_media_blocks": 1
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {},
+      "media_only_cases": 0,
+      "document_only_cases": 0,
+      "no_artifact_cases": 1,
+      "multi_media_cases": 0,
+      "multi_artifact_premium_cases": 0
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 68.0,
+        "max": 68.0,
+        "mean": 68.0,
+        "median": 68.0,
+        "p90": 68.0
+      },
+      "production_actionability": {
+        "min": 35.0,
+        "max": 35.0,
+        "mean": 35.0,
+        "median": 35.0,
+        "p90": 35.0
+      },
+      "actionability": {
+        "min": 46.55,
+        "max": 46.55,
+        "mean": 46.55,
+        "median": 46.55,
+        "p90": 46.55
+      }
+    },
+    "risk_flag_counts": {
+      "no_verified_media": 1
+    },
+    "reason_code_counts": {
+      "high_identity": 1,
+      "no_verified_media": 1,
+      "sentenced_or_convicted": 1
+    },
+    "input_type_breakdown": {
+      "manual": 1
+    },
+    "produce_eligible_inventory": []
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "REAL2-real-case-dry-run",
+    "timestamp": "2026-04-30T23:43:47Z",
+    "case_id": "real_case_min_jian_guan",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 0
+    },
+    "wallclock_seconds": 0.147,
+    "source_record_count": 0,
+    "verified_artifact_count": 0,
+    "media_artifact_count": 0,
+    "document_artifact_count": 0,
+    "estimated_cost_usd": 0.0,
+    "verdict": "HOLD",
+    "research_completeness_score": 68.0,
+    "production_actionability_score": 35.0,
+    "actionability_score": 46.55,
+    "notes": []
+  },
+  "next_actions": [
+    "Locate verified media/audio/video artifact before production."
+  ],
+  "risk_flags": [
+    "no_verified_media"
+  ]
+}

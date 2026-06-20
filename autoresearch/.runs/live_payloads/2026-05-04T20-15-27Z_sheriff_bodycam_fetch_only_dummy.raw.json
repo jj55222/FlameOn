@@ -1,0 +1,16 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Example County Sheriff's Office",
+  "url": "https://example-public-sheriff.gov/critical-incidents/2024-EX-003",
+  "title": "Mock fetch-only briefing 2024-EX-003",
+  "narrative": "This dummy fixture exercises the fetch-only flow. The orchestrator should save the raw mock_response to disk and stop without running the agency_ois extractor or the replay step.",
+  "subjects": [
+    "Pat Mock"
+  ],
+  "incident_date": "2024-09-22",
+  "case_number": "2024-EX-003",
+  "outcome_text": "subject pleaded guilty 2024",
+  "media_links": [],
+  "document_links": [],
+  "claims": []
+}

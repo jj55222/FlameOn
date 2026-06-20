@@ -1,0 +1,377 @@
+{
+  "experiment_id": "LIVE7-real-case-pilot-live-smoke",
+  "mode": "live",
+  "wallclock_seconds": 2.2158,
+  "input_summary": {
+    "input_type": "manual",
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": null,
+    "candidate_query_count": 3,
+    "missing_field_count": 0
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 5,
+    "by_api": {
+      "documentcloud": 5
+    },
+    "by_role": {
+      "claim_source": 5,
+      "possible_artifact_source": 5
+    },
+    "source_ids": [
+      "documentcloud_21023897",
+      "documentcloud_26103403",
+      "documentcloud_2203749",
+      "documentcloud_22082374",
+      "documentcloud_24735809"
+    ]
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": {
+    "connector": "documentcloud",
+    "query": "Min Jian Guan",
+    "endpoint": "https://api.www.documentcloud.org/api/documents/search/",
+    "status_code": 200,
+    "error": null,
+    "result_count": 5,
+    "verified_artifact_count": 0,
+    "wallclock_seconds": 2.2135,
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 1,
+      "youtube": 0
+    },
+    "estimated_cost_usd": 0.0,
+    "notes": []
+  },
+  "identity": {
+    "defendant_names": [
+      "Min Jian Guan"
+    ],
+    "victim_names": [],
+    "agency": "San Francisco Police Department",
+    "jurisdiction": {
+      "city": "San Francisco",
+      "county": "San Francisco",
+      "state": "CA"
+    },
+    "incident_date": "2024-04-21",
+    "case_numbers": [
+      "CR-1001"
+    ],
+    "charges": [
+      "murder"
+    ],
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "agency",
+      "case_number"
+    ]
+  },
+  "outcome": {
+    "outcome_status": "sentenced",
+    "charges": [
+      "murder"
+    ],
+    "case_numbers": [
+      "CR-1001"
+    ]
+  },
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_21023897_1_documents_21023897_guan_f55ab2603ee12d483779cbf49c38d43",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/21023897-guan-f55ab2603ee12d483779cbf49c38d4379c9743e6/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/21023897-guan-f55ab2603ee12d483779cbf49c38d4379c9743e6/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/21023897-guan-f55ab2603ee12d483779cbf49c38d4379c9743e6/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_21023897",
+        "documentcloud_id": "21023897",
+        "publisher": null,
+        "published_date": "2021-07-30T06:55:10.152Z",
+        "page_count": 1,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_26103403_1_documents_26103403_jian_information",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/26103403-jian-information/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/26103403-jian-information/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/26103403-jian-information/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_26103403",
+        "documentcloud_id": "26103403",
+        "publisher": null,
+        "published_date": "2025-09-18T16:56:17.421Z",
+        "page_count": 6,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_2203749_1_documents_2203749_guan_v_zba",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/2203749-guan-v-zba/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/2203749-guan-v-zba/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/2203749-guan-v-zba/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_2203749",
+        "documentcloud_id": "2203749",
+        "publisher": null,
+        "published_date": "2015-08-07T15:11:29.841Z",
+        "page_count": 7,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_22082374_1_documents_22082374_chu_guan_indictment",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/22082374-chu-guan-indictment/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/22082374-chu-guan-indictment/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/22082374-chu-guan-indictment/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_22082374",
+        "documentcloud_id": "22082374",
+        "publisher": null,
+        "published_date": "2022-07-08T18:19:12.165Z",
+        "page_count": 8,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_24735809_1_documents_24735809_usa_v_guan_indictment",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/24735809-usa-v-guan-indictment/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/24735809-usa-v-guan-indictment/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/24735809-usa-v-guan-indictment/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_24735809",
+        "documentcloud_id": "24735809",
+        "publisher": null,
+        "published_date": "2024-06-05T20:30:29.863Z",
+        "page_count": 12,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    }
+  ],
+  "result": {
+    "verdict": "HOLD",
+    "research_completeness_score": 81.0,
+    "production_actionability_score": 40.0,
+    "actionability_score": 54.35,
+    "component_scores": {
+      "identity": 20.0,
+      "outcome": 15.0,
+      "artifact_claims": 0.0,
+      "verified_media_artifacts": 0.0,
+      "verified_document_artifacts": 20.0,
+      "artifact_portfolio": 3.0,
+      "downstream_readiness": 2.0,
+      "research_documents": 20.0,
+      "source_quality_diversity": 6.0,
+      "gap_clarity": 10.0
+    },
+    "artifact_category_counts": {
+      "docket_docs": 5
+    },
+    "reason_codes": [
+      "high_identity",
+      "sentenced_or_convicted",
+      "supporting_documents_present",
+      "document_only_hold",
+      "no_verified_media"
+    ],
+    "risk_flags": [
+      "no_verified_media",
+      "document_only"
+    ],
+    "next_actions": [
+      "Locate verified media/audio/video artifact before production."
+    ]
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 0,
+      "HOLD": 1,
+      "SKIP": 0
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 0,
+      "document_only_holds": 1,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 0,
+      "no_verified_media_blocks": 1
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {
+        "docket_docs": 5
+      },
+      "media_only_cases": 0,
+      "document_only_cases": 1,
+      "no_artifact_cases": 0,
+      "multi_media_cases": 0,
+      "multi_artifact_premium_cases": 0
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 81.0,
+        "max": 81.0,
+        "mean": 81.0,
+        "median": 81.0,
+        "p90": 81.0
+      },
+      "production_actionability": {
+        "min": 40.0,
+        "max": 40.0,
+        "mean": 40.0,
+        "median": 40.0,
+        "p90": 40.0
+      },
+      "actionability": {
+        "min": 54.35,
+        "max": 54.35,
+        "mean": 54.35,
+        "median": 54.35,
+        "p90": 54.35
+      }
+    },
+    "risk_flag_counts": {
+      "document_only": 1,
+      "no_verified_media": 1
+    },
+    "reason_code_counts": {
+      "document_only_hold": 1,
+      "high_identity": 1,
+      "no_verified_media": 1,
+      "sentenced_or_convicted": 1,
+      "supporting_documents_present": 1
+    },
+    "input_type_breakdown": {
+      "manual": 1
+    },
+    "produce_eligible_inventory": []
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "LIVE7-real-case-pilot-live-smoke",
+    "timestamp": "2026-04-30T23:46:47Z",
+    "case_id": "real_case_min_jian_guan",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 1,
+      "youtube": 0
+    },
+    "wallclock_seconds": 2.2158,
+    "source_record_count": 5,
+    "verified_artifact_count": 5,
+    "media_artifact_count": 0,
+    "document_artifact_count": 5,
+    "estimated_cost_usd": 0.0,
+    "verdict": "HOLD",
+    "research_completeness_score": 81.0,
+    "production_actionability_score": 40.0,
+    "actionability_score": 54.35,
+    "notes": [
+      "LIVE7",
+      "pilot=real_case_min_jian_guan_pilot",
+      "connector=documentcloud",
+      "max_queries=1",
+      "max_results=5",
+      "real_case=true"
+    ]
+  },
+  "next_actions": [
+    "Locate verified media/audio/video artifact before production."
+  ],
+  "risk_flags": [
+    "no_verified_media",
+    "document_only"
+  ]
+}

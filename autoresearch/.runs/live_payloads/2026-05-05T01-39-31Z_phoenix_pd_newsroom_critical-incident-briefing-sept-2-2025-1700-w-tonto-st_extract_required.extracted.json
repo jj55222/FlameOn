@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov",
+  "url": "https://www.phoenix.gov/newsroom/police-department-news/critical-incident-briefing-sept-2-2025-1700-W-Tonto-St.html",
+  "title": "Critical Incident Briefing - September 2, 2025 - 1700 W Tonto St.",
+  "narrative": "Phoenix Police Department Critical Incident Briefing. Title: Critical Incident Briefing - September 2, 2025 - 1700 W Tonto St.. Incident date: 2025-09-02. Release date: 2025-09-16. The briefing video is published on the official City of Phoenix Newsroom.",
+  "subjects": [],
+  "incident_date": "2025-09-02",
+  "case_number": "",
+  "outcome_text": null,
+  "media_links": [
+    {
+      "url": "https://www.youtube.com/watch?v=nvyLswZmwus",
+      "label": "Critical Incident Briefing video (Phoenix Newsroom)",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

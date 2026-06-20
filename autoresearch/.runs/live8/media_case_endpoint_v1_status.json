@@ -1,0 +1,36 @@
+{
+  "experiment_id": "LIVE8-media-yield-pilot-live-smoke",
+  "pilot_id": "media_case_christa_gail_pike_pilot",
+  "real_case": true,
+  "endpoint_v1_target": "verified public media artifact URL on a real case",
+  "connector_used": "youtube",
+  "queries_used": "Christa Gail Pike bodycam",
+  "live_calls_used": 1,
+  "source_records_returned": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 5,
+  "document_artifact_count": 0,
+  "verified_artifact_urls": [
+    "https://www.youtube.com/watch?v=rqDhXKrNs4Q",
+    "https://www.youtube.com/watch?v=vrezPLWYUC0",
+    "https://www.youtube.com/watch?v=or_MDJnmihc",
+    "https://www.youtube.com/watch?v=M7m8qAzz-go",
+    "https://www.youtube.com/watch?v=b90GQUmOhNY"
+  ],
+  "verdict": "PRODUCE",
+  "identity_confidence": "high",
+  "outcome_status": "convicted",
+  "estimated_cost_usd": 0.0,
+  "endpoint_v1_conditions": {
+    "cond_v1a_real_case_live_bundle_generated": true,
+    "cond_v1b_ledger_generated": true,
+    "cond_v1c_dry_vs_live_comparison": true,
+    "cond_v1d_at_least_one_verified_media_url": true,
+    "cond_v1e_media_artifact_type_classified": true,
+    "cond_v1f_identity_evaluated": true,
+    "cond_v1g_outcome_evaluated": true,
+    "cond_v1h_no_safety_gate_breaks": true
+  },
+  "endpoint_v0_validation_unchanged": true,
+  "endpoint_v1_fully_achieved": true
+}

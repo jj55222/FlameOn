@@ -1,0 +1,37 @@
+{
+  "experiment_id": "LIVE7-real-case-pilot-live-smoke",
+  "pilot_id": "real_case_min_jian_guan_pilot",
+  "real_case": true,
+  "connector_used": "documentcloud",
+  "queries_used": "Min Jian Guan",
+  "live_calls_used": 1,
+  "source_records_returned": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 0,
+  "document_artifact_count": 5,
+  "verified_artifact_urls": [
+    "https://www.documentcloud.org/documents/21023897-guan-f55ab2603ee12d483779cbf49c38d4379c9743e6/",
+    "https://www.documentcloud.org/documents/26103403-jian-information/",
+    "https://www.documentcloud.org/documents/2203749-guan-v-zba/",
+    "https://www.documentcloud.org/documents/22082374-chu-guan-indictment/",
+    "https://www.documentcloud.org/documents/24735809-usa-v-guan-indictment/"
+  ],
+  "verdict": "HOLD",
+  "identity_confidence": "high",
+  "outcome_status": "sentenced",
+  "estimated_cost_usd": 0.0,
+  "endpoint_v0_conditions": {
+    "cond1_validation_passes": true,
+    "cond2_pilot_readiness": true,
+    "cond3a_identity_locked_high": true,
+    "cond3b_concluded_outcome": true,
+    "cond3c_verified_artifact_url": true,
+    "cond3d_artifact_type_classified": true,
+    "cond3e_run_bundle_written": true,
+    "cond3f_ledger_entry_generated": true,
+    "cond3g_dry_vs_live_comparison": true,
+    "cond4_media_doc_distinction": true,
+    "cond5_no_safety_gate_breaks": true
+  },
+  "endpoint_v0_fully_achieved": true
+}

@@ -1,0 +1,29 @@
+{
+  "experiment_id": "LIVE6-known-case-pilot-live-smoke",
+  "timestamp": "2026-04-30T23:28:15Z",
+  "case_id": "mapping_police_violence_jordan_example_memphis_police_department_memphis_tn_2022_07_30",
+  "api_calls": {
+    "brave": 0,
+    "firecrawl": 0,
+    "llm": 0,
+    "courtlistener": 0,
+    "muckrock": 0,
+    "documentcloud": 1,
+    "youtube": 0
+  },
+  "wallclock_seconds": 2.6349,
+  "source_record_count": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 0,
+  "document_artifact_count": 5,
+  "estimated_cost_usd": 0.0,
+  "verdict": "SKIP",
+  "research_completeness_score": 41.0,
+  "production_actionability_score": 5.0,
+  "actionability_score": 17.6,
+  "notes": [
+    "LIVE6",
+    "pilot=mpv_documentcloud_pilot",
+    "connector=documentcloud"
+  ]
+}

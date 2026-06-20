@@ -1,0 +1,93 @@
+{
+  "total_runs": 1,
+  "total_live_calls": 1,
+  "total_estimated_cost_usd": 0.0,
+  "total_wallclock_seconds": 2.2158,
+  "total_source_records": 5,
+  "total_verified_artifacts": 5,
+  "total_media_artifacts": 0,
+  "total_document_artifacts": 5,
+  "by_provider": {
+    "brave": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    },
+    "courtlistener": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    },
+    "documentcloud": {
+      "calls": 1,
+      "wallclock_seconds": 2.2135,
+      "estimated_cost_usd": 0.0,
+      "result_count": 5,
+      "source_records": 5,
+      "verified_artifacts": 0,
+      "endpoints": [
+        "https://api.www.documentcloud.org/api/documents/search/"
+      ],
+      "errors": []
+    },
+    "firecrawl": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    },
+    "llm": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    },
+    "muckrock": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    },
+    "youtube": {
+      "calls": 0,
+      "wallclock_seconds": 0.0,
+      "estimated_cost_usd": 0.0,
+      "result_count": 0,
+      "source_records": 0,
+      "verified_artifacts": 0,
+      "endpoints": [],
+      "errors": []
+    }
+  },
+  "verdict_counts": {
+    "PRODUCE": 0,
+    "HOLD": 1,
+    "SKIP": 0,
+    "unknown": 0
+  },
+  "warnings": [
+    "unexpected_verified_artifacts_from_smoke:5"
+  ]
+}

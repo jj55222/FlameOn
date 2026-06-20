@@ -1,0 +1,147 @@
+{
+  "experiment_ids": {
+    "dry": "LIVE8-media-dry-baseline",
+    "enriched": "LIVE8-media-yield-pilot-live-smoke"
+  },
+  "modes": {
+    "dry": "default",
+    "enriched": "live"
+  },
+  "query_plan_delta": {
+    "dry_connector_count": 0,
+    "enriched_connector_count": 0,
+    "delta_connector_count": 0,
+    "connectors": {
+      "added": [],
+      "removed": [],
+      "shared": []
+    },
+    "queries": {
+      "added": [],
+      "removed": [],
+      "shared": []
+    }
+  },
+  "source_count_delta": {
+    "dry": 0,
+    "enriched": 5,
+    "delta": 5,
+    "by_api": {
+      "youtube_yt_dlp": {
+        "dry": 0,
+        "enriched": 5,
+        "delta": 5
+      }
+    }
+  },
+  "provider_yield_delta": {
+    "by_provider": {
+      "brave": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "courtlistener": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "documentcloud": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "firecrawl": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "llm": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "muckrock": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "youtube": {
+        "dry": 0,
+        "enriched": 1,
+        "delta": 1
+      }
+    },
+    "total_calls": {
+      "dry": 0,
+      "enriched": 1,
+      "delta": 1
+    }
+  },
+  "artifact_yield_delta": {
+    "dry_total": 0,
+    "enriched_total": 5,
+    "delta": 5,
+    "by_type": {
+      "court_video": {
+        "dry": 0,
+        "enriched": 1,
+        "delta": 1
+      },
+      "video_footage": {
+        "dry": 0,
+        "enriched": 4,
+        "delta": 4
+      }
+    },
+    "media_delta": {
+      "dry": 0,
+      "enriched": 5,
+      "delta": 5
+    },
+    "document_delta": {
+      "dry": 0,
+      "enriched": 0,
+      "delta": 0
+    }
+  },
+  "cost_delta": {
+    "dry": 0.0,
+    "enriched": 0.0,
+    "delta": 0.0
+  },
+  "runtime_delta": {
+    "dry": 0.0,
+    "enriched": 1.8847,
+    "delta": 1.8847
+  },
+  "verdict_change": {
+    "dry": "HOLD",
+    "enriched": "PRODUCE",
+    "changed": true
+  },
+  "reason_code_delta": {
+    "added": [
+      "artifact_portfolio_strong",
+      "court_video_present",
+      "media_artifact_present",
+      "multiple_media_artifacts",
+      "production_score_threshold_met"
+    ],
+    "removed": [
+      "no_verified_media"
+    ],
+    "shared": [
+      "high_identity",
+      "sentenced_or_convicted"
+    ]
+  },
+  "risk_flag_delta": {
+    "added": [],
+    "removed": [
+      "no_verified_media"
+    ],
+    "shared": []
+  },
+  "why_not_produce": null
+}
