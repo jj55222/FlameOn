@@ -367,14 +367,9 @@ def build_paper_edit(verdict: Dict[str, Any], sources: List[Source],
 
     # 4. Outcome card. Prefer the REAL disposition from the case doc (D5);
     #    else the P4 content_pitch. Nothing invented.
-    dispo = (doc_extract or {}).get("disposition") or {}
-    if dispo.get("findings"):
-        findings = "; ".join(
-            f"{f['finding']}: {re.sub(r'^[^A-Za-z]+', '', f['charge']).strip()[:45]}"
-            for f in dispo["findings"][:3])
-        disc = ", ".join(dispo.get("discipline_signals", [])[:4])
-        out_title = f"IA {doc_extract.get('ia_case_number', '')}: SUSTAINED"
-        out_sub = findings + (f".  Discipline: {disc}." if disc else ".")
+    oc = (doc_extract or {}).get("outcome_card") or {}
+    if oc.get("title"):
+        out_title, out_sub = oc["title"], oc.get("subtitle", "")
     else:
         out_title = f"Verdict: {verdict.get('verdict', '?')}"
         out_sub = verdict.get("content_pitch") or ""

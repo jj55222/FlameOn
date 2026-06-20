@@ -34,11 +34,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     args = ap.parse_args(argv)
 
     import pypdf
-    import easyocr
     from PIL import Image
 
     args.out.mkdir(parents=True, exist_ok=True)
-    reader = easyocr.Reader(["en"], gpu=False, verbose=False)
+    _reader = []  # lazy easyocr — only built if a scanned page actually needs OCR
+
+    def _ocr_reader():
+        if not _reader:
+            import easyocr
+            _reader.append(easyocr.Reader(["en"], gpu=False, verbose=False))
+        return _reader[0]
+
     pdf = pypdf.PdfReader(str(args.pdf))
     n = len(pdf.pages)
     end = args.end if args.end is not None else n
@@ -53,11 +59,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     for i in range(args.start, end):
         text = ""
         try:
-            imgs = list(pdf.pages[i].images)
-            if imgs:
-                arr = np.array(Image.open(io.BytesIO(imgs[0].data)).convert("RGB"))
-                lines = reader.readtext(arr, detail=0, paragraph=True)
-                text = "\n".join(lines)
+            text = (pdf.pages[i].extract_text() or "").strip()   # prefer text layer
+            if not text:                                          # scanned page -> OCR
+                imgs = list(pdf.pages[i].images)
+                if imgs:
+                    arr = np.array(Image.open(io.BytesIO(imgs[0].data)).convert("RGB"))
+                    text = "\n".join(_ocr_reader().readtext(arr, detail=0, paragraph=True))
         except Exception as exc:  # noqa: BLE001 — keep going, log the page
             text = f"[OCR_ERROR: {type(exc).__name__}: {exc}]"
         pages.append({"page": i + 1, "chars": len(text), "text": text})

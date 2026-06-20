@@ -52,7 +52,7 @@ def _norm(t: str) -> str:
     return re.sub(r"[ \t]+", " ", (t or "")).strip()
 
 
-def extract(pages: List[Dict]) -> Dict:
+def extract_ia(pages: List[Dict]) -> Dict:
     full = "\n".join(p.get("text", "") or "" for p in pages)
     out: Dict = {"ia_case_number": None, "subject": None, "doc_date": None,
                  "disposition": {"findings": [], "discipline_signals": [], "summary": None, "pages": []},
@@ -135,6 +135,107 @@ def extract(pages: List[Dict]) -> Dict:
     return out
 
 
+# --- Use-of-Force Blueteam FORM extractor (labeled fields, not narrative) ---
+_UOF_DATE = re.compile(r"Date of\s*Occurrence.{0,80}?(\d{2}/\d{2}/\d{4})\s+(\d{2}/\d{2}/\d{4})\s+(\d{1,2}:\d{2})", re.S)
+_UOF_REPORT = re.compile(r"Event\s*/?\s*Report\s*#.{0,45}?(\d{2}-\d{5,6})", re.S)
+_UOF_DEPUTY = re.compile(r"Deputy Sheriff\s+([A-Z][A-Z'\-]+\s+[A-Z][A-Z'\-]+)")
+_UOF_VIDEO = re.compile(r"Camera:\s*(.+?)\s*Time:\s*([\d:][\d:\- ]*?(?:Hours|hrs|hours)?)\s*(?:\n|Additional|$)", re.I)
+_UOF_LOC = re.compile(r"Addresses\s*([\dA-Za-z .,'#-]+?CA[,\s]*\d{0,5})", re.S)
+_UOF_WEAPON = re.compile(r"(Confirmed Sharp Weapon|Edged Weapon|Sharp Weapon|Firearm|Knife)", re.I)
+_UOF_REASON = re.compile(r"Reason For Using Force[^\n]*\n\s*([A-Z][a-z]+(?:\s[A-Za-z]+){0,2})")
+_PC = re.compile(r"\bPC\s?(\d{2,4}[A-Za-z()0-9./]*)")
+
+
+def extract_uof(pages: List[Dict], full: str) -> Dict:
+    out: Dict = {"doc_type": "uof_form", "ia_case_number": None, "subject": None,
+                 "doc_date": None, "incident_time": None, "location": None,
+                 "weapon": None, "reason_for_force": None, "citizen_arrested": None,
+                 "disposition": {"findings": [], "discipline_signals": [], "summary": None, "pages": []},
+                 "narrative": None, "charges": [], "evidence_pointers": [],
+                 "clip_directions": [], "people": [], "dates": []}
+    m = _UOF_REPORT.search(full)
+    if m:
+        out["ia_case_number"] = m.group(1)
+    m = _UOF_DATE.search(full)
+    if m:
+        out["doc_date"], out["incident_time"] = m.group(2), m.group(3)
+    m = _UOF_DEPUTY.search(full)
+    if m:
+        out["subject"] = " ".join(w.capitalize() for w in m.group(1).split())
+        out["people"].append(out["subject"])
+    m = _UOF_LOC.search(full)
+    if m:
+        out["location"] = _norm(m.group(1))[:70]
+    m = _UOF_WEAPON.search(full)
+    if m:
+        out["weapon"] = m.group(1)
+    m = _UOF_REASON.search(full)
+    if m:
+        out["reason_for_force"] = _norm(m.group(1))
+    out["citizen_arrested"] = bool(re.search(r"Citizen Arrested\s*\n?\s*Yes", full, re.I)) \
+        or "Suspect/Arrestee" in full
+    out["charges"] = sorted(set("PC " + x.group(1) for x in _PC.finditer(full)))[:8]
+
+    # CLIP DIRECTIONS straight from the form's "Video Available" field — these
+    # point at our actual footage (camera + relevant time window).
+    for pg, t in ((p["page"], p.get("text", "") or "") for p in pages):
+        for vm in _UOF_VIDEO.finditer(t):
+            out["clip_directions"].append(
+                {"kind": "bwc_window", "ref": _norm(vm.group(1))[:60],
+                 "window": _norm(vm.group(2)), "page": pg, "priority": 3})
+    out["evidence_pointers"] = list(out["clip_directions"])
+
+    # Narrative + disposition summary (a UoF report documents force; it carries
+    # no SUSTAINED/UNFOUNDED finding like an IA complaint).
+    bits = []
+    if out["reason_for_force"]:
+        bits.append(f"reason: {out['reason_for_force']}")
+    if out["weapon"]:
+        bits.append(out["weapon"].lower())
+    if out["citizen_arrested"]:
+        bits.append("suspect arrested")
+    out["disposition"]["summary"] = (
+        "Use-of-Force report" + (" — " + "; ".join(bits) if bits else "")
+        + "; supervisor-reviewed, no further investigation.")
+    return out
+
+
+def _compose_outcome_card(d: Dict) -> Dict:
+    """Per-doc-type outcome card text (title + subtitle)."""
+    if d.get("doc_type") == "uof_form":
+        parts = []
+        if d.get("doc_date"):
+            parts.append(d["doc_date"])
+        if d.get("subject"):
+            parts.append(f"Dep. {d['subject'].split()[-1]}")
+        if d.get("weapon"):
+            parts.append(d["weapon"])
+        if d.get("location"):
+            parts.append(d["location"])
+        sub = " · ".join(parts) + ".  Disposition: supervisor-reviewed, no further investigation."
+        return {"title": f"Use of Force · #{d.get('ia_case_number', '')}", "subtitle": sub}
+    # IA narrative
+    dispo = d.get("disposition", {})
+    if dispo.get("findings"):
+        findings = "; ".join(f"{f['finding']}: {f['charge'][:45]}" for f in dispo["findings"][:3])
+        disc = ", ".join(dispo.get("discipline_signals", [])[:4])
+        return {"title": f"IA {d.get('ia_case_number', '')}: SUSTAINED",
+                "subtitle": findings + (f".  Discipline: {disc}." if disc else ".")}
+    return {"title": "Outcome", "subtitle": dispo.get("summary") or ""}
+
+
+def extract(pages: List[Dict]) -> Dict:
+    """Dispatch on document type: Blueteam UoF form vs IA narrative report."""
+    full = "\n".join(p.get("text", "") or "" for p in pages)
+    if re.search(r"Use\s*Of\s*Force\s*Report|Blueteam", full, re.I):
+        data = extract_uof(pages, full)
+    else:
+        data = extract_ia(pages)
+        data["doc_type"] = "ia_narrative"
+    data["outcome_card"] = _compose_outcome_card(data)
+    return data
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="GOAL_D D5 — extract structure from an OCR'd case doc")
     ap.add_argument("--pages", required=True, type=Path, help="doc_ocr pages.json")
@@ -147,7 +248,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     out.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     d = data["disposition"]
-    print(f"IA case: {data['ia_case_number']}  subject: {data['subject']}  date: {data['doc_date']}")
+    oc = data.get("outcome_card", {})
+    print(f"doc_type: {data.get('doc_type')}  case#: {data['ia_case_number']}  "
+          f"subject: {data['subject']}  date: {data['doc_date']}")
+    print(f"OUTCOME CARD: {oc.get('title')} | {oc.get('subtitle', '')[:130]}")
     print(f"\nDISPOSITION ({len(d['findings'])} findings; discipline: {d['discipline_signals']}):")
     for f in d["findings"][:8]:
         print(f"   [{f['finding']}] {f['charge']}  (p{f['page']})")
