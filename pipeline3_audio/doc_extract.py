@@ -143,7 +143,49 @@ _UOF_VIDEO = re.compile(r"Camera:\s*(.+?)\s*Time:\s*([\d:][\d:\- ]*?(?:Hours|hrs
 _UOF_LOC = re.compile(r"Addresses\s*([\dA-Za-z .,'#-]+?CA[,\s]*\d{0,5})", re.S)
 _UOF_WEAPON = re.compile(r"(Confirmed Sharp Weapon|Edged Weapon|Sharp Weapon|Firearm|Knife)", re.I)
 _UOF_REASON = re.compile(r"Reason For Using Force[^\n]*\n\s*([A-Z][a-z]+(?:\s[A-Za-z]+){0,2})")
-_PC = re.compile(r"\bPC\s?(\d{2,4}[A-Za-z()0-9./]*)")
+
+# Charges come ONLY from explicitly-labeled charge fields — never a global "PC"
+# scan. These bundles are dense with penal-code citations that are NOT charges:
+# PC 832.7 (peace-officer personnel-records exemption) and PC 13300-13302 / 13800
+# (DOJ criminal-records act) are redaction stamps on nearly every page, and CAD
+# logs carry field codes (PC 08/09). A blanket scan swept all of those up as
+# "charges". Three labeled contexts cover the DA/booking + dispatch formats:
+#   1. "Charge Statute PC <statute>" — structured CHARGE SUMMARY (formal counts)
+#   2. "Charges: PC.. PC.."          — an explicit charges label, when present
+#   3. "Clear remarks:/REM-" line    — CAD disposition; carries refs the formal
+#                                      summary drops (e.g. an unfounded PC 417)
+_CHARGE_STATUTE = re.compile(r"Charge\s+Statute\s+PC\s*(\d{2,4})", re.I)
+_CHARGES_LABEL = re.compile(r"\bCharges?\b\s*[:\-]?\s*((?:PC\s?\d{2,4}[\w()./]*[ ,]*){1,12})", re.I)
+_REMARKS = re.compile(r"(?:Clear\s+remarks|\bREM)\s*[:\-]\s*([^\n]+)", re.I)
+_PC_NUM = re.compile(r"(?:PC)?\s?(\d{2,4})", re.I)
+_REMARK_STARTS_PC = re.compile(r"PC\s?\d", re.I)
+_WORD3 = re.compile(r"[A-Za-z]{3,}")
+
+
+def _charges_from_remark(value: str) -> List[str]:
+    """Statutes from a CAD clear-remark, but only when it leads with the charge
+    list (e.g. "PC459, X2 148A(1), 417 UNFOUNDED"). Disposition-only remarks
+    ("CHECKED OKAY", "SUBJ LEFT") don't start with PC and are skipped. Reads only
+    the leading run — up to the first word like "UNFOUNDED" — so a CAD mega-line
+    can't trail its PC 832.7 / PC 13300 redaction citations into the result."""
+    value = value.strip()
+    if not _REMARK_STARTS_PC.match(value):
+        return []
+    w = _WORD3.search(value)
+    run = value[:w.start()] if w else value
+    return [m.group(1) for m in _PC_NUM.finditer(run)]
+
+
+def _extract_charges(full: str) -> List[str]:
+    """Suspect charges from labeled fields only — base PC statutes, deduped."""
+    nums = set()
+    for m in _CHARGE_STATUTE.finditer(full):
+        nums.add(m.group(1))
+    for m in _CHARGES_LABEL.finditer(full):
+        nums.update(s.group(1) for s in re.finditer(r"PC\s?(\d{2,4})", m.group(1), re.I))
+    for m in _REMARKS.finditer(full):
+        nums.update(_charges_from_remark(m.group(1)))
+    return sorted("PC " + n for n in nums)
 
 
 def extract_uof(pages: List[Dict], full: str) -> Dict:
@@ -174,7 +216,7 @@ def extract_uof(pages: List[Dict], full: str) -> Dict:
         out["reason_for_force"] = _norm(m.group(1))
     out["citizen_arrested"] = bool(re.search(r"Citizen Arrested\s*\n?\s*Yes", full, re.I)) \
         or "Suspect/Arrestee" in full
-    out["charges"] = sorted(set("PC " + x.group(1) for x in _PC.finditer(full)))[:8]
+    out["charges"] = _extract_charges(full)
 
     # CLIP DIRECTIONS straight from the form's "Video Available" field — these
     # point at our actual footage (camera + relevant time window).
