@@ -23,6 +23,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -88,16 +89,29 @@ def _b64_png(path: str) -> str:
         return base64.b64encode(f.read()).decode("ascii")
 
 
+def _strip_fences(s: str) -> str:
+    """Strip ```json … ``` fences and grab the outermost JSON object/array.
+    Self-contained (vision_scan can't assume pipeline4's clean_llm_output is on
+    the path — that gap silently dropped every fenced reply)."""
+    s = (s or "").strip()
+    s = re.sub(r"^```(?:json)?\s*\n?", "", s)
+    s = re.sub(r"\n?```\s*$", "", s).strip()
+    # extract from whichever bracket opens FIRST (so a bare [..] isn't truncated)
+    opens = [(s.find(ch), ch) for ch in "{[" if s.find(ch) != -1]
+    if not opens:
+        return s
+    pos, open_ch = min(opens)
+    end = s.rfind("}" if open_ch == "{" else "]")
+    return s[pos:end + 1] if end > pos else s
+
+
 def parse_events(raw: str, valid_window: Optional[Tuple[float, float]] = None) -> List[Dict]:
     """Parse a VLM JSON reply into validated event dicts. Tolerant of the usual
-    LLM shape drift (an object with an ``events`` list, or a bare list). Drops
-    anything without a numeric timecode; clamps event_type to the taxonomy; keeps
-    only timecodes inside ``valid_window`` when given (no invented timestamps)."""
-    try:
-        from llm_backends import clean_llm_output  # type: ignore
-        raw = clean_llm_output(raw)
-    except Exception:
-        pass
+    LLM shape drift (markdown fences, an object with an ``events`` list, or a bare
+    list). Drops anything without a numeric timecode; clamps event_type to the
+    taxonomy; keeps only timecodes inside ``valid_window`` (no invented stamps)."""
+    if isinstance(raw, str):
+        raw = _strip_fences(raw)
     try:
         data = json.loads(raw) if isinstance(raw, str) else raw
     except (json.JSONDecodeError, TypeError):
@@ -279,7 +293,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     else:
         try:
             from dotenv import load_dotenv  # type: ignore
-            load_dotenv()
+            load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # repo-root .env
+            load_dotenv()                                                  # cwd fallback
         except Exception:
             pass
         backend = VisionBackend(model=args.model)

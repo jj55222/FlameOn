@@ -37,6 +37,14 @@ def test_parse_events_happy_path():
     assert ev[0]["confidence"] == 0.9
 
 
+def test_parse_events_strips_markdown_fences():
+    # the real model wraps JSON in ```json … ``` — must not be dropped
+    raw = ('```json\n{"events":[{"timecode_sec":58.3,"event_type":"k9_deployment",'
+           '"actor":"K9","description":"a K9 runs in the road","confidence":0.9}]}\n```')
+    ev = vs.parse_events(raw)
+    assert len(ev) == 1 and ev[0]["event_type"] == "k9_deployment"
+
+
 def test_parse_events_tolerates_bare_list_and_alt_keys():
     raw = '[{"t":10,"type":"taser","who":"Officer A","desc":"taser deployed"}]'
     ev = vs.parse_events(raw)
