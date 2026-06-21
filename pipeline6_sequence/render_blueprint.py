@@ -263,7 +263,10 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                              "title": act.get("title", aid),
                              "subtitle": (act.get("thesis") or "")[:140],
                              "dur": rc.PHASE_CARD_SEC})
-        for b in bl:
+        # Establishing B-roll LEADS its act — it never interrupts a continuous
+        # camera run (a "vehicle en route" cut dropped into the middle of the K9
+        # chase read as a backtrack). sorted() is stable, so action order holds.
+        for b in sorted(bl, key=lambda x: 0 if x.get("is_broll") else 1):
             _emit_beat(b)
 
     resolve_clip_overlaps(timeline)   # never replay the same footage

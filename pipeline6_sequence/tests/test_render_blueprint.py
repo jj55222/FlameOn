@@ -181,6 +181,31 @@ def test_acts_play_in_canonical_order_even_when_beats_stored_out_of_order():
     assert media_order.index("911A.mp3") < media_order.index("BWC-1a.mp4")
 
 
+def test_broll_leads_act_not_interrupting_action():
+    # an establishing B-roll stored AFTER the action beat must still render FIRST
+    bp = {
+        "case_id": "c", "agency": "A", "logline": "L", "incident": {},
+        "asset_manifest": [
+            {"asset_id": "v_bwc5a", "kind": "bodycam", "path": "BWC-5a.mp4", "duration_sec": 300},
+            {"asset_id": "v_icc1a", "kind": "dashcam", "path": "ICC-1a.mp4", "duration_sec": 600},
+        ],
+        "acts": [{"act_id": "act_incident", "title": "The Incident", "function": "escalate",
+                  "target_sec": 60, "thesis": "x"}],
+        "beats": [
+            {"beat_id": "act1", "act_id": "act_incident", "function": "k9_deployment",
+             "primary_asset": {"asset_id": "v_bwc5a", "in_sec": 53, "out_sec": 58},
+             "quote": None, "lower_third": {"text": "K9"}, "source_refs": []},
+            {"beat_id": "br1", "act_id": "act_incident", "function": "scene", "is_broll": True,
+             "primary_asset": {"asset_id": "v_icc1a", "in_sec": 90, "out_sec": 100},
+             "quote": None, "lower_third": {"text": "ICC-1a"}, "source_refs": []},
+        ],
+        "metadata": {},
+    }
+    pe = rb.blueprint_to_paper_edit(bp)
+    media = [e["media"] for e in pe["timeline"] if e["kind"] == "clip"]
+    assert media.index("ICC-1a.mp4") < media.index("BWC-5a.mp4")   # establishing leads
+
+
 def test_resolve_clip_overlaps_prevents_same_media_replay():
     tl = [
         {"kind": "clip", "media": "BWC-5a.mp4", "in_sec": 66, "out_sec": 97},
