@@ -382,6 +382,10 @@ def build_metadata(manifest: List[Dict], acts: List[Dict], beats: List[Dict],
 
 _FORCE_EVENTS = {"k9_deployment", "taser", "strike", "takedown", "weapon_drawn",
                  "firearm_pointed", "use_of_force_other"}
+# Visual-action events keep their beat even next to dialogue: a spoken "dog on
+# bite!" and the VISIBLE release are complementary angles, not a duplicate — the
+# whole reason vision exists is to show what audio can't.
+_VISUAL_KEEP = _FORCE_EVENTS | {"foot_pursuit", "handcuffing"}
 
 
 def _humanize(event_type: str) -> str:
@@ -436,7 +440,9 @@ def build_vision_beats(vision_events: List[Dict], manifest: List[Dict],
         if not asset:
             continue
         at = ev_abs(ev)
-        if at is not None and any(abs(at - t) <= dedup_tol for t in tb_abs):
+        # generic vision events defer to dialogue; visual-action events never do.
+        if (at is not None and ev["event_type"] not in _VISUAL_KEEP
+                and any(abs(at - t) <= dedup_tol for t in tb_abs)):
             continue
         dur = float(asset.get("duration_sec") or 0)
         ts = float(ev["timecode_sec"])

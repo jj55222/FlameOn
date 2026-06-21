@@ -254,13 +254,23 @@ def test_vision_cross_pov_dedup_keeps_highest_confidence_camera():
     assert vb[0]["quote"] is None
 
 
-def test_vision_event_deduped_against_transcript_moment():
-    # a takedown the dialogue already covers (abs time within tol) is dropped
-    events = [{"artifact_id": "BWC-5a", "timecode_sec": 120, "event_type": "takedown", "confidence": 0.8}]
+def test_generic_vision_event_deduped_against_transcript_moment():
+    # a NON-action vision event the dialogue already covers (abs time within tol) is dropped
+    events = [{"artifact_id": "BWC-5a", "timecode_sec": 120, "event_type": "search", "confidence": 0.8}]
     transcript_beat = {"primary_asset": {"asset_id": "v_bwc5a", "in_sec": 120 - bp.HEAD_PAD}}
     vb = bp.build_vision_beats(events, _vision_manifest(), _vision_index(), "Agency",
                                existing_beats=[transcript_beat])
     assert vb == []
+
+
+def test_force_vision_event_kept_even_next_to_dialogue():
+    # a visual force event (the K9 release) is complementary to a nearby spoken
+    # line, not a duplicate — it must survive transcript dedup.
+    events = [{"artifact_id": "BWC-5a", "timecode_sec": 120, "event_type": "k9_deployment", "confidence": 0.9}]
+    transcript_beat = {"primary_asset": {"asset_id": "v_bwc5a", "in_sec": 120 - bp.HEAD_PAD}}
+    vb = bp.build_vision_beats(events, _vision_manifest(), _vision_index(), "Agency",
+                               existing_beats=[transcript_beat])
+    assert len(vb) == 1 and vb[0]["function"] == "k9_deployment"
 
 
 def test_vision_event_kept_when_no_transcript_nearby():
