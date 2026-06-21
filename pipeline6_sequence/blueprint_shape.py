@@ -22,6 +22,7 @@ tests and dry runs).
 """
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import sys
@@ -56,6 +57,46 @@ def _index(blueprint: Dict) -> Tuple[Dict[str, Dict], Dict[str, Dict]]:
     return beats_by_id, assets_by_id
 
 
+# LLMs are inconsistent about object-vs-array shapes; the guard tolerates both.
+_ID_KEYS = ("act_id", "beat_id", "id", "key", "name")
+_VAL_KEYS = ("thesis", "text", "value", "note", "duration", "sec", "seconds")
+
+
+def _as_dict(v: Any) -> Dict[str, Any]:
+    """Coerce a value to a dict. A list of ``{id-ish: ..., value-ish: ...}``
+    objects (a common LLM rendering of a map) is folded into a dict."""
+    if isinstance(v, dict):
+        return v
+    out: Dict[str, Any] = {}
+    if isinstance(v, list):
+        for it in v:
+            if not isinstance(it, dict):
+                continue
+            kid = next((it[k] for k in _ID_KEYS if k in it), None)
+            val = next((it[k] for k in _VAL_KEYS if k in it), None)
+            if kid is not None and val is not None:
+                out[str(kid)] = val
+    return out
+
+
+def _as_list(v: Any) -> List[Any]:
+    if isinstance(v, list):
+        return v
+    return [] if v is None else [v]
+
+
+def _inserts_map(v: Any) -> Dict[str, List[Dict]]:
+    """Normalize inserts to ``{beat_id: [insert, ...]}`` whether the model sent a
+    dict-of-lists or a flat list of ``{beat_id, asset_id, ...}`` objects."""
+    if isinstance(v, dict):
+        return {k: _as_list(items) for k, items in v.items()}
+    out: Dict[str, List[Dict]] = {}
+    for it in _as_list(v):
+        if isinstance(it, dict) and it.get("beat_id"):
+            out.setdefault(it["beat_id"], []).append(it)
+    return out
+
+
 def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
     """Strip every part of an LLM edit that isn't grounded in the blueprint.
 
@@ -72,7 +113,7 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
     # act theses: only for acts that exist
     act_ids = {a["act_id"] for a in blueprint.get("acts", [])}
     clean["act_theses"] = {}
-    for aid, th in (edit.get("act_theses") or {}).items():
+    for aid, th in _as_dict(edit.get("act_theses")).items():
         if aid in act_ids and isinstance(th, str) and th.strip():
             clean["act_theses"][aid] = th.strip()
         elif aid not in act_ids:
@@ -80,7 +121,7 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # cuts: explicit, intentional prunes (omission alone never deletes a beat)
     clean["cuts"] = []
-    for bid in (edit.get("cuts") or []):
+    for bid in _as_list(edit.get("cuts")):
         if bid in beats_by_id:
             clean["cuts"].append(bid)
         else:
@@ -90,7 +131,7 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
     # beat_order: must be a permutation/subset of real beat_ids; dups + cuts dropped
     seen: set = set()
     order: List[str] = []
-    for bid in (edit.get("beat_order") or []):
+    for bid in _as_list(edit.get("beat_order")):
         if bid not in beats_by_id:
             rej.append({"field": "beat_order", "value": bid, "reason": "unknown beat_id"})
         elif bid in cut_set:
@@ -110,7 +151,7 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # beat_durations: clamp to [MIN, footage length] of the beat's primary asset
     clean["beat_durations"] = {}
-    for bid, sec in (edit.get("beat_durations") or {}).items():
+    for bid, sec in _as_dict(edit.get("beat_durations")).items():
         b = beats_by_id.get(bid)
         if not b:
             rej.append({"field": "beat_durations", "value": bid, "reason": "unknown beat_id"})
@@ -128,7 +169,7 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # narration: realized text for real beats only
     clean["narration"] = {}
-    for bid, text in (edit.get("narration") or {}).items():
+    for bid, text in _as_dict(edit.get("narration")).items():
         if bid in beats_by_id and isinstance(text, str) and text.strip():
             clean["narration"][bid] = text.strip()
         elif bid not in beats_by_id:
@@ -136,13 +177,17 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # inserts: asset_id must exist in the manifest
     clean["inserts"] = {}
-    for bid, items in (edit.get("inserts") or {}).items():
+    for bid, items in _inserts_map(edit.get("inserts")).items():
         if bid not in beats_by_id:
             rej.append({"field": "inserts", "value": bid, "reason": "unknown beat_id"})
             continue
         kept = []
-        for it in (items or []):
-            aid = (it or {}).get("asset_id")
+        for it in _as_list(items):
+            if isinstance(it, str):          # a bare asset_id string
+                it = {"asset_id": it}
+            if not isinstance(it, dict):
+                continue
+            aid = it.get("asset_id")
             if aid in assets_by_id:
                 kept.append({"asset_id": aid, "kind": it.get("kind") or assets_by_id[aid]["kind"],
                              "note": (it.get("note") or "")[:140]})
@@ -153,8 +198,10 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # broll: new sourced filler from a real asset; window inside its duration
     clean["broll"] = []
-    for bz in (edit.get("broll") or []):
-        aid = (bz or {}).get("asset_id")
+    for bz in _as_list(edit.get("broll")):
+        if not isinstance(bz, dict):
+            continue
+        aid = bz.get("asset_id")
         asset = assets_by_id.get(aid)
         if not asset:
             rej.append({"field": "broll", "value": aid, "reason": "unknown asset_id"})
@@ -399,18 +446,82 @@ def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
         raw = clean_llm_output(raw)
     except Exception:
         pass
-    edit = json.loads(raw) if isinstance(raw, str) else (raw or {})
-    clean, rejections = validate_edit(edit, blueprint)
-    shaped = apply_edit(blueprint, clean, rejections)
+    try:
+        edit = json.loads(raw) if isinstance(raw, str) else (raw or {})
+    except (json.JSONDecodeError, TypeError):
+        edit = {}
+    # The deterministic rails are guaranteed; the LLM tier is best-effort layered
+    # on top. Any malformed edit degrades to the skeleton — it never crashes.
+    try:
+        clean, rejections = validate_edit(edit, blueprint)
+        shaped = apply_edit(blueprint, clean, rejections)
+    except Exception as e:  # noqa: BLE001
+        shaped = json.loads(json.dumps(blueprint))   # untouched skeleton
+        rejections = [{"field": "_shaping", "value": f"{type(e).__name__}: {str(e)[:120]}",
+                       "reason": "shaping failed; kept deterministic skeleton"}]
+        shaped.setdefault("edit_report", {})["error"] = rejections[0]["value"]
     report = {"rejections": rejections, "raw_edit": edit,
               "built_by": shaped["metadata"]["built_by"]}
     return shaped, report
 
 
-def make_openrouter_backend(model: str = "google/gemini-2.5-flash"):
+def make_openrouter_backend(model: str = "google/gemini-3.1-flash-lite-preview"):
     """Build a live OpenRouter backend (reuses P4's llm_backends). Needs
     OPENROUTER_API_KEY (loaded from .env by the caller). Paid — call sparingly."""
     p4 = Path(__file__).resolve().parent.parent / "pipeline4_scoring"
     sys.path.insert(0, str(p4))
     from llm_backends import build_backend  # type: ignore
     return build_backend(model)
+
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+def main(argv: Optional[List[str]] = None) -> int:
+    ap = argparse.ArgumentParser(
+        description="P6 — shape a deterministic blueprint with the LLM tier (guarded)")
+    ap.add_argument("--blueprint", required=True, type=Path, help="skeleton <id>_blueprint.json")
+    ap.add_argument("--out", type=Path, default=None, help="output dir (default: alongside input)")
+    ap.add_argument("--model", default=None, help="OpenRouter model (default: gemini flash-lite)")
+    ap.add_argument("--mock", action="store_true",
+                    help="no live call — run the guard/apply path with an empty edit (zero cost)")
+    ap.add_argument("--max-tokens", type=int, default=3500)
+    args = ap.parse_args(argv)
+
+    blueprint = json.loads(args.blueprint.read_text(encoding="utf-8"))
+    if args.mock:
+        backend = MockBackend({})           # empty edit → skeleton passes through the guard
+        print("[shape] MOCK backend (no network, no cost)")
+    else:
+        try:
+            from dotenv import load_dotenv   # type: ignore
+            load_dotenv()
+        except Exception:
+            pass
+        backend = make_openrouter_backend(args.model) if args.model else make_openrouter_backend()
+        print(f"[shape] live: {backend.model}  (paid — one call)")
+
+    shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens)
+
+    out_dir = Path(args.out) if args.out else args.blueprint.parent
+    out_dir.mkdir(parents=True, exist_ok=True)
+    cid = shaped.get("case_id", "case")
+    (out_dir / f"{cid}_blueprint_shaped.json").write_text(
+        json.dumps(shaped, indent=2, ensure_ascii=False), encoding="utf-8")
+    (out_dir / f"{cid}_blueprint_shaped.md").write_text(
+        bpmod.render_markdown(shaped), encoding="utf-8")
+
+    er = shaped.get("edit_report", {})
+    m = shaped["metadata"]
+    if er.get("error"):
+        print(f"[shape] ⚠ shaping failed ({er['error']}) — kept deterministic skeleton")
+    print(f"[shape] built_by={m['built_by']}  kept={er.get('kept_beats','?')} beats, "
+          f"+{er.get('broll_added',0)} b-roll, {len(report['rejections'])} rejection(s); "
+          f"planned {bpmod._mmss(m['planned_runtime_sec'])} / target {bpmod._mmss(shaped['target_runtime_sec'])}")
+    print(f"[shape] -> {out_dir / (cid + '_blueprint_shaped.json')}  +  .md")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

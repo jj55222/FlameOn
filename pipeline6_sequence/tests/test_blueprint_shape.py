@@ -182,8 +182,37 @@ def test_shape_blueprint_end_to_end_with_mock():
     assert "asset_manifest" in (report["raw_edit"] and "" or "") or True
 
 
+def test_validator_tolerates_list_shaped_fields():
+    # LLMs often render maps as arrays; the guard must coerce, not crash.
+    edit = {
+        "act_theses": [{"act_id": "act_incident", "thesis": "It escalates."}],
+        "beat_durations": [{"beat_id": "b00", "sec": 14}],
+        "narration": [{"beat_id": "b00", "text": "A line."}],
+        "inserts": [{"beat_id": "b00", "asset_id": "doc_uofform", "kind": "document"}],
+    }
+    clean, rej = bs.validate_edit(edit, _blueprint())
+    assert clean["act_theses"] == {"act_incident": "It escalates."}
+    assert clean["beat_durations"]["b00"] == 14.0
+    assert clean["narration"]["b00"] == "A line."
+    assert clean["inserts"]["b00"][0]["asset_id"] == "doc_uofform"
+    # and it applies cleanly
+    shaped = bs.apply_edit(_blueprint(), clean, rej)
+    assert shaped["metadata"]["built_by"] == "llm_shaped"
+
+
 def test_mock_backend_returns_prompt_aware_json():
     mb = bs.MockBackend({"logline": "Z"})
     out = mb.complete(system="s", user="u")
     assert '"logline": "Z"' in out
     assert mb.last_prompt == "u"
+
+
+def test_cli_mock_writes_shaped_json_and_md(tmp_path):
+    import json as _json
+    bpf = tmp_path / "x_1_blueprint.json"
+    bpf.write_text(_json.dumps(_blueprint()), encoding="utf-8")
+    rc = bs.main(["--blueprint", str(bpf), "--mock", "--out", str(tmp_path)])
+    assert rc == 0
+    shaped = _json.loads((tmp_path / "x_1_blueprint_shaped.json").read_text(encoding="utf-8"))
+    assert shaped["metadata"]["built_by"] == "llm_shaped"
+    assert (tmp_path / "x_1_blueprint_shaped.md").exists()

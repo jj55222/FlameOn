@@ -438,13 +438,13 @@ def render_markdown(bp: Dict) -> str:
         md.append(f"**Charges:** {', '.join(inc.get('charges', [])) or '—'}  ")
         md.append(f"**Disposition:** {inc.get('disposition') or '—'}\n")
 
-    m = bp["metadata"]
-    md.append(f"> Planned **{_mmss(m['planned_runtime_sec'])}** vs target "
-              f"{_mmss(bp['target_runtime_sec'])} "
-              f"({m['runtime_vs_target_sec']:+.0f}s) · "
-              f"{len(bp['beats'])} beats · "
-              f"{m['asset_completeness_pct']:.0f}% phase coverage · "
-              f"{m['unsourced_beats']} unsourced beat(s)\n")
+    m = bp.get("metadata", {})
+    md.append(f"> Planned **{_mmss(m.get('planned_runtime_sec', 0))}** vs target "
+              f"{_mmss(bp.get('target_runtime_sec', 0))} "
+              f"({m.get('runtime_vs_target_sec', 0):+.0f}s) · "
+              f"{len(bp.get('beats', []))} beats · "
+              f"{m.get('asset_completeness_pct', 0):.0f}% phase coverage · "
+              f"{m.get('unsourced_beats', 0)} unsourced beat(s)\n")
 
     md.append("## Asset Manifest")
     md.append("| id | kind | label | phase | dur | transcript |")
@@ -478,7 +478,8 @@ def render_markdown(bp: Dict) -> str:
             md.append(f"- **[{b['function']} · {_mmss(b['target_duration_sec'])}]** {loc}"
                       f" — {b['lower_third']['text']}{q}")
             if b.get("narration_bridge"):
-                md.append(f"    - _narration:_ {b['narration_bridge']['brief']}")
+                nb = b["narration_bridge"]
+                md.append(f"    - _narration:_ {nb.get('text') or nb.get('brief') or ''}")
         md.append("")
 
     md.append("## Factual Integrity Ledger")
