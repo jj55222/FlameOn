@@ -223,6 +223,7 @@ def build_beats(verdict: Dict, sources: List, manifest: List[Dict],
             "_description": m.get("description", ""),
             "_importance": m.get("importance"),
             "_phase": phase,
+            "_abs": abs_t(m),
         })
     return beats
 
@@ -376,6 +377,91 @@ def build_metadata(manifest: List[Dict], acts: List[Dict], beats: List[Dict],
 
 
 # ---------------------------------------------------------------------------
+# Vision beats — the silent visual moments a transcript can't see (vision_scan)
+# ---------------------------------------------------------------------------
+
+_FORCE_EVENTS = {"k9_deployment", "taser", "strike", "takedown", "weapon_drawn",
+                 "firearm_pointed", "use_of_force_other"}
+
+
+def _humanize(event_type: str) -> str:
+    return (event_type or "").replace("_", " ").title()
+
+
+def build_vision_beats(vision_events: List[Dict], manifest: List[Dict],
+                       timeline_index: Dict[str, Dict], agency: str,
+                       existing_beats: List[Dict], pad: float = 4.0,
+                       dedup_tol: float = 8.0, cross_pov_bucket: float = 5.0) -> List[Dict]:
+    """Turn vision_scan events into sourced beats. Two key behaviours:
+
+    * **POV-by-doer / cross-POV dedup** — the same force event seen on several
+      cameras collapses to ONE beat, kept on the highest-confidence camera (the
+      best view, ≈ the actor's angle).
+    * **No double-count** — a vision event within ``dedup_tol`` (absolute time) of
+      an existing transcript beat is dropped (the spoken moment already covers it).
+    """
+    if not vision_events:
+        return []
+    credit = f"Courtesy {agency}".strip()
+    by_label = {m.get("pov_label"): m for m in manifest}
+    by_id = {m["asset_id"]: m for m in manifest}
+
+    def art_epoch(aid: str) -> Optional[float]:
+        return (timeline_index.get(aid) or {}).get("start_epoch")
+
+    def ev_abs(ev: Dict) -> Optional[float]:
+        e = art_epoch(ev.get("artifact_id"))
+        return (e + float(ev["timecode_sec"])) if e is not None else None
+
+    # cross-POV dedup -> one event per (type, time-bucket), highest confidence wins
+    groups: Dict[Any, Dict] = {}
+    for i, ev in enumerate(vision_events):
+        at = ev_abs(ev)
+        key = (ev["event_type"], round(at / cross_pov_bucket) if at is not None else f"_{i}")
+        if key not in groups or ev["confidence"] > groups[key]["confidence"]:
+            groups[key] = ev
+
+    # absolute times of the transcript beats, to skip vision duplicates of dialogue
+    tb_abs: List[float] = []
+    for b in existing_beats:
+        pa = b.get("primary_asset") or {}
+        m = by_id.get(pa.get("asset_id"))
+        ep = art_epoch(m["pov_label"]) if m else None
+        if ep is not None:
+            tb_abs.append(ep + float(pa.get("in_sec", 0)) + HEAD_PAD)
+
+    out: List[Dict] = []
+    for ev in sorted(groups.values(), key=lambda e: (ev_abs(e) is None, ev_abs(e) or e["timecode_sec"])):
+        asset = by_label.get(ev.get("artifact_id"))
+        if not asset:
+            continue
+        at = ev_abs(ev)
+        if at is not None and any(abs(at - t) <= dedup_tol for t in tb_abs):
+            continue
+        dur = float(asset.get("duration_sec") or 0)
+        ts = float(ev["timecode_sec"])
+        in_sec, out_sec = max(0.0, ts - pad), (min(dur, ts + pad) if dur else ts + pad)
+        out.append({
+            "act_id": f"act_{asset.get('phase') or 'incident'}",
+            "function": ev["event_type"],
+            "target_duration_sec": round(min(20.0, max(6.0, out_sec - in_sec)), 1),
+            "primary_asset": {"asset_id": asset["asset_id"],
+                              "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2)},
+            "quote": None, "inserts": [],
+            "lower_third": {"text": _humanize(ev["event_type"]),
+                            "attribution_confidence": round(float(ev.get("confidence", 0.5)), 2)},
+            "narration_bridge": None, "credit": credit,
+            "source_refs": [f"{asset['asset_id']}@{ts:g}", "vision"],
+            "source": "vision", "is_vision": True,
+            "_description": ev.get("description", ""),
+            "_importance": "high" if ev["event_type"] in _FORCE_EVENTS else "medium",
+            "_phase": asset.get("phase") or "incident",
+            "_abs": at,
+        })
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Assembly
 # ---------------------------------------------------------------------------
 
@@ -387,7 +473,8 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
                     doc_extracts: List[Dict], doc_paths: List[Optional[str]],
                     sources: List, timeline_index: Dict[str, Dict], agency: str,
                     target_runtime: float = DEFAULT_RUNTIME,
-                    media_dir: Optional[Path] = None) -> Dict:
+                    media_dir: Optional[Path] = None,
+                    vision_events: Optional[List[Dict]] = None) -> Dict:
     transcribed_stems = {Path(str(s.media_path)).stem for s in sources if s.media_path}
     manifest, stem_to_id = build_asset_manifest(
         artifacts, timeline_index, transcribed_stems, doc_extracts, doc_paths,
@@ -395,6 +482,18 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
     incident = build_incident(doc_extracts, timeline)
     beats = build_beats(verdict, sources, manifest, stem_to_id, agency)
     _add_bridges(beats, incident)
+    # Vision beats: the silent visual moments (K9 release, takedown) the transcript
+    # missed. Merge, then re-order chronologically within each phase + renumber.
+    if vision_events:
+        vbeats = build_vision_beats(vision_events, manifest, timeline_index, agency, beats)
+        if vbeats:
+            _PHASE_IDX = {p: i for i, (p, _, _) in enumerate(_PHASE_ACT)}
+            beats = sorted(beats + vbeats,
+                           key=lambda b: (_PHASE_IDX.get(b.get("_phase"), 99),
+                                          b.get("_abs") is None, b.get("_abs") or 0.0))
+            for n, b in enumerate(beats):
+                b["beat_id"] = f"b{n:02d}"
+                b["ordinal"] = n
     acts = build_acts(timeline, beats, doc_extracts, target_runtime)
     ledger = build_integrity_ledger(beats, incident, doc_extracts)
     gaps = build_gaps(manifest, timeline, beats, incident)
@@ -512,6 +611,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--media-dir", type=Path, default=None)
     ap.add_argument("--agency", default="Releasing agency")
     ap.add_argument("--target-runtime", type=float, default=DEFAULT_RUNTIME)
+    ap.add_argument("--vision", type=Path, default=None,
+                    help="vision_scan events.json -> add silent visual moments as beats")
     ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
     args = ap.parse_args(argv)
 
@@ -522,13 +623,15 @@ def main(argv: Optional[List[str]] = None) -> int:
     for dp in args.doc_extract:
         doc_extracts.append(json.loads(dp.read_text(encoding="utf-8")))
         doc_paths.append(str(dp))
+    vision_events = json.loads(args.vision.read_text(encoding="utf-8")) if args.vision else None
 
     timeline_index = rc._load_timeline_index(args.timeline)
     sources = rc.map_sources(verdict, args.media_dir, timeline_index=timeline_index)
 
     bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,
                          sources, timeline_index, args.agency,
-                         target_runtime=args.target_runtime, media_dir=args.media_dir)
+                         target_runtime=args.target_runtime, media_dir=args.media_dir,
+                         vision_events=vision_events)
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)

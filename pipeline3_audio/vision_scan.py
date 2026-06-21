@@ -241,3 +241,68 @@ def scan_visual_events(media: str, windows: List[List[float]], backend,
         raw = backend.describe(fb)
         events.extend(parse_events(raw, valid_window=span))
     return merge_events(events)
+
+
+# ---------------------------------------------------------------------------
+# CLI — batch-scan selected timeline artifacts -> a combined events file
+# ---------------------------------------------------------------------------
+
+def main(argv: Optional[List[str]] = None) -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="GOAL_D — vision-scan timeline artifacts for visual events")
+    ap.add_argument("--artifacts", required=True, type=Path)
+    ap.add_argument("--timeline", type=Path, default=None, help="optional; restrict to phases")
+    ap.add_argument("--phases", default="incident", help="comma list (needs --timeline)")
+    ap.add_argument("--kinds", default="bodycam", help="comma artifact-kind filter")
+    ap.add_argument("--window-cap", type=float, default=100.0,
+                    help="seconds from each artifact's start to scan (the incident action)")
+    ap.add_argument("--fps", type=float, default=0.4)
+    ap.add_argument("--batch", type=int, default=DEFAULT_BATCH)
+    ap.add_argument("--model", default="google/gemini-2.5-flash")
+    ap.add_argument("--mock", action="store_true", help="no VLM call (empty events; wiring check)")
+    ap.add_argument("--out", type=Path, default=Path(".tmp/vision_events.json"))
+    args = ap.parse_args(argv)
+
+    arts = {a["artifact_id"]: a for a in json.loads(args.artifacts.read_text(encoding="utf-8"))}
+    kinds = {k.strip() for k in args.kinds.split(",") if k.strip()}
+    selected_ids = [aid for aid, a in arts.items() if a.get("kind") in kinds]
+    if args.timeline:
+        tl = json.loads(args.timeline.read_text(encoding="utf-8"))
+        phases = {p.strip() for p in args.phases.split(",") if p.strip()}
+        in_phase = {r["artifact_id"] for ph, recs in (tl.get("phases") or {}).items()
+                    if ph in phases for r in recs}
+        selected_ids = [aid for aid in selected_ids if aid in in_phase]
+
+    if args.mock:
+        backend = MockVisionBackend()
+        print("[vision] MOCK (no network)")
+    else:
+        try:
+            from dotenv import load_dotenv  # type: ignore
+            load_dotenv()
+        except Exception:
+            pass
+        backend = VisionBackend(model=args.model)
+        print(f"[vision] live: {backend.model} (paid)")
+
+    all_events: List[Dict] = []
+    for aid in selected_ids:
+        a = arts[aid]
+        if not (a.get("path") and Path(a["path"]).exists()):
+            continue
+        cap = min(args.window_cap, float(a.get("duration_sec") or args.window_cap))
+        ev = scan_visual_events(a["path"], [[0.0, cap]], backend, fps=args.fps, batch_size=args.batch)
+        for e in ev:
+            e["artifact_id"] = aid
+        all_events.extend(ev)
+        print(f"  {aid:10s} {len(ev)} event(s): "
+              f"{', '.join(sorted({e['event_type'] for e in ev})) or '-'}")
+
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(all_events, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[vision] {len(all_events)} event(s) across {len(selected_ids)} artifact(s) -> {args.out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -224,3 +224,52 @@ def test_render_markdown_smoke():
     for section in ["Asset Manifest", "Narrative Spine", "Beat Sheet",
                     "Factual Integrity Ledger", "Gaps & Acquisition"]:
         assert section in out
+
+
+# --- vision beats -----------------------------------------------------------
+
+def _vision_manifest():
+    return [
+        {"asset_id": "v_bwc5a", "kind": "bodycam", "pov_label": "BWC-5a", "duration_sec": 300.0, "phase": "incident"},
+        {"asset_id": "v_bwc1a", "kind": "bodycam", "pov_label": "BWC-1a", "duration_sec": 300.0, "phase": "incident"},
+    ]
+
+
+def _vision_index():
+    return {"BWC-5a": {"phase": "incident", "start_epoch": 1000.0},
+            "BWC-1a": {"phase": "incident", "start_epoch": 1010.0}}
+
+
+def test_vision_cross_pov_dedup_keeps_highest_confidence_camera():
+    # same K9 deployment seen on two cams ~same wall-clock; BWC-1a is more confident
+    events = [
+        {"artifact_id": "BWC-5a", "timecode_sec": 60, "event_type": "k9_deployment", "confidence": 0.7, "description": "a"},
+        {"artifact_id": "BWC-1a", "timecode_sec": 52, "event_type": "k9_deployment", "confidence": 0.9, "description": "b"},
+    ]
+    vb = bp.build_vision_beats(events, _vision_manifest(), _vision_index(), "Agency", existing_beats=[])
+    assert len(vb) == 1                                   # collapsed cross-POV
+    assert vb[0]["primary_asset"]["asset_id"] == "v_bwc1a"   # POV-by-doer = best view
+    assert vb[0]["is_vision"] is True and vb[0]["source"] == "vision"
+    assert vb[0]["_importance"] == "high"                 # force event
+    assert vb[0]["quote"] is None
+
+
+def test_vision_event_deduped_against_transcript_moment():
+    # a takedown the dialogue already covers (abs time within tol) is dropped
+    events = [{"artifact_id": "BWC-5a", "timecode_sec": 120, "event_type": "takedown", "confidence": 0.8}]
+    transcript_beat = {"primary_asset": {"asset_id": "v_bwc5a", "in_sec": 120 - bp.HEAD_PAD}}
+    vb = bp.build_vision_beats(events, _vision_manifest(), _vision_index(), "Agency",
+                               existing_beats=[transcript_beat])
+    assert vb == []
+
+
+def test_vision_event_kept_when_no_transcript_nearby():
+    events = [{"artifact_id": "BWC-5a", "timecode_sec": 60, "event_type": "takedown", "confidence": 0.8}]
+    far_beat = {"primary_asset": {"asset_id": "v_bwc5a", "in_sec": 250}}   # abs ~1250, far
+    vb = bp.build_vision_beats(events, _vision_manifest(), _vision_index(), "Agency",
+                               existing_beats=[far_beat])
+    assert len(vb) == 1 and "vision" in vb[0]["source_refs"]
+
+
+def test_vision_beats_empty_input():
+    assert bp.build_vision_beats([], _vision_manifest(), _vision_index(), "A", []) == []
