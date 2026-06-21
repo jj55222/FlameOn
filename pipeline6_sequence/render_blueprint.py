@@ -128,6 +128,23 @@ def load_transcripts(transcripts_dir: Optional[Path]) -> Dict[str, List[Dict]]:
     return out
 
 
+def resolve_clip_overlaps(timeline: List[Dict], min_dur: float = 1.5) -> List[Dict]:
+    """Render-side safety net: after all window adjustments, make sure no two
+    consecutive clips on the same media overlap (split the overlap at its
+    midpoint). Guarantees the footage never replays itself, whatever upstream
+    snapping/audio-aware did."""
+    clips = [e for e in timeline if e["kind"] == "clip"]
+    for i in range(1, len(clips)):
+        a, b = clips[i - 1], clips[i]
+        if a["media"] == b["media"] and b["in_sec"] < a["out_sec"]:
+            mid = round((b["in_sec"] + a["out_sec"]) / 2.0, 2)
+            a["out_sec"] = round(max(a["in_sec"] + min_dur, mid), 2)
+            b["in_sec"] = a["out_sec"]
+            if b["out_sec"] - b["in_sec"] < min_dur:
+                b["out_sec"] = round(b["in_sec"] + min_dur, 2)
+    return timeline
+
+
 def snap_to_segments(in_sec: float, out_sec: float, segments: List[Dict]) -> Tuple[float, float]:
     """Snap a window to transcript sentence boundaries — no mid-word cuts."""
     if not segments:
@@ -200,17 +217,22 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                              "moment": b.get("description", "")})
             return
         in_sec, out_sec = float(pa.get("in_sec", 0)), float(pa.get("out_sec", 0))
-        segs = (transcripts or {}).get(Path(media).stem)
-        if segs and b.get("is_broll") and asset.get("kind") == "911_audio":
+        # Snap ONLY against DENSE transcripts (911/radio are fully transcribed).
+        # Bodycams are hot-window transcribed — sparse — so snapping a precise
+        # vision/quote window to the nearest sparse segment balloons it (it
+        # collapsed the whole K9 run to one segment). Bodycam windows are already
+        # built on real timecodes; leave them.
+        kind = asset.get("kind")
+        segs = (transcripts or {}).get(Path(media).stem) if kind in ("911_audio", "radio") else None
+        if segs and b.get("is_broll") and kind == "911_audio":
             # 911 cold open: disclose the threat, end on a clean line — not a
             # loudest-energy slice that cuts mid-word ("harassing peo—").
             tw = threat_window(segs)
             in_sec, out_sec = tw if tw else (in_sec, out_sec)
+        elif segs and b.get("quote"):
+            in_sec, out_sec = snap_to_segments(in_sec, out_sec, segs)
         elif audio_aware and b.get("is_broll"):
             in_sec, out_sec = audible_window(media, max(1.0, out_sec - in_sec))
-        elif segs:
-            # dialogue clip: snap to sentence boundaries so it never cuts mid-word
-            in_sec, out_sec = snap_to_segments(in_sec, out_sec, segs)
         lt_text = (b.get("lower_third") or {}).get("text", "")
         timeline.append({
             "kind": "clip", "media": media,
@@ -244,6 +266,7 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
         for b in bl:
             _emit_beat(b)
 
+    resolve_clip_overlaps(timeline)   # never replay the same footage
     n_clips = sum(1 for e in timeline if e["kind"] == "clip")
     n_gaps = sum(1 for e in timeline if e["kind"] == "gap")
 

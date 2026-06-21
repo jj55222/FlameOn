@@ -181,6 +181,19 @@ def test_acts_play_in_canonical_order_even_when_beats_stored_out_of_order():
     assert media_order.index("911A.mp3") < media_order.index("BWC-1a.mp4")
 
 
+def test_resolve_clip_overlaps_prevents_same_media_replay():
+    tl = [
+        {"kind": "clip", "media": "BWC-5a.mp4", "in_sec": 66, "out_sec": 97},
+        {"kind": "card"},
+        {"kind": "clip", "media": "BWC-5a.mp4", "in_sec": 66, "out_sec": 97},   # would replay
+        {"kind": "clip", "media": "ICC-1a.mp4", "in_sec": 0, "out_sec": 10},     # different media
+    ]
+    rb.resolve_clip_overlaps(tl)
+    clips = [e for e in tl if e["kind"] == "clip"]
+    assert clips[1]["in_sec"] >= clips[0]["out_sec"] - 0.01    # no replay of BWC-5a
+    assert clips[2]["in_sec"] == 0                              # ICC untouched
+
+
 def test_snap_to_segments_no_midword_cut():
     segs = [{"start_sec": 0, "end_sec": 3, "text": "a"}, {"start_sec": 3, "end_sec": 7, "text": "b"},
             {"start_sec": 7, "end_sec": 10, "text": "c"}]
