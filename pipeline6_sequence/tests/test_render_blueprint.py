@@ -149,6 +149,26 @@ def test_skeleton_blueprint_without_logline_or_narration_still_renders():
     assert not any(e["kind"] == "narration" for e in pe["timeline"])  # brief != realized text
 
 
+def test_loudest_window_start_skips_silence():
+    # a muted lead-in (the AXON buffer), then a loud stretch
+    levels = [-90, -90, -90, -90, -20, -15, -18, -90, -90]
+    # the loudest 3-sec window is indices 4..6 (the loud run)
+    assert rb.loudest_window_start(levels, 3) == 4
+
+
+def test_loudest_window_start_edge_cases():
+    assert rb.loudest_window_start([], 5) == 0
+    assert rb.loudest_window_start([-30, -10], 5) == 0   # want > len → clamps
+    assert rb.loudest_window_start([-10, -10, -10], 1) == 0   # flat → first
+
+
+def test_audio_aware_off_by_default_leaves_broll_window():
+    # default (no audio_aware) keeps the LLM's window untouched — pure, no ffmpeg
+    pe = rb.blueprint_to_paper_edit(_shaped())
+    broll = next(e for e in pe["timeline"] if e["kind"] == "clip" and "911A.mp3" in e["media"])
+    assert broll["in_sec"] == 0.0 and broll["out_sec"] == 12.0
+
+
 def test_media_dir_remap_used_when_manifest_path_absent(tmp_path):
     # manifest path doesn't exist; a same-named file under media_dir does
     (tmp_path / "BWC-1a.mp4").write_bytes(b"x")
