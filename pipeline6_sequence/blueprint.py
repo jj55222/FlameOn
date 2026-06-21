@@ -468,8 +468,95 @@ def build_vision_beats(vision_events: List[Dict], manifest: List[Dict],
 
 
 # ---------------------------------------------------------------------------
+# Substance floor — accountability moments a "drama"-tuned scorer drops
+# ---------------------------------------------------------------------------
+
+# Procedural-violation / misconduct language: charge-stacking, record/report
+# manipulation, coaching, cover-up. The accountability CORE — must never be
+# crowded out of an 8-moment cap by a fifth emotional-peak.
+_PROC_PAT = re.compile(
+    r"\b(face your record|his record|your record|manipulat\w*|falsif\w*|fabricat\w*"
+    r"|good for (?:a |a couple|several|multiple|some)?\s*\w*\s*felon\w*"
+    r"|stack\w* charges?|add\w* (?:a )?charge|we'?ll (?:just )?say|make it look"
+    r"|plant\w*|cover (?:it|this) up|off the record|coach\w*)\b", re.I)
+
+
+def substance_beats(verdict: Dict, sources: List, manifest: List[Dict],
+                    manifest_by_stem: Dict[str, str], agency: str,
+                    existing_beats: List[Dict], pad: float = 5.0) -> List[Dict]:
+    """Scan the transcripts for procedural-violation language and emit must-keep
+    beats for any the scorer missed. Sourced (the line is on tape), high
+    importance, deduped against beats already present near the same spot."""
+    credit = f"Courtesy {agency}".strip()
+    have = set()
+    for b in existing_beats:
+        pa = b.get("primary_asset") or {}
+        if pa.get("asset_id"):
+            have.add((pa["asset_id"], round(float(pa.get("in_sec", 0)) / 12)))
+    out: List[Dict] = []
+    refs = verdict.get("transcript_refs") or []
+    for idx, ref in enumerate(refs):
+        try:
+            tdata = json.loads(Path(str(ref)).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        src = sources[idx] if 0 <= idx < len(sources) else None
+        asset_id = _asset_for_source(src, manifest_by_stem)
+        if not asset_id:
+            continue
+        dur = _dur_of(asset_id, manifest)
+        phase = (src.phase if src else None) or "incident"
+        for seg in tdata.get("transcript", []):
+            text = (seg.get("text") or "").strip()
+            if not _PROC_PAT.search(text):
+                continue
+            ts = float(seg.get("start_sec", 0))
+            key = (asset_id, round(ts / 12))
+            if key in have:
+                continue                       # scorer already has this moment
+            have.add(key)
+            in_sec = max(0.0, ts - pad)
+            out_sec = min(dur, float(seg.get("end_sec", ts)) + pad) if dur else ts + pad
+            out.append({
+                "act_id": f"act_{phase}", "function": "procedural_violation",
+                "target_duration_sec": round(min(20.0, max(6.0, out_sec - in_sec)), 1),
+                "primary_asset": {"asset_id": asset_id, "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2)},
+                "quote": {"text": text[:200], "source": asset_id, "timecode": ts},
+                "inserts": [], "lower_third": {"text": "Procedural Concern", "attribution_confidence": 1.0},
+                "narration_bridge": None, "credit": credit,
+                "source_refs": [f"{asset_id}@{ts:g}", "substance_scan"],
+                "source": "substance_scan", "is_substance": True,
+                "_description": f"On-camera: “{text[:120]}”",
+                "_importance": "critical", "_phase": phase,
+                "_abs": (src.start_epoch + ts) if (src and src.start_epoch is not None) else None,
+            })
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Assembly
 # ---------------------------------------------------------------------------
+
+def resolve_same_asset_overlaps(beats: List[Dict], min_dur: float = 2.0) -> List[Dict]:
+    """Stop the same footage replaying. When consecutive beats play the SAME
+    asset with overlapping windows (the 6 K9 vision beats overlapped — 74-82
+    played twice), split each overlap at its midpoint so the clips tile the
+    footage contiguously and it plays through once, labels intact."""
+    for i in range(1, len(beats)):
+        ppa = (beats[i - 1] or {}).get("primary_asset")
+        pa = (beats[i] or {}).get("primary_asset")
+        if not (ppa and pa and ppa["asset_id"] == pa["asset_id"]):
+            continue
+        if pa["in_sec"] < ppa["out_sec"]:                      # overlap
+            mid = round((pa["in_sec"] + ppa["out_sec"]) / 2.0, 2)
+            ppa["out_sec"] = round(max(ppa["in_sec"] + min_dur, mid), 2)
+            pa["in_sec"] = ppa["out_sec"]
+            if pa["out_sec"] - pa["in_sec"] < min_dur:
+                pa["out_sec"] = round(pa["in_sec"] + min_dur, 2)
+        for b, q in ((beats[i - 1], ppa), (beats[i], pa)):
+            b["target_duration_sec"] = round(q["out_sec"] - q["in_sec"], 1)
+    return beats
+
 
 def _strip_private(beats: List[Dict]) -> List[Dict]:
     return [{k: v for k, v in b.items() if not k.startswith("_")} for b in beats]
@@ -488,18 +575,22 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
     incident = build_incident(doc_extracts, timeline)
     beats = build_beats(verdict, sources, manifest, stem_to_id, agency)
     _add_bridges(beats, incident)
-    # Vision beats: the silent visual moments (K9 release, takedown) the transcript
-    # missed. Merge, then re-order chronologically within each phase + renumber.
+    # Supplementary beat sources the transcript-scorer alone misses:
+    #   vision  → silent visual moments (K9 release/takedown)
+    #   substance → procedural-violation language an 8-moment cap crowds out
+    extra: List[Dict] = []
     if vision_events:
-        vbeats = build_vision_beats(vision_events, manifest, timeline_index, agency, beats)
-        if vbeats:
-            _PHASE_IDX = {p: i for i, (p, _, _) in enumerate(_PHASE_ACT)}
-            beats = sorted(beats + vbeats,
-                           key=lambda b: (_PHASE_IDX.get(b.get("_phase"), 99),
-                                          b.get("_abs") is None, b.get("_abs") or 0.0))
-            for n, b in enumerate(beats):
-                b["beat_id"] = f"b{n:02d}"
-                b["ordinal"] = n
+        extra += build_vision_beats(vision_events, manifest, timeline_index, agency, beats)
+    extra += substance_beats(verdict, sources, manifest, stem_to_id, agency, beats)
+    if extra:
+        _PHASE_IDX = {p: i for i, (p, _, _) in enumerate(_PHASE_ACT)}
+        beats = sorted(beats + extra,
+                       key=lambda b: (_PHASE_IDX.get(b.get("_phase"), 99),
+                                      b.get("_abs") is None, b.get("_abs") or 0.0))
+        for n, b in enumerate(beats):
+            b["beat_id"] = f"b{n:02d}"
+            b["ordinal"] = n
+    resolve_same_asset_overlaps(beats)   # no replaying the same footage
     acts = build_acts(timeline, beats, doc_extracts, target_runtime)
     ledger = build_integrity_ledger(beats, incident, doc_extracts)
     gaps = build_gaps(manifest, timeline, beats, incident)

@@ -24,10 +24,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+_THREAT = re.compile(r"\b(knife|weapon|gun|armed|harass\w*|stab\w*|machete|threat\w*)\b", re.I)
+_DISPATCH = re.compile(r"\b(units?|officers?|deput\w*|sending|en route|on (?:the|our) way|respond\w*)\b", re.I)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render_rough_cut as rc  # noqa: E402  (reuse render + seg builders + constants)
@@ -106,9 +110,56 @@ def _resolve_media(asset: Dict[str, Any], media_dir: Optional[Path]) -> Optional
     return None
 
 
+def load_transcripts(transcripts_dir: Optional[Path]) -> Dict[str, List[Dict]]:
+    """{media_stem: [segments]} from a p3_to_p4 transcripts dir (keyed by each
+    transcript's own source_url stem, so any filename scheme resolves)."""
+    out: Dict[str, List[Dict]] = {}
+    if not transcripts_dir or not Path(transcripts_dir).exists():
+        return out
+    for p in Path(transcripts_dir).glob("*.json"):
+        try:
+            t = json.loads(p.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        src = (t.get("source_url") or "").strip()
+        segs = [s for s in (t.get("transcript") or []) if s.get("text")]
+        if src and segs:
+            out[Path(src).stem] = sorted(segs, key=lambda s: s.get("start_sec", 0))
+    return out
+
+
+def snap_to_segments(in_sec: float, out_sec: float, segments: List[Dict]) -> Tuple[float, float]:
+    """Snap a window to transcript sentence boundaries — no mid-word cuts."""
+    if not segments:
+        return in_sec, out_sec
+    befores = [s["start_sec"] for s in segments if s["start_sec"] <= in_sec + 0.5]
+    afters = [s["end_sec"] for s in segments if s["end_sec"] >= out_sec - 0.5]
+    ni = max(befores) if befores else segments[0]["start_sec"]
+    no = min(afters) if afters else segments[-1]["end_sec"]
+    return (round(ni, 2), round(no, 2)) if no > ni else (in_sec, out_sec)
+
+
+def threat_window(segments: List[Dict], max_sec: float = 26.0) -> Optional[Tuple[float, float]]:
+    """A 911 cold-open window that DISCLOSES the threat and ends on a clean line
+    (a dispatch confirmation, or a sentence boundary) — never mid-word."""
+    ti = next((i for i, s in enumerate(segments) if _THREAT.search(s.get("text", ""))), None)
+    if ti is None:
+        return None
+    start = segments[max(0, ti - 1)]["start_sec"]      # a beat of lead-in
+    end = segments[ti]["end_sec"]
+    for s in segments[ti:]:
+        if s["start_sec"] - start > max_sec:
+            break
+        end = s["end_sec"]
+        if _DISPATCH.search(s.get("text", "")):         # "units en route" — clean stop
+            break
+    return round(start, 2), round(end, 2)
+
+
 def blueprint_to_paper_edit(bp: Dict[str, Any],
                             media_dir: Optional[Path] = None,
-                            audio_aware: bool = False) -> Dict[str, Any]:
+                            audio_aware: bool = False,
+                            transcripts: Optional[Dict[str, List[Dict]]] = None) -> Dict[str, Any]:
     """Convert a (shaped) blueprint into a render_rough_cut paper_edit.
 
     ``audio_aware`` (needs ffmpeg) snaps B-roll windows to an audible stretch so
@@ -149,9 +200,17 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                              "moment": b.get("description", "")})
             return
         in_sec, out_sec = float(pa.get("in_sec", 0)), float(pa.get("out_sec", 0))
-        # B-roll establishing clips: snap to an audible window (skip muted buffers).
-        if audio_aware and b.get("is_broll"):
+        segs = (transcripts or {}).get(Path(media).stem)
+        if segs and b.get("is_broll") and asset.get("kind") == "911_audio":
+            # 911 cold open: disclose the threat, end on a clean line — not a
+            # loudest-energy slice that cuts mid-word ("harassing peo—").
+            tw = threat_window(segs)
+            in_sec, out_sec = tw if tw else (in_sec, out_sec)
+        elif audio_aware and b.get("is_broll"):
             in_sec, out_sec = audible_window(media, max(1.0, out_sec - in_sec))
+        elif segs:
+            # dialogue clip: snap to sentence boundaries so it never cuts mid-word
+            in_sec, out_sec = snap_to_segments(in_sec, out_sec, segs)
         lt_text = (b.get("lower_third") or {}).get("text", "")
         timeline.append({
             "kind": "clip", "media": media,
@@ -213,13 +272,18 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="write the paper_edit JSON and stop (no ffmpeg, zero media)")
     ap.add_argument("--no-audio-aware", action="store_true",
                     help="don't snap B-roll to audible windows (faster; may open on silence)")
+    ap.add_argument("--transcripts", type=Path, default=None,
+                    help="p3_to_p4 transcripts dir -> snap clip windows to sentence "
+                         "boundaries (no mid-word cuts; 911 cold-open discloses the threat)")
     args = ap.parse_args(argv)
 
     bp = json.loads(args.blueprint.read_text(encoding="utf-8"))
     audio_aware = not args.paper_edit_only and not args.no_audio_aware
     if not args.paper_edit_only:
         rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()   # needed before audible_window
-    paper_edit = blueprint_to_paper_edit(bp, media_dir=args.media_dir, audio_aware=audio_aware)
+    transcripts = load_transcripts(args.transcripts)
+    paper_edit = blueprint_to_paper_edit(bp, media_dir=args.media_dir, audio_aware=audio_aware,
+                                         transcripts=transcripts)
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)

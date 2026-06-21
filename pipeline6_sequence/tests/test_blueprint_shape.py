@@ -91,6 +91,22 @@ def test_validator_rejects_unknown_references():
     assert len(clean["broll"]) == 1 and clean["broll"][0]["asset_id"] == "a_911_1"
 
 
+def test_cold_open_broll_rejects_bodycam_keeps_establishing():
+    # cold-open (after_beat=null) B-roll must establish: 911/dashcam ok, bodycam not
+    edit = {"broll": [{"asset_id": "v_bwc1a", "in_sec": 0, "out_sec": 10},     # bodycam -> reject
+                      {"asset_id": "a_911_1", "in_sec": 0, "out_sec": 10}]}    # 911 -> ok
+    clean, rej = bs.validate_edit(edit, _blueprint())
+    assert [b["asset_id"] for b in clean["broll"]] == ["a_911_1"]
+    assert any("cold-open" in r["reason"] for r in rej)
+
+
+def test_mid_clip_broll_bodycam_allowed():
+    # a bodycam B-roll anchored AFTER a beat (not the cold open) is fine
+    edit = {"broll": [{"after_beat": "b00", "asset_id": "v_bwc1a", "in_sec": 0, "out_sec": 10}]}
+    clean, _ = bs.validate_edit(edit, _blueprint())
+    assert len(clean["broll"]) == 1
+
+
 def test_validator_clamps_broll_window_to_asset_duration():
     edit = {"broll": [{"asset_id": "a_911_1", "in_sec": 0, "out_sec": 9999}]}
     clean, _ = bs.validate_edit(edit, _blueprint())

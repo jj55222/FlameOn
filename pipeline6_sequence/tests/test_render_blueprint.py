@@ -181,6 +181,26 @@ def test_acts_play_in_canonical_order_even_when_beats_stored_out_of_order():
     assert media_order.index("911A.mp3") < media_order.index("BWC-1a.mp4")
 
 
+def test_snap_to_segments_no_midword_cut():
+    segs = [{"start_sec": 0, "end_sec": 3, "text": "a"}, {"start_sec": 3, "end_sec": 7, "text": "b"},
+            {"start_sec": 7, "end_sec": 10, "text": "c"}]
+    assert rb.snap_to_segments(4, 6, segs) == (3.0, 7.0)   # snaps to seg b's sentence bounds
+
+
+def test_threat_window_discloses_threat_and_ends_clean():
+    segs = [{"start_sec": 0, "end_sec": 3, "text": "hi there"},
+            {"start_sec": 3, "end_sec": 8, "text": "a man with a knife out front"},
+            {"start_sec": 8, "end_sec": 12, "text": "okay we are sending units now"},
+            {"start_sec": 12, "end_sec": 16, "text": "thanks bye"}]
+    w = rb.threat_window(segs)
+    assert w[0] == 0.0                     # one segment of lead-in before the threat
+    assert w[1] == 12.0                    # extends through the dispatch confirmation, then stops
+
+
+def test_threat_window_none_when_no_threat():
+    assert rb.threat_window([{"start_sec": 0, "end_sec": 3, "text": "nothing"}]) is None
+
+
 def test_loudest_window_start_skips_silence():
     # a muted lead-in (the AXON buffer), then a loud stretch
     levels = [-90, -90, -90, -90, -20, -15, -18, -90, -90]

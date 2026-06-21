@@ -283,3 +283,43 @@ def test_vision_event_kept_when_no_transcript_nearby():
 
 def test_vision_beats_empty_input():
     assert bp.build_vision_beats([], _vision_manifest(), _vision_index(), "A", []) == []
+
+
+# --- overlap resolution -----------------------------------------------------
+
+def test_resolve_same_asset_overlaps_tiles_contiguously():
+    beats = [
+        {"primary_asset": {"asset_id": "v_a", "in_sec": 53, "out_sec": 61}},
+        {"primary_asset": {"asset_id": "v_a", "in_sec": 55, "out_sec": 68}},
+        {"primary_asset": {"asset_id": "v_a", "in_sec": 74, "out_sec": 82}},
+        {"primary_asset": {"asset_id": "v_a", "in_sec": 74, "out_sec": 82}},  # identical dup
+    ]
+    bp.resolve_same_asset_overlaps(beats)
+    w = [(b["primary_asset"]["in_sec"], b["primary_asset"]["out_sec"]) for b in beats]
+    for i in range(1, len(w)):
+        assert w[i][0] >= w[i - 1][1] - 0.01      # no window starts before the previous ends
+
+
+def test_resolve_overlaps_leaves_different_assets_alone():
+    beats = [{"primary_asset": {"asset_id": "v_a", "in_sec": 0, "out_sec": 10}},
+             {"primary_asset": {"asset_id": "v_b", "in_sec": 5, "out_sec": 15}}]
+    bp.resolve_same_asset_overlaps(beats)
+    assert beats[1]["primary_asset"]["in_sec"] == 5     # untouched (different camera)
+
+
+# --- substance scan ---------------------------------------------------------
+
+def test_substance_beats_surfaces_procedural_line(tmp_path):
+    import json as _json
+    tf = tmp_path / "t0.json"
+    tf.write_text(_json.dumps({"source_url": "BWC-1b.mp4", "transcript": [
+        {"start_sec": 240, "end_sec": 244, "text": "Ah yeah, I'm going to try and fix your record."},
+        {"start_sec": 10, "end_sec": 12, "text": "nothing notable here"}]}))
+    verdict = {"transcript_refs": [str(tf)]}
+    sources = [rc.Source(0, Path("BWC-1b.mp4"), "bodycam", "BWC-1b", None, 1000.0, "incident")]
+    manifest = [{"asset_id": "v_bwc1b", "kind": "bodycam", "pov_label": "BWC-1b",
+                 "duration_sec": 600.0, "phase": "incident"}]
+    sb = bp.substance_beats(verdict, sources, manifest, {"BWC-1b": "v_bwc1b"}, "Agency", [])
+    assert len(sb) == 1
+    assert sb[0]["function"] == "procedural_violation" and sb[0]["_importance"] == "critical"
+    assert "fix your record" in sb[0]["quote"]["text"]

@@ -223,6 +223,13 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
         if after is not None and after not in beats_by_id:
             rej.append({"field": "broll", "value": after, "reason": "unknown after_beat"})
             after = None
+        # Cold open (front-anchored B-roll) must ESTABLISH, not spoil: only
+        # dashcam/911/radio — never a bodycam, which shows the people/resolution
+        # (a downed-suspect clip in the cold open gives away the ending).
+        if after is None and asset.get("kind") not in ("dashcam", "911_audio", "radio"):
+            rej.append({"field": "broll", "value": aid,
+                        "reason": f"cold-open B-roll must establish (got {asset.get('kind')})"})
+            continue
         clean["broll"].append({
             "after_beat": after, "asset_id": aid, "in_sec": round(in_sec, 1),
             "out_sec": round(out_sec, 1), "role": (bz.get("role") or "broll"),
@@ -411,9 +418,13 @@ def _build_prompt(blueprint: Dict) -> str:
     return (
         "Shape this blueprint toward its target runtime. Order beats chronologically "
         "within acts; prune weak/duplicate beats; lengthen key beats and add sourced "
-        "B-roll (establishing shots, 911 audio, dashcam) to build runtime HONESTLY "
-        "from the manifest — do not pad with invented material. Write a tight logline, "
-        "one thesis per act, and realized narration only where needs_narration is true.\n\n"
+        "B-roll to build runtime HONESTLY from the manifest — do not pad with invented "
+        "material. COLD-OPEN B-roll (broll with after_beat=null) must ESTABLISH only — "
+        "dashcam or 911/radio audio, NEVER a bodycam (a bodycam shows the people and "
+        "the resolution, spoiling the story). Preserve any procedural_violation or "
+        "contradiction beat — those are the accountability core, never cut them. Write "
+        "a tight logline, one thesis per act, and realized narration only where "
+        "needs_narration is true.\n\n"
         + json.dumps(payload, ensure_ascii=False)
     )
 
