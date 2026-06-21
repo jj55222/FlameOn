@@ -129,52 +129,64 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                      "title": bp.get("logline") or f"Case {cid.split('_')[-1].upper()}",
                      "subtitle": agency, "dur": rc.TITLE_SEC})
 
-    # 2. Walk beats in order; open each new act with a header card.
-    current_act = None
-    n_clips = n_gaps = 0
-    for b in bp.get("beats", []):
-        aid = b.get("act_id")
-        if aid and aid != current_act:
-            current_act = aid
-            act = acts.get(aid)
-            if act and act.get("title", "").lower() != "cold open":
-                timeline.append({"kind": "card", "card_kind": "phase",
-                                 "title": act.get("title", aid),
-                                 "subtitle": (act.get("thesis") or "")[:140],
-                                 "dur": rc.PHASE_CARD_SEC})
-
+    # 2. Group beats by act and play acts in CANONICAL phase order. Cold-open /
+    #    untagged establishing B-roll (act_id None) opens the cut; then the acts
+    #    in the blueprint's order (The Call -> The Incident -> Aftermath -> ...).
+    #    This keeps 911 calls (which often lack a precise timestamp and would
+    #    otherwise sort anywhere) in "The Call" up front, and stops act header
+    #    cards from flip-flopping when the LLM interleaves acts.
+    def _emit_beat(b: Dict[str, Any]) -> None:
         nb = b.get("narration_bridge") or {}
         if nb.get("text"):
             timeline.append({"kind": "narration", "text": nb["text"]})
-
         pa = b.get("primary_asset")
         asset = assets.get((pa or {}).get("asset_id"), {})
         media = _resolve_media(asset, media_dir) if pa else None
         if not media:
-            n_gaps += 1
             timeline.append({"kind": "gap",
                              "reason": f"no playable media for beat {b.get('beat_id')}"
                                        f" ({(pa or {}).get('asset_id', 'none')})",
                              "moment": b.get("description", "")})
-            continue
-
+            return
         in_sec, out_sec = float(pa.get("in_sec", 0)), float(pa.get("out_sec", 0))
         # B-roll establishing clips: snap to an audible window (skip muted buffers).
         if audio_aware and b.get("is_broll"):
             in_sec, out_sec = audible_window(media, max(1.0, out_sec - in_sec))
-
         lt_text = (b.get("lower_third") or {}).get("text", "")
-        n_clips += 1
         timeline.append({
             "kind": "clip", "media": media,
-            "in_sec": round(in_sec, 2),
-            "out_sec": round(out_sec, 2),
+            "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
             "lower_third": f"{lt_text}  ·  {credit}".strip().strip("·").strip(),
             # B-roll plays as footage only — no quote card.
             "transcript_excerpt": "" if b.get("is_broll") else (b.get("quote") or {}).get("text", ""),
             "description": b.get("description") or b.get("broll_note") or "",
             "credit_line": credit,
         })
+
+    beats_by_act: Dict[Any, List[Dict[str, Any]]] = {}
+    for b in bp.get("beats", []):
+        beats_by_act.setdefault(b.get("act_id"), []).append(b)
+    act_order: List[Any] = [None] + [a["act_id"] for a in bp.get("acts", [])]
+    act_order += [k for k in beats_by_act if k not in act_order]   # safety: stragglers
+    seen_act = set()
+    for aid in act_order:
+        if aid in seen_act:
+            continue
+        seen_act.add(aid)
+        bl = beats_by_act.get(aid, [])
+        if not bl:
+            continue
+        act = acts.get(aid)
+        if act and act.get("title", "").lower() != "cold open":
+            timeline.append({"kind": "card", "card_kind": "phase",
+                             "title": act.get("title", aid),
+                             "subtitle": (act.get("thesis") or "")[:140],
+                             "dur": rc.PHASE_CARD_SEC})
+        for b in bl:
+            _emit_beat(b)
+
+    n_clips = sum(1 for e in timeline if e["kind"] == "clip")
+    n_gaps = sum(1 for e in timeline if e["kind"] == "gap")
 
     # 3. Outcome card from the sourced incident facts (the document's disposition).
     sub_bits = [x for x in [", ".join(inc.get("charges", [])) or None,

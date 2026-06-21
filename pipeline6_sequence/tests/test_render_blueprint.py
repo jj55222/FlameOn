@@ -149,6 +149,38 @@ def test_skeleton_blueprint_without_logline_or_narration_still_renders():
     assert not any(e["kind"] == "narration" for e in pe["timeline"])  # brief != realized text
 
 
+def test_acts_play_in_canonical_order_even_when_beats_stored_out_of_order():
+    # beats are stored incident-first, but "The Call" (pre_incident, 911 with no
+    # timestamp) must render BEFORE "The Incident".
+    bp = {
+        "case_id": "c_1", "agency": "Agency", "logline": "L",
+        "incident": {"charges": [], "disposition": None},
+        "asset_manifest": [
+            {"asset_id": "v_bwc1a", "kind": "bodycam", "path": "BWC-1a.mp4", "duration_sec": 300.0},
+            {"asset_id": "a_911_1", "kind": "911_audio", "path": "911A.mp3", "duration_sec": 120.0},
+        ],
+        "acts": [
+            {"act_id": "act_pre_incident", "title": "The Call", "function": "establish", "target_sec": 60, "thesis": "x"},
+            {"act_id": "act_incident", "title": "The Incident", "function": "escalate", "target_sec": 60, "thesis": "y"},
+        ],
+        "beats": [
+            {"beat_id": "bi", "act_id": "act_incident", "function": "reveal",
+             "primary_asset": {"asset_id": "v_bwc1a", "in_sec": 80, "out_sec": 90},
+             "quote": {"text": "incident line"}, "lower_third": {"text": "Officer"}, "source_refs": []},
+            {"beat_id": "bc", "act_id": "act_pre_incident", "function": "reveal",
+             "primary_asset": {"asset_id": "a_911_1", "in_sec": 0, "out_sec": 10},
+             "quote": {"text": "armed with a knife"}, "lower_third": {"text": "911"}, "source_refs": []},
+        ],
+        "metadata": {},
+    }
+    pe = rb.blueprint_to_paper_edit(bp)
+    phase_titles = [e["title"] for e in pe["timeline"] if e.get("card_kind") == "phase"]
+    assert phase_titles == ["The Call", "The Incident"]   # canonical, not stored order
+    # the 911 clip precedes the bodycam clip
+    media_order = [e["media"] for e in pe["timeline"] if e["kind"] == "clip"]
+    assert media_order.index("911A.mp3") < media_order.index("BWC-1a.mp4")
+
+
 def test_loudest_window_start_skips_silence():
     # a muted lead-in (the AXON buffer), then a loud stretch
     levels = [-90, -90, -90, -90, -20, -15, -18, -90, -90]
