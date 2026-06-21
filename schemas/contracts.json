@@ -422,6 +422,156 @@
           "description": "Paths to P2 research files used"
         }
       }
+    },
+
+    "p6_blueprint": {
+      "description": "Pipeline 6 (Sequence) production blueprint — the end-to-end resource guide for a long-form (30+ min) cut. Built deterministically from artifacts.json + case_timeline + verdict + doc_extract; an optional LLM tier shapes acts/beats WITHIN these rails (every referenced asset_id + timecode must exist in asset_manifest, every claim must carry a source).",
+      "type": "object",
+      "required": ["case_id", "target_runtime_sec", "asset_manifest", "acts", "beats", "integrity_ledger", "gaps", "metadata"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "logline": { "type": ["string", "null"], "description": "≤30-word hook (LLM tier; null in the deterministic skeleton)" },
+        "target_runtime_sec": { "type": "number", "description": "Intended finished runtime (default 1800 = 30 min)" },
+        "agency": { "type": "string", "description": "Releasing custodian, for credits" },
+        "incident": {
+          "type": "object",
+          "description": "Sourced incident facts (from doc_extract / timeline).",
+          "properties": {
+            "date": { "type": ["string", "null"] },
+            "time": { "type": ["string", "null"] },
+            "location": { "type": ["string", "null"] },
+            "subjects": { "type": "array", "items": { "type": "string" } },
+            "charges": { "type": "array", "items": { "type": "string" } },
+            "disposition": { "type": ["string", "null"] }
+          }
+        },
+        "asset_manifest": {
+          "type": "array",
+          "description": "Every available asset, typed, in one place — the resource pile.",
+          "items": {
+            "type": "object",
+            "required": ["asset_id", "kind"],
+            "properties": {
+              "asset_id": { "type": "string", "description": "Stable id, e.g. v_bwc1a / a_911_3 / doc_uof / still_1" },
+              "kind": { "type": "string", "enum": ["bodycam", "dashcam", "911_audio", "radio", "document", "photo", "other"] },
+              "pov_label": { "type": ["string", "null"] },
+              "path": { "type": ["string", "null"] },
+              "start_iso": { "type": ["string", "null"] },
+              "duration_sec": { "type": ["number", "null"] },
+              "phase": { "type": ["string", "null"], "description": "timeline bucket: pre_incident|incident|aftermath|transport|investigation|outcome" },
+              "has_transcript": { "type": "boolean" },
+              "custodian": { "type": ["string", "null"] },
+              "timestamp_source": { "type": ["string", "null"] },
+              "doc_type": { "type": ["string", "null"], "description": "for kind=document: uof_form|ia_narrative|..." }
+            }
+          }
+        },
+        "acts": {
+          "type": "array",
+          "description": "Narrative spine — acts mapped to timeline phases (+ a cold open).",
+          "items": {
+            "type": "object",
+            "required": ["act_id", "title", "function", "target_sec"],
+            "properties": {
+              "act_id": { "type": "string" },
+              "title": { "type": "string" },
+              "phase": { "type": ["string", "null"] },
+              "function": { "type": "string", "enum": ["hook", "establish", "escalate", "climax", "aftermath", "accountability", "resolve"] },
+              "target_sec": { "type": "number", "description": "Deterministic runtime budget for this act" },
+              "thesis": { "type": ["string", "null"], "description": "LLM tier; null in skeleton" },
+              "beat_ids": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "beats": {
+          "type": "array",
+          "description": "The build unit. One per key moment (skeleton); the LLM tier selects/orders/prunes to fit runtime.",
+          "items": {
+            "type": "object",
+            "required": ["beat_id", "act_id", "function", "source_refs"],
+            "properties": {
+              "beat_id": { "type": "string" },
+              "act_id": { "type": "string" },
+              "ordinal": { "type": "number" },
+              "function": { "type": "string" },
+              "target_duration_sec": { "type": "number" },
+              "primary_asset": {
+                "type": ["object", "null"],
+                "properties": {
+                  "asset_id": { "type": "string" },
+                  "in_sec": { "type": "number" },
+                  "out_sec": { "type": "number" }
+                }
+              },
+              "quote": {
+                "type": ["object", "null"],
+                "description": "A real transcript excerpt, pinned to source + timecode. Never paraphrased.",
+                "properties": {
+                  "text": { "type": "string" },
+                  "source": { "type": "string" },
+                  "timecode": { "type": "number" }
+                }
+              },
+              "inserts": { "type": "array", "items": { "type": "object" }, "description": "B-roll / document / still cutaways" },
+              "lower_third": { "type": ["object", "null"] },
+              "narration_bridge": {
+                "type": ["object", "null"],
+                "description": "A brief for the LLM, NOT finished VO. source_facts pins what it may assert.",
+                "properties": {
+                  "needed": { "type": "boolean" },
+                  "brief": { "type": ["string", "null"] },
+                  "source_facts": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "credit": { "type": "string" },
+              "source_refs": { "type": "array", "items": { "type": "string" }, "description": "Everything this beat asserts → integrity_ledger" }
+            }
+          }
+        },
+        "narration_points": { "type": "array", "items": { "type": "object" }, "description": "Deref of beats[].narration_bridge where needed" },
+        "integrity_ledger": {
+          "type": "array",
+          "description": "Every on-screen claim → its source. ok=false flags an unsourced beat (a hard error).",
+          "items": {
+            "type": "object",
+            "required": ["claim", "ok"],
+            "properties": {
+              "claim": { "type": "string" },
+              "source": { "type": ["string", "null"] },
+              "ok": { "type": "boolean" },
+              "beat_id": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "description": "What's missing for a complete cut — feeds the discovery pipeline (GOAL_B).",
+          "items": {
+            "type": "object",
+            "required": ["missing"],
+            "properties": {
+              "phase": { "type": ["string", "null"] },
+              "kind": { "type": ["string", "null"] },
+              "missing": { "type": "string" },
+              "why": { "type": ["string", "null"] },
+              "acquire": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["planned_runtime_sec", "unsourced_beats"],
+          "properties": {
+            "available_footage_sec": { "type": "number" },
+            "planned_runtime_sec": { "type": "number" },
+            "runtime_vs_target_sec": { "type": "number" },
+            "coverage_by_phase": { "type": "object" },
+            "asset_completeness_pct": { "type": "number" },
+            "unsourced_beats": { "type": "number" },
+            "built_by": { "type": "string", "description": "skeleton (deterministic) | llm_shaped" }
+          }
+        }
+      }
     }
   }
 }

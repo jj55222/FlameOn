@@ -1,0 +1,546 @@
+"""P6 / GOAL_D — deterministic production blueprint (the long-form rails).
+
+Builds ``production_blueprint.json`` (schema: ``schemas/contracts.json`` →
+``p6_blueprint``): the end-to-end resource guide for a 30+ minute cut, assembled
+ENTIRELY from artifacts the engine already emits — no LLM, no paid calls, no
+ffmpeg (durations come from ``artifacts.json``). It is the *rails*: an optional
+LLM tier later shapes acts/beats WITHIN this skeleton, and a validator rejects
+anything that references an asset or timecode not in ``asset_manifest``.
+
+Inputs (all already produced upstream):
+  --artifacts    timeline/artifacts.json   (D0 stamps: kind, duration, start_iso)
+  --timeline     timeline/case_timeline.json (D1 phase buckets)
+  --verdict      d2/verdicts/<id>_verdict.json (P4 key_moments)
+  --doc-extract  docs/doc_extract.json [...]  (D5 disposition/charges/clip dirs)
+  --media-dir    video/Video               (to resolve transcript media + stills)
+
+    python pipeline6_sequence/blueprint.py \
+        --artifacts .tmp/sac_poc/timeline/artifacts.json \
+        --timeline  .tmp/sac_poc/timeline/case_timeline.json \
+        --verdict   .tmp/sac_poc/d2/verdicts/vasquez_23117201_verdict.json \
+        --doc-extract .tmp/sac_poc/docs_23117201/doc_extract.json \
+        --media-dir .tmp/sac_poc/video/Video --agency "Sacramento County Sheriff" \
+        --out .tmp/sac_poc/blueprint
+
+Pure stdlib (+ reuse of render_rough_cut's source mapping). Global Python.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import render_rough_cut as rc  # noqa: E402  (only zero-ffmpeg helpers used)
+
+DEFAULT_RUNTIME = 1800.0       # 30 min
+COLD_OPEN_SEC = 45.0
+PHASE_CARD_SEC = 4.0
+BRIDGE_SEC = 6.0
+HEAD_PAD, TAIL_PAD = 5.0, 3.0
+
+# Canonical documentary phase order + how each maps to an act.
+_PHASE_ACT = [
+    ("pre_incident", "The Call", "establish"),
+    ("incident", "The Incident", "escalate"),
+    ("aftermath", "Aftermath", "aftermath"),
+    ("transport", "Transport", "aftermath"),
+    ("investigation", "The Record", "accountability"),
+    ("outcome", "Outcome", "resolve"),
+]
+_PHASE_TITLE = {p: t for p, t, _ in _PHASE_ACT}
+_PHASE_FUNC = {p: f for p, _, f in _PHASE_ACT}
+_KIND_MAP = {"bodycam": "bodycam", "dashcam": "dashcam", "911": "911_audio",
+             "radio": "radio"}
+_VIDEO_KINDS = {"bodycam", "dashcam"}
+
+
+def _slug(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
+
+
+# ---------------------------------------------------------------------------
+# 1. Asset manifest — every asset, typed, in one place
+# ---------------------------------------------------------------------------
+
+def build_asset_manifest(artifacts: List[Dict], timeline_index: Dict[str, Dict],
+                         transcribed_stems: set, doc_extracts: List[Dict],
+                         doc_paths: List[Optional[str]], agency: str,
+                         media_dir: Optional[Path]) -> Tuple[List[Dict], Dict[str, str]]:
+    """Return (manifest, path_stem -> asset_id index)."""
+    manifest: List[Dict] = []
+    stem_to_id: Dict[str, str] = {}
+    a911 = aradio = 0
+    for a in artifacts:
+        kind = _KIND_MAP.get(a.get("kind", ""), "other")
+        pov = a.get("pov_label") or a.get("artifact_id") or ""
+        if kind in _VIDEO_KINDS:
+            asset_id = f"v_{_slug(pov)}"
+        elif kind == "911_audio":
+            a911 += 1
+            asset_id = f"a_911_{a911}"
+        elif kind == "radio":
+            aradio += 1
+            asset_id = f"a_radio_{aradio}"
+        else:
+            asset_id = f"x_{_slug(pov)}"
+        path = a.get("path")
+        stem = Path(path).stem if path else None
+        ti = timeline_index.get(a.get("artifact_id"), {})
+        manifest.append({
+            "asset_id": asset_id, "kind": kind, "pov_label": pov, "path": path,
+            "start_iso": a.get("start_iso"), "duration_sec": a.get("duration_sec"),
+            "phase": a.get("phase") or ti.get("phase"),
+            "has_transcript": bool(stem and stem in transcribed_stems),
+            "custodian": agency, "timestamp_source": a.get("timestamp_source"),
+            "doc_type": None,
+        })
+        if stem:
+            stem_to_id[stem] = asset_id
+
+    # Documents (from doc_extract; not in artifacts.json).
+    for i, de in enumerate(doc_extracts):
+        dt = de.get("doc_type") or "document"
+        asset_id = f"doc_{_slug(dt)}" if dt != "document" else f"doc_{i + 1}"
+        manifest.append({
+            "asset_id": asset_id, "kind": "document", "pov_label": de.get("ia_case_number"),
+            "path": doc_paths[i] if i < len(doc_paths) else None,
+            "start_iso": None, "duration_sec": None, "phase": "investigation",
+            "has_transcript": False, "custodian": agency,
+            "timestamp_source": None, "doc_type": dt,
+        })
+
+    # Stills / photos (best-effort scan; documentary B-roll).
+    if media_dir and Path(media_dir).exists():
+        imgs = [p for p in sorted(Path(media_dir).rglob("*"))
+                if p.suffix.lower() in {".jpg", ".jpeg", ".png"}]
+        for i, p in enumerate(imgs, 1):
+            manifest.append({
+                "asset_id": f"still_{i}", "kind": "photo", "pov_label": p.stem,
+                "path": str(p), "start_iso": None, "duration_sec": None,
+                "phase": None, "has_transcript": False, "custodian": agency,
+                "timestamp_source": None, "doc_type": None,
+            })
+    return manifest, stem_to_id
+
+
+# ---------------------------------------------------------------------------
+# 2. Incident facts (sourced) from doc_extract + timeline
+# ---------------------------------------------------------------------------
+
+def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
+    inc: Dict[str, Any] = {"date": None, "time": None, "location": None,
+                           "subjects": [], "charges": [], "disposition": None}
+    for de in doc_extracts:
+        inc["date"] = inc["date"] or de.get("doc_date")
+        inc["time"] = inc["time"] or de.get("incident_time")
+        inc["location"] = inc["location"] or de.get("location")
+        for p in de.get("people", []) or []:
+            if p not in inc["subjects"]:
+                inc["subjects"].append(p)
+        for c in de.get("charges", []) or []:
+            if c not in inc["charges"]:
+                inc["charges"].append(c)
+        oc = de.get("outcome_card") or {}
+        if not inc["disposition"] and (oc.get("subtitle") or (de.get("disposition") or {}).get("summary")):
+            inc["disposition"] = oc.get("subtitle") or de["disposition"]["summary"]
+    if not inc["date"] and timeline.get("anchor_iso"):
+        inc["date"] = str(timeline["anchor_iso"])[:10]
+    return inc
+
+
+# ---------------------------------------------------------------------------
+# 3. Beats — one per key moment, chronologically ordered, pinned to assets
+# ---------------------------------------------------------------------------
+
+def _asset_for_source(src, manifest_by_stem: Dict[str, str]) -> Optional[str]:
+    if not src or not src.media_path:
+        return None
+    return manifest_by_stem.get(Path(str(src.media_path)).stem)
+
+
+def _dur_of(asset_id: str, manifest: List[Dict]) -> float:
+    for m in manifest:
+        if m["asset_id"] == asset_id:
+            return float(m.get("duration_sec") or 0.0)
+    return 0.0
+
+
+def build_beats(verdict: Dict, sources: List, manifest: List[Dict],
+                manifest_by_stem: Dict[str, str], agency: str) -> List[Dict]:
+    credit = f"Courtesy {agency}"
+    raw = verdict.get("key_moments", []) or []
+
+    def abs_t(m: Dict) -> Optional[float]:
+        i = m.get("source_idx", 0)
+        s = sources[i] if 0 <= i < len(sources) else None
+        if s and s.start_epoch is not None:
+            return s.start_epoch + float(m.get("timestamp_sec") or 0)
+        return None
+
+    timeline_mode = any(s.start_epoch is not None for s in sources)
+    if timeline_mode:
+        ordered = sorted(raw, key=lambda m: (abs_t(m) is None, abs_t(m) or 0.0))
+    else:
+        ordered = sorted(raw, key=lambda m: (m.get("source_idx", 0), m.get("timestamp_sec") or 0))
+
+    beats: List[Dict] = []
+    for n, m in enumerate(ordered):
+        i = m.get("source_idx", 0)
+        src = sources[i] if 0 <= i < len(sources) else None
+        asset_id = _asset_for_source(src, manifest_by_stem)
+        phase = (src.phase if src else None) or "incident"
+        ts = float(m.get("timestamp_sec") or 0)
+        end = float(m.get("end_timestamp_sec") or ts)
+        primary = quote = None
+        source_refs: List[str] = []
+        if asset_id:
+            dur = _dur_of(asset_id, manifest)
+            in_sec = max(0.0, ts - HEAD_PAD)
+            out_sec = min(dur, end + TAIL_PAD) if dur else end + TAIL_PAD
+            primary = {"asset_id": asset_id, "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2)}
+            source_refs.append(f"{asset_id}@{ts:g}")
+        excerpt = (m.get("transcript_excerpt") or "").strip()
+        if excerpt and asset_id:
+            quote = {"text": excerpt, "source": asset_id, "timecode": ts}
+        lt_text = (src.person.title() if src and src.person else
+                   (src.label if src else "Source"))
+        beats.append({
+            "beat_id": f"b{n:02d}", "act_id": f"act_{phase}", "ordinal": n,
+            "function": m.get("moment_type") or "beat",
+            "target_duration_sec": round(min(20.0, max(6.0, (end - ts) + HEAD_PAD + TAIL_PAD)), 1),
+            "primary_asset": primary,
+            "quote": quote,
+            "inserts": [],
+            "lower_third": {"text": lt_text, "attribution_confidence": 0.5},
+            "narration_bridge": None,   # filled by _add_bridges
+            "credit": credit,
+            "source_refs": source_refs,
+            "_description": m.get("description", ""),
+            "_importance": m.get("importance"),
+            "_phase": phase,
+        })
+    return beats
+
+
+def _add_bridges(beats: List[Dict], incident: Dict) -> None:
+    """Flag a narration bridge where the act changes (and at the open). The
+    LLM tier writes the line; the skeleton sets needed + a sourced brief."""
+    prev_act = None
+    fact_keys = [k for k in ("charges", "disposition", "location") if incident.get(k)]
+    for b in beats:
+        if b["act_id"] != prev_act:
+            b["narration_bridge"] = {
+                "needed": True,
+                "brief": (f"Bridge into {b['act_id'].replace('act_', '').replace('_', ' ')}; "
+                          f"establish: {b['_description'][:90]}"),
+                "source_facts": [f"incident.{k}" for k in fact_keys] + b["source_refs"],
+            }
+            prev_act = b["act_id"]
+
+
+# ---------------------------------------------------------------------------
+# 4. Acts — narrative spine, runtime budgeted deterministically
+# ---------------------------------------------------------------------------
+
+def build_acts(timeline: Dict, beats: List[Dict], doc_extracts: List[Dict],
+               target_runtime: float) -> List[Dict]:
+    phases_present = list((timeline.get("phases") or {}).keys())
+    # an accountability act exists if we have documents, even without media
+    if doc_extracts and "investigation" not in phases_present:
+        phases_present.append("investigation")
+    ordered_phases = [p for p, _, _ in _PHASE_ACT if p in phases_present]
+
+    beats_by_act: Dict[str, List[str]] = {}
+    for b in beats:
+        beats_by_act.setdefault(b["act_id"], []).append(b["beat_id"])
+
+    acts: List[Dict] = [{
+        "act_id": "act_cold_open", "title": "Cold Open", "phase": None,
+        "function": "hook", "target_sec": COLD_OPEN_SEC, "thesis": None, "beat_ids": [],
+    }]
+    # Distribute the remaining budget across content acts ∝ beat count (acts with
+    # no beats — e.g. an outcome carried only by the document — get a floor).
+    rest = max(0.0, target_runtime - COLD_OPEN_SEC)
+    nbeats_total = sum(len(beats_by_act.get(f"act_{p}", [])) for p in ordered_phases)
+    FLOOR = 60.0
+    for p in ordered_phases:
+        bids = beats_by_act.get(f"act_{p}", [])
+        share = (len(bids) / nbeats_total) if nbeats_total else 0.0
+        target = round(rest * share, 1) if bids else FLOOR
+        acts.append({
+            "act_id": f"act_{p}", "title": _PHASE_TITLE.get(p, p.title()),
+            "phase": p, "function": _PHASE_FUNC.get(p, "establish"),
+            "target_sec": target, "thesis": None, "beat_ids": bids,
+        })
+    return acts
+
+
+# ---------------------------------------------------------------------------
+# 5. Integrity ledger + 6. gaps + 7. metadata
+# ---------------------------------------------------------------------------
+
+def build_integrity_ledger(beats: List[Dict], incident: Dict,
+                           doc_extracts: List[Dict]) -> List[Dict]:
+    ledger: List[Dict] = []
+    # Document-derived on-screen facts.
+    doc_src = doc_extracts[0].get("doc_type", "document") if doc_extracts else None
+    if incident.get("charges"):
+        ledger.append({"claim": f"charges: {', '.join(incident['charges'][:6])}",
+                       "source": f"doc:{doc_src}", "ok": bool(doc_src), "beat_id": None})
+    if incident.get("disposition"):
+        ledger.append({"claim": f"disposition: {incident['disposition'][:80]}",
+                       "source": f"doc:{doc_src}", "ok": bool(doc_src), "beat_id": None})
+    # Per-beat footage + quote claims.
+    for b in beats:
+        ok = b["primary_asset"] is not None
+        ledger.append({
+            "claim": f"footage: {b['function']} ({b['lower_third']['text']})",
+            "source": (b["source_refs"][0] if b["source_refs"] else None),
+            "ok": ok, "beat_id": b["beat_id"],
+        })
+        if b["quote"]:
+            ledger.append({
+                "claim": f"quote: “{b['quote']['text'][:60]}”",
+                "source": f"{b['quote']['source']}@{b['quote']['timecode']:g}",
+                "ok": True, "beat_id": b["beat_id"],
+            })
+    return ledger
+
+
+def build_gaps(manifest: List[Dict], timeline: Dict, beats: List[Dict],
+               incident: Dict) -> List[Dict]:
+    gaps: List[Dict] = []
+    phases_present = set((timeline.get("phases") or {}).keys())
+    kinds_present = {m["kind"] for m in manifest}
+    beat_phases = {b["_phase"] for b in beats}
+
+    # Phases with no narratable moment.
+    for p in ("pre_incident", "incident", "aftermath"):
+        if p in phases_present and p not in beat_phases:
+            gaps.append({"phase": p, "kind": None,
+                         "missing": f"no narratable key-moment in '{p}'",
+                         "why": "assets exist for this phase but P4 surfaced no moment",
+                         "acquire": "transcribe/score this phase's assets"})
+    # Initial 911 call (the dispatch that sent units).
+    if "911_audio" not in kinds_present:
+        gaps.append({"phase": "pre_incident", "kind": "911_audio",
+                     "missing": "initial 911 / dispatch audio",
+                     "why": "no call audio to open on or establish the call",
+                     "acquire": "FOIA agency CAD/911 for the event number"})
+    # Stills / booking photo for cutaways.
+    if "photo" not in kinds_present:
+        gaps.append({"phase": None, "kind": "photo",
+                     "missing": "scene stills / booking photo",
+                     "why": "no still imagery for cutaways or the outcome card",
+                     "acquire": "agency records / booking; scene photographs in discovery"})
+    # Unsourced beats (hard error — a beat with no footage).
+    for b in beats:
+        if b["primary_asset"] is None:
+            gaps.append({"phase": b["_phase"], "kind": None,
+                         "missing": f"beat {b['beat_id']} ({b['function']}) has no resolvable footage",
+                         "why": "key_moment source_idx did not map to a manifest asset",
+                         "acquire": "verify transcript source_url / media presence"})
+    return gaps
+
+
+def build_metadata(manifest: List[Dict], acts: List[Dict], beats: List[Dict],
+                   timeline: Dict, target_runtime: float) -> Dict:
+    footage = sum(float(m.get("duration_sec") or 0) for m in manifest
+                  if m["kind"] in (_VIDEO_KINDS | {"911_audio", "radio"}))
+    planned = (COLD_OPEN_SEC + len(acts) * PHASE_CARD_SEC
+               + sum(b["target_duration_sec"] for b in beats)
+               + sum(BRIDGE_SEC for b in beats if b.get("narration_bridge")))
+    cov: Dict[str, str] = {}
+    phases = timeline.get("phases") or {}
+    beats_by_phase: Dict[str, int] = {}
+    for b in beats:
+        beats_by_phase[b["_phase"]] = beats_by_phase.get(b["_phase"], 0) + 1
+    for p, recs in phases.items():
+        cov[p] = f"{len(recs)} asset(s), {beats_by_phase.get(p, 0)} beat(s)"
+    canon = [p for p, _, _ in _PHASE_ACT]
+    covered = sum(1 for p in canon if phases.get(p))
+    return {
+        "available_footage_sec": round(footage, 1),
+        "planned_runtime_sec": round(planned, 1),
+        "runtime_vs_target_sec": round(planned - target_runtime, 1),
+        "coverage_by_phase": cov,
+        "asset_completeness_pct": round(100 * covered / len(canon), 1),
+        "unsourced_beats": sum(1 for b in beats if b["primary_asset"] is None),
+        "built_by": "skeleton",
+    }
+
+
+# ---------------------------------------------------------------------------
+# Assembly
+# ---------------------------------------------------------------------------
+
+def _strip_private(beats: List[Dict]) -> List[Dict]:
+    return [{k: v for k, v in b.items() if not k.startswith("_")} for b in beats]
+
+
+def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
+                    doc_extracts: List[Dict], doc_paths: List[Optional[str]],
+                    sources: List, timeline_index: Dict[str, Dict], agency: str,
+                    target_runtime: float = DEFAULT_RUNTIME,
+                    media_dir: Optional[Path] = None) -> Dict:
+    transcribed_stems = {Path(str(s.media_path)).stem for s in sources if s.media_path}
+    manifest, stem_to_id = build_asset_manifest(
+        artifacts, timeline_index, transcribed_stems, doc_extracts, doc_paths,
+        agency, media_dir)
+    incident = build_incident(doc_extracts, timeline)
+    beats = build_beats(verdict, sources, manifest, stem_to_id, agency)
+    _add_bridges(beats, incident)
+    acts = build_acts(timeline, beats, doc_extracts, target_runtime)
+    ledger = build_integrity_ledger(beats, incident, doc_extracts)
+    gaps = build_gaps(manifest, timeline, beats, incident)
+    metadata = build_metadata(manifest, acts, beats, timeline, target_runtime)
+    narration_points = [{"beat_id": b["beat_id"], **b["narration_bridge"]}
+                        for b in beats if b.get("narration_bridge")]
+    return {
+        "case_id": verdict.get("case_id"),
+        "logline": None,
+        "target_runtime_sec": target_runtime,
+        "agency": agency,
+        "incident": incident,
+        "asset_manifest": manifest,
+        "acts": acts,
+        "beats": _strip_private(beats),
+        "narration_points": narration_points,
+        "integrity_ledger": ledger,
+        "gaps": gaps,
+        "metadata": metadata,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Markdown render (the producer-facing doc)
+# ---------------------------------------------------------------------------
+
+def _mmss(sec: float) -> str:
+    sec = int(round(sec))
+    return f"{sec // 60}:{sec % 60:02d}"
+
+
+def render_markdown(bp: Dict) -> str:
+    inc = bp.get("incident", {})
+    md: List[str] = []
+    md.append(f"# Production Blueprint — {bp['case_id']}")
+    sub = " · ".join(x for x in [inc.get("date"), inc.get("location"),
+                                 f"target {_mmss(bp['target_runtime_sec'])}",
+                                 bp.get("agency")] if x)
+    md.append(f"_{sub}_\n")
+    if inc.get("charges") or inc.get("disposition"):
+        md.append(f"**Charges:** {', '.join(inc.get('charges', [])) or '—'}  ")
+        md.append(f"**Disposition:** {inc.get('disposition') or '—'}\n")
+
+    m = bp["metadata"]
+    md.append(f"> Planned **{_mmss(m['planned_runtime_sec'])}** vs target "
+              f"{_mmss(bp['target_runtime_sec'])} "
+              f"({m['runtime_vs_target_sec']:+.0f}s) · "
+              f"{len(bp['beats'])} beats · "
+              f"{m['asset_completeness_pct']:.0f}% phase coverage · "
+              f"{m['unsourced_beats']} unsourced beat(s)\n")
+
+    md.append("## Asset Manifest")
+    md.append("| id | kind | label | phase | dur | transcript |")
+    md.append("|---|---|---|---|---|---|")
+    for a in bp["asset_manifest"]:
+        d = _mmss(a["duration_sec"]) if a.get("duration_sec") else "—"
+        md.append(f"| `{a['asset_id']}` | {a['kind']} | {a.get('pov_label') or '—'} "
+                  f"| {a.get('phase') or '—'} | {d} | {'✓' if a['has_transcript'] else ''} |")
+    md.append("")
+
+    md.append("## Narrative Spine")
+    for act in bp["acts"]:
+        md.append(f"- **{act['title']}** ({act['function']}, ~{_mmss(act['target_sec'])}) "
+                  f"— {len(act['beat_ids'])} beat(s)")
+    md.append("")
+
+    md.append("## Beat Sheet")
+    beats_by_act: Dict[str, List[Dict]] = {}
+    for b in bp["beats"]:
+        beats_by_act.setdefault(b["act_id"], []).append(b)
+    for act in bp["acts"]:
+        bl = beats_by_act.get(act["act_id"], [])
+        if not bl and act["act_id"] != "act_cold_open":
+            continue
+        md.append(f"### {act['title']}  ({_mmss(act['target_sec'])})")
+        for b in bl:
+            pa = b.get("primary_asset")
+            loc = (f"`{pa['asset_id']}` {_mmss(pa['in_sec'])}–{_mmss(pa['out_sec'])}"
+                   if pa else "⚠ NO FOOTAGE")
+            q = f"  “{b['quote']['text']}”" if b.get("quote") else ""
+            md.append(f"- **[{b['function']} · {_mmss(b['target_duration_sec'])}]** {loc}"
+                      f" — {b['lower_third']['text']}{q}")
+            if b.get("narration_bridge"):
+                md.append(f"    - _narration:_ {b['narration_bridge']['brief']}")
+        md.append("")
+
+    md.append("## Factual Integrity Ledger")
+    for e in bp["integrity_ledger"]:
+        mark = "✓" if e["ok"] else "⚠ UNSOURCED"
+        md.append(f"- {mark} {e['claim']} — `{e.get('source') or 'NONE'}`")
+    md.append("")
+
+    md.append("## Gaps & Acquisition")
+    if not bp["gaps"]:
+        md.append("- none")
+    for g in bp["gaps"]:
+        where = g.get("phase") or g.get("kind") or "—"
+        md.append(f"- **{g['missing']}** ({where}) — {g.get('why') or ''} → "
+                  f"_{g.get('acquire') or ''}_")
+    md.append("")
+    return "\n".join(md)
+
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+def main(argv: Optional[List[str]] = None) -> int:
+    ap = argparse.ArgumentParser(description="P6 — deterministic production blueprint (rails)")
+    ap.add_argument("--artifacts", required=True, type=Path)
+    ap.add_argument("--timeline", required=True, type=Path)
+    ap.add_argument("--verdict", required=True, type=Path)
+    ap.add_argument("--doc-extract", nargs="*", type=Path, default=[])
+    ap.add_argument("--media-dir", type=Path, default=None)
+    ap.add_argument("--agency", default="Releasing agency")
+    ap.add_argument("--target-runtime", type=float, default=DEFAULT_RUNTIME)
+    ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
+    args = ap.parse_args(argv)
+
+    artifacts = json.loads(args.artifacts.read_text(encoding="utf-8"))
+    timeline = json.loads(args.timeline.read_text(encoding="utf-8"))
+    verdict = json.loads(args.verdict.read_text(encoding="utf-8"))
+    doc_extracts, doc_paths = [], []
+    for dp in args.doc_extract:
+        doc_extracts.append(json.loads(dp.read_text(encoding="utf-8")))
+        doc_paths.append(str(dp))
+
+    timeline_index = rc._load_timeline_index(args.timeline)
+    sources = rc.map_sources(verdict, args.media_dir, timeline_index=timeline_index)
+
+    bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,
+                         sources, timeline_index, args.agency,
+                         target_runtime=args.target_runtime, media_dir=args.media_dir)
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    cid = bp["case_id"]
+    (out / f"{cid}_blueprint.json").write_text(json.dumps(bp, indent=2, ensure_ascii=False), encoding="utf-8")
+    (out / f"{cid}_blueprint.md").write_text(render_markdown(bp), encoding="utf-8")
+    m = bp["metadata"]
+    print(f"[blueprint] {cid}: {len(bp['asset_manifest'])} assets, {len(bp['acts'])} acts, "
+          f"{len(bp['beats'])} beats, {len(bp['gaps'])} gaps; planned {_mmss(m['planned_runtime_sec'])} "
+          f"/ target {_mmss(bp['target_runtime_sec'])} ({m['unsourced_beats']} unsourced)")
+    print(f"[blueprint] -> {out / (cid + '_blueprint.json')}  +  .md")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
