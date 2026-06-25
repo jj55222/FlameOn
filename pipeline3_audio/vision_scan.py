@@ -39,7 +39,8 @@ MAX_FRAMES = 160             # hard cap per scan (cost backstop)
 # Force / accountability-relevant visual events the model is asked to flag.
 EVENT_TYPES = (
     "k9_deployment", "taser", "strike", "takedown", "weapon_drawn",
-    "firearm_pointed", "handcuffing", "foot_pursuit", "medical_aid",
+    "firearm_pointed", "firearm_discharge", "shots_fired", "officer_down",
+    "handcuffing", "foot_pursuit", "medical_aid",
     "search", "use_of_force_other", "scene",
 )
 
