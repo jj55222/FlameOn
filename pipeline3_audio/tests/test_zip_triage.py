@@ -46,3 +46,20 @@ def test_densest_cluster_finds_the_volley():
 
 def test_densest_cluster_empty():
     assert zt.densest_cluster([])["count"] == 0
+
+
+def test_clock_crossref_finds_recordings_rolling_at_incident():
+    import datetime as dt
+    base = dt.datetime(2017, 8, 30, 11, 30, tzinfo=dt.timezone.utc).timestamp()  # 11:30
+    recs = [
+        {"member": "a.mp4", "start_epoch": base, "duration_sec": 3600},          # 11:30-12:30 covers noon
+        {"member": "b.mp4", "start_epoch": base - 7200, "duration_sec": 600},    # 9:30-9:40, no
+        {"member": "c.mp4", "start_epoch": None, "duration_sec": 100},           # unclocked fixed cam
+    ]
+    hits = zt.clock_crossref(recs, "2017-08-30 12:00", slack_sec=60)
+    assert [h["member"] for h in hits] == ["a.mp4"]
+    assert hits[0]["_offset_from_incident_sec"] == 1800   # incident 30 min into the recording
+
+
+def test_clock_crossref_bad_incident_returns_empty():
+    assert zt.clock_crossref([{"start_epoch": 1.0, "duration_sec": 1}], "not a date") == []
