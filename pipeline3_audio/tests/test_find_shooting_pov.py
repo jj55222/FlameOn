@@ -19,10 +19,10 @@ import zip_triage as zt           # noqa: E402
 # ---- pure helpers ---------------------------------------------------------
 
 def test_shooting_score_weights_by_event_and_confidence():
-    ev = [{"event_type": "firearm_discharge", "confidence": 1.0},   # 1.0
-          {"event_type": "officer_down", "confidence": 0.5},        # 0.4
+    ev = [{"event_type": "firearm_discharge", "confidence": 1.0},   # 1.0 * 1.0
+          {"event_type": "officer_down", "confidence": 0.5},        # 0.9 * 0.5
           {"event_type": "scene", "confidence": 1.0}]               # 0.0
-    assert fsp.shooting_score(ev) == 1.4
+    assert fsp.shooting_score(ev) == 1.45
 
 
 def test_shooting_score_empty_is_zero():

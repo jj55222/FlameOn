@@ -50,21 +50,29 @@ def _load_env() -> None:
 _RATE_IN, _RATE_OUT = 0.30 / 1e6, 2.50 / 1e6
 
 # How strongly each visible event implies "THIS camera saw the shooting".
+# Tuned after the top-30 sweep: generic weapon_drawn is DOWN-weighted (evidence
+# handling — a gun on a table, loading a magazine — kept scoring as high as a
+# real confrontation), while the field-shooting signature (a firearm pointed at a
+# person, an officer down, CPR/medical aid) is UP-weighted.
 SHOOTING_WEIGHTS = {
     "firearm_discharge": 1.0, "shots_fired": 1.0,
-    "officer_down": 0.8, "firearm_pointed": 0.6, "weapon_drawn": 0.5,
-    "medical_aid": 0.3, "foot_pursuit": 0.25, "taser": 0.2,
+    "officer_down": 0.9, "medical_aid": 0.8, "firearm_pointed": 0.7,
+    "foot_pursuit": 0.4, "weapon_drawn": 0.25, "taser": 0.2,
     "takedown": 0.15, "strike": 0.15, "k9_deployment": 0.15,
-    "handcuffing": 0.1, "search": 0.05, "use_of_force_other": 0.1, "scene": 0.0,
+    "handcuffing": 0.1, "use_of_force_other": 0.15, "search": 0.05, "scene": 0.0,
 }
 
 _USER = (
-    "These frames are from ONE police camera at its single loudest moment. "
-    "Decide whether this is the OFFICER-INVOLVED SHOOTING or its immediate aftermath. "
-    "Flag only what is visible: firearm_discharge, shots_fired, firearm_pointed, "
-    "weapon_drawn, officer_down, medical_aid, foot_pursuit. If it is a parked car, an "
-    "empty road, a wall/building, or a routine scene with no force, return a single "
-    "'scene' event. Do not invent actions that are not in the frames."
+    "These frames are from ONE police camera at its single loudest moment. Decide "
+    "whether this is the OFFICER-INVOLVED SHOOTING or its immediate aftermath IN THE "
+    "FIELD. The real event looks like: officers behind cover or advancing outdoors, a "
+    "firearm POINTED at a person, someone shot and on the ground, CPR / medical aid, "
+    "people running. Flag what is visible: firearm_discharge, shots_fired, "
+    "firearm_pointed, officer_down, medical_aid, foot_pursuit, weapon_drawn. "
+    "IMPORTANT: a firearm being inspected, cleared, loaded, or lying on a table/desk "
+    "(evidence handling indoors) is NOT use of force — return a single 'scene'. An "
+    "empty road, parked car, or building is also 'scene'. Report only what is visible; "
+    "never invent actions."
 )
 
 
