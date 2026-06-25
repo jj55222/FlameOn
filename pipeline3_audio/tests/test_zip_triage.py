@@ -34,3 +34,15 @@ def test_select_respects_min_size():
 def test_select_explicit_members_win():
     sel = zt.select_members(NS, top_by_size=2, explicit=["2.mp4"])
     assert sel == ["2.mp4"]
+
+
+def test_densest_cluster_finds_the_volley():
+    # scattered transients early, then a tight volley at ~500s
+    times = [30, 120, 280, 497, 499, 501, 503, 505, 509, 700, 900]
+    c = zt.densest_cluster(times, win_sec=25.0)
+    assert c["count"] == 6              # 497..509 within 25s
+    assert 497 <= c["start"] <= 499
+
+
+def test_densest_cluster_empty():
+    assert zt.densest_cluster([])["count"] == 0

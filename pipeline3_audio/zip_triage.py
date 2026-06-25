@@ -38,6 +38,21 @@ def list_video_members(names_sizes: List[Tuple[str, int]]) -> List[Tuple[str, in
     return [(n, s) for n, s in names_sizes if Path(n).suffix.lower() in VIDEO_EXTS]
 
 
+def densest_cluster(times: List[float], win_sec: float = 25.0) -> Dict:
+    """The ``win_sec`` window containing the most impulses — a gunshot VOLLEY is a
+    dense cluster, unlike scattered door-slams across a long recording. Returns
+    ``{start, count}`` (pure). At 1-s scan resolution rapid fire shows up as a run
+    of consecutive loud seconds, so a real volley clusters tightly."""
+    if not times:
+        return {"start": None, "count": 0}
+    best = {"start": times[0], "count": 0}
+    for t in times:
+        c = sum(1 for u in times if t <= u < t + win_sec)
+        if c > best["count"]:
+            best = {"start": round(t, 1), "count": c}
+    return best
+
+
 def select_members(names_sizes: List[Tuple[str, int]], top_by_size: int = 0,
                    explicit: Optional[List[str]] = None,
                    min_size_mb: float = 0.0) -> List[str]:
@@ -82,12 +97,15 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
             with z.open(m) as s, open(local, "wb") as d:
                 shutil.copyfileobj(s, d, length=1 << 20)
             sc = pt.scan_salience(str(local))
+            imps = [round(x, 1) for x in sc.impulses]
             rec: Dict = {
                 "member": m, "size_mb": round(size_mb, 1),
                 "duration_sec": round(sc.duration_sec, 1),
                 "activity_score": sc.activity_score,
-                "impulse_score": sc.impulse_score,          # gunshot strength
-                "impulses_sec": [round(x, 1) for x in sc.impulses[:20]],  # shot times
+                "impulse_score": sc.impulse_score,          # loudest transient strength
+                "n_impulses": len(imps),
+                "shot_cluster": densest_cluster(imps),      # the volley candidate
+                "impulses_sec": imps[:200],
                 "audio_start_sec": sc.audio_start_sec,
                 "hot_windows": sc.hot_windows[:8],
                 "wallclock": None,
@@ -101,8 +119,8 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
         finally:
             if local.exists():
                 local.unlink()      # delete immediately — never hold two POVs
-    # rank by gunshot strength then activity (the shooting cameras float up)
-    results.sort(key=lambda r: (-r["impulse_score"], -r["activity_score"]))
+    # rank by VOLLEY density then activity (the shooting cameras float up)
+    results.sort(key=lambda r: (-r["shot_cluster"]["count"], -r["activity_score"]))
     return results
 
 
@@ -125,11 +143,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     results = triage_zip(args.zip, members, do_ocr=args.ocr, min_free_gb=args.min_free_gb)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(results, indent=2), encoding="utf-8")
-    print(f"\n{'member':16s}{'dur':>7s}{'activity':>9s}{'impulse':>8s}  shots(s)")
+    print(f"\n{'member':14s}{'dur':>7s}{'activity':>9s}{'#imp':>6s}  volley_cluster")
     for r in results:
-        shots = ",".join(str(int(x)) for x in r["impulses_sec"][:6])
-        print(f"{Path(r['member']).name[:16]:16s}{r['duration_sec']:6.0f}s"
-              f"{r['activity_score']:9.0f}{r['impulse_score']:8.0f}  {shots}")
+        c = r["shot_cluster"]
+        vol = (f"{c['count']} in 25s @ {int(c['start'])}s ({int(c['start'])//60}:{int(c['start']) % 60:02d})"
+               if c["start"] is not None else "-")
+        print(f"{Path(r['member']).name[:14]:14s}{r['duration_sec']:6.0f}s"
+              f"{r['activity_score']:9.0f}{r['n_impulses']:6d}  {vol}")
     print(f"[zip-triage] -> {args.out}")
     return 0
 
