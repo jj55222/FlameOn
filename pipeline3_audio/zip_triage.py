@@ -123,7 +123,8 @@ def _probe_duration(path: str) -> float:
 
 def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
                clock_only: bool = False,
-               min_free_gb: float = 3.0, tmp_dir: str = ".tmp/_zip_triage") -> List[Dict]:
+               min_free_gb: float = 3.0, tmp_dir: str = ".tmp/_zip_triage",
+               checkpoint_path: Optional[str] = None) -> List[Dict]:
     import pov_triage as pt
     pt.FFMPEG, pt.FFPROBE = pt._ff()
     z = zipfile.ZipFile(zip_path)
@@ -131,7 +132,29 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
     tmp = Path(tmp_dir)
     tmp.mkdir(parents=True, exist_ok=True)
     results: List[Dict] = []
+    done: set = set()
+    # resume: a crashed/killed run leaves a checkpoint — reload it and skip the
+    # members already triaged so a re-run picks up where it died (a long OCR pass
+    # over a 42 GB bundle must never have to start over).
+    if checkpoint_path and Path(checkpoint_path).exists():
+        try:
+            results = json.loads(Path(checkpoint_path).read_text(encoding="utf-8"))
+            done = {r.get("member") for r in results}
+            if done:
+                sys.stderr.write(f"[zip-triage] resume: {len(done)} member(s) already done\n")
+        except (ValueError, OSError):
+            results, done = [], set()
+
+    def _flush() -> None:
+        # checkpoint after every file so a crash/kill never loses prior work
+        if checkpoint_path:
+            p = Path(checkpoint_path)
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
     for k, m in enumerate(members):
+        if m in done:
+            continue
         size_mb = sizes.get(m, 0) / 1e6
         if free_gb(tmp_dir) < max(min_free_gb, size_mb / 1000 + 1):
             sys.stderr.write(f"[zip-triage] ABORT: low disk before {m}\n")
@@ -151,6 +174,7 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
                                 "duration_sec": round(dur, 1),
                                 "start_epoch": ep, "wallclock": wc,
                                 "is_clocked": ep is not None})
+                _flush()
                 continue
             sc = pt.scan_salience(str(local))
             imps = [round(x, 1) for x in sc.impulses]
@@ -170,6 +194,7 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
                 _ep, wc = pt.ocr_clock(str(local), sc.duration_sec)
                 rec["wallclock"] = wc
             results.append(rec)
+            _flush()
         except Exception as e:  # noqa: BLE001 — one bad file shouldn't kill the run
             sys.stderr.write(f"     skip ({type(e).__name__}: {str(e)[:80]})\n")
         finally:
@@ -178,6 +203,7 @@ def triage_zip(zip_path: str, members: List[str], do_ocr: bool = False,
     # rank by VOLLEY density then activity (the shooting cameras float up)
     if not clock_only:
         results.sort(key=lambda r: (-r["shot_cluster"]["count"], -r["activity_score"]))
+    _flush()
     return results
 
 
@@ -202,7 +228,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print(f"[zip-triage] {len(members)} member(s) selected; free disk {free_gb():.1f} GB"
           + ("  [CLOCK-ONLY]" if args.clock_only else ""))
     results = triage_zip(args.zip, members, do_ocr=args.ocr, clock_only=args.clock_only,
-                         min_free_gb=args.min_free_gb)
+                         min_free_gb=args.min_free_gb, checkpoint_path=str(args.out))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(results, indent=2), encoding="utf-8")
 

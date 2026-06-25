@@ -1,7 +1,9 @@
 """Zero-network tests for zip_triage member selection (pure)."""
 from __future__ import annotations
 
+import json
 import sys
+import zipfile
 from pathlib import Path
 
 PARENT = Path(__file__).resolve().parent.parent
@@ -63,3 +65,35 @@ def test_clock_crossref_finds_recordings_rolling_at_incident():
 
 def test_clock_crossref_bad_incident_returns_empty():
     assert zt.clock_crossref([{"start_epoch": 1.0, "duration_sec": 1}], "not a date") == []
+
+
+def test_triage_zip_resume_skips_done_and_checkpoints(tmp_path, monkeypatch):
+    """A crashed run leaves a checkpoint; the re-run must reload it, skip the
+    already-triaged member (no re-OCR), process only the new one, and persist both.
+    This is the fix for the clock-OCR job that died at 109/136 and wrote nothing."""
+    import pov_triage as pt
+    zp = tmp_path / "case.zip"
+    with zipfile.ZipFile(zp, "w") as z:
+        z.writestr("old.mp4", b"x" * 16)
+        z.writestr("new.mp4", b"y" * 16)
+    # prior checkpoint already holds old.mp4 (sentinel proves it is NOT re-processed)
+    ckpt = tmp_path / "clock.json"
+    ckpt.write_text(json.dumps([{"member": "old.mp4", "is_clocked": True,
+                                 "sentinel": "ORIG"}]), encoding="utf-8")
+
+    ocr_calls = []
+    monkeypatch.setattr(pt, "_ff", lambda: ("ffmpeg", "ffprobe"))
+    monkeypatch.setattr(zt, "_probe_duration", lambda p: 10.0)
+    monkeypatch.setattr(pt, "ocr_clock",
+                        lambda path, dur: (ocr_calls.append(path) or (123.0, "wc")))
+
+    out = zt.triage_zip(str(zp), ["old.mp4", "new.mp4"], clock_only=True,
+                        tmp_dir=str(tmp_path / "_t"),
+                        checkpoint_path=str(ckpt), min_free_gb=0.0)
+
+    by = {r["member"]: r for r in out}
+    assert by["old.mp4"].get("sentinel") == "ORIG"      # resumed, never re-touched
+    assert by["new.mp4"]["is_clocked"] is True          # new member triaged
+    assert [Path(p).name for p in ocr_calls] == ["new.mp4"]   # OCR ran once, new only
+    saved = json.loads(ckpt.read_text(encoding="utf-8"))      # checkpoint persisted both
+    assert {r["member"] for r in saved} == {"old.mp4", "new.mp4"}
