@@ -424,6 +424,68 @@
       }
     },
 
+    "golden_moments": {
+      "description": "Human-authored per-case ANSWER KEY of the salient moments that actually exist in a case bundle. This is the immutable yardstick `evaluate_salience.py` scores agent/harness moment extraction against (salience-weighted recall, timestamp accuracy, type, precision/no-hallucination). It is NOT produced by any pipeline — a human labels it once (optionally LLM-assisted), then freezes it. Multiple golden files across genres form the held-out generalization set.",
+      "type": "object",
+      "required": ["case_id", "moments"],
+      "properties": {
+        "case_id": { "type": "string", "description": "e.g. sac_so_20-269838" },
+        "agency": { "type": "string" },
+        "incident": {
+          "type": "object",
+          "properties": {
+            "date": { "type": ["string", "null"] },
+            "location": { "type": ["string", "null"] },
+            "summary": { "type": ["string", "null"] },
+            "subjects": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "description": "Source media files this key references, so moment.artifact_id resolves to a real file.",
+          "items": {
+            "type": "object",
+            "required": ["artifact_id", "kind"],
+            "properties": {
+              "artifact_id": { "type": "string", "description": "stable id, e.g. bwc_schmidt / dashcam_1 / 911_call" },
+              "kind": { "type": "string", "enum": ["bodycam", "dashcam", "911_audio", "radio", "interrogation", "document", "photo", "other"] },
+              "member": { "type": ["string", "null"], "description": "filename inside the case zip, e.g. 12.mp4 — fill once the footage is identified" },
+              "pov_label": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "labeling": {
+          "type": "object",
+          "description": "Provenance of the answer key — never let a 'draft' key gate a release.",
+          "properties": {
+            "labeler": { "type": "string" },
+            "status": { "type": "string", "enum": ["draft", "timestamps_pending", "reviewed", "frozen"] },
+            "notes": { "type": "string" }
+          }
+        },
+        "moments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["moment_id", "moment_type", "salience", "importance", "summary"],
+            "properties": {
+              "moment_id": { "type": "string" },
+              "artifact_id": { "type": ["string", "null"], "description": "which artifact this lives in; null = cross-cam / case-wide" },
+              "moment_type": { "type": "string", "enum": ["contradiction", "emotional_peak", "procedural_violation", "reveal", "detail_noticed", "callback", "tension_shift"] },
+              "salience": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=minor, 5=the moment the whole piece turns on. Drives salience-weighted recall." },
+              "importance": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+              "start_sec": { "type": ["number", "null"], "description": "ORIGINAL-video timestamp; null until the footage is labeled" },
+              "end_sec": { "type": ["number", "null"] },
+              "summary": { "type": "string" },
+              "evidence_quote": { "type": ["string", "null"], "description": "verbatim transcript line that anchors the moment" },
+              "angle": { "type": ["string", "null"], "description": "content angle it serves: tragedy|heroism|accountability|procedural|reveal|human_interest" },
+              "must_find": { "type": "boolean", "description": "if true, missing it is a hard miss — a release that omits it should not pass" }
+            }
+          }
+        }
+      }
+    },
+
     "p6_blueprint": {
       "description": "Pipeline 6 (Sequence) production blueprint — the end-to-end resource guide for a long-form (30+ min) cut. Built deterministically from artifacts.json + case_timeline + verdict + doc_extract; an optional LLM tier shapes acts/beats WITHIN these rails (every referenced asset_id + timecode must exist in asset_manifest, every claim must carry a source).",
       "type": "object",
