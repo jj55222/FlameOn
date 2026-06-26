@@ -36,3 +36,7 @@ Thumbs.db
 *.mov
 *.mkv
 *.zip
+
+# Oversized case-evidence (exceeds GitHub's 100MB file limit — use the manual-copy
+# bucket, see MIGRATION.md). This 422MB PDF was stripped from history on 2026-06-26.
+pipeline3_audio/case_0409-18/Production - 0409-18.pdf
