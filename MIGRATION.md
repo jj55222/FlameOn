@@ -3,8 +3,52 @@
 Everything needed to continue the **entire** project (all pipelines + the OIS
 documentary work) on a new computer. Work through the steps in order.
 
-> Put the repo at the **same path** on the new machine — `C:\FlameON\FlameOn-main` —
-> so the Claude Code auto-memory path lines up (see Step 5).
+> Windows paths below (`C:\FlameON\FlameOn-main`, `C:\Users\Diner\...`) are the OLD
+> machine. The new machine is a **Mac** — use the macOS quickstart immediately below;
+> the detailed steps afterward are the same, just translate the paths.
+
+---
+
+## ⚡ macOS quickstart (the new machine)
+
+The 40 GB evidence zip is already on the Mac (e.g. `~/Downloads/2017-289964.zip`) — so
+the one heavy copy is done. Everything else:
+
+```bash
+# 1. Code (private repo — you'll be prompted to auth GitHub)
+git clone https://github.com/jj55222/FlameOn.git ~/FlameOn-main
+cd ~/FlameOn-main && git checkout p6-documentary-assembly
+
+# 2. Gitignored essentials: copy flameon_migration_bundle_2026-06-26.zip to the Mac, then
+unzip -o ~/Downloads/flameon_migration_bundle_2026-06-26.zip -d ~/FlameOn-main
+#    → restores .tmp/ (handoffs, goal docs, analysis JSONs), .env, and claude_memory/
+
+# 3. Python env (venv recommended on macOS)
+python3 -m venv .venv && source .venv/bin/activate
+pip install --upgrade pip
+pip install torch torchvision torchaudio      # Mac: default wheels (Apple-Silicon MPS / CPU) — NO cuda index
+pip install -r requirements.txt
+
+# 4. ffmpeg (imageio-ffmpeg from requirements usually suffices; brew is the fallback)
+brew install ffmpeg
+
+# 5. Verify
+cd pipeline3_audio && python -m pytest -q     # expect ~76 passing
+```
+
+**Point tools at the Mac zip path**, e.g.:
+```bash
+python pipeline3_audio/find_shooting_pov.py --zip ~/Downloads/2017-289964.zip \
+  --triage .tmp/ois_289964/zip_triage_full.json --top-n 136 --budget-usd 0.50
+```
+
+**Claude auto-memory on macOS** (the path-mangling differs from Windows, so don't guess):
+1. Launch `claude` once inside `~/FlameOn-main` — it creates `~/.claude/projects/<mangled>/`.
+2. `ls ~/.claude/projects/` to find that folder, then:
+   `cp ~/FlameOn-main/claude_memory/* ~/.claude/projects/<mangled>/memory/`
+   (the bundle unpacks the 11 memory files to `~/FlameOn-main/claude_memory/`).
+
+**Rotate the `OPENROUTER_API_KEY`** in `.env` (Step 4 below). Done — skip to "Read-first".
 
 ---
 

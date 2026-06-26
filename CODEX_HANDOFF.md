@@ -12,7 +12,8 @@ already taken, what was found, and where to push next. Deeper detail lives in
 
 - **Find the moment of the shooting** (which file + timecode) across **266 videos**
   (dashcams, bodycams, aerial, fixed surveillance, evidence clips, bystander phone
-  video) packed in one **40 GB zip**: `C:\Users\Diner\Downloads\2017-289964.zip`.
+  video) packed in one **40 GB zip** — on the Mac at `~/Downloads/2017-289964.zip`
+  (was `C:\Users\Diner\Downloads\` on the old Windows box). Pass it via `--zip`.
 - **The hard constraint is COST.** You cannot transcribe/vision-scan every second of
   hundreds of files — that's hours of GPU and real API dollars. The design goal is a
   **funnel**: free local signals decide *where* to look, and a *cheap, capped, paid*
@@ -63,7 +64,7 @@ and motion passes are $0 (local).
 Run any with `--help`. Example (the main finder):
 ```bash
 python pipeline3_audio/find_shooting_pov.py \
-  --zip "C:/Users/Diner/Downloads/2017-289964.zip" \
+  --zip ~/Downloads/2017-289964.zip \
   --triage .tmp/ois_289964/zip_triage_full.json \
   --top-n 136 --budget-usd 0.50 --out .tmp/ois_289964/pov_vision.json
 ```
