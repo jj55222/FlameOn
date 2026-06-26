@@ -1,0 +1,50 @@
+# FlameOn — Python dependencies (pinned from the working machine, 2026-06-26)
+# Python 3.12.  Install order matters: install PyTorch FIRST (see bottom), then `pip install -r requirements.txt`.
+#
+#   python -m pip install -r requirements.txt
+#
+# ffmpeg/ffprobe are required at runtime. `imageio-ffmpeg` (below) bundles a binary
+# that pov_triage._ff() can resolve; a system ffmpeg on PATH also works.
+
+# --- core ---
+numpy==2.4.4
+scipy==1.17.1
+requests==2.33.0
+python-dotenv==1.2.2
+tqdm==4.67.3
+colorama==0.4.6
+
+# --- LLM / search APIs ---
+openai==2.30.0            # OpenRouter (Gemini vision, LLM judge) via OpenAI-compatible client
+exa-py==2.11.0            # optional web search
+
+# --- local audio/vision ML (all need torch installed first) ---
+easyocr==1.7.2            # AXON clock + aerial HUD OCR
+faster-whisper==1.2.1     # transcription
+ctranslate2==4.7.1        # faster-whisper backend
+soundfile==0.13.1
+librosa==0.11.0
+opencv-python-headless==4.13.0.92
+pillow==12.2.0
+pyannote.audio==3.3.2     # speaker diarization (heavy; optional)
+panns-inference==0.1.1    # acoustic event classifier (optional gunshot classifier path)
+
+# --- media / sources ---
+yt-dlp==2026.3.17
+imageio-ffmpeg==0.6.0     # bundled ffmpeg binary
+youtube-transcript-api==1.2.4
+youtube-search-python==1.6.6
+praw==7.8.1               # Reddit (autoresearch)
+pypdf==6.9.2              # docket / packet PDF parsing
+
+# --- tests ---
+pytest==9.0.3
+
+# -----------------------------------------------------------------------------
+# PyTorch — install SEPARATELY for your hardware, BEFORE the line above.
+# The working machine has (CPU/older mix):
+#   torch==2.12.1  torchvision==0.27.1  torchaudio==2.2.2
+# On the new machine, prefer the official selector (CPU example):
+#   python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# (use the CUDA index-url instead if the new machine has an NVIDIA GPU)
+# easyocr / faster-whisper / pyannote all import torch, so it must be present first.
