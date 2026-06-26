@@ -1,0 +1,141 @@
+{
+  "case_id": "sac_so_20-269838",
+  "agency": "Sacramento County Sheriff's Office",
+  "incident": {
+    "date": "2020-08-22",
+    "location": "160 block Dutchess Way, Rancho Cordova, CA",
+    "summary": "A woman called 911 to report an armed man (Christopher Paul Walker, 29) at her home. When deputies arrived, Walker shot the 58-year-old caller four times on the porch, killing her, then opened fire on deputies instead of fleeing — wounding Deputy Eric Schmidt in the leg. Walker died of an apparent self-inflicted gunshot wound. Two dead; deputy recovered.",
+    "subjects": ["Christopher Paul Walker (suspect, deceased)", "58-year-old female 911 caller (victim, deceased)", "Deputy Eric Schmidt (wounded)", "Deputy Neay Chhlang", "Deputy Gabriel Maggini"]
+  },
+  "artifacts": [
+    { "artifact_id": "911_call", "kind": "911_audio", "member": null, "pov_label": "911 caller (victim)" },
+    { "artifact_id": "bwc_schmidt", "kind": "bodycam", "member": null, "pov_label": "Dep. Schmidt (wounded)" },
+    { "artifact_id": "bwc_chhlang", "kind": "bodycam", "member": null, "pov_label": "Dep. Chhlang" },
+    { "artifact_id": "bwc_maggini", "kind": "bodycam", "member": null, "pov_label": "Dep. Maggini" },
+    { "artifact_id": "ia_interviews", "kind": "interrogation", "member": null, "pov_label": "internal-affairs deputy interviews" }
+  ],
+  "labeling": {
+    "labeler": "draft (Claude, from public reporting — NOT yet verified against footage)",
+    "status": "timestamps_pending",
+    "notes": "Beats derived from abc10/CBS Sacramento coverage of the 8/22/2020 incident. start_sec/end_sec and artifact members are NULL until the Dropbox bundle is downloaded and a human confirms each moment against the actual video/transcript. Do NOT freeze or gate on this until status='reviewed'. Salience/importance are provisional editorial calls — adjust after watching."
+  },
+  "moments": [
+    {
+      "moment_id": "m01_911_plea",
+      "artifact_id": "911_call",
+      "moment_type": "emotional_peak",
+      "salience": 5,
+      "importance": "critical",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "The 58-year-old victim calls 911 reporting the armed man at her home — the human voice of the person who will be killed minutes later. The emotional spine and likely cold-open.",
+      "evidence_quote": null,
+      "angle": "tragedy",
+      "must_find": true
+    },
+    {
+      "moment_id": "m02_arrival",
+      "artifact_id": "bwc_schmidt",
+      "moment_type": "tension_shift",
+      "salience": 3,
+      "importance": "high",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Deputies arrive and approach on Dutchess Way; calm-before tension as they move toward the home. Establishes geography across the three bodycam POVs.",
+      "evidence_quote": null,
+      "angle": "procedural",
+      "must_find": false
+    },
+    {
+      "moment_id": "m03_caller_shot",
+      "artifact_id": null,
+      "moment_type": "reveal",
+      "salience": 5,
+      "importance": "critical",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Walker, seeing deputies, shoots the 911 caller four times on the porch and kills her. The pivotal, horrifying turn — the victim is killed by the very person she called for protection from. Likely captured across multiple POVs (cross-cam sync target).",
+      "evidence_quote": null,
+      "angle": "tragedy",
+      "must_find": true
+    },
+    {
+      "moment_id": "m04_suspect_chooses_fight",
+      "artifact_id": null,
+      "moment_type": "tension_shift",
+      "salience": 4,
+      "importance": "high",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "With escape routes available, Walker instead crouches near an A/C unit and opens fire on deputies — the decision that defines the gun battle.",
+      "evidence_quote": null,
+      "angle": "reveal",
+      "must_find": false
+    },
+    {
+      "moment_id": "m05_deputy_shot",
+      "artifact_id": "bwc_schmidt",
+      "moment_type": "emotional_peak",
+      "salience": 5,
+      "importance": "critical",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Deputy Eric Schmidt is shot in the lower body during the exchange — the moment from the wounded deputy's own bodycam POV. Peak chaos.",
+      "evidence_quote": null,
+      "angle": "heroism",
+      "must_find": true
+    },
+    {
+      "moment_id": "m06_return_fire",
+      "artifact_id": null,
+      "moment_type": "tension_shift",
+      "salience": 3,
+      "importance": "high",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Deputies return fire on Walker. The use-of-force core the AB748/SB16 release exists to document.",
+      "evidence_quote": null,
+      "angle": "procedural",
+      "must_find": false
+    },
+    {
+      "moment_id": "m07_suspect_down",
+      "artifact_id": null,
+      "moment_type": "reveal",
+      "salience": 4,
+      "importance": "critical",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Walker dies of an apparent self-inflicted gunshot wound to the head — the grim resolution that reframes the whole encounter.",
+      "evidence_quote": null,
+      "angle": "reveal",
+      "must_find": true
+    },
+    {
+      "moment_id": "m08_aftermath_aid",
+      "artifact_id": "bwc_chhlang",
+      "moment_type": "emotional_peak",
+      "salience": 3,
+      "importance": "medium",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Aftermath: deputies render aid / secure the scene with two people dead and one of their own wounded. Denouement and human cost.",
+      "evidence_quote": null,
+      "angle": "human_interest",
+      "must_find": false
+    },
+    {
+      "moment_id": "m09_ia_account",
+      "artifact_id": "ia_interviews",
+      "moment_type": "detail_noticed",
+      "salience": 2,
+      "importance": "medium",
+      "start_sec": null,
+      "end_sec": null,
+      "summary": "Internal-affairs interview detail that corroborates or complicates the on-scene footage — connective tissue for the documentary, and a potential contradiction source to watch for.",
+      "evidence_quote": null,
+      "angle": "accountability",
+      "must_find": false
+    }
+  ]
+}
