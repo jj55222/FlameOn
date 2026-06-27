@@ -5,71 +5,67 @@ Cross-refs: `MIGRATION.md` (macOS quickstart), auto-memory `MEMORY.md`, `schemas
 
 ---
 
-## ⏭️ IMMEDIATE NEXT TASK — fix the documentary's flat act structure
+## ✅ RESOLVED (2026-06-27) — both cut blockers fixed: factual grounding + incident-anchor
 
-The Pipeline-6 documentary engine now RUNS on macOS and produces a real `.mp4`, and the **footage is
-correct** (the OD-response cams dominate). But the narrative **acts are flat**:
-`{hook:0, escalate:5, aftermath:21, accountability:0}` — everything piles into "aftermath".
+The two blockers from the operator first-watch (narration factually wrong; flat/backwards acts) are
+**both fixed and verified.** New cut: `.tmp/2023psb0530/long_cuts/sac_so_2023psb-0530/sac_so_2023psb-0530_rough_cut.mp4`
+(203 s), playing in true cause→effect order. 88/88 P6 tests pass.
 
-**Root cause:** `timeline_build` anchored "the incident" on the earlier **drug seizure (17:42, BWC-4/1)**,
-so it treats the **overdose (20:45, BWC-3a/5/3c)** as *aftermath*. The story is backwards.
+**Fix 1 — incident anchor (chronology / flat acts).** `timeline_build.py` auto-anchored on the earliest
+trusted stamp = the **drug seizure 17:42**, so the OD (20:45) fell past the 3 h `AFTERMATH_CUTOFF` and
+everything bucketed `transport`/aftermath. Added **`--incident "YYYY-MM-DD HH:MM[:SS]"` (UTC) / `--anchor-epoch`**
+to override the anchor. Re-anchoring cascades deterministically: timeline phase buckets → `source.phase` →
+`beat.act_id`, so the **skeleton** redistributes acts (the shaper only reorders WITHIN acts — it never moves
+beats between them, which is why earlier runs "left beats in skeleton buckets"; that was the anchor, not the
+shaper). Acts went `{escalate:5, aftermath:21}` → `{establish:4, escalate:9, aftermath:9}`.
+**Correct anchor for 2023PSB-0530 = `2023-10-24 20:45:00`** (the OD).
 
-**The fix:** anchor the incident on the OVERDOSE (~20:45) so phases bucket right:
-`pre_incident=seizure → cold open`, `incident=OD discovery → hook/escalate`, `aftermath=transport/hospital`,
-`investigation(23:09)+IA finding → accountability`. Check `timeline_build.py` for an incident-time arg
-(like `--incident "YYYY-MM-DD HH:MM"`, as `zip_triage` has); if absent, the phase heuristic needs the
-anchor passed in. Then rebuild: blueprint → blueprint_shape → render_blueprint. NOTE: even with correct
-phases, `blueprint_shape` may not redistribute beats across acts (it wrote theses but left beats in their
-skeleton buckets in two runs) — verify the shaper actually reassigns `beat_ids` to hook/accountability,
-or that's a second fix.
+**Fix 2 — narration factual grounding (defamation).** `blueprint.build_incident` read subjects from
+`people[]` (empty) and charges from `charges[]` (empty), never `de["subject"]` ("Marvin Morales") or
+`de["narrative"]["text"]` — so the shaper got NO true framing and confabulated "a deputy leaves a handcuffed
+man in a patrol car." Fixes:
+- `build_incident` now surfaces `subject`, `narrative.text` → `incident.summary`, and charges-from-`disposition.findings`.
+- `blueprint_shape._build_prompt` injects a `CASE_FACTS` block + a FACTUAL-GROUNDING system rule.
+- `blueprint_shape.audit_narration()` — a deterministic fact-check rail that quarantines any
+  logline/thesis/narration asserting a civilian-detainee/patrol-car frame when the subject is LE
+  (grounding-as-precision extended from QUOTES → FRAMING; flags land in `edit_report.factual_flags`).
 
-Reproduce the current (footage-correct, structure-flat) cut:
+New logline (was *"a deputy leaves a handcuffed man alone in a patrol car…cover-up…termination"*):
+> *A deputy's overdose in a station restroom leads to an internal affairs investigation that reveals he
+> pocketed seized drugs — and a termination.*
+
+The guard didn't need to fire on the live run — grounding alone produced correct narration (defense-in-depth).
+
+**Rebuild recipe (note the new `--incident` flag on step 1):**
 ```bash
 eval "$(/opt/homebrew/bin/brew shellenv)"; set -a; . ./.env; set +a   # ffmpeg on PATH + OPENROUTER key
-# (scaffolding already built in .tmp/2023psb0530/; to rebuild from scratch see "Documentary chain" below)
+.venv/bin/python pipeline3_audio/timeline_build.py --artifacts .tmp/2023psb0530/timeline/artifacts.json \
+  --incident "2023-10-24 20:45:00" --case-id sac_so_2023psb-0530 \
+  --out .tmp/2023psb0530/timeline/case_timeline.json
 .venv/bin/python -X utf8 pipeline6_sequence/blueprint.py --artifacts .tmp/2023psb0530/timeline/artifacts.json \
   --timeline .tmp/2023psb0530/timeline/case_timeline.json --verdict .tmp/2023psb0530/verdict_creatorkey.json \
   --doc-extract .tmp/2023psb0530/docs/doc_extract.json --media-dir ~/Downloads/2023PSB-0530 \
-  --target-runtime 300 --out .tmp/2023psb0530/blueprint
+  --agency "Sacramento County Sheriff's Office" --target-runtime 300 --out .tmp/2023psb0530/blueprint
 .venv/bin/python -X utf8 pipeline6_sequence/blueprint_shape.py --blueprint .tmp/2023psb0530/blueprint/sac_so_2023psb-0530_blueprint.json --model deepseek/deepseek-v4-flash --out .tmp/2023psb0530/blueprint
 .venv/bin/python -X utf8 pipeline6_sequence/render_blueprint.py --blueprint .tmp/2023psb0530/blueprint/sac_so_2023psb-0530_blueprint_shaped.json --media-dir ~/Downloads/2023PSB-0530 --transcripts .tmp/2023psb0530/transcripts --out .tmp/2023psb0530/long_cuts
 ```
 
-## 🎬 CUT CRITIQUE (operator first-watch, 2026-06-27) — fix these, they're the real blockers
+### ⏭️ Remaining follow-ups (NOT blockers — cut is watchable now)
+1. **Two 0-beat acts** — `cold_open` (no dashcam/911 to open on) and `accountability`/"The Record" (the IA
+   finding is a *document* — outcome card + thesis carry it, no footage). To put footage under accountability,
+   promote the **23:09 truck-investigation** beats (deputies skeptical of the timeline — the operator flagged
+   these as a genuinely good beat) out of `aftermath`. Would need either a 4th phase boundary in
+   `timeline_build` (an `investigation` cutoff for same-night on-scene investigation) or a beat-level tag.
+2. **Discovery moment** — operator noted the actual moment of finding Morales unresponsive felt skipped
+   (cut to after he was dragged out). Check whether BWC-3a/5 (20:45) key_moments include the discovery; the
+   `exacqVision Central Hallway` station cam may also hold it but is mis-stamped to its 2024 export date →
+   bucketed `investigation` (a D0 timestamp-trust issue, separate from this work).
+3. **Charge strings** still carry minor OCR cruft (`"hat it causes discredit"`, `"rcotics 2."`); `_clean_charge`
+   trims the M.O.U. prefix but not all leading fragments. Display-only; tighten if it shows on a card.
 
-Watched the footage-correct cut. Footage selection + assembly mechanics work; the CONTENT is wrong two ways,
-one severe.
-
-### 1. NARRATION IS FACTUALLY WRONG — most important, defamation-grade
-The shaper CONFABULATED a false story. Its logline/theses/narration say a deputy "leaves a **handcuffed
-man / detainee** alone in a patrol car, leading to an overdose, a cover-up, and termination" — framing it as
-Sheriff/deputy negligence killing a detainee. **That is the OPPOSITE of the truth.** The case: the unconscious
-person IS **Deputy Marvin Morales**; HE overdosed on **seized fentanyl he smoked himself** in the station
-bathroom ~3 hrs after seizing it. No detainee, no patrol-car abandonment, no cover-up.
-- **Root cause:** the integrity rail (`blueprint_shape.validate_edit`) only checks that narration references
-  real `asset_id`s / pinned quotes — it does NOT check the narration's FACTUAL FRAMING. `doc_extract.json`
-  knows it's "Deputy Marvin Morales" + the IA finding, but the shaper ignored/misread it and invented a
-  detainee-death narrative.
-- **FIX (highest priority):** ground narration on CASE FACTS, not just asset refs. Pass the shaper hard facts
-  as constraints (subject = Deputy Morales; he seized the fentanyl then smoked it himself; outcome = IA
-  sustained inexcusable neglect / discredit) and/or add a fact-check pass rejecting narration that contradicts
-  `doc_extract`. Grounding-as-precision must extend from QUOTES to FRAMING.
-
-### 2. WRONG EMPHASIS + SCRAMBLED CHRONOLOGY (compounds the incident-anchor fix above)
-- **Missed the crux:** the key setup is Morales **getting/seizing the drugs during the initial detention** —
-  WHY the later OD matters. The cut didn't foreground it.
-- **Skipped the discovery:** cut straight to AFTER deputies dragged Morales out of the restroom; the actual
-  moment of discovering him unresponsive is absent.
-- **Order broken:** the **truck investigation** (post-OD, ~23:09) was placed right after the **initial
-  detention** (17:42) instead of after the OD; and Morales **entering the bathroom to smoke** (the CAUSE) was
-  played LAST. Cause→effect scrambled — same root as the incident-anchor bug above.
-
-### Kept (good — preserve)
-- Footage is the correct cams now (the `source_url` fix worked).
-- It kept the deputies-by-the-truck being **skeptical about the timeline of events** — a genuinely good beat.
-
-**Bottom line:** two blockers — (a) narration factual grounding and (b) chronology/incident-anchor. (a) is
-the more dangerous and the more novel (the integrity rail's blind spot). Fix both before this is watchable.
+### Kept from the original cut (good — preserve)
+- Footage is the correct cams (the `source_url` fix).
+- The deputies-by-the-truck **skeptical about the timeline of events** beat (see follow-up #1).
 
 ---
 
