@@ -85,6 +85,24 @@ VIDEO_EXTS = {".mp4", ".mov", ".avi", ".mkv", ".m4v", ".wmv", ".flv", ".webm", "
 AUDIO_EXTS = {".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".wma"}
 DOC_EXTS = {".pdf", ".doc", ".docx", ".txt", ".rtf"}
 
+# Artifact signals sniffed from request + file titles. The goal is no longer
+# "video only" — a SB1421/16 accountability release or an interrogation record
+# is a desirable case artifact too. The ideal "winner" bundles several.
+RE_SB16 = re.compile(
+    r"\b(sb[\s.-]?1421|sb[\s.-]?16\b|senate bill 1421|penal code 832\.7|832\.7"
+    r"|peace officer.{0,20}record|personnel record|misconduct record"
+    r"|use[\s-]?of[\s-]?force report)", re.I)
+RE_INTERR = re.compile(r"\b(interrogat|custodial interview|suspect interview|interview of)", re.I)
+RE_BWC = re.compile(r"\b(body[\s-]?worn|bwc|body[\s-]?cam|axon|in[\s-]?car video|dash[\s-]?cam)", re.I)
+
+
+def detect_artifacts(text: str) -> Dict[str, bool]:
+    return {
+        "sb16": bool(RE_SB16.search(text)),
+        "interrogation": bool(RE_INTERR.search(text)),
+        "bwc": bool(RE_BWC.search(text)),
+    }
+
 
 def _read_env_file() -> Dict[str, str]:
     """Minimal .env parser: KEY=value, strips quotes + inline comments."""
