@@ -1,0 +1,50 @@
+{
+  "case_id": "kolb_CALL_3_6_2",
+  "source_evidence_type": "interrogation",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_181169_kolb/CALL_3_6_2.MP3",
+  "transcript": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 4.68,
+      "text": "It's currently off right now because it's dead, but when I get my car, I'm off work right now.",
+      "confidence": 0.915
+    },
+    {
+      "start_sec": 4.84,
+      "end_sec": 6.12,
+      "text": "When I get my car, I'll plug it in.",
+      "confidence": 0.981
+    },
+    {
+      "start_sec": 6.28,
+      "end_sec": 8.72,
+      "text": "Okay, do you have a home phone?",
+      "confidence": 0.794
+    },
+    {
+      "start_sec": 9.0,
+      "end_sec": 9.46,
+      "text": "Yes, I do.",
+      "confidence": 0.98
+    },
+    {
+      "start_sec": 9.64,
+      "end_sec": 10.4,
+      "text": "Okay, what's that number?",
+      "confidence": 0.975
+    }
+  ],
+  "silence_map": [],
+  "original_duration_sec": 11.102,
+  "processed_duration_sec": 11.102,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 3.9
+  }
+}
