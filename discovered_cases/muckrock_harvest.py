@@ -49,6 +49,10 @@ from rank_candidates import score_text  # noqa: E402
 
 ROOT = Path(__file__).parent
 API_BASE = "https://www.muckrock.com/api_v2/"
+# MuckRock api_v2 uses Squarelet JWT auth (SimpleJWT TokenObtainPair): POST
+# username/password here -> {access, refresh}, then call api_v2 with
+# `Authorization: Bearer <access>`. There is no static API token.
+TOKEN_URL = "https://accounts.muckrock.com/api/token/"
 REQUEST_TIMEOUT = 30
 RATE_LIMIT_SEC = 1.1  # match autoresearch/research.py politeness
 
