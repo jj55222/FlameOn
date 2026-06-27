@@ -21,7 +21,9 @@ import make_documentary as md  # noqa: E402
 def _args(**over):
     base = dict(basket=".tmp/case", case_id="vasquez_23117201", agency="Agency",
                 media_dir=None, doc=None, phases="incident", kinds="bodycam",
-                cold_open=None, no_align=False, skip_score=False, run=False)
+                cold_open=None, no_align=False, skip_score=False, run=False,
+                flagship=False, target_runtime=600.0,
+                shape_model="deepseek/deepseek-v4-flash", judge_mock=False, judge_model=None)
     base.update(over)
     return argparse.Namespace(**base)
 
