@@ -308,6 +308,51 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
     }
 
 
+def project_duration(paper_edit: Dict[str, Any]) -> float:
+    """Total runtime a paper_edit WILL render to — computed, no ffmpeg. Mirrors
+    render_rough_cut.render() exactly: card=dur, clip=out-in (≥0.5), narration=3.0,
+    gap=0. Lets us solve runtime offline instead of rendering trial cuts."""
+    total = 0.0
+    for ev in paper_edit.get("timeline", []):
+        k = ev["kind"]
+        if k == "card":
+            total += float(ev.get("dur", 5.0))
+        elif k == "clip":
+            total += max(0.5, float(ev["out_sec"]) - float(ev["in_sec"]))
+        elif k == "narration":
+            total += 3.0
+    return round(total, 1)
+
+
+def solve_min_clip_sec(bp: Dict[str, Any], media_dir: Optional[Path],
+                       transcripts: Optional[Dict[str, List[Dict]]],
+                       target_sec: float, lo: float = 6.0, hi: float = 90.0,
+                       iters: int = 20) -> Tuple[float, float]:
+    """Binary-search the per-moment window (``min_clip_sec``) that lands the cut on
+    ``target_sec``. Runtime is monotonic in the window up to the footage caps, so a
+    bisection converges; if even the max window can't reach the target (footage-
+    bound), return that max — the engine never pads. Cheap: each probe builds a
+    paper_edit with audio_aware off (no ffprobe), only the final render is audio-aware.
+    Returns ``(min_clip_sec, projected_sec)``."""
+    def projected(mcs: float) -> float:
+        pe = blueprint_to_paper_edit(bp, media_dir=media_dir, audio_aware=False,
+                                     transcripts=transcripts, min_clip_sec=mcs)
+        return project_duration(pe)
+
+    if projected(hi) < target_sec:
+        return round(hi, 1), projected(hi)     # footage-capped; honest shortfall
+    if projected(lo) >= target_sec:
+        return round(lo, 1), projected(lo)     # already over at the floor
+    for _ in range(iters):
+        mid = (lo + hi) / 2.0
+        if projected(mid) < target_sec:
+            lo = mid
+        else:
+            hi = mid
+    mcs = round((lo + hi) / 2.0, 1)
+    return mcs, projected(mcs)
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="P6 — render a blueprint into a long-form rough cut")
     ap.add_argument("--blueprint", required=True, type=Path, help="<id>_blueprint(_shaped).json")
