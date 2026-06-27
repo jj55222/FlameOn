@@ -206,31 +206,35 @@ release — but expect docs there, not footage.
 
 ## 6b. VIDEO PORTALS (AB748 critical-incident video) — ranked ingest targets
 
-Since SB1421 portals are PDFs, here are the actual **video** sources, best first. Two ingest
-patterns already exist in this repo: **yt-dlp** (CIB YouTube playlists, see
-`discovered_cases/download_all.py`) and **NextRequest scrape** (SFDPA, see `rank_candidates.py`).
+Since SB1421 portals are PDFs, here are the actual **video** sources. A prior session already ran a
+verified 24-agency portal hunt (see the `transparency-portals` memory + the Sacramento SO gold
+standard `sacsheriff.com/pages/released_cases.php`). Reconciled ranking below. Two ingest patterns
+already exist in this repo: **yt-dlp** (CIB YouTube playlists, `discovered_cases/download_all.py`)
+and **NextRequest scrape** (SFDPA, `rank_candidates.py`).
 
-| # | Portal | URL | Type | Ingest |
-|---|--------|-----|------|--------|
-| 1 | **Chicago COPA Case Portal** ⭐ | https://www.chicagocopa.org/data-cases/case-portal/ | Civilian-run case portal; ~101 pages, filter by log#/district/incident-type/date; **all media + reports per case** | scraper (case page → media URLs); best single structured target |
-| 2 | **LAPD Critical Incident Videos** | https://www.lapdonline.org/office-of-the-chief-of-police/professional-standards-bureau/critical-incident-videos/ | Official CIV page + YouTube | yt-dlp |
-| 2b | LAPD "Critical Incident Community Briefings" playlist | https://www.youtube.com/playlist?list=PLW5iqZEagvjMvmXRnBaYqozLYwmzUO2B9 | YouTube playlist (raw bodycam in briefings) | yt-dlp |
-| 2c | LAPD channel (all playlists) | https://www.youtube.com/c/LAPDONLINE1/playlists | YouTube | yt-dlp |
-| 3 | **San Diego PD Critical Incident Videos** | https://www.sandiego.gov/police/data-transparency/critical-incident-videos | Official CIV page (AB748, ~10–45 days) | scraper/yt-dlp |
-| 4 | **San Diego County Sheriff CIB** | (YouTube — already in `discovered_cases/`) | YouTube playlists | yt-dlp (already wired) |
-| 5 | **SF DPA** | https://sfdpa.nextrequest.com/documents | NextRequest (BWC + interrogation audio + docs) | scrape (already a source) |
-| 6 | Phoenix PD Critical Incident Briefings | YouTube (since 2019; **edited**, not raw) | YouTube | yt-dlp (lower value — edited) |
-| 7 | Sacramento SO / Long Beach PD | (agency transparency pages) | mixed | per memory `transparency-portals` |
+**Tier 1 — clear the bar (downloadable video bundled with case docs):**
 
-**Notes:**
-- **COPA is the gold standard** — an independent civilian agency posts the *full* media set
-  (bodycam, dashcam, audio, reports) per case, browsable/filterable. Worth a dedicated scraper.
-  (Download mechanism not 100% confirmed from the landing page; the case pages host the media —
-  inspect one case page's network requests to find the file/stream URLs.)
-- **Phoenix and many "briefing" channels release EDITED narratives**, not raw continuous footage —
-  lower value for salience mining. Prefer agencies that post raw BWC (COPA, LAPD briefings, San Diego).
-- Avoid third-party aggregator channels (PoliceActivity, EWU Bodycam, etc.) — re-uploads, no
-  case metadata, copyright-murky. Stick to **official agency / oversight-body** sources.
+| # | Portal | URL | Ingest reality |
+|---|--------|-----|----------------|
+| 1 | **San Diego PD** ⭐ best/easiest | `https://sdpdsb1421.sandiego.gov` | **Open static directory**, per-case folders `/Officer Involved Shootings/{year}/{date location}/{Video,Audio,Documents,Photos}/`, **directly downloadable .mov/.pdf/audio**, no login. Host **403s naive fetchers → set a browser User-Agent**, then enumerate. Start case: `04-13-2021 1405 Park Boulevard`. |
+| 2 | **Chicago COPA** richest media | `https://www.chicagocopa.org/data-cases/case-portal/` | ~101 pages, filter by log#/district/type/date. BWC + in-car + 3rd-party **surveillance** + 911/radio + PDFs. **Video = streaming embeds → needs stream extraction** (inspect case-page network requests). Docs = direct PDFs. Start case `2025-0003972`. |
+| 3 | **Long Beach PD** deepest archive | `https://citydocs.longbeach.gov/LBPDPublicDocs/` | Laserfiche, OIS back to 1968 (200+). BWC + surveillance + reports per case. **JS/cookie-gated → headless browser** to enumerate. |
+| 0 | **Sacramento SO** gold standard | `https://www.sacsheriff.com/pages/released_cases.php` | BWC + dashcam + CCTV + 911/radio **AND** IA/OIS reports + DA letters, bundled per case. The template the others are measured against. |
+
+**Tier 2 — video-only / streaming (no doc bundle), still usable for footage:**
+- **LAPD** — CIV page `lapdonline.org/.../critical-incident-videos/` + YouTube "Critical Incident
+  Community Briefings" playlist `PLW5iqZEagvjMvmXRnBaYqozLYwmzUO2B9` (yt-dlp). Raw BWC inside briefings.
+- **San Diego County Sheriff CIB** — YouTube playlists, **already wired** in `discovered_cases/`.
+- **SF DPA** — `sfdpa.nextrequest.com/documents` — BWC + interrogation audio + docs (already a source).
+- **LASD, LVMPD, Maryland OAG IID** — deep DA-letter docs but **video is YouTube-streamed**.
+
+**Docs-only (NOT video):** CA DOJ `oag.ca.gov/ois-incidents` (AB1506 decision PDFs, zero media);
+SB1421/16 record portals (Oakland, etc.); the Berkeley Police Records Access DB (excludes audio/video).
+
+**Avoid:** EDITED "briefing" narratives (Phoenix) — not raw footage; third-party aggregator channels
+(PoliceActivity, EWU Bodycam) — re-uploads, no case metadata. Stick to official agency / oversight sources.
+
+**Mechanisms (not portals):** Axon `evidence.com`, NextRequest/GovQA (request-and-fulfill), NACOLE (index).
 
 ## 7. Cases already processed (results)
 
