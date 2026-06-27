@@ -176,7 +176,8 @@ def threat_window(segments: List[Dict], max_sec: float = 26.0) -> Optional[Tuple
 def blueprint_to_paper_edit(bp: Dict[str, Any],
                             media_dir: Optional[Path] = None,
                             audio_aware: bool = False,
-                            transcripts: Optional[Dict[str, List[Dict]]] = None) -> Dict[str, Any]:
+                            transcripts: Optional[Dict[str, List[Dict]]] = None,
+                            min_clip_sec: float = 0.0) -> Dict[str, Any]:
     """Convert a (shaped) blueprint into a render_rough_cut paper_edit.
 
     ``audio_aware`` (needs ffmpeg) snaps B-roll windows to an audible stretch so
