@@ -208,9 +208,13 @@ class MuckRock:
         ))
         for comm in comms:
             embedded = comm.get("files")
-            if isinstance(embedded, list) and embedded and isinstance(embedded[0], dict):
-                files.extend(embedded)
+            # api_v2 embeds files as a list on each communication. An EMPTY list
+            # means the comm had no attachments — authoritative, do NOT fall back
+            # (that wasted a rate-limited call per email and timed runs out).
+            if isinstance(embedded, list):
+                files.extend(f for f in embedded if isinstance(f, dict))
                 continue
+            # Only when the key is genuinely absent do we query the files endpoint.
             comm_id = comm.get("id")
             if comm_id is None:
                 continue
