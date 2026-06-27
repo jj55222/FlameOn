@@ -690,6 +690,9 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
     if vision_events:
         extra += build_vision_beats(vision_events, manifest, timeline_index, agency, beats)
     extra += substance_beats(verdict, sources, manifest, stem_to_id, agency, beats)
+    # Accountability act: the IA record as on-screen beats (the document carries
+    # the act that no footage can — sourced, not invented). Sorted last (no _abs).
+    extra += build_document_beats(doc_extracts, agency)
     if extra:
         _PHASE_IDX = {p: i for i, (p, _, _) in enumerate(_PHASE_ACT)}
         beats = sorted(beats + extra,
