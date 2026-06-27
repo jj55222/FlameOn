@@ -605,11 +605,15 @@ def build_document_beats(doc_extracts: List[Dict], agency: str,
         # 4. The sustained findings (the accountability verdict).
         findings = (de.get("disposition") or {}).get("findings") or []
         sustained = [f for f in findings if (f.get("finding") or "").upper() == "SUSTAINED"]
-        for f in sustained[:max_findings]:
+        seen_ch: set = set()
+        for f in sustained:
             ch = _clean_charge(f.get("charge"))
-            if ch:
+            if ch and ch.lower() not in seen_ch:
+                seen_ch.add(ch.lower())
                 _emit(f"Internal Affairs finding — SUSTAINED: {ch}.",
                       "Findings", [f"{dref}#p{f.get('page')}"], "high", 8.0)
+            if len(seen_ch) >= max_findings:
+                break
     return beats
 
 
