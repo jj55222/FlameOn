@@ -153,7 +153,8 @@ def ground_filter(candidates: list, blob: str, tokens: set, segments: list) -> t
             continue
         # Snap timestamp to the best-matching segment so it's grounded, not LLM-guessed.
         nq = _norm(c.get("evidence_quote", ""))
-        best = max(segments, key=lambda s: len(set(nq.split()) & set(_norm(s["text"]).split())),
+        cand_segs = [s for s in segments if not c.get("artifact_id") or s["source"] == c["artifact_id"]] or segments
+        best = max(cand_segs, key=lambda s: len(set(nq.split()) & set(_norm(s["text"]).split())),
                    default=None)
         if best and best["start"] is not None:
             c["start_sec"], c["end_sec"] = best["start"], best.get("end")
