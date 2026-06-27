@@ -82,7 +82,10 @@ def craft_findings(bundle: Dict, paper_edit: Optional[Dict] = None) -> Dict:
             replays.append({"media": Path(m).name, "in": c["in_sec"], "prev_out": round(last_out[m], 1)})
         last_out[m] = max(last_out.get(m, 0.0), c["out_sec"])
 
-    unsourced = [b.get("beat_id") for b in beats if not b.get("primary_asset")]
+    # A beat is unsourced only if it has neither footage NOR a document source —
+    # record beats (is_document) are sourced to the IA report, not to a clip.
+    unsourced = [b.get("beat_id") for b in beats
+                 if not b.get("primary_asset") and not b.get("is_document")]
     md = bundle.get("metadata", {})
     planned, target = md.get("planned_runtime_sec", 0), bundle.get("target_runtime_sec", 0)
     ratio = round(planned / target, 2) if target else None
