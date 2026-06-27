@@ -2,12 +2,12 @@
 
 **Source:** San Francisco Department of Police Accountability public records
 **Front-end index:** https://sfdpa.nextrequest.com/documents
-**Crawled/snapshotted:** local `discovered_cases/sfdpa_docs.json`
+**Crawled live via:** `https://sfdpa.nextrequest.com/client/documents?page_size=50&page_number=N`
 **Candidate data:** `/Users/jmoney/FlameOn-main/discovered_cases/sfdpa_candidates.json`
 
-> This is a NextRequest public-document portal. Case folders often bundle DPA/IAD/Homicide
-> interview MP3s with production PDFs, and some folders include BWC MP4 exhibits. The JSON
-> uses `/download` URLs so a downloader can follow NextRequest's redirect to the file.
+> Live crawl of the NextRequest JSON API (whole portal). Case folders bundle DPA/IAD/Homicide
+> interview MP3s with production PDFs, and many include BWC/surveillance MP4 exhibits. The JSON
+> uses `/download` URLs so a downloader can follow NextRequest's 302 redirect to the S3 file.
 
 ## Totals
 
@@ -19,7 +19,7 @@
 
 | # | Score | Folder | Vid | Aud | Doc | Downloads | Highlights | Browse |
 |---|------:|--------|----:|----:|----:|----------:|------------|--------|
-| 1 | 45 | 0656-18 | 2 | 22 | 3 | 5559 | +5 homicide, +4 interview, +3 bwc | [link](https://sfdpa.nextrequest.com/requests/20-2) |
+| 1 | 45 | 0656-18 | 2 | 22 | 3 | 5560 | +5 homicide, +4 interview, +3 bwc | [link](https://sfdpa.nextrequest.com/requests/20-2) |
 | 2 | 40 | 0213-18 | 2 | 4 | 2 | 1647 | +4 interview, +3 body worn | [link](https://sfdpa.nextrequest.com/requests/20-5) |
 | 3 | 39 | 0141-19 | 3 | 4 | 1 | 2188 | +4 interview, +3 bwc, -1 redacted | [link](https://sfdpa.nextrequest.com/requests/22-9) |
 | 4 | 39 | 45130-20 | 2 | 9 | 2 | 2812 | +4 interview, +3 bwc, -1 redacted | [link](https://sfdpa.nextrequest.com/requests/20-2) |
