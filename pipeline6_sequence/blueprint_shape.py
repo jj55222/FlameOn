@@ -412,9 +412,19 @@ def _build_prompt(blueprint: Dict) -> str:
               "description": b.get("description") or b.get("_description"),
               "needs_narration": bool((b.get("narration_bridge") or {}).get("needed"))}
              for b in blueprint.get("beats", [])]
+    inc = blueprint.get("incident") or {}
+    case_facts = {
+        "subjects": inc.get("subjects") or [],
+        "date": inc.get("date"),
+        "location": inc.get("location"),
+        "summary": inc.get("summary"),          # authoritative prose from the IA record
+        "charges": inc.get("charges") or [],
+        "disposition": inc.get("disposition"),
+    }
     payload = {
         "case_id": blueprint.get("case_id"),
         "target_runtime_sec": blueprint.get("target_runtime_sec"),
+        "CASE_FACTS": case_facts,
         "incident": blueprint.get("incident"),
         "asset_manifest": manifest,
         "acts": acts,
