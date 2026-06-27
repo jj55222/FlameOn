@@ -558,7 +558,16 @@ def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
         rejections = [{"field": "_shaping", "value": f"{type(e).__name__}: {str(e)[:120]}",
                        "reason": "shaping failed; kept deterministic skeleton"}]
         shaped.setdefault("edit_report", {})["error"] = rejections[0]["value"]
-    report = {"rejections": rejections, "raw_edit": edit,
+    # Fact-check rail: quarantine framing that contradicts the case facts. Run
+    # after apply so it sees the final logline/theses/narration, and recompute the
+    # narration_points that apply_edit derived (they may have been blanked).
+    factual_flags = audit_narration(shaped, blueprint.get("incident") or {})
+    if factual_flags:
+        shaped["narration_points"] = [{"beat_id": b["beat_id"], **b["narration_bridge"]}
+                                      for b in shaped.get("beats", []) if b.get("narration_bridge")]
+        shaped.setdefault("edit_report", {})["factual_flags"] = factual_flags
+        rejections = list(rejections) + factual_flags
+    report = {"rejections": rejections, "raw_edit": edit, "factual_flags": factual_flags,
               "built_by": shaped["metadata"]["built_by"]}
     return shaped, report
 
