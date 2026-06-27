@@ -869,6 +869,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     timeline_index = rc._load_timeline_index(args.timeline)
     sources = rc.map_sources(verdict, args.media_dir, timeline_index=timeline_index)
 
+    if args.auto_anchor:
+        timeline, timeline_index, sources = _auto_anchor(
+            artifacts, timeline, verdict, doc_extracts, sources,
+            args.media_dir, timeline_index)
+
     bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,
                          sources, timeline_index, args.agency,
                          target_runtime=args.target_runtime, media_dir=args.media_dir,
