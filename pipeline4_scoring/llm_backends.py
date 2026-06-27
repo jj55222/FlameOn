@@ -88,7 +88,14 @@ class LLMBackend:
                         "X-Title": "FlameOn Pipeline 4",
                     },
                 )
-                content = response.choices[0].message.content
+                if not getattr(response, "choices", None):
+                    raise LLMError("No choices in response (provider returned empty/error)")
+                msg = response.choices[0].message
+                content = msg.content
+                # Capture the reasoning trace instead of discarding it. OpenRouter exposes it on
+                # msg.reasoning for many reasoning models; some inline it as <think>...</think>.
+                self.last_reasoning = getattr(msg, "reasoning", None) or extract_think(content)
+                self.last_raw = content
                 if not content:
                     raise LLMError("Empty response from LLM")
                 return clean_llm_output(content)
