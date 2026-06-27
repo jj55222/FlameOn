@@ -379,9 +379,10 @@ def build_gaps(manifest: List[Dict], timeline: Dict, beats: List[Dict],
                      "missing": "scene stills / booking photo",
                      "why": "no still imagery for cutaways or the outcome card",
                      "acquire": "agency records / booking; scene photographs in discovery"})
-    # Unsourced beats (hard error — a beat with no footage).
+    # Unsourced beats (hard error — a beat with no footage). Document/record beats
+    # are sourced to the IA report, not footage — they are not gaps.
     for b in beats:
-        if b["primary_asset"] is None:
+        if b["primary_asset"] is None and not b.get("is_document"):
             gaps.append({"phase": b["_phase"], "kind": None,
                          "missing": f"beat {b['beat_id']} ({b['function']}) has no resolvable footage",
                          "why": "key_moment source_idx did not map to a manifest asset",
