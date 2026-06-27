@@ -170,6 +170,8 @@ with `verdict` (PRODUCE/HOLD/SKIP), `narrative_score`, `key_moments`, `content_p
 | `discovered_cases/muckrock_candidates.json` | 53 ranked candidates (last full run) |
 | `discovered_cases/muckrock_candidates_probe.json` | smaller probe run |
 | `discovered_cases/muckrock_calibrate_terms.py` / `_v2.py` | term-yield calibration |
+| `discovered_cases/sdpd_harvest.py` | **San Diego PD video crawler** (50 cases, 253 videos) — same schema |
+| `discovered_cases/sdpd_candidates.json` | SD PD crawl output (ranked, with download URLs) |
 | `discovered_cases/rank_candidates.py` | shared narrative keyword scorer (`score_text`, reused) |
 | `pipeline3_audio/pipeline3_transcribe.py` | transcriber (`--backend local|groq`) |
 | `pipeline4_scoring/pipeline4_score.py` | two-pass salience scorer → verdict |

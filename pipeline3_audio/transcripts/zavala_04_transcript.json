@@ -1,5 +1,5 @@
 {
-  "case_id": "zavala_04",
+  "case_id": "muckrock_185689_joliet_zavala",
   "source_evidence_type": "bodycam",
   "source_url": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_.mp4",
   "transcript": [
@@ -1048,5 +1048,6 @@
     "compression_applied": true,
     "loudness_target_lufs": -16.0,
     "total_processing_sec": 120.3
-  }
+  },
+  "source_label": "zavala_04"
 }
