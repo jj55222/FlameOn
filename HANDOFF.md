@@ -35,6 +35,42 @@ eval "$(/opt/homebrew/bin/brew shellenv)"; set -a; . ./.env; set +a   # ffmpeg o
 .venv/bin/python -X utf8 pipeline6_sequence/render_blueprint.py --blueprint .tmp/2023psb0530/blueprint/sac_so_2023psb-0530_blueprint_shaped.json --media-dir ~/Downloads/2023PSB-0530 --transcripts .tmp/2023psb0530/transcripts --out .tmp/2023psb0530/long_cuts
 ```
 
+## 🎬 CUT CRITIQUE (operator first-watch, 2026-06-27) — fix these, they're the real blockers
+
+Watched the footage-correct cut. Footage selection + assembly mechanics work; the CONTENT is wrong two ways,
+one severe.
+
+### 1. NARRATION IS FACTUALLY WRONG — most important, defamation-grade
+The shaper CONFABULATED a false story. Its logline/theses/narration say a deputy "leaves a **handcuffed
+man / detainee** alone in a patrol car, leading to an overdose, a cover-up, and termination" — framing it as
+Sheriff/deputy negligence killing a detainee. **That is the OPPOSITE of the truth.** The case: the unconscious
+person IS **Deputy Marvin Morales**; HE overdosed on **seized fentanyl he smoked himself** in the station
+bathroom ~3 hrs after seizing it. No detainee, no patrol-car abandonment, no cover-up.
+- **Root cause:** the integrity rail (`blueprint_shape.validate_edit`) only checks that narration references
+  real `asset_id`s / pinned quotes — it does NOT check the narration's FACTUAL FRAMING. `doc_extract.json`
+  knows it's "Deputy Marvin Morales" + the IA finding, but the shaper ignored/misread it and invented a
+  detainee-death narrative.
+- **FIX (highest priority):** ground narration on CASE FACTS, not just asset refs. Pass the shaper hard facts
+  as constraints (subject = Deputy Morales; he seized the fentanyl then smoked it himself; outcome = IA
+  sustained inexcusable neglect / discredit) and/or add a fact-check pass rejecting narration that contradicts
+  `doc_extract`. Grounding-as-precision must extend from QUOTES to FRAMING.
+
+### 2. WRONG EMPHASIS + SCRAMBLED CHRONOLOGY (compounds the incident-anchor fix above)
+- **Missed the crux:** the key setup is Morales **getting/seizing the drugs during the initial detention** —
+  WHY the later OD matters. The cut didn't foreground it.
+- **Skipped the discovery:** cut straight to AFTER deputies dragged Morales out of the restroom; the actual
+  moment of discovering him unresponsive is absent.
+- **Order broken:** the **truck investigation** (post-OD, ~23:09) was placed right after the **initial
+  detention** (17:42) instead of after the OD; and Morales **entering the bathroom to smoke** (the CAUSE) was
+  played LAST. Cause→effect scrambled — same root as the incident-anchor bug above.
+
+### Kept (good — preserve)
+- Footage is the correct cams now (the `source_url` fix worked).
+- It kept the deputies-by-the-truck being **skeptical about the timeline of events** — a genuinely good beat.
+
+**Bottom line:** two blockers — (a) narration factual grounding and (b) chronology/incident-anchor. (a) is
+the more dangerous and the more novel (the integrity rail's blind spot). Fix both before this is watchable.
+
 ---
 
 ## Environment (M4 Pro, 24 GB)
