@@ -50,7 +50,7 @@ button.tool:hover{background:#2f3543}
 .card[data-keep="0"]{border-left-color:var(--cut);opacity:.5}
 .meta{display:flex;gap:9px;align-items:center;font-size:12px;color:var(--mut);flex-wrap:wrap;margin-bottom:7px}
 .id{font-family:ui-monospace,monospace;color:var(--ink);font-weight:700}
-.sal{font-family:ui-monospace,monospace;font-weight:700}.s5{color:#f0b']}.s5{color:#ffb454}.s4{color:#7fd1ff}.s3{color:#8a90a0}
+.sal{font-family:ui-monospace,monospace;font-weight:700}.s5{color:#ffb454}.s4{color:#7fd1ff}.s3{color:#8a90a0}
 .mf{color:#ffd479}.type{background:#2b2f3a;padding:1px 7px;border-radius:5px}
 .src{font-family:ui-monospace,monospace}
 .sugbadge{color:var(--cut);font-weight:600}
