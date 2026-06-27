@@ -62,10 +62,13 @@ def judge(cand: dict, model: str, doc: str, max_tokens: int) -> dict:
         for b in beats:
             b["grounding"] = grounding_of(b.get("evidence_quote", ""), blob, toks)
         gr = sum(1 for b in beats if b.get("grounding"))
+    trace = backend.last_reasoning
     return {"case_id": cand.get("case_id"),
             "_meta": {"model": model, "elapsed_sec": round(dt, 1), "n_judged": len(beats),
-                      "n_grounded": gr, "salience_dist": dict(sorted(Counter(b.get("salience") for b in beats).items(), reverse=True))},
-            "beats": beats, "top_contradictions": data.get("top_contradictions", [])}
+                      "n_grounded": gr, "reasoning_chars": len(trace or ""),
+                      "salience_dist": dict(sorted(Counter(b.get("salience") for b in beats).items(), reverse=True))},
+            "beats": beats, "top_contradictions": data.get("top_contradictions", []),
+            "reasoning_trace": trace}
 
 
 def panel_merge(a: dict, b: dict) -> dict:
