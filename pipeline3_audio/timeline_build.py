@@ -131,10 +131,28 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--artifacts", required=True, type=Path)
     ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--case-id", default="case")
+    ap.add_argument("--incident", default=None,
+                    help='pin the incident anchor to a real moment, UTC '
+                         '"YYYY-MM-DD HH:MM[:SS]" (overrides the earliest-stamp auto-anchor). '
+                         'Use when the climax is NOT the earliest event (e.g. a later overdose).')
+    ap.add_argument("--anchor-epoch", type=float, default=None,
+                    help="pin the incident anchor to a raw UTC epoch (alternative to --incident)")
     args = ap.parse_args(argv)
 
+    anchor_override = args.anchor_epoch
+    if anchor_override is None and args.incident:
+        for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M"):
+            try:
+                anchor_override = (dt.datetime.strptime(args.incident, fmt)
+                                   .replace(tzinfo=dt.timezone.utc).timestamp())
+                break
+            except ValueError:
+                continue
+        if anchor_override is None:
+            ap.error(f"--incident: could not parse {args.incident!r} (want UTC 'YYYY-MM-DD HH:MM[:SS]')")
+
     arts = json.loads(args.artifacts.read_text(encoding="utf-8"))
-    tl = build_timeline(arts)
+    tl = build_timeline(arts, anchor_override=anchor_override)
     tl["case_id"] = args.case_id
     print_timeline(tl)
     out = args.out or (args.artifacts.parent / "case_timeline.json")
