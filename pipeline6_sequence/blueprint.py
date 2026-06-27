@@ -166,9 +166,11 @@ def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
             if c and c not in inc["charges"]:
                 inc["charges"].append(c)
         if not inc["charges"]:
+            seen_ch: set = set()
             for f in ((de.get("disposition") or {}).get("findings") or []):
                 ch = _clean_charge(f.get("charge"))
-                if ch and ch not in inc["charges"]:
+                if ch and ch.lower() not in seen_ch:
+                    seen_ch.add(ch.lower())
                     inc["charges"].append(f"{f.get('finding', '')}: {ch}".strip(": "))
         inc["summary"] = inc["summary"] or _narrative_text(de)
         oc = de.get("outcome_card") or {}
