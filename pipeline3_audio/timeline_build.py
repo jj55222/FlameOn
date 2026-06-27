@@ -105,6 +105,7 @@ def build_timeline(arts: List[Dict], anchor_override: Optional[float] = None) ->
         "anchor_iso": (dt.datetime.fromtimestamp(anchor, dt.timezone.utc)
                        .strftime("%Y-%m-%d %H:%M:%S") if anchor else None),
         "incident_window_sec": INCIDENT_WINDOW_SEC,
+        "anchor_source": "override" if anchor_override is not None else "auto_earliest_trusted",
         "phases": {p: phases[p] for p in PHASE_ORDER if phases[p]},
         "roles": PHASE_ROLE,
     }
