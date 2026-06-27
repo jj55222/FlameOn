@@ -331,7 +331,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()   # needed before audible_window
     transcripts = load_transcripts(args.transcripts)
     paper_edit = blueprint_to_paper_edit(bp, media_dir=args.media_dir, audio_aware=audio_aware,
-                                         transcripts=transcripts)
+                                         transcripts=transcripts, min_clip_sec=args.min_clip_sec)
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
