@@ -87,11 +87,14 @@ def load_segments(paths: list) -> list:
 
 def propose_mock(segments: list, max_beats: int) -> list:
     """Heuristic: score each segment by cue matches, keep the strongest, distinct."""
+    # Normalize cue phrases the SAME way as the text (e.g. "i'm hit" → "i m hit"),
+    # so contraction cues actually match the normalized transcript.
+    cues_n = [(tuple(_norm(p) for p in phrases), mtype, sal, angle) for (phrases, mtype, sal, angle) in CUES]
     scored = []
     for seg in segments:
         n = _norm(seg["text"])
-        for phrases, mtype, sal, angle in CUES:
-            if any(ph in n for ph in phrases):
+        for phrases, mtype, sal, angle in cues_n:
+            if any(ph and ph in n for ph in phrases):
                 scored.append({"moment_type": mtype, "salience": sal, "angle": angle,
                                "importance": "critical" if sal >= 5 else ("high" if sal == 4 else "medium"),
                                "start_sec": seg["start"], "end_sec": seg["end"],
