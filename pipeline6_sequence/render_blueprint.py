@@ -330,15 +330,16 @@ def project_duration(paper_edit: Dict[str, Any]) -> float:
 def solve_min_clip_sec(bp: Dict[str, Any], media_dir: Optional[Path],
                        transcripts: Optional[Dict[str, List[Dict]]],
                        target_sec: float, lo: float = 6.0, hi: float = 90.0,
-                       iters: int = 20) -> Tuple[float, float]:
+                       iters: int = 20, audio_aware: bool = False) -> Tuple[float, float]:
     """Binary-search the per-moment window (``min_clip_sec``) that lands the cut on
     ``target_sec``. Runtime is monotonic in the window up to the footage caps, so a
     bisection converges; if even the max window can't reach the target (footage-
-    bound), return that max — the engine never pads. Cheap: each probe builds a
-    paper_edit with audio_aware off (no ffprobe), only the final render is audio-aware.
-    Returns ``(min_clip_sec, projected_sec)``."""
+    bound), return that max — the engine never pads. Projects with the SAME
+    ``audio_aware`` setting as the final render (audio-aware shifts B-roll windows,
+    which cascades through the no-replay resolver — projecting without it would miss
+    the target). Returns ``(min_clip_sec, projected_sec)``."""
     def projected(mcs: float) -> float:
-        pe = blueprint_to_paper_edit(bp, media_dir=media_dir, audio_aware=False,
+        pe = blueprint_to_paper_edit(bp, media_dir=media_dir, audio_aware=audio_aware,
                                      transcripts=transcripts, min_clip_sec=mcs)
         return project_duration(pe)
 
