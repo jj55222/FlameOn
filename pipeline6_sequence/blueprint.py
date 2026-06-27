@@ -419,7 +419,8 @@ def build_metadata(manifest: List[Dict], acts: List[Dict], beats: List[Dict],
         "runtime_vs_target_sec": round(planned - target_runtime, 1),
         "coverage_by_phase": cov,
         "asset_completeness_pct": round(100 * covered / len(canon), 1),
-        "unsourced_beats": sum(1 for b in beats if b["primary_asset"] is None),
+        "unsourced_beats": sum(1 for b in beats
+                               if b["primary_asset"] is None and not b.get("is_document")),
         "built_by": "skeleton",
     }
 
