@@ -59,16 +59,26 @@ TOKEN_URL = "https://accounts.muckrock.com/api/token/"
 REQUEST_TIMEOUT = 30
 RATE_LIMIT_SEC = 0.4  # polite but not glacial; files are embedded so ~1 call/request
 
-# Default search net for "winner" candidates. Same spirit as rank_candidates'
-# POSITIVE keywords — the API search is broad, the ranker does the real work.
+# Default search net, TUNED against live MuckRock yield (calibrate_terms probe,
+# 2026-06-27). Lesson: media-EXPLICIT phrasings ("dash camera", "body camera
+# footage", "police video") surface actual video; generic policy/event terms
+# ("use of force", "in custody death", "bodycam", "critical incident") return
+# only documents and were dropped. Re-run scratchpad/calibrate_terms.py to
+# re-tune if MuckRock's corpus shifts.
 DEFAULT_TERMS = [
+    # proven video-yielding (top of the calibration table)
+    "dash camera",
+    "dash cam",
+    "in-car video",
+    "body camera footage",
+    "bodycam footage",
+    "body camera video",
+    "police video",
+    "surveillance video",
     "officer involved shooting",
     "officer-involved shooting",
-    "body worn camera",
-    "in custody death",
-    "use of force",
-    "deadly force",
-    "police shooting",
+    "police shooting video",
+    "taser",
 ]
 
 VIDEO_EXTS = {".mp4", ".mov", ".avi", ".mkv", ".m4v", ".wmv", ".flv", ".webm", ".mpg", ".mpeg"}
