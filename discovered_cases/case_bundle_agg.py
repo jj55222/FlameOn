@@ -219,10 +219,11 @@ def main() -> int:
 
     srcs = source_files() + ([MANUAL] if MANUAL.exists() else [])
     bundles = collect(media_only=args.media_only)
+    media = [b for b in bundles if has_media(b)]
     write_json(bundles, srcs)
-    write_md(bundles, srcs)
+    write_md(media, bundles, srcs)
     print(f"sources: {[s.name for s in srcs]}")
-    print(f"working bundles: {len(bundles)}  files: {sum(b['n_files'] for b in bundles)}")
+    print(f"working bundles: {len(bundles)} ({len(media)} with media)  files: {sum(b['n_files'] for b in bundles)}")
     print(f"  -> {JSON_OUT}")
     print(f"  -> {MD_OUT}")
     from collections import Counter
