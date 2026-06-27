@@ -406,8 +406,37 @@ def download_media(candidates: List[Dict[str, Any]], cache_dir: Path) -> Dict[st
     return manifest
 
 
+def _selftest() -> int:
+    """Offline guard for the classification invariant the API broke once: the
+    shared EXTS sets are DOTTED, the API returns bare extensions. If this regresses,
+    every PDF silently lands in 'other' and the legal-doc half of each bundle vanishes."""
+    cases = [
+        ({"id": 1, "title": "Production - 0658-08 Part A.pdf", "file_extension": "pdf",
+          "folder_name": "0658-08", "document_path": "/documents/1", "request_path": "/requests/20-5",
+          "pretty_id": "20-5", "count": 323}, ".pdf", "doc", "documents"),
+        ({"id": 2, "title": "0386-17 DPA Interview - Ravelo.mp3", "file_extension": "mp3",
+          "folder_name": "0386-17", "document_path": "/documents/2", "count": 279}, ".mp3", "audio", "interrogation"),
+        ({"id": 3, "title": "0656-18 BWC Footage of Officer Nazar.mp4", "file_extension": "mp4",
+          "folder_name": "0656-18", "document_path": "/documents/3", "count": 10}, ".mp4", "video", "bodycam"),
+    ]
+    for doc, want_ext, want_kind, want_ev in cases:
+        row = api_doc_to_row(doc)
+        assert row["ext"] == want_ext, f"ext: want {want_ext}, got {row['ext']}"
+        assert kind_of(row) == want_kind, f"{want_ext}: kind want {want_kind}, got {kind_of(row)}"
+        assert evidence_type(row) == want_ev, f"{want_ext}: evtype want {want_ev}, got {evidence_type(row)}"
+        assert row["download_url"].endswith("/download"), "download URL must hit the /download redirect"
+    # a folder mixing audio + a pdf -> a real multi-kind bundle, doc COUNTED
+    cand = make_candidate("0658-08", [api_doc_to_row(c[0]) for c in cases])
+    assert cand["n_doc"] if False else cand["n_docs"] == 1, f"pdf must count as a doc, got n_docs={cand['n_docs']}"
+    assert cand["n_audio"] == 1 and cand["n_video"] == 1 and cand["artifact_kinds"] >= 3
+    print("sfdpa_harvest selftest: OK  (pdf->doc, mp3->interrogation, mp4->bodycam; bundle keeps all 3)")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    if "--selftest" in sys.argv:
+        return _selftest()
     ap.add_argument("--from-capture", metavar="JSON", default=None,
                     help="parse a captured NextRequest markdown snapshot instead of crawling live (offline)")
     ap.add_argument("--max-docs", type=int, default=None, help="cap docs fetched (quick live test)")

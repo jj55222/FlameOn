@@ -2235,3 +2235,26 @@
   - Log #2023-0003276 Tactical Response Report 3
   - Log #2023-0003276 Tactical Response Report 2
   - Log #2023-0003276 Tactical Response Report 1
+
+## How to pull one case
+
+Use the `case_id` from the table or top bundles, then print that case's direct file URLs:
+
+```bash
+python - <<'PY'
+import json
+from pathlib import Path
+
+case_id = 'copa_2021_0003709'
+data = json.loads(Path('discovered_cases/copa_candidates.json').read_text())
+case = next(c for c in data if c['case_id'] == case_id)
+for f in case['media_files'] + case['doc_files'] + case['photo_files']:
+    print(f['url'])
+PY
+```
+
+## Source verdict
+
+- Treat COPA as a legal/accountability PDF source and VRP pointer.
+- In this crawl, direct WordPress attachments produced almost no raw media.
+- For BWC itself, follow the case Browse links and COPA press-release PDFs, or pivot to a video-first portal.
