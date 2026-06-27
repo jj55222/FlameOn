@@ -338,6 +338,13 @@ def build_integrity_ledger(beats: List[Dict], incident: Dict,
                        "source": f"doc:{doc_src}", "ok": bool(doc_src), "beat_id": None})
     # Per-beat footage + quote claims.
     for b in beats:
+        if b.get("is_document"):           # record beat — sourced to the IA report
+            ledger.append({
+                "claim": f"record: {b['_description'][:60]}",
+                "source": (b["source_refs"][0] if b["source_refs"] else f"doc:{doc_src}"),
+                "ok": True, "beat_id": b["beat_id"],
+            })
+            continue
         ok = b["primary_asset"] is not None
         ledger.append({
             "claim": f"footage: {b['function']} ({b['lower_third']['text']})",
