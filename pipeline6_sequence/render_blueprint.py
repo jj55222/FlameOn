@@ -238,6 +238,20 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
             in_sec, out_sec = snap_to_segments(in_sec, out_sec, segs)
         elif audio_aware and b.get("is_broll"):
             in_sec, out_sec = audible_window(media, max(1.0, out_sec - in_sec))
+        # Long-form breathing room: give each key MOMENT (not B-roll) at least
+        # min_clip_sec of the real continuous tape, centered on the window and
+        # clamped to the asset. resolve_clip_overlaps() below trims any same-asset
+        # overlap this creates, so it never replays footage — it just lets a moment
+        # play out instead of cutting at ~9s.
+        if min_clip_sec and not b.get("is_broll") and (out_sec - in_sec) < min_clip_sec:
+            adur = float(asset.get("duration_sec") or 0)
+            center = (in_sec + out_sec) / 2.0
+            new_in = max(0.0, center - min_clip_sec / 2.0)
+            new_out = new_in + min_clip_sec
+            if adur:
+                new_out = min(new_out, adur)
+                new_in = max(0.0, new_out - min_clip_sec)
+            in_sec, out_sec = new_in, new_out
         lt_text = (b.get("lower_third") or {}).get("text", "")
         timeline.append({
             "kind": "clip", "media": media,
