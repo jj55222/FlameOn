@@ -204,6 +204,34 @@ release — but expect docs there, not footage.
 
 ---
 
+## 6b. VIDEO PORTALS (AB748 critical-incident video) — ranked ingest targets
+
+Since SB1421 portals are PDFs, here are the actual **video** sources, best first. Two ingest
+patterns already exist in this repo: **yt-dlp** (CIB YouTube playlists, see
+`discovered_cases/download_all.py`) and **NextRequest scrape** (SFDPA, see `rank_candidates.py`).
+
+| # | Portal | URL | Type | Ingest |
+|---|--------|-----|------|--------|
+| 1 | **Chicago COPA Case Portal** ⭐ | https://www.chicagocopa.org/data-cases/case-portal/ | Civilian-run case portal; ~101 pages, filter by log#/district/incident-type/date; **all media + reports per case** | scraper (case page → media URLs); best single structured target |
+| 2 | **LAPD Critical Incident Videos** | https://www.lapdonline.org/office-of-the-chief-of-police/professional-standards-bureau/critical-incident-videos/ | Official CIV page + YouTube | yt-dlp |
+| 2b | LAPD "Critical Incident Community Briefings" playlist | https://www.youtube.com/playlist?list=PLW5iqZEagvjMvmXRnBaYqozLYwmzUO2B9 | YouTube playlist (raw bodycam in briefings) | yt-dlp |
+| 2c | LAPD channel (all playlists) | https://www.youtube.com/c/LAPDONLINE1/playlists | YouTube | yt-dlp |
+| 3 | **San Diego PD Critical Incident Videos** | https://www.sandiego.gov/police/data-transparency/critical-incident-videos | Official CIV page (AB748, ~10–45 days) | scraper/yt-dlp |
+| 4 | **San Diego County Sheriff CIB** | (YouTube — already in `discovered_cases/`) | YouTube playlists | yt-dlp (already wired) |
+| 5 | **SF DPA** | https://sfdpa.nextrequest.com/documents | NextRequest (BWC + interrogation audio + docs) | scrape (already a source) |
+| 6 | Phoenix PD Critical Incident Briefings | YouTube (since 2019; **edited**, not raw) | YouTube | yt-dlp (lower value — edited) |
+| 7 | Sacramento SO / Long Beach PD | (agency transparency pages) | mixed | per memory `transparency-portals` |
+
+**Notes:**
+- **COPA is the gold standard** — an independent civilian agency posts the *full* media set
+  (bodycam, dashcam, audio, reports) per case, browsable/filterable. Worth a dedicated scraper.
+  (Download mechanism not 100% confirmed from the landing page; the case pages host the media —
+  inspect one case page's network requests to find the file/stream URLs.)
+- **Phoenix and many "briefing" channels release EDITED narratives**, not raw continuous footage —
+  lower value for salience mining. Prefer agencies that post raw BWC (COPA, LAPD briefings, San Diego).
+- Avoid third-party aggregator channels (PoliceActivity, EWU Bodycam, etc.) — re-uploads, no
+  case metadata, copyright-murky. Stick to **official agency / oversight-body** sources.
+
 ## 7. Cases already processed (results)
 
 **Mark Johnson OIS (req 78826, Montpelier PD)** — 2 bodycams (~66 min each).
