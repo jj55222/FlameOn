@@ -320,6 +320,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--transcripts", type=Path, default=None,
                     help="p3_to_p4 transcripts dir -> snap clip windows to sentence "
                          "boundaries (no mid-word cuts; 911 cold-open discloses the threat)")
+    ap.add_argument("--min-clip-sec", type=float, default=0.0,
+                    help="give each key-moment clip at least this many seconds of real "
+                         "footage (centered, clamped to the asset) — long-form breathing room")
     args = ap.parse_args(argv)
 
     bp = json.loads(args.blueprint.read_text(encoding="utf-8"))
