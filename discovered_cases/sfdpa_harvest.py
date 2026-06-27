@@ -59,11 +59,61 @@ from muckrock_harvest import (  # noqa: E402
 
 
 ROOT = Path(__file__).parent
-DOC_INDEX = "https://sfdpa.nextrequest.com/documents"
+BASE = "https://sfdpa.nextrequest.com"
+DOC_INDEX = f"{BASE}/documents"
+DOC_API = f"{BASE}/client/documents"
+PAGE_SIZE = 50          # NextRequest hard-caps page_size at 50 (larger -> empty)
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 )
+
+
+def fetch_documents_live(session: requests.Session, *, page_size: int = PAGE_SIZE,
+                         max_docs: Optional[int] = None, sleep: float = 0.4,
+                         verbose: bool = True) -> List[Dict[str, Any]]:
+    """Enumerate the whole NextRequest document index via the JSON API. Pages with
+    ``page_number`` (``page``/``offset`` are ignored by the server). Stops when a
+    page is empty, the running total reaches ``total_count``, or ``max_docs`` is hit."""
+    docs: List[Dict[str, Any]] = []
+    page = 1
+    total: Optional[int] = None
+    while True:
+        r = session.get(DOC_API, params={"page_size": page_size, "page_number": page}, timeout=60)
+        r.raise_for_status()
+        data = r.json()
+        batch = data.get("documents") or []
+        total = data.get("total_count", total)
+        docs.extend(batch)
+        if verbose:
+            print(f"  [page {page}] +{len(batch)} ({len(docs)}/{total})")
+        if not batch or (total and len(docs) >= total) or (max_docs and len(docs) >= max_docs):
+            break
+        page += 1
+        time.sleep(sleep)
+    return docs[:max_docs] if max_docs else docs
+
+
+def api_doc_to_row(doc: Dict[str, Any]) -> Dict[str, Any]:
+    """Map one NextRequest API document to the internal row shape (the same shape
+    ``parse_markdown_rows`` emits) so candidate-building is source-agnostic."""
+    path = doc.get("document_path") or f"/documents/{doc.get('id')}"
+    url = BASE + path
+    req_path = doc.get("request_path") or ""
+    title = _clean_cell(doc.get("title", ""))
+    return {
+        "title": title,
+        "url": url,
+        "download_url": nextrequest_download_url(url),
+        "request": (doc.get("pretty_id") or "").strip(),
+        "request_url": (BASE + req_path) if req_path else "",
+        "upload_date": (doc.get("created_at") or "").strip(),
+        "downloads": int(doc.get("count") or 0),
+        "folder": _clean_cell(doc.get("folder_name") or ""),
+        "document_date": (doc.get("doc_date") or "").strip() if doc.get("doc_date") else "",
+        "description": _clean_cell(doc.get("description", "")),
+        "ext": (doc.get("file_extension") or ext_of(title) or "").lower(),
+    }
 
 
 def _clean_cell(s: str) -> str:
