@@ -265,3 +265,35 @@ def test_media_dir_remap_used_when_manifest_path_absent(tmp_path):
     pe = rb.blueprint_to_paper_edit(_shaped(), media_dir=tmp_path)
     clip = next(e for e in pe["timeline"] if e["kind"] == "clip" and e["media"].endswith("BWC-1a.mp4"))
     assert str(tmp_path) in clip["media"]
+
+
+# --- runtime projection + closed-loop solve (auto long-form fit) ----------
+
+def test_project_duration_matches_render_rules():
+    # title 5 + br00 clip 12 + phase 3 + narration 3 + b00 clip 18 + gap 0 + outcome 7
+    assert rb.project_duration(_pe()) == 48.0
+
+
+def test_min_clip_sec_widens_moment_not_broll():
+    pe = _pe(min_clip_sec=30.0)
+    clips = {("911A.mp3" in c["media"]): c for c in pe["timeline"] if c["kind"] == "clip"}
+    broll, moment = clips[True], clips[False]
+    assert broll["out_sec"] - broll["in_sec"] == 12.0          # B-roll untouched
+    assert round(moment["out_sec"] - moment["in_sec"], 1) == 30.0  # moment widened
+    assert rb.project_duration(pe) == 60.0                     # +12s reached the total
+
+
+def test_solve_min_clip_sec_hits_reachable_target():
+    mcs, projected = rb.solve_min_clip_sec(_shaped(), None, None, target_sec=55.0)
+    assert abs(projected - 55.0) <= 1.0
+    assert 18.0 < mcs < 30.0
+
+
+def test_solve_min_clip_sec_is_footage_capped_never_pads():
+    mcs, projected = rb.solve_min_clip_sec(_shaped(), None, None, target_sec=500.0)
+    assert mcs == 90.0 and projected < 500.0    # can't reach -> max window, honest shortfall
+
+
+def test_solve_min_clip_sec_floor_when_target_tiny():
+    mcs, projected = rb.solve_min_clip_sec(_shaped(), None, None, target_sec=10.0)
+    assert mcs == 6.0 and projected >= 10.0     # already over at the floor
