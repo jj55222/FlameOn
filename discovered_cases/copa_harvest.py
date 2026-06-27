@@ -62,6 +62,18 @@ class COPAClient:
         return r.json(), dict(r.headers)
 
 
+def header_int(headers: Dict[str, str], name: str, default: int) -> int:
+    """Read a response header case-insensitively."""
+    lname = name.lower()
+    for k, v in headers.items():
+        if k.lower() == lname:
+            try:
+                return int(v)
+            except (TypeError, ValueError):
+                return default
+    return default
+
+
 def strip_html(s: str) -> str:
     s = html.unescape(s or "")
     s = re.sub(r"<[^>]+>", " ", s)
@@ -78,7 +90,7 @@ def fetch_cases(client: COPAClient, max_pages: Optional[int] = None) -> Dict[int
             {"per_page": 100, "page": page},
         )
         if total_pages is None:
-            total_pages = int(headers.get("X-WP-TotalPages") or page)
+            total_pages = header_int(headers, "X-WP-TotalPages", page)
         for c in data:
             title = strip_html((c.get("title") or {}).get("rendered", "")) or c.get("slug", "")
             cases[int(c["id"])] = {
@@ -112,7 +124,7 @@ def fetch_media(client: COPAClient, max_pages: Optional[int] = None) -> List[Dic
             },
         )
         if total_pages is None:
-            total_pages = int(headers.get("X-WP-TotalPages") or page)
+            total_pages = header_int(headers, "X-WP-TotalPages", page)
         for m in data:
             source_url = m.get("source_url") or ""
             title = strip_html((m.get("title") or {}).get("rendered", "")) or source_url.rsplit("/", 1)[-1]
