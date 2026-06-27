@@ -402,7 +402,11 @@ def download_media(candidates: List[Dict[str, Any]], cache_dir: Path) -> Dict[st
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--index", default=str(ROOT / "sfdpa_docs.json"), help="captured NextRequest document index")
+    ap.add_argument("--from-capture", metavar="JSON", default=None,
+                    help="parse a captured NextRequest markdown snapshot instead of crawling live (offline)")
+    ap.add_argument("--max-docs", type=int, default=None, help="cap docs fetched (quick live test)")
+    ap.add_argument("--page-size", type=int, default=PAGE_SIZE, help="NextRequest page size (max 50)")
+    ap.add_argument("--sleep", type=float, default=0.4, help="pause between API pages (politeness)")
     ap.add_argument("--out", default=str(ROOT / "sfdpa_candidates.json"))
     ap.add_argument("--catalog", default=str(ROOT / "SFDPA_BUNDLE_CATALOG.md"))
     ap.add_argument("--min-score", type=int, default=0)
@@ -411,7 +415,16 @@ def main() -> int:
     ap.add_argument("--cache-dir", default=str(ROOT.parent / "pipeline3_audio" / "foia_cache"))
     args = ap.parse_args()
 
-    rows = load_rows(Path(args.index))
+    if args.from_capture:
+        print(f"[sfdpa] offline: parsing capture {args.from_capture}")
+        rows = load_rows(Path(args.from_capture))
+    else:
+        print(f"[sfdpa] live crawl: {DOC_API}")
+        s = requests.Session()
+        s.headers.update({"User-Agent": UA, "Accept": "application/json"})
+        docs = fetch_documents_live(s, page_size=min(args.page_size, PAGE_SIZE),
+                                    max_docs=args.max_docs, sleep=args.sleep)
+        rows = [api_doc_to_row(d) for d in docs]
     candidates = build_candidates(rows, min_score=args.min_score)
     if args.case_id:
         candidates = [c for c in candidates if c["case_id"] == args.case_id]
