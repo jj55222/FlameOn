@@ -66,19 +66,28 @@ RATE_LIMIT_SEC = 0.4  # polite but not glacial; files are embedded so ~1 call/re
 # only documents and were dropped. Re-run scratchpad/calibrate_terms.py to
 # re-tune if MuckRock's corpus shifts.
 DEFAULT_TERMS = [
-    # proven video-yielding (top of the calibration table)
+    # — BWC / dashcam VIDEO (calibrate_v2: "footage"/"camera"/"dash" yield video;
+    #   "body worn camera"/"police body camera" return only policy docs) —
+    "body camera footage",
+    "body camera",
     "dash camera",
     "dash cam",
     "in-car video",
-    "body camera footage",
-    "bodycam footage",
-    "body camera video",
     "police video",
     "surveillance video",
     "officer involved shooting",
-    "officer-involved shooting",
     "police shooting video",
     "taser",
+    # — SB1421/16 ACCOUNTABILITY releases (calibrate_v2: "SB 1421" => 6/6 release
+    #   packages, some bundling video; these are the legal-doc artifacts) —
+    "SB 1421",
+    "SB1421",
+    "police misconduct records",
+    "Brady list",
+    # — interrogation/interview (docs on MuckRock; the audio lives on agency
+    #   portals — surfaced here as leads for the cross-source pivot) —
+    "interrogation",
+    "interview",
 ]
 
 VIDEO_EXTS = {".mp4", ".mov", ".avi", ".mkv", ".m4v", ".wmv", ".flv", ".webm", ".mpg", ".mpeg"}
