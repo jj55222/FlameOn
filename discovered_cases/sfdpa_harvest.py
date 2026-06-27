@@ -427,7 +427,7 @@ def _selftest() -> int:
         assert row["download_url"].endswith("/download"), "download URL must hit the /download redirect"
     # a folder mixing audio + a pdf -> a real multi-kind bundle, doc COUNTED
     cand = make_candidate("0658-08", [api_doc_to_row(c[0]) for c in cases])
-    assert cand["n_doc"] if False else cand["n_docs"] == 1, f"pdf must count as a doc, got n_docs={cand['n_docs']}"
+    assert cand["n_docs"] == 1, f"pdf must count as a doc, got n_docs={cand['n_docs']}"
     assert cand["n_audio"] == 1 and cand["n_video"] == 1 and cand["artifact_kinds"] >= 3
     print("sfdpa_harvest selftest: OK  (pdf->doc, mp3->interrogation, mp4->bodycam; bundle keeps all 3)")
     return 0
