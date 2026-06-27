@@ -184,7 +184,7 @@ def assemble_golden(beats: list, case_id: str, agency: str, source: str) -> dict
     for i, b in enumerate(beats, 1):
         moments.append({
             "moment_id": f"m{i:02d}_mined",
-            "artifact_id": None,
+            "artifact_id": b.get("artifact_id"),
             "moment_type": b["moment_type"],
             "salience": int(b.get("salience", 2)),
             "importance": b.get("importance", "medium"),
