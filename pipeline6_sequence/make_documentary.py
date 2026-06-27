@@ -228,22 +228,32 @@ def main(argv: Optional[List[str]] = None) -> int:
         print("[dry-run] nothing executed. Re-run with --run to build the cut.")
         return 0
 
+    gate_code = 0
     for i, s in enumerate(steps, 1):
         if s.paid and not have_key:
             print(f"[stop] step {i} ({s.label}) needs OPENROUTER_API_KEY and it is not set.\n"
-                  f"       Set the key inline, or pass --skip-score to reuse an existing verdict.")
+                  f"       Set the key inline, or pass --skip-score / --judge-mock as appropriate.")
             return 2
         print(f"\n=== [{i}/{len(steps)}] {s.label} ===")
         env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
         r = subprocess.run(s.argv, env=env)
+        if s.gate:
+            # The release gate's exit code IS the run's verdict — the cut is already
+            # rendered, so we never abort on it; we report and propagate it.
+            gate_code = r.returncode
+            print(f"[gate] '{s.label}' -> {'PASS (emit)' if gate_code == 0 else 'HOLD (rework)'}")
+            continue
         if r.returncode != 0:
             if s.optional:
                 print(f"[warn] optional step '{s.label}' failed (rc={r.returncode}); continuing.")
                 continue
             print(f"[fail] step '{s.label}' exited {r.returncode}; aborting.")
             return r.returncode
-    print("\n[done] basket → rough cut complete.")
-    return 0
+    done_msg = "flagship cut + judge gate" if args.flagship else "rough cut"
+    print(f"\n[done] basket → {done_msg} complete"
+          + (f"  (gate: {'PASS' if gate_code == 0 else 'HOLD — needs rework'})" if args.flagship else "")
+          + ".")
+    return gate_code
 
 
 if __name__ == "__main__":
