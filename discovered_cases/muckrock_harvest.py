@@ -79,7 +79,11 @@ def load_token() -> Optional[str]:
         for line in env.read_text().splitlines():
             line = line.strip()
             if line.startswith("MUCKROCK_API_TOKEN="):
-                val = line.split("=", 1)[1].strip().strip('"').strip("'")
+                val = line.split("=", 1)[1].strip()
+                # Strip an inline comment (unless the value is quoted).
+                if val[:1] not in ("'", '"') and "#" in val:
+                    val = val.split("#", 1)[0].strip()
+                val = val.strip('"').strip("'").strip()
                 if val:
                     return val
     return None
