@@ -433,7 +433,10 @@ def _build_prompt(blueprint: Dict) -> str:
         "current_planned_runtime_sec": blueprint.get("metadata", {}).get("planned_runtime_sec"),
     }
     return (
-        "Shape this blueprint toward its target runtime. Order beats chronologically "
+        "Ground EVERY word of the logline, act theses, and narration in CASE_FACTS "
+        "below — it is the authoritative account from the official record. Use the "
+        "named subject(s); do not invent any other person, victim, or outcome. Then "
+        "shape this blueprint toward its target runtime. Order beats chronologically "
         "within acts; prune weak/duplicate beats; lengthen key beats and add sourced "
         "B-roll to build runtime HONESTLY from the manifest — do not pad with invented "
         "material. COLD-OPEN B-roll (broll with after_beat=null) must ESTABLISH only — "
