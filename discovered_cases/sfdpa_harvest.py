@@ -101,6 +101,12 @@ def api_doc_to_row(doc: Dict[str, Any]) -> Dict[str, Any]:
     url = BASE + path
     req_path = doc.get("request_path") or ""
     title = _clean_cell(doc.get("title", ""))
+    # The shared classifiers key on DOTTED extensions ('.pdf'); the API returns a
+    # bare 'pdf'. Normalize, else every PDF misclassifies as 'other' (D=0).
+    ext = (doc.get("file_extension") or "").strip().lower()
+    if ext and not ext.startswith("."):
+        ext = "." + ext
+    ext = ext or ext_of(title)
     return {
         "title": title,
         "url": url,
