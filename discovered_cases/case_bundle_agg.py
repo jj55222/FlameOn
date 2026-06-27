@@ -144,28 +144,35 @@ def write_json(bundles: List[Dict[str, Any]], srcs: List[Path]) -> None:
     }, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def write_md(bundles: List[Dict[str, Any]], srcs: List[Path]) -> None:
+def write_md(media_bundles: List[Dict[str, Any]], all_bundles: List[Dict[str, Any]],
+             srcs: List[Path]) -> None:
     by_source: Dict[str, List[Dict[str, Any]]] = {}
-    for b in bundles:
+    for b in media_bundles:
         by_source.setdefault(b["source"], []).append(b)
+    doc_only = len(all_bundles) - len(media_bundles)
     L: List[str] = []
     L.append("# Case Bundle Agg — download URLs for every working case bundle")
     L.append("")
-    L.append("> One registry of the case bundles found across all portal harvests, with their direct")
-    L.append("> download URLs. **Generated** by `discovered_cases/case_bundle_agg.py` — do not hand-edit;")
-    L.append("> add a `<portal>_candidates.json` (or append to `CASE_BUNDLE_AGG.manual.json`) and re-run.")
-    L.append("> Machine-readable copy: `CASE_BUNDLE_AGG.json`.")
+    L.append("> Registry of case bundles found across all portal harvests, with their direct download")
+    L.append("> URLs. **Generated** by `discovered_cases/case_bundle_agg.py` — do not hand-edit; add a")
+    L.append("> `<portal>_candidates.json` (or append to `CASE_BUNDLE_AGG.manual.json`) and re-run.")
+    L.append("> This index lists the **media bundles (video/audio)**. The COMPLETE registry — including")
+    L.append(f"> {doc_only} document-only bundles and every URL — is in `CASE_BUNDLE_AGG.json`.")
     L.append("")
-    L.append(f"**{len(bundles)} working bundles · {sum(b['n_files'] for b in bundles)} files · "
-             f"{sum(b['n_video'] for b in bundles)} video · {sum(b['n_audio'] for b in bundles)} audio · "
-             f"{sum(b['n_docs'] for b in bundles)} docs**")
+    L.append(f"**{len(all_bundles)} working bundles total ({len(media_bundles)} with media, "
+             f"{doc_only} doc-only) · {sum(b['n_files'] for b in all_bundles)} files** — "
+             f"media index below: {sum(b['n_video'] for b in media_bundles)} video · "
+             f"{sum(b['n_audio'] for b in media_bundles)} audio.")
     L.append("")
-    L.append("| source | bundles | video | audio | docs |")
-    L.append("|--------|--------:|------:|------:|-----:|")
-    for s in sorted(by_source):
-        bs = by_source[s]
+    L.append("| source | media bundles | video | audio | docs | (all working) |")
+    L.append("|--------|--------------:|------:|------:|-----:|--------------:|")
+    allbysrc: Dict[str, int] = {}
+    for b in all_bundles:
+        allbysrc[b["source"]] = allbysrc.get(b["source"], 0) + 1
+    for s in sorted(set(list(by_source) + list(allbysrc))):
+        bs = by_source.get(s, [])
         L.append(f"| {s} | {len(bs)} | {sum(b['n_video'] for b in bs)} | "
-                 f"{sum(b['n_audio'] for b in bs)} | {sum(b['n_docs'] for b in bs)} |")
+                 f"{sum(b['n_audio'] for b in bs)} | {sum(b['n_docs'] for b in bs)} | {allbysrc.get(s,0)} |")
     L.append("")
     for s in sorted(by_source):
         bs = by_source[s]
