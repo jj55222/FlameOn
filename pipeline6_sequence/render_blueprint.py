@@ -207,6 +207,10 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
         nb = b.get("narration_bridge") or {}
         if nb.get("text"):
             timeline.append({"kind": "narration", "text": nb["text"]})
+        # Record beats are sourced to the IA document, not footage: the narration
+        # card above IS the beat (the on-screen record). No footage, no gap.
+        if b.get("is_document"):
+            return
         pa = b.get("primary_asset")
         asset = assets.get((pa or {}).get("asset_id"), {})
         media = _resolve_media(asset, media_dir) if pa else None
