@@ -201,9 +201,12 @@ class MuckRock:
         if req_id is None:
             return []
         files: List[dict] = []
+        # NB: the communications endpoint filters on `foia=<request_id>`. The
+        # intuitive `request=` is silently IGNORED and returns the global feed
+        # (1.4M comms), so it must be `foia`.
         comms = list(self.paginate(
             f"{API_BASE}communications/",
-            {"request": req_id, "page_size": 50},
+            {"foia": req_id, "page_size": 50},
             cap=200,
         ))
         for comm in comms:
