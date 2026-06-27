@@ -321,17 +321,36 @@ def slugify(s: str, maxlen: int = 60) -> str:
     return s[:maxlen] or "untitled"
 
 
-def make_candidate(req: dict, buckets: Dict[str, Any]) -> Dict[str, Any]:
-    """Emit a record in the discovered_cases candidates schema (+ muckrock fields)."""
-    title = req.get("title", "") or ""
-    agency = req.get("agency")
-    agency_str = agency.get("name") if isinstance(agency, dict) else (agency or "")
-    all_names = [b["name"] for k in ("video", "audio", "doc", "other") for b in buckets[k]]
-    keyword_score, hits = score_text(f"{title} {' '.join(all_names)}")
+def make_candidate(req: dict, buckets: Dict[str, Any], agency_str: str = "") -> Dict[str, Any]:
+    """Emit a record in the discovered_cases candidates schema (+ muckrock fields).
 
-    n_vid, n_aud = len(buckets["video"]), len(buckets["audio"])
-    # Reward real media; this is the "video/media only" filter's preference signal.
-    artifact_bonus = (6 if n_vid else 0) + (4 if n_aud else 0) + (1 if buckets["doc"] else 0)
+    Scoring is artifact-bundle aware: a case is valued for the MIX it carries
+    (BWC/dash video, interrogation/interview, SB1421/16 accountability docs),
+    with a bonus when several co-occur in one request — the ideal "winner".
+    """
+    title = req.get("title", "") or ""
+    if not agency_str:
+        agency_str = str(req.get("agency") or "")
+    all_names = [b["name"] for k in ("video", "audio", "doc", "other") for b in buckets[k]]
+    blob = f"{title} {' '.join(all_names)}"
+    keyword_score, hits = score_text(blob)
+    art = detect_artifacts(blob)
+
+    n_vid, n_aud, n_doc = len(buckets["video"]), len(buckets["audio"]), len(buckets["doc"])
+    # An accountability/interrogation document is itself a desirable artifact.
+    sb16_doc = art["sb16"] and n_doc > 0
+    interr_doc = art["interrogation"] and (n_doc > 0 or n_aud > 0 or n_vid > 0)
+
+    artifact_bonus = (
+        (6 if n_vid else 0)
+        + (5 if n_aud else 0)
+        + (5 if sb16_doc else 0)
+        + (4 if interr_doc else 0)
+        + (1 if n_doc else 0)
+    )
+    # Bundle bonus: the ideal is one case carrying several artifact kinds.
+    kinds = sum([bool(n_vid), bool(n_aud), bool(sb16_doc), bool(interr_doc)])
+    bundle_bonus = {0: 0, 1: 0, 2: 3, 3: 7, 4: 12}[kinds]
 
     foia_id = req.get("id")
     return {
@@ -342,18 +361,28 @@ def make_candidate(req: dict, buckets: Dict[str, Any]) -> Dict[str, Any]:
         "agency": agency_str,
         "absolute_url": req.get("absolute_url", ""),
         "datetime_done": req.get("datetime_done") or req.get("date_done"),
-        "n_docs": len(buckets["doc"]),
+        "n_docs": n_doc,
         "n_video": n_vid,
         "n_audio": n_aud,
         "has_video": bool(n_vid),
         "has_mp3": bool(n_aud),
-        "has_pdf": bool(buckets["doc"]),
+        "has_pdf": bool(n_doc),
+        # artifact flags drive both the keep-filter and the cross-source pivot
+        "is_bwc": art["bwc"] or bool(n_vid),
+        "is_interrogation": interr_doc,
+        "is_sb16": sb16_doc,
+        "artifact_kinds": kinds,
+        # what the agency portal pivot would search for (SB16 release etc.)
+        "pivot": {"agency": agency_str, "case_title": title,
+                  "done": req.get("datetime_done") or req.get("date_done")},
         "titles": all_names[:25],
         "media_files": buckets["video"] + buckets["audio"],  # download targets
+        "doc_files": buckets["doc"][:25],
         "urls": [f["url"] for f in (buckets["video"] + buckets["audio"]) if f["url"]],
         "keyword_score": keyword_score,
         "artifact_bonus": artifact_bonus,
-        "score": keyword_score + artifact_bonus,
+        "bundle_bonus": bundle_bonus,
+        "score": keyword_score + artifact_bonus + bundle_bonus,
         "hits": hits,
     }
 
