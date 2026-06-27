@@ -100,7 +100,7 @@ def propose_mock(segments: list, max_beats: int) -> list:
                                "importance": "critical" if sal >= 5 else ("high" if sal == 4 else "medium"),
                                "start_sec": seg["start"], "end_sec": seg["end"],
                                "evidence_quote": seg["text"].strip(),
-                               "summary": f"[mock] {mtype} cue in {seg['source']}: {seg['text'].strip()[:80]}"})
+                               "summary": f"[auto-cue] {mtype} cue in {seg['source']}: {seg['text'].strip()[:80]}"})
                 break
     scored.sort(key=lambda b: -b["salience"])
     return scored[:max_beats]
