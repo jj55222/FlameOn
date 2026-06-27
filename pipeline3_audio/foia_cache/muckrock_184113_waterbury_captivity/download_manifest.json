@@ -1,0 +1,234 @@
+[
+  {
+    "kind": "media",
+    "name": "_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_.mp4",
+    "bytes": 58230128,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163__Xhqsf4T.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163__Xhqsf4T.mp4",
+    "bytes": 58230128,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav.m4a",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav.m4a",
+    "bytes": 482327,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav_qct6utr.m4a",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav_qct6utr.m4a",
+    "bytes": 482327,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "1600021896_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/1600021896_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/1600021896_Redacted.pdf",
+    "bytes": 94052,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "1800101170_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/1800101170_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/1800101170_Report_Redacted.pdf",
+    "bytes": 94022,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "07-96039_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/07-96039_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/07-96039_Redacted.pdf",
+    "bytes": 191060,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2400081176_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2400081176_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2400081176_Redacted.pdf",
+    "bytes": 94857,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2005-25108_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2005-25108_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2005-25108_Redacted.pdf",
+    "bytes": 254184,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2005-29985_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2005-29985_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2005-29985_Redacted.pdf",
+    "bytes": 189818,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2000075859_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2000075859_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2000075859_Redacted.pdf",
+    "bytes": 326314,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "Kimberly_Sullivan_Booking_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/Kimberly_Sullivan_Booking_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/Kimberly_Sullivan_Booking_Report_Redacted.pdf",
+    "bytes": 102956,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "1700009101",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/1700009101.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/1700009101.pdf",
+    "bytes": 347857,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "S.W._-_p.6343028",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/S.W._-_p.6343028.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/S.W._-_p.6343028.pdf",
+    "bytes": 299467,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "1900039335",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/1900039335.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/1900039335.pdf",
+    "bytes": 421222,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2500017163_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2500017163_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2500017163_Report_Redacted.pdf",
+    "bytes": 1270135,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "13-62905_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/13-62905_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/13-62905_Redacted.pdf",
+    "bytes": 1484147,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted.pdf",
+    "bytes": 18567483,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2_Blake_SW_with_Return343271_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2_Blake_SW_with_Return343271_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2_Blake_SW_with_Return343271_Redacted.pdf",
+    "bytes": 12905609,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2_Blake_St_CFS_1-1-05-Present",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2_Blake_St_CFS_1-1-05-Present.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2_Blake_St_CFS_1-1-05-Present.pdf",
+    "bytes": 49832,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2007-96039_CAD_Report",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2007-96039_CAD_Report.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2007-96039_CAD_Report.pdf",
+    "bytes": 96708,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2013-62905_CAD_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2013-62905_CAD_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2013-62905_CAD_Report_Redacted.pdf",
+    "bytes": 99508,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2000-119292_CAD_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2000-119292_CAD_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2000-119292_CAD_Report_Redacted.pdf",
+    "bytes": 91825,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2013-68875_CAD_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2013-68875_CAD_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2013-68875_CAD_Report_Redacted.pdf",
+    "bytes": 96917,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2013-68866_CAD_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2013-68866_CAD_Report_Redacted.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2013-68866_CAD_Report_Redacted.pdf",
+    "bytes": 95080,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "1800101170_Report_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/1800101170_Report_Redacted_W0eicrI.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/1800101170_Report_Redacted_W0eicrI.pdf",
+    "bytes": 94022,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "2_Blake_SW_with_Return343271_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/2_Blake_SW_with_Return343271_Redacted_ro3GP5O.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/2_Blake_SW_with_Return343271_Redacted_ro3GP5O.pdf",
+    "bytes": 12905609,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "S.W._-_p.6343028",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/S.W._-_p.6343028_fCXUzNX.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/S.W._-_p.6343028_fCXUzNX.pdf",
+    "bytes": 299467,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted",
+    "url": "https://cdn.muckrock.com/foia_files/2025/03/31/WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted_BgRtHcf.pdf",
+    "path": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/docs/WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted_BgRtHcf.pdf",
+    "bytes": 18567483,
+    "status": "downloaded"
+  }
+]

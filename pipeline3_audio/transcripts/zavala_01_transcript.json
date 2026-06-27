@@ -1,0 +1,122 @@
+{
+  "case_id": "zavala_01",
+  "source_evidence_type": "bodycam",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Clip_1_1_Agg_Batt_to_PO.mp4",
+  "transcript": [
+    {
+      "start_sec": 5.795,
+      "end_sec": 7.275,
+      "text": "I'll meet you down at the back door.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 15.795,
+      "end_sec": 17.455,
+      "text": "Yeah, we can talk down the jail open.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 19.455,
+      "end_sec": 20.295,
+      "text": "Leslie, wait!",
+      "confidence": 0.764
+    },
+    {
+      "start_sec": 20.895,
+      "end_sec": 22.095,
+      "text": "Dude, ma'am.",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 22.175,
+      "end_sec": 22.755,
+      "text": "Don't do this.",
+      "confidence": 0.749
+    },
+    {
+      "start_sec": 22.935,
+      "end_sec": 23.035,
+      "text": "Wait.",
+      "confidence": 0.025
+    },
+    {
+      "start_sec": 23.535,
+      "end_sec": 24.855,
+      "text": "I'm trying to shut this down.",
+      "confidence": 0.613
+    },
+    {
+      "start_sec": 25.215,
+      "end_sec": 25.815,
+      "text": "Look at it.",
+      "confidence": 0.511
+    },
+    {
+      "start_sec": 27.135,
+      "end_sec": 27.575,
+      "text": "Look at it.",
+      "confidence": 0.532
+    },
+    {
+      "start_sec": 28.015,
+      "end_sec": 28.455,
+      "text": "Look over there.",
+      "confidence": 0.768
+    },
+    {
+      "start_sec": 30.055,
+      "end_sec": 30.455,
+      "text": "Leslie.",
+      "confidence": 0.988
+    },
+    {
+      "start_sec": 31.435,
+      "end_sec": 31.835,
+      "text": "Leslie.",
+      "confidence": 0.982
+    },
+    {
+      "start_sec": 33.035,
+      "end_sec": 33.755,
+      "text": "I'll meet you down.",
+      "confidence": 0.877
+    },
+    {
+      "start_sec": 33.895,
+      "end_sec": 34.035,
+      "text": "Yeah.",
+      "confidence": 0.043
+    },
+    {
+      "start_sec": 34.255,
+      "end_sec": 34.395,
+      "text": "Huh?",
+      "confidence": 0.135
+    },
+    {
+      "start_sec": 35.335,
+      "end_sec": 35.935,
+      "text": "I got a big...",
+      "confidence": 0.623
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 3.755,
+      "duration_sec": 3.755
+    }
+  ],
+  "original_duration_sec": 35.968,
+  "processed_duration_sec": 32.213,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 5.8
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "case_id": "muckrock_184113_waterbury_captivity",
+  "verdict": "HOLD",
+  "narrative_score": 46.42,
+  "confidence": 0.75,
+  "key_moments": [
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 2,
+      "timestamp_sec": 17.0,
+      "end_timestamp_sec": 89.0,
+      "description": "Officer repeatedly demands to know who else is in the house, indicating high-stakes search.",
+      "importance": "critical",
+      "transcript_excerpt": "who else is in the house, who else is in the house"
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 15.0,
+      "end_timestamp_sec": 20.0,
+      "description": "Caller links the fire to the step-son's actions with the TV.",
+      "importance": "high",
+      "transcript_excerpt": "My son, he was a step-son of this room. I don't know. He did something with the TV."
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 1,
+      "timestamp_sec": 11.0,
+      "end_timestamp_sec": 13.0,
+      "description": "Caller provides conflicting address information (2 Blacke vs 3 Blacke).",
+      "importance": "high",
+      "transcript_excerpt": "It's 2 Blacke Street... 3 Blacke Street."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 31.0,
+      "end_timestamp_sec": 35.0,
+      "description": "Dispatcher questions the caller's shifting narrative from fire to medical emergency.",
+      "importance": "high",
+      "transcript_excerpt": "Ma'am, you said something was on fire and now you need an ambulance."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 49.0,
+      "end_timestamp_sec": 54.0,
+      "description": "Caller describes the step-son as 'out of it' and 'passed out'.",
+      "importance": "medium",
+      "transcript_excerpt": "He's out of it. Please."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 1,
+      "timestamp_sec": 22.0,
+      "end_timestamp_sec": 23.0,
+      "description": "Caller mentions watching a movie, potentially establishing a timeline for the incident.",
+      "importance": "low",
+      "transcript_excerpt": "I saw a movie."
+    }
+  ],
+  "content_pitch": "Strong 911 and bodycam artifacts with a clear cold-open structure, but moment density is too low to sustain a full video without additional footage or interrogation material.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 10.5,
+  "artifact_completeness": {
+    "available": [
+      "911_audio",
+      "bodycam",
+      "documents"
+    ],
+    "missing_recommended": [
+      "interrogation",
+      "narration"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 3.04,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 50.0,
+    "uniqueness_score": 52.0
+  },
+  "transcript_refs": [
+    "pipeline3_audio/transcripts/waterbury_captivity_911a_transcript.json",
+    "pipeline3_audio/transcripts/waterbury_captivity_911b_transcript.json",
+    "pipeline3_audio/transcripts/waterbury_captivity_bwc1_transcript.json",
+    "pipeline3_audio/transcripts/waterbury_captivity_bwc2_transcript.json"
+  ],
+  "source_refs": [
+    "muckrock_184113_waterbury_captivity"
+  ],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "HOLD",
+    "llm_verdict": "HOLD",
+    "reasoning_summary": "The case meets narrative score and artifact thresholds with a strong cold-open arc, but the extremely low moment density score (3.0) prevents it from reaching PRODUCE status. It is held pending additional source material to boost density and sustain viewer retention.",
+    "degraded": false,
+    "n_sources": 4,
+    "n_pass1_moments": 6,
+    "n_final_moments": 6,
+    "scored_at": "2026-06-27T21:00:30.120804Z"
+  }
+}

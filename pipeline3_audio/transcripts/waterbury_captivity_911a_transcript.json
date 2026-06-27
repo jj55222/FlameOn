@@ -1,0 +1,207 @@
+{
+  "case_id": "muckrock_184113_waterbury_captivity",
+  "source_evidence_type": "911_audio",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/For_Release_Redaction_Audio_File_CT5_911_2025_02_17_20_41_14_wav.m4a",
+  "transcript": [
+    {
+      "start_sec": 0.0,
+      "end_sec": 0.62,
+      "text": "Oh my God.",
+      "confidence": 0.492
+    },
+    {
+      "start_sec": 3.6,
+      "end_sec": 5.24,
+      "text": "It's two Blakestreaks.",
+      "confidence": 0.378
+    },
+    {
+      "start_sec": 5.92,
+      "end_sec": 6.74,
+      "text": "What's the address?",
+      "confidence": 0.925
+    },
+    {
+      "start_sec": 7.62,
+      "end_sec": 10.08,
+      "text": "Please hurry. It's two Blakestreaks. There's a fire.",
+      "confidence": 0.899
+    },
+    {
+      "start_sec": 10.46,
+      "end_sec": 12.14,
+      "text": "Oh my God. It's two Blakestreaks.",
+      "confidence": 0.732
+    },
+    {
+      "start_sec": 12.52,
+      "end_sec": 14.08,
+      "text": "Ma'am, what kind of fire?",
+      "confidence": 0.707
+    },
+    {
+      "start_sec": 15.58,
+      "end_sec": 19.76,
+      "text": "The TV. I don't know. My son, he was a step-son of this room.",
+      "confidence": 0.713
+    },
+    {
+      "start_sec": 19.96,
+      "end_sec": 22.26,
+      "text": "I don't know. He did something with the TV. I was sleeping.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 22.68,
+      "end_sec": 24.66,
+      "text": "Is he in flames or smoke?",
+      "confidence": 0.471
+    },
+    {
+      "start_sec": 25.8,
+      "end_sec": 26.14,
+      "text": "Yeah.",
+      "confidence": 0.692
+    },
+    {
+      "start_sec": 27.68,
+      "end_sec": 31.64,
+      "text": "Yes, we need an ambulance. Please. Please, we need an ambulance.",
+      "confidence": 0.828
+    },
+    {
+      "start_sec": 31.9,
+      "end_sec": 34.5,
+      "text": "Ma'am, you said something was on fire and now you need an ambulance.",
+      "confidence": 0.867
+    },
+    {
+      "start_sec": 34.7,
+      "end_sec": 35.52,
+      "text": "What's going on there?",
+      "confidence": 0.992
+    },
+    {
+      "start_sec": 35.76,
+      "end_sec": 37.98,
+      "text": "Yes, it's rogue. The TV is rogue.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 38.14,
+      "end_sec": 39.82,
+      "text": "Did he get injured? Is he on fire?",
+      "confidence": 0.971
+    },
+    {
+      "start_sec": 40.6,
+      "end_sec": 43.02,
+      "text": "Yes, he's injured. Please, send the ambulance.",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 43.58,
+      "end_sec": 45.1,
+      "text": "Ma'am, I'm going to send the ambulance.",
+      "confidence": 0.939
+    },
+    {
+      "start_sec": 45.26,
+      "end_sec": 47.08,
+      "text": "I need to know what's going on and why they're going down there.",
+      "confidence": 0.957
+    },
+    {
+      "start_sec": 47.58,
+      "end_sec": 48.22,
+      "text": "Where is he injured?",
+      "confidence": 0.937
+    },
+    {
+      "start_sec": 49.54,
+      "end_sec": 55.18,
+      "text": "I don't know. He's out of it. Please.",
+      "confidence": 0.828
+    },
+    {
+      "start_sec": 57.08,
+      "end_sec": 59.64,
+      "text": "Okay. What's your phone number? Just in case we need to give you a call back.",
+      "confidence": 0.855
+    },
+    {
+      "start_sec": 60.72,
+      "end_sec": 63.42,
+      "text": "203-206-31454, please.",
+      "confidence": 0.843
+    },
+    {
+      "start_sec": 63.54,
+      "end_sec": 65.3,
+      "text": "Okay. Is the fire out, ma'am?",
+      "confidence": 0.85
+    },
+    {
+      "start_sec": 66.44,
+      "end_sec": 69.1,
+      "text": "No, it's not. Please. I'm trying to know.",
+      "confidence": 0.752
+    },
+    {
+      "start_sec": 69.34,
+      "end_sec": 72.24,
+      "text": "I understand, ma'am. I'm trying to get information on what's going on there.",
+      "confidence": 0.93
+    },
+    {
+      "start_sec": 73.1,
+      "end_sec": 75.5,
+      "text": "Oh my God. It's like all the power in the house is out.",
+      "confidence": 0.908
+    },
+    {
+      "start_sec": 75.66,
+      "end_sec": 76.66,
+      "text": "I don't know if it's blue or blue.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 77.22,
+      "end_sec": 78.84,
+      "text": "Okay, ma'am. Just get out of the house, okay?",
+      "confidence": 0.967
+    },
+    {
+      "start_sec": 80.66,
+      "end_sec": 82.06,
+      "text": "Yes. I'm going to call my daughter.",
+      "confidence": 0.903
+    },
+    {
+      "start_sec": 82.06,
+      "end_sec": 82.94,
+      "text": "Okay, ma'am.",
+      "confidence": 0.338
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 82.961,
+      "original_end_sec": 87.04,
+      "duration_sec": 4.079
+    }
+  ],
+  "original_duration_sec": 87.04,
+  "processed_duration_sec": 82.961,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 25.3
+  },
+  "source_label": "waterbury_captivity_911a"
+}

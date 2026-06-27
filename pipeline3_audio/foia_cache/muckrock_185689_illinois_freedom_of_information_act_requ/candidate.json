@@ -1,0 +1,75 @@
+{
+  "source": "muckrock",
+  "case_id": "muckrock_185689_illinois_freedom_of_information_act_requ",
+  "foia_id": 185689,
+  "title": "Illinois Freedom of Information Act Request: Body-Worn Camera and Taser Deployment Footage – Arrest of Donna Zavala (January 1, 2025)",
+  "agency": "Joliet Police Department",
+  "absolute_url": "",
+  "datetime_done": "2025-05-27T11:35:14.872329-04:00",
+  "n_docs": 1,
+  "n_video": 4,
+  "n_audio": 0,
+  "has_video": true,
+  "has_mp3": false,
+  "has_pdf": true,
+  "is_bwc": true,
+  "is_interrogation": false,
+  "is_sb16": false,
+  "artifact_kinds": 1,
+  "pivot": {
+    "agency": "Joliet Police Department",
+    "case_title": "Illinois Freedom of Information Act Request: Body-Worn Camera and Taser Deployment Footage – Arrest of Donna Zavala (January 1, 2025)",
+    "done": "2025-05-27T11:35:14.872329-04:00"
+  },
+  "titles": [
+    "_Clip_2_1_Aggravated_Battery_to_PO",
+    "_Clip_1_1_Agg_Batt_to_PO",
+    "_Clip_1_1_Aggravated_Battery_to_PO",
+    "_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_",
+    "Recurrent_Requester"
+  ],
+  "media_files": [
+    {
+      "name": "_Clip_2_1_Aggravated_Battery_to_PO",
+      "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_2_1_Aggravated_Battery_to_PO.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "_Clip_1_1_Agg_Batt_to_PO",
+      "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Agg_Batt_to_PO.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "_Clip_1_1_Aggravated_Battery_to_PO",
+      "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Aggravated_Battery_to_PO.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_",
+      "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_.mp4",
+      "ext": ".mp4"
+    }
+  ],
+  "doc_files": [
+    {
+      "name": "Recurrent_Requester",
+      "url": "https://cdn.muckrock.com/foia_files/2025/05/01/Recurrent_Requester.doc",
+      "ext": ".doc"
+    }
+  ],
+  "urls": [
+    "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_2_1_Aggravated_Battery_to_PO.mp4",
+    "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Agg_Batt_to_PO.mp4",
+    "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Aggravated_Battery_to_PO.mp4",
+    "https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_.mp4"
+  ],
+  "keyword_score": 11,
+  "artifact_bonus": 7,
+  "bundle_bonus": 0,
+  "score": 18,
+  "hits": [
+    "+6 ois",
+    "+3 body-worn",
+    "+2 taser"
+  ]
+}
