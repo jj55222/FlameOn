@@ -49,12 +49,18 @@ def _day(epoch: float) -> dt.date:
     return dt.datetime.fromtimestamp(epoch, dt.timezone.utc).date()
 
 
-def build_timeline(arts: List[Dict]) -> Dict:
+def build_timeline(arts: List[Dict], anchor_override: Optional[float] = None) -> Dict:
     trusted = sorted(
         [a for a in arts if a.get("start_epoch") and a.get("timestamp_source") in TRUSTED_SOURCES],
         key=lambda a: a["start_epoch"],
     )
-    anchor = trusted[0]["start_epoch"] if trusted else None
+    # The auto-anchor is the EARLIEST trusted stamp — correct only when the story's
+    # climax is also the earliest event. When the incident is a later beat (e.g. an
+    # overdose 3 h after the seizure that opens the day), that mis-buckets the climax
+    # as "transport/aftermath" and the whole arc plays backwards. ``anchor_override``
+    # lets the operator pin the incident to its real moment (see --incident).
+    anchor = anchor_override if anchor_override is not None else (
+        trusted[0]["start_epoch"] if trusted else None)
     anchor_day = _day(anchor) if anchor else None
 
     phases: Dict[str, List[Dict]] = {p: [] for p in PHASE_ORDER}
