@@ -440,7 +440,8 @@ def _recompute_metadata(blueprint: Dict, beats: List[Dict]) -> Dict:
                + sum(BRIDGE_SEC for b in beats if b.get("narration_bridge")))
     md["planned_runtime_sec"] = round(planned, 1)
     md["runtime_vs_target_sec"] = round(planned - blueprint.get("target_runtime_sec", 0), 1)
-    md["unsourced_beats"] = sum(1 for b in beats if b.get("primary_asset") is None)
+    md["unsourced_beats"] = sum(1 for b in beats
+                                if b.get("primary_asset") is None and not b.get("is_document"))
     return md
 
 
