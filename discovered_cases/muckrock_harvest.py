@@ -3,10 +3,14 @@ MuckRock harvester — a new case source for the FlameOn intake pipeline.
 
 Mirrors the discovered_cases/ pattern (rank_candidates.py + download_all.py):
 queries MuckRock's API for *completed* FOIA requests, walks each request's
-communications down to its released files, keeps only requests that released
-actual VIDEO or AUDIO media, scores them with the same narrative keyword
-ranker used for the other sources, and emits a candidates list + a download
-manifest in the schema pipeline3_audio already understands.
+communications down to its released files, and scores each by the ARTIFACT
+BUNDLE it carries — BWC/dash video, interrogation/interview, and SB1421/16
+accountability releases — with a bonus when several co-occur (the ideal case).
+Keeps anything with a desired artifact (--keep artifact|media|any), ranks with
+the shared narrative keyword scorer, and emits a candidates list + download
+manifest in the schema pipeline3_audio already understands. Each candidate also
+carries a `pivot` block (agency + case + date) for a downstream cross-source
+search of the agency's transparency portal (SB16 release packages etc.).
 
 API chain (MuckRock api_v2):
     requests/?status=done&search=<term>      -> matching FOIA requests
