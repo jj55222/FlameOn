@@ -96,6 +96,7 @@ def propose_mock(segments: list, max_beats: int) -> list:
         for phrases, mtype, sal, angle in cues_n:
             if any(ph and ph in n for ph in phrases):
                 scored.append({"moment_type": mtype, "salience": sal, "angle": angle,
+                               "artifact_id": seg["source"],
                                "importance": "critical" if sal >= 5 else ("high" if sal == 4 else "medium"),
                                "start_sec": seg["start"], "end_sec": seg["end"],
                                "evidence_quote": seg["text"].strip(),
