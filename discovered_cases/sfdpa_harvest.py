@@ -118,7 +118,7 @@ def api_doc_to_row(doc: Dict[str, Any]) -> Dict[str, Any]:
         "folder": _clean_cell(doc.get("folder_name") or ""),
         "document_date": (doc.get("doc_date") or "").strip() if doc.get("doc_date") else "",
         "description": _clean_cell(doc.get("description", "")),
-        "ext": (doc.get("file_extension") or ext_of(title) or "").lower(),
+        "ext": ext,
     }
 
 
