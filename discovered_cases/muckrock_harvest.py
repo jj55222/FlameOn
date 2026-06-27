@@ -14,10 +14,13 @@ API chain (MuckRock api_v2):
         comm["files"]                        -> released files (ffile = CDN url)
   (fallback) files/?communication=<comm_id>  -> files for a comm
 
-AUTH: MuckRock now requires a token on every api_v2 call (bare calls 401).
-Register a free account at muckrock.com, copy the API token from account
-settings, and put it in .env as MUCKROCK_API_TOKEN. Without it this script
-exits early with a clear message — it cannot probe anything anonymously.
+AUTH: api_v2 uses Squarelet JWT (SimpleJWT). There is NO static API token.
+POST your muckrock.com username/password to
+    https://accounts.muckrock.com/api/token/   -> {access, refresh}
+then call api_v2 with `Authorization: Bearer <access>`. Put creds in .env as
+MUCKROCK_USERNAME / MUCKROCK_PASSWORD (or supply a pre-obtained access JWT as
+MUCKROCK_ACCESS_TOKEN). Without them this script exits early — it cannot probe
+anything anonymously (bare api_v2 calls 401).
 
 NOTE: built against MuckRock's documented api_v2 schema but NOT yet run against
 the live API (no token at authoring time). Field access is defensive; if a
