@@ -117,7 +117,50 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
                          "--weights", str(ROOT / "pipeline1_winners" / "scoring_weights.json"),
                          "--output", str(d2 / "verdicts")),
             paid=True, produces=str(verdict)))
-    # 7. Render the rough cut.
+    if a.flagship:
+        # 7–10. FLAGSHIP: deterministic rails → LLM editorial shaping → long-form
+        #        render (auto-anchor + auto-runtime, no operator tuning) → judge gate.
+        bp_dir = basket / "d6_blueprint"
+        blueprint_json = bp_dir / f"{a.case_id}_blueprint.json"
+        shaped_json = bp_dir / f"{a.case_id}_blueprint_shaped.json"
+        cuts_dir = basket / "d6_cuts"
+        cut_dir = cuts_dir / a.case_id
+        paper_edit = cut_dir / f"{a.case_id}_paper_edit.json"
+        final_mp4 = cut_dir / f"{a.case_id}_rough_cut.mp4"
+        judge_json = cut_dir / f"{a.case_id}_judge.json"
+        T = str(a.target_runtime)
+
+        bp_argv = ["--artifacts", str(arts), "--timeline", str(timeline),
+                   "--verdict", str(verdict), "--media-dir", str(video_dir),
+                   "--agency", a.agency, "--target-runtime", T,
+                   "--auto-anchor", "--out", str(bp_dir)]
+        if a.doc:
+            bp_argv += ["--doc-extract", str(doc_extract)]
+        steps.append(Step("blueprint", _py(P6 / "blueprint.py", *bp_argv),
+                          produces=str(blueprint_json)))
+
+        steps.append(Step(
+            "shape", _py(P6 / "blueprint_shape.py", "--blueprint", str(blueprint_json),
+                         "--model", a.shape_model, "--out", str(bp_dir)),
+            paid=True, produces=str(shaped_json)))
+
+        rb_argv = ["--blueprint", str(shaped_json), "--media-dir", str(video_dir),
+                   "--transcripts", str(d2 / "transcripts"),
+                   "--target-runtime", T, "--out", str(cuts_dir)]
+        steps.append(Step("render-blueprint", _py(P6 / "render_blueprint.py", *rb_argv),
+                          produces=str(final_mp4)))
+
+        judge_argv = ["--bundle", str(shaped_json), "--paper-edit", str(paper_edit),
+                      "--gate", "--out", str(judge_json)]
+        if a.judge_mock:
+            judge_argv.append("--mock")
+        elif a.judge_model:
+            judge_argv += ["--model", a.judge_model]
+        steps.append(Step("judge", _py(P6 / "judge.py", *judge_argv),
+                          paid=not a.judge_mock, produces=str(judge_json), gate=True))
+        return steps
+
+    # 7. Render the SIMPLE rough cut (text-card path).
     rc_argv = ["--verdict", str(verdict), "--media-dir", str(video_dir),
                "--timeline", str(timeline), "--agency", a.agency,
                "--out", str(basket / "d6_cuts")]
