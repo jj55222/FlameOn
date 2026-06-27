@@ -1,0 +1,192 @@
+{
+  "source": "muckrock",
+  "case_id": "muckrock_69147_sb_1421_police_complaints_oakland_pd",
+  "foia_id": 69147,
+  "title": "SB 1421 Police Complaints (Oakland PD)",
+  "agency": "Oakland Police Department",
+  "absolute_url": "",
+  "datetime_done": "2023-07-28T18:03:38.332396-04:00",
+  "n_docs": 23,
+  "n_video": 2,
+  "n_audio": 0,
+  "has_video": true,
+  "has_mp3": false,
+  "has_pdf": true,
+  "is_bwc": true,
+  "is_interrogation": false,
+  "is_sb16": true,
+  "artifact_kinds": 2,
+  "pivot": {
+    "agency": "Oakland Police Department",
+    "case_title": "SB 1421 Police Complaints (Oakland PD)",
+    "done": "2023-07-28T18:03:38.332396-04:00"
+  },
+  "titles": [
+    "PICT0007_2015.06.06_15.44.40.AVI",
+    "PICT0052_2015.06.06_15.07.20201.AVI",
+    "OPD20Officers.pdf",
+    "District20Attorneys20Final20Report201.pdf",
+    "18-024920Frame20By20Frame20IA201.pdf",
+    "18-006720EFRB20Report20Pawlik201.pdf",
+    "18-006720Chiefs20Addendum201.pdf",
+    "02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+    "08-081720-20EFRB20Results20and20UOF20Report.pdf",
+    "08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+    "07-106520-20EFRB20Hearing20Results.pdf",
+    "Oakland20Pawlik20Skelly20Report2020Final.pdf",
+    "2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT",
+    "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration",
+    "Table20of20Contents20Web20Version5B95D",
+    "2021-03-0320Yu20STEP20320RESPONSE",
+    "Table20of20Contents20YuWeb20Version5B75D",
+    "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T",
+    "2021-03-0220NEGRETE20RPT20TO20CLIENT",
+    "Table20of20Contents20NegreteWeb20Version5B115D",
+    "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr",
+    "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201",
+    "5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision",
+    "5B2021.03.025DMLR20to20ERDemand20for20Implementation",
+    "2021-12-13_Class_Notice_Final_5_St803Tb"
+  ],
+  "media_files": [
+    {
+      "name": "PICT0007_2015.06.06_15.44.40.AVI",
+      "url": "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0007_2015.06.06_15.44.40.AVI",
+      "ext": ".avi"
+    },
+    {
+      "name": "PICT0052_2015.06.06_15.07.20201.AVI",
+      "url": "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0052_2015.06.06_15.07.20201.AVI",
+      "ext": ".avi"
+    }
+  ],
+  "doc_files": [
+    {
+      "name": "OPD20Officers.pdf",
+      "url": "https://cdn.muckrock.com/outbound_composer_attachments/JPatBrown/67726/OPD20Officers.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "District20Attorneys20Final20Report201.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/District20Attorneys20Final20Report201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "18-024920Frame20By20Frame20IA201.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-024920Frame20By20Frame20IA201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "18-006720EFRB20Report20Pawlik201.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-006720EFRB20Report20Pawlik201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "18-006720Chiefs20Addendum201.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-006720Chiefs20Addendum201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "08-081720-20EFRB20Results20and20UOF20Report.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/08-081720-20EFRB20Results20and20UOF20Report.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "07-106520-20EFRB20Hearing20Results.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2019/04/24/07-106520-20EFRB20Hearing20Results.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Oakland20Pawlik20Skelly20Report2020Final.pdf",
+      "url": "https://cdn.muckrock.com/foia_files/2020/04/10/Oakland20Pawlik20Skelly20Report2020Final.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Table20of20Contents20Web20Version5B95D",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20Web20Version5B95D.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "2021-03-0320Yu20STEP20320RESPONSE",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0320Yu20STEP20320RESPONSE.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Table20of20Contents20YuWeb20Version5B75D",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20YuWeb20Version5B75D.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "2021-03-0220NEGRETE20RPT20TO20CLIENT",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0220NEGRETE20RPT20TO20CLIENT.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Table20of20Contents20NegreteWeb20Version5B115D",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20NegreteWeb20Version5B115D.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "5B2021.03.025DMLR20to20ERDemand20for20Implementation",
+      "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20ERDemand20for20Implementation.pdf",
+      "ext": ".pdf"
+    },
+    {
+      "name": "2021-12-13_Class_Notice_Final_5_St803Tb",
+      "url": "https://cdn.muckrock.com/foia_files/2021/12/14/2021-12-13_Class_Notice_Final_5_St803Tb.pdf",
+      "ext": ".pdf"
+    }
+  ],
+  "urls": [
+    "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0007_2015.06.06_15.44.40.AVI",
+    "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0052_2015.06.06_15.07.20201.AVI"
+  ],
+  "keyword_score": 8,
+  "artifact_bonus": 12,
+  "bundle_bonus": 3,
+  "score": 23,
+  "hits": [
+    "+6 ois",
+    "+2 canine"
+  ]
+}

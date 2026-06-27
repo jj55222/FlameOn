@@ -1,0 +1,82 @@
+{
+  "case_id": "muckrock_69147_sb_1421_oakland_pd",
+  "verdict": "SKIP",
+  "narrative_score": 16.75,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "procedural_violation",
+      "source_idx": 1,
+      "timestamp_sec": 198,
+      "end_timestamp_sec": 205,
+      "description": "Officers discuss using less-lethal force on the vehicle bumper as a warning tactic.",
+      "importance": "critical",
+      "transcript_excerpt": "Two rounds to the bumper, Leslethal, in the next warning."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 1,
+      "timestamp_sec": 307,
+      "end_timestamp_sec": 314,
+      "description": "Officer expresses confusion and frustration regarding the suspect's lack of response.",
+      "importance": "high",
+      "transcript_excerpt": "I don't think it's dangerous... I don't know why I'm so mad about what's going on in here."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 1,
+      "timestamp_sec": 413,
+      "end_timestamp_sec": 444,
+      "description": "Officers exhibit erratic behavior, discussing coffee and beer while maintaining a standoff.",
+      "importance": "high",
+      "transcript_excerpt": "I need some coffee still, dude... I'm going to try it with the beer."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 1,
+      "timestamp_sec": 719,
+      "end_timestamp_sec": 742,
+      "description": "Escalation to K9 threat as a primary negotiation tool.",
+      "importance": "critical",
+      "transcript_excerpt": "We'll release the dog... The dog won't bite you if you do not give up."
+    }
+  ],
+  "content_pitch": "Low moment density and poor structural fit with winner patterns, relying solely on bodycam footage without sufficient narrative escalation or artifact diversity to sustain a full video.",
+  "narrative_arc_recommendation": "escalation",
+  "estimated_runtime_min": 8.4,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "documents"
+    ],
+    "missing_recommended": [
+      "interrogation",
+      "narration"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 2.05,
+    "arc_similarity_score": 8.09,
+    "artifact_completeness_score": 50.0,
+    "uniqueness_score": 35.0
+  },
+  "transcript_refs": [
+    "pipeline3_audio/transcripts/oakland_sb1421_01_transcript.json",
+    "pipeline3_audio/transcripts/oakland_sb1421_02_transcript.json"
+  ],
+  "source_refs": [
+    "muckrock_69147_sb_1421_oakland_pd"
+  ],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "SKIP",
+    "reasoning_summary": "The deterministic scores fall well below production thresholds, with a narrative score of 16.8 and moment density of 2.0. The combination of low arc similarity (<30) and limited artifact completeness (<70) triggers the SKIP condition, indicating insufficient structural and material diversity for a compelling video.",
+    "degraded": false,
+    "n_sources": 2,
+    "n_pass1_moments": 4,
+    "n_final_moments": 4,
+    "scored_at": "2026-06-27T21:17:35.947300Z"
+  }
+}

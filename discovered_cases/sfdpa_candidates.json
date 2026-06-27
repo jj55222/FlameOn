@@ -1,0 +1,1494 @@
+[
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0141_19",
+    "folder": "0141-19",
+    "title": "SF DPA folder 0141-19",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/22-9",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 1,
+    "n_audio": 2,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": true,
+    "is_sb16": true,
+    "artifact_kinds": 4,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0141-19",
+      "folder": "0141-19"
+    },
+    "titles": [
+      "Ex. M-1, Officer Christina Galande #1660 BWC Footage Post...",
+      "Production - 0141-19.pdf",
+      "Ex. M-9a, Interview of Lieutenant Mark Im #2096, Part 1, ...",
+      "Ex. M-9b, Interview of Lieutenant Mark Im #2096, Part 2, ..."
+    ],
+    "media_files": [
+      {
+        "name": "Ex. M-1, Officer Christina Galande #1660 BWC Footage Post...",
+        "url": "https://sfdpa.nextrequest.com/documents/13224767/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13224767",
+        "ext": "",
+        "evidence_type": "bodycam",
+        "downloads": 285,
+        "upload_date": "04/29/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "Ex. M-9a, Interview of Lieutenant Mark Im #2096, Part 1, ...",
+        "url": "https://sfdpa.nextrequest.com/documents/13224763/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13224763",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 276,
+        "upload_date": "04/29/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "Ex. M-9b, Interview of Lieutenant Mark Im #2096, Part 2, ...",
+        "url": "https://sfdpa.nextrequest.com/documents/13224764/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13224764",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 224,
+        "upload_date": "04/29/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download this file to access it."
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 0141-19.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/13224762/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13224762",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 263,
+        "upload_date": "04/29/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13224767/download",
+      "https://sfdpa.nextrequest.com/documents/13224763/download",
+      "https://sfdpa.nextrequest.com/documents/13224764/download"
+    ],
+    "keyword_score": 7,
+    "artifact_bonus": 16,
+    "bundle_bonus": 12,
+    "popularity_bonus": 4,
+    "score": 39,
+    "hits": [
+      "+4 interview",
+      "+3 bwc"
+    ],
+    "total_downloads": 1048
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0386_17",
+    "folder": "0386-17",
+    "title": "SF DPA folder 0386-17",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 3,
+    "n_video": 0,
+    "n_audio": 8,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": true,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0386-17",
+      "folder": "0386-17"
+    },
+    "titles": [
+      "0386-17 DPA Interview - Wilrolan Ravelo 2464 - Redacted.mp3",
+      "Production - 0386-17 Part B.pdf",
+      "0386-17 DPA Interview - Brent Bradford 4199 - Redacted.mp3",
+      "0386-17 Homicide Interview - Michael Hara 1805 - Redacted...",
+      "0386-17 DPA Interview - Nicholas Suslow 886 - Redacted.mp3",
+      "Production - 0386-17 Part A.pdf",
+      "0386-17 Homicide Interview - Nicholas Suslow 886 - Redact...",
+      "0386-17 DPA Interview - Brent Bradford 4199 addendum - Re...",
+      "0386-17 Homicide Interview - Wilrolan Ravelo 2464 - Redac...",
+      "Production - 0386-17 Part C.pdf",
+      "0386-17 DPA Interview - Jason Robinson 1850 - Redacted.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "0386-17 DPA Interview - Wilrolan Ravelo 2464 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11518427/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518427",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 275,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 DPA Interview - Brent Bradford 4199 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11518421/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518421",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 219,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 Homicide Interview - Michael Hara 1805 - Redacted...",
+        "url": "https://sfdpa.nextrequest.com/documents/11518429/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518429",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 250,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 DPA Interview - Nicholas Suslow 886 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11518426/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518426",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 220,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 Homicide Interview - Nicholas Suslow 886 - Redact...",
+        "url": "https://sfdpa.nextrequest.com/documents/11518430/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518430",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 249,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 DPA Interview - Brent Bradford 4199 addendum - Re...",
+        "url": "https://sfdpa.nextrequest.com/documents/11518422/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518422",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 265,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 Homicide Interview - Wilrolan Ravelo 2464 - Redac...",
+        "url": "https://sfdpa.nextrequest.com/documents/11518431/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518431",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 207,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0386-17 DPA Interview - Jason Robinson 1850 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11518423/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518423",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 217,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "Please download this file to access it."
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 0386-17 Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11058153/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11058153",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 243,
+        "upload_date": "01/26/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0386-17 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11058152/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11058152",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 221,
+        "upload_date": "01/26/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0386-17 Part C.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11518432/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11518432",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 224,
+        "upload_date": "02/11/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11518427/download",
+      "https://sfdpa.nextrequest.com/documents/11518421/download",
+      "https://sfdpa.nextrequest.com/documents/11518429/download",
+      "https://sfdpa.nextrequest.com/documents/11518426/download",
+      "https://sfdpa.nextrequest.com/documents/11518430/download",
+      "https://sfdpa.nextrequest.com/documents/11518422/download",
+      "https://sfdpa.nextrequest.com/documents/11518431/download",
+      "https://sfdpa.nextrequest.com/documents/11518423/download"
+    ],
+    "keyword_score": 8,
+    "artifact_bonus": 10,
+    "bundle_bonus": 7,
+    "popularity_bonus": 5,
+    "score": 30,
+    "hits": [
+      "+5 homicide",
+      "+4 interview",
+      "-1 redacted"
+    ],
+    "total_downloads": 2590
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0204_18",
+    "folder": "0204-18",
+    "title": "SF DPA folder 0204-18",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 4,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": true,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0204-18",
+      "folder": "0204-18"
+    },
+    "titles": [
+      "0204-18 Homicide Interview - Nicholas Hillard 1339 - Reda...",
+      "0204-18 Homicide Interview - Graham Pfiefer 2424 - Redact...",
+      "Production - 0204-18 Part B.pdf",
+      "Production - 0204-18 Part A.pdf",
+      "0204-18 IAD Interview - Deniz Akmese 1339 - Redacted (Par...",
+      "0204-18 IAD Interview - William Reininger 374 - Redacted.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "0204-18 Homicide Interview - Nicholas Hillard 1339 - Reda...",
+        "url": "https://sfdpa.nextrequest.com/documents/11728596/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728596",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 206,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "0204-18 Homicide Interview - Graham Pfiefer 2424 - Redact...",
+        "url": "https://sfdpa.nextrequest.com/documents/11728595/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728595",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 212,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "0204-18 IAD Interview - Deniz Akmese 1339 - Redacted (Par...",
+        "url": "https://sfdpa.nextrequest.com/documents/11728589/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728589",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 209,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "0204-18 IAD Interview - William Reininger 374 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11728593/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728593",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 205,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 0204-18 Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11728598/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728598",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 202,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0204-18 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11728597/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11728597",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 213,
+        "upload_date": "02/24/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11728596/download",
+      "https://sfdpa.nextrequest.com/documents/11728595/download",
+      "https://sfdpa.nextrequest.com/documents/11728589/download",
+      "https://sfdpa.nextrequest.com/documents/11728593/download"
+    ],
+    "keyword_score": 8,
+    "artifact_bonus": 10,
+    "bundle_bonus": 7,
+    "popularity_bonus": 4,
+    "score": 29,
+    "hits": [
+      "+5 homicide",
+      "+4 interview",
+      "-1 redacted"
+    ],
+    "total_downloads": 1247
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0045_19",
+    "folder": "0045-19",
+    "title": "SF DPA folder 0045-19",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/22-9",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 3,
+    "n_other": 2,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": true,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0045-19",
+      "folder": "0045-19"
+    },
+    "titles": [
+      "0045-19 Amended Commission Ex. J-2, Officer Jacqueline He...",
+      "0045-19 Amended Commission Ex. J-1, Officer Brett Hernand...",
+      "Production - 0045-19 Part A.pdf",
+      "0045-19 DPA Interview - Brett Hernandez 307 - Redacted.mp3",
+      "0045-19 DPA Interview - John Pai 4169 - Redacted.mp3",
+      "Production - 0045-19 Part B.pdf",
+      "0045-19 DPA Interview - Jacqueline Hernandez 4039 - Redac..."
+    ],
+    "media_files": [
+      {
+        "name": "0045-19 DPA Interview - Brett Hernandez 307 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/12536055/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12536055",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 245,
+        "upload_date": "03/30/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download file to access it."
+      },
+      {
+        "name": "0045-19 DPA Interview - John Pai 4169 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/12536054/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12536054",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 288,
+        "upload_date": "03/30/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download file to access it."
+      },
+      {
+        "name": "0045-19 DPA Interview - Jacqueline Hernandez 4039 - Redac...",
+        "url": "https://sfdpa.nextrequest.com/documents/12536053/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12536053",
+        "ext": "",
+        "evidence_type": "interrogation",
+        "downloads": 261,
+        "upload_date": "03/30/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download file to access it."
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 0045-19 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/12536056/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12536056",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 237,
+        "upload_date": "03/30/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": ""
+      },
+      {
+        "name": "Production - 0045-19 Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/12715413/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12715413",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 249,
+        "upload_date": "04/13/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": ""
+      }
+    ],
+    "other_files": [
+      {
+        "name": "0045-19 Amended Commission Ex. J-2, Officer Jacqueline He...",
+        "url": "https://sfdpa.nextrequest.com/documents/12715412/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12715412",
+        "ext": "",
+        "evidence_type": "other",
+        "downloads": 272,
+        "upload_date": "04/13/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download this file to access it."
+      },
+      {
+        "name": "0045-19 Amended Commission Ex. J-1, Officer Brett Hernand...",
+        "url": "https://sfdpa.nextrequest.com/documents/12715411/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/12715411",
+        "ext": "",
+        "evidence_type": "other",
+        "downloads": 274,
+        "upload_date": "04/13/2022",
+        "request": "22-9",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-9",
+        "description": "Please download this file to access it."
+      }
+    ],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/12536055/download",
+      "https://sfdpa.nextrequest.com/documents/12536054/download",
+      "https://sfdpa.nextrequest.com/documents/12536053/download"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 10,
+    "bundle_bonus": 7,
+    "popularity_bonus": 5,
+    "score": 25,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ],
+    "total_downloads": 1826
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_44321_20",
+    "folder": "44321-20",
+    "title": "SF DPA folder 44321-20",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 1,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": true,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "44321-20",
+      "folder": "44321-20"
+    },
+    "titles": [
+      "Production - 44321-20.pdf",
+      "44321-20 DPA Interview - Bernard Rabsatt 829 - Redacted.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "44321-20 DPA Interview - Bernard Rabsatt 829 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/11775381/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11775381",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 233,
+        "upload_date": "03/01/2022",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 44321-20.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11775382/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11775382",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 240,
+        "upload_date": "03/01/2022",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/11775381/download"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 10,
+    "bundle_bonus": 7,
+    "popularity_bonus": 1,
+    "score": 21,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ],
+    "total_downloads": 473
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0409_18",
+    "folder": "0409-18",
+    "title": "SF DPA folder 0409-18",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/22-7",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 1,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0409-18",
+      "folder": "0409-18"
+    },
+    "titles": [
+      "Production - 0409-18.pdf",
+      "0409-18 BWC of Officer Sherry #1046 - Redacted.mp4"
+    ],
+    "media_files": [
+      {
+        "name": "0409-18 BWC of Officer Sherry #1046 - Redacted.mp4",
+        "url": "https://sfdpa.nextrequest.com/documents/13420842/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13420842",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "downloads": 315,
+        "upload_date": "05/06/2022",
+        "request": "22-7",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-7",
+        "description": "Please download this file to access it."
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "Production - 0409-18.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/13420843/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13420843",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 209,
+        "upload_date": "05/06/2022",
+        "request": "22-7",
+        "request_url": "https://sfdpa.nextrequest.com/requests/22-7",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13420842/download"
+    ],
+    "keyword_score": 2,
+    "artifact_bonus": 11,
+    "bundle_bonus": 3,
+    "popularity_bonus": 2,
+    "score": 18,
+    "hits": [
+      "+3 bwc",
+      "-1 redacted"
+    ],
+    "total_downloads": 524
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0040_15",
+    "folder": "0040-15",
+    "title": "SF DPA folder 0040-15",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 0,
+    "n_video": 0,
+    "n_audio": 1,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": false,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0040-15",
+      "folder": "0040-15"
+    },
+    "titles": [
+      "0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/15007293/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/15007293",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 327,
+        "upload_date": "08/18/2022",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "doc_files": [],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/15007293/download"
+    ],
+    "keyword_score": 4,
+    "artifact_bonus": 5,
+    "bundle_bonus": 3,
+    "popularity_bonus": 1,
+    "score": 13,
+    "hits": [
+      "+4 interview"
+    ],
+    "total_downloads": 327
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0210_14",
+    "folder": "0210-14",
+    "title": "SF DPA folder 0210-14",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 0,
+    "n_video": 0,
+    "n_audio": 1,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": true,
+    "has_pdf": false,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0210-14",
+      "folder": "0210-14"
+    },
+    "titles": [
+      "0210-14 DPA Interview - Sgt Luis DeJesus #247 - Redacted.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "0210-14 DPA Interview - Sgt Luis DeJesus #247 - Redacted.mp3",
+        "url": "https://sfdpa.nextrequest.com/documents/13468341/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/13468341",
+        "ext": ".mp3",
+        "evidence_type": "interrogation",
+        "downloads": 275,
+        "upload_date": "05/10/2022",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": "Please download this file to access it."
+      }
+    ],
+    "doc_files": [],
+    "other_files": [],
+    "urls": [
+      "https://sfdpa.nextrequest.com/documents/13468341/download"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 5,
+    "bundle_bonus": 3,
+    "popularity_bonus": 1,
+    "score": 12,
+    "hits": [
+      "+4 interview",
+      "-1 redacted"
+    ],
+    "total_downloads": 275
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0658_08",
+    "folder": "0658-08",
+    "title": "SF DPA folder 0658-08",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-5",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0658-08",
+      "folder": "0658-08"
+    },
+    "titles": [
+      "Production - 0658-08 Part A.pdf",
+      "Production - 0658-08 Part B.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0658-08 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6456491/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6456491",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 318,
+        "upload_date": "02/12/2021",
+        "request": "20-5",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-5",
+        "description": ""
+      },
+      {
+        "name": "Production - 0658-08 Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6557916/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6557916",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 244,
+        "upload_date": "02/26/2021",
+        "request": "20-5",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-5",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 2,
+    "score": 7,
+    "hits": [],
+    "total_downloads": 562
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0120_18_eid",
+    "folder": "0120-18 Eid",
+    "title": "SF DPA folder 0120-18 Eid",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0120-18 Eid",
+      "folder": "0120-18 Eid"
+    },
+    "titles": [
+      "Production - 0120-18 Eid Part A.pdf",
+      "Production - 0120-18 Eid Part B.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0120-18 Eid Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7004503/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7004503",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 249,
+        "upload_date": "03/30/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0120-18 Eid Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7360770/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7360770",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 234,
+        "upload_date": "04/30/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": "ATTENTION: THIS FILE IS EXTREMELY LARGE. YOU MUST DOWNLOAD TO VIEW."
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 483
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0164_16_gongora",
+    "folder": "0164-16 Gongora",
+    "title": "SF DPA folder 0164-16 Gongora",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0164-16 Gongora",
+      "folder": "0164-16 Gongora"
+    },
+    "titles": [
+      "Production - 0164-16 Gongora Part A.pdf",
+      "Production - 0164-16 Gongora Part B.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0164-16 Gongora Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6418331/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6418331",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 232,
+        "upload_date": "02/09/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0164-16 Gongora Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6418330/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6418330",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 218,
+        "upload_date": "02/09/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 450
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0627_15_woods",
+    "folder": "0627-15 Woods",
+    "title": "SF DPA folder 0627-15 Woods",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0627-15 Woods",
+      "folder": "0627-15 Woods"
+    },
+    "titles": [
+      "Production - 0627-15 Woods Part A.pdf",
+      "Production - 0627-15 Woods Part B.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0627-15 Woods Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/8400444/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/8400444",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 249,
+        "upload_date": "08/18/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      },
+      {
+        "name": "Production - 0627-15 Woods Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/8400446/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/8400446",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 229,
+        "upload_date": "08/18/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 478
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0074_15",
+    "folder": "0074-15",
+    "title": "SF DPA folder 0074-15",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0074-15",
+      "folder": "0074-15"
+    },
+    "titles": [
+      "Production - 0074-15.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0074-15.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6633178/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6633178",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 286,
+        "upload_date": "03/02/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 286
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0686_10",
+    "folder": "0686-10",
+    "title": "SF DPA folder 0686-10",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0686-10",
+      "folder": "0686-10"
+    },
+    "titles": [
+      "Production - 0686-10.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0686-10.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7420080/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7420080",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 272,
+        "upload_date": "05/07/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 272
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0716_06",
+    "folder": "0716-06",
+    "title": "SF DPA folder 0716-06",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0716-06",
+      "folder": "0716-06"
+    },
+    "titles": [
+      "Production - 0716-06.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0716-06.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/8582666/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/8582666",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 252,
+        "upload_date": "09/10/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": "ATTENTION: THIS FILE IS EXTREMELY LARGE. YOU MUST DOWNLOAD TO VIEW."
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 252
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0777_07",
+    "folder": "0777-07",
+    "title": "SF DPA folder 0777-07",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0777-07",
+      "folder": "0777-07"
+    },
+    "titles": [
+      "Production - 0777-07 Part A.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0777-07 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7805545/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7805545",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 266,
+        "upload_date": "06/28/2021",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 1,
+    "score": 6,
+    "hits": [],
+    "total_downloads": 266
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0081_19",
+    "folder": "0081-19",
+    "title": "SF DPA folder 0081-19",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0081-19",
+      "folder": "0081-19"
+    },
+    "titles": [
+      "Production - 0081-19 Part A.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0081-19 Part A.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/6633228/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/6633228",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 227,
+        "upload_date": "03/02/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 0,
+    "score": 5,
+    "hits": [],
+    "total_downloads": 227
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_0756_10",
+    "folder": "0756-10",
+    "title": "SF DPA folder 0756-10",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "0756-10",
+      "folder": "0756-10"
+    },
+    "titles": [
+      "Production - 0756-10.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 0756-10.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7519114/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7519114",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 243,
+        "upload_date": "05/19/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": "ATTENTION: THIS FILE IS EXTREMELY LARGE, YOU MAY NEED TO DOWNLOAD TO VIEW."
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 0,
+    "score": 5,
+    "hits": [],
+    "total_downloads": 243
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_44328_20",
+    "folder": "44328-20",
+    "title": "SF DPA folder 44328-20",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-3",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "44328-20",
+      "folder": "44328-20"
+    },
+    "titles": [
+      "Production - 00044328-20.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 00044328-20.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/7663651/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/7663651",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 241,
+        "upload_date": "06/08/2021",
+        "request": "20-3",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-3",
+        "description": "ATTENTION: THIS FILE IS EXTREMELY LARGE. YOU MUST DOWNLOAD TO VIEW."
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 0,
+    "score": 5,
+    "hits": [],
+    "total_downloads": 241
+  },
+  {
+    "source": "sfdpa_nextrequest",
+    "case_id": "sfdpa_45130_20",
+    "folder": "45130-20",
+    "title": "SF DPA folder 45130-20",
+    "agency": "San Francisco Department of Police Accountability",
+    "case_url": "https://sfdpa.nextrequest.com/requests/20-2",
+    "document_index_url": "https://sfdpa.nextrequest.com/documents",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Department of Police Accountability",
+      "case_title": "45130-20",
+      "folder": "45130-20"
+    },
+    "titles": [
+      "Production - 45130-20 Part B.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Production - 45130-20 Part B.pdf",
+        "url": "https://sfdpa.nextrequest.com/documents/11550562/download",
+        "browse_url": "https://sfdpa.nextrequest.com/documents/11550562",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "downloads": 237,
+        "upload_date": "02/16/2022",
+        "request": "20-2",
+        "request_url": "https://sfdpa.nextrequest.com/requests/20-2",
+        "description": ""
+      }
+    ],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "popularity_bonus": 0,
+    "score": 5,
+    "hits": [],
+    "total_downloads": 237
+  }
+]

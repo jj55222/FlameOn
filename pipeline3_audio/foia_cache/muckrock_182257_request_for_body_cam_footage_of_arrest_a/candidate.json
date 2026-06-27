@@ -1,0 +1,137 @@
+{
+  "source": "muckrock",
+  "case_id": "muckrock_182257_request_for_body_cam_footage_of_arrest_a",
+  "foia_id": 182257,
+  "title": "Request for Body Cam Footage of Arrest and Interrogation",
+  "agency": "Miami Beach Police Department",
+  "absolute_url": "",
+  "datetime_done": "2025-05-12T11:37:20.563536-04:00",
+  "n_docs": 0,
+  "n_video": 14,
+  "n_audio": 0,
+  "has_video": true,
+  "has_mp3": false,
+  "has_pdf": false,
+  "is_bwc": true,
+  "is_interrogation": true,
+  "is_sb16": false,
+  "artifact_kinds": 2,
+  "pivot": {
+    "agency": "Miami Beach Police Department",
+    "case_title": "Request for Body Cam Footage of Arrest and Interrogation",
+    "done": "2025-05-12T11:37:20.563536-04:00"
+  },
+  "titles": [
+    "24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+    "24-100773_VIDEO_1_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+    "24-100773_VIDEO_3_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-08_1012_X6039B507.mp4",
+    "24-100773_VIDEO_4_GONZALEZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-16_1038_X60A56898.mp4",
+    "24-100773_VIDEO_6_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1409_X6039B507.mp4",
+    "24-100773_VIDEO_5_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-22_1002_X6039B507.mp4",
+    "24-100773_VIDEO_7_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1520_X6039B507.mp4",
+    "24-100773_VIDEO_8_RIVERA_-_Extraction_1_1_Axon_Body_3_Video_2024-12-11_0628_X6039AHPF.mp4",
+    "24-100773_VIDEO_10_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_1.mp4",
+    "24-100773_VIDEO_11_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+    "24-100773_VIDEO_9_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_2.mp4",
+    "24-100773_VIDEO_13_DELGADO_-_Axon_Body_3_Video_2024-12-11_0835_X6039ADT3.mp4",
+    "24-100773_VIDEO_14_DELGADO_-_Axon_Body_3_Video_2024-12-11_0841_X6039ADT3.mp4",
+    "24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4"
+  ],
+  "media_files": [
+    {
+      "name": "24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_1_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_1_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_3_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-08_1012_X6039B507.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_3_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-08_1012_X6039B507.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_4_GONZALEZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-16_1038_X60A56898.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_4_GONZALEZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-16_1038_X60A56898.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_6_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1409_X6039B507.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_6_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1409_X6039B507.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_5_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-22_1002_X6039B507.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_5_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-22_1002_X6039B507.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_7_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1520_X6039B507.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_7_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1520_X6039B507.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_8_RIVERA_-_Extraction_1_1_Axon_Body_3_Video_2024-12-11_0628_X6039AHPF.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_8_RIVERA_-_Extraction_1_1_Axon_Body_3_Video_2024-12-11_0628_X6039AHPF.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_10_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_1.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_10_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_1.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_11_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_11_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_9_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_2.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_9_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_2.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_13_DELGADO_-_Axon_Body_3_Video_2024-12-11_0835_X6039ADT3.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_13_DELGADO_-_Axon_Body_3_Video_2024-12-11_0835_X6039ADT3.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_14_DELGADO_-_Axon_Body_3_Video_2024-12-11_0841_X6039ADT3.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_14_DELGADO_-_Axon_Body_3_Video_2024-12-11_0841_X6039ADT3.mp4",
+      "ext": ".mp4"
+    },
+    {
+      "name": "24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+      "url": "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+      "ext": ".mp4"
+    }
+  ],
+  "doc_files": [],
+  "urls": [
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_1_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_3_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-08_1012_X6039B507.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_4_GONZALEZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-16_1038_X60A56898.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_6_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1409_X6039B507.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_5_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-22_1002_X6039B507.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_7_ALVAREZ_-_Extraction_1_1_Axon_Body_3_Video_2024-10-30_1520_X6039B507.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_8_RIVERA_-_Extraction_1_1_Axon_Body_3_Video_2024-12-11_0628_X6039AHPF.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_10_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_1.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_11_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_9_ALVAREZ_-_Axon_Interview-367-Interview_Room_A-1-Camera_2.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_13_DELGADO_-_Axon_Body_3_Video_2024-12-11_0835_X6039ADT3.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_14_DELGADO_-_Axon_Body_3_Video_2024-12-11_0841_X6039ADT3.mp4",
+    "https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4"
+  ],
+  "keyword_score": 9,
+  "artifact_bonus": 10,
+  "bundle_bonus": 3,
+  "score": 22,
+  "hits": [
+    "+4 interview",
+    "+5 interrogation"
+  ]
+}
