@@ -480,17 +480,19 @@ def main() -> int:
     out = Path(args.out)
     out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False))
 
+    bundles = sum(1 for c in candidates if c["artifact_kinds"] >= 2)
     print("\n" + "=" * 72)
     print(f"requests seen={stats['requests_seen']}  no-files={stats['no_files']}  "
-          f"doc-only-skipped={stats['doc_only']}  kept={stats['kept']}")
+          f"filtered={stats['filtered']}  kept={stats['kept']}  multi-artifact-bundles={bundles}")
+    print(f"  (V=video A=audio S=SB1421/16 I=interrogation)")
     print(f"wrote {len(candidates)} candidates -> {out}")
     print("=" * 72)
     for i, c in enumerate(candidates[:15], 1):
-        print(f"{i:2}. [{c['score']:3}] {c['case_id']}  "
-              f"vid={c['n_video']} aud={c['n_audio']}")
+        tags = "".join(t for t, on in (("V", c["has_video"]), ("A", c["has_mp3"]),
+                       ("S", c["is_sb16"]), ("I", c["is_interrogation"])) if on)
+        print(f"{i:2}. [{c['score']:3} {tags:<4}] {c['case_id']}  "
+              f"vid={c['n_video']} aud={c['n_audio']} doc={c['n_docs']}  @{c['agency']}")
         print(f"     {c['title'][:70]}")
-        if c["hits"]:
-            print(f"     hits: {', '.join(c['hits'][:6])}")
 
     if args.download and candidates:
         print("\n[download] fetching media ...")
