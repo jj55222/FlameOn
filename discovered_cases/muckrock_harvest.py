@@ -344,13 +344,15 @@ def main() -> int:
     ap.add_argument("--out", default=str(ROOT / "muckrock_candidates.json"))
     args = ap.parse_args()
 
-    token = load_token()
-    if not token:
-        print("ERROR: no MUCKROCK_API_TOKEN. Register at muckrock.com, copy the API "
-              "token from account settings, set it in .env, and re-run.", file=sys.stderr)
+    creds = load_credentials()
+    try:
+        mr = MuckRock(creds)
+    except AuthError as e:
+        print(f"ERROR: MuckRock auth failed: {e}\n"
+              "Set MUCKROCK_USERNAME and MUCKROCK_PASSWORD (your muckrock.com login) "
+              "in .env, then re-run. api_v2 uses Squarelet JWT auth — there is no "
+              "static API token.", file=sys.stderr)
         return 2
-
-    mr = MuckRock(token)
 
     seen_ids: set = set()
     candidates: List[dict] = []
