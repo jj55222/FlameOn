@@ -412,6 +412,13 @@ def _recompute_ledger(blueprint: Dict, beats: List[Dict]) -> List[Dict]:
         if e.get("beat_id") is None:
             ledger.append(e)
     for b in beats:
+        if b.get("is_document"):           # record beat — sourced to the IA report
+            ledger.append({
+                "claim": f"record: {((b.get('narration_bridge') or {}).get('text') or '')[:60]}",
+                "source": (b["source_refs"][0] if b.get("source_refs") else "doc"),
+                "ok": True, "beat_id": b["beat_id"],
+            })
+            continue
         ledger.append({
             "claim": f"footage: {b['function']} ({b['lower_third']['text']})",
             "source": (b["source_refs"][0] if b["source_refs"] else None),
