@@ -207,6 +207,16 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="render cold-open style (passed through to the renderer)")
     ap.add_argument("--no-align", action="store_true", help="skip dashcam audio alignment")
     ap.add_argument("--skip-score", action="store_true", help="reuse an existing P4 verdict (no paid call)")
+    ap.add_argument("--flagship", action="store_true",
+                    help="flagship chain: blueprint(--auto-anchor) → shape → long-form render"
+                         "(--target-runtime) → judge gate, instead of the simple text-card cut")
+    ap.add_argument("--target-runtime", type=float, default=600.0,
+                    help="flagship cut length in seconds (auto-fit, never padded); default 600")
+    ap.add_argument("--shape-model", default="deepseek/deepseek-v4-flash",
+                    help="OpenRouter model for the editorial shaping tier")
+    ap.add_argument("--judge-mock", action="store_true",
+                    help="gate on the deterministic craft report only (no paid judge call)")
+    ap.add_argument("--judge-model", default=None, help="OpenRouter model for the LLM judge")
     ap.add_argument("--run", action="store_true", help="actually execute (default is dry-run plan only)")
     args = ap.parse_args(argv)
 
