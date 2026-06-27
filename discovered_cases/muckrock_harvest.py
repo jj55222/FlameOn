@@ -443,7 +443,7 @@ def main() -> int:
 
     seen_ids: set = set()
     candidates: List[dict] = []
-    stats = {"requests_seen": 0, "no_files": 0, "doc_only": 0, "kept": 0}
+    stats = {"requests_seen": 0, "no_files": 0, "filtered": 0, "kept": 0}
 
     for term in args.terms:
         print(f"[search] {term!r}")
@@ -459,17 +459,20 @@ def main() -> int:
                 stats["no_files"] += 1
                 continue
             buckets = classify(files)
-            has_media = bool(buckets["video"] or buckets["audio"])
-            if args.media_only and not has_media:
-                stats["doc_only"] += 1
+            cand = make_candidate(req, buckets, mr.agency_name(req.get("agency")))
+
+            has_media = cand["has_video"] or cand["has_mp3"]
+            has_artifact = has_media or cand["is_sb16"] or cand["is_interrogation"]
+            keep = {"media": has_media, "artifact": has_artifact, "any": True}[args.keep]
+            if not keep or cand["score"] < args.min_score:
+                stats["filtered"] += 1
                 continue
 
-            cand = make_candidate(req, buckets)
-            if cand["score"] < args.min_score:
-                continue
             candidates.append(cand)
             stats["kept"] += 1
-            print(f"  [keep {cand['score']:>3}] {cand['case_id']}  "
+            tags = "".join(t for t, on in (("V", cand["has_video"]), ("A", cand["has_mp3"]),
+                          ("S", cand["is_sb16"]), ("I", cand["is_interrogation"])) if on)
+            print(f"  [keep {cand['score']:>3} {tags:<4}] {cand['case_id']}  "
                   f"(vid={cand['n_video']} aud={cand['n_audio']} doc={cand['n_docs']})")
 
     candidates.sort(key=lambda c: c["score"], reverse=True)
