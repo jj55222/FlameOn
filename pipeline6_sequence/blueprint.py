@@ -521,6 +521,74 @@ _PROC_PAT = re.compile(
     r"|plant\w*|cover (?:it|this) up|off the record|coach\w*)\b", re.I)
 
 
+def _sentences(text: str, n: int = 2) -> str:
+    """First ``n`` sentences of a blob, trimmed — keeps a record card readable."""
+    parts = re.split(r"(?<=[.!?])\s+", (text or "").strip())
+    return " ".join(parts[:n]).strip()
+
+
+def build_document_beats(doc_extracts: List[Dict], agency: str,
+                         max_findings: int = 4) -> List[Dict]:
+    """Turn the IA record into ACCOUNTABILITY beats — the act that footage can't
+    carry. Each beat is a card-only beat (no primary_asset): real text from the
+    disposition, narrative, and the IA's own clip directions, sourced to the
+    document. These render as on-screen record cards in 'The Record' act, so the
+    accountability core is shown, not just summarised by the closing outcome card.
+
+    Faithful by construction: every line is verbatim/near-verbatim from
+    ``doc_extract`` and attributed to it — nothing is invented, and no unrelated
+    footage is played under a document claim.
+    """
+    credit = f"Courtesy {agency}".strip()
+    beats: List[Dict] = []
+
+    def _emit(text: str, label: str, refs: List[str], importance: str = "high",
+              dur: float = 12.0) -> None:
+        if not text or not text.strip():
+            return
+        n = len(beats)
+        beats.append({
+            "beat_id": f"doc{n:02d}", "act_id": "act_investigation", "ordinal": n,
+            "function": "record", "target_duration_sec": round(dur, 1),
+            "primary_asset": None, "quote": None, "inserts": [],
+            "lower_third": {"text": label, "attribution_confidence": 1.0},
+            "narration_bridge": {"needed": True, "text": text.strip(),
+                                 "brief": None, "source_facts": refs},
+            "credit": credit, "source_refs": refs,
+            "source": "document", "is_document": True,
+            "_description": text.strip()[:160], "_importance": importance,
+            "_phase": "investigation", "_abs": None,
+        })
+
+    for de in doc_extracts:
+        case_no = de.get("ia_case_number") or "the internal affairs case"
+        dref = f"doc:{de.get('doc_type', 'document')}"
+        narrative = _narrative_text(de) or ""
+        # 1. What the investigation found (the spine of the act).
+        intro = _sentences(narrative, 2)
+        _emit(intro, f"IA {case_no}", [dref], "critical", 14.0)
+        # 2. The pivot: he had seized the drugs himself earlier that shift.
+        seize = next((s for s in re.split(r"(?<=[.!?])\s+", narrative)
+                      if re.search(r"confiscat|seiz|tinfoil|pocket", s, re.I)), "")
+        _emit(_sentences(seize, 2), "Internal Affairs Investigation", [dref], "critical", 12.0)
+        # 3. The IA's own description of how he was found (its clip direction).
+        for cd in (de.get("clip_directions") or []):
+            ref = (cd.get("ref") or "").strip()
+            if cd.get("kind") == "bwc_description" and len(ref) > 40:
+                _emit(ref[:240], "From the Investigation Report",
+                      [f"{dref}#p{cd.get('page')}"], "high", 12.0)
+                break
+        # 4. The sustained findings (the accountability verdict).
+        findings = (de.get("disposition") or {}).get("findings") or []
+        sustained = [f for f in findings if (f.get("finding") or "").upper() == "SUSTAINED"]
+        for f in sustained[:max_findings]:
+            ch = _clean_charge(f.get("charge"))
+            if ch:
+                _emit(f"Internal Affairs finding — SUSTAINED: {ch}.",
+                      "Findings", [f"{dref}#p{f.get('page')}"], "high", 8.0)
+    return beats
+
+
 def substance_beats(verdict: Dict, sources: List, manifest: List[Dict],
                     manifest_by_stem: Dict[str, str], agency: str,
                     existing_beats: List[Dict], pad: float = 5.0) -> List[Dict]:
