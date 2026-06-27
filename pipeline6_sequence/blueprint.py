@@ -851,6 +851,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--target-runtime", type=float, default=DEFAULT_RUNTIME)
     ap.add_argument("--vision", type=Path, default=None,
                     help="vision_scan events.json -> add silent visual moments as beats")
+    ap.add_argument("--auto-anchor", action="store_true",
+                    help="re-derive the incident anchor from salience×camera-convergence "
+                         "(+IA-report cross-check) and re-bucket phases — no operator --incident needed")
     ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
     args = ap.parse_args(argv)
 
