@@ -21,8 +21,9 @@ for m in ms:
     if not os.path.exists(cp):
         st = max(0, m["start_sec"] - 2.5)
         dur = (m.get("end_sec", m["start_sec"]) - m["start_sec"]) + 5
+        # BWC audio is AAC — must RE-ENCODE to real mp3 (a stream-copy into .mp3 produces an invalid file).
         subprocess.run(["ffmpeg", "-y", "-ss", f"{st:.2f}", "-i", os.path.join(MEDIA, m["artifact_id"]),
-                        "-t", f"{dur:.2f}", "-c", "copy", cp], capture_output=True)
+                        "-t", f"{dur:.2f}", "-vn", "-c:a", "libmp3lame", "-q:a", "5", cp], capture_output=True)
     q = html.escape(m["evidence_quote"][:160])
     tags = []
     if m["comment_peak"]:

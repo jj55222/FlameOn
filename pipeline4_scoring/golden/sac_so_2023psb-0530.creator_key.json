@@ -47,8 +47,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 3,
+   "must_find": false,
    "moment_id": "c03"
   },
   {
@@ -62,8 +62,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c04"
   },
   {
@@ -77,8 +77,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c05"
   },
   {
@@ -92,8 +92,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c06"
   },
   {
@@ -107,8 +107,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c07"
   },
   {
@@ -122,8 +122,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 5,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c08"
   },
   {
@@ -137,8 +137,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c09"
   },
   {
@@ -152,8 +152,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c10"
   },
   {
@@ -167,8 +167,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c11"
   },
   {
@@ -197,8 +197,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c13"
   },
   {
@@ -212,8 +212,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c14"
   },
   {
@@ -227,8 +227,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c15"
   },
   {
@@ -242,8 +242,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c16"
   },
   {
@@ -257,8 +257,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c17"
   },
   {
@@ -272,8 +272,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c18"
   },
   {
@@ -301,8 +301,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c20"
   },
   {
@@ -316,8 +316,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c21"
   },
   {
@@ -346,8 +346,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c23"
   },
   {
@@ -477,8 +477,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c32"
   },
   {
@@ -492,8 +492,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c33"
   },
   {
@@ -507,8 +507,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c34"
   },
   {
@@ -522,8 +522,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c35"
   },
   {
@@ -537,8 +537,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c36"
   },
   {
@@ -552,8 +552,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c37"
   },
   {
@@ -567,8 +567,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c38"
   },
   {
@@ -640,8 +640,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c43"
   },
   {
@@ -655,8 +655,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c44"
   },
   {
@@ -670,8 +670,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c45"
   },
   {
@@ -685,8 +685,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c46"
   },
   {
@@ -700,8 +700,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c47"
   },
   {
@@ -714,8 +714,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 3,
+   "must_find": false,
    "moment_id": "c48"
   },
   {
@@ -729,8 +729,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c49"
   },
   {
@@ -744,8 +744,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c50"
   },
   {
@@ -774,8 +774,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c52"
   },
   {
@@ -789,8 +789,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c53"
   },
   {
@@ -818,8 +818,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 3,
+   "must_find": false,
    "moment_id": "c55"
   },
   {
@@ -833,8 +833,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 6,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c56"
   },
   {
@@ -848,8 +848,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 6,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c57"
   },
   {
@@ -863,8 +863,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c58"
   },
   {
@@ -878,8 +878,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c59"
   },
   {
@@ -893,8 +893,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c60"
   },
   {
@@ -908,8 +908,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 5,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c61"
   },
   {
@@ -938,8 +938,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c63"
   },
   {
@@ -968,8 +968,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 2,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c65"
   },
   {
@@ -983,8 +983,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c66"
   },
   {
@@ -1012,8 +1012,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 3,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c68"
   },
   {
@@ -1027,8 +1027,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 4,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c69"
   },
   {
@@ -1042,8 +1042,8 @@
    ],
    "comment_peak": false,
    "ewu_narration_emphasis": 5,
-   "salience": 5,
-   "must_find": true,
+   "salience": 4,
+   "must_find": false,
    "moment_id": "c70"
   }
  ]
