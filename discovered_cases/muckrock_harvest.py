@@ -212,6 +212,27 @@ class MuckRock:
             next_url = data.get("next")
             next_params = None  # `next` is a fully-formed URL
 
+    def agency_name(self, agency_id: Any) -> str:
+        """Resolve an agency id -> 'Name (Jurisdiction)' for the cross-source pivot.
+
+        The requests serializer returns `agency` as a bare int id; the portal
+        search downstream needs the human name + jurisdiction. Cached per run.
+        """
+        if not isinstance(agency_id, int):
+            return str(agency_id or "")
+        cache = getattr(self, "_agency_cache", None)
+        if cache is None:
+            cache = self._agency_cache = {}
+        if agency_id in cache:
+            return cache[agency_id]
+        d = self._get(f"{API_BASE}agencies/{agency_id}/") or {}
+        name = d.get("name") or ""
+        juris = d.get("jurisdiction")
+        if isinstance(juris, dict):
+            name = f"{name} ({juris.get('name')})" if juris.get("name") else name
+        cache[agency_id] = name or str(agency_id)
+        return cache[agency_id]
+
     def search_requests(self, term: str, status: str, cap: int) -> List[dict]:
         return list(self.paginate(
             f"{API_BASE}requests/",
