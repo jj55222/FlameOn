@@ -191,41 +191,41 @@ class MuckRock:
             cap,
         ))
 
-    def files_for_request(self, req: dict) -> List[dict]:
-        """Collect released files for a request via its communications.
+    def files_for_request(self, req: dict, file_cap: int = 200) -> List[dict]:
+        """Collect released file records for a request.
 
-        Tries comm-embedded files first; falls back to the files endpoint
-        filtered by communication id. Returns raw file dicts.
+        Two MuckRock api_v2 gotchas baked in here:
+          * The communications endpoint filters on `foia=<request_id>`. The
+            intuitive `request=` is SILENTLY IGNORED and returns the global feed
+            (~1.4M comms) — so it must be `foia`.
+          * A communication's `files` field is a list of integer file IDs, not
+            nested objects. To get real records (with the `ffile` download url)
+            we resolve per-communication via `files/?communication=<id>`, which
+            is the one files filter that actually works (`id__in`/`request` are
+            ignored and dump the global 1M-file feed).
         """
         req_id = req.get("id")
         if req_id is None:
             return []
-        files: List[dict] = []
-        # NB: the communications endpoint filters on `foia=<request_id>`. The
-        # intuitive `request=` is silently IGNORED and returns the global feed
-        # (1.4M comms), so it must be `foia`.
         comms = list(self.paginate(
             f"{API_BASE}communications/",
             {"foia": req_id, "page_size": 50},
-            cap=200,
+            cap=400,
         ))
+        files: List[dict] = []
         for comm in comms:
-            embedded = comm.get("files")
-            # api_v2 embeds files as a list on each communication. An EMPTY list
-            # means the comm had no attachments — authoritative, do NOT fall back
-            # (that wasted a rate-limited call per email and timed runs out).
-            if isinstance(embedded, list):
-                files.extend(f for f in embedded if isinstance(f, dict))
+            if not comm.get("files"):  # empty/absent => no attachments on this comm
                 continue
-            # Only when the key is genuinely absent do we query the files endpoint.
             comm_id = comm.get("id")
             if comm_id is None:
                 continue
             files.extend(self.paginate(
                 f"{API_BASE}files/",
                 {"communication": comm_id, "page_size": 50},
-                cap=200,
+                cap=file_cap,
             ))
+            if len(files) >= file_cap:
+                break
         return files
 
 
