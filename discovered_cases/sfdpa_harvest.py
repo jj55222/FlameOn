@@ -5,18 +5,32 @@ SFDPA is the best current source for interrogation/interview-style audio:
 DPA/IAD/Homicide interview MP3s, occasional BWC MP4 exhibits, and production
 PDFs are published through NextRequest's public documents index.
 
-Input:
-  discovered_cases/sfdpa_docs.json
+LIVE by default — it crawls the NextRequest JSON API and enumerates the WHOLE
+portal (~594 documents), grouping them into per-case bundles by the NextRequest
+"folder_name", classifying files, scoring the bundle, and emitting candidates in
+the same broad shape as the MuckRock/SDPD harvesters so the rest of the pipeline
+reuses it untouched. (An earlier version parsed a hand-captured 50-row markdown
+snapshot — ~9% of the portal; --from-capture still reads that for offline repro.)
 
-That file is a captured public NextRequest `/documents` table. This harvester
-groups rows by the NextRequest "Folder" field, classifies files, scores the
-bundle, and emits candidates in the same broad shape as the MuckRock/SDPD
-harvesters so downstream pipeline code can reuse it.
+API (reverse-engineered 2026-06-27):
+  GET https://sfdpa.nextrequest.com/client/documents?page_size=50&page_number=N
+    -> {"total_count": 594, "documents": [ {id, title, count(downloads),
+        folder_name, file_extension, document_path, request_path, pretty_id,
+        created_at, doc_date, description}, ... ]}
+  Download: <document_path>/download  -> 302 redirect to a signed S3 object URL
+            (follow redirects; the filename rides in content-disposition).
+
+GOTCHAS (handled here):
+  * Pagination is ``page_number`` (NOT ``page`` / ``offset`` — those are silently
+    IGNORED and re-serve page 1, so a naive crawler loops on the first 50 forever).
+  * ``page_size`` is capped at 50 (anything larger returns an empty document list).
+  * Whole site wants a browser User-Agent.
 
 Usage:
-  python discovered_cases/sfdpa_harvest.py
-  python discovered_cases/sfdpa_harvest.py --min-score 0 --out discovered_cases/sfdpa_candidates.json
+  python discovered_cases/sfdpa_harvest.py                       # live crawl + rank
+  python discovered_cases/sfdpa_harvest.py --max-docs 60         # quick live test
   python discovered_cases/sfdpa_harvest.py --download --case-id sfdpa_0386-17
+  python discovered_cases/sfdpa_harvest.py --from-capture discovered_cases/sfdpa_docs.json  # offline
 """
 from __future__ import annotations
 

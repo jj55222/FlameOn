@@ -51,13 +51,14 @@ PHOTO_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".tif", ".tiff"}
 
 
 class COPAClient:
-    def __init__(self):
+    def __init__(self, timeout: float = 45.0):
         self.s = requests.Session()
         self.s.headers.update({"User-Agent": UA, "Accept": "application/json"})
+        self.timeout = timeout
 
     def get_json(self, path: str, params: Optional[dict] = None) -> tuple[Any, Dict[str, str]]:
         url = path if path.startswith("http") else f"{API}/{path.lstrip('/')}"
-        r = self.s.get(url, params=params or {}, timeout=45)
+        r = self.s.get(url, params=params or {}, timeout=self.timeout)
         r.raise_for_status()
         return r.json(), dict(r.headers)
 
@@ -101,7 +102,7 @@ def fetch_cases(client: COPAClient, max_pages: Optional[int] = None) -> Dict[int
                 "published_at": c.get("date", ""),
                 "modified_at": c.get("modified", ""),
             }
-        print(f"[cases] page {page}/{total_pages} ({len(cases)} cases)")
+        print(f"[cases] page {page}/{total_pages} ({len(cases)} cases)", flush=True)
         page += 1
         if page > total_pages:
             break
@@ -111,18 +112,40 @@ def fetch_cases(client: COPAClient, max_pages: Optional[int] = None) -> Dict[int
     return cases
 
 
-def fetch_media(client: COPAClient, max_pages: Optional[int] = None) -> List[Dict[str, Any]]:
+def fetch_media(
+    client: COPAClient,
+    max_pages: Optional[int] = None,
+    *,
+    allow_partial: bool = False,
+    retries: int = 0,
+) -> List[Dict[str, Any]]:
     media: List[Dict[str, Any]] = []
     page = 1
     total_pages = None
     while True:
-        data, headers = client.get_json(
-            "media",
-            {
-                "per_page": 100,
-                "page": page,
-            },
-        )
+        data = []
+        headers: Dict[str, str] = {}
+        for attempt in range(retries + 1):
+            try:
+                data, headers = client.get_json(
+                    "media",
+                    {
+                        "per_page": 100,
+                        "page": page,
+                    },
+                )
+                break
+            except requests.RequestException as exc:
+                if attempt < retries:
+                    print(f"[media] page {page} failed ({exc}); retrying", file=sys.stderr, flush=True)
+                    time.sleep(1.5)
+                    continue
+                if allow_partial:
+                    print(f"[media] page {page} failed ({exc}); skipping", file=sys.stderr, flush=True)
+                    if total_pages is None:
+                        total_pages = max_pages or page
+                    break
+                raise
         if total_pages is None:
             total_pages = header_int(headers, "X-WP-TotalPages", page)
         for m in data:
@@ -144,7 +167,7 @@ def fetch_media(client: COPAClient, max_pages: Optional[int] = None) -> List[Dic
                     "ext": ext_of(source_url or title),
                 }
             )
-        print(f"[media] page {page}/{total_pages} ({len(media)} attached files)")
+        print(f"[media] page {page}/{total_pages} ({len(media)} attached files)", flush=True)
         page += 1
         if page > total_pages:
             break
@@ -340,13 +363,21 @@ def main() -> int:
     ap.add_argument("--max-pages", type=int, default=None, help="max case API pages (100 cases/page); default all")
     ap.add_argument("--max-media-pages", type=int, default=20, help="max media API pages (100 files/page); default 20 for a quick crawl")
     ap.add_argument("--min-score", type=int, default=0)
+    ap.add_argument("--timeout", type=float, default=45.0, help="per-request timeout in seconds")
+    ap.add_argument("--retries", type=int, default=0, help="retry failed media pages this many times")
+    ap.add_argument("--allow-partial", action="store_true", help="skip media pages that still fail after retries")
     ap.add_argument("--out", default=str(ROOT / "copa_candidates.json"))
     ap.add_argument("--catalog", default=str(ROOT / "COPA_CASE_CATALOG.md"))
     args = ap.parse_args()
 
-    client = COPAClient()
+    client = COPAClient(timeout=args.timeout)
     cases = fetch_cases(client, args.max_pages)
-    media = fetch_media(client, args.max_media_pages)
+    media = fetch_media(
+        client,
+        args.max_media_pages,
+        allow_partial=args.allow_partial,
+        retries=args.retries,
+    )
     candidates = build_candidates(cases, media, args.min_score)
 
     out = Path(args.out)
