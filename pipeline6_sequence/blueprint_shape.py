@@ -338,6 +338,73 @@ def apply_edit(blueprint: Dict, clean: Dict, rejections: List[Dict]) -> Dict:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Factual fact-check rail — grounding-as-precision extended from QUOTES to FRAMING
+# ---------------------------------------------------------------------------
+import re as _re
+
+# Civilian-victim / custody framing. When the subject of the case is law
+# enforcement (a deputy who overdosed on drugs he himself seized), narration that
+# recasts the central figure as a handcuffed detainee in a patrol car is not a
+# style choice — it inverts the case and defames the agency. These are the
+# confabulation signatures observed in the wild (see HANDOFF cut critique).
+_FALSE_CUSTODY_PAT = _re.compile(
+    r"\b(detainee|arrestee|in handcuffs|handcuffed|hand-cuffed|prisoner|inmate"
+    r"|patrol car|squad car|cruiser|the back of the (?:car|cruiser|vehicle)"
+    r"|left (?:him|the \w+) alone)\b", _re.I)
+_LE_PAT = _re.compile(r"\b(deputy|officer|sergeant|sgt|corporal|cpl|detective|trooper|the subject is an officer)\b", _re.I)
+
+
+def _subject_is_le(facts: Dict) -> bool:
+    blob = " ".join([facts.get("summary") or "", " ".join(facts.get("subjects") or []),
+                     facts.get("disposition") or ""])
+    return bool(_LE_PAT.search(blob))
+
+
+def audit_narration(shaped: Dict, facts: Dict) -> List[Dict]:
+    """Reject framing that CONTRADICTS the case facts. The integrity rail already
+    drops narration that references a non-existent asset/quote; this extends the
+    same drop-on-fail discipline to FRAMING: a logline / thesis / narration line
+    that asserts a custody/victim story the facts don't support is quarantined
+    (blanked) and logged. Conservative: only fires when the subject is law
+    enforcement and the text invokes a civilian-detainee frame the facts lack.
+    Returns a list of ``{field, value, reason}`` flags (mutates ``shaped``)."""
+    flags: List[Dict] = []
+    if not _subject_is_le(facts):
+        return flags
+    factblob = " ".join([facts.get("summary") or "", facts.get("disposition") or ""])
+    # If the official record itself mentions custody/an arrestee, the frame is
+    # legitimate — don't fight the facts.
+    if _FALSE_CUSTODY_PAT.search(factblob):
+        return flags
+
+    def _bad(text: Optional[str]) -> Optional[str]:
+        if not text:
+            return None
+        m = _FALSE_CUSTODY_PAT.search(text)
+        return m.group(0) if m else None
+
+    hit = _bad(shaped.get("logline"))
+    if hit:
+        flags.append({"field": "logline", "value": shaped["logline"][:120],
+                      "reason": f"contradicts CASE_FACTS (subject is LE; '{hit}' implies a civilian detainee)"})
+        shaped["logline"] = None
+    for a in shaped.get("acts", []):
+        hit = _bad(a.get("thesis"))
+        if hit:
+            flags.append({"field": f"act_theses[{a.get('act_id')}]", "value": (a.get("thesis") or "")[:120],
+                          "reason": f"contradicts CASE_FACTS ('{hit}')"})
+            a["thesis"] = None
+    for b in shaped.get("beats", []):
+        nb = b.get("narration_bridge") or {}
+        hit = _bad(nb.get("text"))
+        if hit:
+            flags.append({"field": f"narration[{b.get('beat_id')}]", "value": (nb.get("text") or "")[:120],
+                          "reason": f"contradicts CASE_FACTS ('{hit}')"})
+            nb["text"] = nb.get("brief")   # degrade to the sourced brief (or None)
+    return flags
+
+
 def _recompute_ledger(blueprint: Dict, beats: List[Dict]) -> List[Dict]:
     ledger: List[Dict] = []
     # keep the document-derived (non-beat) claims from the skeleton ledger
