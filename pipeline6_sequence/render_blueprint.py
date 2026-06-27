@@ -386,7 +386,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     min_clip_sec = args.min_clip_sec
     if args.target_runtime:
         min_clip_sec, projected = solve_min_clip_sec(
-            bp, args.media_dir, transcripts, args.target_runtime)
+            bp, args.media_dir, transcripts, args.target_runtime, audio_aware=audio_aware)
         verb = "fits" if projected >= args.target_runtime - 1 else "footage-capped at"
         print(f"[render-blueprint] target {args.target_runtime:.0f}s -> solved "
               f"--min-clip-sec={min_clip_sec:g} ({verb} {projected:.0f}s, no padding)")
