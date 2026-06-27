@@ -100,3 +100,31 @@ def test_dry_run_main_executes_nothing(capsys):
     out = capsys.readouterr().out
     assert "dry-run" in out
     assert "nothing executed" in out
+
+
+# --- flagship chain (auto-anchor → shape → long-form render → judge gate) ---
+
+def test_flagship_swaps_in_the_blueprint_chain():
+    steps = _labels(md.build_plan(_args(doc=".tmp/case/docs/d.pdf", flagship=True)))
+    assert steps[-4:] == ["blueprint", "shape", "render-blueprint", "judge"]
+    assert "render" not in steps          # the simple text-card render is replaced
+
+
+def test_flagship_blueprint_auto_anchors_and_fits_runtime():
+    steps = {s.label: s for s in md.build_plan(_args(flagship=True, target_runtime=720.0))}
+    bp = " ".join(steps["blueprint"].argv)
+    assert "--auto-anchor" in bp and "--target-runtime 720.0" in bp
+    assert "--target-runtime 720.0" in " ".join(steps["render-blueprint"].argv)
+
+
+def test_flagship_judge_is_a_gate():
+    judge = {s.label: s for s in md.build_plan(_args(flagship=True))}["judge"]
+    assert judge.gate is True
+    assert "--gate" in judge.argv
+
+
+def test_flagship_judge_mock_is_free_else_paid():
+    free = {s.label: s for s in md.build_plan(_args(flagship=True, judge_mock=True))}["judge"]
+    assert free.paid is False and "--mock" in free.argv
+    paid = {s.label: s for s in md.build_plan(_args(flagship=True))}["judge"]
+    assert paid.paid is True and "--mock" not in paid.argv

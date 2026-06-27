@@ -125,7 +125,9 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
         shaped_json = bp_dir / f"{a.case_id}_blueprint_shaped.json"
         cuts_dir = basket / "d6_cuts"
         cut_dir = cuts_dir / a.case_id
-        paper_edit = cut_dir / f"{a.case_id}_paper_edit.json"
+        # render_blueprint writes the paper_edit to the out-dir ROOT, the mp4 to a
+        # per-case subdir under it.
+        paper_edit = cuts_dir / f"{a.case_id}_paper_edit.json"
         final_mp4 = cut_dir / f"{a.case_id}_rough_cut.mp4"
         judge_json = cut_dir / f"{a.case_id}_judge.json"
         T = str(a.target_runtime)
