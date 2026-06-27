@@ -368,6 +368,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--min-clip-sec", type=float, default=0.0,
                     help="give each key-moment clip at least this many seconds of real "
                          "footage (centered, clamped to the asset) — long-form breathing room")
+    ap.add_argument("--target-runtime", type=float, default=None,
+                    help="auto-solve --min-clip-sec to land the cut at this runtime (seconds) — "
+                         "no manual tuning; the engine still won't pad past the available footage")
     args = ap.parse_args(argv)
 
     bp = json.loads(args.blueprint.read_text(encoding="utf-8"))
