@@ -1,1 +1,48 @@
-[]
+[
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_78826_officer_involved_shooting_of_mark_johnso",
+    "foia_id": 78826,
+    "title": "Officer involved shooting of Mark Johnson",
+    "agency": 18433,
+    "absolute_url": "",
+    "datetime_done": "2019-08-13T00:56:00-04:00",
+    "n_docs": 3,
+    "n_video": 2,
+    "n_audio": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "titles": [
+      "ChadBean_201908090507_274_202481024.mp4",
+      "ChristopherQuesnel_201908090459_276_452167438.mp4",
+      "Materials exempt from disclosure",
+      "Montpelier20OIS20Declination20Letter.pdf",
+      "Press20Release20-20Montpelier20OIS.pdf"
+    ],
+    "media_files": [
+      {
+        "name": "ChadBean_201908090507_274_202481024.mp4",
+        "url": "https://cdn.muckrock.com/foia_files/2020/07/09/ChadBean_201908090507_274_202481024.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "ChristopherQuesnel_201908090459_276_452167438.mp4",
+        "url": "https://cdn.muckrock.com/foia_files/2020/07/09/ChristopherQuesnel_201908090459_276_452167438.mp4",
+        "ext": ".mp4"
+      }
+    ],
+    "urls": [
+      "https://cdn.muckrock.com/foia_files/2020/07/09/ChadBean_201908090507_274_202481024.mp4",
+      "https://cdn.muckrock.com/foia_files/2020/07/09/ChristopherQuesnel_201908090459_276_452167438.mp4"
+    ],
+    "keyword_score": 17,
+    "artifact_bonus": 7,
+    "score": 24,
+    "hits": [
+      "+6 ois",
+      "+6 officer involved",
+      "+5 shooting"
+    ]
+  }
+]
