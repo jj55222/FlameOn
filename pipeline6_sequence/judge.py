@@ -382,6 +382,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     if args.out:
         args.out.write_text(json.dumps(v, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"  -> {args.out}")
+    if args.gate:
+        label, code = gate_decision(v)
+        print(f"\n  GATE: {'PASS' if code == 0 else 'HOLD'} — {label}")
+        return code
     return 0
 
 
