@@ -132,25 +132,65 @@ def build_asset_manifest(artifacts: List[Dict], timeline_index: Dict[str, Dict],
 # 2. Incident facts (sourced) from doc_extract + timeline
 # ---------------------------------------------------------------------------
 
+def _narrative_text(de: Dict) -> Optional[str]:
+    """doc_extract.narrative is sometimes a {text, page} object, sometimes a
+    bare string. Return the prose either way — this is the authoritative,
+    human-readable factual summary the LLM tier must ground its framing on."""
+    n = de.get("narrative")
+    if isinstance(n, dict):
+        n = n.get("text")
+    return n.strip() if isinstance(n, str) and n.strip() else None
+
+
 def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
     inc: Dict[str, Any] = {"date": None, "time": None, "location": None,
-                           "subjects": [], "charges": [], "disposition": None}
+                           "subjects": [], "charges": [], "disposition": None,
+                           "summary": None}
     for de in doc_extracts:
         inc["date"] = inc["date"] or de.get("doc_date")
         inc["time"] = inc["time"] or de.get("incident_time")
         inc["location"] = inc["location"] or de.get("location")
+        # Subjects: prefer an explicit people[] list; fall back to the singular
+        # ``subject`` field (our OCR extractor populates ``subject`` but leaves
+        # ``people`` empty, which silently erased WHO the case is about).
         for p in de.get("people", []) or []:
-            if p not in inc["subjects"]:
+            if p and p not in inc["subjects"]:
                 inc["subjects"].append(p)
+        subj = de.get("subject")
+        if subj and subj not in inc["subjects"]:
+            inc["subjects"].append(subj)
+        # Charges: prefer charges[]; fall back to the SUSTAINED findings in the
+        # disposition (same reason — charges[] is often empty while findings hold
+        # the actual M.O.U. violations).
         for c in de.get("charges", []) or []:
-            if c not in inc["charges"]:
+            if c and c not in inc["charges"]:
                 inc["charges"].append(c)
+        if not inc["charges"]:
+            for f in ((de.get("disposition") or {}).get("findings") or []):
+                ch = _clean_charge(f.get("charge"))
+                if ch and ch not in inc["charges"]:
+                    inc["charges"].append(f"{f.get('finding', '')}: {ch}".strip(": "))
+        inc["summary"] = inc["summary"] or _narrative_text(de)
         oc = de.get("outcome_card") or {}
         if not inc["disposition"] and (oc.get("subtitle") or (de.get("disposition") or {}).get("summary")):
             inc["disposition"] = oc.get("subtitle") or de["disposition"]["summary"]
     if not inc["date"] and timeline.get("anchor_iso"):
         inc["date"] = str(timeline["anchor_iso"])[:10]
     return inc
+
+
+def _clean_charge(raw: Optional[str]) -> Optional[str]:
+    """OCR'd finding lines carry leading cruft ('hat it causes discredit…',
+    'ge 4 2. SCDSA M.O.U. 18.5(d) - Inexcusable Neglect of Duty -'). Trim to the
+    readable violation: prefer the part after an 'M.O.U. <code> -' marker, else
+    drop a short leading fragment. Best-effort — only used for display."""
+    if not raw or not isinstance(raw, str):
+        return None
+    s = raw.strip().strip("-").strip()
+    m = re.search(r"M\.O\.U\.\s*[\d.()a-z]+\s*-\s*(.+)", s)
+    if m:
+        return m.group(1).strip().strip("-").strip()
+    return s or None
 
 
 # ---------------------------------------------------------------------------
