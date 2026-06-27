@@ -57,7 +57,7 @@ API_BASE = "https://www.muckrock.com/api_v2/"
 # `Authorization: Bearer <access>`. There is no static API token.
 TOKEN_URL = "https://accounts.muckrock.com/api/token/"
 REQUEST_TIMEOUT = 30
-RATE_LIMIT_SEC = 1.1  # match autoresearch/research.py politeness
+RATE_LIMIT_SEC = 0.4  # polite but not glacial; files are embedded so ~1 call/request
 
 # Default search net for "winner" candidates. Same spirit as rank_candidates'
 # POSITIVE keywords — the API search is broad, the ranker does the real work.
