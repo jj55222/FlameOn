@@ -179,15 +179,30 @@ def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
     return inc
 
 
+# Canonical M.O.U. violation labels, matched on a keyword so OCR cruft in the
+# raw finding line ('hat it causes discredit…', 'following: 1. SCDSA MOU 18.5(p)')
+# resolves to the clean policy name. Order matters (first hit wins).
+_CHARGE_CANON = [
+    (re.compile(r"discredit", re.I), "Conduct that causes discredit to the agency"),
+    (re.compile(r"inexcusable neglect|neglect of duty", re.I), "Inexcusable Neglect of Duty"),
+    (re.compile(r"dishonest", re.I), "Dishonesty"),
+    (re.compile(r"good behav", re.I), "Failure of Good Behavior"),
+    (re.compile(r"unbecoming", re.I), "Conduct Unbecoming"),
+]
+
+
 def _clean_charge(raw: Optional[str]) -> Optional[str]:
     """OCR'd finding lines carry leading cruft ('hat it causes discredit…',
-    'ge 4 2. SCDSA M.O.U. 18.5(d) - Inexcusable Neglect of Duty -'). Trim to the
-    readable violation: prefer the part after an 'M.O.U. <code> -' marker, else
-    drop a short leading fragment. Best-effort — only used for display."""
+    'ge 4 2. SCDSA M.O.U. 18.5(d) - Inexcusable Neglect of Duty -'). Resolve to the
+    canonical violation by keyword; else trim to the part after an 'M.O.U. <code> -'
+    marker. Best-effort — display only."""
     if not raw or not isinstance(raw, str):
         return None
+    for pat, label in _CHARGE_CANON:
+        if pat.search(raw):
+            return label
     s = raw.strip().strip("-").strip()
-    m = re.search(r"M\.O\.U\.\s*[\d.()a-z]+\s*-\s*(.+)", s)
+    m = re.search(r"M\.?O\.?U\.?\s*[\d.()a-z]+\s*-\s*(.+)", s)
     if m:
         return m.group(1).strip().strip("-").strip()
     return s or None
