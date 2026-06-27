@@ -43,12 +43,13 @@ class Step:
     paid OpenRouter key. ``produces`` documents the artifact it writes."""
 
     def __init__(self, label: str, argv: List[str], *, paid: bool = False,
-                 produces: str = "", optional: bool = False):
+                 produces: str = "", optional: bool = False, gate: bool = False):
         self.label = label
         self.argv = argv
         self.paid = paid
         self.produces = produces
         self.optional = optional
+        self.gate = gate          # a release gate: its exit code is the run's verdict, never aborts
 
 
 def _py(script: Path, *args: str) -> List[str]:
