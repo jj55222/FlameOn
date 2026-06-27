@@ -423,10 +423,9 @@ def main() -> int:
     ap.add_argument("--status", default="done", help="FOIA status filter (default: done)")
     ap.add_argument("--per-term", type=int, default=40, help="max requests fetched per term")
     ap.add_argument("--min-score", type=int, default=3, help="drop candidates below this score")
-    ap.add_argument("--media-only", dest="media_only", action="store_true", default=True,
-                    help="keep only requests that released video/audio (default on)")
-    ap.add_argument("--allow-docs", dest="media_only", action="store_false",
-                    help="also keep document-only requests")
+    ap.add_argument("--keep", choices=["artifact", "media", "any"], default="artifact",
+                    help="keep rule: 'artifact' (video/audio/SB16-doc/interrogation — default), "
+                         "'media' (video/audio only), 'any' (anything with files)")
     ap.add_argument("--download", action="store_true", help="download media into the cache dir")
     ap.add_argument("--cache-dir", default=str(ROOT.parent / "pipeline3_audio" / "foia_cache"))
     ap.add_argument("--out", default=str(ROOT / "muckrock_candidates.json"))
