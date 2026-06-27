@@ -178,6 +178,16 @@ def clean_llm_output(raw: str) -> str:
     return content
 
 
+def extract_think(raw: Optional[str]) -> Optional[str]:
+    """Pull out <think>...</think> reasoning blocks — the inverse of clean_llm_output's strip,
+    so the reasoning trace can be captured instead of thrown away."""
+    if not raw:
+        return None
+    blocks = re.findall(r"<think>(.*?)</think>", raw, flags=re.DOTALL)
+    joined = "\n".join(b.strip() for b in blocks)
+    return joined or None
+
+
 def build_backend(model: str, api_key: Optional[str] = None) -> LLMBackend:
     """Factory for LLMBackend. Present for future backend swaps."""
     return LLMBackend(model=model, api_key=api_key)
