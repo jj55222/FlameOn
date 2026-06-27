@@ -316,6 +316,26 @@ def compare_bundles(bundle_a: Dict, bundle_b: Dict, backend,
 # CLI
 # ---------------------------------------------------------------------------
 
+def gate_decision(v: Dict) -> Tuple[str, int]:
+    """Turn a judged verdict into a release gate: ``(label, exit_code)``.
+
+    The faithfulness floor is DETERMINISTIC and non-negotiable — unsourced footage
+    fails hard regardless of what the LLM thinks (exit 3). Above that floor the
+    LLM verdict decides: REWORK fails, SHIP passes clean, anything else is REVISE
+    (emit, but flag for a human). Soft craft issues (replays / runtime drift)
+    downgrade a SHIP to REVISE but don't block. Exit 0 = emit, 3 = hold.
+    """
+    craft = (v.get("deterministic") or {}).get("craft") or {}
+    if not craft.get("all_sourced", True):
+        return "REWORK (unsourced footage — faithfulness breach)", 3
+    if v.get("verdict") == "REWORK":
+        return "REWORK", 3
+    soft = bool(craft.get("replay_count")) or craft.get("runtime_flag", "ok") != "ok"
+    if v.get("verdict") == "SHIP" and not soft:
+        return "SHIP", 0
+    return "REVISE (emit, flag for review)", 0
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     import argparse
     ap = argparse.ArgumentParser(description="GOAL_D — judge an edit bundle against its evidence")
@@ -324,6 +344,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--pool", type=Path, default=None, help="candidate moments json (for omissions)")
     ap.add_argument("--model", default=None)
     ap.add_argument("--mock", action="store_true", help="deterministic report only, no LLM (zero cost)")
+    ap.add_argument("--gate", action="store_true",
+                    help="release gate: exit 3 if the cut should be held (REWORK / unsourced), else 0")
     ap.add_argument("--out", type=Path, default=None)
     args = ap.parse_args(argv)
 
