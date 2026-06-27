@@ -623,6 +623,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     m = shaped["metadata"]
     if er.get("error"):
         print(f"[shape] ⚠ shaping failed ({er['error']}) — kept deterministic skeleton")
+    ff = report.get("factual_flags") or []
+    if ff:
+        print(f"[shape] ⚠ {len(ff)} FACTUAL flag(s) quarantined (framing contradicted CASE_FACTS):")
+        for f in ff:
+            print(f"        - {f['field']}: {f['reason']}")
     print(f"[shape] built_by={m['built_by']}  kept={er.get('kept_beats','?')} beats, "
           f"+{er.get('broll_added',0)} b-roll, {len(report['rejections'])} rejection(s); "
           f"planned {bpmod._mmss(m['planned_runtime_sec'])} / target {bpmod._mmss(shaped['target_runtime_sec'])}")
