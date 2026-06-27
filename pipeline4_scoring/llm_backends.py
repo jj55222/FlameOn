@@ -46,6 +46,8 @@ class LLMBackend:
         self.timeout = timeout
         self.max_retries = max_retries
         self._client = None
+        self.last_reasoning = None   # reasoning trace from the most recent complete() call
+        self.last_raw = None         # raw (pre-clean) content from the most recent call
 
     def _get_client(self):
         if self._client is None:
