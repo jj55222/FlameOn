@@ -840,6 +840,41 @@ def render_markdown(bp: Dict) -> str:
 # CLI
 # ---------------------------------------------------------------------------
 
+def _timeline_index_from(timeline: Dict, artifacts: List[Dict]) -> Dict[str, Dict]:
+    """Rebuild rc's ``{artifact_id: {phase, start_epoch}}`` index from an in-memory
+    (re-bucketed) timeline — the file-based ``_load_timeline_index`` equivalent."""
+    phase_of: Dict[str, str] = {}
+    for ph, recs in (timeline.get("phases") or {}).items():
+        for r in recs:
+            phase_of[r["artifact_id"]] = ph
+    epoch_of = {a["artifact_id"]: a["start_epoch"] for a in artifacts if a.get("start_epoch")}
+    return {aid: {"phase": phase_of.get(aid), "start_epoch": epoch_of.get(aid)}
+            for aid in set(phase_of) | set(epoch_of)}
+
+
+def _auto_anchor(artifacts, timeline, verdict, doc_extracts, sources,
+                 media_dir, timeline_index):
+    """Derive the incident anchor from the case's own signals and re-bucket phases
+    with the canonical timeline logic — the operator's ``--incident`` decision,
+    automated. Falls back to the existing timeline if the signal is too weak."""
+    import incident_anchor as iax            # same dir
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "pipeline3_audio"))
+    import timeline_build as tb              # canonical phase bucketer
+
+    anchor = iax.derive_anchor(artifacts, sources, verdict, doc_extracts)
+    if not anchor:
+        print("[blueprint] auto-anchor: weak signal — keeping existing timeline anchor")
+        return timeline, timeline_index, sources
+    new_tl = tb.build_timeline(artifacts, anchor_override=anchor["epoch"])
+    new_tl["case_id"] = timeline.get("case_id", verdict.get("case_id", "case"))
+    new_index = _timeline_index_from(new_tl, artifacts)
+    new_sources = rc.map_sources(verdict, media_dir, timeline_index=new_index)
+    counts = {p: len(v) for p, v in new_tl["phases"].items()}
+    print(f"[blueprint] auto-anchor -> {anchor['iso']} ({anchor['confidence']}; {anchor['rationale']})")
+    print(f"[blueprint] re-bucketed phases: {counts}")
+    return new_tl, new_index, new_sources
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="P6 — deterministic production blueprint (rails)")
     ap.add_argument("--artifacts", required=True, type=Path)
