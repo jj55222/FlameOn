@@ -73,46 +73,91 @@ AUDIO_EXTS = {".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".wma"}
 DOC_EXTS = {".pdf", ".doc", ".docx", ".txt", ".rtf"}
 
 
-def load_token() -> Optional[str]:
-    """Token from env, falling back to a bare-bones .env parse."""
-    tok = os.environ.get("MUCKROCK_API_TOKEN", "").strip()
-    if tok:
-        return tok
+def _read_env_file() -> Dict[str, str]:
+    """Minimal .env parser: KEY=value, strips quotes + inline comments."""
+    out: Dict[str, str] = {}
     env = ROOT.parent / ".env"
-    if env.exists():
-        for line in env.read_text().splitlines():
-            line = line.strip()
-            if line.startswith("MUCKROCK_API_TOKEN="):
-                val = line.split("=", 1)[1].strip()
-                # Strip an inline comment (unless the value is quoted).
-                if val[:1] not in ("'", '"') and "#" in val:
-                    val = val.split("#", 1)[0].strip()
-                val = val.strip('"').strip("'").strip()
-                if val:
-                    return val
-    return None
+    if not env.exists():
+        return out
+    for line in env.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, val = line.split("=", 1)
+        key, val = key.strip(), val.strip()
+        if val[:1] not in ("'", '"') and "#" in val:
+            val = val.split("#", 1)[0].strip()
+        out[key] = val.strip('"').strip("'").strip()
+    return out
+
+
+def load_credentials() -> Dict[str, str]:
+    """Squarelet creds (or a pre-obtained access JWT) from env, then .env."""
+    file_env = _read_env_file()
+
+    def pick(*keys: str) -> str:
+        for k in keys:
+            v = os.environ.get(k, "").strip() or file_env.get(k, "").strip()
+            if v:
+                return v
+        return ""
+
+    return {
+        "username": pick("MUCKROCK_USERNAME", "MUCKROCK_USER"),
+        "password": pick("MUCKROCK_PASSWORD", "MUCKROCK_PASS"),
+        # Optional: skip the username/password exchange by supplying an access JWT.
+        "access": pick("MUCKROCK_ACCESS_TOKEN"),
+    }
+
+
+class AuthError(RuntimeError):
+    pass
 
 
 class MuckRock:
-    def __init__(self, token: str):
+    def __init__(self, creds: Dict[str, str]):
+        self._creds = creds
         self.s = requests.Session()
         self.s.headers.update({
-            "Authorization": f"Token {token}",
             "Accept": "application/json",
             "User-Agent": "FlameOn-intake/1.0",
         })
         self._last = 0.0
+        self._authenticate()
 
-    def _get(self, url: str, params: Optional[Dict[str, Any]] = None) -> Optional[dict]:
+    def _authenticate(self) -> None:
+        """Obtain (or reuse) a Bearer access token for api_v2."""
+        access = self._creds.get("access")
+        if not access:
+            user, pw = self._creds.get("username"), self._creds.get("password")
+            if not (user and pw):
+                raise AuthError("need MUCKROCK_USERNAME + MUCKROCK_PASSWORD "
+                                "(or MUCKROCK_ACCESS_TOKEN)")
+            resp = self.s.post(TOKEN_URL, json={"username": user, "password": pw},
+                               timeout=REQUEST_TIMEOUT)
+            if resp.status_code == 401:
+                raise AuthError("MuckRock rejected credentials (401)")
+            resp.raise_for_status()
+            tok = resp.json()
+            access = tok.get("access")
+            self._creds["refresh"] = tok.get("refresh", "")
+            if not access:
+                raise AuthError(f"token endpoint returned no access token: {tok}")
+        self.s.headers["Authorization"] = f"Bearer {access}"
+
+    def _get(self, url: str, params: Optional[Dict[str, Any]] = None,
+             _retried: bool = False) -> Optional[dict]:
         wait = RATE_LIMIT_SEC - (time.monotonic() - self._last)
         if wait > 0:
             time.sleep(wait)
         try:
             r = self.s.get(url, params=params, timeout=REQUEST_TIMEOUT)
             self._last = time.monotonic()
-            if r.status_code == 401:
-                print("  [401] token rejected — check MUCKROCK_API_TOKEN", file=sys.stderr)
-                return None
+            if r.status_code == 401 and not _retried and not self._creds.get("access"):
+                # Access JWT likely expired mid-run — re-auth once and retry.
+                print("  [401] re-authenticating ...", file=sys.stderr)
+                self._authenticate()
+                return self._get(url, params, _retried=True)
             r.raise_for_status()
             return r.json()
         except Exception as e:  # noqa: BLE001 — log + skip, never crash the harvest
