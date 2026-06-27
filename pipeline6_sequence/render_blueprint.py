@@ -129,19 +129,22 @@ def load_transcripts(transcripts_dir: Optional[Path]) -> Dict[str, List[Dict]]:
 
 
 def resolve_clip_overlaps(timeline: List[Dict], min_dur: float = 1.5) -> List[Dict]:
-    """Render-side safety net: after all window adjustments, make sure no two
-    consecutive clips on the same media overlap (split the overlap at its
-    midpoint). Guarantees the footage never replays itself, whatever upstream
-    snapping/audio-aware did."""
-    clips = [e for e in timeline if e["kind"] == "clip"]
-    for i in range(1, len(clips)):
-        a, b = clips[i - 1], clips[i]
-        if a["media"] == b["media"] and b["in_sec"] < a["out_sec"]:
-            mid = round((b["in_sec"] + a["out_sec"]) / 2.0, 2)
-            a["out_sec"] = round(max(a["in_sec"] + min_dur, mid), 2)
-            b["in_sec"] = a["out_sec"]
-            if b["out_sec"] - b["in_sec"] < min_dur:
-                b["out_sec"] = round(b["in_sec"] + min_dur, 2)
+    """Render-side safety net: the footage never replays itself. A GLOBAL pass (not
+    just consecutive clips) — tracks the furthest point already shown on each
+    camera and pushes any later clip that dips back into already-seen footage up to
+    that point, so each camera only ever moves forward. This catches the
+    non-adjacent overlaps that ``--min-clip-sec`` widening can create (two beats on
+    the same cam, widened until their windows collide with other clips between
+    them) — exactly the replays the judge's craft check flags."""
+    shown_until: Dict[str, float] = {}
+    for c in (e for e in timeline if e["kind"] == "clip"):
+        m = c["media"]
+        prev = shown_until.get(m)
+        if prev is not None and c["in_sec"] < prev - 0.5:
+            c["in_sec"] = round(prev, 2)                       # skip past already-shown footage
+            if c["out_sec"] - c["in_sec"] < min_dur:           # collapsed → keep a forward sliver
+                c["out_sec"] = round(c["in_sec"] + min_dur, 2)
+        shown_until[m] = max(prev or 0.0, c["out_sec"])
     return timeline
 
 
