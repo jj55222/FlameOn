@@ -233,7 +233,7 @@ def main() -> int:
     beats = dedup(kept)
     print(f"[beat_miner] proposed={len(candidates)} grounded={len(kept)} dropped_ungrounded={len(dropped)} after_dedup={len(beats)}")
 
-    golden = assemble_golden(beats, args.case_id, args.agency, "mock" if args.mock else args.model)
+    golden = assemble_golden(beats, args.case_id, args.agency, "heuristic-cue" if args.mock else args.model)
     if args.dry_run:
         print(json.dumps(golden, indent=2)[:1500] + "\n... [dry-run, not written]")
         return 0
