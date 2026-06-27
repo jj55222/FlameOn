@@ -378,8 +378,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not args.paper_edit_only:
         rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()   # needed before audible_window
     transcripts = load_transcripts(args.transcripts)
+
+    min_clip_sec = args.min_clip_sec
+    if args.target_runtime:
+        min_clip_sec, projected = solve_min_clip_sec(
+            bp, args.media_dir, transcripts, args.target_runtime)
+        verb = "fits" if projected >= args.target_runtime - 1 else "footage-capped at"
+        print(f"[render-blueprint] target {args.target_runtime:.0f}s -> solved "
+              f"--min-clip-sec={min_clip_sec:g} ({verb} {projected:.0f}s, no padding)")
+
     paper_edit = blueprint_to_paper_edit(bp, media_dir=args.media_dir, audio_aware=audio_aware,
-                                         transcripts=transcripts, min_clip_sec=args.min_clip_sec)
+                                         transcripts=transcripts, min_clip_sec=min_clip_sec)
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
