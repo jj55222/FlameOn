@@ -40,17 +40,22 @@ def load_doc_text(path: Path):
 
 
 def build_prompt(text: str, maxbeats: int) -> str:
+    # Pass-1 is EXTRACTION, not judgment. A later reasoning pass rates salience and prunes,
+    # so here we maximize RECALL of grounded material and do NOT ask for salience scores
+    # (models can't discriminate it well at this stage and flat-rate everything).
     return (
-        "From the OCR'd report below, extract JSON with EXACTLY these keys:\n"
+        "You are extracting raw narrative material from an OCR'd (scanned, may contain OCR errors) police "
+        "investigation report for a SEPARATE later judgment pass. Extract BROADLY, maximizing RECALL: capture "
+        "every narratively-relevant, grounded moment. Do NOT score importance or salience — that is judged later.\n"
+        "Return JSON with EXACTLY these keys:\n"
         '  "incident_timeline": [{"time": "HHMM or descriptive", "event": str, "page": int}],\n'
-        f'  "beats": [up to {maxbeats} most salient; each {{"moment_type": one of [{TYPES}], '
-        '"salience": 1-5 (5 = the moment the whole story turns on), "importance": "critical|high|medium|low", '
-        '"summary": str, "evidence_quote": VERBATIM substring copied from the report, "page": int, '
-        '"angle": "tragedy|heroism|accountability|procedural|reveal|human_interest"}],\n'
+        f'  "beats": [up to {maxbeats}; each {{"moment_type": one of [{TYPES}] (rough best-guess is fine), '
+        '"summary": one line, "evidence_quote": VERBATIM substring copied exactly from the report, "page": int}],\n'
         '  "contradictions": [{"a": str, "b": str, "nature": str}],\n'
         '  "factual_anchors": [{"type": "name|time|location|charge|badge|weapon", "value": str, "page": int}]\n'
         "Rules: evidence_quote MUST be copied verbatim from the report text (it is verified mechanically; "
-        "paraphrased quotes are discarded). Prefer fewer, higher-salience beats over many trivial ones.\n\n"
+        "paraphrased quotes are discarded). Favor MORE grounded candidates over fewer. Surface contradictions "
+        "between different accounts (witnesses, suspect, officers, forensics) wherever they appear.\n\n"
         f"REPORT:\n{text}"
     )
 
