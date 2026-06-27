@@ -79,18 +79,18 @@ for f in sorted(glob.glob(RAW + "/BWC*.json")):
         if key in seen:
             continue
         seen.add(key)
+        # salience: audience peak > in-both-cuts > EWU-only. narration emphasis is a RANK hint only
+        # (EWU narrates constantly, so it can't gate must-find).
         sal = 3
         if in_ewu and in_pt:
             sal = 4
-        if in_ewu and emph >= 2:
-            sal = 5
         if peak:
             sal = 5
         moments.append({"artifact_id": src, "start_sec": s["start_sec"], "end_sec": s["end_sec"],
                         "evidence_quote": s["text"].strip(),
                         "in_creators": ([c for c in ("EWU",) if in_ewu] + [c for c in ("PoliceTransparency",) if in_pt]),
                         "comment_peak": peak, "ewu_narration_emphasis": emph, "salience": sal,
-                        "must_find": bool(peak or (in_ewu and emph >= 2))})
+                        "must_find": bool(peak)})
 
 moments.sort(key=lambda m: (m["artifact_id"], m["start_sec"]))
 for i, m in enumerate(moments, 1):

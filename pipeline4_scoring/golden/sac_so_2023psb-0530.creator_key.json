@@ -2,24 +2,11 @@
  "case_id": "sac_so_2023psb-0530",
  "agency": "Sacramento County Sheriff's Office",
  "labeling": {
-  "labeler": "creator-consensus (EWU + Police Transparency cuts + comment peaks)",
+  "labeler": "creator-consensus v2 (EWU tight cut + comment peaks + EWU narration emphasis)",
   "status": "auto-derived",
-  "notes": "HELD-OUT grading key. Each moment is a raw BWC line a creator chose to air. salience = consensus(in N cuts) + EWU-tight-cut + audience-comment-peak. PoliceActivity cut unavailable (yt-dlp blocked). Human spot-check before freezing."
+  "notes": "HELD-OUT key candidate. KEEP = in EWU's 9.5-min cut OR on an audience comment peak; PT-only continuous airing dropped. Human spot-check before freezing."
  },
  "moments": [
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 150.2,
-   "end_sec": 174.76,
-   "evidence_quote": "You know how it goes, man.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c01"
-  },
   {
    "artifact_id": "BWC-1.mp4",
    "start_sec": 240.96,
@@ -30,75 +17,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c02"
-  },
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 260.72,
-   "end_sec": 261.36,
-   "evidence_quote": "Alright, so what's your name?",
-   "in_creators": [
-    "EWU",
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c03"
-  },
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 312.54,
-   "end_sec": 314.14,
-   "evidence_quote": "You got some, um, I took those, right?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
    "must_find": false,
-   "moment_id": "c04"
-  },
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 323.22,
-   "end_sec": 325.9,
-   "evidence_quote": "I believe we have the order of the horse on the line.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c05"
-  },
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 336.84,
-   "end_sec": 339.6,
-   "evidence_quote": "The ERO is wanting to know if you want them to respond now.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c06"
-  },
-  {
-   "artifact_id": "BWC-1.mp4",
-   "start_sec": 384.3,
-   "end_sec": 386.4,
-   "evidence_quote": "That guy that was behind your building, do you want him trespassed?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c07"
+   "moment_id": "c01"
   },
   {
    "artifact_id": "BWC-1.mp4",
@@ -110,9 +32,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c08"
+   "moment_id": "c02"
   },
   {
    "artifact_id": "BWC-2.mp4",
@@ -123,35 +46,10 @@
     "EWU"
    ],
    "comment_peak": false,
-   "salience": 4,
-   "must_find": false,
-   "moment_id": "c09"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 180.06,
-   "end_sec": 183.06,
-   "evidence_quote": "No, you're getting it will absorb it.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c10"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 209.06,
-   "end_sec": 210.06,
-   "evidence_quote": "Yeah, no, I know exactly what you mean.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c11"
+   "ewu_narration_emphasis": 4,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c03"
   },
   {
    "artifact_id": "BWC-2.mp4",
@@ -163,9 +61,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c12"
+   "moment_id": "c04"
   },
   {
    "artifact_id": "BWC-2.mp4",
@@ -177,74 +76,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c13"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 345.26,
-   "end_sec": 347.14,
-   "evidence_quote": "Make sure you have a bump on the back?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c14"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 347.16,
-   "end_sec": 348.48,
-   "evidence_quote": "Yeah, the CT looked good.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c15"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 349.06,
-   "end_sec": 351.4,
-   "evidence_quote": "I'm seeing, like, the toilet is, like, next to the wall,",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c16"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 351.54,
-   "end_sec": 353.14,
-   "evidence_quote": "because I think he brushed his head.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c17"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 354.6,
-   "end_sec": 356.96,
-   "evidence_quote": "Was he in the hallway bathroom or in the lobby?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c18"
+   "moment_id": "c05"
   },
   {
    "artifact_id": "BWC-2.mp4",
@@ -256,140 +91,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c19"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 362.84,
-   "end_sec": 363.98,
-   "evidence_quote": "That one that he goes your way into?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c20"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 375.62,
-   "end_sec": 378.52,
-   "evidence_quote": "Took over for you, so I'll be sitting in your room, okay, sir?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c21"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 380.18,
-   "end_sec": 383.38,
-   "evidence_quote": "No changes have been made to, like, your regular care.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c22"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 383.98,
-   "end_sec": 389.68,
-   "evidence_quote": "You're still going to, um, I don't see any medications actually listed.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c23"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 390.36,
-   "end_sec": 392.72,
-   "evidence_quote": "You don't take any medications regularly, correct?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c24"
-  },
-  {
-   "artifact_id": "BWC-2.mp4",
-   "start_sec": 393.56,
-   "end_sec": 395.2,
-   "evidence_quote": "All right, so no changes have been made.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c25"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 269.44,
-   "end_sec": 271.44,
-   "evidence_quote": "Get your car out of the way.",
-   "in_creators": [
-    "EWU",
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c26"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 295.44,
-   "end_sec": 297.44,
-   "evidence_quote": "Yeah, I pulled him out. He was in the shitter.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c27"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 299.44,
-   "end_sec": 301.44,
-   "evidence_quote": "Yeah, I'm good. But let it air out.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c28"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 317.44,
-   "end_sec": 319.44,
-   "evidence_quote": "Looks like we're getting all overdosed right now.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c29"
+   "moment_id": "c06"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -401,9 +106,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c30"
+   "moment_id": "c07"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -415,113 +121,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 5,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c31"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 365.44,
-   "end_sec": 367.44,
-   "evidence_quote": "All along the way, man.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c32"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 367.44,
-   "end_sec": 369.44,
-   "evidence_quote": "I ran out to the car and got my number 10.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c33"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 369.44,
-   "end_sec": 371.44,
-   "evidence_quote": "Came back and I gave him the first bullet.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c34"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 375.44,
-   "end_sec": 377.44,
-   "evidence_quote": "Come on, Mark. Snap out of it, buddy.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c35"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 383.44,
-   "end_sec": 385.44,
-   "evidence_quote": "Yeah, however long I've been locked...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c36"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 411.44,
-   "end_sec": 413.44,
-   "evidence_quote": "Lift his head up a little bit.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c37"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 413.44,
-   "end_sec": 415.44,
-   "evidence_quote": "Come on, Mark. You're good, bro.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c38"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 431.44,
-   "end_sec": 433.44,
-   "evidence_quote": "Dan, you're doubled up.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c39"
+   "moment_id": "c08"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -533,9 +136,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c40"
+   "moment_id": "c09"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -547,139 +151,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c41"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 477.44,
-   "end_sec": 479.44,
-   "evidence_quote": "Come on, Mark. Come on, dude. You're going to be okay.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c42"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 493.44,
-   "end_sec": 495.44,
-   "evidence_quote": "He's coming too over the mark.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c43"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 499.44,
-   "end_sec": 501.44,
-   "evidence_quote": "Come on. Is it rapid at all or is it normal?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c44"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 507.44,
-   "end_sec": 509.44,
-   "evidence_quote": "We've got five, six minutes now, four,",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c45"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 509.44,
-   "end_sec": 511.44,
-   "evidence_quote": "just two minutes in our hands.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c46"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 513.44,
-   "end_sec": 515.44,
-   "evidence_quote": "We've got some light respiration.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c47"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 515.44,
-   "end_sec": 517.44,
-   "evidence_quote": "Out of consciousness the whole time.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c48"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 517.44,
-   "end_sec": 519.44,
-   "evidence_quote": "Do you guys have anything to do with drug use?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c49"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 527.44,
-   "end_sec": 529.44,
-   "evidence_quote": "He was on the shedder when we found him.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c50"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 533.44,
-   "end_sec": 535.44,
-   "evidence_quote": "We'd rather go down to fires here.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c51"
+   "moment_id": "c10"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -691,48 +166,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c52"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 625.3,
-   "end_sec": 626.44,
-   "evidence_quote": "I don't want to see him just sitting on the toilet.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c53"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 631.36,
-   "end_sec": 633.48,
-   "evidence_quote": "He's curious because there's a pipe on the ground next to him.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c54"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 638.2,
-   "end_sec": 639.06,
-   "evidence_quote": "We gave him like four norex.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c55"
+   "moment_id": "c11"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -744,87 +181,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c56"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 647.88,
-   "end_sec": 651.02,
-   "evidence_quote": "Okay, basically he goes inside of his car because that shit's in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c57"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 653.28,
-   "end_sec": 655.94,
-   "evidence_quote": "His gun belt's still in the bathroom but his stuff is just...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c58"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 656.44,
-   "end_sec": 659.84,
-   "evidence_quote": "He's going to leave everything where it's at because they're going to deal with it as a scene anyway.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c59"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 659.84,
-   "end_sec": 665.7,
-   "evidence_quote": "So, when I walk in, I saw him leaning against the stall.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c60"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 669.74,
-   "end_sec": 672.2,
-   "evidence_quote": "Trying to get info for fire, Sarge.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c61"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 707.54,
-   "end_sec": 709.54,
-   "evidence_quote": "What's on the ground wasn't next to the door.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c62"
+   "moment_id": "c12"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -836,9 +196,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c63"
+   "moment_id": "c13"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -850,9 +211,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c64"
+   "moment_id": "c14"
   },
   {
    "artifact_id": "BWC-3a.mp4",
@@ -864,36 +226,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c65"
-  },
-  {
-   "artifact_id": "BWC-3a.mp4",
-   "start_sec": 720.54,
-   "end_sec": 722.54,
-   "evidence_quote": "Not a big deal. Just curious because fire asked.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c66"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 87.38,
-   "end_sec": 89.32,
-   "evidence_quote": "What's your, did you have your ID on you at all?",
-   "in_creators": [
-    "EWU",
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c67"
+   "moment_id": "c15"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -905,61 +241,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c68"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 219.24,
-   "end_sec": 220.18,
-   "evidence_quote": "That's a long time to be working.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c69"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 248.5,
-   "end_sec": 249.86,
-   "evidence_quote": "So, you were supposed to get off at nine?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c70"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 268.8,
-   "end_sec": 274.08,
-   "evidence_quote": "All the cleaners, you know, clean all of the...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c71"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 329.94,
-   "end_sec": 331.18,
-   "evidence_quote": "If it's not there, don't worry about it.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c72"
+   "moment_id": "c16"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -971,9 +256,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c73"
+   "moment_id": "c17"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -985,9 +271,24 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c74"
+   "moment_id": "c18"
+  },
+  {
+   "artifact_id": "BWC-3b.mp4",
+   "start_sec": 492.48,
+   "end_sec": 494.3,
+   "evidence_quote": "You said put your stuff back in the closet in there?",
+   "in_creators": [
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c19"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -999,9 +300,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c75"
+   "moment_id": "c20"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -1013,36 +315,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c76"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 585.74,
-   "end_sec": 587.74,
-   "evidence_quote": "don't even know what I need done.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c77"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 703.84,
-   "end_sec": 710.84,
-   "evidence_quote": "I don't understand what happened.",
-   "in_creators": [
-    "EWU",
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c78"
+   "moment_id": "c21"
   },
   {
    "artifact_id": "BWC-3b.mp4",
@@ -1050,64 +326,14 @@
    "end_sec": 733.84,
    "evidence_quote": "So just hang out out here at your truck.",
    "in_creators": [
+    "EWU",
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 3,
+   "ewu_narration_emphasis": 1,
+   "salience": 4,
    "must_find": false,
-   "moment_id": "c79"
-  },
-  {
-   "artifact_id": "BWC-3b.mp4",
-   "start_sec": 805.84,
-   "end_sec": 807.84,
-   "evidence_quote": "No, hang out over here right now, okay?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c80"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 438.0,
-   "end_sec": 440.9,
-   "evidence_quote": "hatch in the back of the things opened up and was a bunch of shit down in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c81"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 440.9,
-   "end_sec": 445.1,
-   "evidence_quote": "I think that's where all the electronics are. Yeah there's stuff that looks like it's",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c82"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 463.08,
-   "end_sec": 468.08,
-   "evidence_quote": "Pocket knife, some paper.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c83"
+   "moment_id": "c22"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1119,48 +345,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c84"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 473.08,
-   "end_sec": 478.08,
-   "evidence_quote": "Yeah. But I'm not seeing any other random gloves which is weird.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c85"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 478.08,
-   "end_sec": 483.08,
-   "evidence_quote": "He would have had to like weigh it. He would have had to have done all the things he was saying.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c86"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 483.08,
-   "end_sec": 486.08,
-   "evidence_quote": "Yeah, and like when I catch... So he probably would have put it somewhere that's like...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c87"
+   "moment_id": "c23"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1172,9 +360,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c88"
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c24"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1186,9 +375,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c89"
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c25"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1200,9 +390,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 0,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c90"
+   "moment_id": "c26"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1214,9 +405,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 0,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c91"
+   "moment_id": "c27"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1227,9 +419,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
    "must_find": true,
-   "moment_id": "c92"
+   "moment_id": "c28"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1240,9 +433,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
    "must_find": true,
-   "moment_id": "c93"
+   "moment_id": "c29"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1253,9 +447,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
    "must_find": true,
-   "moment_id": "c94"
+   "moment_id": "c30"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1266,74 +461,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
    "must_find": true,
-   "moment_id": "c95"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 543.08,
-   "end_sec": 549.08,
-   "evidence_quote": "Helmet, batons, gas mask.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c96"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 549.08,
-   "end_sec": 557.08,
-   "evidence_quote": "I don't even bother opening up the gas mask because...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c97"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 557.08,
-   "end_sec": 560.08,
-   "evidence_quote": "I need to shove the glove in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c98"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 562.08,
-   "end_sec": 567.08,
-   "evidence_quote": "That's why I even looked at his lunch pail just going, oh okay, did you end up in there?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c99"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 572.08,
-   "end_sec": 574.9,
-   "evidence_quote": "I don't know, but I'll just have to tell you.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c100"
+   "moment_id": "c31"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1345,9 +476,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c101"
+   "moment_id": "c32"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1359,9 +491,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c102"
+   "moment_id": "c33"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1373,9 +506,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c103"
+   "moment_id": "c34"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1387,35 +521,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c104"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 597.18,
-   "end_sec": 602.3,
-   "evidence_quote": "If you're going to get exposed and go down somewhere,",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c105"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 605.28,
-   "end_sec": 607.22,
-   "evidence_quote": "With where it's broken and sitting, it has to be.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c106"
+   "moment_id": "c35"
   },
   {
    "artifact_id": "BWC-3c.mp4",
@@ -1427,22 +536,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c107"
-  },
-  {
-   "artifact_id": "BWC-3c.mp4",
-   "start_sec": 617.74,
-   "end_sec": 619.32,
-   "evidence_quote": "Are there any deputies over there at all?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c108"
+   "moment_id": "c36"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1454,9 +551,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c109"
+   "moment_id": "c37"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1468,9 +566,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c110"
+   "moment_id": "c38"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1482,9 +581,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c111"
+   "ewu_narration_emphasis": 1,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c39"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1495,9 +595,10 @@
     "EWU"
    ],
    "comment_peak": false,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 3,
    "must_find": false,
-   "moment_id": "c112"
+   "moment_id": "c40"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1508,9 +609,10 @@
     "EWU"
    ],
    "comment_peak": false,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 3,
    "must_find": false,
-   "moment_id": "c113"
+   "moment_id": "c41"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1522,9 +624,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c114"
+   "ewu_narration_emphasis": 1,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c42"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1536,9 +639,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c115"
+   "moment_id": "c43"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1550,9 +654,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c116"
+   "moment_id": "c44"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1564,22 +669,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c117"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 159.96,
-   "end_sec": 161.18,
-   "evidence_quote": "No, the one in your little drug pocket.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c118"
+   "moment_id": "c45"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1591,9 +684,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c119"
+   "moment_id": "c46"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1605,9 +699,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c120"
+   "moment_id": "c47"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1618,87 +713,10 @@
     "EWU"
    ],
    "comment_peak": false,
-   "salience": 4,
-   "must_find": false,
-   "moment_id": "c121"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 233.46,
-   "end_sec": 234.86,
-   "evidence_quote": "You want me to do my job?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c122"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 321.44,
-   "end_sec": 346.44,
-   "evidence_quote": "Hey, you got some, um, nitrile gold, bro?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c123"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 362.44,
-   "end_sec": 366.44,
-   "evidence_quote": "He's been like, he's been trespassed like most of these properties out here, so...",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c124"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 401.44,
-   "end_sec": 403.44,
-   "evidence_quote": "I need to make sure everything's up to date.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c125"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 426.44,
-   "end_sec": 430.44,
-   "evidence_quote": "Oh, you've just been chasing the dragon, huh?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c126"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 498.44,
-   "end_sec": 502.44,
-   "evidence_quote": "I'm just gonna ride him real quick.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c127"
+   "ewu_narration_emphasis": 2,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c48"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1710,74 +728,25 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c128"
+   "moment_id": "c49"
   },
   {
    "artifact_id": "BWC-4.mp4",
-   "start_sec": 985.92,
-   "end_sec": 987.92,
-   "evidence_quote": "Well, okay, you twistin' my arms",
+   "start_sec": 1116.92,
+   "end_sec": 1118.92,
+   "evidence_quote": "And if you're losin' your high",
    "in_creators": [
+    "EWU",
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c129"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1014.92,
-   "end_sec": 1015.92,
-   "evidence_quote": "You know I like noon or the moon",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c130"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1054.92,
-   "end_sec": 1056.92,
-   "evidence_quote": "That's why the raw don't know your name",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c131"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1097.92,
-   "end_sec": 1099.92,
-   "evidence_quote": "Them streets retiring, got your hands up",
-   "in_creators": [
-    "EWU"
-   ],
-   "comment_peak": false,
-   "salience": 4,
-   "must_find": false,
-   "moment_id": "c132"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1101.92,
-   "end_sec": 1103.92,
-   "evidence_quote": "Throw, throw, throw your motherfuckin' hands",
-   "in_creators": [
-    "EWU"
-   ],
-   "comment_peak": false,
-   "salience": 4,
-   "must_find": false,
-   "moment_id": "c133"
+   "ewu_narration_emphasis": 4,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c50"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1789,9 +758,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c134"
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c51"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1799,12 +769,14 @@
    "end_sec": 1190.92,
    "evidence_quote": "Hey, give me your bag.",
    "in_creators": [
+    "EWU",
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c135"
+   "ewu_narration_emphasis": 2,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c52"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1816,23 +788,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c136"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1204.92,
-   "end_sec": 1206.92,
-   "evidence_quote": "Put your chair in your pocket.",
-   "in_creators": [
-    "EWU",
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c137"
+   "moment_id": "c53"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1844,35 +803,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
-   "salience": 5,
-   "must_find": true,
-   "moment_id": "c138"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1240.92,
-   "end_sec": 1242.92,
-   "evidence_quote": "These are my streets, alright?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
+   "ewu_narration_emphasis": 1,
+   "salience": 4,
    "must_find": false,
-   "moment_id": "c139"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1246.92,
-   "end_sec": 1248.92,
-   "evidence_quote": "The citizens, the number one complaint is this.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c140"
+   "moment_id": "c54"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1883,48 +817,10 @@
     "EWU"
    ],
    "comment_peak": false,
-   "salience": 4,
-   "must_find": false,
-   "moment_id": "c141"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1278.92,
-   "end_sec": 1280.92,
-   "evidence_quote": "They can give you housing if they have space.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c142"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1282.92,
-   "end_sec": 1284.92,
-   "evidence_quote": "They can help you with your fucking job if you want.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c143"
-  },
-  {
-   "artifact_id": "BWC-4.mp4",
-   "start_sec": 1284.92,
-   "end_sec": 1286.92,
-   "evidence_quote": "You gotta help yourself, man.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c144"
+   "ewu_narration_emphasis": 4,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c55"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1936,9 +832,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 6,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c145"
+   "moment_id": "c56"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1950,9 +847,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 6,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c146"
+   "moment_id": "c57"
   },
   {
    "artifact_id": "BWC-4.mp4",
@@ -1964,22 +862,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c147"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 72.68,
-   "end_sec": 74.16,
-   "evidence_quote": "First, no one can apply.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c148"
+   "moment_id": "c58"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -1991,22 +877,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c149"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 110.32,
-   "end_sec": 112.36,
-   "evidence_quote": "Hey, first, no one can apply already.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c150"
+   "moment_id": "c59"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2018,9 +892,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c151"
+   "moment_id": "c60"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2032,22 +907,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 5,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c152"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 125.42,
-   "end_sec": 126.42,
-   "evidence_quote": "Because I don't know what else is in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c153"
+   "moment_id": "c61"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2059,9 +922,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c154"
+   "moment_id": "c62"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2073,22 +937,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c155"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 180.0,
-   "end_sec": 195.0,
-   "evidence_quote": "breathing breathing that's his car that's my car I came to use the restroom",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c156"
+   "moment_id": "c63"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2100,87 +952,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c157"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 217.72,
-   "end_sec": 224.2,
-   "evidence_quote": "reduce incoming and keep the roadway clear for fire",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c158"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 236.54,
-   "end_sec": 243.74,
-   "evidence_quote": "coming keep an open lane for fire area",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c159"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 252.14,
-   "end_sec": 256.94,
-   "evidence_quote": "yeah I pull him out he was in the shitter I think it was big yeah I'm good",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c160"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 256.94,
-   "end_sec": 261.58,
-   "evidence_quote": "but let it air out cuz I don't know what else is in there",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c161"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 278.54,
-   "end_sec": 280.54,
-   "evidence_quote": "let's air everything out cuz",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c162"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 326.54,
-   "end_sec": 330.92,
-   "evidence_quote": "Norcan came back and gave him the first dose and then someone else came and we",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c163"
+   "moment_id": "c64"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2192,61 +967,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 2,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c164"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 368.64,
-   "end_sec": 370.64,
-   "evidence_quote": "You're good bro, come on now.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c165"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 370.64,
-   "end_sec": 372.64,
-   "evidence_quote": "We're getting four ready?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c166"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 424.64,
-   "end_sec": 426.64,
-   "evidence_quote": "I don't know where that petrol chute is.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c167"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 426.64,
-   "end_sec": 428.64,
-   "evidence_quote": "So if it's in his car, I don't want to go in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c168"
+   "moment_id": "c65"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2258,9 +982,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c169"
+   "moment_id": "c66"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2271,35 +996,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": true,
-   "salience": 4,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
    "must_find": true,
-   "moment_id": "c170"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 448.64,
-   "end_sec": 450.64,
-   "evidence_quote": "All his weapon and shit.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c171"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 468.64,
-   "end_sec": 472.64,
-   "evidence_quote": "I don't know who the ref is if it's his or not.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c172"
+   "moment_id": "c67"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2311,22 +1011,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 3,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c173"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 611.24,
-   "end_sec": 623.64,
-   "evidence_quote": "So, he... Yeah. We're just going to leave everything where it's at. They're going to deal with this scene anyway. So, when I walk in, I saw him leaning against the stall.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c174"
+   "moment_id": "c68"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2338,360 +1026,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 4,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c175"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 708.3,
-   "end_sec": 710.2,
-   "evidence_quote": "Did you see when I actually drove in here?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c176"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 710.74,
-   "end_sec": 714.0,
-   "evidence_quote": "Because nine times out of ten, I stopped here to use the restroom.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c177"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 714.98,
-   "end_sec": 717.8,
-   "evidence_quote": "Yeah, I had to use the restroom, and I stopped by.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c178"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 719.06,
-   "end_sec": 721.36,
-   "evidence_quote": "I mean, I'm glad I stopped by because he would have been in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c179"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 721.74,
-   "end_sec": 725.14,
-   "evidence_quote": "No, yeah, but nine times out of ten, I normally stop before I go home.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c180"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 725.38,
-   "end_sec": 728.46,
-   "evidence_quote": "And I didn't today because I just stopped at Sheldon.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c181"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 728.46,
-   "end_sec": 731.98,
-   "evidence_quote": "No, I just handled a call by myself down the street.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c182"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 732.46,
-   "end_sec": 733.94,
-   "evidence_quote": "I'm like, can I hold my phone?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c183"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 733.94,
-   "end_sec": 739.36,
-   "evidence_quote": "I literally had drove here literally a minute before you called, like a minute, minute and a half before you called it out.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c184"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 739.6,
-   "end_sec": 740.78,
-   "evidence_quote": "You must have been right behind me.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c185"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 740.78,
-   "end_sec": 744.7,
-   "evidence_quote": "Yeah, I came around the corner because I'm like, well, I held my pee to go handle the call.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c186"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 745.06,
-   "end_sec": 746.9,
-   "evidence_quote": "But I didn't hear it because I didn't have my phone.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c187"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 746.98,
-   "end_sec": 752.4,
-   "evidence_quote": "I had the scanner in the car, but not on my portable, so I didn't hear it until I saw somebody running out.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c188"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 758.46,
-   "end_sec": 761.72,
-   "evidence_quote": "Sorry for the stupid question about making sure you were up here.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c189"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 761.82,
-   "end_sec": 765.22,
-   "evidence_quote": "I just know that when people are coming in from inside, I want to be sorry to know I'm up here.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c190"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 766.78,
-   "end_sec": 768.02,
-   "evidence_quote": "Sorry about the stupid question.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c191"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 768.68,
-   "end_sec": 772.46,
-   "evidence_quote": "I already knew, but I asked if Sarge and other people inside said, hey, what do we got?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c192"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 773.92,
-   "end_sec": 774.98,
-   "evidence_quote": "Now, I'm going to go through the whole thing.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c193"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 775.3,
-   "end_sec": 778.08,
-   "evidence_quote": "I'm assuming everyone knows why I said officer down.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c194"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 780.28,
-   "end_sec": 782.64,
-   "evidence_quote": "I don't know why people ran out like that.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c195"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 784.54,
-   "end_sec": 788.14,
-   "evidence_quote": "Because they're not in uniform, and they didn't bring an officer down.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c196"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 792.72,
-   "end_sec": 795.86,
-   "evidence_quote": "Yeah, I wanted any of the admin and everyone to talk to them.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c197"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 799.18,
-   "end_sec": 802.86,
-   "evidence_quote": "You feeling lightheaded, woozy, sleepy, anything?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c198"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 803.88,
-   "end_sec": 808.86,
-   "evidence_quote": "I don't know how long I was in there giving him the Narcan, and wasn't you the one that helped me drag him out?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c199"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 814.36,
-   "end_sec": 818.1,
-   "evidence_quote": "Did you guys wrap that pipe or anything for anyone today?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c200"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 825.14,
-   "end_sec": 826.86,
-   "evidence_quote": "Saylee keeps hitting me up when I get drunk.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c201"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 832.28,
-   "end_sec": 834.4,
-   "evidence_quote": "Hey, what are you guys riding?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c202"
+   "moment_id": "c69"
   },
   {
    "artifact_id": "BWC-5.mp4",
@@ -2703,165 +1041,10 @@
     "PoliceTransparency"
    ],
    "comment_peak": false,
+   "ewu_narration_emphasis": 5,
    "salience": 5,
    "must_find": true,
-   "moment_id": "c203"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 858.8,
-   "end_sec": 860.68,
-   "evidence_quote": "Um, gotta let the air out.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c204"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 865.62,
-   "end_sec": 866.84,
-   "evidence_quote": "There should be a door stopper somewhere there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c205"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 874.34,
-   "end_sec": 875.88,
-   "evidence_quote": "if I can hang out here for a while.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c206"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 877.98,
-   "end_sec": 881.06,
-   "evidence_quote": "because we don't know how much stuff is flying around in there.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c207"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 884.16,
-   "end_sec": 884.98,
-   "evidence_quote": "We're going to have somebody hang out up.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c208"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 895.7,
-   "end_sec": 896.08,
-   "evidence_quote": "I miss working with you, man.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c209"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 897.9,
-   "end_sec": 900.72,
-   "evidence_quote": "Who's coming back next month to our show?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c210"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 901.42,
-   "end_sec": 903.32,
-   "evidence_quote": "Okay, don't use anything alcohol-based.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c211"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 906.06,
-   "end_sec": 907.18,
-   "evidence_quote": "I think you're coming to our show.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c212"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 907.18,
-   "end_sec": 908.44,
-   "evidence_quote": "I'll just give you that with chug.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c213"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 925.7,
-   "end_sec": 940.7,
-   "evidence_quote": "Hey LT, you still want me to have this on and everything's over?",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c214"
-  },
-  {
-   "artifact_id": "BWC-5.mp4",
-   "start_sec": 940.7,
-   "end_sec": 941.7,
-   "evidence_quote": "I'll turn that off now.",
-   "in_creators": [
-    "PoliceTransparency"
-   ],
-   "comment_peak": false,
-   "salience": 3,
-   "must_find": false,
-   "moment_id": "c215"
+   "moment_id": "c70"
   }
  ]
 }
