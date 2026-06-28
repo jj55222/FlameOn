@@ -141,6 +141,14 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
             clean["cuts"].append(bid)
         else:
             rej.append({"field": "cuts", "value": bid, "reason": "unknown beat_id"})
+    # Refuse a pathological prune. The rail's philosophy is "omission never deletes";
+    # cutting MOST of the film is almost always a malformed edit (a grammar steered too
+    # hard toward 'intercut/cut aggressively' once cut every beat -> an empty cut).
+    n_beats = len(beats_by_id)
+    if len(clean["cuts"]) > max(1, n_beats // 2):
+        rej.append({"field": "cuts", "value": f"{len(clean['cuts'])}/{n_beats}",
+                    "reason": "refused: edit would cut over half the beats (malformed); kept all"})
+        clean["cuts"] = []
     cut_set = set(clean["cuts"])
 
     # beat_order: must be a permutation/subset of real beat_ids; dups + cuts dropped

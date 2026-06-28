@@ -35,11 +35,11 @@ PLATFORM_HANDLE_RE = re.compile(
 )
 TITLE_NAME_RE = re.compile(
     r"\b(?:Officer|Deputy|Detective|Sergeant|Sgt\.?|Trooper|Agent|Defendant|Victim|Witness|Suspect|Subject)"
-    r"\s+([A-Z][a-zA-Z'.-]+(?:\s+[A-Z][a-zA-Z'.-]+){1,3})\b"
+    r"[ \t]+([A-Z][a-zA-Z'.-]+(?:[ \t]+[A-Z][a-zA-Z'.-]+){1,3})\b"
 )
 LABELED_NAME_RE = re.compile(
-    r"\b(?:Defendant|Victim|Witness|Suspect|Subject|Decedent|Arrestee|Officer|Deputy|Detective)"
-    r"\s*(?:Name)?\s*[:=]\s*([A-Z][a-zA-Z'.-]+(?:\s+[A-Z][a-zA-Z'.-]+){1,3})\b"
+    r"\b(Defendant|Victim|Witness|Suspect|Subject|Decedent|Arrestee|Officer|Deputy|Detective)"
+    r"(?:[ \t]+Name)?[ \t]*[:=][ \t]*([A-Z][a-zA-Z'.-]+(?:[ \t]+[A-Z][a-zA-Z'.-]+){1,3})\b"
 )
 YEAR_RE = re.compile(r"\b(19\d{2}|20\d{2})\b")
 CASE_NOISE_RE = re.compile(r"\b(?:case|report|incident|cad|event|uof|ois|adm|icd|psb|dr|lbpd|pdf|redacted)\b", re.I)
@@ -63,6 +63,7 @@ STOP_NAME_PARTS = {
     "suspect",
     "defendant",
 }
+NAME_VARIANT_ROLES = {"subject", "suspect", "defendant", "arrestee", "decedent"}
 
 
 @dataclass
@@ -200,8 +201,7 @@ def extract_entities(text: str, doc_extract: Dict[str, Any]) -> List[Entity]:
                     add(str(item.get("name") or item.get("text") or ""), role, f"doc_extract.{field}")
 
     for m in LABELED_NAME_RE.finditer(text):
-        label = re.split(r"[:=]", m.group(0), 1)[0].strip().split()[0].lower()
-        add(m.group(1), label, "labeled court-doc text")
+        add(m.group(2), m.group(1).lower(), "labeled court-doc text")
     for m in TITLE_NAME_RE.finditer(text):
         prefix = m.group(0).split()[0].lower().rstrip(".")
         role = "officer" if prefix in {"officer", "deputy", "detective", "sergeant", "sgt", "trooper", "agent"} else prefix
@@ -239,6 +239,8 @@ def extract_seeds(text: str, entities: Sequence[Entity]) -> List[Seed]:
     years = sorted(set(YEAR_RE.findall(text)))
     years = [y for y in years if 1930 <= int(y) <= 2030][-5:]
     for ent in entities:
+        if ent.role not in NAME_VARIANT_ROLES:
+            continue
         for username in name_variants(ent.name, years):
             add(username, "name_variant", f"name variant from {ent.source}", 38, ent.name)
 
@@ -333,6 +335,7 @@ def safety_flags(text: str, entities: Sequence[Entity]) -> List[str]:
         "Do not contact subjects, relatives, victims, witnesses, or account owners.",
         "Do not publish a handle unless identity is corroborated by multiple public-record anchors and editorial review.",
         "Keep private, sealed, juvenile, victim, witness, and medical details out of story artifacts.",
+        "Generated name variants are limited to subject/suspect/defendant/arrestee roles by default.",
     ]
     if MINOR_RE.search(text):
         flags.append("Document appears to mention minors/juveniles or DOB data; suppress direct social-handle publication by default.")

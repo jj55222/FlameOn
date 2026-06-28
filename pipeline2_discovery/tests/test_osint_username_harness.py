@@ -51,6 +51,7 @@ def test_report_emits_guardrails_for_minor_or_witness():
     assert report["username_candidates"]
     assert any("minor" in f.lower() or "juvenile" in f.lower() for f in report["safety_flags"])
     assert any(e["role"] == "witness" for e in report["entities"])
+    assert not any(c["seed_type"] == "name_variant" and c["entity"] == "Alex Rivera" for c in report["username_candidates"])
 
 
 def test_cli_style_outputs_are_serializable(tmp_path: Path):
