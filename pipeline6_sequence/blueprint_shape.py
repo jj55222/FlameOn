@@ -135,7 +135,8 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
 
     # cuts: explicit, intentional prunes (omission alone never deletes a beat)
     clean["cuts"] = []
-    for bid in _as_list(edit.get("cuts")):
+    for raw in _as_list(edit.get("cuts")):
+        bid = _as_id(raw)
         if bid in beats_by_id:
             clean["cuts"].append(bid)
         else:
@@ -145,7 +146,8 @@ def validate_edit(edit: Dict, blueprint: Dict) -> Tuple[Dict, List[Dict]]:
     # beat_order: must be a permutation/subset of real beat_ids; dups + cuts dropped
     seen: set = set()
     order: List[str] = []
-    for bid in _as_list(edit.get("beat_order")):
+    for raw in _as_list(edit.get("beat_order")):
+        bid = _as_id(raw)
         if bid not in beats_by_id:
             rej.append({"field": "beat_order", "value": bid, "reason": "unknown beat_id"})
         elif bid in cut_set:
