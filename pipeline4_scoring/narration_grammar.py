@@ -266,17 +266,19 @@ def _prompt_directive(matrix: Dict[str, Dict[str, int]], vo: List[Dict[str, Any]
 
 
 def mine(creator_path: Path, footage_dir: Optional[Path], timeline_path: Optional[Path],
-         model: str) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
+         model: str, chunk: int = 60) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     segs = load_segments(creator_path)
     phase_of = phase_of_artifacts(timeline_path)
     idx = build_footage_index(footage_dir, phase_of)
+    vid = json.loads(creator_path.read_text(encoding="utf-8")).get("video_id", creator_path.stem)
     for s in segs:
         ov, ph = footage_signal(s["text"], idx)
         s["footage_overlap"] = round(ov, 3)
         s["anchor_phase"] = ph
         s["role"] = "footage" if ov >= 0.34 else "vo"   # prior; LLM refines
         s["move"] = None
-    _classify_llm(segs, model)
+        s["video_id"] = vid
+    _classify_llm(segs, model, chunk=chunk)
     assign_phases(segs)
     channel = json.loads(creator_path.read_text(encoding="utf-8")).get("channel", creator_path.stem)
     return build_profile(segs, channel), segs
