@@ -564,7 +564,55 @@ _SYSTEM_ANALYSIS = (
 )
 
 
-def _build_prompt(blueprint: Dict, style: str = "connective") -> str:
+# Compact move definitions (decoupled copy of narration_grammar.MOVES) so a learned
+# grammar profile can be turned into a prompt directive without a P4 import.
+_MOVE_DEFS = {
+    "hook": "open with a tease that promises a payoff",
+    "scene_set": "describe what is happening on screen now",
+    "foreshadow": "hint at what is coming; build dread",
+    "procedure": "explain how the policing / policy / procedure normally works",
+    "contradiction": "flag an inconsistency or what doesn't add up",
+    "credibility": "assess the subject's truthfulness, motive, or character",
+    "question": "pose a rhetorical question to the viewer",
+    "stakes": "name the emotional weight or consequences",
+    "context": "give background — who someone is, prior events",
+    "legal_cover": "note it is based on official records / presumed innocent",
+    "transition": "recap or move to the next phase",
+    "verdict": "state the accountability outcome — findings, discipline",
+}
+_GRAMMAR_PHASE_ORDER = ["pre_incident", "incident", "aftermath", "transport", "investigation", "outcome"]
+
+
+def _grammar_directive(profile: Dict) -> str:
+    """Turn a learned narration-grammar profile (narration_grammar.py) into a prompt
+    directive: per-phase analytical-move emphasis + the move meanings + cadence."""
+    pxm = profile.get("phase_x_move", {}) or {}
+    used: set = set()
+    rows: List[str] = []
+    for ph in _GRAMMAR_PHASE_ORDER:
+        mv = pxm.get(ph)
+        if mv:
+            top = [m for m in list(mv.keys())[:4] if m != "scene_set"][:3] or list(mv.keys())[:3]
+            used.update(top)
+            rows.append(f"  {ph}: {', '.join(top)}")
+    defs = "; ".join(f"{m} = {_MOVE_DEFS[m]}" for m in _MOVE_DEFS if m in used)
+    cad = profile.get("cadence", {}) or {}
+    vo = cad.get("vo_word_share") or 0
+    run = cad.get("mean_footage_run_segments") or 0
+    pace = ("intercut frequently — keep clips short and narrate often"
+            if run and run < 11 else "let footage clips run longer; narrate in fuller passages")
+    chan = profile.get("channel", "this channel")
+    opens = ", ".join(dict.fromkeys(profile.get("open_moves", [])[:3])) or "hook, foreshadow"
+    return (
+        f"\nNARRATION GRAMMAR — write in the style of {chan} (learned from {profile.get('n_videos','its')} "
+        f"of its videos). For each beat, make the analytical MOVE its phase calls for:\n"
+        + "\n".join(rows) + "\n"
+        f"MOVE MEANINGS: {defs}.\n"
+        f"CADENCE: {chan} is voiceover ~{int(vo * 100)}% of the time — {pace}.\n"
+        f"OPEN the cut with: {opens}. Build toward the VERDICT at the end.\n")
+
+
+def _build_prompt(blueprint: Dict, style: str = "connective", grammar: Optional[Dict] = None) -> str:
     manifest = [{"asset_id": a["asset_id"], "kind": a["kind"], "label": a.get("pov_label"),
                  "phase": a.get("phase"), "duration_sec": a.get("duration_sec"),
                  "has_transcript": a.get("has_transcript")}
