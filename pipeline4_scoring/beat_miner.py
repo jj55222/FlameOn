@@ -75,10 +75,15 @@ def load_segments(paths: list) -> list:
         rows = data.get("transcript", data) if isinstance(data, dict) else data
         if not isinstance(rows, list):
             continue
+        # source = the ARTIFACT id (e.g. "BWC-3a"), preferring the transcript's
+        # source_url media stem over the file name — so a mined moment carries the
+        # camera it came from, in the form bridge_verdict / the blueprint expect
+        # (robust across P3 naming schemes).
+        src = Path((isinstance(data, dict) and data.get("source_url")) or f.name).stem
         for r in rows:
             if isinstance(r, dict) and r.get("text"):
                 segs.append({"start": r.get("start_sec"), "end": r.get("end_sec"),
-                             "text": r["text"], "source": f.name})
+                             "text": r["text"], "source": src})
     segs.sort(key=lambda s: (s["start"] is None, s["start"] or 0))
     return segs
 
