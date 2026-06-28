@@ -60,12 +60,13 @@ def test_no_doc_skips_mining_and_doc_direction():
     assert "--doc-extract" not in tr.argv
 
 
-def test_score_step_is_flagged_paid():
+def test_moment_step_is_the_paid_fence():
+    # default moments=beatminer: the single paid step is mine-moments (bridge is free)
     steps = md.build_plan(_args())
-    score = next(s for s in steps if s.label == "score")
-    assert score.paid is True
-    # nothing else is marked paid
-    assert [s.label for s in steps if s.paid] == ["score"]
+    assert [s.label for s in steps if s.paid] == ["mine-moments"]
+    # --moments p4 swaps the paid fence to the scorer
+    p4 = md.build_plan(_args(moments="p4"))
+    assert [s.label for s in p4 if s.paid] == ["score"]
 
 
 def test_skip_score_removes_paid_step():
