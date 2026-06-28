@@ -90,10 +90,16 @@ def extract_ia(pages: List[Dict]) -> Dict:
             if dm.lower() not in [s.lower() for s in out["disposition"]["discipline_signals"]]:
                 out["disposition"]["discipline_signals"].append(dm)
 
-        # Narrative: statement of problem / synopsis.
-        sm = re.search(r"STATEMENT\s*O[FQ]\s*PROBLEM:?(.{60,1200})", t, re.I)
+        # Narrative: the report's problem-statement / synopsis prose. DOTALL — the
+        # heading sits on its own line, so the narrative begins AFTER a newline (the
+        # old `.` pattern stopped at that newline and captured nothing). Collapse
+        # whitespace so the summary reads as one clean paragraph. Header synonyms
+        # cover the common IA / OIS report formats.
+        sm = re.search(
+            r"(?:STATEMENT\s*O[FQ]\s*PROBLEM|STATEMENT\s*OF\s*FACTS|SYNOPSIS|NARRATIVE)"
+            r"\s*:?\s*(.{60,1400})", t, re.I | re.S)
         if sm and not out["narrative"]:
-            out["narrative"] = {"text": sm.group(1).strip()[:1000], "page": pg}
+            out["narrative"] = {"text": re.sub(r"\s+", " ", sm.group(1)).strip()[:1000], "page": pg}
 
         # Evidence pointers.
         def add(kind, ref, **extra):
