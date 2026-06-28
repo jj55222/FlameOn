@@ -232,3 +232,54 @@ def test_cli_mock_writes_shaped_json_and_md(tmp_path):
     shaped = _json.loads((tmp_path / "x_1_blueprint_shaped.json").read_text(encoding="utf-8"))
     assert shaped["metadata"]["built_by"] == "llm_shaped"
     assert (tmp_path / "x_1_blueprint_shaped.md").exists()
+
+
+# --- analysis tier (EWU / Dr. Insanity grounded voiceover) ------------------
+
+def _le_facts():
+    # subject is law enforcement; sustained findings = dishonesty + neglect.
+    return {"subjects": ["Deputy Marvin Morales"],
+            "summary": "Deputy Morales was found unresponsive; he had confiscated narcotics earlier.",
+            "charges": ["SUSTAINED: Dishonesty", "SUSTAINED: Inexcusable Neglect of Duty"],
+            "disposition": "SUSTAINED; terminated"}
+
+
+def test_analysis_style_uses_analysis_system_and_basis():
+    bp = _blueprint()
+    prompt = bs._build_prompt(bp, style="analysis")
+    assert "ANALYSIS_BASIS" in prompt
+    assert bs._SYSTEM_ANALYSIS != bs._SYSTEM and "ANALYTICAL VOICEOVER" in bs._SYSTEM_ANALYSIS
+    # connective mode is unchanged (no analysis basis)
+    assert "ANALYSIS_BASIS" not in bs._build_prompt(bp, style="connective")
+
+
+def test_rail_passes_grounded_analysis():
+    facts = _le_facts()
+    # attributed to the record / backed by a sustained finding -> kept
+    sh = {"logline": "Internal Affairs would sustain a finding of inexcusable neglect of duty.",
+          "acts": [{"act_id": "a", "thesis": "What looks like a cover-up the record calls dishonesty."}],
+          "beats": []}
+    assert bs.audit_narration(sh, facts) == []
+    assert sh["logline"] and sh["acts"][0]["thesis"]
+
+
+def test_rail_quarantines_ungrounded_accusations():
+    facts = _le_facts()
+    for claim in ("This is the moment the deputy commits murder.",
+                  "The deputy planted evidence at the scene.",
+                  "What follows is excessive force and brutality.",
+                  "The sergeant was bribed to stay quiet."):
+        sh = {"logline": claim, "acts": [], "beats": []}
+        flags = bs.audit_narration(sh, facts)
+        assert len(flags) == 1 and "ungrounded accusation" in flags[0]["reason"], claim
+        assert sh["logline"] is None                      # quarantined
+
+
+def test_rail_degrades_beat_narration_to_brief():
+    facts = _le_facts()
+    sh = {"logline": None, "acts": [],
+          "beats": [{"beat_id": "b00",
+                     "narration_bridge": {"text": "Here the cover-up becomes a homicide.",
+                                          "brief": "transport to hospital"}}]}
+    bs.audit_narration(sh, facts)
+    assert sh["beats"][0]["narration_bridge"]["text"] == "transport to hospital"   # fell back, not aired

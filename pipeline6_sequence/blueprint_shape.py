@@ -85,6 +85,20 @@ def _as_list(v: Any) -> List[Any]:
     return [] if v is None else [v]
 
 
+def _as_id(v: Any) -> Optional[str]:
+    """Coerce a beat-id-ish value to a hashable string id. Tolerates the model
+    returning ``beat_order``/``cuts`` as objects (``{"beat_id": "b00"}``) instead of
+    bare strings — without this, hashing a dict raises ``unhashable type: 'dict'``."""
+    if isinstance(v, str):
+        return v
+    if isinstance(v, dict):
+        for k in _ID_KEYS:
+            if isinstance(v.get(k), (str, int)):
+                return str(v[k])
+        return None
+    return str(v) if isinstance(v, (int,)) else None
+
+
 def _inserts_map(v: Any) -> Dict[str, List[Dict]]:
     """Normalize inserts to ``{beat_id: [insert, ...]}`` whether the model sent a
     dict-of-lists or a flat list of ``{beat_id, asset_id, ...}`` objects."""
