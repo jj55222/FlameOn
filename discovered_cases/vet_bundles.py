@@ -437,7 +437,8 @@ def vet_notes(c: Dict[str, Any], source: str, *, verified: bool) -> List[str]:
         notes.append("Laserfiche mediahandler URL replaced with ElectronicFile download_url where available.")
     if source == "chicago_copa" and not c.get("media_files"):
         notes.append("COPA case has no captured video in candidate file; run copa_harvest.py --capture-vimeo to enrich.")
-    if verified and c["vetting"]["dead_files"]:
+    files = (c.get("media_files") or []) + (c.get("doc_files") or []) + (c.get("photo_files") or []) + (c.get("other_files") or [])
+    if verified and any(f.get("live") is False for f in files):
         notes.append("One or more URLs failed verify-only probing.")
     return notes
 
