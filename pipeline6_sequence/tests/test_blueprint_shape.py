@@ -293,3 +293,13 @@ def test_validate_tolerates_object_shaped_beat_order_and_cuts():
     clean, rej = bs.validate_edit(edit, bp)
     assert clean["cuts"] == ["b00"]
     assert clean["beat_order"] == ["b01"]          # b00 cut, b01 kept; no crash
+
+
+def test_validate_refuses_to_cut_most_of_the_film():
+    bp = _blueprint()                                  # has beats b00, b01
+    clean, rej = bs.validate_edit({"cuts": ["b00", "b01"]}, bp)   # cut everything
+    assert clean["cuts"] == []                         # refused
+    assert any("malformed" in r.get("reason", "") for r in rej)
+    # a single legitimate cut still works
+    clean2, _ = bs.validate_edit({"cuts": ["b00"]}, bp)
+    assert clean2["cuts"] == ["b00"]
