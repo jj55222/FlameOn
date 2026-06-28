@@ -91,10 +91,16 @@ misclassified). So COPA today is a pile of doc + audio + uncategorized links.
 Goal: turn each COPA *case page* (`chicagocopa.org/case/<id>/`) into an SDPD-shape
 bundle. Tasks, in order:
 
-1. **Extract the streaming video.** COPA's BWC / in-car / 3rd-party surveillance are
-   embedded players, not files. For each case page, resolve the embed to a
-   downloadable stream (yt-dlp / direct mp4 in the page source). If a case has NO
-   extractable video → it's Tier B (audio+doc) or D, mark it, don't pretend it has video.
+1. **Extract the streaming video — it's Vimeo, and yt-dlp handles it (PROVEN).**
+   COPA's BWC is embedded as **Vimeo** players (`player.vimeo.com/video/<id>`), HLS,
+   **no DRM, no Axon, no signed-expiry** (verified on case 2025-0003972 — yt-dlp
+   resolved AND downloaded a real h264+aac mp4, title `Log #2025-0003972 BWC 1`).
+   Recipe: scrape each case page for `player.vimeo.com/video/<id>` iframe srcs →
+   record each as a `video` media_file (name = the yt-dlp title) → the downloader
+   runs `yt-dlp <vimeo_url>` (remuxes HLS → mp4). NOTE: the registry's current COPA
+   `bodycam` files are **misclassified press-release PDFs** (titled "COPA RELEASES
+   VIDEO…") — the real Vimeo video was never captured; capture it now. Older cases
+   (e.g. 2016) may have only PDFs/no video → Tier B/D, don't fake it.
 2. **Reclassify the 1373 `other` files.** Inspect extensions/titles: PDFs →
    `documents`; mp3/wav → `audio`/`911_audio`; mp4/mov → `video`; drop dead links.
    `other` should end near zero.
