@@ -770,6 +770,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     er = shaped.get("edit_report", {})
     m = shaped["metadata"]
+    if er.get("parse_error"):
+        print(f"[shape] ⚠ {er['parse_error']}")
     if er.get("error"):
         print(f"[shape] ⚠ shaping failed ({er['error']}) — kept deterministic skeleton")
     ff = report.get("factual_flags") or []
