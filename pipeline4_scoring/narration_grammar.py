@@ -193,17 +193,21 @@ def assign_phases(segs: List[Dict[str, Any]]) -> None:
     even with no footage there), then fall back to the nearest footage anchor."""
     anchors = [(s["i"], s.get("anchor_phase")) for s in segs
                if s["role"] == "footage" and s.get("anchor_phase")]
+    vmax: Dict[Any, float] = defaultdict(float)        # per-video max start, for narrative position
+    for s in segs:
+        vmax[s.get("video_id")] = max(vmax[s.get("video_id")], s.get("start_sec", 0.0))
     for s in segs:
         if s["role"] == "footage":
             s["phase"] = s.get("anchor_phase") or "unknown"
             continue
-        kw = keyword_phase(s["text"])
+        kw = keyword_phase(s["text"])               # 1) the line names its own phase
         if kw:
             s["phase"] = kw
-        elif anchors:
+        elif anchors:                               # 2) nearest footage anchor (same-case)
             s["phase"] = min(anchors, key=lambda a: abs(a[0] - s["i"]))[1]
-        else:
-            s["phase"] = "unknown"
+        else:                                        # 3) narrative-position proxy (corpus)
+            vm = vmax.get(s.get("video_id")) or 0.0
+            s["phase"] = position_phase(s.get("start_sec", 0.0) / vm) if vm else "unknown"
 
 
 # ---------------------------------------------------------------------------
