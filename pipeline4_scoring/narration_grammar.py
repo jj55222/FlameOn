@@ -144,19 +144,22 @@ def footage_signal(text: str, idx: Dict[Tuple[str, ...], Counter], n: int = 4) -
 
 
 def assign_phases(segs: List[Dict[str, Any]]) -> None:
-    """Footage segments carry an anchor phase from the match; VO segments inherit
-    the phase of the nearest footage anchor (by segment index)."""
+    """Phase each segment. Footage segments use their match anchor. VO segments
+    prefer their OWN chronology keywords (so 'recommended for termination' -> outcome
+    even with no footage there), then fall back to the nearest footage anchor."""
     anchors = [(s["i"], s.get("anchor_phase")) for s in segs
                if s["role"] == "footage" and s.get("anchor_phase")]
     for s in segs:
         if s["role"] == "footage":
             s["phase"] = s.get("anchor_phase") or "unknown"
             continue
-        if not anchors:
+        kw = keyword_phase(s["text"])
+        if kw:
+            s["phase"] = kw
+        elif anchors:
+            s["phase"] = min(anchors, key=lambda a: abs(a[0] - s["i"]))[1]
+        else:
             s["phase"] = "unknown"
-            continue
-        nearest = min(anchors, key=lambda a: abs(a[0] - s["i"]))
-        s["phase"] = nearest[1]
 
 
 # ---------------------------------------------------------------------------
