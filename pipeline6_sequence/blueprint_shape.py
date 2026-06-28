@@ -391,7 +391,7 @@ def _unsupported_accusation(text: str, factblob: str) -> Optional[str]:
     """Return the first strong accusation in ``text`` that the record doesn't back."""
     for pat, support in _ACCUSATIONS:
         m = pat.search(text)
-        if m and not _re.search(support, factblob, _re.I):
+        if m and not support.search(factblob):
             return m.group(0)
     return None
 
