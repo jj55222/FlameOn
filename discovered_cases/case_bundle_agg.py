@@ -58,30 +58,44 @@ def source_files() -> List[Path]:
             if os.path.basename(p) not in EXCLUDE]
 
 
-def _files_of(c: Dict[str, Any]) -> List[Dict[str, str]]:
+def _file_record(f: Dict[str, Any], default_type: str) -> Dict[str, Any]:
+    url = f.get("url") or f.get("download_url")
+    rec: Dict[str, Any] = {
+        "name": f.get("name", ""),
+        "url": url,
+        "type": (f.get("evidence_type") or f.get("kind") or default_type),
+    }
+    for key in (
+        "ext",
+        "live",
+        "size_mb",
+        "content_type",
+        "checked_at",
+        "status_code",
+        "resolved_url",
+        "verify_method",
+    ):
+        if key in f:
+            rec[key] = f.get(key)
+    return rec
+
+
+def _files_of(c: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Flatten a candidate's media + doc/photo files to ``[{name, type, url}]`` (deduped),
     tolerating the small schema differences between harvesters."""
     out: List[Dict[str, str]] = []
     for f in (c.get("media_files") or []):
-        url = f.get("url") or f.get("download_url")
-        if url:
-            out.append({"name": f.get("name", ""), "url": url,
-                        "type": (f.get("evidence_type") or f.get("kind") or "media")})
+        if f.get("url") or f.get("download_url"):
+            out.append(_file_record(f, "media"))
     for f in (c.get("doc_files") or []):
-        url = f.get("url") or f.get("download_url")
-        if url:
-            out.append({"name": f.get("name", ""), "url": url,
-                        "type": (f.get("evidence_type") or "document")})
+        if f.get("url") or f.get("download_url"):
+            out.append(_file_record(f, "document"))
     for f in (c.get("photo_files") or []):
-        url = f.get("url") or f.get("download_url")
-        if url:
-            out.append({"name": f.get("name", ""), "url": url,
-                        "type": (f.get("evidence_type") or "photo")})
+        if f.get("url") or f.get("download_url"):
+            out.append(_file_record(f, "photo"))
     for f in (c.get("other_files") or []):
-        url = f.get("url") or f.get("download_url")
-        if url:
-            out.append({"name": f.get("name", ""), "url": url,
-                        "type": (f.get("evidence_type") or f.get("kind") or "other")})
+        if f.get("url") or f.get("download_url"):
+            out.append(_file_record(f, "other"))
     if not out:                                  # last resort: a bare url list
         for url in (c.get("urls") or []):
             if url:
@@ -106,6 +120,9 @@ def to_bundle(c: Dict[str, Any], origin: str) -> Dict[str, Any]:
         "case_url": c.get("case_url") or c.get("document_index_url") or "",
         "n_video": nv, "n_audio": na, "n_docs": nd, "n_photos": np,
         "n_files": len(files),
+        "tier": c.get("tier"),
+        "downloadable": c.get("downloadable"),
+        "vetting": c.get("vetting"),
         "score": c.get("score"),
         "downloads": c.get("total_downloads"),
         "origin_file": Path(origin).name,
