@@ -613,15 +613,22 @@ def _build_prompt(blueprint: Dict, style: str = "connective") -> str:
         }
         instruction = (
             "Write the ANALYTICAL VOICEOVER for this documentary in the explain-and-analyze style of "
-            "long-form accountability channels (Explore With Us, Dr. Insanity). Narrate the KEY beats — "
-            "not just act bridges: on the setup, foreshadow what the footage becomes; on the incident, "
-            "explain its significance; on the accountability beats, connect what happened to the "
-            "sustained findings. Build ONE through-line across the acts. GROUND every analytical claim "
-            "in CASE_FACTS / ANALYSIS_BASIS and ATTRIBUTE judgments to the record; never assert "
-            "wrongdoing the findings don't sustain — where the record is silent, raise the question "
-            "instead. Keep each narration 1-3 sentences. Then order beats chronologically within acts, "
-            "prune weak/duplicate beats, preserve procedural_violation/record beats, and add sourced "
-            "establishing B-roll (dashcam/911 only, never a bodycam) for the cold open.\n\n")
+            "long-form accountability channels (Explore With Us, Dr. Insanity).\n"
+            "1. logline: one sharp analytical sentence (the case's meaning, not a plot summary).\n"
+            "2. act_theses: one thesis per act — what this act PROVES.\n"
+            "3. narration: write voiceover for the FOOTAGE beats (kind='footage') — ESPECIALLY the "
+            "setup/seizure, the discovery, and any procedural beats. SAY WHAT THE VIEWER IS SEEING AND "
+            "WHY IT MATTERS: on the setup, foreshadow ('this is the moment that will define everything "
+            "after'); on the discovery, explain the significance; tie the arc to the sustained findings. "
+            "The record beats (kind='record') ALREADY carry the findings text — do NOT just echo a "
+            "beat's existing text; keep record beats terse and spend your words on the footage. Build "
+            "ONE through-line across the acts.\n"
+            "GROUND every analytical claim in CASE_FACTS / ANALYSIS_BASIS and ATTRIBUTE judgments to "
+            "the record ('Internal Affairs would sustain...', 'policy requires...'); never assert "
+            "wrongdoing the findings don't sustain — where the record is silent, raise the QUESTION, "
+            "don't answer it. Each narration is 1-3 sentences. Then order beats chronologically within "
+            "acts, prune weak/duplicate beats, preserve procedural_violation/record beats, and add "
+            "sourced establishing B-roll (dashcam/911 only, never a bodycam) for the cold open.\n\n")
         return instruction + json.dumps(payload, ensure_ascii=False)
     return (
         "Ground EVERY word of the logline, act theses, and narration in CASE_FACTS "
