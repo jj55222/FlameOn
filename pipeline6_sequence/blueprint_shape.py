@@ -592,12 +592,14 @@ class MockBackend:
 
 
 def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
-                    temperature: float = 0.2) -> Tuple[Dict, Dict]:
+                    temperature: float = 0.2, style: str = "connective") -> Tuple[Dict, Dict]:
     """Run one shaping pass. Returns ``(shaped_blueprint, report)``. ``report``
     carries the rejection list + raw edit, so a caller can see exactly what the
-    model proposed and what the validator threw out."""
-    system = _SYSTEM
-    user = _build_prompt(blueprint)
+    model proposed and what the validator threw out. ``style='analysis'`` switches
+    the narration from spare/connective to grounded analytical voiceover (the
+    EWU / Dr. Insanity tier), behind the same fact-check rail."""
+    system = _SYSTEM_ANALYSIS if style == "analysis" else _SYSTEM
+    user = _build_prompt(blueprint, style=style)
     raw = backend.complete(system=system, user=user, max_tokens=max_tokens,
                            temperature=temperature)
     try:
