@@ -535,6 +535,31 @@ def _build_prompt(blueprint: Dict, style: str = "connective") -> str:
         "gaps": blueprint.get("gaps"),
         "current_planned_runtime_sec": blueprint.get("metadata", {}).get("planned_runtime_sec"),
     }
+    if style == "analysis":
+        # The sustained findings ARE the authoritative analysis — the only judgments
+        # of wrongdoing the narration may invoke, and only attributed to the record.
+        payload["ANALYSIS_BASIS"] = {
+            "subject": case_facts["subjects"],
+            "established_facts": case_facts["summary"],
+            "sustained_findings": case_facts["charges"],
+            "outcome": case_facts["disposition"],
+            "how_to_use": ("These are the ONLY judgments of wrongdoing you may assert, and you must "
+                           "attribute them to the record (e.g. 'Internal Affairs would sustain a "
+                           "finding of inexcusable neglect'). For anything the findings do not cover, "
+                           "pose it as an open question, never a conclusion."),
+        }
+        instruction = (
+            "Write the ANALYTICAL VOICEOVER for this documentary in the explain-and-analyze style of "
+            "long-form accountability channels (Explore With Us, Dr. Insanity). Narrate the KEY beats — "
+            "not just act bridges: on the setup, foreshadow what the footage becomes; on the incident, "
+            "explain its significance; on the accountability beats, connect what happened to the "
+            "sustained findings. Build ONE through-line across the acts. GROUND every analytical claim "
+            "in CASE_FACTS / ANALYSIS_BASIS and ATTRIBUTE judgments to the record; never assert "
+            "wrongdoing the findings don't sustain — where the record is silent, raise the question "
+            "instead. Keep each narration 1-3 sentences. Then order beats chronologically within acts, "
+            "prune weak/duplicate beats, preserve procedural_violation/record beats, and add sourced "
+            "establishing B-roll (dashcam/911 only, never a bodycam) for the cold open.\n\n")
+        return instruction + json.dumps(payload, ensure_ascii=False)
     return (
         "Ground EVERY word of the logline, act theses, and narration in CASE_FACTS "
         "below — it is the authoritative account from the official record. Use the "
