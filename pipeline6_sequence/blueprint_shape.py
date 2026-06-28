@@ -386,45 +386,56 @@ def _unsupported_accusation(text: str, factblob: str) -> Optional[str]:
 
 
 def audit_narration(shaped: Dict, facts: Dict) -> List[Dict]:
-    """Reject framing that CONTRADICTS the case facts. The integrity rail already
-    drops narration that references a non-existent asset/quote; this extends the
-    same drop-on-fail discipline to FRAMING: a logline / thesis / narration line
-    that asserts a custody/victim story the facts don't support is quarantined
-    (blanked) and logged. Conservative: only fires when the subject is law
-    enforcement and the text invokes a civilian-detainee frame the facts lack.
-    Returns a list of ``{field, value, reason}`` flags (mutates ``shaped``)."""
-    flags: List[Dict] = []
-    if not _subject_is_le(facts):
-        return flags
-    factblob = " ".join([facts.get("summary") or "", facts.get("disposition") or ""])
-    # If the official record itself mentions custody/an arrestee, the frame is
-    # legitimate — don't fight the facts.
-    if _FALSE_CUSTODY_PAT.search(factblob):
-        return flags
+    """Drop-on-fail faithfulness rail for narration, extended from QUOTES to FRAMING
+    to ANALYTICAL CLAIMS. Two independent checks, both quarantine (blank) the
+    offending logline / thesis / narration and log it:
 
-    def _bad(text: Optional[str]) -> Optional[str]:
+      1. CONTRADICTED FRAMING — when the subject is law enforcement, narration that
+         recasts them as a civilian detainee (a custody/patrol-car story the facts
+         lack) inverts the case. Skipped if the record itself mentions custody.
+      2. UNGROUNDED ACCUSATION — a strong analytical claim (cover-up, lie, crime,
+         excessive force, corruption) the sustained findings / facts don't support.
+         This is what lets the ANALYSIS tier make claims safely: the model may say
+         what the record says, and no more.
+
+    Returns ``{field, value, reason}`` flags (mutates ``shaped``)."""
+    flags: List[Dict] = []
+    factblob = " ".join([facts.get("summary") or "", facts.get("disposition") or "",
+                         " ".join(facts.get("charges") or [])])
+    # The custody check applies only when the subject is LE AND the record doesn't
+    # itself establish a custody context; the accusation check always applies.
+    custody_on = _subject_is_le(facts) and not _FALSE_CUSTODY_PAT.search(factblob)
+
+    def _violation(text: Optional[str]):
         if not text:
             return None
-        m = _FALSE_CUSTODY_PAT.search(text)
-        return m.group(0) if m else None
+        if custody_on:
+            m = _FALSE_CUSTODY_PAT.search(text)
+            if m:
+                return (f"contradicts CASE_FACTS (subject is LE; '{m.group(0)}' "
+                        f"implies a civilian detainee)")
+        acc = _unsupported_accusation(text, factblob)
+        if acc:
+            return (f"ungrounded accusation '{acc}' — not in the sustained findings "
+                    f"or established facts")
+        return None
 
-    hit = _bad(shaped.get("logline"))
-    if hit:
-        flags.append({"field": "logline", "value": shaped["logline"][:120],
-                      "reason": f"contradicts CASE_FACTS (subject is LE; '{hit}' implies a civilian detainee)"})
+    reason = _violation(shaped.get("logline"))
+    if reason:
+        flags.append({"field": "logline", "value": (shaped["logline"] or "")[:120], "reason": reason})
         shaped["logline"] = None
     for a in shaped.get("acts", []):
-        hit = _bad(a.get("thesis"))
-        if hit:
-            flags.append({"field": f"act_theses[{a.get('act_id')}]", "value": (a.get("thesis") or "")[:120],
-                          "reason": f"contradicts CASE_FACTS ('{hit}')"})
+        reason = _violation(a.get("thesis"))
+        if reason:
+            flags.append({"field": f"act_theses[{a.get('act_id')}]",
+                          "value": (a.get("thesis") or "")[:120], "reason": reason})
             a["thesis"] = None
     for b in shaped.get("beats", []):
         nb = b.get("narration_bridge") or {}
-        hit = _bad(nb.get("text"))
-        if hit:
-            flags.append({"field": f"narration[{b.get('beat_id')}]", "value": (nb.get("text") or "")[:120],
-                          "reason": f"contradicts CASE_FACTS ('{hit}')"})
+        reason = _violation(nb.get("text"))
+        if reason:
+            flags.append({"field": f"narration[{b.get('beat_id')}]",
+                          "value": (nb.get("text") or "")[:120], "reason": reason})
             nb["text"] = nb.get("brief")   # degrade to the sourced brief (or None)
     return flags
 
