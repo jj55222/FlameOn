@@ -789,6 +789,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--analysis", action="store_true",
                     help="grounded ANALYTICAL voiceover (EWU / Dr. Insanity tier) instead of spare "
                          "connective narration — still behind the fact-check rail")
+    ap.add_argument("--grammar", type=Path, default=None,
+                    help="a learned narration_grammar profile json — steer per-phase analytical "
+                         "moves + cadence in the style of that channel (use with --analysis)")
     ap.add_argument("--max-tokens", type=int, default=3500)
     args = ap.parse_args(argv)
     style = "analysis" if args.analysis else "connective"
