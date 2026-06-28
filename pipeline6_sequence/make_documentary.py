@@ -107,16 +107,30 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
     steps.append(Step(
         "transcribe", _py(P3 / "timeline_transcribe.py", *tr_argv),
         produces=str(d2 / "transcripts")))
-    # 6. Score (P4) — paid. Use --transcript-dir + --case-id (no shell glob in a
-    #    subprocess); P4 auto-groups that case_id's transcripts into one verdict.
+    # 6. Moments → verdict — paid. TWO sources, by --moments:
+    #    beatminer (default): beat_miner (RECALL) → bridge_verdict. RIGHT for documentary
+    #       assembly — surfaces ALL grounded moments so the cut fills its runtime.
+    #    p4: pipeline4_score (PRECISION / case-selection). Caps ~top-10 moments → a thin,
+    #       draggy cut; it's a triage tool ("should I produce this case?"), not an assembler.
     if not a.skip_score:
-        steps.append(Step(
-            "score", _py(P4 / "pipeline4_score.py", "--force",
-                         "--transcript-dir", str(d2 / "transcripts"),
-                         "--case-id", a.case_id,
-                         "--weights", str(ROOT / "pipeline1_winners" / "scoring_weights.json"),
-                         "--output", str(d2 / "verdicts")),
-            paid=True, produces=str(verdict)))
+        if a.moments == "p4":
+            steps.append(Step(
+                "score", _py(P4 / "pipeline4_score.py", "--force",
+                             "--transcript-dir", str(d2 / "transcripts"), "--case-id", a.case_id,
+                             "--weights", str(ROOT / "pipeline1_winners" / "scoring_weights.json"),
+                             "--output", str(d2 / "verdicts")),
+                paid=True, produces=str(verdict)))
+        else:  # beatminer (default)
+            mined = d2 / "mined.json"
+            steps.append(Step(
+                "mine-moments", _py(P4 / "beat_miner.py", "--transcripts", str(d2 / "transcripts"),
+                             "--case-id", a.case_id, "--agency", a.agency,
+                             "--model", a.moments_model, "--out", str(mined)),
+                paid=True, produces=str(mined)))
+            steps.append(Step(
+                "bridge-verdict",
+                _py(P6 / "bridge_verdict.py", str(mined), str(verdict), str(d2 / "transcripts")),
+                produces=str(verdict)))
     if a.flagship:
         # 7–10. FLAGSHIP: deterministic rails → LLM editorial shaping → long-form
         #        render (auto-anchor + auto-runtime, no operator tuning) → judge gate.
