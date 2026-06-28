@@ -222,7 +222,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--cold-open", default=None, choices=["scene_set", "climax", "none"],
                     help="render cold-open style (passed through to the renderer)")
     ap.add_argument("--no-align", action="store_true", help="skip dashcam audio alignment")
-    ap.add_argument("--skip-score", action="store_true", help="reuse an existing P4 verdict (no paid call)")
+    ap.add_argument("--skip-score", action="store_true", help="reuse an existing verdict (no paid moments call)")
+    ap.add_argument("--moments", choices=["beatminer", "p4"], default="beatminer",
+                    help="moment source for the cut: beatminer = recall (default, fills the runtime); "
+                         "p4 = pipeline4_score precision/case-selection (thinner)")
+    ap.add_argument("--moments-model", default="deepseek/deepseek-v4-flash",
+                    help="OpenRouter model for beat_miner moment proposal (high-recall)")
     ap.add_argument("--flagship", action="store_true",
                     help="flagship chain: blueprint(--auto-anchor) → shape → long-form render"
                          "(--target-runtime) → judge gate, instead of the simple text-card cut")
