@@ -78,6 +78,22 @@ def keyword_phase(text: str) -> Optional[str]:
     return None
 
 
+def position_phase(frac: float) -> str:
+    """Approximate phase from narrative POSITION in the video — for cross-case corpus
+    videos where we have no footage to anchor against. True-crime docs run roughly
+    linearly (setup -> crime -> investigation -> outcome), so the temporal arc is a
+    usable proxy. Crude but far better than 'unknown' for learning where moves cluster."""
+    if frac < 0.12:
+        return "pre_incident"
+    if frac < 0.30:
+        return "incident"
+    if frac < 0.50:
+        return "aftermath"
+    if frac < 0.85:
+        return "investigation"
+    return "outcome"
+
+
 def _toks(t: str) -> List[str]:
     return re.sub(r"[^a-z0-9 ]", " ", (t or "").lower()).split()
 
