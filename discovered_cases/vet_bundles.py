@@ -52,7 +52,7 @@ EXTRA_AUDIO_EXTS = {".amr", ".aiff", ".aif"}
 ALL_VIDEO_EXTS = set(VIDEO_EXTS) | EXTRA_VIDEO_EXTS
 ALL_AUDIO_EXTS = set(AUDIO_EXTS) | EXTRA_AUDIO_EXTS
 
-VIDEO_TYPES = {"bodycam", "dashcam", "surveillance", "interrogation", "video", "media"}
+VIDEO_TYPES = {"bodycam", "dashcam", "surveillance", "video", "media"}
 AUDIO_TYPES = {"911_audio", "radio", "audio", "interrogation"}
 ALLOWED_TYPES = VIDEO_TYPES | AUDIO_TYPES | {"documents", "document", "photos", "photo", "other"}
 CASE_NOISE_EXT_RE = re.compile(r"\.(?:aspx|ashx)$", re.I)
@@ -212,6 +212,16 @@ def normalized_evidence_type(f: Dict[str, Any], new_bucket: str) -> str:
     return old if old in ALLOWED_TYPES else "media"
 
 
+def media_kind(rec: Dict[str, Any]) -> str:
+    ext = file_ext(rec)
+    mime = str(rec.get("mime_type") or rec.get("content_type") or "").lower()
+    if VIMEO_RE.match(canonical_url(rec)) or mime.startswith("video/") or ext in ALL_VIDEO_EXTS:
+        return "video"
+    if mime.startswith("audio/") or ext in ALL_AUDIO_EXTS:
+        return "audio"
+    return "media"
+
+
 def clean_file(f: Dict[str, Any], old_bucket: str) -> Tuple[str, Dict[str, Any]]:
     rec = dict(f)
     chosen = canonical_url(rec)
@@ -225,7 +235,7 @@ def clean_file(f: Dict[str, Any], old_bucket: str) -> Tuple[str, Dict[str, Any]]
     bucket = bucket_for_file(rec, old_bucket)
     rec["evidence_type"] = normalized_evidence_type(rec, bucket)
     if bucket == "media_files":
-        rec["kind"] = "video" if rec["evidence_type"] in VIDEO_TYPES else "audio"
+        rec["kind"] = media_kind(rec)
     elif bucket == "doc_files":
         rec["kind"] = "doc"
     elif bucket == "photo_files":
@@ -326,7 +336,12 @@ def count_kinds(c: Dict[str, Any], *, verified: bool) -> Dict[str, int]:
     media = c.get("media_files") or []
     return {
         "video": sum(1 for f in media if file_is_live(f, verified) and (f.get("kind") == "video" or f.get("evidence_type") in VIDEO_TYPES)),
-        "audio": sum(1 for f in media if file_is_live(f, verified) and (f.get("kind") == "audio" or f.get("evidence_type") in AUDIO_TYPES)),
+        "audio": sum(
+            1
+            for f in media
+            if file_is_live(f, verified)
+            and (f.get("kind") == "audio" or (f.get("kind") != "video" and f.get("evidence_type") in AUDIO_TYPES))
+        ),
         "docs": sum(1 for f in c.get("doc_files") or [] if file_is_live(f, verified)),
         "photos": sum(1 for f in c.get("photo_files") or [] if file_is_live(f, verified)),
         "other": sum(1 for f in c.get("other_files") or [] if file_is_live(f, verified)),
