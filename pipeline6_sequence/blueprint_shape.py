@@ -365,14 +365,25 @@ def _subject_is_le(facts: Dict) -> bool:
 # Each is ALLOWED only if the case record (findings/facts) supports it; otherwise
 # it is an ungrounded conclusion about a real person and is quarantined. This is
 # the fact-check rail extended from FRAMING to ANALYTICAL CLAIMS (see _SYSTEM_ANALYSIS).
+# (accusation pattern, support pattern). The support is intentionally NARROW and
+# word-boundaried: a faithfulness rail should err toward FLAGGING (a false flag
+# just degrades a line to its safe brief; a false PASS airs a defamatory claim).
+# So generic words ('evidence', 'cover' inside 'discovered') must NOT satisfy support.
 _ACCUSATIONS = [
-    (_re.compile(r"\b(cover[- ]?up|covered (?:it|this|that) up)\b", _re.I), r"dishonest|conceal|cover|discredit|withh|hid|untruth"),
-    (_re.compile(r"\b(fabricat\w*|falsif\w*|forged?|doctored)\b", _re.I), r"dishonest|falsif|fabricat|forg"),
-    (_re.compile(r"\b(planted|plant(?:ing)? (?:the )?evidence|tamper\w*)\b", _re.I), r"plant|tamper|evidence"),
-    (_re.compile(r"\b(perjur\w*|lied|lying|dishonest\w*|untruthful)\b", _re.I), r"dishonest|false|untruth|misle|lie|perjur"),
-    (_re.compile(r"\b(murder\w*|homicide|execut(?:ed|ion)|unlawful killing)\b", _re.I), r"murder|homicide|unlawful|killed|kill\b|death|fatal"),
-    (_re.compile(r"\b(excessive force|brutality|brutal beating|beat\w* (?:him|her|them) (?:up|senseless))\b", _re.I), r"excessive|force|brutal|strike|struck|beat"),
-    (_re.compile(r"\b(corrupt\w*|brib\w*|conspir\w*|racketeer\w*)\b", _re.I), r"corrupt|brib|conspir|racket"),
+    (_re.compile(r"\b(cover[- ]?up|covered (?:it|this|that) up)\b", _re.I),
+     _re.compile(r"\b(dishonest\w*|conceal\w*|withh\w*|withheld|hid|hidden|untruth\w*|discredit\w*)\b", _re.I)),
+    (_re.compile(r"\b(fabricat\w*|falsif\w*|forged?|doctored)\b", _re.I),
+     _re.compile(r"\b(dishonest\w*|falsif\w*|fabricat\w*|forg\w*)\b", _re.I)),
+    (_re.compile(r"\b(planted|plant(?:ing)? (?:the )?evidence|tamper\w*)\b", _re.I),
+     _re.compile(r"\b(plant\w*|tamper\w*|fabricat\w*|forg\w*)\b", _re.I)),
+    (_re.compile(r"\b(perjur\w*|lied|lying|dishonest\w*|untruthful)\b", _re.I),
+     _re.compile(r"\b(dishonest\w*|untruth\w*|misle\w*|perjur\w*|\blie[ds]?\b|false statement)\b", _re.I)),
+    (_re.compile(r"\b(murder\w*|homicide|execut(?:ed|ion)|unlawful killing)\b", _re.I),
+     _re.compile(r"\b(murder\w*|homicide|unlawful killing|shot and killed)\b", _re.I)),
+    (_re.compile(r"\b(excessive force|brutality|brutal beating)\b", _re.I),
+     _re.compile(r"\b(excessive force|strike|struck|baton|taser|punch\w*|use of force|brutal\w*)\b", _re.I)),
+    (_re.compile(r"\b(corrupt\w*|brib\w*|conspir\w*|racketeer\w*)\b", _re.I),
+     _re.compile(r"\b(corrupt\w*|brib\w*|conspir\w*|racket\w*)\b", _re.I)),
 ]
 
 
