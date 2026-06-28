@@ -473,8 +473,36 @@ _SYSTEM = (
     "in 'cuts' to drop it.) No prose."
 )
 
+# Analysis tier — the EWU / Dr. Insanity voice: narration that explains and
+# analyzes rather than merely connecting. Same integrity rails; the difference is
+# the narration ROLE and a hard "ground your judgments in the record" rule, since
+# analysis makes claims and unsupported claims about a real person are defamation.
+_SYSTEM_ANALYSIS = (
+    "You are writing the ANALYTICAL VOICEOVER for a long-form police-accountability "
+    "documentary — the explain-and-analyze style of channels like Explore With Us and "
+    "Dr. Insanity. The narration is the spine of the film: it doesn't just describe "
+    "what's on screen, it ANALYZES — it explains procedure, points out what the viewer "
+    "should notice, builds tension, and lands the accountability.\n\n"
+    "HARD RULES (violations are discarded):\n"
+    "- Never invent footage, quotes, or facts. Reference only beat_id and asset_id "
+    "values that appear in the blueprint.\n"
+    "- B-roll and inserts must cite an existing asset_id; windows inside its duration.\n"
+    "- GROUNDED ANALYSIS (this is a real person; an unsupported claim is defamation): "
+    "every analytical claim must rest on CASE_FACTS or ANALYSIS_BASIS. ATTRIBUTE "
+    "judgments to the record — 'Internal Affairs would sustain a finding of...', 'the "
+    "investigation found...', 'policy requires...' — never deliver a verdict the record "
+    "doesn't support. Do NOT assert a cover-up, a lie, a crime, excessive force, or any "
+    "wrongdoing unless it appears in the sustained findings or established facts. When "
+    "the record is SILENT on a point, raise it as a QUESTION, do not assert the answer.\n"
+    "- Name the real subject(s); introduce no person the facts don't name; never reframe "
+    "an officer as a civilian or vice-versa.\n"
+    "- Each beat's narration is 1-3 sentences — analytical, not rambling.\n"
+    "Return ONLY a JSON object with keys: logline, act_theses, beat_order, cuts, "
+    "beat_durations, narration, inserts, broll. No prose."
+)
 
-def _build_prompt(blueprint: Dict) -> str:
+
+def _build_prompt(blueprint: Dict, style: str = "connective") -> str:
     manifest = [{"asset_id": a["asset_id"], "kind": a["kind"], "label": a.get("pov_label"),
                  "phase": a.get("phase"), "duration_sec": a.get("duration_sec"),
                  "has_transcript": a.get("has_transcript")}

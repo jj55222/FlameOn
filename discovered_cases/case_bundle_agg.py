@@ -59,7 +59,7 @@ def source_files() -> List[Path]:
 
 
 def _files_of(c: Dict[str, Any]) -> List[Dict[str, str]]:
-    """Flatten a candidate's media + doc files to ``[{name, type, url}]`` (deduped),
+    """Flatten a candidate's media + doc/photo files to ``[{name, type, url}]`` (deduped),
     tolerating the small schema differences between harvesters."""
     out: List[Dict[str, str]] = []
     for f in (c.get("media_files") or []):
@@ -72,6 +72,16 @@ def _files_of(c: Dict[str, Any]) -> List[Dict[str, str]]:
         if url:
             out.append({"name": f.get("name", ""), "url": url,
                         "type": (f.get("evidence_type") or "document")})
+    for f in (c.get("photo_files") or []):
+        url = f.get("url") or f.get("download_url")
+        if url:
+            out.append({"name": f.get("name", ""), "url": url,
+                        "type": (f.get("evidence_type") or "photo")})
+    for f in (c.get("other_files") or []):
+        url = f.get("url") or f.get("download_url")
+        if url:
+            out.append({"name": f.get("name", ""), "url": url,
+                        "type": (f.get("evidence_type") or f.get("kind") or "other")})
     if not out:                                  # last resort: a bare url list
         for url in (c.get("urls") or []):
             if url:
@@ -87,13 +97,14 @@ def _files_of(c: Dict[str, Any]) -> List[Dict[str, str]]:
 def to_bundle(c: Dict[str, Any], origin: str) -> Dict[str, Any]:
     files = _files_of(c)
     nv, na, nd = int(c.get("n_video") or 0), int(c.get("n_audio") or 0), int(c.get("n_docs") or 0)
+    np = int(c.get("n_photos") or c.get("n_photo") or 0)
     return {
         "source": c.get("source") or Path(origin).stem.replace("_candidates", ""),
         "case_id": c.get("case_id") or "",
         "agency": c.get("agency") or "",
         "title": c.get("title") or c.get("folder") or c.get("case_id") or "",
         "case_url": c.get("case_url") or c.get("document_index_url") or "",
-        "n_video": nv, "n_audio": na, "n_docs": nd,
+        "n_video": nv, "n_audio": na, "n_docs": nd, "n_photos": np,
         "n_files": len(files),
         "score": c.get("score"),
         "downloads": c.get("total_downloads"),
@@ -162,17 +173,19 @@ def write_md(media_bundles: List[Dict[str, Any]], all_bundles: List[Dict[str, An
     L.append(f"**{len(all_bundles)} working bundles total ({len(media_bundles)} with media, "
              f"{doc_only} doc-only) · {sum(b['n_files'] for b in all_bundles)} files** — "
              f"media index below: {sum(b['n_video'] for b in media_bundles)} video · "
-             f"{sum(b['n_audio'] for b in media_bundles)} audio.")
+             f"{sum(b['n_audio'] for b in media_bundles)} audio · "
+             f"{sum(b.get('n_photos') or 0 for b in media_bundles)} photo/exhibit.")
     L.append("")
-    L.append("| source | media bundles | video | audio | docs | (all working) |")
-    L.append("|--------|--------------:|------:|------:|-----:|--------------:|")
+    L.append("| source | media bundles | video | audio | docs | photos | (all working) |")
+    L.append("|--------|--------------:|------:|------:|-----:|-------:|--------------:|")
     allbysrc: Dict[str, int] = {}
     for b in all_bundles:
         allbysrc[b["source"]] = allbysrc.get(b["source"], 0) + 1
     for s in sorted(set(list(by_source) + list(allbysrc))):
         bs = by_source.get(s, [])
         L.append(f"| {s} | {len(bs)} | {sum(b['n_video'] for b in bs)} | "
-                 f"{sum(b['n_audio'] for b in bs)} | {sum(b['n_docs'] for b in bs)} | {allbysrc.get(s,0)} |")
+                 f"{sum(b['n_audio'] for b in bs)} | {sum(b['n_docs'] for b in bs)} | "
+                 f"{sum(b.get('n_photos') or 0 for b in bs)} | {allbysrc.get(s,0)} |")
     L.append("")
     for s in sorted(by_source):
         bs = by_source[s]
@@ -180,7 +193,8 @@ def write_md(media_bundles: List[Dict[str, Any]], all_bundles: List[Dict[str, An
         L.append(f"## {s}" + (f" — {agency}" if agency else ""))
         L.append("")
         for b in bs:
-            head = (f"### {b['case_id']}  ·  V{b['n_video']} A{b['n_audio']} D{b['n_docs']}"
+            head = (f"### {b['case_id']}  ·  V{b['n_video']} A{b['n_audio']} "
+                    f"D{b['n_docs']} P{b.get('n_photos') or 0}"
                     + (f"  ·  score {b['score']}" if b.get("score") is not None else "")
                     + (f"  ·  {b['downloads']} downloads" if b.get("downloads") else ""))
             L.append(head)
@@ -199,9 +213,10 @@ def _selftest() -> int:
          "media_files": [{"name": "bwc.mp4", "url": "http://h/a/download", "evidence_type": "bodycam"},
                          {"name": "int.mp3", "url": "http://h/b/download", "evidence_type": "interrogation"},
                          {"name": "dup", "url": "http://h/b/download"}],   # dup url
-         "doc_files": [{"name": "report.pdf", "url": "http://h/c/download"}]}
+         "doc_files": [{"name": "report.pdf", "url": "http://h/c/download"}],
+         "photo_files": [{"name": "scene.jpg", "url": "http://h/d/download"}]}
     b = to_bundle(c, "demo_candidates.json")
-    assert b["n_files"] == 3, f"dedup by url -> 3, got {b['n_files']}"
+    assert b["n_files"] == 4, f"dedup by url -> 4, got {b['n_files']}"
     assert has_media(b) and {f["type"] for f in b["files"]} >= {"bodycam", "interrogation", "document"}
     empty = to_bundle({"source": "d", "case_id": "y"}, "d.json")
     assert empty["n_files"] == 0 and not has_media(empty)

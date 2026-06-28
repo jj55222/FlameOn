@@ -6,19 +6,19 @@
 > This index lists the **media bundles (video/audio)**. The COMPLETE registry — including
 > 2320 document-only bundles and every URL — is in `CASE_BUNDLE_AGG.json`.
 
-**2769 working bundles total (449 with media, 2320 doc-only) · 15902 files** — media index below: 5033 video · 3326 audio.
+**2769 working bundles total (449 with media, 2320 doc-only) · 19165 files** — media index below: 5033 video · 3326 audio · 1107 photo/exhibit.
 
-| source | media bundles | video | audio | docs | (all working) |
-|--------|--------------:|------:|------:|-----:|--------------:|
-| chicago_copa | 20 | 0 | 3 | 146 | 2128 |
-| longbeach_laserfiche | 320 | 4394 | 2441 | 1472 | 443 |
-| muckrock | 28 | 356 | 77 | 291 | 53 |
-| sdpd | 50 | 253 | 649 | 54 | 50 |
-| sfdpa_nextrequest | 31 | 30 | 156 | 56 | 95 |
+| source | media bundles | video | audio | docs | photos | (all working) |
+|--------|--------------:|------:|------:|-----:|-------:|--------------:|
+| chicago_copa | 20 | 0 | 3 | 146 | 0 | 2128 |
+| longbeach_laserfiche | 320 | 4394 | 2441 | 1472 | 1091 | 443 |
+| muckrock | 28 | 356 | 77 | 291 | 0 | 53 |
+| sdpd | 50 | 253 | 649 | 54 | 16 | 50 |
+| sfdpa_nextrequest | 31 | 30 | 156 | 56 | 0 | 95 |
 
 ## chicago_copa — Chicago Civilian Office of Police Accountability
 
-### copa_1087646  ·  V0 A2 D4  ·  score 11
+### copa_1087646  ·  V0 A2 D4 P0  ·  score 11
 case: https://www.chicagocopa.org/case/1087646/
 - [911_audio] EV# 12815 (Att. 29) Redacted
   https://www.chicagocopa.org/wp-content/uploads/2018/01/EV-12815-Att.-29-Redacted.mp3
@@ -33,7 +33,7 @@ case: https://www.chicagocopa.org/case/1087646/
 - [documents] 1087646 Arrest Report Redacted
   https://www.chicagocopa.org/wp-content/uploads/2018/01/1087646-Arrest-Report-Redacted.pdf
 
-### copa_1067572  ·  V0 A1 D14  ·  score 12
+### copa_1067572  ·  V0 A1 D14 P0  ·  score 12
 case: https://www.chicagocopa.org/case/1067572-2/
 - [911_audio] OEMC
   https://www.chicagocopa.org/wp-content/uploads/2016/05/OEMC.mp3
@@ -66,7 +66,7 @@ case: https://www.chicagocopa.org/case/1067572-2/
 - [documents] Arrest Report- D. Harris
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Arrest-Report-D.-Harris.pdf
 
-### copa_2021_0002917  ·  V0 A0 D6  ·  score 21
+### copa_2021_0002917  ·  V0 A0 D6 P0  ·  score 21
 case: https://www.chicagocopa.org/case/2021-0002917/
 - [documents] 2021-0002917_FSR
   https://www.chicagocopa.org/wp-content/uploads/2021/09/2021-0002917_FSR.pdf
@@ -81,7 +81,7 @@ case: https://www.chicagocopa.org/case/2021-0002917/
 - [documents] Log # 2021-2917 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2021/08/OCIR-JE316478-OIS-REDACTED.pdf
 
-### copa_2021_0003709  ·  V0 A0 D7  ·  score 21
+### copa_2021_0003709  ·  V0 A0 D7 P0  ·  score 21
 case: https://www.chicagocopa.org/case/2021-0003709/
 - [documents] 2021-0003709_FSR
   https://www.chicagocopa.org/wp-content/uploads/2021/10/2021-0003709_FSR.pdf
@@ -98,7 +98,7 @@ case: https://www.chicagocopa.org/case/2021-0003709/
 - [documents] Log # 2021-3709 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/10/Original_Case_Incident_Report_REDACTED.pdf
 
-### copa_2021_0001112  ·  V0 A0 D9  ·  score 20
+### copa_2021_0001112  ·  V0 A0 D9 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2021-0001112/
 - [documents] 2021-0001112_FSR
   https://www.chicagocopa.org/wp-content/uploads/2021/04/2021-0001112_FSR.pdf
@@ -119,7 +119,7 @@ case: https://www.chicagocopa.org/case/2021-0001112/
 - [documents] Log # 2021-1112 Original Case Report_REDACTED
   https://www.chicagocopa.org/wp-content/uploads/2021/04/Original-Case-Report_REDACTED.pdf
 
-### copa_2021_0003940  ·  V0 A0 D8  ·  score 20
+### copa_2021_0003940  ·  V0 A0 D8 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2021-0003940/
 - [documents] 2021-003940_Nonconcur
   https://www.chicagocopa.org/wp-content/uploads/2021/11/2021-003940_Nonconcur.pdf
@@ -138,7 +138,7 @@ case: https://www.chicagocopa.org/case/2021-0003940/
 - [documents] Log # 2021-3940 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/11/Case-Report_REDACTED.pdf
 
-### copa_2022_0001369  ·  V0 A0 D7  ·  score 20
+### copa_2022_0001369  ·  V0 A0 D7 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2022-0001369/
 - [documents] 2022-0001369_FSR
   https://www.chicagocopa.org/wp-content/uploads/2022/05/2022-0001369_FSR.pdf
@@ -155,7 +155,7 @@ case: https://www.chicagocopa.org/case/2022-0001369/
 - [documents] Log # 2022-0001369 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2022/04/2022-0001369-20220403-Original-Case-Incident-Report_REDACTED.pdf
 
-### copa_2020_0003466  ·  V0 A0 D18  ·  score 16
+### copa_2020_0003466  ·  V0 A0 D18 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2020-0003466/
 - [documents] 2020-0003466_Concurrence
   https://www.chicagocopa.org/wp-content/uploads/2020/09/2020-0003466_Concurrence.pdf
@@ -194,7 +194,7 @@ case: https://www.chicagocopa.org/case/2020-0003466/
 - [other] Log# 2020-3466 Court Order
   https://www.chicagocopa.org/wp-content/uploads/2020/09/COPAJORDAN-09092020120452.pdf
 
-### copa_2021_0000117  ·  V0 A0 D7  ·  score 16
+### copa_2021_0000117  ·  V0 A0 D7 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0000117/
 - [documents] 2021-0000117_FSR
   https://www.chicagocopa.org/wp-content/uploads/2021/03/2021-0000117_FSR.pdf
@@ -211,7 +211,7 @@ case: https://www.chicagocopa.org/case/2021-0000117/
 - [documents] Log # 2021-0117 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/03/OCIR-RDJE108-060_REDACTED.pdf
 
-### copa_2021_0001076  ·  V0 A0 D11  ·  score 16
+### copa_2021_0001076  ·  V0 A0 D11 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0001076/
 - [documents] 2021-0001076_FSR
   https://www.chicagocopa.org/wp-content/uploads/2021/04/2021-0001076_FSR.pdf
@@ -236,7 +236,7 @@ case: https://www.chicagocopa.org/case/2021-0001076/
 - [documents] Log # 2021-1076 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/04/Case-Report_REDACTED.pdf
 
-### copa_2021_0002862  ·  V0 A0 D4  ·  score 16
+### copa_2021_0002862  ·  V0 A0 D4 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0002862/
 - [bodycam] 2021-2862 COPA RELEASES VIDEO OTHER MATERIALS OF OFFICER-INVOLVED SHOOTING NEAR 4500 SOUTH DREXEL BOULEVARD
   https://www.chicagocopa.org/wp-content/uploads/2021/09/COPA-RELEASES-VIDEO-OTHER-MATERIALS-OF-OFFICER-INVOLVED-SHOOTING-NEAR-4500-SOUTH-DREXEL-BOULEVARD-1.pdf
@@ -247,7 +247,7 @@ case: https://www.chicagocopa.org/case/2021-0002862/
 - [documents] Log # 2021-2862 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/09/OCIR_RD_JE314-144_REDACTED.pdf
 
-### copa_2021_0004309  ·  V0 A0 D3  ·  score 16
+### copa_2021_0004309  ·  V0 A0 D3 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0004309/
 - [bodycam] 2021-4309 COPA RELEASES VIDEO OTHER MATERIALS OF OFFICER INVOLVED SHOOTING NEAR 3900 W. MADISON
   https://www.chicagocopa.org/wp-content/uploads/2021/12/COPA-RELEASES-VIDEO-OTHER-MATERIALS-OF-OFFICER-INVOLVED-SHOOTING-NEAR-3900-W.-MADISON.pdf
@@ -256,7 +256,7 @@ case: https://www.chicagocopa.org/case/2021-0004309/
 - [documents] Log # 2021-4309 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/12/Case-Report-RD-JE-428769_REDACTED.pdf
 
-### copa_2022_0002017  ·  V0 A0 D5  ·  score 16
+### copa_2022_0002017  ·  V0 A0 D5 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2022-0002017/
 - [documents] 2022-0002017_FSR
   https://www.chicagocopa.org/wp-content/uploads/2022/07/2022-0002017_FSR.pdf
@@ -269,7 +269,7 @@ case: https://www.chicagocopa.org/case/2022-0002017/
 - [bodycam] 2022-0002017 COPA RELEASES VIDEOS TO FAMILY OF 13-YEAR-OLD FROM OFFICER-INVOLVED SHOOTING THROUGH FOIA REQUEST-FINAL
   https://www.chicagocopa.org/wp-content/uploads/2022/07/COPA-RELEASES-VIDEOS-TO-FAMILY-OF-13-YEAR-OLD-FROM-OFFICER-INVOLVED-SHOOTING-THROUGH-FOIA-REQUEST-FINAL.pdf
 
-### copa_2022_0003054  ·  V0 A0 D11  ·  score 16
+### copa_2022_0003054  ·  V0 A0 D11 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2022-0003054/
 - [documents] 2022-0003054_FSR
   https://www.chicagocopa.org/wp-content/uploads/2022/09/2022-0003054_FSR.pdf
@@ -294,14 +294,14 @@ case: https://www.chicagocopa.org/case/2022-0003054/
 - [documents] Log #2022-0003054 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2022/09/RD_Case_Incident_Report_JF326913-Redacted.pdf
 
-### copa_2022_0003401  ·  V0 A0 D2  ·  score 16
+### copa_2022_0003401  ·  V0 A0 D2 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2022-0003401/
 - [bodycam] COPA PROHIBITED FROM RELEASING VIDEO & OTHER MATERIALS OF THE OFFICER INVOLVED SHOOTING INCIDENT NEAR 5300 S. MAY
   https://www.chicagocopa.org/wp-content/uploads/2022/09/COPA-PROHIBITED-FROM-RELEASING-VIDEO-OTHER-MATERIALS-OF-THE-OFFICER-INVOLVED-SHOOTING-INCIDENT-NEAR-5300-S.-MAY.pdf
 - [other] 2022-0003401 Court Order
   https://www.chicagocopa.org/wp-content/uploads/2022/09/Jayden-Higgs-Order-to-Stop-COPA-Release-SIgned-Redacted.pdf
 
-### copa_2023_0000239  ·  V0 A0 D4  ·  score 16
+### copa_2023_0000239  ·  V0 A0 D4 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2023-0000239/
 - [bodycam] COPA RELEASES VIDEO & OTHER MATERIALS FROM OFF-DUTY OFFICER INVOLVED SHOOTING NEAR 1300 W. 90th STREET-FINAL
   https://www.chicagocopa.org/wp-content/uploads/2023/02/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-1300-W.-90th-STREET-FINAL.pdf
@@ -312,7 +312,7 @@ case: https://www.chicagocopa.org/case/2023-0000239/
 - [documents] Log #2023-0000239 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2023/02/Case-Report-Redacted.pdf
 
-### copa_2023_0003276  ·  V0 A0 D7  ·  score 16
+### copa_2023_0003276  ·  V0 A0 D7 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2023-0003276/
 - [documents] Log #2023-0003276 Arrest Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/08/082-Arrest_Report_Redacted.pdf
@@ -329,7 +329,7 @@ case: https://www.chicagocopa.org/case/2023-0003276/
 - [documents] Log #2023-0003276 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/08/OCIRJG354594_Redacted.pdf
 
-### copa_2022_0001664  ·  V0 A0 D3  ·  score 15
+### copa_2022_0001664  ·  V0 A0 D3 P0  ·  score 15
 case: https://www.chicagocopa.org/case/2022-0001664/
 - [documents] 2022-0001664_FSR
   https://www.chicagocopa.org/wp-content/uploads/2022/06/2022-0001664_FSR.pdf
@@ -338,7 +338,7 @@ case: https://www.chicagocopa.org/case/2022-0001664/
 - [other] fulgern-06092022144712 Redacted
   https://www.chicagocopa.org/wp-content/uploads/2022/06/fulgern-06092022144712-Redacted.pdf
 
-### copa_2021_0001845  ·  V0 A0 D6  ·  score 11
+### copa_2021_0001845  ·  V0 A0 D6 P0  ·  score 11
 case: https://www.chicagocopa.org/case/2021-0001845/
 - [bodycam] COPA RELEASES VIDEO & OTHER MATERIALS OF OFFICER-INVOLVED NEAR 1500 N. LAWNDALE
   https://www.chicagocopa.org/wp-content/uploads/2021/06/COPA-RELEASES-VIDEO-OTHER-MATERIALS-OF-OFFICER-INVOLVED-NEAR-1500-N.-LAWNDALE.pdf
@@ -353,7 +353,7 @@ case: https://www.chicagocopa.org/case/2021-0001845/
 - [documents] Log # 2021-1845 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/06/Original-Case-Incident-Report-ID-12366892-REDACTED.pdf
 
-### copa_2021_0005001  ·  V0 A0 D10  ·  score 5
+### copa_2021_0005001  ·  V0 A0 D10 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2021-0005001/
 - [documents] 2021-0005001_FSR
   https://www.chicagocopa.org/wp-content/uploads/2022/02/2021-0005001_FSR.pdf
@@ -378,7 +378,7 @@ case: https://www.chicagocopa.org/case/2021-0005001/
 
 ## longbeach_laserfiche — Long Beach Police Department
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2020_0013_saycon_mharloun_o  ·  V1078 A21 D1  ·  score 47
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2020_0013_saycon_mharloun_o  ·  V1078 A21 D1 P4  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198928&dbid=0&repo=LBPD-PUBDOCS
 - [video] ch01-20151214-211731-211811-102000000000
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198955&t=639181745500727638&dbid=0&repo=LBPD-PUBDOCS
@@ -2580,8 +2580,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198928&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198950&t=639181745534479264&dbid=0&repo=LBPD-PUBDOCS
 - [documents] ADM2020-0013 RedBook_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=200030&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=200032&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=200033&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=200034&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=200035&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2020_002_icd2020_001_ramirez_luis_on_or_  ·  V262 A16 D17  ·  score 61
+### longbeach_officer_involved_shootings_ois2020_002_icd2020_001_ramirez_luis_on_or_  ·  V262 A16 D17 P14  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192348&dbid=0&repo=LBPD-PUBDOCS
 - [video] (Clip_1.1)_Ofcr_Involved_Shooting_LB200010062_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192350&t=639181745246632753&dbid=0&repo=LBPD-PUBDOCS
@@ -3173,8 +3181,36 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192348&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192644&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SRB OIS2020-002 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192645&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192652&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192647&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 11_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192648&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 12_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192649&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 13_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192650&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 14_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192651&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192653&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192654&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192655&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192656&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192657&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192658&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192659&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192660&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois_november_2024_5200_atlantic_ave  ·  V186 A0 D3  ·  score 37
+### longbeach_officer_involved_shootings_ois_november_2024_5200_atlantic_ave  ·  V186 A0 D3 P10  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208865&dbid=0&repo=LBPD-PUBDOCS
 - [video] Atlantic Ave Surveillance Vid_Redacted (01-09-25)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208905&t=639181744032688965&dbid=0&repo=LBPD-PUBDOCS
@@ -3554,8 +3590,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208865&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208892&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Call For Service #L243241190_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208893&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208899&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10 (01-16-25)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208934&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208900&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208901&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208902&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208903&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208919&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7 (01-16-25)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208931&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8 (01-16-25)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208932&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9 (01-16-25)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208933&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2021_004_on_or_after_03_03_26  ·  V174 A1 D3  ·  score 51
+### longbeach_officer_involved_shootings_ois2021_004_on_or_after_03_03_26  ·  V174 A1 D3 P10  ·  score 51
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213402&dbid=0&repo=LBPD-PUBDOCS
 - [video] AXON_Flex_2_Video_2021-05-27_0054_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=213404&t=639181745284243723&dbid=0&repo=LBPD-PUBDOCS
@@ -3913,8 +3969,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213402&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213581&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2021-004_SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213582&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213584&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213585&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213625&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213587&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213626&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213627&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213590&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213591&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213592&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213628&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2017_001_uof2017_005_pream_sinuon_samant  ·  V149 A19 D9  ·  score 68
+### longbeach_officer_involved_shootings_ois2017_001_uof2017_005_pream_sinuon_samant  ·  V149 A19 D9 P3  ·  score 68
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204162&dbid=0&repo=LBPD-PUBDOCS
 - [video] CH04-2017-01-15-11-15-06_Redacted@
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204332&t=639181745190509690&dbid=0&repo=LBPD-PUBDOCS
@@ -4270,8 +4346,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204162&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204340&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Taser Event Time Adjustment
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204341&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204343&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204344&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204345&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2022_001_rodriguez_jaime_on_or_after_8_3  ·  V157 A3 D1  ·  score 47
+### longbeach_officer_involved_shootings_ois2022_001_rodriguez_jaime_on_or_after_8_3  ·  V157 A3 D1 P15  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198677&dbid=0&repo=LBPD-PUBDOCS
 - [video] (Clip_1.1)_20220709_000_H264.avi
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198679&t=639181745330657284&dbid=0&repo=LBPD-PUBDOCS
@@ -4595,8 +4677,38 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198677&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198732&t=639181745332018202&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2022-001_CID__Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198789&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198797&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 10_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198791&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 11_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198792&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 12_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198793&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 13_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198794&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 14_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198795&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 15_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198796&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198798&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198799&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198800&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198801&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198802&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198803&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198804&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 9_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198805&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_015_balint_erick_on_or_after_12_27_  ·  V6 A138 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2013_015_balint_erick_on_or_after_12_27_  ·  V6 A138 D1 P8  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=201521&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Camera 10
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=201654&t=639181745046281023&dbid=0&repo=LBPD-PUBDOCS
@@ -4888,8 +5000,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=201521&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=201666&t=639181745046281023&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 130058735_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201668&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201670&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201671&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201672&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201673&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201674&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201675&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201676&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=201677&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois190059335_kinney_delfon  ·  V97 A15 D12  ·  score 50
+### longbeach_officer_involved_shootings_ois190059335_kinney_delfon  ·  V97 A15 D12 P13  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181707&dbid=0&repo=LBPD-PUBDOCS
 - [video] CH_1-2019-10-22-23-38-20_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187762&t=639181744082301327&dbid=0&repo=LBPD-PUBDOCS
@@ -5147,8 +5275,34 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181707&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181796&dbid=0&repo=LBPD-PUBDOCS
 - [documents] WC online Entry Hazlewood_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181797&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1a_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181944&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1b_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181945&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1c_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181946&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1d_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181947&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1e_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181948&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1f_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181949&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1g_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181950&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1h_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181951&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1i_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181952&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181800&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted (2)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181954&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181801&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted (2)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181956&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2020_004_welch_robert_on_or_after_05_16_  ·  V88 A2 D15  ·  score 58
+### longbeach_officer_involved_shootings_ois2020_004_welch_robert_on_or_after_05_16_  ·  V88 A2 D15 P5  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203456&dbid=0&repo=LBPD-PUBDOCS
 - [video] 1_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203468&t=639181745265707191&dbid=0&repo=LBPD-PUBDOCS
@@ -5360,8 +5514,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203456&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203562&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SRB Board Forms_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203563&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203565&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203566&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203567&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203568&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203569&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_150001828_gonzales_joseph  ·  V20 A69 D45  ·  score 64
+### longbeach_officer_involved_shootings_150001828_gonzales_joseph  ·  V20 A69 D45 P16  ·  score 64
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180402&dbid=0&repo=LBPD-PUBDOCS
 - [video] 02110100 no redactions
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180404&dbid=0&repo=LBPD-PUBDOCS
@@ -5631,8 +5795,40 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180402&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180518&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SUMMARY CIT2015-0119_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180519&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1a_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180550&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1b_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180551&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1c_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180552&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1d_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180553&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2a_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180554&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2b_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180555&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2c_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180556&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2d_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180557&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2e_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180558&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2f_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180559&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3a_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180560&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3b_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180561&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3c_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180562&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3d_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180563&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3e_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180564&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3f_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180565&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2017_003_uof_2017_0066_warner_christophe  ·  V75 A11 D11  ·  score 54
+### longbeach_officer_involved_shootings_ois2017_003_uof_2017_0066_warner_christophe  ·  V75 A11 D11 P5  ·  score 54
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204532&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2149139988_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204534&t=639181745210585570&dbid=0&repo=LBPD-PUBDOCS
@@ -5828,8 +6024,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204532&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204627&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Witness phone info_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204628&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204633&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204634&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204635&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204636&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204637&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2021_009_dezotell_daniel_on_or_after_02_  ·  V86 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois2021_009_dezotell_daniel_on_or_after_02_  ·  V86 A0 D1 P5  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202274&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2023-02-06-12-15-30
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202284&t=639181745312318772&dbid=0&repo=LBPD-PUBDOCS
@@ -6005,8 +6211,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202274&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202369&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2021-009_CID_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202276&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202278&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202279&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202280&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202281&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202282&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois19_003_griffin_jordan_on_or_after_3_16_2  ·  V63 A15 D29  ·  score 51
+### longbeach_officer_involved_shootings_ois19_003_griffin_jordan_on_or_after_3_16_2  ·  V63 A15 D29 P8  ·  score 51
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202583&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20190920_0001_0618_101.m4v6
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202587&t=639181744075542797&dbid=0&repo=LBPD-PUBDOCS
@@ -6222,8 +6438,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202583&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202691&dbid=0&repo=LBPD-PUBDOCS
 - [documents] WC entry De Carvalho_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202692&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Frame by Frame_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202695&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202696&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202697&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202698&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202699&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202700&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202701&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Jordan Griffin Booking Photo_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202677&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_0006_lewis_travion_hall_elijah_thom  ·  V60 A11 D9  ·  score 52
+### longbeach_officer_involved_shootings_ois2016_0006_lewis_travion_hall_elijah_thom  ·  V60 A11 D9 P5  ·  score 52
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205276&dbid=0&repo=LBPD-PUBDOCS
 - [video] 15000100_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205278&t=639181745148691255&dbid=0&repo=LBPD-PUBDOCS
@@ -6385,8 +6617,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205276&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205357&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Waiver of involuntary transfer Anguiano
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205358&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205360&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205361&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205362&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205363&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205364&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_008_on_or_after_03_22_26  ·  V11 A58 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2006_008_on_or_after_03_22_26  ·  V11 A58 D1 P15  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213943&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] 12.22.2006 - 16.00.00.076(Camera-10)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=213954&t=639181744681041198&dbid=0&repo=LBPD-PUBDOCS
@@ -6528,8 +6770,38 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213943&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214011&t=639181744682257287&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 060098201 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214015&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214031&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (10)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214017&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (11)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214018&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (12)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214019&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (13)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214020&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (14)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214021&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (15)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214022&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (2)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214023&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (3)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214024&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (4)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214025&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (5)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214026&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (6)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214027&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (7)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214028&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (8)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214029&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo (9)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214030&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2017_0010_sauzo_lopez_damian_antonio_on_  ·  V51 A17 D21  ·  score 61
+### longbeach_officer_involved_shootings_ois2017_0010_sauzo_lopez_damian_antonio_on_  ·  V51 A17 D21 P1  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205134&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20171108_225949_Redacted_2_
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205138&t=639181745203566988&dbid=0&repo=LBPD-PUBDOCS
@@ -6709,8 +6981,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205134&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205224&dbid=0&repo=LBPD-PUBDOCS
 - [documents] MLK 7th St OIS notes DAE_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205225&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205227&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2021_002_on_or_after_11_24_25  ·  V67 A0 D4  ·  score 37
+### longbeach_officer_involved_shootings_ois2021_002_on_or_after_11_24_25  ·  V67 A0 D4 P4  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212234&dbid=0&repo=LBPD-PUBDOCS
 - [video] Ofcr_Involved_Shooting_LB210015272_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=212299&t=639181745273521601&dbid=0&repo=LBPD-PUBDOCS
@@ -6854,8 +7128,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212234&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212307&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2021-002_SRB-2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212309&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212310&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212311&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212312&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_0008_argueta_alberto_on_or_after_05  ·  V49 A13 D3  ·  score 47
+### longbeach_officer_involved_shootings_ois2015_0008_argueta_alberto_on_or_after_05  ·  V49 A13 D3 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196368&dbid=0&repo=LBPD-PUBDOCS
 - [video] 1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196436&t=639181745107346407&dbid=0&repo=LBPD-PUBDOCS
@@ -6987,8 +7269,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196368&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196383&dbid=0&repo=LBPD-PUBDOCS
 - [documents] critical incident review_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196384&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder-redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196386&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2007_001_hernandez_pablo_on_or_after_04_  ·  V55 A5 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2007_001_hernandez_pablo_on_or_after_04_  ·  V55 A5 D1 P3  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207349&dbid=0&repo=LBPD-PUBDOCS
 - [video] Surveillance1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207351&t=639181744696068419&dbid=0&repo=LBPD-PUBDOCS
@@ -7112,8 +7396,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207349&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207410&t=639181744697367021&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 070039730 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207412&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207414&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207415&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207416&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_adm2020_0025_kift_w_sturgeon_a_klein_k_on_or_after_04_30_  ·  V48 A11 D9  ·  score 45
+### longbeach_use_of_force_adm2020_0025_kift_w_sturgeon_a_klein_k_on_or_after_04_30_  ·  V48 A11 D9 P2  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203308&dbid=0&repo=LBPD-PUBDOCS
 - [video] 1 Rangel 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203310&t=639181745576173764&dbid=0&repo=LBPD-PUBDOCS
@@ -7251,8 +7541,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203308&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203376&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Kift Training Records KATS_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203377&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203380&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203381&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2020_001_bounsom_kerry_on_or_after_01_11  ·  V49 A9 D9  ·  score 51
+### longbeach_officer_involved_shootings_ois2020_001_bounsom_kerry_on_or_after_01_11  ·  V49 A9 D9 P10  ·  score 51
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191415&dbid=0&repo=LBPD-PUBDOCS
 - [video] 6794293410790382062_stamp_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191419&t=639181745239779117&dbid=0&repo=LBPD-PUBDOCS
@@ -7390,8 +7684,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191415&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191484&dbid=0&repo=LBPD-PUBDOCS
 - [documents] schroeder rtw docs
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191485&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191503&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 10_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191502&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191504&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191505&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191506&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191507&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191508&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191509&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191510&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 9_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191511&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2021_008_on_or_after_10_08_25  ·  V54 A2 D4  ·  score 51
+### longbeach_officer_involved_shootings_ois2021_008_on_or_after_10_08_25  ·  V54 A2 D4 P5  ·  score 51
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211075&dbid=0&repo=LBPD-PUBDOCS
 - [video] 103121
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211077&t=639181745304284538&dbid=0&repo=LBPD-PUBDOCS
@@ -7513,8 +7827,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211075&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211136&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2021-008_SRB_Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211137&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211139&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211140&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211141&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211142&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211143&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2023_santa_fe_av_23rd_st_on_or_after_12_23_25  ·  V53 A2 D1  ·  score 38
+### longbeach_use_of_force_uof2023_santa_fe_av_23rd_st_on_or_after_12_23_25  ·  V53 A2 D1 P1  ·  score 38
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212348&dbid=0&repo=LBPD-PUBDOCS
 - [video] Administrative_Interview (11 min, 18 sec)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=212355&t=639181746422136752&dbid=0&repo=LBPD-PUBDOCS
@@ -7628,8 +7952,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212348&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=212404&t=639181746423436737&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Case File 230049906_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212406&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212408&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2021_005_on_or_after_09_16_25  ·  V55 A0 D4  ·  score 37
+### longbeach_officer_involved_shootings_ois2021_005_on_or_after_09_16_25  ·  V55 A0 D4 P2  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210924&dbid=0&repo=LBPD-PUBDOCS
 - [video] Long Beach PD - OIS August 8 2021 FINAL 1.0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210926&t=639181745297229419&dbid=0&repo=LBPD-PUBDOCS
@@ -7749,8 +8075,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210924&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210984&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2021-005 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210985&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210987&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210988&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2023_001_on_or_after_09_14_25  ·  V52 A2 D2  ·  score 34
+### longbeach_use_of_force_uof2023_001_on_or_after_09_14_25  ·  V52 A2 D2 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210863&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assault_with_Weapon_LB230006412-10_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210865&t=639181746428852734&dbid=0&repo=LBPD-PUBDOCS
@@ -7864,8 +8194,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210863&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210920&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Case File 230006412_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210921&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210923&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_210006195_loia_anthony  ·  V43 A8 D0  ·  score 39
+### longbeach_officer_involved_shootings_210006195_loia_anthony  ·  V43 A8 D0 P0  ·  score 39
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180244&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Ofcr_Involved_Shooting_LB210006195-1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=180218&t=639181743954350831&dbid=0&repo=LBPD-PUBDOCS
@@ -7970,7 +8302,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180244&dbid=0
 - [interview_audio] Interviews_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=180200&t=639181743955751147&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_009_zerby_douglas_on_or_after_07_24  ·  V27 A22 D16  ·  score 46
+### longbeach_officer_involved_shootings_ois2010_009_zerby_douglas_on_or_after_07_24  ·  V27 A22 D16 P6  ·  score 46
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207924&dbid=0&repo=LBPD-PUBDOCS
 - [video] Anatomical Illustration of Trajectories
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207940&t=639181744888157967&dbid=0&repo=LBPD-PUBDOCS
@@ -8102,8 +8434,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207924&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207990&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Zerby_Timeline – December 12, 2012-withAudioRev3_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207991&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207993&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207994&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207995&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207996&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207997&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207998&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_004_prak_barry_on_or_after_08_23_23  ·  V36 A12 D27  ·  score 63
+### longbeach_officer_involved_shootings_ois2016_004_prak_barry_on_or_after_08_23_23  ·  V36 A12 D27 P3  ·  score 63
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205005&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20160628_094054
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205007&t=639181745172620382&dbid=0&repo=LBPD-PUBDOCS
@@ -8255,8 +8599,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205005&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205078&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Updated PT article
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205079&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205084&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205085&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205086&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2020_003_gomez_catherine_on_or_after_11_  ·  V28 A19 D12  ·  score 50
+### longbeach_officer_involved_shootings_ois2020_003_gomez_catherine_on_or_after_11_  ·  V28 A19 D12 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189484&dbid=0&repo=LBPD-PUBDOCS
 - [video] Ofcr_Involved_Shooting_LB200014838_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189529&t=639181745259315855&dbid=0&repo=LBPD-PUBDOCS
@@ -8376,8 +8726,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189484&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189544&dbid=0&repo=LBPD-PUBDOCS
 - [documents] WC online entry P Chau_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189545&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1 redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189547&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189548&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189549&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4 redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189550&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2014_003_conoscenti_jason_on_or_after_4_  ·  V26 A20 D5  ·  score 61
+### longbeach_officer_involved_shootings_ois2014_003_conoscenti_jason_on_or_after_4_  ·  V26 A20 D5 P1  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192675&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20140427_152725_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192677&t=639181745081132164&dbid=0&repo=LBPD-PUBDOCS
@@ -8481,8 +8839,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192675&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192727&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 14-003 ARS-RCS-Action
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192728&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192730&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_003_gibson_lionel  ·  V31 A14 D28  ·  score 58
+### longbeach_officer_involved_shootings_ois2016_003_gibson_lionel  ·  V31 A14 D28 P8  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189335&dbid=0&repo=LBPD-PUBDOCS
 - [video] 05 07 2016 video
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189337&t=639181745166121500&dbid=0&repo=LBPD-PUBDOCS
@@ -8630,8 +8990,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189335&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189409&dbid=0&repo=LBPD-PUBDOCS
 - [documents] veh reports 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189410&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189412&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189413&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189414&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189415&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189416&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189417&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189418&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189419&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois_2017_002_uof_2017_0050_victor_jorge_on_  ·  V9 A36 D16  ·  score 54
+### longbeach_officer_involved_shootings_ois_2017_002_uof_2017_0050_victor_jorge_on_  ·  V9 A36 D16 P11  ·  score 54
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204422&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] BWC Scott Miller 17 08 31 hours_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204434&t=639181744001162327&dbid=0&repo=LBPD-PUBDOCS
@@ -8755,8 +9131,30 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204422&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204485&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UO - OIS - Rear of E. 220th St. Carson - 01-21-17_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204486&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00001.jpg
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204497&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204489&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204490&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204491&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204492&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204493&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204494&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204495&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204496&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Folded DL photo of Jorge Victor_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204474&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Unfolded DL photo of Jorge Victor_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204487&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_icd2018_003_uof2018_0390_ramos_alan_on_or_after_07_02_23  ·  V42 A2 D5  ·  score 43
+### longbeach_use_of_force_icd2018_003_uof2018_0390_ramos_alan_on_or_after_07_02_23  ·  V42 A2 D5 P1  ·  score 43
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204031&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-11-27-08-02-50_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204034&t=639181745613800857&dbid=0&repo=LBPD-PUBDOCS
@@ -8856,8 +9254,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204031&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204081&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Review Board ICD2018-003_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204082&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204084&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_005_morad_feras_on_or_after_02_21_2  ·  V4 A39 D4  ·  score 60
+### longbeach_officer_involved_shootings_ois2015_005_morad_feras_on_or_after_02_21_2  ·  V4 A39 D4 P17  ·  score 60
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191821&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2021-04-22-09-17-53_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191823&t=639181745130152976&dbid=0&repo=LBPD-PUBDOCS
@@ -8953,8 +9353,42 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191821&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191869&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 15-005 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191870&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191880&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191872&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 11
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191873&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 12
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191874&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 13
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191875&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 14_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191876&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 15_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191877&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 16
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191878&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 17_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191879&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191881&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191882&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191883&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191884&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191885&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191886&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191887&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191888&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_21_21017_talbott_kenneth_on_or_after_02_11_23  ·  V40 A0 D6  ·  score 26
+### longbeach_use_of_force_uof_21_21017_talbott_kenneth_on_or_after_02_11_23  ·  V40 A0 D6 P1  ·  score 26
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202220&dbid=0&repo=LBPD-PUBDOCS
 - [video] Person_with_a_Gun_LB210021017_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202270&t=639181745656626024&dbid=0&repo=LBPD-PUBDOCS
@@ -9048,8 +9482,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202220&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202226&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Lab
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202227&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202229&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_03_27_19_900_blk_harbor_plaza  ·  V28 A11 D9  ·  score 53
+### longbeach_officer_involved_shootings_03_27_19_900_blk_harbor_plaza  ·  V28 A11 D9 P0  ·  score 53
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=1630&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20190209_232627
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=1632&t=639181743880341190&dbid=0&repo=LBPD-PUBDOCS
@@ -9148,7 +9584,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=1630&dbid=0&r
 - [documents] Sriwanthana LOT_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=159472&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2014_0010_viramontes_carey_on_or_after_0  ·  V27 A12 D12  ·  score 47
+### longbeach_officer_involved_shootings_ois2014_0010_viramontes_carey_on_or_after_0  ·  V27 A12 D12 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192234&dbid=0&repo=LBPD-PUBDOCS
 - [video] ch00000000000001-141121-121500-121500-12p001000000_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192246&t=639181745075716272&dbid=0&repo=LBPD-PUBDOCS
@@ -9252,8 +9688,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192234&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192286&dbid=0&repo=LBPD-PUBDOCS
 - [documents] State Report 14-026_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192287&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192289&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0079_thompson_amos_on_or_after_7_13_22  ·  V38 A1 D8  ·  score 34
+### longbeach_use_of_force_uof2020_0079_thompson_amos_on_or_after_7_13_22  ·  V38 A1 D8 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198207&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00055
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198243&t=639181746337738292&dbid=0&repo=LBPD-PUBDOCS
@@ -9349,8 +9787,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198207&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198255&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Sheriff Laboratory Exam Report
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198256&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198258&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2018_004_mariscal_anthony_on_or_after_04  ·  V30 A7 D12  ·  score 68
+### longbeach_officer_involved_shootings_ois2018_004_mariscal_anthony_on_or_after_04  ·  V30 A7 D12 P9  ·  score 68
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203246&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2023-04-06-14-04-22
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203248&t=639181745234575627&dbid=0&repo=LBPD-PUBDOCS
@@ -9450,8 +9890,26 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203246&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203296&dbid=0&repo=LBPD-PUBDOCS
 - [documents] WC online Brammer_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203297&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203299&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203300&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203301&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203302&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203303&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203304&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203305&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 8_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 9_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203307&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_001_sianez_erick_silva_david_on_or_  ·  V13 A23 D10  ·  score 58
+### longbeach_officer_involved_shootings_ois2011_001_sianez_erick_silva_david_on_or_  ·  V13 A23 D10 P10  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208398&dbid=0&repo=LBPD-PUBDOCS
 - [video] Jail Surveillance Vid 1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208407&t=639181744897322113&dbid=0&repo=LBPD-PUBDOCS
@@ -9545,8 +10003,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208398&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208445&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Sianez 020111 Booking
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208446&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208448&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208449&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208450&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208451&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208452&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208453&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208454&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208455&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208456&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208457&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2018_003_macfarlane_donald_on_or_after_0  ·  V25 A10 D5  ·  score 68
+### longbeach_officer_involved_shootings_ois2018_003_macfarlane_donald_on_or_after_0  ·  V25 A10 D5 P7  ·  score 68
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204371&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2023-07-20-09-34-14
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204373&t=639181745229207194&dbid=0&repo=LBPD-PUBDOCS
@@ -9628,8 +10106,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204371&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204412&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2018-003 SRB Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204413&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204415&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204416&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204417&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204418&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204419&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204420&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204421&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2001_002_on_or_after_05_26_25  ·  V0 A34 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2001_002_on_or_after_05_26_25  ·  V0 A34 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209441&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #791 2-18-01 Radio  1751-1851
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209443&t=639181744434019424&dbid=0&repo=LBPD-PUBDOCS
@@ -9701,8 +10193,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209441&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209476&t=639181744434069340&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 010013870 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209478&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209480&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209481&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois_03_05_2023_5200_block_of_atlantic_on_or  ·  V33 A0 D0  ·  score 22
+### longbeach_officer_involved_shootings_ois_03_05_2023_5200_block_of_atlantic_on_or  ·  V33 A0 D0 P0  ·  score 22
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202930&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Ofcr_Involved_Shooting_LB230011822 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202932&t=639181743995033071&dbid=0&repo=LBPD-PUBDOCS
@@ -9771,7 +10267,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202930&dbid=0
 - [bodycam_or_incident_video] Ofcr_Involved_Shooting_LB230011822-9_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202963&t=639181743995083057&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_002_elenes_andrew_on_or_after_7_3_2  ·  V1 A31 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2015_002_elenes_andrew_on_or_after_7_3_2  ·  V1 A31 D3 P7  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198129&dbid=0&repo=LBPD-PUBDOCS
 - [video] KCBS Video of Arrest at W 14th
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198159&t=639181745119505050&dbid=0&repo=LBPD-PUBDOCS
@@ -9843,8 +10339,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198129&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198165&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 15-002 Shooting Review Board_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198166&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198168&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198169&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198170&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198171&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198172&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198173&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198174&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2023_23_22288_flood_thomas_on_or_after_06_05_24  ·  V31 A1 D1  ·  score 34
+### longbeach_use_of_force_uof2023_23_22288_flood_thomas_on_or_after_06_05_24  ·  V31 A1 D1 P2  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207642&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2023-05-08_0103_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207644&t=639181746416893694&dbid=0&repo=LBPD-PUBDOCS
@@ -9912,8 +10422,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207642&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207645&t=639181746416893694&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Case File 230022288_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207677&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207679&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207680&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2022_0075_jorgensen_matthew  ·  V32 A0 D7  ·  score 24
+### longbeach_use_of_force_uof2022_0075_jorgensen_matthew  ·  V32 A0 D7 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203916&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assault_with_Weapon_LB220057229_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203958&t=639181746406071578&dbid=0&repo=LBPD-PUBDOCS
@@ -9993,8 +10507,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203916&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203923&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF2022-0075_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203924&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203926&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_adm2004_0234_reed_keyante_on_or_after_12_27  ·  V1 A30 D2  ·  score 47
+### longbeach_officer_involved_shootings_adm2004_0234_reed_keyante_on_or_after_12_27  ·  V1 A30 D2 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206636&dbid=0&repo=LBPD-PUBDOCS
 - [video] OIS  8-31 Quicktime_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206660&t=639181743966727866&dbid=0&repo=LBPD-PUBDOCS
@@ -10062,8 +10578,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206636&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206671&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 04-0234 Red Book_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206670&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206673&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_008_pineiro_antonio_on_or_after_11_  ·  V0 A31 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2002_008_pineiro_antonio_on_or_after_11_  ·  V0 A31 D2 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205422&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #1505 998 5-30-02 Pacific Ave (2)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205424&t=639181744498578145&dbid=0&repo=LBPD-PUBDOCS
@@ -10131,8 +10649,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205422&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205456&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Ofc Johnston Shooting Report Continued
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205457&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205459&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205460&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2024_7th_st_olive_av_on_or_after_06_29_25  ·  V30 A1 D1  ·  score 34
+### longbeach_use_of_force_uof2024_7th_st_olive_av_on_or_after_06_29_25  ·  V30 A1 D1 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209563&dbid=0&repo=LBPD-PUBDOCS
 - [video] 487_Investigation_UOF__Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209566&t=639181746441602918&dbid=0&repo=LBPD-PUBDOCS
@@ -10198,8 +10720,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209563&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209567&t=639181746441702935&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 240013010 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209597&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209599&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_007_hunt_derrick_on_of_after_05_15_  ·  V7 A23 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2015_007_hunt_derrick_on_of_after_05_15_  ·  V7 A23 D1 P1  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196283&dbid=0&repo=LBPD-PUBDOCS
 - [video] .img_00001_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196343&t=639181745142188730&dbid=0&repo=LBPD-PUBDOCS
@@ -10263,8 +10787,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196283&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196307&t=639181745142238722&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 150048058 Case File redacted_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196315&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1 redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196317&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_006_arroyo_eric_on_or_after_02_27_2  ·  V0 A30 D8  ·  score 36
+### longbeach_officer_involved_shootings_ois2015_006_arroyo_eric_on_or_after_02_27_2  ·  V0 A30 D8 P17  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206847&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 150036371 Suspect Phone Call at SMMC 061615_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206907&t=639181745136755293&dbid=0&repo=LBPD-PUBDOCS
@@ -10342,8 +10868,42 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206847&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206887&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Post OIS Range Qual Deneen_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206886&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206889&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206890&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo11
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206891&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo12
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206892&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo13
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206893&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo14
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206894&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo15
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206895&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo16
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206896&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo17
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206897&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo18
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206898&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206899&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206900&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206901&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206902&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206903&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206904&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206905&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2022_0022_ohare_shawn_on_or_after_05_15_23  ·  V30 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2022_0022_ohare_shawn_on_or_after_05_15_23  ·  V30 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203417&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2022-03-16_0743_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203419&t=639181746403190768&dbid=0&repo=LBPD-PUBDOCS
@@ -10413,8 +10973,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203417&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203452&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203453&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203455&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_160056538_romero_jose  ·  V4 A25 D5  ·  score 61
+### longbeach_officer_involved_shootings_160056538_romero_jose  ·  V4 A25 D5 P2  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187687&dbid=0&repo=LBPD-PUBDOCS
 - [video] 16-56538-1_Redacted_1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187689&t=639181743951693960&dbid=0&repo=LBPD-PUBDOCS
@@ -10486,8 +11048,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187687&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187722&dbid=0&repo=LBPD-PUBDOCS
 - [documents] review board docs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187724&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187726&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187727&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_008_lopez_ismael_on_or_after_06_24_  ·  V8 A20 D5  ·  score 58
+### longbeach_officer_involved_shootings_ois2011_008_lopez_ismael_on_or_after_06_24_  ·  V8 A20 D5 P7  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207776&dbid=0&repo=LBPD-PUBDOCS
 - [video] Surveillance Vid 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207785&t=639181744924682300&dbid=0&repo=LBPD-PUBDOCS
@@ -10555,8 +11121,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207776&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207810&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207811&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207813&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207814&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207815&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207816&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207817&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207818&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207819&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_005_house_jonte_metcalf_denzell_on_  ·  V10 A18 D10  ·  score 47
+### longbeach_officer_involved_shootings_ois2012_005_house_jonte_metcalf_denzell_on_  ·  V10 A18 D10 P10  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207682&dbid=0&repo=LBPD-PUBDOCS
 - [video] 05482 3_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207684&t=639181744946394248&dbid=0&repo=LBPD-PUBDOCS
@@ -10634,8 +11214,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207682&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207721&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207722&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207724&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207725&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207726&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207727&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4 (2)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207728&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207729&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207730&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207731&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207732&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207733&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_001_byrd_marcella_on_or_after_04_02  ·  V7 A19 D2  ·  score 58
+### longbeach_officer_involved_shootings_ois2002_001_byrd_marcella_on_or_after_04_02  ·  V7 A19 D2 P1  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209204&dbid=0&repo=LBPD-PUBDOCS
 - [video] Store Surveillance Vid #1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209209&t=639181744466242199&dbid=0&repo=LBPD-PUBDOCS
@@ -10693,8 +11293,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209204&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209233&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 02-01 Powerpoint_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209234&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209236&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0284  ·  V8 A18 D2  ·  score 45
+### longbeach_use_of_force_uof2018_0284  ·  V8 A18 D2 P1  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180245&dbid=0&repo=LBPD-PUBDOCS
 - [video] 1 Plot West
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=180247&t=639181746221059956&dbid=0&repo=LBPD-PUBDOCS
@@ -10752,8 +11354,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180245&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180274&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Redbook UOF2018-0284_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180275&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180277&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_0005_doe_john_on_or_after_05_01_2023  ·  V26 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2021_0005_doe_john_on_or_after_05_01_2023  ·  V26 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203382&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20210328_001232_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203384&t=639181746385810836&dbid=0&repo=LBPD-PUBDOCS
@@ -10815,8 +11419,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203382&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203413&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20210014432__XX_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203414&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203416&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_2019_066  ·  V26 A0 D1  ·  score 24
+### longbeach_use_of_force_uof_2019_066  ·  V26 A0 D1 P9  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=162325&dbid=0&repo=LBPD-PUBDOCS
 - [video] initial Unknown_Trouble_LB190033172-20_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=162339&t=639181745648625437&dbid=0&repo=LBPD-PUBDOCS
@@ -10872,8 +11478,26 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=162325&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=162364&t=639181745648675342&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162327&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00005
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162329&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00006
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162330&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00007
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162331&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00008
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162332&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00009
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162333&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00010
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162334&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00011
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162335&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00012
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162336&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00013
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=162337&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_005_seng_george_on_or_after_07_16_2  ·  V8 A17 D4  ·  score 61
+### longbeach_officer_involved_shootings_ois2010_005_seng_george_on_or_after_07_16_2  ·  V8 A17 D4 P6  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207885&dbid=0&repo=LBPD-PUBDOCS
 - [video] ABC7, KTLA5, NBC4 News Reports
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207890&t=639181744872091378&dbid=0&repo=LBPD-PUBDOCS
@@ -10933,8 +11557,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207885&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207915&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 10-05 Board_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207916&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207918&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207919&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207920&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207921&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207922&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207923&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_007_on_or_after_12_08_25  ·  V10 A15 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2016_007_on_or_after_12_08_25  ·  V10 A15 D3 P2  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212313&dbid=0&repo=LBPD-PUBDOCS
 - [video] CH03-2016-10-07-10-31-21
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=212315&t=639181745179973897&dbid=0&repo=LBPD-PUBDOCS
@@ -10992,8 +11628,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=212313&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212342&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 16-007 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212343&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212345&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212346&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_21_12851_lee_christina_on_or_after_02_04_24  ·  V25 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2021_21_12851_lee_christina_on_or_after_02_04_24  ·  V25 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206791&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assault_with_Weapon_LB210012851_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206817&t=639181746367160534&dbid=0&repo=LBPD-PUBDOCS
@@ -11053,8 +11693,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206791&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206821&dbid=0&repo=LBPD-PUBDOCS
 - [documents] CFS_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206822&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206824&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_21_60132_arnold_brandon_on_or_after_04_02_24  ·  V25 A0 D1  ·  score 24
+### longbeach_use_of_force_uof2021_21_60132_arnold_brandon_on_or_after_04_02_24  ·  V25 A0 D1 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207250&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2021-12-17_1551_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207252&t=639181746392153479&dbid=0&repo=LBPD-PUBDOCS
@@ -11108,8 +11750,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207250&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207276&t=639181746392203491&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 210060132 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207278&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207280&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2023_021_on_or_after_09_21_25  ·  V25 A0 D2  ·  score 24
+### longbeach_use_of_force_uof2023_021_on_or_after_09_21_25  ·  V25 A0 D2 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210989&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assist_Fire_LB230027782
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211014&t=639181746436080428&dbid=0&repo=LBPD-PUBDOCS
@@ -11165,8 +11809,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210989&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211017&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR#230027782 BTR_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211018&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211020&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_004_hunnewell_david_on_or_after_12_  ·  V3 A21 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2005_004_hunnewell_david_on_or_after_12_  ·  V3 A21 D3 P3  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208709&dbid=0&repo=LBPD-PUBDOCS
 - [video] Damaged Car Vid 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208712&t=639181744595829395&dbid=0&repo=LBPD-PUBDOCS
@@ -11222,8 +11868,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208709&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208737&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Powerpoint OIS 05-04_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208738&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208740&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208741&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208742&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_021_woods_tyler_on_or_after_03_26_2  ·  V6 A18 D10  ·  score 54
+### longbeach_officer_involved_shootings_ois2013_021_woods_tyler_on_or_after_03_26_2  ·  V6 A18 D10 P10  ·  score 54
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207174&dbid=0&repo=LBPD-PUBDOCS
 - [video] Courtyard just before OIS
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207191&t=639181745070585513&dbid=0&repo=LBPD-PUBDOCS
@@ -11293,8 +11945,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207174&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207209&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207210&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207212&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207213&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207214&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207215&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207216&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207217&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207218&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207219&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207220&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207221&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois04_07_giammona_pietro_on_or_after_06_06_  ·  V16 A7 D2  ·  score 58
+### longbeach_officer_involved_shootings_ois04_07_giammona_pietro_on_or_after_06_06_  ·  V16 A7 D2 P6  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196502&dbid=0&repo=LBPD-PUBDOCS
 - [video] 17.42.55_17.47.59_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196504&t=639181744042908981&dbid=0&repo=LBPD-PUBDOCS
@@ -11346,8 +12018,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196502&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196528&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_0407_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196529&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196531&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196532&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196533&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196534&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196535&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196536&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois_2017_008_uof2017_0122_clark_ronald_on_o  ·  V16 A7 D34  ·  score 49
+### longbeach_officer_involved_shootings_ois_2017_008_uof2017_0122_clark_ronald_on_o  ·  V16 A7 D34 P2  ·  score 49
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205466&dbid=0&repo=LBPD-PUBDOCS
 - [video] 10_149_5824_06a7d691-e2af-4e26-995a-7999e6241e49_7_42791_1512165370447_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205468&t=639181744008226672&dbid=0&repo=LBPD-PUBDOCS
@@ -11463,8 +12147,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205466&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205518&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF Signed form
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205519&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205527&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205528&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_4620_tong_khleoum_on_or_after_04_12_22  ·  V23 A0 D6  ·  score 24
+### longbeach_use_of_force_uof2021_4620_tong_khleoum_on_or_after_04_12_22  ·  V23 A0 D6 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192290&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2021-01-28_0413_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192292&t=639181746397660644&dbid=0&repo=LBPD-PUBDOCS
@@ -11524,8 +12212,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192290&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192320&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Lab Analysis_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192321&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192323&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2017_005_avila_juan_on_or_after_08_28_23  ·  V17 A5 D18  ·  score 63
+### longbeach_officer_involved_shootings_ois2017_005_avila_juan_on_or_after_08_28_23  ·  V17 A5 D18 P3  ·  score 63
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205087&dbid=0&repo=LBPD-PUBDOCS
 - [video] cam 1,2,3_CH1_944_480_10fps_170425_064000_170425_072440_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205098&t=639181745218356008&dbid=0&repo=LBPD-PUBDOCS
@@ -11607,8 +12297,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205087&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205129&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205127&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205131&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205132&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205133&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_012_davis_tyrone_on_or_after_04_21_  ·  V0 A22 D14  ·  score 50
+### longbeach_officer_involved_shootings_ois2013_012_davis_tyrone_on_or_after_04_21_  ·  V0 A22 D14 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207417&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_1011-072213_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207422&t=639181745028591177&dbid=0&repo=LBPD-PUBDOCS
@@ -11682,8 +12378,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207417&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207454&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Witness9 Transcripts_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207455&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207457&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207458&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207459&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0024_cit2018_0024  ·  V4 A18 D4  ·  score 48
+### longbeach_use_of_force_uof2018_0024_cit2018_0024  ·  V4 A18 D4 P1  ·  score 48
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181913&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] BWC 1715 hours (Addenda #6)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=181916&t=639181746175549802&dbid=0&repo=LBPD-PUBDOCS
@@ -11737,8 +12439,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181913&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181940&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Red Book CIT2018-0024_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181941&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181943&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_018_cit2013_0208_jordan_donte_on_or  ·  V4 A18 D10  ·  score 47
+### longbeach_officer_involved_shootings_ois2013_018_cit2013_0208_jordan_donte_on_or  ·  V4 A18 D10 P6  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207109&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Camera 11_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207116&t=639181745060013442&dbid=0&repo=LBPD-PUBDOCS
@@ -11804,8 +12508,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207109&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207142&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 13-018 board forms (Jordan)
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207143&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207145&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207146&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207147&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207148&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207149&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207150&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2013_0273_cit2013_0145_lopez_porfirio_on_or_after_01_1  ·  V4 A18 D4  ·  score 45
+### longbeach_use_of_force_uof2013_0273_cit2013_0145_lopez_porfirio_on_or_after_01_1  ·  V4 A18 D4 P3  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206704&dbid=0&repo=LBPD-PUBDOCS
 - [video] Cell Phone Video 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206710&t=639181745682929586&dbid=0&repo=LBPD-PUBDOCS
@@ -11859,8 +12575,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206704&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206731&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Red Book-CIT2013-0145_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206732&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206734&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206735&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206736&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_ia_case_06_0346_on_or_after_02  ·  V0 A22 D1  ·  score 12
+### longbeach_sustained_sexual_assault_and_dishonesty_ia_case_06_0346_on_or_after_02  ·  V0 A22 D1 P0  ·  score 12
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192127&dbid=0&repo=LBPD-PUBDOCS
 - [audio] D1 Track01_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192129&t=639181745545878325&dbid=0&repo=LBPD-PUBDOCS
@@ -11909,7 +12631,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192127&dbid=0
 - [documents] 06-0346 Red Book_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192152&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2022_0075_jorgensen_matthew_2_on_or_after_06_14_23  ·  V22 A0 D0  ·  score 9
+### longbeach_use_of_force_uof2022_0075_jorgensen_matthew_2_on_or_after_06_14_23  ·  V22 A0 D0 P0  ·  score 9
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204006&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assault_with_Weapon_LB220057229-10_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204012&t=639181746411526448&dbid=0&repo=LBPD-PUBDOCS
@@ -11956,7 +12678,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204006&dbid=0
 - [video] AXON_Flex_2_Video_2022-11-22_2138_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204011&t=639181746411526448&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_006_vasquez_juan_on_or_after_04_29_  ·  V5 A16 D4  ·  score 58
+### longbeach_officer_involved_shootings_ois2013_006_vasquez_juan_on_or_after_04_29_  ·  V5 A16 D4 P8  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207461&dbid=0&repo=LBPD-PUBDOCS
 - [video] Liquor Store Surveillance_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207467&t=639181745009430354&dbid=0&repo=LBPD-PUBDOCS
@@ -12008,8 +12730,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207461&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207487&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc docs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207488&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207490&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207491&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207492&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207493&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207494&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207495&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207496&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207497&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_011_on_or_after_09_24_25  ·  V0 A21 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_011_on_or_after_09_24_25  ·  V0 A21 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211021&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 911 Call 1702 5 22 98 Phones Only_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211023&t=639181744334371719&dbid=0&repo=LBPD-PUBDOCS
@@ -12055,8 +12793,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211021&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211043&t=639181744334421711&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980039684 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211045&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211047&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211048&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_adm2020_0020  ·  V18 A2 D21  ·  score 33
+### longbeach_use_of_force_adm2020_0020  ·  V18 A2 D21 P2  ·  score 33
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171230&dbid=0&repo=LBPD-PUBDOCS
 - [video] #1 CCTV of Mr Lopez parking his vehicle and walking southbound Pine Av 1730 hrs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=171232&t=639181745557597738&dbid=0&repo=LBPD-PUBDOCS
@@ -12140,8 +12882,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171230&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171272&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF2020-0014 - Do UOF Blue Team
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171273&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Bottles Thrown_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171275&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Mr Lopez_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171276&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0354_fabian_karen_on_or_after_7_12_22  ·  V20 A0 D6  ·  score 24
+### longbeach_use_of_force_uof2020_0354_fabian_karen_on_or_after_7_12_22  ·  V20 A0 D6 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198176&dbid=0&repo=LBPD-PUBDOCS
 - [video] 23103_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198191&t=639181746356600566&dbid=0&repo=LBPD-PUBDOCS
@@ -12195,8 +12941,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198176&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198182&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Lab Analysis_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198183&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198185&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_016_delreal_john_on_or_after_04_08_  ·  V11 A8 D11  ·  score 58
+### longbeach_officer_involved_shootings_ois2013_016_delreal_john_on_or_after_04_08_  ·  V11 A8 D11 P3  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207281&dbid=0&repo=LBPD-PUBDOCS
 - [video] 1620 Making the Deal_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207283&t=639181745054113523&dbid=0&repo=LBPD-PUBDOCS
@@ -12258,8 +13006,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207281&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207312&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207313&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207315&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207316&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207317&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_001_williams_theo_on_or_after_10_23  ·  V0 A19 D1  ·  score 42
+### longbeach_officer_involved_shootings_ois2004_001_williams_theo_on_or_after_10_23  ·  V0 A19 D1 P0  ·  score 42
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208507&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 1-17-04 Phones and Radio_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208509&t=639181744547907039&dbid=0&repo=LBPD-PUBDOCS
@@ -12302,7 +13056,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208507&dbid=0
 - [documents] 040004560 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208529&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_001_boyce_cory_on_or_after_06_07_22  ·  V0 A19 D9  ·  score 36
+### longbeach_officer_involved_shootings_ois2016_001_boyce_cory_on_or_after_06_07_22  ·  V0 A19 D9 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196558&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 802_0020_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196560&t=639181745155318787&dbid=0&repo=LBPD-PUBDOCS
@@ -12360,8 +13114,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196558&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196587&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SIM card from BLU redacted_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196588&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196590&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2004_0109_platt_vincent_on_  ·  V0 A19 D1  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2004_0109_platt_vincent_on_  ·  V0 A19 D1 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205365&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 04-0109  Tape 12A Attny_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205367&t=639181745460268052&dbid=0&repo=LBPD-PUBDOCS
@@ -12404,7 +13160,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205365&dbid=0
 - [documents] Red Book 04-0109_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205387&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_004_williams_wesley_on_or_after_09_  ·  V0 A18 D3  ·  score 50
+### longbeach_officer_involved_shootings_ois2008_004_williams_wesley_on_or_after_09_  ·  V0 A18 D3 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208289&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 2ND CP 417 SHOTS FIRED_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208291&t=639181744736468608&dbid=0&repo=LBPD-PUBDOCS
@@ -12448,8 +13204,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208289&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208311&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2008-004 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208312&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208314&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208315&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_005_mosesue_roketi_on_or_after_09_1  ·  V0 A18 D3  ·  score 46
+### longbeach_officer_involved_shootings_ois2008_005_mosesue_roketi_on_or_after_09_1  ·  V0 A18 D3 P3  ·  score 46
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208347&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 050508c1925_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208349&t=639181744742552116&dbid=0&repo=LBPD-PUBDOCS
@@ -12493,8 +13253,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208347&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208369&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_talkingpoints2008 (rev)052008 Press Conference_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208370&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208372&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208373&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208374&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0038_rome_marilyn_on_or_after_01_30_22  ·  V16 A2 D6  ·  score 45
+### longbeach_use_of_force_uof2019_0038_rome_marilyn_on_or_after_01_30_22  ·  V16 A2 D6 P1  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191573&dbid=0&repo=LBPD-PUBDOCS
 - [video] Burglary_LB190011709
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191590&t=639181746261358643&dbid=0&repo=LBPD-PUBDOCS
@@ -12544,8 +13310,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191573&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191598&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191599&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191601&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_008_05_71641_on_or_after_12_17_24  ·  V10 A7 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2005_008_05_71641_on_or_after_12_17_24  ·  V10 A7 D1 P2  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208762&dbid=0&repo=LBPD-PUBDOCS
 - [video] Surveillance Vid #1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208767&t=639181744616608863&dbid=0&repo=LBPD-PUBDOCS
@@ -12583,8 +13351,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208762&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208780&t=639181744616658840&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 050071641 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208782&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208784&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208785&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_010_askov_charles_on_or_after_03_30  ·  V1 A16 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2005_010_askov_charles_on_or_after_03_30  ·  V1 A16 D1 P7  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209160&dbid=0&repo=LBPD-PUBDOCS
 - [video] OIS 05-010 DR 05-73678 - Surveillance Vid
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209169&t=639181744627086527&dbid=0&repo=LBPD-PUBDOCS
@@ -12622,8 +13394,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209160&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209178&t=639181744627136523&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 050073678 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209180&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209182&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209183&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209184&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209185&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209186&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209187&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209188&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_008_on_or_after_04_13_25  ·  V0 A17 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2003_008_on_or_after_04_13_25  ·  V0 A17 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209261&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Tape #1 - Side 2
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209263&t=639181744527846135&dbid=0&repo=LBPD-PUBDOCS
@@ -12661,8 +13447,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209261&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209279&t=639181744527896124&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 030034980 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209281&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209283&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2018_002_perez_luis_on_or_after_9_13_23  ·  V9 A7 D6  ·  score 66
+### longbeach_officer_involved_shootings_ois2018_002_perez_luis_on_or_after_9_13_23  ·  V9 A7 D6 P2  ·  score 66
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205228&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Brady Vriens 2 BWC_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205230&t=639181745223764157&dbid=0&repo=LBPD-PUBDOCS
@@ -12708,8 +13496,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205228&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205251&dbid=0&repo=LBPD-PUBDOCS
 - [documents] WC Entry Guzman_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205252&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205254&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205255&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois14_004_cit2014_0112_brown_travis_on_or_a  ·  V5 A11 D11  ·  score 58
+### longbeach_officer_involved_shootings_ois14_004_cit2014_0112_brown_travis_on_or_a  ·  V5 A11 D11 P5  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192756&dbid=0&repo=LBPD-PUBDOCS
 - [video] PT Footage LBCC Crime Scene Tape being put up
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192768&t=639181744070212097&dbid=0&repo=LBPD-PUBDOCS
@@ -12765,8 +13557,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192756&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192784&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Opening Ltr to Citizen_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192785&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted 1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192787&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192788&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted 3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192789&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted 4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192790&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted 5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192791&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1999_011_on_or_after_07_20_25  ·  V0 A16 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1999_011_on_or_after_07_20_25  ·  V0 A16 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209667&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio 12 21 99 2243hrs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209669&t=639181744373967610&dbid=0&repo=LBPD-PUBDOCS
@@ -12802,8 +13604,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209667&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209684&t=639181744373967610&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 990095375 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209686&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209688&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_003_morejon_hector_on_or_after_03_0  ·  V3 A13 D12  ·  score 47
+### longbeach_officer_involved_shootings_ois2015_003_morejon_hector_on_or_after_03_0  ·  V3 A13 D12 P7  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206972&dbid=0&repo=LBPD-PUBDOCS
 - [video] Edgar Rodarte part1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206983&t=639181745124761586&dbid=0&repo=LBPD-PUBDOCS
@@ -12861,8 +13665,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206972&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207001&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 15-003 Board_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207002&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207004&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207005&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207006&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207007&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207008&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207009&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207010&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2007_009_stevens_kami_on_or_after_03_24_  ·  V0 A16 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2007_009_stevens_kami_on_or_after_03_24_  ·  V0 A16 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207151&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_-L070041538-_phone__Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207153&t=639181744716057613&dbid=0&repo=LBPD-PUBDOCS
@@ -12900,8 +13718,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207151&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207170&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS Board KamiStevens_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207171&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207173&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_003_zepeda_jesus_quintero_on_or_aft  ·  V4 A11 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2006_003_zepeda_jesus_quintero_on_or_aft  ·  V4 A11 D1 P1  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208530&dbid=0&repo=LBPD-PUBDOCS
 - [video] DSCN1481_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208534&t=639181744658281661&dbid=0&repo=LBPD-PUBDOCS
@@ -12935,8 +13755,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208530&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208546&t=639181744658281661&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 060034412 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208548&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208550&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_004_wilson_terrance_on_or_after_9_1  ·  V9 A6 D1  ·  score 58
+### longbeach_officer_involved_shootings_ois2006_004_wilson_terrance_on_or_after_9_1  ·  V9 A6 D1 P2  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198873&dbid=0&repo=LBPD-PUBDOCS
 - [video] 0659800
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198878&t=639181744663826251&dbid=0&repo=LBPD-PUBDOCS
@@ -12970,8 +13792,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198873&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198887&t=639181744663826251&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 060062091 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198891&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198893&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198894&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_090038893_rodriguez_ernest  ·  V0 A15 D5  ·  score 50
+### longbeach_officer_involved_shootings_090038893_rodriguez_ernest  ·  V0 A15 D5 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181030&dbid=0&repo=LBPD-PUBDOCS
 - [audio] BG_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181032&dbid=0&repo=LBPD-PUBDOCS
@@ -13013,8 +13839,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181030&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181051&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 2nd Street_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181052&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181054&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_003_tolbert_rodney_on_or_after_03_2  ·  V0 A15 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_003_tolbert_rodney_on_or_after_03_2  ·  V0 A15 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202864&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #305 2-7-03 family_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202866&t=639181744512205329&dbid=0&repo=LBPD-PUBDOCS
@@ -13050,8 +13878,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202864&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202882&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 030011757 Case File2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202883&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202885&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_009_12_83123_on_or_after_05_07_24  ·  V0 A15 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2012_009_12_83123_on_or_after_05_07_24  ·  V0 A15 D1 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207539&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_0270-122912-0450-hours-1st-call-of-citizen-reporting-s_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207541&t=639181744969813049&dbid=0&repo=LBPD-PUBDOCS
@@ -13085,8 +13915,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207539&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207555&t=639181744969813049&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 120083123_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207557&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207559&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207560&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207561&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_icd2015_003_ornelas_manuel_on_or_after_02_04_22  ·  V8 A7 D5  ·  score 45
+### longbeach_use_of_force_icd2015_003_ornelas_manuel_on_or_after_02_04_22  ·  V8 A7 D5 P6  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191622&dbid=0&repo=LBPD-PUBDOCS
 - [video] Ladgoa F_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191630&t=639181745607617249&dbid=0&repo=LBPD-PUBDOCS
@@ -13128,8 +13964,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191622&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191643&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Location Details_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191644&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191646&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191647&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191648&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191649&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191650&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191651&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0264  ·  V13 A2 D5  ·  score 37
+### longbeach_use_of_force_uof2019_0264  ·  V13 A2 D5 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180010&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-12-15-09-52-14
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=180012&t=639181746288480954&dbid=0&repo=LBPD-PUBDOCS
@@ -13171,8 +14019,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180010&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180031&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Segura FI_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180032&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180034&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2012_0022_on_or_after_08_19  ·  V0 A15 D1  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2012_0022_on_or_after_08_19  ·  V0 A15 D1 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208173&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] 01-13-12 - Witness 2 IA Interview_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208175&t=639181745473449682&dbid=0&repo=LBPD-PUBDOCS
@@ -13207,7 +14057,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208173&dbid=0
 - [documents] Red Book ADM2012-022_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208191&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0049_ramirez_pablo_on_or_after_04_13_22  ·  V15 A0 D3  ·  score 24
+### longbeach_use_of_force_uof2019_0049_ramirez_pablo_on_or_after_04_13_22  ·  V15 A0 D3 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192325&dbid=0&repo=LBPD-PUBDOCS
 - [video] Unwelcome_Guest_LB190014978_10_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192329&t=639181746266799993&dbid=0&repo=LBPD-PUBDOCS
@@ -13245,8 +14095,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192325&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192343&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report redacted_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192344&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192347&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0210  ·  V15 A0 D3  ·  score 24
+### longbeach_use_of_force_uof2019_0210  ·  V15 A0 D3 P13  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171291&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00001_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=171320&t=639181746274850845&dbid=0&repo=LBPD-PUBDOCS
@@ -13284,8 +14136,34 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171291&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171294&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171295&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00017
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171297&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00018
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171298&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00019
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171299&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00020
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171300&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00021
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171301&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00022
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171302&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00023_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171308&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00024
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171303&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00025
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171304&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00026
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171305&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00027
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00028_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171309&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00029
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171307&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_0003_mercado_elaina_on_or_after_01_28_24  ·  V15 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2021_0003_mercado_elaina_on_or_after_01_28_24  ·  V15 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206764&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assault_with_Weapon_LB210046715-10_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206766&t=639181746380555564&dbid=0&repo=LBPD-PUBDOCS
@@ -13325,8 +14203,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206764&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206784&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206785&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206787&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_005_galvan_angel_on_or_after_03_16_  ·  V6 A8 D1  ·  score 61
+### longbeach_officer_involved_shootings_ois2005_005_galvan_angel_on_or_after_03_16_  ·  V6 A8 D1 P5  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209106&dbid=0&repo=LBPD-PUBDOCS
 - [video] 5-11 Pursuit Edited
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209109&t=639181744600968632&dbid=0&repo=LBPD-PUBDOCS
@@ -13358,8 +14238,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209106&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209121&t=639181744600968632&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 050038789 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209123&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209125&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209126&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209127&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209128&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209129&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2001_004_daniel_antonio_on_or_after_01_2  ·  V0 A14 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2001_004_daniel_antonio_on_or_after_01_2  ·  V0 A14 D2 P6  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202159&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #1545 5-22-01 Radio Tape 3_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202161&t=639181744439322716&dbid=0&repo=LBPD-PUBDOCS
@@ -13393,8 +14283,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202159&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202176&dbid=0&repo=LBPD-PUBDOCS
 - [documents] ois_0104_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202177&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202179&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202180&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202181&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202182&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202183&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202184&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2001_007_on_or_after_04_30_25  ·  V0 A14 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2001_007_on_or_after_04_30_25  ·  V0 A14 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209340&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #179 6-3-01 PH call (2)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209342&t=639181744449677208&dbid=0&repo=LBPD-PUBDOCS
@@ -13426,8 +14328,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209340&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209355&t=639181744449727213&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 010044389 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209357&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209359&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_001_on_or_after_04_23_25  ·  V0 A14 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_001_on_or_after_04_23_25  ·  V0 A14 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209287&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call #1228 1-4-03 911 and Radio Side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209289&t=639181744506985606&dbid=0&repo=LBPD-PUBDOCS
@@ -13459,8 +14363,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209287&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209302&t=639181744507035521&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 030001030 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209304&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209306&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_007_on_or_after_04_23_25  ·  V0 A14 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_007_on_or_after_04_23_25  ·  V0 A14 D2 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209307&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #263 04-21-03 phone and radio 1of3 side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209310&t=639181744522718320&dbid=0&repo=LBPD-PUBDOCS
@@ -13494,8 +14400,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209307&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209324&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_03_07_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209325&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209327&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209328&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209329&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209330&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_014_johnson_anthony_on_or_after_08_  ·  V0 A14 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2008_014_johnson_anthony_on_or_after_08_  ·  V0 A14 D1 P7  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208250&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Anthony Johnson 1-1-09_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208252&t=639181744778705807&dbid=0&repo=LBPD-PUBDOCS
@@ -13527,8 +14441,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208250&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208265&t=639181744778755832&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 080097038 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208267&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208269&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208270&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208271&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208272&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208273&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208274&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208275&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_006_cabrera_jonathan_on_or_after_05  ·  V0 A14 D4  ·  score 50
+### longbeach_officer_involved_shootings_ois2011_006_cabrera_jonathan_on_or_after_05  ·  V0 A14 D4 P6  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207563&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 998 #2071 1st shots call
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207565&t=639181744913909952&dbid=0&repo=LBPD-PUBDOCS
@@ -13566,8 +14494,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207563&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207582&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc docs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207583&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207585&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207586&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207587&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207588&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207589&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207590&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0110_casique_javier_on_or_after_02_06_22  ·  V13 A1 D4  ·  score 45
+### longbeach_use_of_force_uof2019_0110_casique_javier_on_or_after_02_06_22  ·  V13 A1 D4 P1  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191653&dbid=0&repo=LBPD-PUBDOCS
 - [video] 190042965_UOF_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191656&t=639181746272191491&dbid=0&repo=LBPD-PUBDOCS
@@ -13605,8 +14545,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191653&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191672&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191673&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191675&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0280_flores_reyna_jose_on_or_after_02_07_22  ·  V14 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2019_0280_flores_reyna_jose_on_or_after_02_07_22  ·  V14 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191676&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2019-09-28_1003(1)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191685&t=639181746292201005&dbid=0&repo=LBPD-PUBDOCS
@@ -13644,8 +14586,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191676&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191680&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191681&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191683&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_012_murguia_agustin_on_or_after_03_  ·  V4 A9 D2  ·  score 58
+### longbeach_officer_involved_shootings_ois2005_012_murguia_agustin_on_or_after_03_  ·  V4 A9 D2 P10  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209130&dbid=0&repo=LBPD-PUBDOCS
 - [video] VTS_01_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209143&t=639181744640730226&dbid=0&repo=LBPD-PUBDOCS
@@ -13677,8 +14621,28 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209130&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209146&dbid=0&repo=LBPD-PUBDOCS
 - [documents] O.I.S. 05-012 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209147&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209149&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209150&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209151&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209152&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209153&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209154&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209155&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209156&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209157&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209158&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2014_009_barrett_richard_on_or_after_05_  ·  V5 A8 D4  ·  score 58
+### longbeach_officer_involved_shootings_ois2014_009_barrett_richard_on_or_after_05_  ·  V5 A8 D4 P4  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196318&dbid=0&repo=LBPD-PUBDOCS
 - [video] CH 6-2014-11-01-15-39-59
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196320&dbid=0&repo=LBPD-PUBDOCS
@@ -13714,8 +14678,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196318&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196336&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board Presentation OIS 14-009_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196337&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196339&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196340&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196341&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196342&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2023_005_on_or_after_05_14_25  ·  V9 A4 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2023_005_on_or_after_05_14_25  ·  V9 A4 D3 P9  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209412&dbid=0&repo=LBPD-PUBDOCS
 - [video] (Clip_1.1)_Ofcr_Involved_Shooting_LB230054381_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209414&t=639181745346273335&dbid=0&repo=LBPD-PUBDOCS
@@ -13749,8 +14721,26 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209412&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209429&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2023-005_CID_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209430&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209432&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209433&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209434&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209435&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209436&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209437&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209438&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209439&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209440&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_adm2004_0244_on_or_after_12_02_24  ·  V2 A11 D1  ·  score 52
+### longbeach_officer_involved_shootings_adm2004_0244_on_or_after_12_02_24  ·  V2 A11 D1 P1  ·  score 52
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208681&dbid=0&repo=LBPD-PUBDOCS
 - [video] Bullet Hole Investigation Vid_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208689&t=639181743992511644&dbid=0&repo=LBPD-PUBDOCS
@@ -13780,8 +14770,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208681&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208695&t=639181743992511644&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Red Book 04-0244_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208697&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208699&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_004_on_or_after_08_24_25  ·  V0 A13 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_004_on_or_after_08_24_25  ·  V0 A13 D1 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210786&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio Call 1873 3 7 98 SideA_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210788&t=639181744302602683&dbid=0&repo=LBPD-PUBDOCS
@@ -13811,8 +14803,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210786&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210800&t=639181744302652575&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980018238 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210802&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210804&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210805&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210806&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210807&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_012_louis_songha_on_or_after_06_17_  ·  V0 A13 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2011_012_louis_songha_on_or_after_06_17_  ·  V0 A13 D1 P5  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207753&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 998-Call-_2054-12-31-2011_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207755&t=639181744929875060&dbid=0&repo=LBPD-PUBDOCS
@@ -13842,8 +14842,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207753&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207767&t=639181744929925069&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 110084732 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207769&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207771&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207772&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207773&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207774&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207775&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2017_0016_khan_asif_on_or_a  ·  V0 A13 D12  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2017_0016_khan_asif_on_or_a  ·  V0 A13 D12 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202902&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Audio 10_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202904&t=639181745487232411&dbid=0&repo=LBPD-PUBDOCS
@@ -13896,7 +14906,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202902&dbid=0
 - [documents] Red Book ADM2017-0016 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202929&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0319_garcia_jorge_on_or_after_06_07_22  ·  V13 A0 D3  ·  score 24
+### longbeach_use_of_force_uof2020_0319_garcia_jorge_on_or_after_06_07_22  ·  V13 A0 D3 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196537&dbid=0&repo=LBPD-PUBDOCS
 - [video] Unwelcome_Guest_LB200037143_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196557&t=639181746345891175&dbid=0&repo=LBPD-PUBDOCS
@@ -13930,8 +14940,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196537&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196540&dbid=0&repo=LBPD-PUBDOCS
 - [documents] CFS_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196541&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196543&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2014_007_campos_gustavo_on_or_after_5_9_  ·  V1 A11 D7  ·  score 61
+### longbeach_officer_involved_shootings_ois2014_007_campos_gustavo_on_or_after_5_9_  ·  V1 A11 D7 P7  ·  score 61
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196253&dbid=0&repo=LBPD-PUBDOCS
 - [video] MVI_1226
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196261&dbid=0&repo=LBPD-PUBDOCS
@@ -13971,8 +14983,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196253&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196273&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Board Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196274&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196276&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196277&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196278&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196279&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 5_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196280&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 6_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196281&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 7_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196282&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_010_on_or_after_08_27_25  ·  V0 A12 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_010_on_or_after_08_27_25  ·  V0 A12 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210845&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1184 4-30-98 Ch 6 1523_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210847&t=639181744329169637&dbid=0&repo=LBPD-PUBDOCS
@@ -14000,8 +15026,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210845&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210858&t=639181744329219524&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980033169 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210860&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210862&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_005_taylor_christopher_on_or_after_  ·  V2 A10 D7  ·  score 50
+### longbeach_officer_involved_shootings_ois2013_005_taylor_christopher_on_or_after_  ·  V2 A10 D7 P6  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207053&dbid=0&repo=LBPD-PUBDOCS
 - [video] Title09_Fragment01
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207065&t=639181745000603885&dbid=0&repo=LBPD-PUBDOCS
@@ -14041,8 +15069,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207053&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207074&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Pursuit Review
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207073&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207076&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207077&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207078&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3 (2)
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207079&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207080&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207081&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1995_006_on_or_after_04_21_26  ·  V12 A0 D1  ·  score 41
+### longbeach_officer_involved_shootings_ois1995_006_on_or_after_04_21_26  ·  V12 A0 D1 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214047&dbid=0&repo=LBPD-PUBDOCS
 - [video] 911 tape_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214091&t=639181744199005563&dbid=0&repo=LBPD-PUBDOCS
@@ -14070,8 +15110,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214047&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214102&t=639181744199055491&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 950023813 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214062&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214064&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1995_009_on_or_after_06_08_26  ·  V12 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois1995_009_on_or_after_06_08_26  ·  V12 A0 D1 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214141&dbid=0&repo=LBPD-PUBDOCS
 - [video] 950040284 - A54612948 - 8934 - Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214143&t=639181744204104943&dbid=0&repo=LBPD-PUBDOCS
@@ -14099,8 +15141,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214141&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214154&t=639181744204104943&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 950040284 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214156&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214158&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_017_vasquez_felix_on_or_after_09_18  ·  V0 A12 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_017_vasquez_felix_on_or_after_09_18  ·  V0 A12 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205256&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_-L093191802-_phone__Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205258&t=639181744854978347&dbid=0&repo=LBPD-PUBDOCS
@@ -14130,8 +15174,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205256&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205271&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 2009-17_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205272&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205274&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_007_faulk_donte_on_or_after_03_03_2  ·  V0 A12 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2012_007_faulk_donte_on_or_after_03_03_2  ·  V0 A12 D2 P5  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206949&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_1430-120912-Radio-Traffic_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206951&t=639181744957912344&dbid=0&repo=LBPD-PUBDOCS
@@ -14161,8 +15207,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206949&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206964&dbid=0&repo=LBPD-PUBDOCS
 - [documents] AmendedLabreport_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206965&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206967&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206968&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206969&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206970&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206971&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_015_keeme_edward_on_or_after_05_22_  ·  V3 A8 D4  ·  score 58
+### longbeach_officer_involved_shootings_ois2009_015_keeme_edward_on_or_after_05_22_  ·  V3 A8 D4 P8  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207592&dbid=0&repo=LBPD-PUBDOCS
 - [video] 7-11 Surveillance_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207594&t=639181744848924063&dbid=0&repo=LBPD-PUBDOCS
@@ -14194,8 +15250,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207592&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207608&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 4th street OIS part2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207609&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207611&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207612&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207613&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207614&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207615&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207616&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207617&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207618&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois96_14_parks_kenneth_on_or_after_11_23_21  ·  V0 A11 D1  ·  score 55
+### longbeach_officer_involved_shootings_ois96_14_parks_kenneth_on_or_after_11_23_21  ·  V0 A11 D1 P1  ·  score 55
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189618&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189620&t=639181745420796558&dbid=0&repo=LBPD-PUBDOCS
@@ -14221,8 +15293,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189618&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189630&t=639181745420796558&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 960232955 Homicide Book_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189632&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189634&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois99_07_jordan_john_on_or_after_03_29_22  ·  V0 A11 D3  ·  score 55
+### longbeach_officer_involved_shootings_ois99_07_jordan_john_on_or_after_03_29_22  ·  V0 A11 D3 P1  ·  score 55
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192184&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #1577 9-3-99 0015-0100 Radio Tape_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192186&t=639181745441705848&dbid=0&repo=LBPD-PUBDOCS
@@ -14252,8 +15326,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192184&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192199&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 990067236 Homicide Book 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192200&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192202&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois070074149_jackson_jamal  ·  V0 A11 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois070074149_jackson_jamal  ·  V0 A11 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187728&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call _ L072611154 _phone__Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187732&t=639181744048122562&dbid=0&repo=LBPD-PUBDOCS
@@ -14279,8 +15355,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187728&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=213941&t=639181744048172532&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 070074149 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187742&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187744&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187745&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_014_deweese_rachel_on_or_after_11_1  ·  V0 A11 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2005_014_deweese_rachel_on_or_after_11_1  ·  V0 A11 D1 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208602&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Rachel Deweese Interview DR 15-103204 ORIG_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208604&t=639181744646523123&dbid=0&repo=LBPD-PUBDOCS
@@ -14306,8 +15386,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208602&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208614&t=639181744646523123&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 050103204 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208616&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208618&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208619&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208620&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2015_0009_nguyen_hung_on_or_after_05_24_  ·  V0 A11 D5  ·  score 50
+### longbeach_officer_involved_shootings_ois2015_0009_nguyen_hung_on_or_after_05_24_  ·  V0 A11 D5 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196399&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 802_0009_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196401&t=639181745114150236&dbid=0&repo=LBPD-PUBDOCS
@@ -14341,8 +15427,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196399&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196416&dbid=0&repo=LBPD-PUBDOCS
 - [documents] RMS Location History 327 Sunset_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196417&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196419&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_008_minor_rashad_on_or_after_8_8_22  ·  V3 A8 D12  ·  score 47
+### longbeach_officer_involved_shootings_ois2012_008_minor_rashad_on_or_after_8_8_22  ·  V3 A8 D12 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198312&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2022-07-25-15-12-04
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198314&t=639181744964454264&dbid=0&repo=LBPD-PUBDOCS
@@ -14390,8 +15478,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198312&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198335&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Property released_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198336&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198339&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0376_cit2015_0064_lopez_gerardo_et_al_on_or_after  ·  V4 A7 D39  ·  score 45
+### longbeach_use_of_force_uof2015_0376_cit2015_0064_lopez_gerardo_et_al_on_or_after  ·  V4 A7 D39 P1  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191333&dbid=0&repo=LBPD-PUBDOCS
 - [video] Ch 4 News video of Pine Ave UOF
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191336&t=639181745962023931&dbid=0&repo=LBPD-PUBDOCS
@@ -14493,8 +15583,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191333&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191385&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SUMMARY CIT2015-0064_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191383&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191387&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_007_on_or_after_06_03_25  ·  V0 A11 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2000_007_on_or_after_06_03_25  ·  V0 A11 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209509&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio 5 2 00 0040_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209511&t=639181744406997839&dbid=0&repo=LBPD-PUBDOCS
@@ -14520,8 +15612,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209509&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209520&t=639181744407047732&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000033533 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209523&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209525&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2021_21_57483_stebbins_michael_lee_on_or_after_10_30_2  ·  V11 A0 D5  ·  score 24
+### longbeach_use_of_force_uof2021_21_57483_stebbins_michael_lee_on_or_after_10_30_2  ·  V11 A0 D5 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205401&dbid=0&repo=LBPD-PUBDOCS
 - [video] Assist_Fire_LB210057483_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205409&t=639181746375140166&dbid=0&repo=LBPD-PUBDOCS
@@ -14555,8 +15649,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205401&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205418&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205419&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205421&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_008_pineiro_antonio_video_only_on_o  ·  V11 A0 D0  ·  score 22
+### longbeach_officer_involved_shootings_ois2002_008_pineiro_antonio_video_only_on_o  ·  V11 A0 D0 P0  ·  score 22
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206623&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2023-12-28-13-29-05_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206625&t=639181744501782395&dbid=0&repo=LBPD-PUBDOCS
@@ -14581,7 +15677,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206623&dbid=0
 - [video] 2023-12-28-13-36-01_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206635&t=639181744501831890&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_002_hurtado_martin_on_or_after_08_0  ·  V5 A5 D5  ·  score 63
+### longbeach_officer_involved_shootings_ois2016_002_hurtado_martin_on_or_after_08_0  ·  V5 A5 D5 P1  ·  score 63
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204509&dbid=0&repo=LBPD-PUBDOCS
 - [video] 00000000
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204511&t=639181745160637513&dbid=0&repo=LBPD-PUBDOCS
@@ -14613,8 +15709,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204509&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204525&dbid=0&repo=LBPD-PUBDOCS
 - [documents] ois 2016-002 admin docs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204526&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204528&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_006_on_or_after_08_26_25  ·  V0 A10 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_006_on_or_after_08_26_25  ·  V0 A10 D1 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210809&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #372 #408 3-15-98_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210811&t=639181744307946655&dbid=0&repo=LBPD-PUBDOCS
@@ -14638,8 +15736,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=210809&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=210820&t=639181744307946655&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980020358 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210822&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210824&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210825&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=210826&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_006_peterson_trayvion_on_or_after_1  ·  V0 A10 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2005_006_peterson_trayvion_on_or_after_1  ·  V0 A10 D2 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208743&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 7-29-05 #100_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208745&t=639181744606152902&dbid=0&repo=LBPD-PUBDOCS
@@ -14665,8 +15769,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208743&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208756&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 05-06.Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208757&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208759&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208760&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208761&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_007_maschhaupt_alexander_on_or_afte  ·  V0 A10 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2005_007_maschhaupt_alexander_on_or_afte  ·  V0 A10 D2 P5  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208645&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1069 8-29-05 side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208647&t=639181744611420516&dbid=0&repo=LBPD-PUBDOCS
@@ -14692,8 +15802,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208645&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208658&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OISPresentation1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208659&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208661&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208662&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208663&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208664&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208665&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_009_geggie_jason_on_or_after_09_15_  ·  V0 A10 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2008_009_geggie_jason_on_or_after_09_15_  ·  V0 A10 D2 P6  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208324&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_-L082120028-_Radio-edited-for-powerpoint_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208328&t=639181744762404185&dbid=0&repo=LBPD-PUBDOCS
@@ -14719,8 +15839,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208324&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208337&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 080056209 Powerpoint_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208338&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208340&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208341&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208342&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208343&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208344&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208345&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_014_colton_bryant_on_or_after_07_28  ·  V0 A10 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2009_014_colton_bryant_on_or_after_07_28  ·  V0 A10 D2 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208000&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call L092871807 Phone_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208002&t=639181744842070478&dbid=0&repo=LBPD-PUBDOCS
@@ -14746,8 +15878,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208000&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208013&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Hodgson OIS_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208014&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208016&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208017&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208018&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208019&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_007_maguire_michael_on_or_after_07_  ·  V1 A9 D6  ·  score 47
+### longbeach_officer_involved_shootings_ois2011_007_maguire_michael_on_or_after_07_  ·  V1 A9 D6 P5  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207840&dbid=0&repo=LBPD-PUBDOCS
 - [video] MVI_1543 Citizen Video_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207849&t=639181744919177130&dbid=0&repo=LBPD-PUBDOCS
@@ -14781,8 +15921,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207840&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207857&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF OIS 11-07_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207858&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207860&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207861&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207862&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207863&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207864&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1995_005_on_or_after_05_04_26  ·  V10 A0 D1  ·  score 41
+### longbeach_officer_involved_shootings_ois1995_005_on_or_after_05_04_26  ·  V10 A0 D1 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214066&dbid=0&repo=LBPD-PUBDOCS
 - [video] Interview Alabama_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214068&t=639181744192826147&dbid=0&repo=LBPD-PUBDOCS
@@ -14806,8 +15956,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214066&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214077&t=639181744192926093&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 950021677 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214079&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214081&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_019_arroyo_adeline_on_or_after_12_1  ·  V0 A10 D4  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_019_arroyo_adeline_on_or_after_12_1  ·  V0 A10 D4 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205582&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 11-minutes
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205584&t=639181745065179151&dbid=0&repo=LBPD-PUBDOCS
@@ -14837,8 +15989,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205582&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205597&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205598&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205600&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205601&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0001_florentino_marvin_on_or_after_01_23_24  ·  V8 A2 D4  ·  score 34
+### longbeach_use_of_force_uof2020_0001_florentino_marvin_on_or_after_01_23_24  ·  V8 A2 D4 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206744&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00013_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206752&t=639181746327089664&dbid=0&repo=LBPD-PUBDOCS
@@ -14868,8 +16024,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206744&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206759&dbid=0&repo=LBPD-PUBDOCS
 - [documents] CFS 200451764 - 20-8626_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206760&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206762&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm11_0034  ·  V0 A10 D4  ·  score 19
+### longbeach_sustained_sexual_assault_and_dishonesty_adm11_0034  ·  V0 A10 D4 P1  ·  score 19
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187793&dbid=0&repo=LBPD-PUBDOCS
 - [audio] GE_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187795&dbid=0&repo=LBPD-PUBDOCS
@@ -14899,8 +16057,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187793&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191414&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Supplementary Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187807&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187811&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_006_jordan_david_on_or_after_05_06_  ·  V4 A5 D4  ·  score 58
+### longbeach_officer_involved_shootings_ois2012_006_jordan_david_on_or_after_05_06_  ·  V4 A5 D4 P5  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207517&dbid=0&repo=LBPD-PUBDOCS
 - [video] At Doorway
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207520&t=639181744952183046&dbid=0&repo=LBPD-PUBDOCS
@@ -14928,8 +16088,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207517&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207531&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Misc Docs_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207532&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207534&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207535&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207536&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207537&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207538&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_017_on_or_after_09_30_25  ·  V0 A9 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1997_017_on_or_after_09_30_25  ·  V0 A9 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211049&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview Witness 01_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211051&t=639181744282043125&dbid=0&repo=LBPD-PUBDOCS
@@ -14951,8 +16121,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211049&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211059&t=639181744282092979&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970078258 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211061&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211063&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_005_on_or_after_04_13_25  ·  V0 A9 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_005_on_or_after_04_13_25  ·  V0 A9 D1 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209244&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #149 3-13-03 Tape 1 side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209246&t=639181744517522701&dbid=0&repo=LBPD-PUBDOCS
@@ -14974,8 +16146,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209244&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209253&t=639181744517572790&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 030020349 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209256&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209258&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209259&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209260&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_006_jones_michael_on_or_after_08_21  ·  V0 A9 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2008_006_jones_michael_on_or_after_08_21  ·  V0 A9 D2 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208215&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_-L081481189 Radio_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208217&t=639181744748914620&dbid=0&repo=LBPD-PUBDOCS
@@ -14999,8 +16177,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208215&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208227&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2008-006 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208228&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208230&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208231&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois_98_61280_1000_block_of_orange_on_or_aft  ·  V0 A9 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois_98_61280_1000_block_of_orange_on_or_aft  ·  V0 A9 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198907&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 8-11-98 #1541  998 1959-2046 Tape 1 side B_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198909&t=639181744024482596&dbid=0&repo=LBPD-PUBDOCS
@@ -15022,8 +16204,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198907&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198917&t=639181744024532524&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980061280 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198919&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198921&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1996_015_on_or_after_11_03_25  ·  V0 A9 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1996_015_on_or_after_11_03_25  ·  V0 A9 D1 P3  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211214&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 96-3150 SHPD part1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211216&t=639181744235805909&dbid=0&repo=LBPD-PUBDOCS
@@ -15045,8 +16229,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211214&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211222&t=639181744235805909&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 960262534 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211226&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211228&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211229&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211230&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_november_2024_5200_atlantic_ave  ·  V9 A0 D1  ·  score 24
+### longbeach_use_of_force_uof_november_2024_5200_atlantic_ave  ·  V9 A0 D1 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208859&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] Axon_Body_3_Video_2024-11-19_2055_X60AY562H_Redacted (01-06-25)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208861&t=639181745664876810&dbid=0&repo=LBPD-PUBDOCS
@@ -15068,8 +16258,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208859&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208897&t=639181745664926822&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 240058099 Case File _Redacted (05-07-25)
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209374&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208896&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_005_on_or_after_06_09_25  ·  V0 A8 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_005_on_or_after_06_09_25  ·  V0 A8 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209535&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call #1481 04-28-00 Radio 1740-1825
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209538&t=639181744401428554&dbid=0&repo=LBPD-PUBDOCS
@@ -15089,8 +16281,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209535&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209544&t=639181744401428554&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000032538 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209546&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209548&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_010_baldovinos_jose_on_or_after_03_  ·  V0 A8 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_010_baldovinos_jose_on_or_after_03_  ·  V0 A8 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202716&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #694 9-6-00 phone audio til 1214_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202718&t=639181744424761528&dbid=0&repo=LBPD-PUBDOCS
@@ -15112,8 +16306,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202716&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202727&dbid=0&repo=LBPD-PUBDOCS
 - [documents] img_00003_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202728&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202730&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_011_brooks_johnnie_on_or_after_11_0  ·  V0 A8 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_011_brooks_johnnie_on_or_after_11_0  ·  V0 A8 D2 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208577&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #855 7-13-04 Side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208579&t=639181744577479191&dbid=0&repo=LBPD-PUBDOCS
@@ -15135,8 +16331,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208577&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208588&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Bahash OIS_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208589&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208591&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208592&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208593&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois97_018_reed_anthony_on_or_after_03_19_23  ·  V0 A8 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois97_018_reed_anthony_on_or_after_03_19_23  ·  V0 A8 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202702&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview 10-13-97_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202704&t=639181745426027116&dbid=0&repo=LBPD-PUBDOCS
@@ -15156,8 +16358,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202702&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202711&t=639181745426077143&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970081464 Case File_Redacted1
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202713&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202715&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_008_jacobs_robert_on_or_after_06_12  ·  V6 A2 D2  ·  score 47
+### longbeach_officer_involved_shootings_ois2010_008_jacobs_robert_on_or_after_06_12  ·  V6 A2 D2 P5  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207734&dbid=0&repo=LBPD-PUBDOCS
 - [video] Channel 2 News_00001
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207736&t=639181744882778503&dbid=0&repo=LBPD-PUBDOCS
@@ -15179,8 +16383,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207734&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207745&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Board PPT 10-008_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207746&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207748&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207749&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207750&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207751&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207752&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_004_doe_john_on_or_after_9_19_22  ·  V6 A2 D4  ·  score 47
+### longbeach_officer_involved_shootings_ois2013_004_doe_john_on_or_after_9_19_22  ·  V6 A2 D4 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198856&dbid=0&repo=LBPD-PUBDOCS
 - [video] CH02-2013-02-11-12-20-37
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198858&t=639181744994551022&dbid=0&repo=LBPD-PUBDOCS
@@ -15206,8 +16420,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198856&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198869&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Officer Notification email
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198870&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198872&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1988_010_tapia_rigoberto_on_or_after_03_  ·  V0 A8 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1988_010_tapia_rigoberto_on_or_after_03_  ·  V0 A8 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202555&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #963 06-30-88 Tape 1 Side 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202558&t=639181744098597727&dbid=0&repo=LBPD-PUBDOCS
@@ -15227,8 +16443,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202555&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202564&t=639181744098647876&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 880044823 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202566&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202568&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_006_rivas_gabriel_on_or_after_10_14  ·  V0 A8 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2006_006_rivas_gabriel_on_or_after_10_14  ·  V0 A8 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208458&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Baccari -911_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208460&t=639181744669493625&dbid=0&repo=LBPD-PUBDOCS
@@ -15250,8 +16468,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208458&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208469&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 0606 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208470&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208472&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_002_anthony_timothy_on_or_after_08_  ·  V0 A8 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_002_anthony_timothy_on_or_after_08_  ·  V0 A8 D1 P4  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208065&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Anthony,Timothy_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208067&t=639181744784535030&dbid=0&repo=LBPD-PUBDOCS
@@ -15271,8 +16491,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208065&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208074&t=639181744784585016&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 090004688 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208076&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208078&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208079&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208080&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208081&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_2019_0063  ·  V6 A2 D3  ·  score 34
+### longbeach_use_of_force_uof_2019_0063  ·  V6 A2 D3 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181995&dbid=0&repo=LBPD-PUBDOCS
 - [video] Investigation_LB190032373-2
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=181997&t=639181745628840193&dbid=0&repo=LBPD-PUBDOCS
@@ -15296,8 +16524,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181995&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182006&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182007&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182010&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_940033714_tremane_kone  ·  V0 A8 D1  ·  score 30
+### longbeach_officer_involved_shootings_940033714_tremane_kone  ·  V0 A8 D1 P1  ·  score 30
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=164421&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 940033714_AV Media_8632_Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=164423&t=639181743961030225&dbid=0&repo=LBPD-PUBDOCS
@@ -15317,8 +16547,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=164421&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=164430&t=639181743961080279&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 940033714_Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=164432&dbid=0&repo=LBPD-PUBDOCS
+- [photos] 940033714_Photo's_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=164434&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_icd_08_29_17_3420_pacific_pl  ·  V8 A0 D9  ·  score 24
+### longbeach_use_of_force_icd_08_29_17_3420_pacific_pl  ·  V8 A0 D9 P181  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=98211&dbid=0&repo=LBPD-PUBDOCS
 - [video] 10_149_5830_dba70f05-018c-4108-87c7-6e5f4d04d2d2_1_220746_1563487629315_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=181960&t=639181745587744322&dbid=0&repo=LBPD-PUBDOCS
@@ -15354,8 +16586,370 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=98211&dbid=0&
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98219&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Press Release
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98220&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98222&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part10
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98223&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part100
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98224&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part101
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98225&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part102
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98226&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part103
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98227&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part104
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98228&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part105
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98229&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part106
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98230&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part107
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98231&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part108
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98232&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part109
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98233&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part11
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98234&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part110
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98235&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part111
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98236&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part112
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98237&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part113
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98238&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part114
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98239&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part115
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98240&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part116
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98241&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part117
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98242&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part118
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98243&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part119
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98244&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part12
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98245&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part120
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98246&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part121
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98247&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part122
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98248&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part123
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98249&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part124
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98250&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part125
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98251&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part126
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98252&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part127
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98253&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part128
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98254&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part129
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98255&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part13
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98256&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part130
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98257&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part131
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98258&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part132
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98259&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part133
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98260&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part134
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98261&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part135
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98262&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part136
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98263&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part137
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98264&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part138
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98265&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part139
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98266&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part14
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98267&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part140
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98268&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part141
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98269&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part142
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98270&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part143
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98271&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part144
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98272&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part145
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98273&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part146
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98274&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part147
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98275&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part148
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98276&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part149
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98277&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part15
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98278&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part150
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98279&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part151
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98280&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part152
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98281&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part153
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98282&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part154
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98283&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part155
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98284&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part156
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98285&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part157
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98286&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part158
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98287&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part159
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98288&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part16
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98289&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part160
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98290&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part161
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98291&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part162
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98292&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part163
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98293&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part164
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98294&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part165
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98295&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part166
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98296&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part167
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98297&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part168
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98298&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part169
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98299&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part17
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98300&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part170
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98301&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part171
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98302&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part172
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98303&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part173
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98304&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part174
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98305&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part175
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part176
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98307&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part177
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98308&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part178
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98309&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part179
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98310&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part18
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98311&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part180
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98312&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part19
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98313&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98314&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part20
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98315&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part21
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98316&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part22
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98317&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part23
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98318&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part24
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98319&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part25
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98320&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part26
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98321&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part27
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98322&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part28
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98323&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part29
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98324&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98325&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part30
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98326&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part31
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98327&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part32
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98328&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part33
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98329&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part34
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98330&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part35
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98331&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part36
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98332&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part37
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98333&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part38
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98334&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part39
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98335&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98336&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part40
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98337&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part41
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98338&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part42
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98339&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part43
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98340&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part44
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98341&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part45
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98342&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part46
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98343&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part47
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98344&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part48
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98345&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part49
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98346&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98347&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part50
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98348&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part51
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98349&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part52
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98350&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part53
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98351&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part54
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98352&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part55
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98353&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part56
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98354&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part57
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98355&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part58
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98356&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part59
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98357&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98358&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part60
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98359&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part61
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98360&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part62
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98361&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part63
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98362&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part64
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98363&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part65
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98364&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part66
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98365&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part67
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98366&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part68
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98367&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part69
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98368&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98369&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part70
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98370&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part71
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98371&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part72
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98372&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part73
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98373&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part74
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98374&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part75
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98375&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part76
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98376&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part77
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98377&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part78
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98378&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part79
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98379&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98380&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part80
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98381&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part81
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98382&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part82
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98383&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part83
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98384&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part84
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98385&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part85
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98386&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part86
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98387&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part87
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98388&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part88
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98389&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part89
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98390&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98391&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part90
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98392&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part91
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98393&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part92
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98394&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part93
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98395&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part94
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98396&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part95
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98397&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part96
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98398&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part97
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98399&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part98
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98400&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Part99
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98401&dbid=0&repo=LBPD-PUBDOCS
+- [photos] WardlowStation.png_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=98402&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_007_tavaron_mitchell_toles_marcus_b  ·  V1 A6 D2  ·  score 58
+### longbeach_officer_involved_shootings_ois2008_007_tavaron_mitchell_toles_marcus_b  ·  V1 A6 D2 P5  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208232&dbid=0&repo=LBPD-PUBDOCS
 - [video] TV News Reports
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208239&t=639181744756947763&dbid=0&repo=LBPD-PUBDOCS
@@ -15375,8 +16969,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208232&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208242&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Moss Powerpoint 08-07_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208243&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208245&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208246&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208247&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208248&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208249&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_004_gefrerer_aaron_on_or_after_02_2  ·  V1 A6 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2009_004_gefrerer_aaron_on_or_after_02_2  ·  V1 A6 D3 P1  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202524&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2023-02-21-07-51-43
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202526&t=639181744798342344&dbid=0&repo=LBPD-PUBDOCS
@@ -15398,8 +17002,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202524&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202535&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 09-04 OIS Book_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202536&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202538&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois98_23_hill_damon_on_or_about_11_29_2021  ·  V0 A7 D2  ·  score 55
+### longbeach_officer_involved_shootings_ois98_23_hill_damon_on_or_about_11_29_2021  ·  V0 A7 D2 P1  ·  score 55
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189635&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 10_27_1998 _1552 1930_2015_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189637&t=639181745435967450&dbid=0&repo=LBPD-PUBDOCS
@@ -15419,8 +17025,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189635&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189645&dbid=0&repo=LBPD-PUBDOCS
 - [documents] HOMICIDE_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189646&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189648&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois09_07_tuggle_james_on_or_after_11_16_202  ·  V0 A7 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois09_07_tuggle_james_on_or_after_11_16_202  ·  V0 A7 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189551&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 911_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189553&t=639181744058535421&dbid=0&repo=LBPD-PUBDOCS
@@ -15440,8 +17048,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189551&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189561&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS Chestnut Ave 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189562&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189564&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_009_on_or_after_07_29_25  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_009_on_or_after_07_29_25  ·  V0 A7 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209706&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio Call 1879 2200 hrs Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209708&t=639181744323893311&dbid=0&repo=LBPD-PUBDOCS
@@ -15459,8 +17069,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209706&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209714&t=639181744323893311&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980027546 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209716&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209718&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_021_on_or_after_10_29_25  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_021_on_or_after_10_29_25  ·  V0 A7 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211194&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #350  8-21-98 Radio 0700-0745_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211196&t=639181744354482484&dbid=0&repo=LBPD-PUBDOCS
@@ -15478,8 +17090,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211194&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211202&t=639181744354532476&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980063896 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211204&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211206&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211207&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_001_on_or_after_06_23_25  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_001_on_or_after_06_23_25  ·  V0 A7 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209600&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] 012501 interview_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209602&t=639181744379338994&dbid=0&repo=LBPD-PUBDOCS
@@ -15497,8 +17113,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209600&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209608&t=639181744379338994&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000006761 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209610&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209612&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_002_on_or_after_06_15_25  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_002_on_or_after_06_15_25  ·  V0 A7 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209549&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #128 1-31-00 tape 1 (Side A - complete)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209552&t=639181744384491369&dbid=0&repo=LBPD-PUBDOCS
@@ -15516,8 +17134,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209549&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209557&t=639181744384491369&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000008094 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209559&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209561&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209562&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_002_sui_jack_on_or_after_12_20_24  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_002_sui_jack_on_or_after_12_20_24  ·  V0 A7 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208786&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #571 1-23-04_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208788&t=639181744553307438&dbid=0&repo=LBPD-PUBDOCS
@@ -15535,8 +17157,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208786&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208794&t=639181744553356186&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 040006224 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208796&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208798&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_011_schaeffer_frank_on_or_after_12_  ·  V0 A7 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2005_011_schaeffer_frank_on_or_after_12_  ·  V0 A7 D2 P7  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208816&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 0511-OIS-998
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208818&t=639181744635145808&dbid=0&repo=LBPD-PUBDOCS
@@ -15556,8 +17180,22 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208816&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208826&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2005-011 Powerpoint_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208827&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208829&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208830&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208831&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208832&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208833&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208834&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208835&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_010_hunton_winfred_on_or_after_08_0  ·  V0 A7 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2009_010_hunton_winfred_on_or_after_08_0  ·  V0 A7 D1 P8  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208142&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 998-Case-090038832_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208144&t=639181744835728252&dbid=0&repo=LBPD-PUBDOCS
@@ -15575,8 +17213,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208142&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208150&t=639181744835758236&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 090038832 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208152&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208154&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208155&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208156&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208157&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208158&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208159&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208160&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208161&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2007_003_banich_rocco_on_or_after_04_03_  ·  V1 A6 D2  ·  score 47
+### longbeach_officer_involved_shootings_ois2007_003_banich_rocco_on_or_after_04_03_  ·  V1 A6 D2 P4  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207233&dbid=0&repo=LBPD-PUBDOCS
 - [video] DR07-68477_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207238&t=639181744703308321&dbid=0&repo=LBPD-PUBDOCS
@@ -15596,8 +17250,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207233&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207243&dbid=0&repo=LBPD-PUBDOCS
 - [documents] O.I.S. 07-03 2 4_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207244&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207246&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207247&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207248&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207249&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_11_0055_citizen  ·  V2 A5 D9  ·  score 45
+### longbeach_use_of_force_11_0055_citizen  ·  V2 A5 D9 P1  ·  score 45
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=186676&dbid=0&repo=LBPD-PUBDOCS
 - [video] 10-79960 Bright_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=186679&t=639181745551668531&dbid=0&repo=LBPD-PUBDOCS
@@ -15631,8 +17293,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=186676&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=186693&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Property Package & Report Correction
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=186694&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=186696&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois10_007_vargas_miguel_on_or_after_02_14_2  ·  V0 A7 D6  ·  score 36
+### longbeach_officer_involved_shootings_ois10_007_vargas_miguel_on_or_after_02_14_2  ·  V0 A7 D6 P4  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191769&dbid=0&repo=LBPD-PUBDOCS
 - [audio] DS220128
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191771&dbid=0&repo=LBPD-PUBDOCS
@@ -15660,8 +17324,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191769&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211182&dbid=0&repo=LBPD-PUBDOCS
 - [documents] ois 10-007A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191783&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191785&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191786&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191787&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191788&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1992_002_rodriguez_faustino_on_or_after_  ·  V0 A7 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1992_002_rodriguez_faustino_on_or_after_  ·  V0 A7 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198519&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 920012249_AV Media_8747_Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198521&t=639181744113410047&dbid=0&repo=LBPD-PUBDOCS
@@ -15679,8 +17351,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198519&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198527&t=639181744113410047&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 920012249_Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198529&dbid=0&repo=LBPD-PUBDOCS
+- [photos] 920012249_Photo's_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198531&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2016_0002_cortes_hugo_on_or  ·  V0 A7 D1  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2016_0002_cortes_hugo_on_or  ·  V0 A7 D1 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198895&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Cortes Interview - Audio_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198897&t=639181745481601764&dbid=0&repo=LBPD-PUBDOCS
@@ -15699,7 +17373,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198895&dbid=0
 - [documents] Red Book-ADM2016-0002_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198905&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_002_johnson_gilroy_on_or_after_11_2  ·  V2 A4 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2008_002_johnson_gilroy_on_or_after_11_2  ·  V2 A4 D3 P2  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205529&dbid=0&repo=LBPD-PUBDOCS
 - [video] 08-6831 Enhanced Video_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205531&t=639181744730609159&dbid=0&repo=LBPD-PUBDOCS
@@ -15719,8 +17393,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205529&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205539&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 08-02 DR 08-6831 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205540&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205542&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205543&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2014_006_mountainview_long_beach_blvd_on  ·  V1 A5 D3  ·  score 58
+### longbeach_officer_involved_shootings_ois2014_006_mountainview_long_beach_blvd_on  ·  V1 A5 D3 P1  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192859&dbid=0&repo=LBPD-PUBDOCS
 - [video] 00002_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192861&t=639181745088047977&dbid=0&repo=LBPD-PUBDOCS
@@ -15740,8 +17418,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192859&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192869&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192870&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192872&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1999_005_on_or_after_07_02_25  ·  V0 A6 D1  ·  score 53
+### longbeach_officer_involved_shootings_ois1999_005_on_or_after_07_02_25  ·  V0 A6 D1 P2  ·  score 53
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209624&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #687 7-17-99 Phs and Pursuit_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209626&t=639181744363383338&dbid=0&repo=LBPD-PUBDOCS
@@ -15757,8 +17437,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209624&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209631&t=639181744363433308&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 990053627 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209633&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209635&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209636&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_015_on_or_after_07_23_25  ·  V0 A6 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_015_on_or_after_07_23_25  ·  V0 A6 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209694&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #985 6-30-98 Ph + Radio 1307-1337_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209696&t=639181744343522451&dbid=0&repo=LBPD-PUBDOCS
@@ -15774,8 +17458,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209694&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209701&t=639181744343572453&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980050027 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209703&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209705&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_008_on_or_after_05_27_25  ·  V0 A6 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_008_on_or_after_05_27_25  ·  V0 A6 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209494&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #1397 5-7-00 Radio 2145-2230_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209496&t=639181744412205810&dbid=0&repo=LBPD-PUBDOCS
@@ -15791,8 +17477,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209494&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209501&t=639181744412255793&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000034662 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209503&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209505&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_009_on_or_after_05_21_25  ·  V0 A6 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_009_on_or_after_05_21_25  ·  V0 A6 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209482&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 911 Tape #1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209484&t=639181744417559318&dbid=0&repo=LBPD-PUBDOCS
@@ -15808,8 +17496,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209482&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209489&t=639181744417609327&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000051722 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209491&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209493&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_005_williams_jaharii_on_or_after_01  ·  V0 A6 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2002_005_williams_jaharii_on_or_after_01  ·  V0 A6 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208846&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 911 Call Recording- 245 Shooting Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208848&t=639181744477040284&dbid=0&repo=LBPD-PUBDOCS
@@ -15827,8 +17517,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208846&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208855&dbid=0&repo=LBPD-PUBDOCS
 - [documents] LBPD OIS 02-05_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208856&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208858&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_010_thomas_howard_on_or_after_04_01  ·  V0 A6 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_010_thomas_howard_on_or_after_04_01  ·  V0 A6 D1 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209189&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #86 05-21-03 Tape 1 part 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209191&t=639181744538543953&dbid=0&repo=LBPD-PUBDOCS
@@ -15844,8 +17536,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209189&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209196&t=639181744538594016&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 030040363 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209198&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209200&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209201&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209202&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209203&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_009_enriquez_steven_on_or_after_12_  ·  V0 A6 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2005_009_enriquez_steven_on_or_after_12_  ·  V0 A6 D2 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208666&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1178 9-5-05_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208668&t=639181744621793650&dbid=0&repo=LBPD-PUBDOCS
@@ -15863,8 +17563,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208666&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208675&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_05-09 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208676&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208678&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208679&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208680&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_004_romo_carlos_on_or_after_07_01_2  ·  V0 A6 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2010_004_romo_carlos_on_or_after_07_01_2  ·  V0 A6 D2 P8  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207820&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_-L101490058-215-PC-911_s_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207822&t=639181744866287784&dbid=0&repo=LBPD-PUBDOCS
@@ -15882,8 +17588,24 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207820&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207829&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 100036832 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207830&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207832&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207833&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207834&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207835&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207836&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207837&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207838&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207839&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_005_carter_alexander_on_or_after_05  ·  V1 A5 D4  ·  score 47
+### longbeach_officer_involved_shootings_ois2011_005_carter_alexander_on_or_after_05  ·  V1 A5 D4 P6  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207622&dbid=0&repo=LBPD-PUBDOCS
 - [video] Crime Scene Vid_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207629&t=639181744908155147&dbid=0&repo=LBPD-PUBDOCS
@@ -15905,8 +17627,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207622&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207633&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF OIS 11-05_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207634&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207636&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207637&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207638&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207639&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207640&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207641&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1988_004_louise_st_linden_ave_on_or_afte  ·  V0 A6 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1988_004_louise_st_linden_ave_on_or_afte  ·  V0 A6 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198844&dbid=0&repo=LBPD-PUBDOCS
 - [audio] _1019 2_22_88 Side A_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198850&t=639181744093441526&dbid=0&repo=LBPD-PUBDOCS
@@ -15922,8 +17656,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198844&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198849&t=639181744093491463&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Case file_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198853&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198855&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_007_on_or_after_08_18_25  ·  V0 A6 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1998_007_on_or_after_08_18_25  ·  V0 A6 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209786&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1167 2020-2120_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209788&t=639181744312963695&dbid=0&repo=LBPD-PUBDOCS
@@ -15939,8 +17675,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209786&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209793&t=639181744313013768&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980020468 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209795&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209797&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_002_hor_sokha_on_or_after_12_10_23  ·  V0 A6 D6  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_002_hor_sokha_on_or_after_12_10_23  ·  V0 A6 D6 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205544&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_0743-010713-1739-to-1758-Channel-6
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205546&t=639181744986486015&dbid=0&repo=LBPD-PUBDOCS
@@ -15966,8 +17704,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205544&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205556&dbid=0&repo=LBPD-PUBDOCS
 - [documents] visitation rules
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205558&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205560&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205561&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois91_24_chung_hang_boonmy_boonmi_me_on_or_  ·  V0 A6 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois91_24_chung_hang_boonmy_boonmi_me_on_or_  ·  V0 A6 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192169&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 910085476_AV Media_8628_Side A
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192171&t=639181745400275022&dbid=0&repo=LBPD-PUBDOCS
@@ -15983,8 +17725,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192169&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192176&t=639181745400375138&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 910085476_Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192178&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192180&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm11_0260  ·  V0 A6 D4  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm11_0260  ·  V0 A6 D4 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181655&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Detective Condon FU Interview 091311_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=181657&t=639181745455873915&dbid=0&repo=LBPD-PUBDOCS
@@ -16007,7 +17751,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181655&dbid=0
 - [documents] Red Book-11-0260_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181667&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_001_velasquez_jose_and_rivera_efren  ·  V1 A4 D2  ·  score 58
+### longbeach_officer_involved_shootings_ois2008_001_velasquez_jose_and_rivera_efren  ·  V1 A4 D2 P2  ·  score 58
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208276&dbid=0&repo=LBPD-PUBDOCS
 - [video] Video from Cellphone of Efren Rivera
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208282&t=639181744723205356&dbid=0&repo=LBPD-PUBDOCS
@@ -16023,8 +17767,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208276&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208284&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2008-001 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208285&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208287&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208288&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2016_008_everhart_richard_on_or_after_5_  ·  V1 A4 D9  ·  score 52
+### longbeach_officer_involved_shootings_ois2016_008_everhart_richard_on_or_after_5_  ·  V1 A4 D9 P1  ·  score 52
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196344&dbid=0&repo=LBPD-PUBDOCS
 - [video] OIS Video - Graphic Content
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=196354&t=639181745185394805&dbid=0&repo=LBPD-PUBDOCS
@@ -16064,8 +17812,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=196344&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196361&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SRB 16-008 final_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196362&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=196367&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_006_iniguez_jose_dejesus_on_or_afte  ·  V0 A5 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_006_iniguez_jose_dejesus_on_or_afte  ·  V0 A5 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208634&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1873 05-01-04 998_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208636&t=639181744558729049&dbid=0&repo=LBPD-PUBDOCS
@@ -16079,8 +17829,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208634&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208640&t=639181744558729049&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 040035823 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208642&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208644&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_008_rosales_fidel_on_or_after_10_29  ·  V0 A5 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_008_rosales_fidel_on_or_after_10_29  ·  V0 A5 D2 P5  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208551&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #2021 7-12-04 998_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208553&t=639181744564060586&dbid=0&repo=LBPD-PUBDOCS
@@ -16096,8 +17848,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208551&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208559&dbid=0&repo=LBPD-PUBDOCS
 - [documents] SWAT 0408 Final_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208560&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208562&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208563&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208564&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208565&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208566&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2011_004_ortega_jesusita_on_or_after_04_  ·  V0 A5 D3  ·  score 50
+### longbeach_officer_involved_shootings_ois2011_004_ortega_jesusita_on_or_after_04_  ·  V0 A5 D3 P5  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207332&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 1323call_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207334&t=639181744902777223&dbid=0&repo=LBPD-PUBDOCS
@@ -16115,8 +17877,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207332&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207341&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Board OIS 11-04_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207342&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207344&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207345&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207346&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207347&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207348&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_004_walker_ronald_on_or_after_04_30  ·  V0 A5 D3  ·  score 50
+### longbeach_officer_involved_shootings_ois2012_004_walker_ronald_on_or_after_04_30  ·  V0 A5 D3 P6  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207499&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 998-5-17-12-_2199_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207501&t=639181744940698728&dbid=0&repo=LBPD-PUBDOCS
@@ -16134,8 +17906,20 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207499&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207508&dbid=0&repo=LBPD-PUBDOCS
 - [documents] PCD_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207509&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207511&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207512&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207513&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207514&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207515&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207516&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois90_18_mosley_milton_calhoun_richard_on_o  ·  V0 A5 D1  ·  score 42
+### longbeach_officer_involved_shootings_ois90_18_mosley_milton_calhoun_richard_on_o  ·  V0 A5 D1 P0  ·  score 42
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192118&dbid=0&repo=LBPD-PUBDOCS
 - [audio] HK _Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192120&t=639181745389451196&dbid=0&repo=LBPD-PUBDOCS
@@ -16150,7 +17934,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192118&dbid=0
 - [documents] 900067483_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192126&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1994_002_on_or_after_06_01_26  ·  V5 A0 D1  ·  score 41
+### longbeach_officer_involved_shootings_ois1994_002_on_or_after_06_01_26  ·  V5 A0 D1 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214130&dbid=0&repo=LBPD-PUBDOCS
 - [video] Interview Witness Det Cable_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214132&t=639181744162695989&dbid=0&repo=LBPD-PUBDOCS
@@ -16164,8 +17948,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214130&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214136&t=639181744162745959&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 940010258_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214138&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214140&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_09_19_19_5100_blk_east_pacific_coast_highwa  ·  V5 A0 D5  ·  score 37
+### longbeach_officer_involved_shootings_09_19_19_5100_blk_east_pacific_coast_highwa  ·  V5 A0 D5 P0  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=92743&dbid=0&repo=LBPD-PUBDOCS
 - [video] 20190920_0001_0627_125_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=92753&t=639181743924493505&dbid=0&repo=LBPD-PUBDOCS
@@ -16188,7 +17974,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=92743&dbid=0&
 - [documents] 5100 Block of East PCH Press Release
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=92747&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1994_013_on_or_after_05_19_26  ·  V5 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois1994_013_on_or_after_05_19_26  ·  V5 A0 D1 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214111&dbid=0&repo=LBPD-PUBDOCS
 - [video] 940056748_AV Media_8706_Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214113&t=639181744173042507&dbid=0&repo=LBPD-PUBDOCS
@@ -16202,8 +17988,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214111&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214117&t=639181744173092451&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 940056748 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214119&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214121&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_003_on_or_after_07_09_25  ·  V0 A5 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2000_003_on_or_after_07_09_25  ·  V0 A5 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209613&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1242 03-11-00 3 Phone Calls OIS 00-003_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209615&t=639181744389797660&dbid=0&repo=LBPD-PUBDOCS
@@ -16217,8 +18005,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209613&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209619&t=639181744389797660&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000019145 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209621&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209623&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_001_hurtado_sergio_abel_on_or_after  ·  V0 A5 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2006_001_hurtado_sergio_abel_on_or_after  ·  V0 A5 D2 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208382&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call # L060450055_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208384&t=639181744652282344&dbid=0&repo=LBPD-PUBDOCS
@@ -16234,8 +18024,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208382&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208390&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS 06-001 Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208391&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208393&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208394&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_006_fonseca_antonio_jr_on_or_after_  ·  V0 A5 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2010_006_fonseca_antonio_jr_on_or_after_  ·  V0 A5 D1 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207873&dbid=0&repo=LBPD-PUBDOCS
 - [audio] PH-Call-_L102791716_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207875&t=639181744877372051&dbid=0&repo=LBPD-PUBDOCS
@@ -16249,8 +18043,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207873&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207879&t=639181744877372051&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 100068226 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207881&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207883&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207884&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_014_treadway_greg_on_or_after_04_10  ·  V0 A5 D3  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_014_treadway_greg_on_or_after_04_10  ·  V0 A5 D3 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207318&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_1468-092113-2nd-Caller_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207320&t=639181745033799125&dbid=0&repo=LBPD-PUBDOCS
@@ -16268,8 +18066,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207318&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207327&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board Presentation_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207328&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207330&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207331&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois840034261_acosta_alexander  ·  V0 A5 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois840034261_acosta_alexander  ·  V0 A5 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187812&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 7_6_84 Audio 1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187819&t=639181745372816207&dbid=0&repo=LBPD-PUBDOCS
@@ -16287,8 +18089,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187812&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187816&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 840034261 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187822&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187824&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois93_17_pedicone_mark_on_or_after_04_10_22  ·  V0 A5 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois93_17_pedicone_mark_on_or_after_04_10_22  ·  V0 A5 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192212&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 930089873_AV Media_8752_Side A
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192214&t=639181745405966564&dbid=0&repo=LBPD-PUBDOCS
@@ -16304,8 +18108,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192212&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192220&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR 930089873_0_PT_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192221&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192223&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois94_20_prevost_jashawn_on_or_after_03_02_  ·  V0 A5 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois94_20_prevost_jashawn_on_or_after_03_02_  ·  V0 A5 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192153&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 940087767_AV Media_8711_Side A_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192155&t=639181745411209260&dbid=0&repo=LBPD-PUBDOCS
@@ -16319,8 +18125,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192153&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192159&t=639181745411259262&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 94-87767 Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192161&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192163&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_icd09_02_welch_samuel_on_or_after_02_22_22  ·  V2 A3 D2  ·  score 34
+### longbeach_use_of_force_icd09_02_welch_samuel_on_or_after_02_22_22  ·  V2 A3 D2 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191894&dbid=0&repo=LBPD-PUBDOCS
 - [video] ''Vel Dog''-2_008_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191896&t=639181745602212225&dbid=0&repo=LBPD-PUBDOCS
@@ -16336,8 +18144,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191894&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191902&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Welch ICD 0902_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191903&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191905&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0323_ambrose_jamie_on_or_after_01_17_22  ·  V4 A1 D5  ·  score 34
+### longbeach_use_of_force_uof2015_0323_ambrose_jamie_on_or_after_01_17_22  ·  V4 A1 D5 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191119&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-11-25-10-05-45_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191121&t=639181745944577876&dbid=0&repo=LBPD-PUBDOCS
@@ -16359,8 +18169,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191119&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191130&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause 15-46781_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191131&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191133&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2014_0002_on_or_after_02_28  ·  V0 A5 D4  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2014_0002_on_or_after_02_28  ·  V0 A5 D4 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206937&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Cawley Skelly Audio14-0002_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206939&t=639181745477481693&dbid=0&repo=LBPD-PUBDOCS
@@ -16381,7 +18193,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206937&dbid=0
 - [documents] Red Book-ADM2014-0002_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206948&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2017_0051  ·  V0 A5 D6  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2017_0051  ·  V0 A5 D6 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180530&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Behrens Interview Audio Pt 1 _Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180532&dbid=0&repo=LBPD-PUBDOCS
@@ -16406,7 +18218,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=180530&dbid=0
 - [documents] Timecards_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180543&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0039_snyder_michael_on_or_after_9_21_2021  ·  V5 A0 D8  ·  score 24
+### longbeach_use_of_force_uof2014_0039_snyder_michael_on_or_after_9_21_2021  ·  V5 A0 D8 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189233&dbid=0&repo=LBPD-PUBDOCS
 - [video] Booking Video 1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189246&t=639181745749283472&dbid=0&repo=LBPD-PUBDOCS
@@ -16434,8 +18246,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189233&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189241&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189242&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189244&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2012_002_harnish_darryl_on_or_after_01_1  ·  V2 A2 D4  ·  score 51
+### longbeach_officer_involved_shootings_ois2012_002_harnish_darryl_on_or_after_01_1  ·  V2 A2 D4 P9  ·  score 51
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206674&dbid=0&repo=LBPD-PUBDOCS
 - [video] Mobil_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206676&t=639181744935217952&dbid=0&repo=LBPD-PUBDOCS
@@ -16453,8 +18267,26 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206674&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206683&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board - 12-002_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206684&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206686&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206687&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206688&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206689&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206690&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo6
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206691&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo7
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206692&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo8
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206693&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo9
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=206694&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_004_on_or_after_10_13_25  ·  V0 A4 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1997_004_on_or_after_10_13_25  ·  V0 A4 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211146&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio Call 268 3 2 97_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211148&t=639181744246777919&dbid=0&repo=LBPD-PUBDOCS
@@ -16466,8 +18298,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211146&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211151&t=639181744246777919&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970017837 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211153&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211155&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_011_on_or_after_10_14_25  ·  V0 A4 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1997_011_on_or_after_10_14_25  ·  V0 A4 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211156&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview Anthony Ray Kim Davis_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211158&t=639181744263230990&dbid=0&repo=LBPD-PUBDOCS
@@ -16479,8 +18313,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211156&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211161&t=639181744263280922&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970063776 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211163&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211165&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_001_on_or_after_08_05_25  ·  V0 A4 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_001_on_or_after_08_05_25  ·  V0 A4 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209768&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] #118 1-20-98 Radio (B)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209770&t=639181744287224245&dbid=0&repo=LBPD-PUBDOCS
@@ -16492,8 +18328,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209768&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209773&t=639181744287273952&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980005122 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209775&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209777&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_008_on_or_after_07_29_25  ·  V0 A4 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_008_on_or_after_07_29_25  ·  V0 A4 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209719&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview David Benko_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209721&t=639181744318320238&dbid=0&repo=LBPD-PUBDOCS
@@ -16505,8 +18343,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209719&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209724&t=639181744318370346&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980026358 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209726&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209728&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209729&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_009_bargas_ubaldo_on_or_after_11_12  ·  V0 A4 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_009_bargas_ubaldo_on_or_after_11_12  ·  V0 A4 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208622&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #855 7-13-04_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208624&t=639181744572074212&dbid=0&repo=LBPD-PUBDOCS
@@ -16520,8 +18362,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208622&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208633&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS-Turner_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208630&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208632&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2007_006_greer_michael_on_or_after_03_27  ·  V0 A4 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2007_006_greer_michael_on_or_after_03_27  ·  V0 A4 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207222&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call # L072831938 (radio)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207224&t=639181744709787735&dbid=0&repo=LBPD-PUBDOCS
@@ -16533,8 +18377,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207222&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207227&t=639181744709838013&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 070080497 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207229&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207231&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207232&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_009_siqueiros_socrates_on_or_after_  ·  V0 A4 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2009_009_siqueiros_socrates_on_or_after_  ·  V0 A4 D2 P5  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207011&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_-L091441173-_radio__Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207013&t=639181744829489077&dbid=0&repo=LBPD-PUBDOCS
@@ -16548,8 +18396,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207011&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207018&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS  2009-009_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207019&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207021&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207022&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207023&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207024&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207025&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_0011_mcghee_melanie_on_or_after_7_3  ·  V0 A4 D3  ·  score 50
+### longbeach_officer_involved_shootings_ois2013_0011_mcghee_melanie_on_or_after_7_3  ·  V0 A4 D3 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198300&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call _1840 072013 Phone Call_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198302&t=639181744980407046&dbid=0&repo=LBPD-PUBDOCS
@@ -16565,8 +18423,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198300&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198308&dbid=0&repo=LBPD-PUBDOCS
 - [documents] city attorney project
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198309&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198311&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1996_012_on_or_after_01_04_26  ·  V4 A0 D1  ·  score 41
+### longbeach_officer_involved_shootings_ois1996_012_on_or_after_01_04_26  ·  V4 A0 D1 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213349&dbid=0&repo=LBPD-PUBDOCS
 - [video] Radiio call 132 7 26 96 Side1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214085&t=639181744229615620&dbid=0&repo=LBPD-PUBDOCS
@@ -16578,8 +18438,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213349&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214084&t=639181744229665596&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 960216609 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213356&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213358&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2010_0010_cabanas_jose_on_or_after_7_27_  ·  V0 A4 D2  ·  score 41
+### longbeach_officer_involved_shootings_ois2010_0010_cabanas_jose_on_or_after_7_27_  ·  V0 A4 D2 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198289&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198291&t=639181744860444792&dbid=0&repo=LBPD-PUBDOCS
@@ -16593,8 +18455,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198289&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198296&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2010-0010 debrief_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198297&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198299&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_002_lemos_danny_on_or_after_9_5_22  ·  V0 A4 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2002_002_lemos_danny_on_or_after_9_5_22  ·  V0 A4 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198834&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 2-3-02 #1457 side 2_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198836&t=639181744471485161&dbid=0&repo=LBPD-PUBDOCS
@@ -16606,8 +18470,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198834&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198838&t=639181744471585181&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 020009215 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198841&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198843&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_003_ross_devron_on_or_after_08_01_2  ·  V0 A4 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_003_ross_devron_on_or_after_08_01_2  ·  V0 A4 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204498&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call # L090282454 (radio)_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=204500&t=639181744790177975&dbid=0&repo=LBPD-PUBDOCS
@@ -16621,8 +18487,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=204498&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204505&dbid=0&repo=LBPD-PUBDOCS
 - [documents] ois 09-03_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204506&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=204508&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_006_trivette_james_on_or_after_07_3  ·  V0 A4 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_006_trivette_james_on_or_after_07_3  ·  V0 A4 D2 P5  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208050&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call # L090961494 (phone)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208052&t=639181744813296956&dbid=0&repo=LBPD-PUBDOCS
@@ -16636,8 +18504,18 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208050&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208057&dbid=0&repo=LBPD-PUBDOCS
 - [documents] O.I.S. 09-06 cc2009-02518_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208058&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208060&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208061&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208062&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208063&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo5
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208064&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0046_royer_colin_on_or_after_02_08_22  ·  V3 A1 D4  ·  score 34
+### longbeach_use_of_force_uof2020_0046_royer_colin_on_or_after_02_08_22  ·  V3 A1 D4 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191742&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-12-02-08-50-24_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191744&t=639181746332233362&dbid=0&repo=LBPD-PUBDOCS
@@ -16655,8 +18533,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191742&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191751&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Crime Analysis
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191752&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191754&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2013_0241_afalava_erik_on_or_after_01_03_2022  ·  V0 A4 D8  ·  score 23
+### longbeach_use_of_force_uof2013_0241_afalava_erik_on_or_after_01_03_2022  ·  V0 A4 D8 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190119&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=190121&t=639181745676873269&dbid=0&repo=LBPD-PUBDOCS
@@ -16682,8 +18562,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190119&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190131&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Return%20Card%20130038789_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190133&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190135&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0056_evanich_aaron_on_or_after_7_20_22  ·  V0 A4 D6  ·  score 23
+### longbeach_use_of_force_uof2018_0056_evanich_aaron_on_or_after_7_20_22  ·  V0 A4 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198274&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198276&t=639181746186406838&dbid=0&repo=LBPD-PUBDOCS
@@ -16705,8 +18587,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198274&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198282&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198286&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198288&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_014_on_or_after_10_07_25  ·  V0 A3 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1997_014_on_or_after_10_07_25  ·  V0 A3 D1 P2  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211064&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview Vict 9 17 97_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211066&t=639181744272730290&dbid=0&repo=LBPD-PUBDOCS
@@ -16716,8 +18600,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211064&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211068&t=639181744272730290&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970071495 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211070&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211072&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211073&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_018_on_or_after_07_20_25  ·  V0 A3 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_018_on_or_after_07_20_25  ·  V0 A3 D1 P4  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209655&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #2036 998 08-08-98 (A) 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209657&t=639181744348839725&dbid=0&repo=LBPD-PUBDOCS
@@ -16727,8 +18615,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209655&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209659&t=639181744348889704&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980060563 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209661&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209663&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209664&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209665&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209666&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_004_on_or_after_06_09_25  ·  V0 A3 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2000_004_on_or_after_06_09_25  ·  V0 A3 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209526&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Radio 3 28 00 CP24 998 sideB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209528&t=639181744396089188&dbid=0&repo=LBPD-PUBDOCS
@@ -16738,8 +18634,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209526&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209530&t=639181744396089188&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 000023915 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209532&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209534&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2001_009_on_or_after_04_27_25  ·  V0 A3 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2001_009_on_or_after_04_27_25  ·  V0 A3 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209331&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #80 7-23-01 Part 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209333&t=639181744457741608&dbid=0&repo=LBPD-PUBDOCS
@@ -16749,8 +18647,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209331&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209335&t=639181744457741608&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 010058668 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209337&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209339&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_009_rodriguez_rolando_on_or_after_1  ·  V0 A3 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2003_009_rodriguez_rolando_on_or_after_1  ·  V0 A3 D2 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208799&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #1846 5-14-03_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208801&t=639181744533177104&dbid=0&repo=LBPD-PUBDOCS
@@ -16762,8 +18662,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208799&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208805&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_0309_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208806&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208808&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois800057531_chastang_eldridge  ·  V0 A3 D1  ·  score 42
+### longbeach_officer_involved_shootings_ois800057531_chastang_eldridge  ·  V0 A3 D1 P0  ·  score 42
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181690&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview TL_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=181692&t=639181745359666825&dbid=0&repo=LBPD-PUBDOCS
@@ -16774,7 +18676,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=181690&dbid=0
 - [documents] 800057531 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=181696&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1999_009_on_or_after_03_09_26  ·  V3 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois1999_009_on_or_after_03_09_26  ·  V3 A0 D1 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213602&dbid=0&repo=LBPD-PUBDOCS
 - [video] #791 10-31-99 2 Sides Part 1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214088&t=639181744368624763&dbid=0&repo=LBPD-PUBDOCS
@@ -16784,8 +18686,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213602&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=213606&t=639181744368674752&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 990082243 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213608&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213610&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_icd_06_22_01_400_blk_53rd_st  ·  V0 A3 D2  ·  score 37
+### longbeach_use_of_force_icd_06_22_01_400_blk_53rd_st  ·  V0 A3 D2 P61  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=199&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #706 and #395 6-22-01
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202&t=639181745584872730&dbid=0&repo=LBPD-PUBDOCS
@@ -16797,8 +18701,130 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=199&dbid=0&re
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209&dbid=0&repo=LBPD-PUBDOCS
 - [documents] UOF DR 01-49876 - PRA Exemptions
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=58167&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00026.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=212&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00027.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00028.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=216&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00029.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=218&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00031.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=220&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00032.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=222&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00037.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=224&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00038.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=226&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00039.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=228&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00040.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=230&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00041.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=232&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00042.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=234&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00043.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=236&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00044.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=238&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00045
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=240&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00045.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=242&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00046.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=244&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00047.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=246&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00048.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=248&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00049.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=250&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00050.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=252&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00051.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=254&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00053.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=256&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00054.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=258&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00055.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=260&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00056.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=262&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00057.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=264&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00058.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=266&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00059.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=268&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00060.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=270&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00061.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=272&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00063.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=274&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00064.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=276&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00065.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=278&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00066.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=280&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00067.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=282&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00068.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=284&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00069.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=286&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00071.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=288&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00072.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=290&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00073.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=292&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00074.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=294&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00075.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=296&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00076.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=298&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00077.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=300&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00078.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=302&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00079.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=304&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00080.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00081.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=308&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00082.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=310&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00083.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=312&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00084.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=314&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00085
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=316&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00085.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=318&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00086.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=320&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00087.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=322&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00088.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=324&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00089.tif
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=326&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00090.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=328&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00091.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=330&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00092.tif_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=332&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1990_023_brown_james_on_or_after_04_24_2  ·  V0 A3 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1990_023_brown_james_on_or_after_04_24_2  ·  V0 A3 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203231&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 900077762_AV Media_8668_Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203233&t=639181744104372774&dbid=0&repo=LBPD-PUBDOCS
@@ -16808,8 +18834,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203231&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203235&t=639181744104422811&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 900077762_Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203237&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203239&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2001_005_hall_omar_on_or_after_04_18_23  ·  V0 A3 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2001_005_hall_omar_on_or_after_04_18_23  ·  V0 A3 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203054&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #632 4-29-01 A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203056&t=639181744444622329&dbid=0&repo=LBPD-PUBDOCS
@@ -16819,8 +18847,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=203054&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=203058&t=639181744444672337&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 010034234 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203060&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=203062&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0011_butler_michael_on_or_after_7_20_22  ·  V2 A1 D4  ·  score 34
+### longbeach_use_of_force_uof2018_0011_butler_michael_on_or_after_7_20_22  ·  V2 A1 D4 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198262&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00064
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198265&t=639181746168743396&dbid=0&repo=LBPD-PUBDOCS
@@ -16836,8 +18866,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198262&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198269&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198271&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198273&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0320_mahoney_noa_on_or_after_02_07_22  ·  V2 A1 D4  ·  score 34
+### longbeach_use_of_force_uof2019_0320_mahoney_noa_on_or_after_02_07_22  ·  V2 A1 D4 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191710&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00029_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191713&t=639181746305534008&dbid=0&repo=LBPD-PUBDOCS
@@ -16853,8 +18885,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191710&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191718&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191719&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191721&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0338_gonzalez_eric_on_or_after_01_16_22  ·  V3 A0 D9  ·  score 24
+### longbeach_use_of_force_uof2015_0338_gonzalez_eric_on_or_after_01_16_22  ·  V3 A0 D9 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190269&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-11-25-11-30-20_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=190283&t=639181745947233075&dbid=0&repo=LBPD-PUBDOCS
@@ -16880,8 +18914,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190269&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190278&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Property Report 15-50737_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190279&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190281&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0322  ·  V3 A0 D4  ·  score 24
+### longbeach_use_of_force_uof2018_0322  ·  V3 A0 D4 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209027&dbid=0&repo=LBPD-PUBDOCS
 - [bodycam_or_incident_video] AXON_Body_2_Video_2018-10-31_2116_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209029&t=639181746240772367&dbid=0&repo=LBPD-PUBDOCS
@@ -16897,8 +18933,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209027&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209035&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Incident Summary_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209036&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209038&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0081  ·  V0 A3 D6  ·  score 23
+### longbeach_use_of_force_uof2015_0081  ·  V0 A3 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185342&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00037
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=185344&t=639181745896662009&dbid=0&repo=LBPD-PUBDOCS
@@ -16918,8 +18956,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185342&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185351&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185353&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185355&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0212  ·  V0 A3 D7  ·  score 23
+### longbeach_use_of_force_uof2015_0212  ·  V0 A3 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182037&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00021_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=182039&t=639181745927570949&dbid=0&repo=LBPD-PUBDOCS
@@ -16941,8 +18981,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182037&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182047&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determinations_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182049&dbid=0&repo=LBPD-PUBDOCS
+- [photos] photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182051&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_001_on_or_after_10_19_25  ·  V0 A2 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1997_001_on_or_after_10_19_25  ·  V0 A2 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211166&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview Mary Shoptaw 1 8 97_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211168&t=639181744241486405&dbid=0&repo=LBPD-PUBDOCS
@@ -16950,8 +18992,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211166&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211169&t=639181744241486405&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970001874 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211171&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211173&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1998_002_on_or_after_08_04_25  ·  V0 A2 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois1998_002_on_or_after_08_04_25  ·  V0 A2 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209778&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Suspect Interview Tywone Watkins 2 12 98_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209780&t=639181744293551675&dbid=0&repo=LBPD-PUBDOCS
@@ -16959,8 +19003,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209778&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209781&t=639181744293551675&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 980010777 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209783&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209785&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2004_012_newson_carl_on_or_after_11_05_2  ·  V0 A2 D1  ·  score 50
+### longbeach_officer_involved_shootings_ois2004_012_newson_carl_on_or_after_11_05_2  ·  V0 A2 D1 P1  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208594&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Newson Interview 11-04-04_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208596&t=639181744582934138&dbid=0&repo=LBPD-PUBDOCS
@@ -16968,8 +19014,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208594&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208597&t=639181744582934138&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 040090922 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208599&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208601&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_011_flores_ricardo_on_or_after_08_1  ·  V0 A2 D2  ·  score 50
+### longbeach_officer_involved_shootings_ois2008_011_flores_ricardo_on_or_after_08_1  ·  V0 A2 D2 P3  ·  score 50
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208162&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Flores,Ricardo_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208164&t=639181744767986576&dbid=0&repo=LBPD-PUBDOCS
@@ -16979,8 +19027,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208162&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208167&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Presentation08-11_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208168&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208170&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208171&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208172&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2008_013_08_95919_on_or_after_09_09_24  ·  V1 A1 D1  ·  score 47
+### longbeach_officer_involved_shootings_ois2008_013_08_95919_on_or_after_09_09_24  ·  V1 A1 D1 P1  ·  score 47
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208316&dbid=0&repo=LBPD-PUBDOCS
 - [video] Surveillance Video_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208319&t=639181744773450815&dbid=0&repo=LBPD-PUBDOCS
@@ -16988,8 +19042,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208316&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208318&t=639181744773450815&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 080095919 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208321&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208323&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2000_012_on_or_after_05_04_25  ·  V0 A2 D1  ·  score 42
+### longbeach_officer_involved_shootings_ois2000_012_on_or_after_05_04_25  ·  V0 A2 D1 P0  ·  score 42
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209360&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call #99 10-26-00_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209362&t=639181744428669306&dbid=0&repo=LBPD-PUBDOCS
@@ -16998,7 +19054,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209360&dbid=0
 - [documents] 000081791 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209365&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1995_016_on_or_after_01_27_26  ·  V2 A0 D1  ·  score 41
+### longbeach_officer_involved_shootings_ois1995_016_on_or_after_01_27_26  ·  V2 A0 D1 P1  ·  score 41
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213376&dbid=0&repo=LBPD-PUBDOCS
 - [video] Interview Witness_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214083&t=639181744209080535&dbid=0&repo=LBPD-PUBDOCS
@@ -17006,8 +19062,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=213376&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214082&t=639181744209080535&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 950089416 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213381&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=213383&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1994_015_on_or_after_05_06_26  ·  V2 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois1994_015_on_or_after_05_06_26  ·  V2 A0 D1 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214103&dbid=0&repo=LBPD-PUBDOCS
 - [video] 940067938 - A54612948 - 8928 - Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214105&t=639181744178146115&dbid=0&repo=LBPD-PUBDOCS
@@ -17015,8 +19073,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=214103&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=214106&t=639181744178146115&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 940067938 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214108&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=214110&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_0068_cit2016_0037_cerda_juan_on_or_after_02_14_22  ·  V0 A2 D25  ·  score 37
+### longbeach_use_of_force_uof2016_0068_cit2016_0037_cerda_juan_on_or_after_02_14_22  ·  V0 A2 D25 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191789&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview - Audio_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191791&t=639181746016270246&dbid=0&repo=LBPD-PUBDOCS
@@ -17072,8 +19132,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191789&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191817&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Warrant - Cerda_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191818&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191820&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois08_10_4800_block_e_anaheim_on_or_after_0  ·  V0 A2 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois08_10_4800_block_e_anaheim_on_or_after_0  ·  V0 A2 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192203&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call # L082931805 (phone)_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192205&t=639181744053315467&dbid=0&repo=LBPD-PUBDOCS
@@ -17083,8 +19145,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192203&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192208&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS2008-10 SRB_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192209&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192211&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_006_7_28_25  ·  V0 A2 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2002_006_7_28_25  ·  V0 A2 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209746&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #1576 3-30-02 Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209748&t=639181744483045266&dbid=0&repo=LBPD-PUBDOCS
@@ -17092,8 +19156,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209746&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209749&t=639181744483045266&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 020024165 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209751&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209753&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2003_012_haghighat_shahrokh_on_or_after_  ·  V0 A2 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2003_012_haghighat_shahrokh_on_or_after_  ·  V0 A2 D2 P3  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208908&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] 998 call 679 7-31-03 911 and radio side 2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208910&t=639181744543974699&dbid=0&repo=LBPD-PUBDOCS
@@ -17103,8 +19169,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208908&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208913&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_0312_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208914&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208916&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208917&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208918&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2005_002_miller_lance_on_or_after_12_02_  ·  V0 A2 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2005_002_miller_lance_on_or_after_12_02_  ·  V0 A2 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208700&dbid=0&repo=LBPD-PUBDOCS
 - [audio] #85 4-15-05_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208702&t=639181744588102858&dbid=0&repo=LBPD-PUBDOCS
@@ -17114,8 +19186,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208700&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208705&dbid=0&repo=LBPD-PUBDOCS
 - [documents] OIS_0502_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208706&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208708&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_007_flanagan_james_on_or_after_10_8  ·  V0 A2 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2006_007_flanagan_james_on_or_after_10_8  ·  V0 A2 D1 P3  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208473&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call # L062961579 (phones) Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208475&t=639181744675360645&dbid=0&repo=LBPD-PUBDOCS
@@ -17123,8 +19197,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208473&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208476&t=639181744675360645&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 060082396_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208478&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208480&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208481&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208482&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_008_7_28_25  ·  V0 A2 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_008_7_28_25  ·  V0 A2 D2 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209737&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-L091421582-Phone
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209739&t=639181744819975029&dbid=0&repo=LBPD-PUBDOCS
@@ -17134,8 +19214,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209737&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209743&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 09-08 Rim_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209742&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209745&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_008_delgadillo_jesse_on_or_after_03  ·  V0 A2 D5  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_008_delgadillo_jesse_on_or_after_03  ·  V0 A2 D5 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207097&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Call-_0037-042813-Phone_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207099&t=639181745022712309&dbid=0&repo=LBPD-PUBDOCS
@@ -17151,8 +19233,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207097&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207105&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board 13-008_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207106&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207108&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois850041410_harris_antoine  ·  V0 A2 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois850041410_harris_antoine  ·  V0 A2 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187871&dbid=0&repo=LBPD-PUBDOCS
 - [audio] MJ 7_21_85_Redacted (2)
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187874&t=639181745378941268&dbid=0&repo=LBPD-PUBDOCS
@@ -17162,8 +19246,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187871&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187873&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 850041410 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187877&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187879&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois900044550_barrett_rogers_on_or_after_10_  ·  V0 A2 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois900044550_barrett_rogers_on_or_after_10_  ·  V0 A2 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189311&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 900044550_AV Media_8686_Side A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189313&t=639181745384945207&dbid=0&repo=LBPD-PUBDOCS
@@ -17171,8 +19257,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189311&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189314&t=639181745384995199&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 900044550_Reports_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189316&dbid=0&repo=LBPD-PUBDOCS
+- [photos] 900044550 Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189318&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0076  ·  V1 A1 D6  ·  score 34
+### longbeach_use_of_force_uof2014_0076  ·  V1 A1 D6 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188242&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00038
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=188244&t=639181745761088115&dbid=0&repo=LBPD-PUBDOCS
@@ -17190,8 +19278,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188242&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188250&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188252&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188254&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0365_inegbeje_elijah_on_or_after_01_17_2022  ·  V1 A1 D4  ·  score 34
+### longbeach_use_of_force_uof2015_0365_inegbeje_elijah_on_or_after_01_17_2022  ·  V1 A1 D4 P1  ·  score 34
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191134&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-11-18-10-05-32
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191136&t=639181745955956576&dbid=0&repo=LBPD-PUBDOCS
@@ -17205,8 +19295,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191134&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191141&dbid=0&repo=LBPD-PUBDOCS
 - [documents] CFS 15-61591_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191142&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191144&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0347_hornsby_corey_on_or_after_10_30_23  ·  V2 A0 D6  ·  score 27
+### longbeach_use_of_force_uof2020_0347_hornsby_corey_on_or_after_10_30_23  ·  V2 A0 D6 P1  ·  score 27
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205388&dbid=0&repo=LBPD-PUBDOCS
 - [video] LB200043416_Redacted_2
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205390&t=639181746353880689&dbid=0&repo=LBPD-PUBDOCS
@@ -17224,8 +19316,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205388&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205397&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205398&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205400&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm_12_0082_yanez_noe_on_or_af  ·  V0 A2 D1  ·  score 25
+### longbeach_sustained_sexual_assault_and_dishonesty_adm_12_0082_yanez_noe_on_or_af  ·  V0 A2 D1 P0  ·  score 25
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198922&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Failure to Appear by Officer N Yanez Audio
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=198924&t=639181745445924507&dbid=0&repo=LBPD-PUBDOCS
@@ -17234,7 +19328,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=198922&dbid=0
 - [documents] Red Book-12-0082_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=198927&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0419_0421_holsey_young_on_or_after_01_23_22  ·  V2 A0 D9  ·  score 24
+### longbeach_use_of_force_uof2015_0419_0421_holsey_young_on_or_after_01_23_22  ·  V2 A0 D9 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191290&dbid=0&repo=LBPD-PUBDOCS
 - [video] 2020-12-24-10-28-19_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191304&t=639181745970027414&dbid=0&repo=LBPD-PUBDOCS
@@ -17258,8 +19352,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191290&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191298&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Request from Pest Control Board 15-67410_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191300&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191302&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0217  ·  V2 A0 D5  ·  score 24
+### longbeach_use_of_force_uof2019_0217  ·  V2 A0 D5 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171326&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00038
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=171336&t=639181746280328789&dbid=0&repo=LBPD-PUBDOCS
@@ -17275,8 +19371,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171326&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171331&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171332&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171334&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0248_parizal_ricardo_kamuelanaipo  ·  V0 A2 D7  ·  score 23
+### longbeach_use_of_force_uof2014_0248_parizal_ricardo_kamuelanaipo  ·  V0 A2 D7 P4  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187880&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187882&t=639181745814463961&dbid=0&repo=LBPD-PUBDOCS
@@ -17296,8 +19394,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187880&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187889&dbid=0&repo=LBPD-PUBDOCS
 - [documents] PCD_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187891&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187947&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187948&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187949&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos 4
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187950&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_0264_rios_christian_on_or_after_01_30_22  ·  V0 A2 D7  ·  score 23
+### longbeach_use_of_force_uof2016_0264_rios_christian_on_or_after_01_30_22  ·  V0 A2 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191559&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00021
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191561&t=639181746067169554&dbid=0&repo=LBPD-PUBDOCS
@@ -17317,8 +19423,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191559&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191570&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR 160048207_AR_PK 740223_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191568&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191572&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_2019_0136_cit2019_0055  ·  V0 A2 D19  ·  score 23
+### longbeach_use_of_force_uof_2019_0136_cit2019_0055  ·  V0 A2 D19 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182011&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00011
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182013&dbid=0&repo=LBPD-PUBDOCS
@@ -17362,8 +19470,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182011&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182032&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Vehicle report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182033&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182036&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_adm2008_0374_on_or_after_03_17  ·  V0 A2 D1  ·  score 12
+### longbeach_sustained_sexual_assault_and_dishonesty_adm2008_0374_on_or_after_03_17  ·  V0 A2 D1 P0  ·  score 12
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207082&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 07-0295 Tape 1A_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207084&t=639181745466868073&dbid=0&repo=LBPD-PUBDOCS
@@ -17372,14 +19482,16 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207082&dbid=0
 - [documents] Red Book ADM08-0374_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207087&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_006_odell_devonne_wright_vince_on_o  ·  V1 A0 D1  ·  score 37
+### longbeach_officer_involved_shootings_ois1997_006_odell_devonne_wright_vince_on_o  ·  V1 A0 D1 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=202213&dbid=0&repo=LBPD-PUBDOCS
 - [video] 970043858 - A54613146 - 9850
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=202219&t=639181744249768388&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970043858 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202215&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=202217&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0087_solares_ivan_on_or_after_9_20_2021  ·  V0 A1 D6  ·  score 37
+### longbeach_use_of_force_uof2014_0087_solares_ivan_on_or_after_9_20_2021  ·  V0 A1 D6 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189221&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=189223&t=639181745766396850&dbid=0&repo=LBPD-PUBDOCS
@@ -17395,8 +19507,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=189221&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189228&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189230&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=189232&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0468  ·  V0 A1 D7  ·  score 37
+### longbeach_use_of_force_uof2014_0468  ·  V0 A1 D7 P1  ·  score 37
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187964&dbid=0&repo=LBPD-PUBDOCS
 - [interview_audio] Interview
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187966&t=639181745845728303&dbid=0&repo=LBPD-PUBDOCS
@@ -17414,29 +19528,37 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187964&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187973&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause 66955_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187974&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187980&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois1997_007_on_or_after_10_19_25  ·  V0 A1 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois1997_007_on_or_after_10_19_25  ·  V0 A1 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=211174&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Valenzuela, Gabriel OIS NA040055
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=211176&t=639181744257838084&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 970046293 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211178&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=211180&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2002_007_fine_michael_on_or_after_12_24_  ·  V0 A1 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2002_007_fine_michael_on_or_after_12_24_  ·  V0 A1 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=208809&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Copy LAPD 275913_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=208811&t=639181744493268903&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 020061720 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208813&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=208815&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2006_009_06_99235_on_or_after_09_23_24  ·  V0 A1 D1  ·  score 36
+### longbeach_officer_involved_shootings_ois2006_009_06_99235_on_or_after_09_23_24  ·  V0 A1 D1 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=209730&dbid=0&repo=LBPD-PUBDOCS
 - [audio] DR_06-24524-HBPD_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=209732&t=639181744687879775&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 060099235 Case File_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209734&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=209736&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2009_005_elliott_victor_on_or_after_03_1  ·  V0 A1 D2  ·  score 36
+### longbeach_officer_involved_shootings_ois2009_005_elliott_victor_on_or_after_03_1  ·  V0 A1 D2 P2  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207088&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_-L090581908-_radio__Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207090&t=639181744806132871&dbid=0&repo=LBPD-PUBDOCS
@@ -17444,8 +19566,12 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207088&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207093&dbid=0&repo=LBPD-PUBDOCS
 - [documents] 09-15168 File2_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207092&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207095&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207096&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_0010_mares_lawrence_on_or_after_04_  ·  V0 A1 D4  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_0010_mares_lawrence_on_or_after_04_  ·  V0 A1 D4 P1  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192224&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 13-087192 Det Joe Pirooz by AQ and DV_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=192226&t=639181744975113878&dbid=0&repo=LBPD-PUBDOCS
@@ -17457,8 +19583,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192224&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192230&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Presentation1_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192231&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192233&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_officer_involved_shootings_ois2013_007_frushon_matthew_on_or_after_03_  ·  V0 A1 D3  ·  score 36
+### longbeach_officer_involved_shootings_ois2013_007_frushon_matthew_on_or_after_03_  ·  V0 A1 D3 P3  ·  score 36
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207026&dbid=0&repo=LBPD-PUBDOCS
 - [911_radio_audio] Call-_2350-032113-Radio-Traffic-22-39-35-to-22-58-53_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=207028&t=639181745015409643&dbid=0&repo=LBPD-PUBDOCS
@@ -17468,8 +19596,14 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=207026&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207031&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Shooting Board_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207032&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo1
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207034&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo2
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207035&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photo3
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=207036&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0588  ·  V0 A1 D17  ·  score 26
+### longbeach_use_of_force_uof2014_0588  ·  V0 A1 D17 P1  ·  score 26
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185287&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=185289&t=639181745863419721&dbid=0&repo=LBPD-PUBDOCS
@@ -17507,8 +19641,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185287&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185305&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Property 3
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185306&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185309&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0099  ·  V0 A1 D9  ·  score 26
+### longbeach_use_of_force_uof2015_0099  ·  V0 A1 D9 P1  ·  score 26
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185356&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00031_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185358&dbid=0&repo=LBPD-PUBDOCS
@@ -17530,8 +19666,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185356&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185367&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause 15-29066_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185368&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185370&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_0026_alvarez_edwin_on_or_after_01_30_22  ·  V0 A1 D14  ·  score 26
+### longbeach_use_of_force_uof2016_0026_alvarez_edwin_on_or_after_01_30_22  ·  V0 A1 D14 P1  ·  score 26
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191539&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 16-4248_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191541&t=639181746005277862&dbid=0&repo=LBPD-PUBDOCS
@@ -17563,8 +19701,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191539&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191555&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Property Info Report
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191556&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191558&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0014_nowparvar_jamiel_guy_michael_on_or_after_01_  ·  V1 A0 D12  ·  score 24
+### longbeach_use_of_force_uof2014_0014_nowparvar_jamiel_guy_michael_on_or_after_01_  ·  V1 A0 D12 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190237&dbid=0&repo=LBPD-PUBDOCS
 - [video] img_00001
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190254&dbid=0&repo=LBPD-PUBDOCS
@@ -17592,8 +19732,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190237&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190247&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190250&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190252&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2020_0119_arnold_brandon_on_or_after_12_11_23  ·  V1 A0 D11  ·  score 24
+### longbeach_use_of_force_uof2020_0119_arnold_brandon_on_or_after_12_11_23  ·  V1 A0 D11 P1  ·  score 24
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205563&dbid=0&repo=LBPD-PUBDOCS
 - [video] Parole_or_Probation_LB200017807_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=205565&t=639181746343355609&dbid=0&repo=LBPD-PUBDOCS
@@ -17619,8 +19761,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=205563&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205576&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Message 4 - 20-17807
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205577&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=205579&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2013_0352_200_block_of_elm_on_or_after_01_05_22  ·  V0 A1 D7  ·  score 23
+### longbeach_use_of_force_uof2013_0352_200_block_of_elm_on_or_after_01_05_22  ·  V0 A1 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190136&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00067_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=190138&t=639181745698379628&dbid=0&repo=LBPD-PUBDOCS
@@ -17638,8 +19782,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190136&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190146&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20130066654_9_VH_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190143&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190148&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2013_0365_taylor_randy_on_or_after_04_25_22  ·  V0 A1 D8  ·  score 23
+### longbeach_use_of_force_uof2013_0365_taylor_randy_on_or_after_04_25_22  ·  V0 A1 D8 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192731&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00021
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192733&dbid=0&repo=LBPD-PUBDOCS
@@ -17659,8 +19805,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=192731&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192738&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192742&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Binder1_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=192744&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0208  ·  V0 A1 D9  ·  score 23
+### longbeach_use_of_force_uof2014_0208  ·  V0 A1 D9 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188145&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 14_26859.006Nance_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188147&dbid=0&repo=LBPD-PUBDOCS
@@ -17682,8 +19830,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188145&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188154&dbid=0&repo=LBPD-PUBDOCS
 - [documents] PCD_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188157&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188159&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0209  ·  V0 A1 D7  ·  score 23
+### longbeach_use_of_force_uof2014_0209  ·  V0 A1 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188160&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00017
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188162&dbid=0&repo=LBPD-PUBDOCS
@@ -17701,8 +19851,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188160&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188167&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause Determination_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188170&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188172&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0388  ·  V0 A1 D7  ·  score 23
+### longbeach_use_of_force_uof2014_0388  ·  V0 A1 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187951&dbid=0&repo=LBPD-PUBDOCS
 - [audio] Track 1 256kbps_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187953&t=639181745840078353&dbid=0&repo=LBPD-PUBDOCS
@@ -17720,8 +19872,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187951&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187960&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20140055522__XX_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187961&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187963&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0496_1300_block_e_anaheim  ·  V0 A1 D6  ·  score 23
+### longbeach_use_of_force_uof2014_0496_1300_block_e_anaheim  ·  V0 A1 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187931&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=187933&t=639181745851389352&dbid=0&repo=LBPD-PUBDOCS
@@ -17737,8 +19891,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=187931&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187939&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20140073277__PT_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187940&dbid=0&repo=LBPD-PUBDOCS
+- [photos] img_00001
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=187942&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2014_0564  ·  V0 A1 D5  ·  score 23
+### longbeach_use_of_force_uof2014_0564  ·  V0 A1 D5 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188208&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00037_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=188210&t=639181745857941969&dbid=0&repo=LBPD-PUBDOCS
@@ -17752,8 +19908,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=188208&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188215&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Lab Exam Report
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188216&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=188218&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0068  ·  V0 A1 D6  ·  score 23
+### longbeach_use_of_force_uof2015_0068  ·  V0 A1 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185320&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00036_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=185322&t=639181745877201353&dbid=0&repo=LBPD-PUBDOCS
@@ -17769,8 +19927,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=185320&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185329&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20150020410_AR_PK%20721721_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185328&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=185331&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0140  ·  V0 A1 D6  ·  score 23
+### longbeach_use_of_force_uof2015_0140  ·  V0 A1 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182087&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 01 The Big Bang_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182089&dbid=0&repo=LBPD-PUBDOCS
@@ -17786,8 +19946,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=182087&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182096&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20150002059_3_PT_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182095&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=182098&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0307_cruz_ricardo_on_or_after_01_16_22  ·  V0 A1 D8  ·  score 23
+### longbeach_use_of_force_uof2015_0307_cruz_ricardo_on_or_after_01_16_22  ·  V0 A1 D8 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190255&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=190257&t=639181745938495879&dbid=0&repo=LBPD-PUBDOCS
@@ -17807,8 +19969,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=190255&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190266&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Probable Cause 15-43757_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190265&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=190268&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2015_0427_moncada_edil_on_or_after_01_23_22  ·  V0 A1 D7  ·  score 23
+### longbeach_use_of_force_uof2015_0427_moncada_edil_on_or_after_01_23_22  ·  V0 A1 D7 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191306&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00020
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191308&t=639181745978236631&dbid=0&repo=LBPD-PUBDOCS
@@ -17826,8 +19990,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191306&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191315&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report15-53260_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191316&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191318&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_0010_savaii_faasoa_et_al_on_or_after_01_29_22  ·  V0 A1 D21  ·  score 23
+### longbeach_use_of_force_uof2016_0010_savaii_faasoa_et_al_on_or_after_01_29_22  ·  V0 A1 D21 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191512&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 16-566
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191514&t=639181745995465970&dbid=0&repo=LBPD-PUBDOCS
@@ -17873,8 +20039,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191512&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191535&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Evidence Analysis Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191536&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191538&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_003_radford_eric_on_or_after_01_24_2022  ·  V0 A1 D5  ·  score 23
+### longbeach_use_of_force_uof2016_003_radford_eric_on_or_after_01_24_2022  ·  V0 A1 D5 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191403&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00021
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191405&t=639181746011107325&dbid=0&repo=LBPD-PUBDOCS
@@ -17888,8 +20056,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191403&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191411&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20160008026_AR_PK%20472020_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191410&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191413&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2016_0079_abdelmola_omar_on_or_after_01_31_22  ·  V0 A1 D5  ·  score 23
+### longbeach_use_of_force_uof2016_0079_abdelmola_omar_on_or_after_01_31_22  ·  V0 A1 D5 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191602&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00015
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=191604&t=639181746031230872&dbid=0&repo=LBPD-PUBDOCS
@@ -17903,8 +20073,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191602&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191610&dbid=0&repo=LBPD-PUBDOCS
 - [documents] DR%20160016006_AR_PK%20738505_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191609&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191612&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2018_0060  ·  V0 A1 D6  ·  score 23
+### longbeach_use_of_force_uof2018_0060  ·  V0 A1 D6 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=179998&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180000&dbid=0&repo=LBPD-PUBDOCS
@@ -17920,8 +20092,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=179998&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180005&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Printable Report _ BlueTeam 6_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180007&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos_Redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=180009&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0303_estrada_zuniga_eduardo_on_or_after_02_07_22  ·  V0 A1 D5  ·  score 23
+### longbeach_use_of_force_uof2019_0303_estrada_zuniga_eduardo_on_or_after_02_07_22  ·  V0 A1 D5 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191699&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00012_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191701&dbid=0&repo=LBPD-PUBDOCS
@@ -17935,8 +20109,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191699&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191706&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Vehicle report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191707&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191709&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0324_spillman_ellis_on_or_after_02_07_22  ·  V0 A1 D3  ·  score 23
+### longbeach_use_of_force_uof2019_0324_spillman_ellis_on_or_after_02_07_22  ·  V0 A1 D3 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191722&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00001_Redacted_1
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191724&dbid=0&repo=LBPD-PUBDOCS
@@ -17946,8 +20122,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191722&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191727&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191728&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191730&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof2019_0336_davis_trevon_on_or_after_02_07_22  ·  V0 A1 D5  ·  score 23
+### longbeach_use_of_force_uof2019_0336_davis_trevon_on_or_after_02_07_22  ·  V0 A1 D5 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191731&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00030
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191733&dbid=0&repo=LBPD-PUBDOCS
@@ -17961,8 +20139,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=191731&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191738&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191739&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=191741&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_use_of_force_uof_2019_0074  ·  V0 A1 D3  ·  score 23
+### longbeach_use_of_force_uof_2019_0074  ·  V0 A1 D3 P1  ·  score 23
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171282&dbid=0&repo=LBPD-PUBDOCS
 - [audio] img_00068_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171284&dbid=0&repo=LBPD-PUBDOCS
@@ -17972,8 +20152,10 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=171282&dbid=0
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171287&dbid=0&repo=LBPD-PUBDOCS
 - [documents] Report marked_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171288&dbid=0&repo=LBPD-PUBDOCS
+- [photos] Photos - marked_redacted
+  https://citydocs.longbeach.gov/LBPDPublicDocs/ElectronicFile.aspx?docid=171290&dbid=0&repo=LBPD-PUBDOCS
 
-### longbeach_sustained_sexual_assault_and_dishonesty_cit2009_0257_on_or_after_02_06  ·  V0 A1 D1  ·  score 12
+### longbeach_sustained_sexual_assault_and_dishonesty_cit2009_0257_on_or_after_02_06  ·  V0 A1 D1 P0  ·  score 12
 case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0&repo=LBPD-PUBDOCS
 - [audio] 09-0257 Vriens_Redacted
   https://citydocs.longbeach.gov/LBPDPublicDocs/mediahandler.ashx?id=206827&t=639181745541657186&dbid=0&repo=LBPD-PUBDOCS
@@ -17982,7 +20164,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 
 ## muckrock — Barnstable Police Department
 
-### muckrock_134697_video_surveillance_barnstable_town_hall  ·  V196 A0 D8  ·  score 7
+### muckrock_134697_video_surveillance_barnstable_town_hall  ·  V196 A0 D8 P0  ·  score 7
 - [media] THB-90.20220905_065506_1.mp4
   https://cdn.muckrock.com/outbound_request_attachments/amandabee/134697/THB-90.20220905_065506_1.mp4
 - [media] THB-90.20220906_041759_1.mp4
@@ -18386,7 +20568,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] 11-10-22_MR134697.pdf
   https://cdn.muckrock.com/outbound_request_attachments/amandabee/134697/11-10-22_MR134697.pdf
 
-### muckrock_17038_officer_names_and_dashcam_footage_from_v  ·  V0 A54 D7  ·  score 6
+### muckrock_17038_officer_names_and_dashcam_footage_from_v  ·  V0 A54 D7 P0  ·  score 6
 - [media] 0000000675_Police_1_2015-03-31_11_02_19_by_servername_asc.wav
   https://cdn.muckrock.com/foia_files/0000000675_Police_1_2015-03-31_11_02_19_by_servername_asc_1.wav
 - [media] 0000000676_Ems_1_2015-03-31_11_02_26_by_servername_asc.wav
@@ -18510,7 +20692,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Incident Log 15-17954
   https://cdn.muckrock.com/foia_files/Incident_Log_15-17954.pdf
 
-### muckrock_59270_lip_sync_challenge_video_springfield_pol  ·  V25 A0 D0  ·  score 6
+### muckrock_59270_lip_sync_challenge_video_springfield_pol  ·  V25 A0 D0 P0  ·  score 6
 - [media] DSC_0489.MOV
   https://cdn.muckrock.com/outbound_request_attachments/SpringfieldPoliceDepartment2/59270/DSC_0489.MOV
 - [media] DSC_0476.MOV
@@ -18562,7 +20744,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] DSC_0490.MOV
   https://cdn.muckrock.com/outbound_request_attachments/SpringfieldPoliceDepartment2/59270/DSC_0490.MOV
 
-### muckrock_185699_illinois_freedom_of_information_act_requ  ·  V20 A0 D0  ·  score 15
+### muckrock_185699_illinois_freedom_of_information_act_requ  ·  V20 A0 D0 P0  ·  score 15
 - [media] agg_assault_po
   https://cdn.muckrock.com/foia_files/2025/05/27/agg_assault_po.mp4
 - [media] _Clip_1_1_Agg_Battery
@@ -18604,7 +20786,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] _Clip_1_1_Agg_Assault
   https://cdn.muckrock.com/foia_files/2025/05/28/_Clip_1_1_Agg_Assault.mp4
 
-### muckrock_182257_request_for_body_cam_footage_of_arrest_a  ·  V14 A0 D0  ·  score 22
+### muckrock_182257_request_for_body_cam_footage_of_arrest_a  ·  V14 A0 D0 P0  ·  score 22
 - [media] 24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4
   https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_2_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_1.mp4
 - [media] 24-100773_VIDEO_1_SMITH_-_Extraction_1_1_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4
@@ -18634,7 +20816,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] 24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4
   https://cdn.muckrock.com/inbound_request_attachments/MiamiBeachPoliceDepartment/182257/24-100773_VIDEO_12_ALVAREZ_-_Axon_Interview-354-Interview_Room_A-3-Camera_2.mp4
 
-### muckrock_116961_body_camera  ·  V11 A0 D0  ·  score 6
+### muckrock_116961_body_camera  ·  V11 A0 D0 P0  ·  score 6
 - [media] AXON_Body_2_Video_2021-06-21_1238
   https://cdn.muckrock.com/foia_files/2021/09/18/AXON_Body_2_Video_2021-06-21_1238_A6gWkzK.mp4
 - [media] AXON_Body_2_Video_2021-06-21_1216
@@ -18652,7 +20834,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] AXON_Body_2_Video_2021-06-14_1157
   https://cdn.muckrock.com/foia_files/2021/09/18/AXON_Body_2_Video_2021-06-14_1157.mp4
 
-### muckrock_181169_sarah_kolb_and_cory_gregory_interrogatio  ·  V1 A9 D1  ·  score 28
+### muckrock_181169_sarah_kolb_and_cory_gregory_interrogatio  ·  V1 A9 D1 P0  ·  score 28
 - [media] CALL_1_2
   https://cdn.muckrock.com/foia_files/2025/02/17/CALL_1_2.mp4
 - [media] CALL_3_6_2
@@ -18676,7 +20858,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] 2005-0375
   https://cdn.muckrock.com/foia_files/2025/02/14/2005-0375.pdf
 
-### muckrock_91839_audio_or_transcript_of_interview_with_ch  ·  V0 A10 D190  ·  score 10
+### muckrock_91839_audio_or_transcript_of_interview_with_ch  ·  V0 A10 D190 P0  ·  score 10
 - [media] Manson-Dianne Bluestien 2 of 2-7 inch reel to reel.wav
   https://cdn.muckrock.com/foia_files/2020/06/16/Manson-Dianne_Bluestien_2_of_2-7_inch_reel_to_reel.wav
 - [media] Manson-Dianne Bluestien 1 of 2 -7 inch reel to reel ch 2.wav
@@ -18748,7 +20930,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] BOX 49 DISCLOSED-WATERMARKED.pdf
   https://cdn.muckrock.com/foia_files/2020/06/16/BOX_49_DISCLOSED-WATERMARKED.pdf
 
-### muckrock_177306_body_camera_footage  ·  V9 A0 D0  ·  score 6
+### muckrock_177306_body_camera_footage  ·  V9 A0 D0 P0  ·  score 6
 - [media] Turner-_4_39-07_00-_16-2783NConstitutionP
   https://cdn.muckrock.com/foia_files/2024/12/18/Turner-_4_39-07_00-_16-2783NConstitutionP.mp4
 - [media] McDowell-06_26-06_52_16-2783_N_Constitution_P
@@ -18768,7 +20950,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] McDowell_25_50-_40_00_16-2783_N_Constitution_P
   https://cdn.muckrock.com/foia_files/2024/12/18/McDowell_25_50-_40_00_16-2783_N_Constitution_P.mp4
 
-### muckrock_184369_florida_sunshine_law_request_public_reco  ·  V7 A1 D0  ·  score 17
+### muckrock_184369_florida_sunshine_law_request_public_reco  ·  V7 A1 D0 P0  ·  score 17
 - [media] 24-6163
   https://cdn.muckrock.com/foia_files/2025/04/04/24-6163.AVI
 - [media] 24-6162
@@ -18786,7 +20968,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] 2024081
   https://cdn.muckrock.com/foia_files/2025/04/04/2024081.WAV
 
-### muckrock_185700_illinois_freedom_of_information_act_requ  ·  V8 A0 D0  ·  score 15
+### muckrock_185700_illinois_freedom_of_information_act_requ  ·  V8 A0 D0 P0  ·  score 15
 - [media] _Clip_2_1_ASTFD
   https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_2_1_ASTFD.mp4
 - [media] _Clip_1_1_Prisoner_Transport
@@ -18804,7 +20986,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] _Extraction_1_1_Clip_1_1_Agg_Battery_to_PO
   https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_Clip_1_1_Agg_Battery_to_PO.mp4
 
-### muckrock_184134_foia_request_bodycam_and_dashcam_footage  ·  V8 A0 D2  ·  score 12
+### muckrock_184134_foia_request_bodycam_and_dashcam_footage  ·  V8 A0 D2 P0  ·  score 12
 - [media] Redacted-BWC-Banda-JH503045-8Min28Sec
   https://cdn.muckrock.com/foia_files/2025/04/28/Redacted-BWC-Banda-JH503045-8Min28Sec.mp4
 - [media] Redacted-BWC-Fernandez-JH503045-6Min0Sec
@@ -18826,7 +21008,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Samantha_Steele_arrest_report_CB_30409134_10_Nov_2024_REDACTED_R
   https://cdn.muckrock.com/foia_files/2025/04/28/Samantha_Steele_arrest_report_CB_30409134_10_Nov_2024_REDACTED_R.pdf
 
-### muckrock_185694_illinois_freedom_of_information_act_requ  ·  V7 A0 D0  ·  score 15
+### muckrock_185694_illinois_freedom_of_information_act_requ  ·  V7 A0 D0 P0  ·  score 15
 - [media] _Extraction_1_1_AGGRAVATED_BATTERY
   https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_AGGRAVATED_BATTERY.mp4
 - [media] _Extraction_1_1_Clip_1_1_agg_bat
@@ -18842,7 +21024,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] _Extraction_1_3_Clip_4_1_agg_bat_to_po_agg_assault_to_paramedic
   https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_3_Clip_4_1_agg_bat_to_po_agg_assault_to_paramedic.mp4
 
-### muckrock_184380_cora_request_bodycam_dashcam_and_in_car_  ·  V7 A0 D2  ·  score 9
+### muckrock_184380_cora_request_bodycam_dashcam_and_in_car_  ·  V7 A0 D2 P0  ·  score 9
 - [media] 2024_0716_021533TRIN002_LL0002-001_20240716110552-redacted_20250520042044303.mp4
   https://cdn.muckrock.com/inbound_request_attachments/TrinidadPoliceDepartment/184380/2024_0716_021533TRIN002_LL0002-001_20240716110552-redacted_20250520042044303.mp4
 - [media] 2024_0716_015147TRIN002_LL0002-001_20240716110109-redacted_20250520042044303.mp4
@@ -18862,7 +21044,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Maya Duma
   https://cdn.muckrock.com/foia_files/2025/04/21/Maya_Duma.pdf
 
-### muckrock_185642_texas_public_information_act_request_bod  ·  V6 A0 D7  ·  score 10
+### muckrock_185642_texas_public_information_act_request_bod  ·  V6 A0 D7 P0  ·  score 10
 - [media] uba00264_20240721100948e0_20240721100918_02_000v
   https://cdn.muckrock.com/foia_files/2025/05/12/uba00264_20240721100948e0_20240721100918_02_000v.mp4
 - [media] uba00264_20240721100933e0_20240721100902_02_000v
@@ -18890,7 +21072,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] AG_Opinion
   https://cdn.muckrock.com/foia_files/2025/07/03/AG_Opinion.pdf
 
-### muckrock_185616_new_mexico_inspection_of_public_records_  ·  V6 A0 D0  ·  score 8
+### muckrock_185616_new_mexico_inspection_of_public_records_  ·  V6 A0 D0 P0  ·  score 8
 - [media] 2025-0205-1756111000E29-1000E29_20250206133702028
   https://cdn.muckrock.com/foia_files/2025/06/01/2025-0205-1756111000E29-1000E29_20250206133702028.mp4
 - [media] 2025-0205-1739091000E45-1000E45_20250206015117908
@@ -18904,7 +21086,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] 2025-0205-1712411000E45-1000E45_20250206015103835-redacted1_20250617001227675
   https://cdn.muckrock.com/foia_files/2025/06/18/2025-0205-1712411000E45-1000E45_20250206015103835-redacted1_20250617001227675.mp4
 
-### muckrock_185702_illinois_freedom_of_information_act_requ  ·  V5 A0 D0  ·  score 15
+### muckrock_185702_illinois_freedom_of_information_act_requ  ·  V5 A0 D0 P0  ·  score 15
 - [media] _Extraction_1_1_Clip_1_1_Agg_Battery_Spitting_on_JFD
   https://cdn.muckrock.com/foia_files/2025/05/28/_Extraction_1_1_Clip_1_1_Agg_Battery_Spitting_on_JFD.mp4
 - [media] _Extraction_1_1_Clip_3_1_Agg_Battery_Spitting_on_JFD
@@ -18914,7 +21096,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] _Extraction_1_1_Clip_2_1_Agg_Battery_Spitting_on_JFD
   https://cdn.muckrock.com/foia_files/2025/05/28/_Extraction_1_1_Clip_2_1_Agg_Battery_Spitting_on_JFD.mp4
 
-### muckrock_185689_illinois_freedom_of_information_act_requ  ·  V4 A0 D1  ·  score 18
+### muckrock_185689_illinois_freedom_of_information_act_requ  ·  V4 A0 D1 P0  ·  score 18
 - [media] _Clip_2_1_Aggravated_Battery_to_PO
   https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_2_1_Aggravated_Battery_to_PO.mp4
 - [media] _Clip_1_1_Agg_Batt_to_PO
@@ -18926,7 +21108,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Recurrent_Requester
   https://cdn.muckrock.com/foia_files/2025/05/01/Recurrent_Requester.doc
 
-### muckrock_184113_foia_request_unedited_body_worn_camera_f  ·  V2 A2 D42  ·  score 17
+### muckrock_184113_foia_request_unedited_body_worn_camera_f  ·  V2 A2 D42 P0  ·  score 17
 - [media] _Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_
   https://cdn.muckrock.com/foia_files/2025/03/31/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_.mp4
 - [media] _Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_
@@ -18986,7 +21168,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted
   https://cdn.muckrock.com/foia_files/2025/03/31/WARRANT_AFFIDAVIT__KIMBERLY_SULLIVAN_Redacted_BgRtHcf.pdf
 
-### muckrock_184119_foia_request_body_worn_camera_footage_fr  ·  V4 A0 D0  ·  score 9
+### muckrock_184119_foia_request_body_worn_camera_footage_fr  ·  V4 A0 D0 P0  ·  score 9
 - [media] 24-04616_Extraction_1_1_Accident-DUI
   https://cdn.muckrock.com/foia_files/2025/04/02/24-04616_Extraction_1_1_Accident-DUI.mp4
 - [media] 24-04616_Extraction_1_1_Crash_Investigation_DUI
@@ -18996,7 +21178,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] 24-04616_Clip_1_1_Extraction_1_1_DUI_
   https://cdn.muckrock.com/foia_files/2025/04/02/24-04616_Clip_1_1_Extraction_1_1_DUI_.mp4
 
-### muckrock_152018_body_camera_footage_and_dash_camera_foot  ·  V4 A0 D0  ·  score 6
+### muckrock_152018_body_camera_footage_and_dash_camera_foot  ·  V4 A0 D0 P0  ·  score 6
 - [media] 20111737_20230208110248
   https://cdn.muckrock.com/foia_files/2023/09/26/20111737_20230208110248.mpg
 - [media] 10222_20230208111158
@@ -19006,7 +21188,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] 20072477_20230208111235_0
   https://cdn.muckrock.com/foia_files/2023/09/27/20072477_20230208111235_0.mpg
 
-### muckrock_185692_illinois_freedom_of_information_act_requ  ·  V3 A0 D0  ·  score 15
+### muckrock_185692_illinois_freedom_of_information_act_requ  ·  V3 A0 D0 P0  ·  score 15
 - [media] _Extraction_1_1_Clip_1_1_Retail_Theft_Warrant
   https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_Clip_1_1_Retail_Theft_Warrant.mp4
 - [media] Retail_Theft_Warrant
@@ -19014,7 +21196,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [media] Retail_Theft_Warrant
   https://cdn.muckrock.com/foia_files/2025/05/28/Retail_Theft_Warrant.mp4
 
-### muckrock_78826_officer_involved_shooting_of_mark_johnso  ·  V2 A0 D3  ·  score 24
+### muckrock_78826_officer_involved_shooting_of_mark_johnso  ·  V2 A0 D3 P0  ·  score 24
 - [media] ChadBean_201908090507_274_202481024.mp4
   https://cdn.muckrock.com/foia_files/2020/07/09/ChadBean_201908090507_274_202481024.mp4
 - [media] ChristopherQuesnel_201908090459_276_452167438.mp4
@@ -19026,7 +21208,7 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Press20Release20-20Montpelier20OIS.pdf
   https://cdn.muckrock.com/foia_files/2020/07/09/Press20Release20-20Montpelier20OIS.pdf
 
-### muckrock_69147_sb_1421_police_complaints_oakland_pd  ·  V2 A0 D23  ·  score 23
+### muckrock_69147_sb_1421_police_complaints_oakland_pd  ·  V2 A0 D23 P0  ·  score 23
 - [media] PICT0007_2015.06.06_15.44.40.AVI
   https://cdn.muckrock.com/foia_files/2019/06/04/PICT0007_2015.06.06_15.44.40.AVI
 - [media] PICT0052_2015.06.06_15.07.20201.AVI
@@ -19078,19 +21260,19 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] 2021-12-13_Class_Notice_Final_5_St803Tb
   https://cdn.muckrock.com/foia_files/2021/12/14/2021-12-13_Class_Notice_Final_5_St803Tb.pdf
 
-### muckrock_185615_new_mexico_inspection_of_public_records_  ·  V2 A0 D0  ·  score 8
+### muckrock_185615_new_mexico_inspection_of_public_records_  ·  V2 A0 D0 P0  ·  score 8
 - [media] DovaliRedacted
   https://cdn.muckrock.com/foia_files/2025/05/14/DovaliRedacted.mp4
 - [media] EstradaRedacted
   https://cdn.muckrock.com/foia_files/2025/05/19/EstradaRedacted.mp4
 
-### muckrock_134233_video_request_for_harvey_police_report_h  ·  V2 A0 D0  ·  score 6
+### muckrock_134233_video_request_for_harvey_police_report_h  ·  V2 A0 D0 P0  ·  score 6
 - [media] Axon_Body_3_Video_2022-07-29_2206_X6031873M
   https://cdn.muckrock.com/foia_files/2022/12/13/Axon_Body_3_Video_2022-07-29_2206_X6031873M.mp4
 - [media] Axon_Body_3_Video_2022-07-29_2206_X6031073C
   https://cdn.muckrock.com/foia_files/2022/12/13/Axon_Body_3_Video_2022-07-29_2206_X6031073C.mp4
 
-### muckrock_178289_body_camera_footage_7_30_2022  ·  V1 A0 D5  ·  score 11
+### muckrock_178289_body_camera_footage_7_30_2022  ·  V1 A0 D5 P0  ·  score 11
 - [media] DJI_20220730180759_0001_T
   https://cdn.muckrock.com/foia_files/2025/02/28/DJI_20220730180759_0001_T.MP4
 - [document] 1-3-25_MR178289
@@ -19104,13 +21286,13 @@ case: https://citydocs.longbeach.gov/LBPDPublicDocs/Browse.aspx?id=206825&dbid=0
 - [document] Payment Required
   https://cdn.muckrock.com/foia_files/2025/03/19/2-19-25_MR178289.pdf
 
-### muckrock_208768_2026_brady_list_mason_county_prosecuting  ·  V0 A1 D0  ·  score 5
+### muckrock_208768_2026_brady_list_mason_county_prosecuting  ·  V0 A1 D0 P0  ·  score 5
 - [media] grasshopper_13604279670_4_16_2026_180093513
   https://cdn.muckrock.com/foia_files/2026/04/17/grasshopper_13604279670_4_16_2026_180093513.mp3
 
 ## sdpd — San Diego Police Department
 
-### sdpd_08_11_2023_3400_lebon_drive  ·  V70 A41 D1  ·  score 40
+### sdpd_08_11_2023_3400_lebon_drive  ·  V70 A41 D1 P1  ·  score 40
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-11-2023%203400%20Lebon%20Drive&cat=Officer%20Involved%20Shootings
 - [video] August+11,+2023+3400+Lebon+Drive_Video_Cell+Phone+Video+10_Redacted_mb.MOV
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-11-2023%203400%20Lebon%20Drive/Video/August+11%2C+2023+3400+Lebon+Drive_Video_Cell+Phone+Video+10_Redacted_mb.MOV
@@ -19337,7 +21519,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] August+11,+2023+3400+Lebon+Drive_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-11-2023%203400%20Lebon%20Drive/Documents/August+11%2C+2023+3400+Lebon+Drive_Documents_Redacted_mb.pdf
 
-### sdpd_08_28_2023_500_iona_drive  ·  V4 A74 D1  ·  score 43
+### sdpd_08_28_2023_500_iona_drive  ·  V4 A74 D1 P1  ·  score 43
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-28-2023%20500%20Iona%20Drive&cat=Officer%20Involved%20Shootings
 - [video] OIS+-+August+28,+2023+500+Iona+Drive_Video_Officer+Anderson+Body+Worn+Camera_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-28-2023%20500%20Iona%20Drive/Video/OIS+-+August+28%2C+2023+500+Iona+Drive_Video_Officer+Anderson+Body+Worn+Camera_Redacted_SE.mp4
@@ -19498,7 +21680,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] OIS+-+August+28,+2023+500+Iona+Drive_Documents_REDACTED_SE.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-28-2023%20500%20Iona%20Drive/Documents/OIS+-+August+28%2C+2023+500+Iona+Drive_Documents_REDACTED_SE.pdf
 
-### sdpd_12_07_2023_10500_4s_commons_drive  ·  V10 A63 D1  ·  score 40
+### sdpd_12_07_2023_10500_4s_commons_drive  ·  V10 A63 D1 P1  ·  score 40
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=12-07-2023%2010500%204S%20Commons%20Drive&cat=Officer%20Involved%20Shootings
 - [video] December+7,+2023+10525+4S+Commons+Drive_Video_Officer+1+BWC_Redacted.mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/12-07-2023%2010500%204S%20Commons%20Drive/Video/December+7%2C+2023+10525+4S+Commons+Drive_Video_Officer+1+BWC_Redacted.mb.mp4
@@ -19649,7 +21831,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] December+7,+2023+10525+4S+Commons+Drive_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/12-07-2023%2010500%204S%20Commons%20Drive/Documents/December+7%2C+2023+10525+4S+Commons+Drive_Documents_Redacted_mb.pdf
 
-### sdpd_08_02_2023_7200_mesa_college_circle  ·  V5 A62 D1  ·  score 43
+### sdpd_08_02_2023_7200_mesa_college_circle  ·  V5 A62 D1 P1  ·  score 43
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-02-2023%207200%20Mesa%20College%20Circle&cat=Officer%20Involved%20Shootings
 - [video] OIS+-August+2,+2023+7250+Mesa+College+Drive_Video_Able+1+of+3_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-02-2023%207200%20Mesa%20College%20Circle/Video/OIS+-August+2%2C+2023+7250+Mesa+College+Drive_Video_Able+1+of+3_Redacted_SE.mp4
@@ -19788,7 +21970,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] OIS+-August+2,+2023+7250+Mesa+College+Drive_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-02-2023%207200%20Mesa%20College%20Circle/Documents/OIS+-August+2%2C+2023+7250+Mesa+College+Drive_Documents_Redacted_SE.pdf
 
-### sdpd_06_04_2023_700_e_san_ysidro_boulevard  ·  V13 A48 D2  ·  score 43
+### sdpd_06_04_2023_700_e_san_ysidro_boulevard  ·  V13 A48 D2 P1  ·  score 43
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=06-04-2023%20700%20E.%20San%20Ysidro%20Boulevard&cat=Officer%20Involved%20Shootings
 - [video] June+4,+2023+700+E.+San+Ysidro+Boulevard_Video_CBP+10_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/06-04-2023%20700%20E.%20San%20Ysidro%20Boulevard/Video/June+4%2C+2023+700+E.+San+Ysidro+Boulevard_Video_CBP+10_Redacted_mb.mp4
@@ -19917,7 +22099,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] OIS+-+June+4,+2023+700+E.+San+Ysidro+Boulevard_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/06-04-2023%20700%20E.%20San%20Ysidro%20Boulevard/Documents/OIS+-+June+4%2C+2023+700+E.+San+Ysidro+Boulevard_Documents_Redacted_mb.pdf
 
-### sdpd_08_15_2023_6100_el_cajon_blvd  ·  V9 A50 D2  ·  score 40
+### sdpd_08_15_2023_6100_el_cajon_blvd  ·  V9 A50 D2 P0  ·  score 40
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-15-2023%206100%20El%20Cajon%20Blvd&cat=Officer%20Involved%20Shootings
 - [video] August_15th_2023_6100_El_Cajon_Blvd_Videos_BWC_#1_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-15-2023%206100%20El%20Cajon%20Blvd/Redacted%20Videos/August_15th_2023_6100_El_Cajon_Blvd_Videos_BWC_%231_Redacted_mb.mp4
@@ -20042,7 +22224,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] August_15th_2023_6100_El_Cajon_Blvd_Photos_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/08-15-2023%206100%20El%20Cajon%20Blvd/Redacted%20Photos/August_15th_2023_6100_El_Cajon_Blvd_Photos_Redacted_mb.pdf
 
-### sdpd_07_06_2024_5400_la_jolla_blvd  ·  V3 A55 D2  ·  score 36
+### sdpd_07_06_2024_5400_la_jolla_blvd  ·  V3 A55 D2 P0  ·  score 36
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=07-06-2024%205400%20La%20Jolla%20Blvd&cat=Officer%20Involved%20Shootings
 - [video] July_6_2024_5400_La_Jolla_Blvd_Video_BWC_#1_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2024/07-06-2024%205400%20La%20Jolla%20Blvd/Redacted%20Videos/July_6_2024_5400_La_Jolla_Blvd_Video_BWC_%231_Redacted_SE.mp4
@@ -20165,7 +22347,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] July_6_2024_5400_La_Jolla_Blvd_Photos_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2024/07-06-2024%205400%20La%20Jolla%20Blvd/Redacted%20Photos/July_6_2024_5400_La_Jolla_Blvd_Photos_Redacted_SE.pdf
 
-### sdpd_01_17_2023_la_cresta_blvd_el_cajon  ·  V11 A35 D2  ·  score 40
+### sdpd_01_17_2023_la_cresta_blvd_el_cajon  ·  V11 A35 D2 P1  ·  score 40
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-17-2023%20La%20Cresta%20Blvd%2C%20El%20Cajon&cat=Officer%20Involved%20Shootings
 - [video] January+17,+2023_La+Cresta+Blvd+El+Cajon_Video_ASTREA_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/01-17-2023%20La%20Cresta%20Blvd,%20El%20Cajon/Video/January+17%2C+2023_La+Cresta+Blvd+El+Cajon_Video_ASTREA_Redacted_mb.mp4
@@ -20264,7 +22446,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] January+17,+2023_La+Cresta+Blvd+El+Cajon_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/01-17-2023%20La%20Cresta%20Blvd,%20El%20Cajon/Documents/January+17%2C+2023_La+Cresta+Blvd+El+Cajon_Documents_Redacted_mb.pdf
 
-### sdpd_05_19_2024_400_47th_street  ·  V5 A37 D1  ·  score 43
+### sdpd_05_19_2024_400_47th_street  ·  V5 A37 D1 P1  ·  score 43
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=05-19-2024%20400%2047th%20Street&cat=Officer%20Involved%20Shootings
 - [video] OIS+-+May+19,+2024+400+47th+Street_Video_Able_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2024/05-19-2024%20400%2047th%20Street/Video/OIS+-+May+19%2C+2024+400+47th+Street_Video_Able_Redacted_SE.mp4
@@ -20353,7 +22535,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] OIS+-+May+19,+2024+400+47th+Street_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2024/05-19-2024%20400%2047th%20Street/Documents/OIS+-+May+19%2C+2024+400+47th+Street_Documents_Redacted_SE.pdf
 
-### sdpd_01_20_2023_logan_avenue  ·  V11 A28 D1  ·  score 37
+### sdpd_01_20_2023_logan_avenue  ·  V11 A28 D1 P1  ·  score 37
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-20-2023%20Logan%20Avenue&cat=Officer%20Involved%20Shootings
 - [video] January+20,+2023+2000+Logan+Avenue_Video_Officer+1+Body+Camera+Video_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/01-20-2023%20Logan%20Avenue/Video/January+20%2C+2023+2000+Logan+Avenue_Video_Officer+1+Body+Camera+Video_Redacted_mb.mp4
@@ -20436,7 +22618,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] January+20,+2023_2000+Logan+Avenue_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/01-20-2023%20Logan%20Avenue/Documents/January+20%2C+2023_2000+Logan+Avenue_Documents_Redacted_mb.pdf
 
-### sdpd_06_06_2024_ia_2024_013  ·  V17 A10 D1  ·  score 26
+### sdpd_06_06_2024_ia_2024_013  ·  V17 A10 D1 P1  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=06-06-2024%20IA%202024-013&cat=Sustained%20Findings
 - [video] EEO+June+6,+2024+IA+2024-013+s_Video_Surveillance+15_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/06-06-2024%20IA%202024-013/Video/EEO+June+6%2C+2024+IA+2024-013+s_Video_Surveillance+15_Redacted_SE.mp4
@@ -20495,7 +22677,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] EEO+June+6,+2024+IA+2024-013+_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/06-06-2024%20IA%202024-013/Documents/EEO+June+6%2C+2024+IA+2024-013+_Documents_Redacted_SE.pdf
 
-### sdpd_01_13_2025_1150_e_street  ·  V3 A23 D1  ·  score 43
+### sdpd_01_13_2025_1150_e_street  ·  V3 A23 D1 P1  ·  score 43
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-13-2025%201150%20E%20Street&cat=Officer%20Involved%20Shootings
 - [video] OIS+-+January+13,+2025+1150+E+Street_Video_Cell+Phone+Footage_Redacted_SE.MOV
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2025/01-13-2025%201150%20E%20Street/Video/OIS+-+January+13%2C+2025+1150+E+Street_Video_Cell+Phone+Footage_Redacted_SE.MOV
@@ -20552,7 +22734,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] OIS+-+January+13,+2025+1150+E+Street_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2025/01-13-2025%201150%20E%20Street/Documents/OIS+-+January+13%2C+2025+1150+E+Street_Documents_Redacted_SE.pdf
 
-### sdpd_06_22_2023_ia_2023_0345  ·  V8 A14 D2  ·  score 25
+### sdpd_06_22_2023_ia_2023_0345  ·  V8 A14 D2 P1  ·  score 25
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=06-22-2023%20IA%202023-0345&cat=Sustained%20Findings
 - [video] June+22,+2023+IA+#2023-0345+Video+Subject+Officer+BWC+Redacted_KM.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/06-22-2023%20IA%202023-0345/Video/June+22%2C+2023+IA+%232023-0345+Video+Subject+Officer+BWC+Redacted_KM.mp4
@@ -20603,7 +22785,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] June+22,+2023+IA+#2023-0345_Documents_Redacted_KM.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/06-22-2023%20IA%202023-0345/Documents/June+22%2C+2023+IA+%232023-0345_Documents_Redacted_KM.pdf
 
-### sdpd_08_15_2023_ia_2023_0388  ·  V11 A8 D1  ·  score 29
+### sdpd_08_15_2023_ia_2023_0388  ·  V11 A8 D1 P0  ·  score 29
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-15-2023%20IA%202023-0388&cat=Sustained%20Findings
 - [video] August+15,+2023_IA+#2023-0388_Video_Subject+Officer+AVL+1_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/08-15-2023%20IA%202023-0388/Video/August+15%2C+2023_IA+%232023-0388_Video_Subject+Officer+AVL+1_Redacted_mb.mp4
@@ -20646,7 +22828,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] August+15,+2023+IA+#2023-0388_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/08-15-2023%20IA%202023-0388/Documents/August+15%2C+2023+IA+%232023-0388_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_11_13_2023_3800_41st_street  ·  V3 A14 D3  ·  score 40
+### sdpd_11_13_2023_3800_41st_street  ·  V3 A14 D3 P0  ·  score 40
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=11-13-2023%203800%2041st%20Street&cat=Officer%20Involved%20Shootings
 - [video] November_13_2023_3800_41st_St_Video_BWC_#1_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/11-13-2023%203800%2041st%20Street/Redacted%20Video/November_13_2023_3800_41st_St_Video_BWC_%231_Redacted_mb.mp4
@@ -20689,7 +22871,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] November_13_2023_3800_41st_St_Photos_2_of_2_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Officer%20Involved%20Shootings/2023/11-13-2023%203800%2041st%20Street/Redacted%20Photos/November_13_2023_3800_41st_St_Photos_2_of_2_Redacted_mb.pdf
 
-### sdpd_10_16_2023_ia_2023_012  ·  V0 A15 D2  ·  score 16
+### sdpd_10_16_2023_ia_2023_012  ·  V0 A15 D2 P1  ·  score 16
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=10-16-2023%20IA%202023-012&cat=Sustained%20Findings
 - [audio] October_16th_2023_IA_#2023-012_Audio_Officer_Interview_#10_Redacted_mb.wav
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/10-16-2023%20IA%202023-012/Audio/October_16th_2023_IA_%232023-012_Audio_Officer_Interview_%2310_Redacted_mb.wav
@@ -20726,7 +22908,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] October_16th_2023_IA_#2023-012_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/10-16-2023%20IA%202023-012/Documents/October_16th_2023_IA_%232023-012_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_02_23_2024_4800_savannah_street  ·  V5 A6 D1  ·  score 29
+### sdpd_02_23_2024_4800_savannah_street  ·  V5 A6 D1 P1  ·  score 29
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=02-23-2024%204800%20Savannah%20Street&cat=Use%20of%20Force
 - [video] February_23_2024_4800_Savannah_St_Video_ABLE_Redacted_NN.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/02-23-2024%204800%20Savannah%20Street/Video/February_23_2024_4800_Savannah_St_Video_ABLE_Redacted_NN.mp4
@@ -20753,7 +22935,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] February_23_2024_4800_Savannah_St_Documents_Redacted_NN.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/02-23-2024%204800%20Savannah%20Street/Documents/February_23_2024_4800_Savannah_St_Documents_Redacted_NN.pdf
 
-### sdpd_10_25_2023_ia_2023_016  ·  V1 A9 D2  ·  score 26
+### sdpd_10_25_2023_ia_2023_016  ·  V1 A9 D2 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=10-25-2023%20IA%202023-016&cat=Sustained%20Findings
 - [video] October+25,+2023_IA+#2023-016_Video_Text+Messages_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/10-25-2023%20IA%202023-016/Video/October+25%2C+2023_IA+%232023-016_Video_Text+Messages_Redacted_mb.mp4
@@ -20780,7 +22962,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] October+25,+2023_IA+#2023-016_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/10-25-2023%20IA%202023-016/Documents/October+25%2C+2023_IA+%232023-016_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_01_05_2025_4400_fanuel_street  ·  V5 A4 D2  ·  score 33
+### sdpd_01_05_2025_4400_fanuel_street  ·  V5 A4 D2 P0  ·  score 33
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-05-2025%204400%20Fanuel%20Street&cat=Use%20of%20Force
 - [video] Jan_5_2025_4400_Fanuel_St_Video_BWC_#1_Redacted.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/01-05-2025%204400%20Fanuel%20Street/Redacted%20Videos/Jan_5_2025_4400_Fanuel_St_Video_BWC_%231_Redacted.mp4
@@ -20805,7 +22987,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] Jan_5_2025_4400_Fanuel_St_Photos_Redacted.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/01-05-2025%204400%20Fanuel%20Street/Redacted%20Photos/Jan_5_2025_4400_Fanuel_St_Photos_Redacted.pdf
 
-### sdpd_11_02_2023_4300_44th_street  ·  V5 A4 D1  ·  score 26
+### sdpd_11_02_2023_4300_44th_street  ·  V5 A4 D1 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=11-02-2023%204300%2044th%20Street&cat=Use%20of%20Force
 - [video] November+2,+2023+4300+44th+Street_Video_Officer+1+Body+Camera+1+of+2_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/11-02-2023%204300%2044th%20Street/Video/November+2%2C+2023+4300+44th+Street_Video_Officer+1+Body+Camera+1+of+2_Redacted_mb.mp4
@@ -20828,7 +23010,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] November+2,+2023+4300+44th+Street_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/11-02-2023%204300%2044th%20Street/Documents/November+2%2C+2023+4300+44th+Street_Documents_Redacted_mb.pdf
 
-### sdpd_02_23_2023_ia_2023_004  ·  V0 A9 D2  ·  score 16
+### sdpd_02_23_2023_ia_2023_004  ·  V0 A9 D2 P0  ·  score 16
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=02-23-2023%20IA%202023-004&cat=Sustained%20Findings
 - [audio] February_23_2023_IA+#2023-004_Audio_Interview+#1+Subject+Officer_mb.wav
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-23-2023%20IA%202023-004/Audio/February_23_2023_IA+%232023-004_Audio_Interview+%231+Subject+Officer_mb.wav
@@ -20853,7 +23035,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] February_23_2023_IA+#2023-004_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-23-2023%20IA%202023-004/Documents/February_23_2023_IA+%232023-004_Documents_Redacted_mb.pdf
 
-### sdpd_07_06_2024_ia_2024_012  ·  V0 A9 D1  ·  score 16
+### sdpd_07_06_2024_ia_2024_012  ·  V0 A9 D1 P0  ·  score 16
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=07-06-2024%20IA%202024-012&cat=Sustained%20Findings
 - [audio] EEO+-+Various+dates,+IA+#+2024-012+Sergeant+Cooper_Audio_Witness+6_Redacted_SE.wav
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/07-06-2024%20IA%202024-012/Audio/EEO+-+Various+dates%2C+IA+%23+2024-012+Sergeant+Cooper_Audio_Witness+6_Redacted_SE.wav
@@ -20876,7 +23058,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] 07-06-2024+IA+2024-012_Documents_IA+Investigation_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/07-06-2024%20IA%202024-012/Documents/07-06-2024+IA+2024-012_Documents_IA+Investigation_Redacted_SE.pdf
 
-### sdpd_01_01_2024_ia_2024_002  ·  V4 A4 D1  ·  score 26
+### sdpd_01_01_2024_ia_2024_002  ·  V4 A4 D1 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-01-2024%20IA%202024-002&cat=Sustained%20Findings
 - [video] January+1,+2024+IA+#2024-0002_Video_Body+Camera+Subject+Officer+1+of+2_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/01-01-2024%20IA%202024-002/Video/January+1%2C+2024+IA+%232024-0002_Video_Body+Camera+Subject+Officer+1+of+2_Redacted_mb.mp4
@@ -20897,7 +23079,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] January+1,+2024+IA+#2024-0002_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/01-01-2024%20IA%202024-002/Documents/January+1%2C+2024+IA+%232024-0002_Documents_Redacted_mb.pdf
 
-### sdpd_07_02_2024_1300_russ_blvd  ·  V8 A0 D2  ·  score 20
+### sdpd_07_02_2024_1300_russ_blvd  ·  V8 A0 D2 P0  ·  score 20
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=07-02-2024%201300%20Russ%20Blvd&cat=Use%20of%20Force
 - [video] July_2_2024_1300_Russ_Blvd_Videos_BWC_#1_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/07-02-2024%201300%20Russ%20Blvd/Redacted%20Videos/July_2_2024_1300_Russ_Blvd_Videos_BWC_%231_Redacted_SE.mp4
@@ -20920,7 +23102,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] July_2_2024_1300_Russ_Blvd_Photos_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/07-02-2024%201300%20Russ%20Blvd/Redacted%20Photos/July_2_2024_1300_Russ_Blvd_Photos_Redacted_SE.pdf
 
-### sdpd_05_13_2023_ia_2023_0225  ·  V4 A3 D2  ·  score 26
+### sdpd_05_13_2023_ia_2023_0225  ·  V4 A3 D2 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=05-13-2023%20IA%202023-0225&cat=Sustained%20Findings
 - [video] May+13,+2023+IA+#+2023-0225_Video_Subject+Officer+Body+Camera_Redacted_KM.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/05-13-2023%20IA%202023-0225/Video/May+13%2C+2023+IA+%23+2023-0225_Video_Subject+Officer+Body+Camera_Redacted_KM.mp4
@@ -20941,7 +23123,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] May+13,+2023+IA+#+2023-0225_Documents_IA+Investigation_Redacted_KM.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/05-13-2023%20IA%202023-0225/Documents/May+13%2C+2023+IA+%23+2023-0225_Documents_IA+Investigation_Redacted_KM.pdf
 
-### sdpd_01_18_2023_ia_2023_0028  ·  V2 A4 D2  ·  score 26
+### sdpd_01_18_2023_ia_2023_0028  ·  V2 A4 D2 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-18-2023%20IA%202023-0028&cat=Sustained%20Findings
 - [video] January+18,+2023+IA+#+2023-0028_Video_Subject+Officer+Body+Camera_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/01-18-2023%20IA%202023-0028/Video/January+18%2C+2023+IA+%23+2023-0028_Video_Subject+Officer+Body+Camera_Redacted_mb.mp4
@@ -20960,7 +23142,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] January+18,+2023+IA+#+2023-0028_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/01-18-2023%20IA%202023-0028/Document/January+18%2C+2023+IA+%23+2023-0028_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_02_16_2023_ia_2023_0124  ·  V3 A3 D1  ·  score 26
+### sdpd_02_16_2023_ia_2023_0124  ·  V3 A3 D1 P1  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=02-16-2023%20IA%202023-0124&cat=Sustained%20Findings
 - [video] Search+-+February+16,+2023+IA+#+2023-0124+Officer_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-16-2023%20IA%202023-0124/Video/Search+-+February+16%2C+2023+IA+%23+2023-0124+Officer_Redacted_SE.mp4
@@ -20977,7 +23159,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] Search+-+February+16,+2023+IA+#+2023-0124+Officer_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-16-2023%20IA%202023-0124/Documents/Search+-+February+16%2C+2023+IA+%23+2023-0124+Officer_Documents_Redacted_SE.pdf
 
-### sdpd_04_02_2024_ia_2024_0123  ·  V2 A4 D1  ·  score 25
+### sdpd_04_02_2024_ia_2024_0123  ·  V2 A4 D1 P0  ·  score 25
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=04-02-2024%20IA%202024-0123&cat=Sustained%20Findings
 - [video] April_2_2024_2023_IA_#2024-0123_Videos_BWC_#1_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/04-02-2024%20IA%202024-0123/Redacted%20Videos/April_2_2024_2023_IA_%232024-0123_Videos_BWC_%231_Redacted_SE.mp4
@@ -20994,7 +23176,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] April_2_2024_2023_IA_#2024-0123_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2024/04-02-2024%20IA%202024-0123/Redacted%20Documents/April_2_2024_2023_IA_%232024-0123_Documents_Redacted_SE.pdf
 
-### sdpd_06_09_2024_4300_winona_avenue  ·  V5 A0 D1  ·  score 17
+### sdpd_06_09_2024_4300_winona_avenue  ·  V5 A0 D1 P1  ·  score 17
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=06-09-2024%204300%20Winona%20Avenue&cat=Use%20of%20Force
 - [video] GBI+-+June+9,+2024+4300+Winona+Avenue_Video_Officer+1+Body+Camera+Video_Redacted.SE.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/06-09-2024%204300%20Winona%20Avenue/Video/GBI+-+June+9%2C+2024+4300+Winona+Avenue_Video_Officer+1+Body+Camera+Video_Redacted.SE.mp4
@@ -21009,7 +23191,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] GBI+-+June+9,+2024+4300+Winona+Avenue_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2024/06-09-2024%204300%20Winona%20Avenue/Documents/GBI+-+June+9%2C+2024+4300+Winona+Avenue_Documents_Redacted_SE.pdf
 
-### sdpd_02_04_2023_ia_2023_003  ·  V0 A5 D1  ·  score 16
+### sdpd_02_04_2023_ia_2023_003  ·  V0 A5 D1 P0  ·  score 16
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=02-04-2023%20IA%202023-003&cat=Sustained%20Findings
 - [audio] February+4,+2023+IA+#2023-003_Audio_Interview+Complainant_Redacted_mb.wav
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-04-2023%20IA%202023-003/Audio/February+4%2C+2023+IA+%232023-003_Audio_Interview+Complainant_Redacted_mb.wav
@@ -21024,7 +23206,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] February+4,+2023+IA+#2023-003_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-04-2023%20IA%202023-003/Documents/February+4%2C+2023+IA+%232023-003_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_10_16_2023_1400_national_ave  ·  V2 A2 D1  ·  score 33
+### sdpd_10_16_2023_1400_national_ave  ·  V2 A2 D1 P0  ·  score 33
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=10-16-2023%201400%20National%20Ave&cat=Use%20of%20Force
 - [video] October_16_2023_IA_#2024_0160_Video_BWC_#1_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/10-16-2023%201400%20National%20Ave/Redacted%20Video/October_16_2023_IA_%232024_0160_Video_BWC_%231_Redacted_SE.mp4
@@ -21037,7 +23219,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] October_16_2023_IA_#2024_0160_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/10-16-2023%201400%20National%20Ave/Redacted%20Documents/October_16_2023_IA_%232024_0160_Documents_Redacted_SE.pdf
 
-### sdpd_02_09_2023_ia_2023_0027  ·  V2 A2 D2  ·  score 29
+### sdpd_02_09_2023_ia_2023_0027  ·  V2 A2 D2 P0  ·  score 29
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=02-09-2023%20IA%202023-0027&cat=Sustained%20Findings
 - [video] February+9,+2023+IA+#+2023-0027_Video_Subject+Officer+BWC_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-09-2023%20IA%202023-0027/Video/February+9%2C+2023+IA+%23+2023-0027_Video_Subject+Officer+BWC_Redacted_mb.mp4
@@ -21052,7 +23234,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] February+9,+2023+IA+#+2023-0027_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/02-09-2023%20IA%202023-0027/Documents/February+9%2C+2023+IA+%23+2023-0027_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_08_20_2023_ia_2023_009  ·  V1 A3 D2  ·  score 26
+### sdpd_08_20_2023_ia_2023_009  ·  V1 A3 D2 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-20-2023%20IA%202023-009&cat=Sustained%20Findings
 - [video] August+20_+2023_IA#+2023-009_Video_Instagram+Video_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/08-20-2023%20IA%202023-009/Video/August+20_+2023_IA%23+2023-009_Video_Instagram+Video_Redacted_mb.mp4
@@ -21067,7 +23249,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] August+20_2023_IA#+2023-009_Documents_IA+Investigation_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/08-20-2023%20IA%202023-009/Documents/August+20_2023_IA%23+2023-009_Documents_IA+Investigation_Redacted_mb.pdf
 
-### sdpd_03_07_2025_1400_4th_avenue  ·  V3 A0 D1  ·  score 17
+### sdpd_03_07_2025_1400_4th_avenue  ·  V3 A0 D1 P0  ·  score 17
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=03-07-2025%201400%204th%20Avenue&cat=Use%20of%20Force
 - [video] GBI+-+March+7,+2025+1400+4th+Avenue_Document_Video_Body+Camera+Video+1_Redacted-SE.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/03-07-2025%201400%204th%20Avenue/Video/GBI+-+March+7%2C+2025+1400+4th+Avenue_Document_Video_Body+Camera+Video+1_Redacted-SE.mp4
@@ -21078,7 +23260,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] GBI+-+March+7,+2025+1400+4th+Avenue_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/03-07-2025%201400%204th%20Avenue/Documents/GBI+-+March+7%2C+2025+1400+4th+Avenue_Documents_Redacted_SE.pdf
 
-### sdpd_12_10_2021_ia_2023_0204  ·  V1 A1 D1  ·  score 26
+### sdpd_12_10_2021_ia_2023_0204  ·  V1 A1 D1 P0  ·  score 26
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=12-10-2021%20IA%202023-0204&cat=Sustained%20Findings
 - [video] Sexual+Assault+-+December+10,+2021+IA+#+2023-0204+Video_Surveillance+Video_RedactedSE.mp4
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/12-10-2021%20IA%202023-0204/Video/Sexual+Assault+-+December+10%2C+2021+IA+%23+2023-0204+Video_Surveillance+Video_RedactedSE.mp4
@@ -21087,7 +23269,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] Sexual+Assault+-+December+10,+2021+IA+#+2023-0204+_Documents_RedactedSE.pdf
   https://sdpdsb1421.sandiego.gov/Sustained%20Findings/2023/12-10-2021%20IA%202023-0204/Documents/Sexual+Assault+-+December+10%2C+2021+IA+%23+2023-0204+_Documents_RedactedSE.pdf
 
-### sdpd_07_04_2023_1300_east_mission_bay_drive  ·  V2 A0 D2  ·  score 20
+### sdpd_07_04_2023_1300_east_mission_bay_drive  ·  V2 A0 D2 P0  ·  score 20
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=07-04-2023%201300%20East%20Mission%20Bay%20Drive&cat=Use%20of%20Force
 - [video] July+4,+2023+1300+East+Mission+Bay+Drive_Video_BWC+#1_Redacted_mb.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/07-04-2023%201300%20East%20Mission%20Bay%20Drive/Video/July+4%2C+2023+1300+East+Mission+Bay+Drive_Video_BWC+%231_Redacted_mb.mp4
@@ -21098,7 +23280,7 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] July+4,+2023+1300+East+Mission+Bay+Drive_Documents_Redacted_mb.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2023/07-04-2023%201300%20East%20Mission%20Bay%20Drive/Documents/July+4%2C+2023+1300+East+Mission+Bay+Drive_Documents_Redacted_mb.pdf
 
-### sdpd_01_26_2025_560_5th_street  ·  V2 A0 D1  ·  score 17
+### sdpd_01_26_2025_560_5th_street  ·  V2 A0 D1 P1  ·  score 17
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-26-2025%20560%205th%20Street&cat=Use%20of%20Force
 - [video] GBI+-+January+26,+2025+560+5th+Avenue_Video_Body+Camera+Video+1_Redacted_SE.mp4
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/01-26-2025%20560%205th%20Street/Video/GBI+-+January+26%2C+2025+560+5th+Avenue_Video_Body+Camera+Video+1_Redacted_SE.mp4
@@ -21107,74 +23289,74 @@ case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/cas
 - [document] GBI+-+January+26,+2025+560+5th+Avenue_Documents_Redacted_SE.pdf
   https://sdpdsb1421.sandiego.gov/Use%20of%20Force/2025/01-26-2025%20560%205th%20Street/Documents/GBI+-+January+26%2C+2025+560+5th+Avenue_Documents_Redacted_SE.pdf
 
-### sdpd_01_13_2025_1100_e_street  ·  V1 A0 D0  ·  score 12
+### sdpd_01_13_2025_1100_e_street  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-13-2025%201100%20E%20street&cat=AB%20748
 - [video] San+Diego+PD+-+OIS+011325.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/01-13-2025%201100%20E%20street/Video/San+Diego+PD+-+OIS+011325.mov
 
-### sdpd_01_21_2026_2900_balboa  ·  V1 A0 D0  ·  score 12
+### sdpd_01_21_2026_2900_balboa  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-21-2026%202900%20Balboa&cat=AB%20748
 - [video] San+Diego+PD+-+OIS+121626++2900+Balboa.mp4
   https://sdpdsb1421.sandiego.gov/AB%20748/2026/01-21-2026%202900%20Balboa/Video/San+Diego+PD+-+OIS+121626++2900+Balboa.mp4
 
-### sdpd_01_22_2026_jamacha_road  ·  V1 A0 D0  ·  score 12
+### sdpd_01_22_2026_jamacha_road  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-22-2026%20Jamacha%20Road&cat=AB%20748
 - [video] San+Diego+PD+-+OIS+012226+Jamacha.mp4
   https://sdpdsb1421.sandiego.gov/AB%20748/2026/01-22-2026%20Jamacha%20Road/Video/San+Diego+PD+-+OIS+012226+Jamacha.mp4
 
-### sdpd_05_19_2024_47th_street  ·  V1 A0 D0  ·  score 12
+### sdpd_05_19_2024_47th_street  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=05-19-2024%2047th%20Street&cat=AB%20748
 - [video] San+Diego+PD+051924+OIS+47th+Street.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2024/05-19-2024%2047th%20Street/Video/San+Diego+PD+051924+OIS+47th+Street.mov
 
-### sdpd_05_20_2024_friars_road  ·  V1 A0 D0  ·  score 12
+### sdpd_05_20_2024_friars_road  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=05-20-2024%20Friars%20Road&cat=AB%20748
 - [video] San+Diego+PD+052024+OIS+Friars+Road.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2024/05-20-2024%20Friars%20Road/Video/San+Diego+PD+052024+OIS+Friars+Road.mov
 
-### sdpd_07_06_2024_5495_la_jolla_blvd  ·  V1 A0 D0  ·  score 12
+### sdpd_07_06_2024_5495_la_jolla_blvd  ·  V1 A0 D0 P0  ·  score 12
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=07-06-2024%205495%20La%20Jolla%20Blvd&cat=AB%20748
 - [video] San+Diego+PD+-+OIS+070624+5495+La+Jolla+Blvd.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2024/07-06-2024%205495%20La%20Jolla%20Blvd/Video/San+Diego+PD+-+OIS+070624+5495+La+Jolla+Blvd.mov
 
-### sdpd_01_08_2025_1100_kettner_blvd  ·  V1 A0 D0  ·  score 6
+### sdpd_01_08_2025_1100_kettner_blvd  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=01-08-2025%201100%20Kettner%20Blvd&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+012825+1100+Kettner+Blvd.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/01-08-2025%201100%20Kettner%20Blvd/Video/San+Diego+PD+-+CIV+012825+1100+Kettner+Blvd.mov
 
-### sdpd_03_25_25_11600_angelique  ·  V1 A0 D0  ·  score 6
+### sdpd_03_25_25_11600_angelique  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=03-25-25%2011600%20Angelique&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+032525+11600+Angelique+St.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/03-25-25%2011600%20Angelique/Video/San+Diego+PD+-+CIV+032525+11600+Angelique+St.mov
 
-### sdpd_04_04_2025_200_31st_street  ·  V1 A0 D0  ·  score 6
+### sdpd_04_04_2025_200_31st_street  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=04-04-2025%20200%2031st%20Street&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+040425+200+31st+Street.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/04-04-2025%20200%2031st%20Street/Video/San+Diego+PD+-+CIV+040425+200+31st+Street.mov
 
-### sdpd_04_04_2025_dawes_street  ·  V1 A0 D0  ·  score 6
+### sdpd_04_04_2025_dawes_street  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=04-04-2025%20Dawes%20Street&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+040825+Dawes+St.+&+Thomas+Ave.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/04-04-2025%20Dawes%20Street/Video/San+Diego+PD+-+CIV+040825+Dawes+St.+%26+Thomas+Ave.mov
 
-### sdpd_04_14_2025_26th_and_e  ·  V1 A0 D0  ·  score 6
+### sdpd_04_14_2025_26th_and_e  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=04-14-2025%2026th%20and%20E&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+041425+26th+and+E+Street.mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/04-14-2025%2026th%20and%20E/Video/San+Diego+PD+-+CIV+041425+26th+and+E+Street.mov
 
-### sdpd_05_31_2025_bermuda_avenue  ·  V1 A0 D0  ·  score 6
+### sdpd_05_31_2025_bermuda_avenue  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=05-31-2025%20Bermuda%20Avenue&cat=AB%20748
 - [video] San+Diego+PD+-+CIV+053125+Bermuda+Ave+&+Ebers+St..mov
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/05-31-2025%20Bermuda%20Avenue/Video/San+Diego+PD+-+CIV+053125+Bermuda+Ave+%26+Ebers+St..mov
 
-### sdpd_09_23_2025_5100_orange_ave  ·  V1 A0 D0  ·  score 6
+### sdpd_09_23_2025_5100_orange_ave  ·  V1 A0 D0 P0  ·  score 6
 case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=09-23-2025%205100%20Orange%20Ave&cat=AB%20748
 - [video] San+Diego+PD+CIV+092325+5100+Orange+Ave.mp4
   https://sdpdsb1421.sandiego.gov/AB%20748/2025/09-23-2025%205100%20Orange%20Ave/Video/San+Diego+PD+CIV+092325+5100+Orange+Ave.mp4
 
 ## sfdpa_nextrequest — San Francisco Department of Police Accountability
 
-### sfdpa_0656_18  ·  V2 A22 D3  ·  score 45  ·  5560 downloads
+### sfdpa_0656_18  ·  V2 A22 D3 P0  ·  score 45  ·  5560 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [other] 0656-18 Video of Inside RV.MOV
   https://sfdpa.nextrequest.com/documents/16302236/download
@@ -21231,7 +23413,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0656-18 Part B.pdf
   https://sfdpa.nextrequest.com/documents/15301936/download
 
-### sfdpa_0651_13  ·  V0 A17 D1  ·  score 26  ·  3616 downloads
+### sfdpa_0651_13  ·  V0 A17 D1 P0  ·  score 26  ·  3616 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 0651-13 DPA Interview of Officer George Ferraez #91.mp3
   https://sfdpa.nextrequest.com/documents/25683064/download
@@ -21270,7 +23452,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0651-13.pdf
   https://sfdpa.nextrequest.com/documents/6646418/download
 
-### sfdpa_0627_15_woods  ·  V0 A17 D2  ·  score 25  ·  4174 downloads
+### sfdpa_0627_15_woods  ·  V0 A17 D2 P0  ·  score 25  ·  4174 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [interrogation] 0627-15 DPA Interview - Jessie Ortiz 1131 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/14312102/download
@@ -21311,7 +23493,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0627-15 Woods Part B.pdf
   https://sfdpa.nextrequest.com/documents/8400446/download
 
-### sfdpa_45130_20  ·  V2 A9 D2  ·  score 39  ·  2812 downloads
+### sfdpa_45130_20  ·  V2 A9 D2 P0  ·  score 39  ·  2812 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [bodycam] 45130-20 BWC Footage - Kyle Roach 2457 - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/11550551/download
@@ -21340,7 +23522,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 45130-20 Part A.pdf
   https://sfdpa.nextrequest.com/documents/11550563/download
 
-### sfdpa_0386_17  ·  V0 A11 D3  ·  score 30  ·  3339 downloads
+### sfdpa_0386_17  ·  V0 A11 D3 P0  ·  score 30  ·  3339 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [interrogation] 0386-17 DPA Interview - Wilrolan Ravelo 2464 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/11518427/download
@@ -21371,7 +23553,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0386-17 Part C.pdf
   https://sfdpa.nextrequest.com/documents/11518432/download
 
-### sfdpa_0068_01  ·  V0 A11 D1  ·  score 11  ·  32 downloads
+### sfdpa_0068_01  ·  V0 A11 D1 P0  ·  score 11  ·  32 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [other] Officer Kenneth Koenig_redacted.mp3
   https://sfdpa.nextrequest.com/documents/10381641/download
@@ -21398,7 +23580,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0068-01.pdf
   https://sfdpa.nextrequest.com/documents/6633169/download
 
-### sfdpa_0204_18  ·  V0 A9 D2  ·  score 30  ·  2264 downloads
+### sfdpa_0204_18  ·  V0 A9 D2 P0  ·  score 30  ·  2264 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [interrogation] 0204-18 Homicide Interview - Nicholas Hillard 1339 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/11728596/download
@@ -21423,7 +23605,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0204-18 Part A.pdf
   https://sfdpa.nextrequest.com/documents/11728597/download
 
-### sfdpa_0141_19  ·  V3 A4 D1  ·  score 39  ·  2188 downloads
+### sfdpa_0141_19  ·  V3 A4 D1 P0  ·  score 39  ·  2188 downloads
 case: https://sfdpa.nextrequest.com/requests/22-9
 - [bodycam] Ex. M-1, Officer Christina Galande #1660 BWC Footage Post Trial - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/13224767/download
@@ -21442,7 +23624,7 @@ case: https://sfdpa.nextrequest.com/requests/22-9
 - [documents] Production - 0141-19.pdf
   https://sfdpa.nextrequest.com/documents/13224762/download
 
-### sfdpa_0383_14  ·  V0 A7 D1  ·  score 26  ·  1837 downloads
+### sfdpa_0383_14  ·  V0 A7 D1 P0  ·  score 26  ·  1837 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [interrogation] 0383-14 - DPA Interview of Officer Chris Dunne #1775.mp3
   https://sfdpa.nextrequest.com/documents/15854354/download
@@ -21461,7 +23643,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0383-14.pdf
   https://sfdpa.nextrequest.com/documents/14918929/download
 
-### sfdpa_0652_10  ·  V0 A7 D2  ·  score 12  ·  267 downloads
+### sfdpa_0652_10  ·  V0 A7 D2 P0  ·  score 12  ·  267 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [other] Sgt. Deely_redacted.mp3
   https://sfdpa.nextrequest.com/documents/10720904/download
@@ -21482,7 +23664,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0652-10 Part B.pdf
   https://sfdpa.nextrequest.com/documents/10721086/download
 
-### sfdpa_0213_18  ·  V2 A4 D2  ·  score 40  ·  1647 downloads
+### sfdpa_0213_18  ·  V2 A4 D2 P0  ·  score 40  ·  1647 downloads
 case: https://sfdpa.nextrequest.com/requests/20-5
 - [other] 0213-18 - Surveillance Footage.mp4
   https://sfdpa.nextrequest.com/documents/16751969/download
@@ -21501,7 +23683,7 @@ case: https://sfdpa.nextrequest.com/requests/20-5
 - [documents] SB 16 Excessive Force Production Letter - 0213-18.pdf
   https://sfdpa.nextrequest.com/documents/16771945/download
 
-### sfdpa_0210_14  ·  V0 A6 D1  ·  score 25  ·  1664 downloads
+### sfdpa_0210_14  ·  V0 A6 D1 P0  ·  score 25  ·  1664 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 0210-14 DPA Interview - Sgt Luis DeJesus #247 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/13468341/download
@@ -21518,7 +23700,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0210-14.pdf
   https://sfdpa.nextrequest.com/documents/13468338/download
 
-### sfdpa_0045_19  ·  V2 A3 D2  ·  score 39  ·  1876 downloads
+### sfdpa_0045_19  ·  V2 A3 D2 P0  ·  score 39  ·  1876 downloads
 case: https://sfdpa.nextrequest.com/requests/22-9
 - [bodycam] 0045-19 Amended Commission Ex. J-2, Officer Jacqueline Hernandez #4039, BWC footage - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/12715412/download
@@ -21535,7 +23717,7 @@ case: https://sfdpa.nextrequest.com/requests/22-9
 - [documents] Production - 0045-19 Part B.pdf
   https://sfdpa.nextrequest.com/documents/12715413/download
 
-### sfdpa_0040_15  ·  V0 A5 D2  ·  score 25  ·  1725 downloads
+### sfdpa_0040_15  ·  V0 A5 D2 P0  ·  score 25  ·  1725 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 0040-15 DPA Interview of Sgt. Scott Edwards #541.mp3
   https://sfdpa.nextrequest.com/documents/15007293/download
@@ -21552,7 +23734,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0040-15 Part B.pdf
   https://sfdpa.nextrequest.com/documents/6633162/download
 
-### sfdpa_0409_18  ·  V2 A2 D1  ·  score 39  ·  1399 downloads
+### sfdpa_0409_18  ·  V2 A2 D1 P0  ·  score 39  ·  1399 downloads
 case: https://sfdpa.nextrequest.com/requests/22-7
 - [bodycam] 0409-18 BWC of Officer Sherry #1046 - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/13420842/download
@@ -21565,7 +23747,7 @@ case: https://sfdpa.nextrequest.com/requests/22-7
 - [documents] Production - 0409-18.pdf
   https://sfdpa.nextrequest.com/documents/13420843/download
 
-### sfdpa_0164_18  ·  V2 A2 D1  ·  score 38  ·  1085 downloads
+### sfdpa_0164_18  ·  V2 A2 D1 P0  ·  score 38  ·  1085 downloads
 case: https://sfdpa.nextrequest.com/requests/22-7
 - [bodycam] 0164-18 BWC of Ofc. Christopher Prescott #1605 - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/20425117/download
@@ -21578,7 +23760,7 @@ case: https://sfdpa.nextrequest.com/requests/22-7
 - [documents] Production - 0164-18.pdf
   https://sfdpa.nextrequest.com/documents/20425116/download
 
-### sfdpa_0261_18  ·  V2 A2 D1  ·  score 34  ·  45 downloads
+### sfdpa_0261_18  ·  V2 A2 D1 P0  ·  score 34  ·  45 downloads
 case: https://sfdpa.nextrequest.com/requests/22-7
 - [bodycam] 0261-18 BWC of Ofc. Brian Burke #32 - Redacted.mp4
   https://sfdpa.nextrequest.com/documents/18647550/download
@@ -21591,7 +23773,7 @@ case: https://sfdpa.nextrequest.com/requests/22-7
 - [documents] Production - 0261-18.pdf
   https://sfdpa.nextrequest.com/documents/18694248/download
 
-### sfdpa_0052_14  ·  V1 A3 D2  ·  score 32  ·  308 downloads
+### sfdpa_0052_14  ·  V1 A3 D2 P0  ·  score 32  ·  308 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [other] 0052-14 Witness Video.mp4
   https://sfdpa.nextrequest.com/documents/15104016/download
@@ -21606,7 +23788,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0052-14 Part B.pdf
   https://sfdpa.nextrequest.com/documents/15104012/download
 
-### sfdpa_0081_19  ·  V1 A2 D3  ·  score 37  ·  1291 downloads
+### sfdpa_0081_19  ·  V1 A2 D3 P0  ·  score 37  ·  1291 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [other] 0081-19 Surveillance Footage.mp4
   https://sfdpa.nextrequest.com/documents/23139608/download
@@ -21621,7 +23803,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0081-19 Part C.pdf
   https://sfdpa.nextrequest.com/documents/6633230/download
 
-### sfdpa_0658_08  ·  V1 A2 D3  ·  score 37  ·  1492 downloads
+### sfdpa_0658_08  ·  V1 A2 D3 P0  ·  score 37  ·  1492 downloads
 case: https://sfdpa.nextrequest.com/requests/20-5
 - [other] 0658-08 Video Footage.mp4
   https://sfdpa.nextrequest.com/documents/24780527/download
@@ -21636,7 +23818,7 @@ case: https://sfdpa.nextrequest.com/requests/20-5
 - [documents] Production - 0658-08 Part C.pdf
   https://sfdpa.nextrequest.com/documents/7464036/download
 
-### sfdpa_0438_10  ·  V0 A3 D1  ·  score 24  ·  880 downloads
+### sfdpa_0438_10  ·  V0 A3 D1 P0  ·  score 24  ·  880 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 0438-10 - DPA Interview of Officer Christina Hayes #449.mp3
   https://sfdpa.nextrequest.com/documents/19718520/download
@@ -21647,7 +23829,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0438-10.pdf
   https://sfdpa.nextrequest.com/documents/19718521/download
 
-### sfdpa_0270_18  ·  V3 A0 D2  ·  score 19  ·  598 downloads
+### sfdpa_0270_18  ·  V3 A0 D2 P0  ·  score 19  ·  598 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [other] 0270-18 Surveillance Footage 2.mp4
   https://sfdpa.nextrequest.com/documents/39175094/download
@@ -21660,7 +23842,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0270-18 Part A.pdf
   https://sfdpa.nextrequest.com/documents/34865665/download
 
-### sfdpa_0971_89  ·  V0 A2 D2  ·  score 24  ·  901 downloads
+### sfdpa_0971_89  ·  V0 A2 D2 P0  ·  score 24  ·  901 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 0971-89 - DPA Interview of Officer Phillip Burton #1836.mp3
   https://sfdpa.nextrequest.com/documents/16193482/download
@@ -21671,7 +23853,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 0971-89 Part B.pdf
   https://sfdpa.nextrequest.com/documents/16193480/download
 
-### sfdpa_44328_20  ·  V0 A2 D1  ·  score 22  ·  711 downloads
+### sfdpa_44328_20  ·  V0 A2 D1 P0  ·  score 22  ·  711 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 00044328-20 DPA Interview - Officer Reboli 1651 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/12404891/download
@@ -21680,7 +23862,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 00044328-20.pdf
   https://sfdpa.nextrequest.com/documents/7663651/download
 
-### sfdpa_0470_17  ·  V2 A0 D4  ·  score 21  ·  1163 downloads
+### sfdpa_0470_17  ·  V2 A0 D4 P0  ·  score 21  ·  1163 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [bodycam] 0470-17 BWC Footage - Ofc. Christopher Samayoa #4135.mp4
   https://sfdpa.nextrequest.com/documents/32359617/download
@@ -21695,7 +23877,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 0470-17 Part A.pdf
   https://sfdpa.nextrequest.com/documents/29266251/download
 
-### sfdpa_1451_87  ·  V0 A2 D2  ·  score 21  ·  222 downloads
+### sfdpa_1451_87  ·  V0 A2 D2 P0  ·  score 21  ·  222 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 1451-87 - DPA Interview of Officer Phillip Burton #1836.mp3
   https://sfdpa.nextrequest.com/documents/16193497/download
@@ -21706,7 +23888,7 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 1451-87 Part B.pdf
   https://sfdpa.nextrequest.com/documents/16193495/download
 
-### sfdpa_00048794_21  ·  V2 A0 D4  ·  score 19  ·  502 downloads
+### sfdpa_00048794_21  ·  V2 A0 D4 P0  ·  score 19  ·  502 downloads
 case: https://sfdpa.nextrequest.com/requests/20-2
 - [bodycam] 48794-21 BWC Footage - Ofc. Quinlan #1507.mp4
   https://sfdpa.nextrequest.com/documents/49104264/download
@@ -21721,7 +23903,7 @@ case: https://sfdpa.nextrequest.com/requests/20-2
 - [documents] Production - 00048794-21 Part D.pdf
   https://sfdpa.nextrequest.com/documents/49104263/download
 
-### sfdpa_00059678_24  ·  V2 A0 D1  ·  score 17  ·  79 downloads
+### sfdpa_00059678_24  ·  V2 A0 D1 P0  ·  score 17  ·  79 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [bodycam] 59678-24 - BWC of Ofc. Gustavo Castaneda #451.mp4
   https://sfdpa.nextrequest.com/documents/54405168/download
@@ -21730,21 +23912,21 @@ case: https://sfdpa.nextrequest.com/requests/20-3
 - [documents] Production - 00059678-24.pdf
   https://sfdpa.nextrequest.com/documents/52084149/download
 
-### sfdpa_0265_17  ·  V0 A1 D1  ·  score 21  ·  215 downloads
+### sfdpa_0265_17  ·  V0 A1 D1 P0  ·  score 21  ·  215 downloads
 case: https://sfdpa.nextrequest.com/requests/22-10
 - [interrogation] 0265-17 DPA Interview - Officer Joshua Fry #656.mp3
   https://sfdpa.nextrequest.com/documents/13663341/download
 - [documents] Production - 0265-17.pdf
   https://sfdpa.nextrequest.com/documents/13663340/download
 
-### sfdpa_44321_20  ·  V0 A1 D1  ·  score 21  ·  490 downloads
+### sfdpa_44321_20  ·  V0 A1 D1 P0  ·  score 21  ·  490 downloads
 case: https://sfdpa.nextrequest.com/requests/20-3
 - [interrogation] 44321-20 DPA Interview - Bernard Rabsatt 829 - Redacted.mp3
   https://sfdpa.nextrequest.com/documents/11775381/download
 - [documents] Production - 44321-20.pdf
   https://sfdpa.nextrequest.com/documents/11775382/download
 
-### sfdpa_00048961_21  ·  V1 A0 D1  ·  score 17  ·  11 downloads
+### sfdpa_00048961_21  ·  V1 A0 D1 P0  ·  score 17  ·  11 downloads
 case: https://sfdpa.nextrequest.com/requests/20-5
 - [bodycam] 48961-21 BWC - Ofc. Bandy #673.mp4
   https://sfdpa.nextrequest.com/documents/60197712/download
