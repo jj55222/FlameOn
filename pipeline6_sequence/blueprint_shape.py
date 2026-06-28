@@ -572,6 +572,7 @@ def _build_prompt(blueprint: Dict, style: str = "connective") -> str:
     acts = [{"act_id": a["act_id"], "title": a["title"], "function": a["function"],
              "target_sec": a["target_sec"]} for a in blueprint.get("acts", [])]
     beats = [{"beat_id": b["beat_id"], "act_id": b["act_id"], "function": b["function"],
+              "kind": "record" if b.get("is_document") else "footage",
               "duration_sec": b["target_duration_sec"],
               "quote": (b["quote"] or {}).get("text"),
               "description": b.get("description") or b.get("_description"),

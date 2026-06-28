@@ -283,3 +283,13 @@ def test_rail_degrades_beat_narration_to_brief():
                                           "brief": "transport to hospital"}}]}
     bs.audit_narration(sh, facts)
     assert sh["beats"][0]["narration_bridge"]["text"] == "transport to hospital"   # fell back, not aired
+
+
+def test_validate_tolerates_object_shaped_beat_order_and_cuts():
+    # the LLM sometimes returns beat_order/cuts as objects, not bare ids — must not
+    # raise "unhashable type: 'dict'" (it degraded the whole analysis edit before).
+    bp = _blueprint()
+    edit = {"beat_order": [{"beat_id": "b01"}, {"beat_id": "b00"}], "cuts": [{"id": "b00"}]}
+    clean, rej = bs.validate_edit(edit, bp)
+    assert clean["cuts"] == ["b00"]
+    assert clean["beat_order"] == ["b01"]          # b00 cut, b01 kept; no crash
