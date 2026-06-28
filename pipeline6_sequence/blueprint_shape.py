@@ -691,8 +691,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--model", default=None, help="OpenRouter model (default: gemini flash-lite)")
     ap.add_argument("--mock", action="store_true",
                     help="no live call — run the guard/apply path with an empty edit (zero cost)")
+    ap.add_argument("--analysis", action="store_true",
+                    help="grounded ANALYTICAL voiceover (EWU / Dr. Insanity tier) instead of spare "
+                         "connective narration — still behind the fact-check rail")
     ap.add_argument("--max-tokens", type=int, default=3500)
     args = ap.parse_args(argv)
+    style = "analysis" if args.analysis else "connective"
 
     blueprint = json.loads(args.blueprint.read_text(encoding="utf-8"))
     if args.mock:
