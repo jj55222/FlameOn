@@ -677,10 +677,14 @@ def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
         raw = clean_llm_output(raw)
     except Exception:
         pass
+    parse_error: Optional[str] = None
     try:
         edit = json.loads(raw) if isinstance(raw, str) else (raw or {})
-    except (json.JSONDecodeError, TypeError):
+    except (json.JSONDecodeError, TypeError) as e:
         edit = {}
+        nchars = len(raw) if isinstance(raw, str) else 0
+        parse_error = (f"{type(e).__name__}: model output not valid JSON ({nchars} chars) — "
+                       f"likely TRUNCATED at the token limit; raise --max-tokens")
     # The deterministic rails are guaranteed; the LLM tier is best-effort layered
     # on top. Any malformed edit degrades to the skeleton — it never crashes.
     try:
