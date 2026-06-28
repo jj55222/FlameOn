@@ -709,9 +709,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         except Exception:
             pass
         backend = make_openrouter_backend(args.model) if args.model else make_openrouter_backend()
-        print(f"[shape] live: {backend.model}  (paid — one call)")
+        print(f"[shape] live: {backend.model}  (paid — one call)  style={style}")
 
-    shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens)
+    shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens, style=style)
 
     out_dir = Path(args.out) if args.out else args.blueprint.parent
     out_dir.mkdir(parents=True, exist_ok=True)
