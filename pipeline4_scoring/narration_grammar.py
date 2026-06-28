@@ -305,43 +305,66 @@ def _selftest() -> int:
     return 0
 
 
+def _emit(profile: Dict[str, Any], segs: List[Dict[str, Any]], out: Path) -> Path:
+    out.mkdir(parents=True, exist_ok=True)
+    stem = profile["channel"].replace(" ", "_") + "_grammar"
+    (out / f"{stem}.json").write_text(json.dumps(profile, indent=2, ensure_ascii=False), encoding="utf-8")
+    (out / f"{stem}.segments.json").write_text(json.dumps(segs, indent=2, ensure_ascii=False), encoding="utf-8")
+    c = profile["cadence"]
+    print(f"\n[grammar] {profile['channel']} ({profile.get('n_videos',1)} video(s)): "
+          f"{c['vo_segments']} VO / {c['footage_segments']} footage, VO word share {c['vo_word_share']}, "
+          f"mean VO {c['mean_vo_words']}w, footage runs avg {c['mean_footage_run_segments']} (max {c['max_footage_run_segments']})")
+    print("[grammar] move distribution:", profile["move_distribution"])
+    print("[grammar] phase x move:")
+    for ph, mv in profile["phase_x_move"].items():
+        print(f"    {ph:13s} {mv}")
+    print(profile["prompt_directive"])
+    print(f"[grammar] -> {out / (stem + '.json')}")
+    return out / f"{stem}.json"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--creator", type=Path, help="creator transcript json (channel, transcript[])")
-    ap.add_argument("--footage", type=Path, default=None, help="dir of our raw bodycam transcripts (footage-match + phase)")
+    ap.add_argument("--creator", type=Path, nargs="*", default=[], help="creator transcript json(s)")
+    ap.add_argument("--creator-dir", type=Path, default=None, help="dir of creator transcript jsons (corpus)")
+    ap.add_argument("--footage", type=Path, default=None, help="our raw bodycam transcripts (footage-match + phase); omit for cross-case corpus")
     ap.add_argument("--timeline", type=Path, default=None, help="case_timeline.json (artifact -> phase)")
     ap.add_argument("--model", default="google/gemini-3.1-flash-lite-preview")
-    ap.add_argument("--out", type=Path, default=None, help="output dir (profile json + md + segments)")
+    ap.add_argument("--chunk", type=int, default=60, help="segments per LLM classification call")
+    ap.add_argument("--out", type=Path, default=None, help="output dir (per-channel profile json + md + segments)")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
     if args.selftest:
         return _selftest()
-    if not args.creator:
-        ap.error("--creator is required")
+
+    paths: List[Path] = list(args.creator)
+    if args.creator_dir:
+        paths += [Path(p) for p in sorted(glob.glob(str(args.creator_dir / "*.json")))
+                  if "grammar" not in Path(p).name and "segments" not in Path(p).name]
+    if not paths:
+        ap.error("need --creator <file...> or --creator-dir <dir>")
 
     try:
         from dotenv import load_dotenv  # type: ignore
         load_dotenv(Path(__file__).resolve().parent.parent / ".env"); load_dotenv()
     except Exception:
         pass
-    profile, segs = mine(args.creator, args.footage, args.timeline, args.model)
 
-    out = Path(args.out) if args.out else args.creator.parent
-    out.mkdir(parents=True, exist_ok=True)
-    stem = profile["channel"].replace(" ", "_") + "_grammar"
-    (out / f"{stem}.json").write_text(json.dumps(profile, indent=2, ensure_ascii=False), encoding="utf-8")
-    (out / f"{stem}.segments.json").write_text(json.dumps(segs, indent=2, ensure_ascii=False), encoding="utf-8")
+    # One profile PER CHANNEL — merge all of a channel's videos' segments.
+    groups: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    nvid: Counter = Counter()
+    for p in paths:
+        chan = json.loads(p.read_text(encoding="utf-8")).get("channel", p.stem)
+        print(f"[grammar] mining {chan} :: {p.name}")
+        _, segs = mine(p, args.footage, args.timeline, args.model, chunk=args.chunk)
+        groups[chan] += segs
+        nvid[chan] += 1
 
-    c = profile["cadence"]
-    print(f"[grammar] {profile['channel']}: {c['vo_segments']} VO / {c['footage_segments']} footage segments, "
-          f"VO word share {c['vo_word_share']}, mean VO {c['mean_vo_words']}w, "
-          f"footage runs avg {c['mean_footage_run_segments']} (max {c['max_footage_run_segments']})")
-    print("[grammar] move distribution:", profile["move_distribution"])
-    print("[grammar] phase x move:")
-    for ph, mv in profile["phase_x_move"].items():
-        print(f"    {ph:13s} {mv}")
-    print("\n" + profile["prompt_directive"])
-    print(f"\n[grammar] -> {out / (stem + '.json')}")
+    out = Path(args.out) if args.out else (paths[0].parent)
+    for chan, segs in groups.items():
+        profile = build_profile(segs, chan)
+        profile["n_videos"] = nvid[chan]
+        _emit(profile, segs, out)
     return 0
 
 
