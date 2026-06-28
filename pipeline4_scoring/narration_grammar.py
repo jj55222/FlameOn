@@ -54,6 +54,30 @@ MOVES: Dict[str, str] = {
 }
 
 
+# Phase keywords — let a VO line self-identify its phase from the creator's own
+# chronology, so the back half (investigation/outcome) isn't mis-anchored to the
+# nearest footage (which only covers the front of the case). Order = specificity.
+_PHASE_KEYWORDS = [
+    ("outcome", re.compile(r"\b(terminat\w*|resign\w*|fired|sustained|disciplin\w*|convict\w*|"
+                           r"sentenc\w*|pleaded|guilty|acquitt\w*|charged with|recommended (?:him )?for)\b", re.I)),
+    ("investigation", re.compile(r"\b(investigat\w*|internal affairs|\bIA\b|interview\w*|"
+                                 r"determined|reviewed|detectives?|the report|findings?)\b", re.I)),
+    ("aftermath", re.compile(r"\b(transport\w*|hospital|ambulance|paramedic\w*|narcan|aftermath|"
+                             r"secured the scene|life-?saving|cpr)\b", re.I)),
+    ("pre_incident", re.compile(r"\b(earlier|hours before|before he|his shift|field contact|"
+                                r"traffic stop|confiscat\w*|seiz\w*|responded to|that morning|that day)\b", re.I)),
+    ("incident", re.compile(r"\b(found unresponsive|collaps\w*|passed out|unconscious|the moment|"
+                            r"discover\w*|on the floor|in the (?:restroom|bathroom|stall))\b", re.I)),
+]
+
+
+def keyword_phase(text: str) -> Optional[str]:
+    for ph, pat in _PHASE_KEYWORDS:
+        if pat.search(text or ""):
+            return ph
+    return None
+
+
 def _toks(t: str) -> List[str]:
     return re.sub(r"[^a-z0-9 ]", " ", (t or "").lower()).split()
 
