@@ -811,9 +811,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         except Exception:
             pass
         backend = make_openrouter_backend(args.model) if args.model else make_openrouter_backend()
-        print(f"[shape] live: {backend.model}  (paid — one call)  style={style}")
+        gtag = f" grammar={args.grammar.stem}" if args.grammar else ""
+        print(f"[shape] live: {backend.model}  (paid — one call)  style={style}{gtag}")
 
-    shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens, style=style)
+    grammar = json.loads(args.grammar.read_text(encoding="utf-8")) if args.grammar else None
+    shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens,
+                                     style=style, grammar=grammar)
 
     out_dir = Path(args.out) if args.out else args.blueprint.parent
     out_dir.mkdir(parents=True, exist_ok=True)
