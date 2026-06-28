@@ -86,9 +86,37 @@ def _grams(ws: List[str], n: int = 4) -> List[Tuple[str, ...]]:
     return [tuple(ws[i:i + n]) for i in range(len(ws) - n + 1)]
 
 
-def load_segments(creator_path: Path) -> List[Dict[str, Any]]:
+def merge_cues(segs: List[Dict[str, Any]], max_words: int = 16, max_gap: float = 2.0) -> List[Dict[str, Any]]:
+    """Merge fragmentary auto-caption cues into sentence-ish units: accumulate until
+    ~max_words or a > max_gap pause (or sentence punctuation). Auto-subs are word-by-
+    word and unpunctuated — classifying a 3-word fragment is noisy and expensive."""
+    out: List[Dict[str, Any]] = []
+    buf: List[str] = []
+    start: Optional[float] = None
+    wc = 0
+    last_end: Optional[float] = None
+    for s in segs:
+        st = float(s.get("start_sec") or s.get("start") or 0.0)
+        gap = (st - last_end) if last_end is not None else 0.0
+        if buf and (wc >= max_words or gap > max_gap or buf[-1].rstrip().endswith((".", "!", "?"))):
+            out.append({"start_sec": start, "text": " ".join(buf).strip()})
+            buf, wc, start = [], 0, None
+        if start is None:
+            start = st
+        txt = (s.get("text") or "").strip()
+        if txt:
+            buf.append(txt); wc += len(txt.split())
+        last_end = float(s.get("end_sec") or st)
+    if buf:
+        out.append({"start_sec": start, "text": " ".join(buf).strip()})
+    return out
+
+
+def load_segments(creator_path: Path, merge: bool = True) -> List[Dict[str, Any]]:
     d = json.loads(creator_path.read_text(encoding="utf-8"))
     segs = d.get("transcript") or d.get("segments") or (d if isinstance(d, list) else [])
+    if merge:
+        segs = merge_cues(segs)
     out = []
     for i, s in enumerate(segs):
         out.append({"i": i, "start_sec": float(s.get("start_sec") or s.get("start") or 0.0),
