@@ -166,7 +166,7 @@ def assign_phases(segs: List[Dict[str, Any]]) -> None:
 # LLM pass: confirm role (correct the sparse-footage leak) + classify VO move
 # ---------------------------------------------------------------------------
 
-def _classify_llm(segs: List[Dict[str, Any]], model: str, chunk: int = 50) -> None:
+def _classify_llm(segs: List[Dict[str, Any]], model: str, chunk: int = 60) -> None:
     from llm_backends import build_backend, clean_llm_output  # type: ignore
     backend = build_backend(model)
     moves_doc = "; ".join(f"{k} = {v}" for k, v in MOVES.items())
