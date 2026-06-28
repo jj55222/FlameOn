@@ -83,7 +83,7 @@ def _file_record(f: Dict[str, Any], default_type: str) -> Dict[str, Any]:
 def _files_of(c: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Flatten a candidate's media + doc/photo files to ``[{name, type, url}]`` (deduped),
     tolerating the small schema differences between harvesters."""
-    out: List[Dict[str, str]] = []
+    out: List[Dict[str, Any]] = []
     for f in (c.get("media_files") or []):
         if f.get("url") or f.get("download_url"):
             out.append(_file_record(f, "media"))

@@ -3,7 +3,7 @@
 **Source:** Civilian Office of Police Accountability case portal
 **Front-end index:** https://www.chicagocopa.org/data-cases/case-portal/
 **WordPress API:** `https://www.chicagocopa.org/wp-json/wp/v2/case` and `https://www.chicagocopa.org/wp-json/wp/v2/media`
-**Candidate data:** `/Users/jmoney/FlameOn-main/discovered_cases/copa_candidates.json`
+**Candidate data:** `/tmp/copa_test.json`
 
 > COPA is strongest as a legal/accountability report source. It has a Video Release
 > Policy, but this catalog only counts raw video/audio when those files are directly
@@ -12,19 +12,19 @@
 
 ## Totals In This Crawl
 
-- **3006 case records checked**, **7102 attached files checked**
+- **2131 case records checked**, **0 attached files checked**
 - **2131 cases** with attached files
-- **0 video files**, **3 audio files**, **4884 documents**, **0 photos/images**
+- **64 video files**, **3 audio files**, **4884 documents**, **0 photos/images**
 
 ## All cases with attachments (ranked by artifact richness)
 
 | # | Score | Case | Vid | Aud | Doc | Img | Highlights | Browse |
 |---|------:|------|----:|----:|----:|----:|------------|--------|
-| 1 | 21 | 2021-0003709 | 0 | 0 | 7 | 0 | +6 officer-involved, +5 shooting, +5 fatal | [link](https://www.chicagocopa.org/case/2021-0003709/) |
-| 2 | 21 | 2021-0002917 | 0 | 0 | 6 | 0 | +6 officer involved, +5 shooting, +5 fatal | [link](https://www.chicagocopa.org/case/2021-0002917/) |
-| 3 | 20 | 2021-0001112 | 0 | 0 | 9 | 0 | +6 officer-involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0001112/) |
-| 4 | 20 | 2021-0001161 | 0 | 0 | 8 | 0 | +6 officer involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0001161/) |
-| 5 | 20 | 2021-0003940 | 0 | 0 | 8 | 0 | +6 officer-involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0003940/) |
+| 1 | 21 | 2021-0003709 | 10 | 0 | 7 | 0 | +6 officer-involved, +5 shooting, +5 fatal | [link](https://www.chicagocopa.org/case/2021-0003709/) |
+| 2 | 21 | 2021-0002917 | 1 | 0 | 6 | 0 | +6 officer involved, +5 shooting, +5 fatal | [link](https://www.chicagocopa.org/case/2021-0002917/) |
+| 3 | 20 | 2021-0001112 | 21 | 0 | 9 | 0 | +6 officer-involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0001112/) |
+| 4 | 20 | 2021-0001161 | 28 | 0 | 8 | 0 | +6 officer involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0001161/) |
+| 5 | 20 | 2021-0003940 | 4 | 0 | 8 | 0 | +6 officer-involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0003940/) |
 | 6 | 20 | 2022-0001369 | 0 | 0 | 7 | 0 | +6 officer involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2022-0001369/) |
 | 7 | 20 | 2021-0004357 | 0 | 0 | 3 | 0 | +6 officer-involved, +5 shooting, +5 fatal, -1 redacted | [link](https://www.chicagocopa.org/case/2021-0004357/) |
 | 8 | 16 | 2020-0003466 | 0 | 0 | 18 | 0 | +6 officer involved, +5 shooting | [link](https://www.chicagocopa.org/case/2020-0003466/) |
@@ -2154,41 +2154,41 @@
 
 ## Top bundles
 
-- **2021-0003709** — 0 video, 0 audio, 7 docs, 0 images, score 21 · case_id `copa_2021_0003709`
-  - 2021-0003709_FSR
-  - 2021-0003709_Supplemental FSR
-  - 2021-0003709_Nonconcur
-  - 2021-3709 COPA RELEASES VIDEO & OTHER MATERIALS OF FATAL OFFICER-INVOLVED SHOOTING NEAR 6500 SOUTH HARVARD AVENUE-FINAL
-  - Log # 2021-3709 Tactical Response Report 2
-  - Log # 2021-3709 Tactical Response Report 1
-- **2021-0002917** — 0 video, 0 audio, 6 docs, 0 images, score 21 · case_id `copa_2021_0002917`
+- **2021-0003709** — 10 video, 0 audio, 7 docs, 0 images, score 21 · case_id `copa_2021_0003709`
+  - Log #2021-0003709 Vimeo BWC 1
+  - Log #2021-0003709 Vimeo BWC 2
+  - Log #2021-0003709 Vimeo BWC 3
+  - Log #2021-0003709 Vimeo BWC 4
+  - Log #2021-0003709 Vimeo BWC 5
+  - Log #2021-0003709 Vimeo BWC 6
+- **2021-0002917** — 1 video, 0 audio, 6 docs, 0 images, score 21 · case_id `copa_2021_0002917`
+  - Log #2021-0002917 Vimeo BWC 1
   - 2021-0002917_FSR
   - 2021-2917 COPA RELEASES VIDEO OF FATAL OFFICER INVOLVED SHOOTING IN CALUMET CITY
   - Log # 2021-2917 Original Case Incident Report 1
   - Log # 2021-2917 Tactical Response Report
   - Log # 2021-2917 Original Case Incident Report 2
-  - Log # 2021-2917 Original Case Incident Report 1
-- **2021-0001112** — 0 video, 0 audio, 9 docs, 0 images, score 20 · case_id `copa_2021_0001112`
-  - 2021-0001112_FSR
-  - 2021-0001112_Nonconcur
-  - 2021-0001112_Supplement to Nonconcur
-  - 2021-0001112_Request for Review
-  - 2021-0001112_RR Opinion
-  - Press release 2021-1112-*Final – COPA CONCLUDES INVESTIGATION INTO FATAL OFFICER-INVOLVED SHOOTING OF ADAM TOLEDO
-- **2021-0001161** — 0 video, 0 audio, 8 docs, 0 images, score 20 · case_id `copa_2021_0001161`
-  - COPA RELEASES SUMMARY REPORT AND FINDINGS REGARDING FATAL OFFICER INVOLVED SHOOTING OF ANTHONY ALVAREZ-FINAL2
-  - 22RR0708
-  - Request for Review 2021-00001161_redacted
-  - 2021-1161 NON CONC LETTER_redacted
-  - 2021-1161_redacted
-  - 2021-1161 Press Release
-- **2021-0003940** — 0 video, 0 audio, 8 docs, 0 images, score 20 · case_id `copa_2021_0003940`
+- **2021-0001112** — 21 video, 0 audio, 9 docs, 0 images, score 20 · case_id `copa_2021_0001112`
+  - Log #2021-0001112 Vimeo BWC 1
+  - Log #2021-0001112 Vimeo BWC 2
+  - Log #2021-0001112 Vimeo BWC 3
+  - Log #2021-0001112 Vimeo BWC 4
+  - Log #2021-0001112 Vimeo BWC 5
+  - Log #2021-0001112 Vimeo BWC 6
+- **2021-0001161** — 28 video, 0 audio, 8 docs, 0 images, score 20 · case_id `copa_2021_0001161`
+  - Log #2021-0001161 Vimeo BWC 1
+  - Log #2021-0001161 Vimeo BWC 2
+  - Log #2021-0001161 Vimeo BWC 3
+  - Log #2021-0001161 Vimeo BWC 4
+  - Log #2021-0001161 Vimeo BWC 5
+  - Log #2021-0001161 Vimeo BWC 6
+- **2021-0003940** — 4 video, 0 audio, 8 docs, 0 images, score 20 · case_id `copa_2021_0003940`
+  - Log #2021-0003940 Vimeo BWC 1
+  - Log #2021-0003940 Vimeo BWC 2
+  - Log #2021-0003940 Vimeo BWC 3
+  - Log #2021-0003940 Vimeo BWC 4
   - 2021-003940_Nonconcur
   - 2021-0003940_RR Opinion (2)
-  - 2021-0003940_Request_for_Review
-  - 2021-0003940_FSR
-  - 2021-3940 COPA RELEASES VIDEO OTHER MATERIALS OF FATAL OFFICER-INVOLVED SHOOTING NEAR 7700 SOUTH CARPENTER STREET – Final
-  - Covarrubias TRR_REDACTED
 - **2022-0001369** — 0 video, 0 audio, 7 docs, 0 images, score 20 · case_id `copa_2022_0001369`
   - 2022-0001369_FSR
   - COPA RELEASES VIDEO & OTHER MATERIALS RELATED TO FATAL OFFICER INVOLVED SHOOTING NEAR 4200 W FORD CITY DR-Final

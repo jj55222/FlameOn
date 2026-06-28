@@ -1,8 +1,8 @@
 # Case Bundle Vet Report
 
 - Mode: classification/tier dry run
-- Candidate files rewritten: no
-- Generated: 2026-06-28T22:42:18+00:00
+- Candidate files rewritten: yes
+- Generated: 2026-06-28T23:33:56+00:00
 
 | source | bundles | files | live | dead | unknown | A | B | C | D |
 |--------|--------:|------:|-----:|-----:|--------:|--:|--:|--:|--:|

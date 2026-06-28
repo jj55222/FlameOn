@@ -151,35 +151,53 @@ def capture_vimeo_for_candidates(
     limit: Optional[int] = None,
     verify_metadata: bool = False,
     timeout: float = 45.0,
+    save_cb=None,
+    save_every: int = 25,
 ) -> int:
-    """Scrape COPA case pages for Vimeo embeds and attach them as video records."""
-    added = 0
+    """Scrape COPA case pages for Vimeo embeds and attach them as video records.
+
+    RESUMABLE: each candidate is flagged ``_vimeo_checked`` once scanned, and
+    skipped on a rerun — so the 2,131-page scan can be done in bounded batches
+    (``limit`` counts NEWLY-scanned cases, not absolute index) without re-doing
+    work, and ``save_cb`` persists progress every ``save_every`` so a hang/interrupt
+    never loses it (instead of writing only at the very end)."""
+    added = scanned = 0
+    total = len(candidates)
     for i, c in enumerate(candidates):
-        if limit is not None and i >= limit:
+        if c.get("_vimeo_checked"):              # resume: already scanned in a prior run
+            continue
+        if limit is not None and scanned >= limit:
             break
+        scanned += 1
         case_url = c.get("case_url") or ""
-        if not case_url:
-            continue
-        try:
-            urls = find_vimeo_urls(client.get_text(case_url))
-        except requests.RequestException as exc:
-            print(f"[vimeo] {c.get('case_number')} case page failed: {exc}", file=sys.stderr)
-            continue
-        existing = {f.get("url") for f in c.get("media_files", [])}
-        for url in urls:
-            if url in existing:
-                continue
-            metadata = resolve_vimeo_metadata(url, timeout=timeout) if verify_metadata else None
-            c.setdefault("media_files", []).append(
-                vimeo_file_record(url, c.get("case_number", ""), len(c.get("media_files", [])) + 1, metadata=metadata)
-            )
-            c.setdefault("titles", []).append(c["media_files"][-1]["name"])
-            existing.add(url)
-            added += 1
-        c["n_video"] = sum(1 for f in c.get("media_files", []) if f.get("kind") == "video" or f.get("evidence_type") in {"bodycam", "dashcam", "surveillance", "video"})
-        c["has_video"] = bool(c["n_video"])
-        c["is_bwc"] = c.get("is_bwc") or bool(c["n_video"])
-        c["urls"] = [f["url"] for f in c.get("media_files", []) if f.get("url")]
+        if case_url:
+            try:
+                urls = find_vimeo_urls(client.get_text(case_url))
+            except requests.RequestException as exc:
+                print(f"[vimeo] {c.get('case_number')} case page failed: {exc}", file=sys.stderr)
+                urls = []
+            existing = {f.get("url") for f in c.get("media_files", [])}
+            for url in urls:
+                if url in existing:
+                    continue
+                metadata = resolve_vimeo_metadata(url, timeout=timeout) if verify_metadata else None
+                c.setdefault("media_files", []).append(
+                    vimeo_file_record(url, c.get("case_number", ""), len(c.get("media_files", [])) + 1, metadata=metadata)
+                )
+                c.setdefault("titles", []).append(c["media_files"][-1]["name"])
+                existing.add(url)
+                added += 1
+            c["n_video"] = sum(1 for f in c.get("media_files", []) if f.get("kind") == "video" or f.get("evidence_type") in {"bodycam", "dashcam", "surveillance", "video"})
+            c["has_video"] = bool(c["n_video"])
+            c["is_bwc"] = c.get("is_bwc") or bool(c["n_video"])
+            c["urls"] = [f["url"] for f in c.get("media_files", []) if f.get("url")]
+        c["_vimeo_checked"] = True               # mark done (resume skips it next run)
+        if scanned % save_every == 0:
+            if save_cb:
+                save_cb()
+            print(f"[vimeo] scanned {scanned} (+{added} embeds) … case {i + 1}/{total}", file=sys.stderr)
+    if save_cb:
+        save_cb()
     return added
 
 
@@ -496,6 +514,7 @@ def main() -> int:
     ap.add_argument("--retries", type=int, default=0, help="retry failed media pages this many times")
     ap.add_argument("--allow-partial", action="store_true", help="skip media pages that still fail after retries")
     ap.add_argument("--capture-vimeo", action="store_true", help="scrape each COPA case page for Vimeo BWC embeds")
+    ap.add_argument("--enrich-existing", action="store_true", help="load --out candidates and only add missing Vimeo embeds")
     ap.add_argument("--vimeo-limit", type=int, default=None, help="max ranked candidates to scan for Vimeo embeds")
     ap.add_argument("--verify-vimeo", action="store_true", help="use yt-dlp --skip-download to resolve Vimeo title/duration")
     ap.add_argument("--out", default=str(ROOT / "copa_candidates.json"))
@@ -503,6 +522,28 @@ def main() -> int:
     args = ap.parse_args()
 
     client = COPAClient(timeout=args.timeout)
+    out = Path(args.out)
+    if args.enrich_existing:
+        if not args.capture_vimeo:
+            ap.error("--enrich-existing requires --capture-vimeo")
+        candidates = json.loads(out.read_text(encoding="utf-8"))
+        if not isinstance(candidates, list):
+            ap.error("--enrich-existing expects --out to point to a JSON list of candidates")
+        vimeo_added = capture_vimeo_for_candidates(
+            client,
+            candidates,
+            limit=args.vimeo_limit,
+            verify_metadata=args.verify_vimeo,
+            timeout=args.timeout,
+        )
+        out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False), encoding="utf-8")
+        write_catalog(candidates, Path(args.catalog), out, cases_seen=len(candidates), media_seen=0)
+        print(f"existing candidates: {len(candidates)}")
+        print(f"vimeo embeds captured: {vimeo_added}")
+        print(f"candidates: {len(candidates)} -> {out}")
+        print(f"catalog: {args.catalog}")
+        return 0
+
     cases = fetch_cases(client, args.max_pages)
     media = fetch_media(
         client,
@@ -521,7 +562,6 @@ def main() -> int:
             timeout=args.timeout,
         )
 
-    out = Path(args.out)
     out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False), encoding="utf-8")
     write_catalog(candidates, Path(args.catalog), out, cases_seen=len(cases), media_seen=len(media))
 
