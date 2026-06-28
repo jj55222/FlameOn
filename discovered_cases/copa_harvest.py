@@ -529,14 +529,21 @@ def main() -> int:
         candidates = json.loads(out.read_text(encoding="utf-8"))
         if not isinstance(candidates, list):
             ap.error("--enrich-existing expects --out to point to a JSON list of candidates")
+
+        def _save():   # incremental checkpoint — resumable across bounded batches
+            out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        done = sum(1 for c in candidates if c.get("_vimeo_checked"))
+        print(f"resuming: {done}/{len(candidates)} cases already scanned")
         vimeo_added = capture_vimeo_for_candidates(
             client,
             candidates,
             limit=args.vimeo_limit,
             verify_metadata=args.verify_vimeo,
             timeout=args.timeout,
+            save_cb=_save,
         )
-        out.write_text(json.dumps(candidates, indent=2, ensure_ascii=False), encoding="utf-8")
+        _save()
         write_catalog(candidates, Path(args.catalog), out, cases_seen=len(candidates), media_seen=0)
         print(f"existing candidates: {len(candidates)}")
         print(f"vimeo embeds captured: {vimeo_added}")
