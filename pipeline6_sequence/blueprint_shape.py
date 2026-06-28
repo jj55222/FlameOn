@@ -361,6 +361,30 @@ def _subject_is_le(facts: Dict) -> bool:
     return bool(_LE_PAT.search(blob))
 
 
+# Analytical accusations — the strong claims an analysis voiceover might assert.
+# Each is ALLOWED only if the case record (findings/facts) supports it; otherwise
+# it is an ungrounded conclusion about a real person and is quarantined. This is
+# the fact-check rail extended from FRAMING to ANALYTICAL CLAIMS (see _SYSTEM_ANALYSIS).
+_ACCUSATIONS = [
+    (_re.compile(r"\b(cover[- ]?up|covered (?:it|this|that) up)\b", _re.I), r"dishonest|conceal|cover|discredit|withh|hid|untruth"),
+    (_re.compile(r"\b(fabricat\w*|falsif\w*|forged?|doctored)\b", _re.I), r"dishonest|falsif|fabricat|forg"),
+    (_re.compile(r"\b(planted|plant(?:ing)? (?:the )?evidence|tamper\w*)\b", _re.I), r"plant|tamper|evidence"),
+    (_re.compile(r"\b(perjur\w*|lied|lying|dishonest\w*|untruthful)\b", _re.I), r"dishonest|false|untruth|misle|lie|perjur"),
+    (_re.compile(r"\b(murder\w*|homicide|execut(?:ed|ion)|unlawful killing)\b", _re.I), r"murder|homicide|unlawful|killed|kill\b|death|fatal"),
+    (_re.compile(r"\b(excessive force|brutality|brutal beating|beat\w* (?:him|her|them) (?:up|senseless))\b", _re.I), r"excessive|force|brutal|strike|struck|beat"),
+    (_re.compile(r"\b(corrupt\w*|brib\w*|conspir\w*|racketeer\w*)\b", _re.I), r"corrupt|brib|conspir|racket"),
+]
+
+
+def _unsupported_accusation(text: str, factblob: str) -> Optional[str]:
+    """Return the first strong accusation in ``text`` that the record doesn't back."""
+    for pat, support in _ACCUSATIONS:
+        m = pat.search(text)
+        if m and not _re.search(support, factblob, _re.I):
+            return m.group(0)
+    return None
+
+
 def audit_narration(shaped: Dict, facts: Dict) -> List[Dict]:
     """Reject framing that CONTRADICTS the case facts. The integrity rail already
     drops narration that references a non-existent asset/quote; this extends the
