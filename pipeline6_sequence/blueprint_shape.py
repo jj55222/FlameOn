@@ -704,8 +704,12 @@ def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
                                       for b in shaped.get("beats", []) if b.get("narration_bridge")]
         shaped.setdefault("edit_report", {})["factual_flags"] = factual_flags
         rejections = list(rejections) + factual_flags
+    if parse_error:                       # surface truncation instead of silently degrading
+        shaped.setdefault("edit_report", {})["parse_error"] = parse_error
+        rejections = [{"field": "_parse", "value": parse_error,
+                       "reason": "model output unparseable; kept skeleton"}] + list(rejections)
     report = {"rejections": rejections, "raw_edit": edit, "factual_flags": factual_flags,
-              "built_by": shaped["metadata"]["built_by"]}
+              "parse_error": parse_error, "built_by": shaped["metadata"]["built_by"]}
     return shaped, report
 
 
