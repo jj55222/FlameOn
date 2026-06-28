@@ -37,7 +37,7 @@ def test_full_plan_with_doc_has_expected_order():
     steps = md.build_plan(_args(doc=".tmp/case/docs/d.pdf"))
     labels = _labels(steps)
     assert labels == ["stamp", "align-dashcam", "build-timeline", "doc-ocr",
-                      "doc-extract", "transcribe", "score", "render"]
+                      "doc-extract", "transcribe", "mine-moments", "bridge-verdict", "render"]
 
 
 def test_doc_mining_precedes_transcription():
@@ -129,3 +129,24 @@ def test_flagship_judge_mock_is_free_else_paid():
     assert free.paid is False and "--mock" in free.argv
     paid = {s.label: s for s in md.build_plan(_args(flagship=True))}["judge"]
     assert paid.paid is True and "--mock" not in paid.argv
+
+
+# --- moment source: beat_miner (recall) default vs P4 (precision) ----------
+
+def test_flagship_default_moments_is_beatminer():
+    labels = _labels(md.build_plan(_args(flagship=True)))
+    assert "mine-moments" in labels and "bridge-verdict" in labels
+    assert "score" not in labels                       # P4 replaced by beat_miner
+    # order: mine -> bridge -> blueprint
+    assert labels.index("mine-moments") < labels.index("bridge-verdict") < labels.index("blueprint")
+
+
+def test_moments_p4_keeps_the_scorer():
+    labels = _labels(md.build_plan(_args(flagship=True, moments="p4")))
+    assert "score" in labels and "mine-moments" not in labels
+
+
+def test_beatminer_step_is_paid_and_bridge_is_free():
+    steps = {s.label: s for s in md.build_plan(_args(flagship=True))}
+    assert steps["mine-moments"].paid is True
+    assert steps["bridge-verdict"].paid is False       # deterministic
