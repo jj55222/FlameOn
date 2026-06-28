@@ -740,6 +740,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--max-tokens", type=int, default=3500)
     args = ap.parse_args(argv)
     style = "analysis" if args.analysis else "connective"
+    # Analytical voiceover is far more verbose than connective bridges — give it
+    # room or the JSON truncates and silently degrades to the skeleton.
+    if style == "analysis" and args.max_tokens < 12000:
+        args.max_tokens = 12000
 
     blueprint = json.loads(args.blueprint.read_text(encoding="utf-8"))
     if args.mock:
