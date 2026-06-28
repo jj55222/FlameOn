@@ -161,8 +161,14 @@ def ground_filter(candidates: list, blob: str, tokens: set, segments: list) -> t
         cand_segs = [s for s in segments if not c.get("artifact_id") or s["source"] == c["artifact_id"]] or segments
         best = max(cand_segs, key=lambda s: len(set(nq.split()) & set(_norm(s["text"]).split())),
                    default=None)
-        if best and best["start"] is not None:
-            c["start_sec"], c["end_sec"] = best["start"], best.get("end")
+        if best:
+            if best["start"] is not None:
+                c["start_sec"], c["end_sec"] = best["start"], best.get("end")
+            # Inherit the source camera from the grounded segment. The LLM proposer
+            # works from a combined blob and can't know which camera a beat is on, so
+            # artifact_id arrives empty — the matched segment is the source of truth.
+            if not c.get("artifact_id"):
+                c["artifact_id"] = best["source"]
         c["_grounding"] = g
         kept.append(c)
     return kept, dropped
