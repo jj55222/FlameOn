@@ -677,6 +677,8 @@ def _build_prompt(blueprint: Dict, style: str = "connective", grammar: Optional[
             "don't answer it. Each narration is 1-3 sentences. Then order beats chronologically within "
             "acts, prune weak/duplicate beats, preserve procedural_violation/record beats, and add "
             "sourced establishing B-roll (dashcam/911 only, never a bodycam) for the cold open.\n\n")
+        if grammar:
+            instruction += _grammar_directive(grammar) + "\n"
         return instruction + json.dumps(payload, ensure_ascii=False)
     return (
         "Ground EVERY word of the logline, act theses, and narration in CASE_FACTS "
