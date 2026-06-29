@@ -1,9 +1,21 @@
-# HANDOFF — process all A-tier cases through the documentary pipeline
+# HANDOFF — top-10 A-tier cases: cuts + a P4-vs-LLM assessment test
 
-Goal: run the **28 tier-A bundles** (all **SDPD**, the gold standard: downloadable
-video + audio + docs per case, every file verified live) end-to-end through the
-flagship documentary engine → grounded cuts. This is the payoff of the registry
-work: the A tier is the trustworthy, pipeline-ready set.
+**Two goals:**
+1. **Pick the TOP 10 most-interesting A-tier cases** (don't process all 28), download
+   them, and run them through the documentary engine → grounded cuts.
+2. **In tandem, validate P4's CASE-ASSESSMENT** against a strong LLM: does
+   `pipeline4_score` (PRODUCE/HOLD/SKIP) agree with a strong model's independent
+   verdict on the same 10 cases? A concordance check on the SELECTOR.
+
+**Critical role split (don't conflate — see memory):**
+- **`pipeline4_score` (P4) = assess whether a case is GOOD** (PRODUCE/HOLD/SKIP — selection).
+- **`beat_miner` = generate the CONTENT/moments** around a case you've chosen to make (the cut).
+The experiment in goal #2 tests **P4 (assessment)**, NOT beat_miner. The cut-making
+in goal #1 uses **beat_miner** (the moment source). They are different tools for
+different jobs.
+
+A-tier = 28 SDPD cases (gold: video+audio+docs, every file verified live). All in
+`discovered_cases/CASE_BUNDLE_AGG.json` (`tier=="A"`, `source=="sdpd"`).
 
 Read first: `MEMORY.md` (auto-memory), `HANDOFF.md` (the documentary engine),
 `discovered_cases/CASE_BUNDLE_SPEC.md` (tiers). This doc is the runbook.
