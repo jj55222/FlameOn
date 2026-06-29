@@ -112,6 +112,39 @@ Go smallest-first so you find SDPD-specific issues on a cheap case.
 
 ---
 
+## Goal #2 — the P4-vs-LLM assessment test (runs alongside the cuts)
+Tests the **SELECTOR (P4)** — does its PRODUCE/HOLD/SKIP verdict agree with a strong
+LLM's? — NOT beat_miner. For each of the 10 cases, after the transcripts exist:
+
+```bash
+# A) P4's verdict — the structured 2-pass scorer (winner-weighted, precision-calibrated)
+.venv/bin/python pipeline4_scoring/pipeline4_score.py --force \
+  --transcript-dir $B/d2/transcripts --case-id $CID \
+  --weights pipeline1_winners/scoring_weights.json --output $B/d2/verdicts_p4
+# -> PRODUCE/HOLD/SKIP + narrative_score in $B/d2/verdicts_p4/${CID}_verdict.json
+
+# B) a STRONG LLM's INDEPENDENT verdict — same rubric, holistic. Write a small
+#    prompt (reuse pipeline4_scoring/llm_backends.build_backend(<STRONG_MODEL>)):
+#    give it the transcript (+ doc summary), ask for PRODUCE/HOLD/SKIP + score 0-100
+#    + one-line why, using P4's own criteria (narrative tension, contradictions,
+#    emotional peaks, accountability arc). Keep its reasoning grounded in the material.
+
+# C) compare across all 10: an agreement table (P4 verdict vs LLM verdict, score gap).
+```
+
+**Read the result honestly:**
+- **It's a structured-LLM-pipeline (P4 = Gemini-Flash pass-1 + Claude-Sonnet pass-2,
+  winner-weights) vs a raw strong LLM.** So you're testing whether P4's *structure*
+  tracks a strong model's holistic judgment — not "model vs non-model." Agreement ≠
+  ground truth (both are LLMs); the useful signal is **where they DISAGREE.**
+- **All 10 are A-tier GOLD cases**, so a good documentary selector should rate most
+  PRODUCE. If **P4 says HOLD/SKIP on cases the LLM finds compelling** (it rated Morales
+  HOLD), that's evidence P4 is calibrated for *case-DISCOVERY triage* (find the rare gem
+  among thousands, <30% PRODUCE) — **the wrong calibration for ranking among
+  already-good cases.** That mismatch is the finding worth chasing → may need a
+  documentary-selection recalibration of P4 (or a separate "rank good cases" mode).
+- Do NOT use beat_miner here — that's the content tool; this validates the selector.
+
 ## Cost / scale
 - Per case: **2 paid LLM calls** (beat_miner + shape; deepseek-flash, cheap) + free
   local transcribe + free render. 28 cases ≈ **~56 paid calls** + ~138 GB download +
