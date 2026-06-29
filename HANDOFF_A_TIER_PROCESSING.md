@@ -64,7 +64,9 @@ set -a; . ./.env; set +a                       # OPENROUTER_API_KEY for paid ste
 ---
 
 ## Step 1 — validate ONE small case STAGED (cheap, ~0.3–0.5 GB)
-Recommended first case: **`sdpd_08_20_2023_ia_2023_009`** (0.3 GB, V1 A3 D2) or
+Before spending on your interesting 10, prove SDPD works on the cheapest case (it's
+never been run). Use the **smallest of your top-10** if one is small, else a throwaway
+probe: **`sdpd_08_20_2023_ia_2023_009`** (0.3 GB, V1 A3 D2) or
 **`sdpd_02_09_2023_ia_2023_0027`** (0.5 GB, V2 A2 D2).
 
 ```bash
