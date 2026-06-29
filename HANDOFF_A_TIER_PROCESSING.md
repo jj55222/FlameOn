@@ -1,0 +1,122 @@
+# HANDOFF — process all A-tier cases through the documentary pipeline
+
+Goal: run the **28 tier-A bundles** (all **SDPD**, the gold standard: downloadable
+video + audio + docs per case, every file verified live) end-to-end through the
+flagship documentary engine → grounded cuts. This is the payoff of the registry
+work: the A tier is the trustworthy, pipeline-ready set.
+
+Read first: `MEMORY.md` (auto-memory), `HANDOFF.md` (the documentary engine),
+`discovered_cases/CASE_BUNDLE_SPEC.md` (tiers). This doc is the runbook.
+
+---
+
+## What you're working with
+- **28 A-tier cases**, listed in `discovered_cases/CASE_BUNDLE_AGG.json` (`tier=="A"`,
+  `source=="sdpd"`). All 943 of their files probed **100% live**.
+- **~138 GB total if you download everything** (range 0.3–24 GB/case). **Do NOT
+  download all 28 up front.** Process one at a time: download → cut → (optionally
+  delete the media) → next.
+- Agency string: **"San Diego Police Department"**.
+- Get the list + sizes:
+  ```bash
+  .venv/bin/python -c "import json;d=json.load(open('discovered_cases/CASE_BUNDLE_AGG.json'))['bundles'];A=sorted([b for b in d if b.get('tier')=='A'],key=lambda b:b['n_files']);[print(b['case_id'],b['n_video'],b['n_audio'],b['n_docs'],b['n_files']) for b in A]"
+  ```
+
+## ⚠️ Read before you spend anything
+**SDPD has NEVER been run through the pipeline.** Everything proven so far ran on
+Sac County Sheriff (Morales, local) and SF DPA (`sfdpa_0409_18`). So the FIRST SDPD
+case is a generalization probe — three things can differ and you must check them
+BEFORE the paid steps:
+1. **Chronology** — does SDPD BWC carry a readable on-screen clock (`timeline_stamp`
+   → `axon_ocr`)? If not, the auto-anchor leans on salience+convergence only.
+2. **Muted audio** — SF DPA's BWC was redaction-MUTED (mean −54 dB → ~0 transcript →
+   thin cut). CHECK each case's BWC loudness; if muted, it's an analysis-style cut
+   (narration over footage), not a transcript-driven one.
+3. **Doc format** — SDPD's IA report PDF may differ from the Sac format `doc_extract`
+   was tuned on. The doc-OCR now routes Vision (fast) on scanned PDFs; verify it
+   extracts subject/findings.
+
+## Always, before any command
+```bash
+cd /Users/jmoney/FlameOn-main
+eval "$(/opt/homebrew/bin/brew shellenv)"      # ffmpeg/ffprobe on PATH (brew)
+set -a; . ./.env; set +a                       # OPENROUTER_API_KEY for paid steps
+```
+
+---
+
+## Step 1 — validate ONE small case STAGED (cheap, ~0.3–0.5 GB)
+Recommended first case: **`sdpd_08_20_2023_ia_2023_009`** (0.3 GB, V1 A3 D2) or
+**`sdpd_02_09_2023_ia_2023_0027`** (0.5 GB, V2 A2 D2).
+
+```bash
+CID=sdpd_08_20_2023_ia_2023_009 ; B=.tmp/$CID
+# download bundle into the basket layout (handles SDPD's browser-UA requirement)
+.venv/bin/python discovered_cases/bundle_to_basket.py --case-id $CID --basket $B
+# stamp — DOES CHRONOLOGY SURVIVE? (look for axon_ocr vs none/filename)
+.venv/bin/python pipeline3_audio/timeline_stamp.py --basket $B/video --out $B/timeline
+# is the BWC audio usable, or muted like SF DPA? (>-40 dB mean = ok)
+for f in $B/video/Video/*.mp4; do ffmpeg -hide_banner -i "$f" -af volumedetect -f null - 2>&1 | grep mean_volume; done
+```
+If chronology holds and audio isn't muted → continue. If muted → expect an
+analysis-style cut (still fine; the narration carries it).
+
+## Step 2 — run the flagship chain (one command)
+`make_documentary --flagship` already chains everything and **defaults to
+`--moments beatminer`** (recall — the RIGHT source for assembly; do NOT use
+`--moments p4`, that's the case-selector and gives thin cuts):
+```bash
+DOC=$(ls $B/docs/*.pdf | head -1)
+.venv/bin/python pipeline6_sequence/make_documentary.py \
+  --basket $B --case-id $CID --agency "San Diego Police Department" \
+  --doc "$DOC" --flagship --run        # add --judge-mock to keep the gate free
+```
+Chain: stamp → build-timeline → doc-ocr(Vision) → doc-extract → transcribe(incident) →
+**mine-moments (beat_miner, PAID)** → bridge-verdict → blueprint(`--auto-anchor`) →
+**shape (PAID)** → render-blueprint(auto-fit) → judge(gate).
+Output: `$B/d6_cuts/$CID/${CID}_rough_cut.mp4` + a SHIP/REVISE/REWORK gate.
+Paid steps are fenced on `OPENROUTER_API_KEY`; the gate is free with `--judge-mock`.
+
+## Step 3 — batch the rest (smallest-first, one at a time)
+Once one case is validated, loop the rest. Process **one at a time** (download +
+cut + free the media) to respect the 138 GB:
+```bash
+for CID in $(/path/to/list-of-A-case-ids); do
+  B=.tmp/$CID
+  .venv/bin/python discovered_cases/bundle_to_basket.py --case-id $CID --basket $B
+  DOC=$(ls $B/docs/*.pdf 2>/dev/null | head -1)
+  .venv/bin/python pipeline6_sequence/make_documentary.py --basket $B --case-id $CID \
+    --agency "San Diego Police Department" ${DOC:+--doc "$DOC"} --flagship --run
+  # optional: rm -rf $B/video to reclaim disk after the cut renders
+done
+```
+Go smallest-first so you find SDPD-specific issues on a cheap case.
+
+---
+
+## Cost / scale
+- Per case: **2 paid LLM calls** (beat_miner + shape; deepseek-flash, cheap) + free
+  local transcribe + free render. 28 cases ≈ **~56 paid calls** + ~138 GB download +
+  hours of transcribe/render. `--judge-mock` keeps the gate free.
+- Cheapest path to coverage: smallest-first, one at a time, free the media after each.
+
+## Known-good facts (don't re-derive)
+- Pipeline runs **tools-only** end-to-end (validated on Morales): stamp + timeline +
+  Vision-OCR doc + beat_miner + bridge + blueprint(auto-anchor) + shape + render + judge.
+- **beat_miner (recall) is the moment source**, wired as the flagship default; it
+  natively tags each moment's camera now (`artifact_id`).
+- **Vision OCR** is the doc-OCR fast path (router: text-layer vs scanned), ~0.8 s/page
+  vs easyocr's 5–20 s — essential for big scanned IA PDFs.
+- **Auto-anchor** picks the incident by salience×camera-convergence + the doc's clip
+  timestamps; works even on thin moment sets.
+- The **fact-check rail** + integrity ledger keep narration grounded (defamation-safe);
+  `--analysis --grammar` can style it (EWU/Dr.Insanity) — optional for these.
+
+## Tools & docs
+- `discovered_cases/bundle_to_basket.py` — registry bundle → pipeline basket.
+- `pipeline6_sequence/make_documentary.py --flagship` — the one-command chain.
+- `pipeline4_scoring/beat_miner.py`, `pipeline6_sequence/bridge_verdict.py` — moments→verdict.
+- `pipeline3_audio/doc_ocr.py` (Vision router), `doc_extract.py` — the doc spine.
+- `pipeline6_sequence/{blueprint,blueprint_shape,render_blueprint,judge}.py` — assembly.
+- `discovered_cases/validate_ab.py` + `validate_ab_report.md` — the A/B validation (all live).
+- Memory: `salience-eval-harness.md`, `p6-incident-anchor-and-grounding.md`, `transparency-portals.md`.
