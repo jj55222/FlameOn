@@ -22,17 +22,23 @@ Read first: `MEMORY.md` (auto-memory), `HANDOFF.md` (the documentary engine),
 
 ---
 
-## What you're working with
-- **28 A-tier cases**, listed in `discovered_cases/CASE_BUNDLE_AGG.json` (`tier=="A"`,
-  `source=="sdpd"`). All 943 of their files probed **100% live**.
-- **~138 GB total if you download everything** (range 0.3–24 GB/case). **Do NOT
-  download all 28 up front.** Process one at a time: download → cut → (optionally
-  delete the media) → next.
-- Agency string: **"San Diego Police Department"**.
-- Get the list + sizes:
-  ```bash
-  .venv/bin/python -c "import json;d=json.load(open('discovered_cases/CASE_BUNDLE_AGG.json'))['bundles'];A=sorted([b for b in d if b.get('tier')=='A'],key=lambda b:b['n_files']);[print(b['case_id'],b['n_video'],b['n_audio'],b['n_docs'],b['n_files']) for b in A]"
-  ```
+## Step 0 — pick the TOP 10 most-interesting cases (before downloading)
+The 28 A-tier cases total ~138 GB (0.3–24 GB each) — **don't download all of them.**
+First rank them on a CHEAP pre-download signal and pick 10:
+- **Incident type + outcome** — the `case_url` carries a `cat=` (e.g. *Sustained
+  Findings* = misconduct upheld → strong accountability story; *Officer-Involved
+  Shooting* = dramatic). Fetch the case page (browser UA) for a one-line summary.
+- **Media richness** — more cameras/footage (`n_video`, `n_audio`) = more to cut with.
+- Have the strong LLM read the 28 titles/categories (+ optional case-page summaries)
+  and rank by **documentary potential**; take the top 10. This is a heuristic
+  pre-filter — actual compellingness only shows after processing.
+
+```bash
+# the 28 A cases (case_id, V, A, D, files, category from case_url):
+.venv/bin/python -c "import json,urllib.parse as u;d=json.load(open('discovered_cases/CASE_BUNDLE_AGG.json'))['bundles'];A=[b for b in d if b.get('tier')=='A'];[print(b['case_id'],b['n_video'],b['n_audio'],b['n_docs'], u.parse_qs(u.urlparse(b['case_url']).query).get('cat',['?'])[0]) for b in sorted(A,key=lambda b:b['case_id'])]"
+```
+Agency string for all: **"San Diego Police Department"**. Process the 10 **one at a
+time** (download → cut → optionally delete the media → next) to respect disk.
 
 ## ⚠️ Read before you spend anything
 **SDPD has NEVER been run through the pipeline.** Everything proven so far ran on
