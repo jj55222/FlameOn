@@ -574,16 +574,47 @@ def seg_card(card_png: Path, dur: float, out_mp4: Path) -> None:
           "-vf", f"fps={FPS},format=yuv420p", *_ENC, "-shortest", str(out_mp4)])
 
 
-def make_lower_third_png(out_png: Path, text: str) -> None:
-    """Transparent overlay strip for video clips (drawn bottom-left)."""
+def _wrap_lines(d, text: str, font, max_w: float) -> List[str]:
+    """Greedy word-wrap to fit max_w pixels."""
+    lines, cur = [], ""
+    for w in text.split():
+        t = (cur + " " + w).strip()
+        if d.textlength(t, font=font) <= max_w:
+            cur = t
+        else:
+            if cur:
+                lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines
+
+
+def make_lower_third_png(out_png: Path, text: str, top_text: str = "") -> None:
+    """Transparent overlay for video clips: source label bottom-left, plus an
+    optional wrapped NARRATION band in the top third (the TTS-would-speak text)."""
     from PIL import Image, ImageDraw
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    f = _font("bold", 26)
-    tw = d.textlength(text, font=f)
-    d.rectangle([0, H - 150, 28 + tw + 40, H - 96], fill=(13, 13, 18, 205))
-    d.rectangle([0, H - 150, 8, H - 96], fill=(*ACCENT, 255))
-    d.text((28, H - 142), text, font=f, fill=(238, 238, 240, 255))
+    # Top-third narration band (read while the footage plays — stands in for a narrator).
+    if top_text:
+        tf = _font("bold", 34)
+        margin = 60
+        lines = _wrap_lines(d, top_text, tf, W - 2 * margin)
+        lh = int(tf.size * 1.35)
+        pad = 26
+        band_h = pad * 2 + lh * max(1, len(lines))
+        d.rectangle([0, 44, W, 44 + band_h], fill=(13, 13, 18, 214))
+        d.rectangle([0, 44, 10, 44 + band_h], fill=(*ACCENT, 255))
+        for j, ln in enumerate(lines):
+            d.text((margin, 44 + pad + j * lh), ln, font=tf, fill=(238, 238, 240, 255))
+    # Bottom-left source label (existing lower-third).
+    if text:
+        f = _font("bold", 26)
+        tw = d.textlength(text, font=f)
+        d.rectangle([0, H - 150, 28 + tw + 40, H - 96], fill=(13, 13, 18, 205))
+        d.rectangle([0, H - 150, 8, H - 96], fill=(*ACCENT, 255))
+        d.text((28, H - 142), text, font=f, fill=(238, 238, 240, 255))
     img.save(out_png)
 
 
