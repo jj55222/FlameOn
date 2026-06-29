@@ -147,9 +147,11 @@ LLM's? — NOT beat_miner. For each of the 10 cases, after the transcripts exist
 - Do NOT use beat_miner here — that's the content tool; this validates the selector.
 
 ## Cost / scale
-- Per case: **2 paid LLM calls** (beat_miner + shape; deepseek-flash, cheap) + free
-  local transcribe + free render. 28 cases ≈ **~56 paid calls** + ~138 GB download +
-  hours of transcribe/render. `--judge-mock` keeps the gate free.
+- **Cut (goal #1):** 2 paid LLM calls/case (beat_miner + shape; deepseek-flash, cheap).
+- **Assessment (goal #2):** ~2 more paid calls/case (P4's 2-pass + the strong-LLM verdict).
+- So **10 cases ≈ ~40 paid calls total** (~20 cut + ~20 assessment), all cheap models,
+  + the top-10's download (pick small ones first) + hours of local transcribe/render.
+  `--judge-mock` keeps the gate free.
 - Cheapest path to coverage: smallest-first, one at a time, free the media after each.
 
 ## Known-good facts (don't re-derive)
