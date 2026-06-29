@@ -95,16 +95,17 @@ Chain: stamp → build-timeline → doc-ocr(Vision) → doc-extract → transcri
 Output: `$B/d6_cuts/$CID/${CID}_rough_cut.mp4` + a SHIP/REVISE/REWORK gate.
 Paid steps are fenced on `OPENROUTER_API_KEY`; the gate is free with `--judge-mock`.
 
-## Step 3 — batch the rest (smallest-first, one at a time)
-Once one case is validated, loop the rest. Process **one at a time** (download +
-cut + free the media) to respect the 138 GB:
+## Step 3 — process the other 9 of your top-10 (smallest-first, one at a time)
+Once the first case validates, loop the remaining 9 you picked in Step 0. Process
+**one at a time** (download + cut + free the media) to respect disk:
 ```bash
-for CID in $(/path/to/list-of-A-case-ids); do
+for CID in $(cat .tmp/top10_case_ids.txt); do   # the 10 you ranked in Step 0
   B=.tmp/$CID
   .venv/bin/python discovered_cases/bundle_to_basket.py --case-id $CID --basket $B
   DOC=$(ls $B/docs/*.pdf 2>/dev/null | head -1)
   .venv/bin/python pipeline6_sequence/make_documentary.py --basket $B --case-id $CID \
     --agency "San Diego Police Department" ${DOC:+--doc "$DOC"} --flagship --run
+  # then run the Goal-#2 assessment block below on $B, and
   # optional: rm -rf $B/video to reclaim disk after the cut renders
 done
 ```
