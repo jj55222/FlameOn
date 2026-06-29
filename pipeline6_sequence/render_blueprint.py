@@ -209,16 +209,19 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
     #    cards from flip-flopping when the LLM interleaves acts.
     def _emit_beat(b: Dict[str, Any]) -> None:
         nb = b.get("narration_bridge") or {}
-        if nb.get("text"):
-            timeline.append({"kind": "narration", "text": nb["text"]})
+        nb_text = nb.get("text", "")
         # Record beats are sourced to the IA document, not footage: the narration
-        # card above IS the beat (the on-screen record). No footage, no gap.
+        # card IS the beat (the on-screen record). No footage, no gap.
         if b.get("is_document"):
+            if nb_text:
+                timeline.append({"kind": "narration", "text": nb_text})
             return
         pa = b.get("primary_asset")
         asset = assets.get((pa or {}).get("asset_id"), {})
         media = _resolve_media(asset, media_dir) if pa else None
         if not media:
+            if nb_text:
+                timeline.append({"kind": "narration", "text": nb_text})
             timeline.append({"kind": "gap",
                              "reason": f"no playable media for beat {b.get('beat_id')}"
                                        f" ({(pa or {}).get('asset_id', 'none')})",
