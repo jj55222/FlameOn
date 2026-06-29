@@ -14,7 +14,7 @@
 
 - **2131 case records checked**, **0 attached files checked**
 - **2131 cases** with attached files
-- **1168 video files**, **3 audio files**, **4884 documents**, **0 photos/images**
+- **2487 video files**, **3 audio files**, **4884 documents**, **0 photos/images**
 
 ## All cases with attachments (ranked by artifact richness)
 
@@ -176,73 +176,73 @@
 | 154 | 5 | 2019-0003030 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003030/) |
 | 155 | 5 | 2019-0003507 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003507/) |
 | 156 | 5 | 2019-0005221 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005221/) |
-| 157 | 5 | 2020-0001703 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001703/) |
+| 157 | 5 | 2020-0001703 | 16 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001703/) |
 | 158 | 5 | 2020-0003820 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003820/) |
-| 159 | 5 | 2020-0003949 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003949/) |
-| 160 | 5 | 2020-0004052 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004052/) |
-| 161 | 5 | 2020-0004177 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004177/) |
+| 159 | 5 | 2020-0003949 | 16 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003949/) |
+| 160 | 5 | 2020-0004052 | 4 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004052/) |
+| 161 | 5 | 2020-0004177 | 10 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004177/) |
 | 162 | 5 | 2020-0004278 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004278/) |
-| 163 | 5 | 2020-0005621 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0005621/) |
-| 164 | 5 | 2021-0001600 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0001600/) |
-| 165 | 5 | 2021-0002232 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0002232/) |
-| 166 | 5 | 2022-0004050 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004050/) |
-| 167 | 5 | 2022-0004223 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004223/) |
-| 168 | 5 | 2022-0004681 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004681/) |
+| 163 | 5 | 2020-0005621 | 2 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0005621/) |
+| 164 | 5 | 2021-0001600 | 6 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0001600/) |
+| 165 | 5 | 2021-0002232 | 6 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0002232/) |
+| 166 | 5 | 2022-0004050 | 8 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004050/) |
+| 167 | 5 | 2022-0004223 | 52 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004223/) |
+| 168 | 5 | 2022-0004681 | 3 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004681/) |
 | 169 | 5 | 2023-0001597 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0001597/) |
 | 170 | 5 | 2023-0004486 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0004486/) |
-| 171 | 5 | 2024-0006256 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0006256/) |
-| 172 | 5 | 2024-0008534 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008534/) |
-| 173 | 5 | 2025-0000032 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0000032/) |
-| 174 | 5 | 2025-0002115 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002115/) |
-| 175 | 5 | 2025-0002747 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002747/) |
-| 176 | 5 | 2025-0006070 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0006070/) |
-| 177 | 5 | 2026-0000349 | 0 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000349/) |
-| 178 | 5 | 1069633 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1069633-2/) |
-| 179 | 5 | 1075692 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1075692-2/) |
-| 180 | 5 | 1076214 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1076214-2/) |
+| 171 | 5 | 2024-0006256 | 3 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0006256/) |
+| 172 | 5 | 2024-0008534 | 3 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008534/) |
+| 173 | 5 | 2025-0000032 | 17 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0000032/) |
+| 174 | 5 | 2025-0002115 | 8 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002115/) |
+| 175 | 5 | 2025-0002747 | 3 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002747/) |
+| 176 | 5 | 2025-0006070 | 11 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0006070/) |
+| 177 | 5 | 2026-0000349 | 15 | 0 | 5 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000349/) |
+| 178 | 5 | 1069633 | 2 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1069633-2/) |
+| 179 | 5 | 1075692 | 11 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1075692-2/) |
+| 180 | 5 | 1076214 | 8 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1076214-2/) |
 | 181 | 5 | 1076844 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1076844-2/) |
-| 182 | 5 | 1079273 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1079273-3/) |
+| 182 | 5 | 1079273 | 1 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1079273-3/) |
 | 183 | 5 | 1081333 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1081333/) |
 | 184 | 5 | 1092523 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1092523/) |
-| 185 | 5 | 2014-1069058 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1069058-2/) |
+| 185 | 5 | 2014-1069058 | 1 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1069058-2/) |
 | 186 | 5 | 2015-1078451 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2015-1078451/) |
 | 187 | 5 | 2016-1079109 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2016-1079109/) |
 | 188 | 5 | 2016-1082353 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2016-1082353/) |
 | 189 | 5 | 2016-1082375 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2016-1082375/) |
-| 190 | 5 | 2017-1087518 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1087518-2/) |
+| 190 | 5 | 2017-1087518 | 7 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1087518-2/) |
 | 191 | 5 | 2018-1088719 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1088719/) |
 | 192 | 5 | 2018-1088996 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1088996/) |
 | 193 | 5 | 2018-1089206 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1089206/) |
-| 194 | 5 | 2018-1089338 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1089338/) |
+| 194 | 5 | 2018-1089338 | 2 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1089338/) |
 | 195 | 5 | 2018-1090065 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1090065/) |
 | 196 | 5 | 2018-1090066 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1090066/) |
 | 197 | 5 | 2018-1090089 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1090089/) |
 | 198 | 5 | 2018-1091276 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091276/) |
 | 199 | 5 | 2018-1091556 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091556/) |
-| 200 | 5 | 2018-1091592 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1091592/) |
+| 200 | 5 | 2018-1091592 | 6 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1091592/) |
 | 201 | 5 | 2018-1091843 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091843/) |
 | 202 | 5 | 2018-1091909 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/1091909/) |
 | 203 | 5 | 2018-1092444 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1092444/) |
 | 204 | 5 | 2019-0000090 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000090/) |
-| 205 | 5 | 2019-0001780 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001780/) |
-| 206 | 5 | 2019-0001855 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001855/) |
-| 207 | 5 | 2019-0002529 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002529/) |
+| 205 | 5 | 2019-0001780 | 16 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001780/) |
+| 206 | 5 | 2019-0001855 | 9 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001855/) |
+| 207 | 5 | 2019-0002529 | 9 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002529/) |
 | 208 | 5 | 2019-0003821 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003821/) |
-| 209 | 5 | 2019-0004249 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004249/) |
-| 210 | 5 | 2019-0004934 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004934/) |
+| 209 | 5 | 2019-0004249 | 4 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004249/) |
+| 210 | 5 | 2019-0004934 | 17 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004934/) |
 | 211 | 5 | 2019-0005064 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005064-2/) |
 | 212 | 5 | 2020-0000502 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0000502/) |
 | 213 | 5 | 2020-0000630 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0000630/) |
-| 214 | 5 | 2020-0001006 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001006/) |
+| 214 | 5 | 2020-0001006 | 34 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001006/) |
 | 215 | 5 | 2020-0001333 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001333/) |
 | 216 | 5 | 2020-0001490 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001490/) |
 | 217 | 5 | 2020-0002010 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0002010/) |
 | 218 | 5 | 2020-0002142 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0002142/) |
 | 219 | 5 | 2020-0002228 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0002228/) |
-| 220 | 5 | 2020-0004103 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004103/) |
+| 220 | 5 | 2020-0004103 | 12 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004103/) |
 | 221 | 5 | 2020-0004463 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0004463/) |
 | 222 | 5 | 2020-0005147 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0005147/) |
-| 223 | 5 | 2020-0005517 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0005517/) |
+| 223 | 5 | 2020-0005517 | 13 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0005517/) |
 | 224 | 5 | 2021-0000596 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0000596/) |
 | 225 | 5 | 2021-0002341 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0002341/) |
 | 226 | 5 | 2021-0002843 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0002843/) |
@@ -250,39 +250,39 @@
 | 228 | 5 | 2021-0003726 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0003726/) |
 | 229 | 5 | 2021-0004307 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0004307/) |
 | 230 | 5 | 2022-0001827 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0001827/) |
-| 231 | 5 | 2022-0003994 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0003994/) |
+| 231 | 5 | 2022-0003994 | 9 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0003994/) |
 | 232 | 5 | 2022-0004696 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004696/) |
-| 233 | 5 | 2022-0005419 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005419/) |
+| 233 | 5 | 2022-0005419 | 6 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005419/) |
 | 234 | 5 | 2023-0000284 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000284/) |
-| 235 | 5 | 2023-0000553 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000553/) |
+| 235 | 5 | 2023-0000553 | 33 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000553/) |
 | 236 | 5 | 2023-0000920 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000920/) |
 | 237 | 5 | 2023-0003217 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0003217/) |
 | 238 | 5 | 2023-0004147 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0004147/) |
 | 239 | 5 | 2023-0005451 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005451/) |
-| 240 | 5 | 2023-0005870 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005870/) |
-| 241 | 5 | 2024-0002095 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002095/) |
+| 240 | 5 | 2023-0005870 | 10 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005870/) |
+| 241 | 5 | 2024-0002095 | 4 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002095/) |
 | 242 | 5 | 2024-0002187 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002187/) |
-| 243 | 5 | 2024-0002259 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002259/) |
+| 243 | 5 | 2024-0002259 | 3 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002259/) |
 | 244 | 5 | 2024-0002774 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002774/) |
 | 245 | 5 | 2024-0003504 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003504/) |
-| 246 | 5 | 2024-0005309 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0005309/) |
+| 246 | 5 | 2024-0005309 | 49 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0005309/) |
 | 247 | 5 | 2024-0005739 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0005739/) |
 | 248 | 5 | 2024-0007334 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007334/) |
 | 249 | 5 | 2024-0007622 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007622/) |
-| 250 | 5 | 2024-0008396 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008396/) |
-| 251 | 5 | 2025-0004513 | 0 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0004513/) |
-| 252 | 5 | 1070681 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1070681-2/) |
-| 253 | 5 | 1072859 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1072859-2/) |
-| 254 | 5 | 1073410 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1073410-2/) |
+| 250 | 5 | 2024-0008396 | 3 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008396/) |
+| 251 | 5 | 2025-0004513 | 22 | 0 | 4 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0004513/) |
+| 252 | 5 | 1070681 | 2 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1070681-2/) |
+| 253 | 5 | 1072859 | 6 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1072859-2/) |
+| 254 | 5 | 1073410 | 4 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1073410-2/) |
 | 255 | 5 | 1075069 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1075069-2/) |
 | 256 | 5 | 1076072 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1076072-2/) |
 | 257 | 5 | 1076367 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1076367-2/) |
-| 258 | 5 | 1076980 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1076980-2/) |
+| 258 | 5 | 1076980 | 2 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1076980-2/) |
 | 259 | 5 | 1077051 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1077051-2/) |
 | 260 | 5 | 1079160 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1079160-2/) |
 | 261 | 5 | 1079618 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1079618-2/) |
-| 262 | 5 | 1087659 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1087659/) |
-| 263 | 5 | 1090234 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1090234/) |
+| 262 | 5 | 1087659 | 2 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1087659/) |
+| 263 | 5 | 1090234 | 21 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/1090234/) |
 | 264 | 5 | 2013-1062894 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2013-1062894/) |
 | 265 | 5 | 2015-1074738 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2015-1074738/) |
 | 266 | 5 | 2016-1080695 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2016-1080695/) |
@@ -306,24 +306,24 @@
 | 284 | 5 | 2019-00001839 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-00001839/) |
 | 285 | 5 | 2019-0000674 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000674/) |
 | 286 | 5 | 2019-0000783 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000783/) |
-| 287 | 5 | 2019-0001703 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001703/) |
+| 287 | 5 | 2019-0001703 | 16 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001703/) |
 | 288 | 5 | 2019-0001807 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001807/) |
 | 289 | 5 | 2019-0001832 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0001832/) |
 | 290 | 5 | 2019-0002473 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002473/) |
 | 291 | 5 | 2019-0002624 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002624/) |
 | 292 | 5 | 2019-0002762 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002762/) |
 | 293 | 5 | 2019-0002864 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0002864/) |
-| 294 | 5 | 2019-0003064 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003064/) |
+| 294 | 5 | 2019-0003064 | 2 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003064/) |
 | 295 | 5 | 2019-0003174 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003174/) |
 | 296 | 5 | 2019-0003455 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0003455/) |
 | 297 | 5 | 2019-0004446 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004446/) |
 | 298 | 5 | 2019-0004793 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004793/) |
 | 299 | 5 | 2019-0005126 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005126/) |
 | 300 | 5 | 2019-1092623 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2019-1092623/) |
-| 301 | 5 | 2020-0000062 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0000062/) |
+| 301 | 5 | 2020-0000062 | 20 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0000062/) |
 | 302 | 5 | 2020-0000717 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0000717/) |
 | 303 | 5 | 2020-0001043 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001043/) |
-| 304 | 5 | 2020-0001086 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001086/) |
+| 304 | 5 | 2020-0001086 | 26 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001086/) |
 | 305 | 5 | 2020-0001353 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001353/) |
 | 306 | 5 | 2020-0001964 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001964/) |
 | 307 | 5 | 2020-0001996 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0001996/) |
@@ -344,7 +344,7 @@
 | 322 | 5 | 2021-0000928 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0000928/) |
 | 323 | 5 | 2021-0001245 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0001245/) |
 | 324 | 5 | 2021-0002333 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0002333/) |
-| 325 | 5 | 2021-0003213 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0003213/) |
+| 325 | 5 | 2021-0003213 | 5 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0003213/) |
 | 326 | 5 | 2021-0003841 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0003841/) |
 | 327 | 5 | 2021-0004022 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0004022/) |
 | 328 | 5 | 2021-0004082 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2021-0004082/) |
@@ -368,7 +368,7 @@
 | 346 | 5 | 2022-0004756 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004756/) |
 | 347 | 5 | 2022-0004924 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0004924/) |
 | 348 | 5 | 2022-0005216 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005216/) |
-| 349 | 5 | 2022-0005227 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005227/) |
+| 349 | 5 | 2022-0005227 | 11 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005227/) |
 | 350 | 5 | 2022-0005314 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2022-0005314/) |
 | 351 | 5 | 2023-0000129 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000129/) |
 | 352 | 5 | 2023-0000470 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0000470/) |
@@ -380,7 +380,7 @@
 | 358 | 5 | 2023-0001905 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0001905/) |
 | 359 | 5 | 2023-0001943 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0001943/) |
 | 360 | 5 | 2023-0002332 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0002332/) |
-| 361 | 5 | 2023-0002357 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0002357/) |
+| 361 | 5 | 2023-0002357 | 20 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0002357/) |
 | 362 | 5 | 2023-0002433 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0002433/) |
 | 363 | 5 | 2023-0002687 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0002687/) |
 | 364 | 5 | 2023-0003478 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0003478/) |
@@ -392,7 +392,7 @@
 | 370 | 5 | 2023-0005345 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005345/) |
 | 371 | 5 | 2023-0005404 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005404/) |
 | 372 | 5 | 2023-0005710 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2023-0005710/) |
-| 373 | 5 | 2024-0000155 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0000155/) |
+| 373 | 5 | 2024-0000155 | 10 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0000155/) |
 | 374 | 5 | 2024-0000187 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0000187/) |
 | 375 | 5 | 2024-0001934 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0001934/) |
 | 376 | 5 | 2024-0002550 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0002550/) |
@@ -413,12 +413,12 @@
 | 391 | 5 | 2024-0006573 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0006573/) |
 | 392 | 5 | 2024-0006608 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0006608/) |
 | 393 | 5 | 2024-0006776 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0006776/) |
-| 394 | 5 | 2024-0007132 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007132/) |
-| 395 | 5 | 2024-0007745 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007745/) |
-| 396 | 5 | 2024-0008840 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008840/) |
-| 397 | 5 | 2025-0002202 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002202/) |
-| 398 | 5 | 2025-0003873 | 0 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0003873/) |
-| 399 | 5 | 1071635 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1071635-2/) |
+| 394 | 5 | 2024-0007132 | 2 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007132/) |
+| 395 | 5 | 2024-0007745 | 9 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007745/) |
+| 396 | 5 | 2024-0008840 | 3 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008840/) |
+| 397 | 5 | 2025-0002202 | 21 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0002202/) |
+| 398 | 5 | 2025-0003873 | 4 | 0 | 3 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0003873/) |
+| 399 | 5 | 1071635 | 2 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1071635-2/) |
 | 400 | 5 | 1073710 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1073710-2/) |
 | 401 | 5 | 1081079 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1081079/) |
 | 402 | 5 | 1087539 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1087539/) |
@@ -452,11 +452,11 @@
 | 430 | 5 | 2018-1090401 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1090401/) |
 | 431 | 5 | 2018-1090662 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1090662/) |
 | 432 | 5 | 2018-1090895 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1090895/) |
-| 433 | 5 | 2018-1091317 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1091317/) |
+| 433 | 5 | 2018-1091317 | 7 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/1091317/) |
 | 434 | 5 | 2018-1091359 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091359/) |
 | 435 | 5 | 2018-1091532 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091532/) |
 | 436 | 5 | 2018-1091882 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2018-1091882/) |
-| 437 | 5 | 2019-0000048 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000048/) |
+| 437 | 5 | 2019-0000048 | 4 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000048/) |
 | 438 | 5 | 2019-0000102 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000102/) |
 | 439 | 5 | 2019-0000137 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000137/) |
 | 440 | 5 | 2019-0000238 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0000238/) |
@@ -495,7 +495,7 @@
 | 473 | 5 | 2019-0004971 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0004971/) |
 | 474 | 5 | 2019-0005158 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005158/) |
 | 475 | 5 | 2019-0005198 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005198/) |
-| 476 | 5 | 2019-0005220 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005220/) |
+| 476 | 5 | 2019-0005220 | 6 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005220/) |
 | 477 | 5 | 2019-0005316 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-0005316/) |
 | 478 | 5 | 2019-1092265 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-1092265/) |
 | 479 | 5 | 2019-1092289 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2019-1092289/) |
@@ -513,7 +513,7 @@
 | 491 | 5 | 2020-0002188 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0002188/) |
 | 492 | 5 | 2020-0002595 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0002595/) |
 | 493 | 5 | 2020-0003018 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003018/) |
-| 494 | 5 | 2020-0003020 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003020/) |
+| 494 | 5 | 2020-0003020 | 23 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003020/) |
 | 495 | 5 | 2020-0003154 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003154/) |
 | 496 | 5 | 2020-0003224 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003224/) |
 | 497 | 5 | 2020-0003249 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2020-0003249/) |
@@ -662,7 +662,7 @@
 | 640 | 5 | 2024-0003078 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003078/) |
 | 641 | 5 | 2024-0003269 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003269/) |
 | 642 | 5 | 2024-0003378 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003378/) |
-| 643 | 5 | 2024-0003540 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003540/) |
+| 643 | 5 | 2024-0003540 | 2 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003540/) |
 | 644 | 5 | 2024-0003868 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003868/) |
 | 645 | 5 | 2024-0003902 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0003902/) |
 | 646 | 5 | 2024-0005587 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0005587/) |
@@ -681,24 +681,24 @@
 | 659 | 5 | 2024-0007946 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0007946/) |
 | 660 | 5 | 2024-0008154 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008154/) |
 | 661 | 5 | 2024-0008294 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008294/) |
-| 662 | 5 | 2024-0008451 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008451/) |
+| 662 | 5 | 2024-0008451 | 6 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2024-0008451/) |
 | 663 | 5 | 2025-0000178 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0000178/) |
 | 664 | 5 | 2025-0000698 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0000698/) |
 | 665 | 5 | 2025-0001064 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0001064/) |
-| 666 | 5 | 2025-0001291 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0001291/) |
-| 667 | 5 | 2025-0001315 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0001315/) |
-| 668 | 5 | 2025-0003972 | 0 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0003972/) |
+| 666 | 5 | 2025-0001291 | 1 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0001291/) |
+| 667 | 5 | 2025-0001315 | 6 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0001315/) |
+| 668 | 5 | 2025-0003972 | 4 | 0 | 2 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0003972/) |
 | 669 | 5 | 1056161 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1056161/) |
 | 670 | 5 | 1066725 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1066725-2/) |
 | 671 | 5 | 1073601 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1073601/) |
-| 672 | 5 | 1073789 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1073789-2/) |
+| 672 | 5 | 1073789 | 2 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1073789-2/) |
 | 673 | 5 | 1074184 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1074184/) |
 | 674 | 5 | 1075637 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1075637/) |
 | 675 | 5 | 1076797 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1076797-2/) |
 | 676 | 5 | 1076815 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1076815-2/) |
 | 677 | 5 | 1076847 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1076847/) |
 | 678 | 5 | 1077591 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1077591-2/) |
-| 679 | 5 | 1078979 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1078979/) |
+| 679 | 5 | 1078979 | 1 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1078979/) |
 | 680 | 5 | 1080120 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1080120/) |
 | 681 | 5 | 1080615 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/1080615/) |
 | 682 | 5 | 1081034 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/13948/) |
@@ -1981,120 +1981,120 @@
 | 1959 | 5 | 2025-0006029 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/2025-0006029/) |
 | 1960 | 5 | 2026-0000143 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000143/) |
 | 1961 | 5 | 2026-0000168 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000168/) |
-| 1962 | 5 | 2026-0000268 | 0 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000268/) |
-| 1963 | 4 | 1081642 | 0 | 0 | 20 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081642/) |
-| 1964 | 4 | 1080505 | 0 | 0 | 18 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080505/) |
-| 1965 | 4 | 1052578 | 0 | 0 | 15 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1052578-2/) |
+| 1962 | 5 | 2026-0000268 | 7 | 0 | 1 | 0 |  | [link](https://www.chicagocopa.org/case/2026-0000268/) |
+| 1963 | 4 | 1081642 | 70 | 0 | 20 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081642/) |
+| 1964 | 4 | 1080505 | 6 | 0 | 18 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080505/) |
+| 1965 | 4 | 1052578 | 3 | 0 | 15 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1052578-2/) |
 | 1966 | 4 | 1081170 | 0 | 0 | 15 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081170/) |
-| 1967 | 4 | 1045673 | 0 | 0 | 14 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1045673/) |
-| 1968 | 4 | 1083171 | 0 | 0 | 14 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083171/) |
+| 1967 | 4 | 1045673 | 11 | 0 | 14 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1045673/) |
+| 1968 | 4 | 1083171 | 7 | 0 | 14 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083171/) |
 | 1969 | 4 | 1072342 | 0 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1072342-2/) |
-| 1970 | 4 | 1082890 | 0 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082890/) |
+| 1970 | 4 | 1082890 | 3 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082890/) |
 | 1971 | 4 | 2012-1057079 | 0 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1057079-2/) |
-| 1972 | 4 | 2021-0003097 | 0 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0003097/) |
-| 1973 | 4 | 1080449 | 0 | 0 | 12 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080449/) |
-| 1974 | 4 | 1081870 | 0 | 0 | 12 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081870/) |
+| 1972 | 4 | 2021-0003097 | 20 | 0 | 13 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0003097/) |
+| 1973 | 4 | 1080449 | 31 | 0 | 12 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080449/) |
+| 1974 | 4 | 1081870 | 4 | 0 | 12 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081870/) |
 | 1975 | 4 | 2013-1066296 | 0 | 0 | 11 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1066296-2/) |
-| 1976 | 4 | 2017-1085062 | 0 | 0 | 11 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085062/) |
-| 1977 | 4 | 2023-0000632 | 0 | 0 | 11 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2023-0000632/) |
-| 1978 | 4 | 1066371 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1066371/) |
+| 1976 | 4 | 2017-1085062 | 8 | 0 | 11 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085062/) |
+| 1977 | 4 | 2023-0000632 | 18 | 0 | 11 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2023-0000632/) |
+| 1978 | 4 | 1066371 | 1 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1066371/) |
 | 1979 | 4 | 1079743 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1079743-2/) |
-| 1980 | 4 | 1080871 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080871/) |
+| 1980 | 4 | 1080871 | 3 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080871/) |
 | 1981 | 4 | 1082402 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082402/) |
 | 1982 | 4 | 1082443 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082443/) |
-| 1983 | 4 | 1082513 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082513/) |
-| 1984 | 4 | 2018-1088756 | 0 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1088756/) |
+| 1983 | 4 | 1082513 | 5 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082513/) |
+| 1984 | 4 | 2018-1088756 | 3 | 0 | 10 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1088756/) |
 | 1985 | 4 | 1074736 | 0 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1074736-2/) |
-| 1986 | 4 | 1081732 | 0 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081732/) |
-| 1987 | 4 | 1082687 | 0 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082687/) |
-| 1988 | 4 | 1082952 | 0 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082952/) |
-| 1989 | 4 | 1089772 | 0 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089772/) |
-| 1990 | 4 | 1074270 | 0 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1074270/) |
-| 1991 | 4 | 1078435 | 0 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1078435/) |
-| 1992 | 4 | 1083546 | 0 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083546/) |
-| 1993 | 4 | 2022-0005417 | 0 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0005417/) |
-| 1994 | 4 | 1079080 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1079080-2/) |
-| 1995 | 4 | 1081059 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081059/) |
-| 1996 | 4 | 1081378 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081378/) |
+| 1986 | 4 | 1081732 | 3 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081732/) |
+| 1987 | 4 | 1082687 | 1 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082687/) |
+| 1988 | 4 | 1082952 | 1 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082952/) |
+| 1989 | 4 | 1089772 | 7 | 0 | 9 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089772/) |
+| 1990 | 4 | 1074270 | 1 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1074270/) |
+| 1991 | 4 | 1078435 | 2 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1078435/) |
+| 1992 | 4 | 1083546 | 4 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083546/) |
+| 1993 | 4 | 2022-0005417 | 19 | 0 | 8 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0005417/) |
+| 1994 | 4 | 1079080 | 3 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1079080-2/) |
+| 1995 | 4 | 1081059 | 13 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081059/) |
+| 1996 | 4 | 1081378 | 4 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081378/) |
 | 1997 | 4 | 1081543 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081543/) |
-| 1998 | 4 | 1082195 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082195/) |
-| 1999 | 4 | 1083127 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083127/) |
-| 2000 | 4 | 1083291 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083291/) |
-| 2001 | 4 | 2017-1085949 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085949/) |
+| 1998 | 4 | 1082195 | 23 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082195/) |
+| 1999 | 4 | 1083127 | 6 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083127/) |
+| 2000 | 4 | 1083291 | 3 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083291/) |
+| 2001 | 4 | 2017-1085949 | 1 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085949/) |
 | 2002 | 4 | 2021-0004795 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0004795/) |
 | 2003 | 4 | 2021-0004893 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0004893/) |
-| 2004 | 4 | 2022-0002295 | 0 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0002295/) |
-| 2005 | 4 | 1080476 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080476/) |
-| 2006 | 4 | 1080674 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080674/) |
-| 2007 | 4 | 1080972 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080972-2/) |
-| 2008 | 4 | 1082025 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082025/) |
-| 2009 | 4 | 1082330 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082330/) |
-| 2010 | 4 | 1082645 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082645/) |
-| 2011 | 4 | 1082731 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082731/) |
-| 2012 | 4 | 1082884 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082884/) |
-| 2013 | 4 | 1083050 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083050/) |
+| 2004 | 4 | 2022-0002295 | 15 | 0 | 7 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0002295/) |
+| 2005 | 4 | 1080476 | 2 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080476/) |
+| 2006 | 4 | 1080674 | 6 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080674/) |
+| 2007 | 4 | 1080972 | 16 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080972-2/) |
+| 2008 | 4 | 1082025 | 9 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082025/) |
+| 2009 | 4 | 1082330 | 2 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082330/) |
+| 2010 | 4 | 1082645 | 13 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082645/) |
+| 2011 | 4 | 1082731 | 2 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082731/) |
+| 2012 | 4 | 1082884 | 1 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082884/) |
+| 2013 | 4 | 1083050 | 2 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083050/) |
 | 2014 | 4 | 1083633 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083633/) |
 | 2015 | 4 | 1085186 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085186/) |
-| 2016 | 4 | 1085782 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085782/) |
+| 2016 | 4 | 1085782 | 3 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085782/) |
 | 2017 | 4 | 1086838 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086838/) |
-| 2018 | 4 | 2017-1083687 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083687/) |
-| 2019 | 4 | 2018-1089886 | 0 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089886/) |
+| 2018 | 4 | 2017-1083687 | 3 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083687/) |
+| 2019 | 4 | 2018-1089886 | 22 | 0 | 6 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089886/) |
 | 2020 | 4 | 1042469 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1042469-2/) |
-| 2021 | 4 | 1071166 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1071166/) |
-| 2022 | 4 | 1074294 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1074294/) |
-| 2023 | 4 | 1079922 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1079922/) |
-| 2024 | 4 | 1080417 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080417/) |
-| 2025 | 4 | 1081009 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081009/) |
-| 2026 | 4 | 1081086 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081086/) |
-| 2027 | 4 | 1081228 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081228/) |
-| 2028 | 4 | 1081577 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081577/) |
-| 2029 | 4 | 1081639 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081639/) |
-| 2030 | 4 | 1083133 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083133/) |
-| 2031 | 4 | 1084029 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1084029/) |
+| 2021 | 4 | 1071166 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1071166/) |
+| 2022 | 4 | 1074294 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1074294/) |
+| 2023 | 4 | 1079922 | 4 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1079922/) |
+| 2024 | 4 | 1080417 | 5 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080417/) |
+| 2025 | 4 | 1081009 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081009/) |
+| 2026 | 4 | 1081086 | 9 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081086/) |
+| 2027 | 4 | 1081228 | 2 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081228/) |
+| 2028 | 4 | 1081577 | 11 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081577/) |
+| 2029 | 4 | 1081639 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081639/) |
+| 2030 | 4 | 1083133 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083133/) |
+| 2031 | 4 | 1084029 | 3 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1084029/) |
 | 2032 | 4 | 1085183 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085183/) |
-| 2033 | 4 | 1085761 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085761/) |
+| 2033 | 4 | 1085761 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085761/) |
 | 2034 | 4 | 1087873 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087873/) |
-| 2035 | 4 | 1090087 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090087/) |
-| 2036 | 4 | 1092023 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1092023/) |
-| 2037 | 4 | 2017-1086683 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086683/) |
-| 2038 | 4 | 2018-1089164 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089164/) |
-| 2039 | 4 | 2018-1090601 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090601/) |
-| 2040 | 4 | 2020-0000988 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2020-0000988/) |
+| 2035 | 4 | 1090087 | 1 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090087/) |
+| 2036 | 4 | 1092023 | 7 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1092023/) |
+| 2037 | 4 | 2017-1086683 | 3 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086683/) |
+| 2038 | 4 | 2018-1089164 | 4 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089164/) |
+| 2039 | 4 | 2018-1090601 | 4 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090601/) |
+| 2040 | 4 | 2020-0000988 | 18 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2020-0000988/) |
 | 2041 | 4 | 2021-0004161 | 0 | 0 | 5 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0004161/) |
-| 2042 | 4 | 1062377 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1062377/) |
+| 2042 | 4 | 1062377 | 9 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1062377/) |
 | 2043 | 4 | 1071109 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1071109/) |
-| 2044 | 4 | 1072664 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1072664/) |
-| 2045 | 4 | 1080395 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080395/) |
-| 2046 | 4 | 1081004 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081004/) |
-| 2047 | 4 | 1081017 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081017/) |
-| 2048 | 4 | 1081058 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081058/) |
-| 2049 | 4 | 1081463 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081463/) |
-| 2050 | 4 | 1081740 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081740/) |
+| 2044 | 4 | 1072664 | 3 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1072664/) |
+| 2045 | 4 | 1080395 | 3 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080395/) |
+| 2046 | 4 | 1081004 | 2 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081004/) |
+| 2047 | 4 | 1081017 | 2 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081017/) |
+| 2048 | 4 | 1081058 | 1 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081058/) |
+| 2049 | 4 | 1081463 | 3 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081463/) |
+| 2050 | 4 | 1081740 | 1 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081740/) |
 | 2051 | 4 | 1081910 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081910/) |
 | 2052 | 4 | 1081950 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081950/) |
 | 2053 | 4 | 1082727 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082727/) |
-| 2054 | 4 | 1083121 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083121/) |
-| 2055 | 4 | 1083757 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083757/) |
-| 2056 | 4 | 1086285 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086285/) |
+| 2054 | 4 | 1083121 | 3 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083121/) |
+| 2055 | 4 | 1083757 | 5 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1083757/) |
+| 2056 | 4 | 1086285 | 8 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086285/) |
 | 2057 | 4 | 1086383 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086383/) |
 | 2058 | 4 | 1086544 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1086544/) |
-| 2059 | 4 | 1087021 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087021-2/) |
+| 2059 | 4 | 1087021 | 7 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087021-2/) |
 | 2060 | 4 | 2018-1089066 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2018-1089066/) |
-| 2061 | 4 | 2022-0001742 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0001742/) |
-| 2062 | 4 | 2023-0000787 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2023-0000787/) |
+| 2061 | 4 | 2022-0001742 | 3 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0001742/) |
+| 2062 | 4 | 2023-0000787 | 2 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2023-0000787/) |
 | 2063 | 4 | 2024-0003275 | 0 | 0 | 4 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2024-0003275/) |
 | 2064 | 4 | 1071168 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1071168-2/) |
 | 2065 | 4 | 1080144 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1080144-2/) |
-| 2066 | 4 | 1081704 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081704/) |
+| 2066 | 4 | 1081704 | 4 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1081704/) |
 | 2067 | 4 | 1082113 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1082113/) |
 | 2068 | 4 | 1084058 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1084058/) |
 | 2069 | 4 | 1084147 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1084147/) |
-| 2070 | 4 | 1085722 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085722/) |
-| 2071 | 4 | 1090215 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090215/) |
-| 2072 | 4 | 2018-1090501 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090501/) |
-| 2073 | 4 | 2019-0003403 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2019-0003403/) |
+| 2070 | 4 | 1085722 | 12 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085722/) |
+| 2071 | 4 | 1090215 | 14 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090215/) |
+| 2072 | 4 | 2018-1090501 | 4 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1090501/) |
+| 2073 | 4 | 2019-0003403 | 5 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2019-0003403/) |
 | 2074 | 4 | 2019-0004600 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2019-0004600/) |
-| 2075 | 4 | 2020-0000022 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2020-0000022/) |
+| 2075 | 4 | 2020-0000022 | 26 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2020-0000022/) |
 | 2076 | 4 | 2021-0000333 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0000333/) |
 | 2077 | 4 | 2021-0001500 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0001500/) |
 | 2078 | 4 | 2022-0004857 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2022-0004857/) |
@@ -2103,8 +2103,8 @@
 | 2081 | 4 | 2023-0004339 | 0 | 0 | 3 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2023-0004339/) |
 | 2082 | 4 | 1070168 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1070168-2/) |
 | 2083 | 4 | 1075350 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1075350/) |
-| 2084 | 4 | 1089158 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089158/) |
-| 2085 | 4 | 2017-1087843 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087843/) |
+| 2084 | 4 | 1089158 | 3 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1089158/) |
+| 2085 | 4 | 2017-1087843 | 2 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087843/) |
 | 2086 | 4 | 2018-1088116 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2018-1088116/) |
 | 2087 | 4 | 2018-1092034 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2018-1092034/) |
 | 2088 | 4 | 2021-0000234 | 0 | 0 | 2 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/2021-0000234/) |
@@ -2127,7 +2127,7 @@
 | 2105 | 4 | 1078904 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1078904/) |
 | 2106 | 4 | 1085645 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085645/) |
 | 2107 | 4 | 1085672 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085672/) |
-| 2108 | 4 | 1085898 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085898/) |
+| 2108 | 4 | 1085898 | 9 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1085898/) |
 | 2109 | 4 | 1087037 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087037/) |
 | 2110 | 4 | 1087192 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/10897492/) |
 | 2111 | 4 | 1087550 | 0 | 0 | 1 | 0 | -1 redacted | [link](https://www.chicagocopa.org/case/1087550/) |

@@ -4,13 +4,13 @@
 > URLs. **Generated** by `discovered_cases/case_bundle_agg.py` — do not hand-edit; add a
 > `<portal>_candidates.json` (or append to `CASE_BUNDLE_AGG.manual.json`) and re-run.
 > This index lists the **media bundles (video/audio)**. The COMPLETE registry — including
-> 2238 document-only bundles and every URL — is in `CASE_BUNDLE_AGG.json`.
+> 2080 document-only bundles and every URL — is in `CASE_BUNDLE_AGG.json`.
 
-**2769 working bundles total (531 with media, 2238 doc-only) · 20333 files** — media index below: 6203 video · 3327 audio · 1091 photo/exhibit.
+**2769 working bundles total (689 with media, 2080 doc-only) · 21652 files** — media index below: 7522 video · 3327 audio · 1091 photo/exhibit.
 
 | source | media bundles | video | audio | docs | photos | (all working) |
 |--------|--------------:|------:|------:|-----:|-------:|--------------:|
-| chicago_copa | 102 | 1168 | 3 | 933 | 0 | 2128 |
+| chicago_copa | 260 | 2487 | 3 | 1756 | 0 | 2128 |
 | longbeach_laserfiche | 320 | 4400 | 2442 | 1472 | 1091 | 443 |
 | muckrock | 28 | 352 | 77 | 106 | 0 | 53 |
 | sdpd | 50 | 253 | 649 | 54 | 0 | 50 |
@@ -182,6 +182,189 @@ case: https://www.chicagocopa.org/case/1078616-2/
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1078616-CHI-R-00001177.pdf
 - [documents] Log#1078616-CHI-R-00001176
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1078616-CHI-R-00001176.pdf
+
+### copa_1081642  ·  V70 A0 D20 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081642/
+- [bodycam] Log #1081642 Vimeo BWC 1
+  https://player.vimeo.com/video/177637826
+- [bodycam] Log #1081642 Vimeo BWC 2
+  https://player.vimeo.com/video/177637823
+- [bodycam] Log #1081642 Vimeo BWC 3
+  https://player.vimeo.com/video/177637825
+- [bodycam] Log #1081642 Vimeo BWC 4
+  https://player.vimeo.com/video/177637824
+- [bodycam] Log #1081642 Vimeo BWC 5
+  https://player.vimeo.com/video/188850139
+- [bodycam] Log #1081642 Vimeo BWC 6
+  https://player.vimeo.com/video/189003372
+- [bodycam] Log #1081642 Vimeo BWC 7
+  https://player.vimeo.com/video/188869834
+- [bodycam] Log #1081642 Vimeo BWC 8
+  https://player.vimeo.com/video/189005745
+- [bodycam] Log #1081642 Vimeo BWC 9
+  https://player.vimeo.com/video/189010059
+- [bodycam] Log #1081642 Vimeo BWC 10
+  https://player.vimeo.com/video/189223442
+- [bodycam] Log #1081642 Vimeo BWC 11
+  https://player.vimeo.com/video/188850501
+- [bodycam] Log #1081642 Vimeo BWC 12
+  https://player.vimeo.com/video/189224633
+- [bodycam] Log #1081642 Vimeo BWC 13
+  https://player.vimeo.com/video/189224882
+- [bodycam] Log #1081642 Vimeo BWC 14
+  https://player.vimeo.com/video/188852671
+- [bodycam] Log #1081642 Vimeo BWC 15
+  https://player.vimeo.com/video/188852809
+- [bodycam] Log #1081642 Vimeo BWC 16
+  https://player.vimeo.com/video/188868618
+- [bodycam] Log #1081642 Vimeo BWC 17
+  https://player.vimeo.com/video/188852971
+- [bodycam] Log #1081642 Vimeo BWC 18
+  https://player.vimeo.com/video/188853026
+- [bodycam] Log #1081642 Vimeo BWC 19
+  https://player.vimeo.com/video/188853173
+- [bodycam] Log #1081642 Vimeo BWC 20
+  https://player.vimeo.com/video/189223971
+- [bodycam] Log #1081642 Vimeo BWC 21
+  https://player.vimeo.com/video/189012022
+- [bodycam] Log #1081642 Vimeo BWC 22
+  https://player.vimeo.com/video/189012099
+- [bodycam] Log #1081642 Vimeo BWC 23
+  https://player.vimeo.com/video/188853223
+- [bodycam] Log #1081642 Vimeo BWC 24
+  https://player.vimeo.com/video/188869441
+- [bodycam] Log #1081642 Vimeo BWC 25
+  https://player.vimeo.com/video/189014750
+- [bodycam] Log #1081642 Vimeo BWC 26
+  https://player.vimeo.com/video/189013442
+- [bodycam] Log #1081642 Vimeo BWC 27
+  https://player.vimeo.com/video/177640242
+- [bodycam] Log #1081642 Vimeo BWC 28
+  https://player.vimeo.com/video/177640243
+- [bodycam] Log #1081642 Vimeo BWC 29
+  https://player.vimeo.com/video/177640240
+- [bodycam] Log #1081642 Vimeo BWC 30
+  https://player.vimeo.com/video/177640241
+- [bodycam] Log #1081642 Vimeo BWC 31
+  https://player.vimeo.com/video/177641123
+- [bodycam] Log #1081642 Vimeo BWC 32
+  https://player.vimeo.com/video/188887789
+- [bodycam] Log #1081642 Vimeo BWC 33
+  https://player.vimeo.com/video/188888062
+- [bodycam] Log #1081642 Vimeo BWC 34
+  https://player.vimeo.com/video/188888702
+- [bodycam] Log #1081642 Vimeo BWC 35
+  https://player.vimeo.com/video/188888730
+- [bodycam] Log #1081642 Vimeo BWC 36
+  https://player.vimeo.com/video/188889983
+- [bodycam] Log #1081642 Vimeo BWC 37
+  https://player.vimeo.com/video/188890270
+- [bodycam] Log #1081642 Vimeo BWC 38
+  https://player.vimeo.com/video/188890416
+- [bodycam] Log #1081642 Vimeo BWC 39
+  https://player.vimeo.com/video/188890838
+- [bodycam] Log #1081642 Vimeo BWC 40
+  https://player.vimeo.com/video/188890845
+- [bodycam] Log #1081642 Vimeo BWC 41
+  https://player.vimeo.com/video/188892005
+- [bodycam] Log #1081642 Vimeo BWC 42
+  https://player.vimeo.com/video/189017015
+- [bodycam] Log #1081642 Vimeo BWC 43
+  https://player.vimeo.com/video/189017113
+- [bodycam] Log #1081642 Vimeo BWC 44
+  https://player.vimeo.com/video/189019955
+- [bodycam] Log #1081642 Vimeo BWC 45
+  https://player.vimeo.com/video/189020010
+- [bodycam] Log #1081642 Vimeo BWC 46
+  https://player.vimeo.com/video/188892613
+- [bodycam] Log #1081642 Vimeo BWC 47
+  https://player.vimeo.com/video/188892659
+- [bodycam] Log #1081642 Vimeo BWC 48
+  https://player.vimeo.com/video/188894770
+- [bodycam] Log #1081642 Vimeo BWC 49
+  https://player.vimeo.com/video/188894794
+- [bodycam] Log #1081642 Vimeo BWC 50
+  https://player.vimeo.com/video/189033955
+- [bodycam] Log #1081642 Vimeo BWC 51
+  https://player.vimeo.com/video/189034614
+- [bodycam] Log #1081642 Vimeo BWC 52
+  https://player.vimeo.com/video/189363668
+- [bodycam] Log #1081642 Vimeo BWC 53
+  https://player.vimeo.com/video/189055115
+- [bodycam] Log #1081642 Vimeo BWC 54
+  https://player.vimeo.com/video/189055744
+- [bodycam] Log #1081642 Vimeo BWC 55
+  https://player.vimeo.com/video/189364289
+- [bodycam] Log #1081642 Vimeo BWC 56
+  https://player.vimeo.com/video/189060102
+- [bodycam] Log #1081642 Vimeo BWC 57
+  https://player.vimeo.com/video/189061075
+- [bodycam] Log #1081642 Vimeo BWC 58
+  https://player.vimeo.com/video/189064822
+- [bodycam] Log #1081642 Vimeo BWC 59
+  https://player.vimeo.com/video/189065783
+- [bodycam] Log #1081642 Vimeo BWC 60
+  https://player.vimeo.com/video/189066782
+- [bodycam] Log #1081642 Vimeo BWC 61
+  https://player.vimeo.com/video/189067487
+- [bodycam] Log #1081642 Vimeo BWC 62
+  https://player.vimeo.com/video/189067828
+- [bodycam] Log #1081642 Vimeo BWC 63
+  https://player.vimeo.com/video/189364807
+- [bodycam] Log #1081642 Vimeo BWC 64
+  https://player.vimeo.com/video/189036156
+- [bodycam] Log #1081642 Vimeo BWC 65
+  https://player.vimeo.com/video/189036864
+- [bodycam] Log #1081642 Vimeo BWC 66
+  https://player.vimeo.com/video/189036863
+- [bodycam] Log #1081642 Vimeo BWC 67
+  https://player.vimeo.com/video/189036865
+- [bodycam] Log #1081642 Vimeo BWC 68
+  https://player.vimeo.com/video/233903060
+- [bodycam] Log #1081642 Vimeo BWC 69
+  https://player.vimeo.com/video/233904468
+- [bodycam] Log #1081642 Vimeo BWC 70
+  https://player.vimeo.com/video/233905545
+- [documents] Log1081642obr4-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR4-redacted.pdf
+- [documents] Log1081642obr2-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR2-redacted.pdf
+- [documents] obr3-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR3-redacted.pdf
+- [documents] ocir1-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR1-redacted.pdf
+- [documents] obr1-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR1-redacted.pdf
+- [documents] trr3-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR3-redacted.pdf
+- [documents] trr4-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR4-redacted.pdf
+- [documents] trr2-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR2-redacted.pdf
+- [documents] trr1-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR1-redacted.pdf
+- [documents] ocir3-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR3-redacted.pdf
+- [documents] OBR2
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR2.pdf
+- [documents] OBR1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR1.pdf
+- [documents] TRR4
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR4.pdf
+- [documents] TRR3
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR3.pdf
+- [documents] TRR2
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR2.pdf
+- [documents] TRR1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR1.pdf
+- [documents] OCIR3
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR3.pdf
+- [documents] OCIR2
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR2.pdf
+- [documents] OBR4
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR4.pdf
+- [documents] OBR3
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR3.pdf
 
 ### copa_1053667  ·  V62 A0 D61 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1053667-2/
@@ -431,6 +614,232 @@ case: https://www.chicagocopa.org/case/1053667-2/
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1053667-CHI-R-00000253.pdf
 - [documents] Log#1053667-CHI-R-00000252
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1053667-CHI-R-00000252.pdf
+
+### copa_2022_0004223  ·  V52 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0004223/
+- [bodycam] Log #2022-0004223 Vimeo BWC 1
+  https://player.vimeo.com/video/765754157
+- [bodycam] Log #2022-0004223 Vimeo BWC 2
+  https://player.vimeo.com/video/765754272
+- [bodycam] Log #2022-0004223 Vimeo BWC 3
+  https://player.vimeo.com/video/765753893
+- [bodycam] Log #2022-0004223 Vimeo BWC 4
+  https://player.vimeo.com/video/765753570
+- [bodycam] Log #2022-0004223 Vimeo BWC 5
+  https://player.vimeo.com/video/765754037
+- [bodycam] Log #2022-0004223 Vimeo BWC 6
+  https://player.vimeo.com/video/765753751
+- [bodycam] Log #2022-0004223 Vimeo BWC 7
+  https://player.vimeo.com/video/765754396
+- [bodycam] Log #2022-0004223 Vimeo BWC 8
+  https://player.vimeo.com/video/765753476
+- [bodycam] Log #2022-0004223 Vimeo BWC 9
+  https://player.vimeo.com/video/765753661
+- [bodycam] Log #2022-0004223 Vimeo BWC 10
+  https://player.vimeo.com/video/765763682
+- [bodycam] Log #2022-0004223 Vimeo BWC 11
+  https://player.vimeo.com/video/765763545
+- [bodycam] Log #2022-0004223 Vimeo BWC 12
+  https://player.vimeo.com/video/765764161
+- [bodycam] Log #2022-0004223 Vimeo BWC 13
+  https://player.vimeo.com/video/765765707
+- [bodycam] Log #2022-0004223 Vimeo BWC 14
+  https://player.vimeo.com/video/765770395
+- [bodycam] Log #2022-0004223 Vimeo BWC 15
+  https://player.vimeo.com/video/765767210
+- [bodycam] Log #2022-0004223 Vimeo BWC 16
+  https://player.vimeo.com/video/765811937
+- [bodycam] Log #2022-0004223 Vimeo BWC 17
+  https://player.vimeo.com/video/765815033
+- [bodycam] Log #2022-0004223 Vimeo BWC 18
+  https://player.vimeo.com/video/765812582
+- [bodycam] Log #2022-0004223 Vimeo BWC 19
+  https://player.vimeo.com/video/765816318
+- [bodycam] Log #2022-0004223 Vimeo BWC 20
+  https://player.vimeo.com/video/765811730
+- [bodycam] Log #2022-0004223 Vimeo BWC 21
+  https://player.vimeo.com/video/765811392
+- [bodycam] Log #2022-0004223 Vimeo BWC 22
+  https://player.vimeo.com/video/765807882
+- [bodycam] Log #2022-0004223 Vimeo BWC 23
+  https://player.vimeo.com/video/765811116
+- [bodycam] Log #2022-0004223 Vimeo BWC 24
+  https://player.vimeo.com/video/765815999
+- [bodycam] Log #2022-0004223 Vimeo BWC 25
+  https://player.vimeo.com/video/765807550
+- [bodycam] Log #2022-0004223 Vimeo BWC 26
+  https://player.vimeo.com/video/765807236
+- [bodycam] Log #2022-0004223 Vimeo BWC 27
+  https://player.vimeo.com/video/765807259
+- [bodycam] Log #2022-0004223 Vimeo BWC 28
+  https://player.vimeo.com/video/765807819
+- [bodycam] Log #2022-0004223 Vimeo BWC 29
+  https://player.vimeo.com/video/765806632
+- [bodycam] Log #2022-0004223 Vimeo BWC 30
+  https://player.vimeo.com/video/765815491
+- [bodycam] Log #2022-0004223 Vimeo BWC 31
+  https://player.vimeo.com/video/765808047
+- [bodycam] Log #2022-0004223 Vimeo BWC 32
+  https://player.vimeo.com/video/765815003
+- [bodycam] Log #2022-0004223 Vimeo BWC 33
+  https://player.vimeo.com/video/765811134
+- [bodycam] Log #2022-0004223 Vimeo BWC 34
+  https://player.vimeo.com/video/765814846
+- [bodycam] Log #2022-0004223 Vimeo BWC 35
+  https://player.vimeo.com/video/765807058
+- [bodycam] Log #2022-0004223 Vimeo BWC 36
+  https://player.vimeo.com/video/765807842
+- [bodycam] Log #2022-0004223 Vimeo BWC 37
+  https://player.vimeo.com/video/765811693
+- [bodycam] Log #2022-0004223 Vimeo BWC 38
+  https://player.vimeo.com/video/765808067
+- [bodycam] Log #2022-0004223 Vimeo BWC 39
+  https://player.vimeo.com/video/765811332
+- [bodycam] Log #2022-0004223 Vimeo BWC 40
+  https://player.vimeo.com/video/765815022
+- [bodycam] Log #2022-0004223 Vimeo BWC 41
+  https://player.vimeo.com/video/765811920
+- [bodycam] Log #2022-0004223 Vimeo BWC 42
+  https://player.vimeo.com/video/765815952
+- [bodycam] Log #2022-0004223 Vimeo BWC 43
+  https://player.vimeo.com/video/765770338
+- [bodycam] Log #2022-0004223 Vimeo BWC 44
+  https://player.vimeo.com/video/765770113
+- [bodycam] Log #2022-0004223 Vimeo BWC 45
+  https://player.vimeo.com/video/765815975
+- [bodycam] Log #2022-0004223 Vimeo BWC 46
+  https://player.vimeo.com/video/765770184
+- [bodycam] Log #2022-0004223 Vimeo BWC 47
+  https://player.vimeo.com/video/765814906
+- [bodycam] Log #2022-0004223 Vimeo BWC 48
+  https://player.vimeo.com/video/765770072
+- [bodycam] Log #2022-0004223 Vimeo BWC 49
+  https://player.vimeo.com/video/765769987
+- [bodycam] Log #2022-0004223 Vimeo BWC 50
+  https://player.vimeo.com/video/765768802
+- [bodycam] Log #2022-0004223 Vimeo BWC 51
+  https://player.vimeo.com/video/765769145
+- [bodycam] Log #2022-0004223 Vimeo BWC 52
+  https://player.vimeo.com/video/765766859
+- [documents] 2022-0004223_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/2022-0004223_FSR.pdf
+- [documents] 2022-0004223_Nonconcurrence
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/2022-0004223_Nonconcurrence.pdf
+- [documents] 2022-0004223_Supplemental FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/2022-0004223_Supplemental-FSR.pdf
+- [documents] Log #2022-0004223 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2022/10/2022-0004223_TRR.pdf
+- [documents] Log #2022-0004223 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2022/10/2022-0004233_OCIR.pdf
+
+### copa_2024_0005309  ·  V49 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0005309/
+- [bodycam] Log #2024-0005309 Vimeo BWC 1
+  https://player.vimeo.com/video/974217540
+- [bodycam] Log #2024-0005309 Vimeo BWC 2
+  https://player.vimeo.com/video/974217673
+- [bodycam] Log #2024-0005309 Vimeo BWC 3
+  https://player.vimeo.com/video/970734024
+- [bodycam] Log #2024-0005309 Vimeo BWC 4
+  https://player.vimeo.com/video/970729033
+- [bodycam] Log #2024-0005309 Vimeo BWC 5
+  https://player.vimeo.com/video/970732917
+- [bodycam] Log #2024-0005309 Vimeo BWC 6
+  https://player.vimeo.com/video/970729921
+- [bodycam] Log #2024-0005309 Vimeo BWC 7
+  https://player.vimeo.com/video/970731897
+- [bodycam] Log #2024-0005309 Vimeo BWC 8
+  https://player.vimeo.com/video/970731086
+- [bodycam] Log #2024-0005309 Vimeo BWC 9
+  https://player.vimeo.com/video/970730909
+- [bodycam] Log #2024-0005309 Vimeo BWC 10
+  https://player.vimeo.com/video/970732728
+- [bodycam] Log #2024-0005309 Vimeo BWC 11
+  https://player.vimeo.com/video/970731748
+- [bodycam] Log #2024-0005309 Vimeo BWC 12
+  https://player.vimeo.com/video/970730156
+- [bodycam] Log #2024-0005309 Vimeo BWC 13
+  https://player.vimeo.com/video/970731564
+- [bodycam] Log #2024-0005309 Vimeo BWC 14
+  https://player.vimeo.com/video/970729473
+- [bodycam] Log #2024-0005309 Vimeo BWC 15
+  https://player.vimeo.com/video/970730381
+- [bodycam] Log #2024-0005309 Vimeo BWC 16
+  https://player.vimeo.com/video/970731435
+- [bodycam] Log #2024-0005309 Vimeo BWC 17
+  https://player.vimeo.com/video/970729234
+- [bodycam] Log #2024-0005309 Vimeo BWC 18
+  https://player.vimeo.com/video/970733198
+- [bodycam] Log #2024-0005309 Vimeo BWC 19
+  https://player.vimeo.com/video/970732597
+- [bodycam] Log #2024-0005309 Vimeo BWC 20
+  https://player.vimeo.com/video/970729566
+- [bodycam] Log #2024-0005309 Vimeo BWC 21
+  https://player.vimeo.com/video/970734477
+- [bodycam] Log #2024-0005309 Vimeo BWC 22
+  https://player.vimeo.com/video/970731276
+- [bodycam] Log #2024-0005309 Vimeo BWC 23
+  https://player.vimeo.com/video/970733566
+- [bodycam] Log #2024-0005309 Vimeo BWC 24
+  https://player.vimeo.com/video/970728760
+- [bodycam] Log #2024-0005309 Vimeo BWC 25
+  https://player.vimeo.com/video/970732388
+- [bodycam] Log #2024-0005309 Vimeo BWC 26
+  https://player.vimeo.com/video/970734666
+- [bodycam] Log #2024-0005309 Vimeo BWC 27
+  https://player.vimeo.com/video/970729692
+- [bodycam] Log #2024-0005309 Vimeo BWC 28
+  https://player.vimeo.com/video/970734315
+- [bodycam] Log #2024-0005309 Vimeo BWC 29
+  https://player.vimeo.com/video/970728483
+- [bodycam] Log #2024-0005309 Vimeo BWC 30
+  https://player.vimeo.com/video/970728620
+- [bodycam] Log #2024-0005309 Vimeo BWC 31
+  https://player.vimeo.com/video/970732183
+- [bodycam] Log #2024-0005309 Vimeo BWC 32
+  https://player.vimeo.com/video/970730831
+- [bodycam] Log #2024-0005309 Vimeo BWC 33
+  https://player.vimeo.com/video/970728363
+- [bodycam] Log #2024-0005309 Vimeo BWC 34
+  https://player.vimeo.com/video/970714042
+- [bodycam] Log #2024-0005309 Vimeo BWC 35
+  https://player.vimeo.com/video/970714655
+- [bodycam] Log #2024-0005309 Vimeo BWC 36
+  https://player.vimeo.com/video/970715251
+- [bodycam] Log #2024-0005309 Vimeo BWC 37
+  https://player.vimeo.com/video/971016928
+- [bodycam] Log #2024-0005309 Vimeo BWC 38
+  https://player.vimeo.com/video/971016560
+- [bodycam] Log #2024-0005309 Vimeo BWC 39
+  https://player.vimeo.com/video/971016655
+- [bodycam] Log #2024-0005309 Vimeo BWC 40
+  https://player.vimeo.com/video/971016394
+- [bodycam] Log #2024-0005309 Vimeo BWC 41
+  https://player.vimeo.com/video/971016890
+- [bodycam] Log #2024-0005309 Vimeo BWC 42
+  https://player.vimeo.com/video/971017183
+- [bodycam] Log #2024-0005309 Vimeo BWC 43
+  https://player.vimeo.com/video/971016338
+- [bodycam] Log #2024-0005309 Vimeo BWC 44
+  https://player.vimeo.com/video/971017229
+- [bodycam] Log #2024-0005309 Vimeo BWC 45
+  https://player.vimeo.com/video/970726543
+- [bodycam] Log #2024-0005309 Vimeo BWC 46
+  https://player.vimeo.com/video/970727321
+- [bodycam] Log #2024-0005309 Vimeo BWC 47
+  https://player.vimeo.com/video/970714452
+- [bodycam] Log #2024-0005309 Vimeo BWC 48
+  https://player.vimeo.com/video/970713227
+- [bodycam] Log #2024-0005309 Vimeo BWC 49
+  https://player.vimeo.com/video/970713272
+- [documents] 2024_0005309
+  https://www.chicagocopa.org/wp-content/uploads/2024/07/2024_0005309.pdf
+- [documents] Log #2024-0005309 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/06/Case-Report-JH281427-Additional.pdf-Redacted-update.pdf
+- [documents] Log #2024-0005309 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2024/06/TRR-Officer-Willis.pdf-Redacted.pdf
+- [documents] Log #2024-0005309 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/06/TRR-Officer-Curtis.pdf-Redacted.pdf
 
 ### copa_2026_0001206  ·  V37 A0 D8 P0  ·  score 8
 case: https://www.chicagocopa.org/case/2026-0001206/
@@ -727,6 +1136,162 @@ case: https://www.chicagocopa.org/case/2025-0000547/
 - [documents] Log #2025-0000547 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2025/03/Original-Case-Incident-Report-JJ135718-approved-Redacted.pdf
 
+### copa_2020_0001006  ·  V34 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0001006/
+- [bodycam] Log #2020-0001006 Vimeo BWC 1
+  https://player.vimeo.com/video/423764034
+- [bodycam] Log #2020-0001006 Vimeo BWC 2
+  https://player.vimeo.com/video/423764928
+- [bodycam] Log #2020-0001006 Vimeo BWC 3
+  https://player.vimeo.com/video/423765842
+- [bodycam] Log #2020-0001006 Vimeo BWC 4
+  https://player.vimeo.com/video/423768191
+- [bodycam] Log #2020-0001006 Vimeo BWC 5
+  https://player.vimeo.com/video/423769444
+- [bodycam] Log #2020-0001006 Vimeo BWC 6
+  https://player.vimeo.com/video/423771295
+- [bodycam] Log #2020-0001006 Vimeo BWC 7
+  https://player.vimeo.com/video/423771973
+- [bodycam] Log #2020-0001006 Vimeo BWC 8
+  https://player.vimeo.com/video/423773026
+- [bodycam] Log #2020-0001006 Vimeo BWC 9
+  https://player.vimeo.com/video/423774023
+- [bodycam] Log #2020-0001006 Vimeo BWC 10
+  https://player.vimeo.com/video/423775186
+- [bodycam] Log #2020-0001006 Vimeo BWC 11
+  https://player.vimeo.com/video/423775564
+- [bodycam] Log #2020-0001006 Vimeo BWC 12
+  https://player.vimeo.com/video/423776168
+- [bodycam] Log #2020-0001006 Vimeo BWC 13
+  https://player.vimeo.com/video/423776917
+- [bodycam] Log #2020-0001006 Vimeo BWC 14
+  https://player.vimeo.com/video/423777690
+- [bodycam] Log #2020-0001006 Vimeo BWC 15
+  https://player.vimeo.com/video/424123795
+- [bodycam] Log #2020-0001006 Vimeo BWC 16
+  https://player.vimeo.com/video/424124911
+- [bodycam] Log #2020-0001006 Vimeo BWC 17
+  https://player.vimeo.com/video/424126175
+- [bodycam] Log #2020-0001006 Vimeo BWC 18
+  https://player.vimeo.com/video/424126928
+- [bodycam] Log #2020-0001006 Vimeo BWC 19
+  https://player.vimeo.com/video/424128324
+- [bodycam] Log #2020-0001006 Vimeo BWC 20
+  https://player.vimeo.com/video/424129851
+- [bodycam] Log #2020-0001006 Vimeo BWC 21
+  https://player.vimeo.com/video/424130631
+- [bodycam] Log #2020-0001006 Vimeo BWC 22
+  https://player.vimeo.com/video/424131415
+- [bodycam] Log #2020-0001006 Vimeo BWC 23
+  https://player.vimeo.com/video/424132091
+- [bodycam] Log #2020-0001006 Vimeo BWC 24
+  https://player.vimeo.com/video/424134503
+- [bodycam] Log #2020-0001006 Vimeo BWC 25
+  https://player.vimeo.com/video/424137625
+- [bodycam] Log #2020-0001006 Vimeo BWC 26
+  https://player.vimeo.com/video/424138486
+- [bodycam] Log #2020-0001006 Vimeo BWC 27
+  https://player.vimeo.com/video/424138765
+- [bodycam] Log #2020-0001006 Vimeo BWC 28
+  https://player.vimeo.com/video/424139222
+- [bodycam] Log #2020-0001006 Vimeo BWC 29
+  https://player.vimeo.com/video/424140134
+- [bodycam] Log #2020-0001006 Vimeo BWC 30
+  https://player.vimeo.com/video/424140490
+- [bodycam] Log #2020-0001006 Vimeo BWC 31
+  https://player.vimeo.com/video/424140803
+- [bodycam] Log #2020-0001006 Vimeo BWC 32
+  https://player.vimeo.com/video/424141176
+- [bodycam] Log #2020-0001006 Vimeo BWC 33
+  https://player.vimeo.com/video/424141745
+- [bodycam] Log #2020-0001006 Vimeo BWC 34
+  https://player.vimeo.com/video/424142437
+- [documents] 2020-0001006_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/2020-0001006_FSR.pdf
+- [documents] Log # 2020-1006 Original Case Incident Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/JD170875-OCIR_REDACTED.pdf
+- [documents] Log # 2020-1006 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/OCIR_JD170887_REDACTED.pdf
+- [documents] Log # 2020-1006 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/CaseReport_JD170927_REDACTED.pdf
+
+### copa_2023_0000553  ·  V33 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2023-0000553/
+- [bodycam] Log #2023-0000553 Vimeo BWC 1
+  https://player.vimeo.com/video/802027935
+- [bodycam] Log #2023-0000553 Vimeo BWC 2
+  https://player.vimeo.com/video/802027506
+- [bodycam] Log #2023-0000553 Vimeo BWC 3
+  https://player.vimeo.com/video/802028022
+- [bodycam] Log #2023-0000553 Vimeo BWC 4
+  https://player.vimeo.com/video/802027312
+- [bodycam] Log #2023-0000553 Vimeo BWC 5
+  https://player.vimeo.com/video/802027558
+- [bodycam] Log #2023-0000553 Vimeo BWC 6
+  https://player.vimeo.com/video/802027860
+- [bodycam] Log #2023-0000553 Vimeo BWC 7
+  https://player.vimeo.com/video/802027369
+- [bodycam] Log #2023-0000553 Vimeo BWC 8
+  https://player.vimeo.com/video/802027674
+- [bodycam] Log #2023-0000553 Vimeo BWC 9
+  https://player.vimeo.com/video/802027734
+- [bodycam] Log #2023-0000553 Vimeo BWC 10
+  https://player.vimeo.com/video/802027602
+- [bodycam] Log #2023-0000553 Vimeo BWC 11
+  https://player.vimeo.com/video/802027427
+- [bodycam] Log #2023-0000553 Vimeo BWC 12
+  https://player.vimeo.com/video/802027803
+- [bodycam] Log #2023-0000553 Vimeo BWC 13
+  https://player.vimeo.com/video/804460479
+- [bodycam] Log #2023-0000553 Vimeo BWC 14
+  https://player.vimeo.com/video/802073064
+- [bodycam] Log #2023-0000553 Vimeo BWC 15
+  https://player.vimeo.com/video/802073073
+- [bodycam] Log #2023-0000553 Vimeo BWC 16
+  https://player.vimeo.com/video/802073041
+- [bodycam] Log #2023-0000553 Vimeo BWC 17
+  https://player.vimeo.com/video/802073033
+- [bodycam] Log #2023-0000553 Vimeo BWC 18
+  https://player.vimeo.com/video/802073049
+- [bodycam] Log #2023-0000553 Vimeo BWC 19
+  https://player.vimeo.com/video/802031597
+- [bodycam] Log #2023-0000553 Vimeo BWC 20
+  https://player.vimeo.com/video/802031523
+- [bodycam] Log #2023-0000553 Vimeo BWC 21
+  https://player.vimeo.com/video/802031809
+- [bodycam] Log #2023-0000553 Vimeo BWC 22
+  https://player.vimeo.com/video/802031610
+- [bodycam] Log #2023-0000553 Vimeo BWC 23
+  https://player.vimeo.com/video/802031539
+- [bodycam] Log #2023-0000553 Vimeo BWC 24
+  https://player.vimeo.com/video/802031466
+- [bodycam] Log #2023-0000553 Vimeo BWC 25
+  https://player.vimeo.com/video/802031485
+- [bodycam] Log #2023-0000553 Vimeo BWC 26
+  https://player.vimeo.com/video/802031797
+- [bodycam] Log #2023-0000553 Vimeo BWC 27
+  https://player.vimeo.com/video/802031643
+- [bodycam] Log #2023-0000553 Vimeo BWC 28
+  https://player.vimeo.com/video/802031664
+- [bodycam] Log #2023-0000553 Vimeo BWC 29
+  https://player.vimeo.com/video/802031617
+- [bodycam] Log #2023-0000553 Vimeo BWC 30
+  https://player.vimeo.com/video/802031688
+- [bodycam] Log #2023-0000553 Vimeo BWC 31
+  https://player.vimeo.com/video/802031712
+- [bodycam] Log #2023-0000553 Vimeo BWC 32
+  https://player.vimeo.com/video/802031745
+- [bodycam] Log #2023-0000553 Vimeo BWC 33
+  https://player.vimeo.com/video/802031780
+- [documents] 2023-0000553_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2023/03/2023-0000553_FSR.pdf
+- [documents] Log #2023-0000553 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/034-TRR_PO_Carcamo-Redacted.pdf
+- [documents] Log #2023-0000553 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/033-TRR_PO_Ulloa-Redacted.pdf
+- [documents] Log #2023-0000553 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/004-Log_2023-0553_OCIR_RD_JG144725-Redacted.pdf
+
 ### copa_2021_0001076  ·  V32 A0 D11 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0001076/
 - [bodycam] Log #2021-0001076 Vimeo BWC 1
@@ -976,6 +1541,95 @@ case: https://www.chicagocopa.org/case/2021-0002665/
 - [documents] 2021-2665 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/07/Case-Report-JE295553_REDACTED.pdf
 
+### copa_1080449  ·  V31 A0 D12 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080449/
+- [bodycam] Log #1080449 Vimeo BWC 1
+  https://player.vimeo.com/video/173978977
+- [bodycam] Log #1080449 Vimeo BWC 2
+  https://player.vimeo.com/video/173978978
+- [bodycam] Log #1080449 Vimeo BWC 3
+  https://player.vimeo.com/video/173978979
+- [bodycam] Log #1080449 Vimeo BWC 4
+  https://player.vimeo.com/video/173978980
+- [bodycam] Log #1080449 Vimeo BWC 5
+  https://player.vimeo.com/video/173979450
+- [bodycam] Log #1080449 Vimeo BWC 6
+  https://player.vimeo.com/video/173984887
+- [bodycam] Log #1080449 Vimeo BWC 7
+  https://player.vimeo.com/video/173984920
+- [bodycam] Log #1080449 Vimeo BWC 8
+  https://player.vimeo.com/video/173984921
+- [bodycam] Log #1080449 Vimeo BWC 9
+  https://player.vimeo.com/video/173984922
+- [bodycam] Log #1080449 Vimeo BWC 10
+  https://player.vimeo.com/video/173984923
+- [bodycam] Log #1080449 Vimeo BWC 11
+  https://player.vimeo.com/video/173973989
+- [bodycam] Log #1080449 Vimeo BWC 12
+  https://player.vimeo.com/video/173974010
+- [bodycam] Log #1080449 Vimeo BWC 13
+  https://player.vimeo.com/video/173974027
+- [bodycam] Log #1080449 Vimeo BWC 14
+  https://player.vimeo.com/video/173974076
+- [bodycam] Log #1080449 Vimeo BWC 15
+  https://player.vimeo.com/video/173974075
+- [bodycam] Log #1080449 Vimeo BWC 16
+  https://player.vimeo.com/video/173974661
+- [bodycam] Log #1080449 Vimeo BWC 17
+  https://player.vimeo.com/video/173974693
+- [bodycam] Log #1080449 Vimeo BWC 18
+  https://player.vimeo.com/video/173974942
+- [bodycam] Log #1080449 Vimeo BWC 19
+  https://player.vimeo.com/video/173975023
+- [bodycam] Log #1080449 Vimeo BWC 20
+  https://player.vimeo.com/video/173975025
+- [bodycam] Log #1080449 Vimeo BWC 21
+  https://player.vimeo.com/video/173975026
+- [bodycam] Log #1080449 Vimeo BWC 22
+  https://player.vimeo.com/video/173975138
+- [bodycam] Log #1080449 Vimeo BWC 23
+  https://player.vimeo.com/video/173975139
+- [bodycam] Log #1080449 Vimeo BWC 24
+  https://player.vimeo.com/video/173975280
+- [bodycam] Log #1080449 Vimeo BWC 25
+  https://player.vimeo.com/video/173975985
+- [bodycam] Log #1080449 Vimeo BWC 26
+  https://player.vimeo.com/video/173975988
+- [bodycam] Log #1080449 Vimeo BWC 27
+  https://player.vimeo.com/video/173976037
+- [bodycam] Log #1080449 Vimeo BWC 28
+  https://player.vimeo.com/video/173976090
+- [bodycam] Log #1080449 Vimeo BWC 29
+  https://player.vimeo.com/video/173976091
+- [bodycam] Log #1080449 Vimeo BWC 30
+  https://player.vimeo.com/video/173976092
+- [bodycam] Log #1080449 Vimeo BWC 31
+  https://player.vimeo.com/video/173976094
+- [documents] Arrest-Report-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/Arrest-Report-REDACTED-1.pdf
+- [documents] OCIR-REDACTED-3
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED-3.pdf
+- [documents] OCIR-2-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-2-REDACTED.pdf
+- [documents] TRR-Keating-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Keating-REDACTED.pdf
+- [documents] TRR-Clark-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Clark-REDACTED.pdf
+- [documents] OBR-Keating-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Keating-REDACTED.pdf
+- [documents] OBR-Clark-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Clark-REDACTED.pdf
+- [documents] OCIR-4-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-4-REDACTED.pdf
+- [documents] OCIR-3-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-3-REDACTED.pdf
+- [documents] OCIR-2-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-2-REDACTED.pdf
+- [documents] OCIR-REDACTED-3
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-3.pdf
+- [documents] Arrest-Report-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED-1.pdf
+
 ### copa_2024_0007497  ·  V29 A0 D2 P0  ·  score 8
 case: https://www.chicagocopa.org/case/2024-0007497/
 - [bodycam] Log #2024-0007497 Vimeo BWC 1
@@ -1189,6 +1843,128 @@ case: https://www.chicagocopa.org/case/2024-0008017/
 - [documents] Log #2024-0008017 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2024/12/010-ocir_Redacted.pdf
 
+### copa_2020_0001086  ·  V26 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0001086/
+- [bodycam] Log #2020-0001086 Vimeo BWC 1
+  https://player.vimeo.com/video/414901880
+- [bodycam] Log #2020-0001086 Vimeo BWC 2
+  https://player.vimeo.com/video/414904376
+- [bodycam] Log #2020-0001086 Vimeo BWC 3
+  https://player.vimeo.com/video/414904982
+- [bodycam] Log #2020-0001086 Vimeo BWC 4
+  https://player.vimeo.com/video/414911040
+- [bodycam] Log #2020-0001086 Vimeo BWC 5
+  https://player.vimeo.com/video/415136801
+- [bodycam] Log #2020-0001086 Vimeo BWC 6
+  https://player.vimeo.com/video/415137255
+- [bodycam] Log #2020-0001086 Vimeo BWC 7
+  https://player.vimeo.com/video/415137673
+- [bodycam] Log #2020-0001086 Vimeo BWC 8
+  https://player.vimeo.com/video/415139451
+- [bodycam] Log #2020-0001086 Vimeo BWC 9
+  https://player.vimeo.com/video/415139763
+- [bodycam] Log #2020-0001086 Vimeo BWC 10
+  https://player.vimeo.com/video/415140799
+- [bodycam] Log #2020-0001086 Vimeo BWC 11
+  https://player.vimeo.com/video/415141000
+- [bodycam] Log #2020-0001086 Vimeo BWC 12
+  https://player.vimeo.com/video/415141190
+- [bodycam] Log #2020-0001086 Vimeo BWC 13
+  https://player.vimeo.com/video/415143766
+- [bodycam] Log #2020-0001086 Vimeo BWC 14
+  https://player.vimeo.com/video/415144006
+- [bodycam] Log #2020-0001086 Vimeo BWC 15
+  https://player.vimeo.com/video/415144702
+- [bodycam] Log #2020-0001086 Vimeo BWC 16
+  https://player.vimeo.com/video/415146189
+- [bodycam] Log #2020-0001086 Vimeo BWC 17
+  https://player.vimeo.com/video/415146515
+- [bodycam] Log #2020-0001086 Vimeo BWC 18
+  https://player.vimeo.com/video/415146862
+- [bodycam] Log #2020-0001086 Vimeo BWC 19
+  https://player.vimeo.com/video/415148357
+- [bodycam] Log #2020-0001086 Vimeo BWC 20
+  https://player.vimeo.com/video/415148630
+- [bodycam] Log #2020-0001086 Vimeo BWC 21
+  https://player.vimeo.com/video/415150121
+- [bodycam] Log #2020-0001086 Vimeo BWC 22
+  https://player.vimeo.com/video/415150347
+- [bodycam] Log #2020-0001086 Vimeo BWC 23
+  https://player.vimeo.com/video/415150646
+- [bodycam] Log #2020-0001086 Vimeo BWC 24
+  https://player.vimeo.com/video/415152410
+- [bodycam] Log #2020-0001086 Vimeo BWC 25
+  https://player.vimeo.com/video/415152982
+- [bodycam] Log #2020-0001086 Vimeo BWC 26
+  https://player.vimeo.com/video/415153690
+- [documents] 2020-0001086FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/2020-0001086FSR.pdf
+- [documents] Log # 2020-1806 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/TRR_KH_REDACTED.pdf
+- [documents] Log # 2020-1806 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/05/Case-Report_REDACTED.pdf
+
+### copa_2020_0000022  ·  V26 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2020-0000022/
+- [bodycam] Log #2020-0000022 Vimeo BWC 1
+  https://player.vimeo.com/video/394334403
+- [bodycam] Log #2020-0000022 Vimeo BWC 2
+  https://player.vimeo.com/video/394334602
+- [bodycam] Log #2020-0000022 Vimeo BWC 3
+  https://player.vimeo.com/video/394334697
+- [bodycam] Log #2020-0000022 Vimeo BWC 4
+  https://player.vimeo.com/video/394335012
+- [bodycam] Log #2020-0000022 Vimeo BWC 5
+  https://player.vimeo.com/video/394335115
+- [bodycam] Log #2020-0000022 Vimeo BWC 6
+  https://player.vimeo.com/video/394335471
+- [bodycam] Log #2020-0000022 Vimeo BWC 7
+  https://player.vimeo.com/video/394335542
+- [bodycam] Log #2020-0000022 Vimeo BWC 8
+  https://player.vimeo.com/video/394335729
+- [bodycam] Log #2020-0000022 Vimeo BWC 9
+  https://player.vimeo.com/video/394336177
+- [bodycam] Log #2020-0000022 Vimeo BWC 10
+  https://player.vimeo.com/video/394336248
+- [bodycam] Log #2020-0000022 Vimeo BWC 11
+  https://player.vimeo.com/video/394336459
+- [bodycam] Log #2020-0000022 Vimeo BWC 12
+  https://player.vimeo.com/video/394337318
+- [bodycam] Log #2020-0000022 Vimeo BWC 13
+  https://player.vimeo.com/video/394337464
+- [bodycam] Log #2020-0000022 Vimeo BWC 14
+  https://player.vimeo.com/video/394337726
+- [bodycam] Log #2020-0000022 Vimeo BWC 15
+  https://player.vimeo.com/video/394337884
+- [bodycam] Log #2020-0000022 Vimeo BWC 16
+  https://player.vimeo.com/video/394337956
+- [bodycam] Log #2020-0000022 Vimeo BWC 17
+  https://player.vimeo.com/video/394338160
+- [bodycam] Log #2020-0000022 Vimeo BWC 18
+  https://player.vimeo.com/video/394231130
+- [bodycam] Log #2020-0000022 Vimeo BWC 19
+  https://player.vimeo.com/video/394235190
+- [bodycam] Log #2020-0000022 Vimeo BWC 20
+  https://player.vimeo.com/video/394327184
+- [bodycam] Log #2020-0000022 Vimeo BWC 21
+  https://player.vimeo.com/video/394327282
+- [bodycam] Log #2020-0000022 Vimeo BWC 22
+  https://player.vimeo.com/video/394327408
+- [bodycam] Log #2020-0000022 Vimeo BWC 23
+  https://player.vimeo.com/video/394327934
+- [bodycam] Log #2020-0000022 Vimeo BWC 24
+  https://player.vimeo.com/video/394328814
+- [bodycam] Log #2020-0000022 Vimeo BWC 25
+  https://player.vimeo.com/video/394328886
+- [bodycam] Log #2020-0000022 Vimeo BWC 26
+  https://player.vimeo.com/video/394328947
+- [documents] Log # 2020-0022 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/02/TRR_PD_REDACTED-Revised-2-26-20.pdf
+- [documents] Log # 2020-0022 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/02/CaseReport_JD101830_REDACTED-1.pdf
+- [documents] CaseReport_JD101830_REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2020/02/CaseReport_JD101830_REDACTED.pdf
+
 ### copa_1078329  ·  V23 A0 D30 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1078329-2/
 - [bodycam] Log #1078329 Vimeo BWC 1
@@ -1298,6 +2074,122 @@ case: https://www.chicagocopa.org/case/1078329-2/
 - [documents] Log#1078329 – CHI-R-00001124
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1078329-CHI-R-00001124.pdf
 
+### copa_2020_0003020  ·  V23 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0003020/
+- [bodycam] Log #2020-0003020 Vimeo BWC 1
+  https://player.vimeo.com/video/450246104
+- [bodycam] Log #2020-0003020 Vimeo BWC 2
+  https://player.vimeo.com/video/450246316
+- [bodycam] Log #2020-0003020 Vimeo BWC 3
+  https://player.vimeo.com/video/450246700
+- [bodycam] Log #2020-0003020 Vimeo BWC 4
+  https://player.vimeo.com/video/450247194
+- [bodycam] Log #2020-0003020 Vimeo BWC 5
+  https://player.vimeo.com/video/450247950
+- [bodycam] Log #2020-0003020 Vimeo BWC 6
+  https://player.vimeo.com/video/450248259
+- [bodycam] Log #2020-0003020 Vimeo BWC 7
+  https://player.vimeo.com/video/450249139
+- [bodycam] Log #2020-0003020 Vimeo BWC 8
+  https://player.vimeo.com/video/450250207
+- [bodycam] Log #2020-0003020 Vimeo BWC 9
+  https://player.vimeo.com/video/450250467
+- [bodycam] Log #2020-0003020 Vimeo BWC 10
+  https://player.vimeo.com/video/450250800
+- [bodycam] Log #2020-0003020 Vimeo BWC 11
+  https://player.vimeo.com/video/450251716
+- [bodycam] Log #2020-0003020 Vimeo BWC 12
+  https://player.vimeo.com/video/450252223
+- [bodycam] Log #2020-0003020 Vimeo BWC 13
+  https://player.vimeo.com/video/450252548
+- [bodycam] Log #2020-0003020 Vimeo BWC 14
+  https://player.vimeo.com/video/450252991
+- [bodycam] Log #2020-0003020 Vimeo BWC 15
+  https://player.vimeo.com/video/450254351
+- [bodycam] Log #2020-0003020 Vimeo BWC 16
+  https://player.vimeo.com/video/450254854
+- [bodycam] Log #2020-0003020 Vimeo BWC 17
+  https://player.vimeo.com/video/450255180
+- [bodycam] Log #2020-0003020 Vimeo BWC 18
+  https://player.vimeo.com/video/450257074
+- [bodycam] Log #2020-0003020 Vimeo BWC 19
+  https://player.vimeo.com/video/450257318
+- [bodycam] Log #2020-0003020 Vimeo BWC 20
+  https://player.vimeo.com/video/450257807
+- [bodycam] Log #2020-0003020 Vimeo BWC 21
+  https://player.vimeo.com/video/450258184
+- [bodycam] Log #2020-0003020 Vimeo BWC 22
+  https://player.vimeo.com/video/450258526
+- [bodycam] Log #2020-0003020 Vimeo BWC 23
+  https://player.vimeo.com/video/450259713
+- [documents] 2020-0003020_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/2020-0003020_FSR.pdf
+- [documents] Log # 2020-3020 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/Log2020-3020-Approved-CaseRpt_REDACTED.pdf
+
+### copa_1082195  ·  V23 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082195/
+- [bodycam] Log #1082195 Vimeo BWC 1
+  https://player.vimeo.com/video/190739624
+- [bodycam] Log #1082195 Vimeo BWC 2
+  https://player.vimeo.com/video/190928091
+- [bodycam] Log #1082195 Vimeo BWC 3
+  https://player.vimeo.com/video/190735566
+- [bodycam] Log #1082195 Vimeo BWC 4
+  https://player.vimeo.com/video/190928124
+- [bodycam] Log #1082195 Vimeo BWC 5
+  https://player.vimeo.com/video/190736269
+- [bodycam] Log #1082195 Vimeo BWC 6
+  https://player.vimeo.com/video/190569466
+- [bodycam] Log #1082195 Vimeo BWC 7
+  https://player.vimeo.com/video/190938543
+- [bodycam] Log #1082195 Vimeo BWC 8
+  https://player.vimeo.com/video/190569710
+- [bodycam] Log #1082195 Vimeo BWC 9
+  https://player.vimeo.com/video/190937630
+- [bodycam] Log #1082195 Vimeo BWC 10
+  https://player.vimeo.com/video/190938644
+- [bodycam] Log #1082195 Vimeo BWC 11
+  https://player.vimeo.com/video/190929875
+- [bodycam] Log #1082195 Vimeo BWC 12
+  https://player.vimeo.com/video/190929876
+- [bodycam] Log #1082195 Vimeo BWC 13
+  https://player.vimeo.com/video/190569837
+- [bodycam] Log #1082195 Vimeo BWC 14
+  https://player.vimeo.com/video/190931359
+- [bodycam] Log #1082195 Vimeo BWC 15
+  https://player.vimeo.com/video/193561098
+- [bodycam] Log #1082195 Vimeo BWC 16
+  https://player.vimeo.com/video/193561452
+- [bodycam] Log #1082195 Vimeo BWC 17
+  https://player.vimeo.com/video/193561700
+- [bodycam] Log #1082195 Vimeo BWC 18
+  https://player.vimeo.com/video/193562007
+- [bodycam] Log #1082195 Vimeo BWC 19
+  https://player.vimeo.com/video/193562469
+- [bodycam] Log #1082195 Vimeo BWC 20
+  https://player.vimeo.com/video/193563415
+- [bodycam] Log #1082195 Vimeo BWC 21
+  https://player.vimeo.com/video/193564566
+- [bodycam] Log #1082195 Vimeo BWC 22
+  https://player.vimeo.com/video/307768537
+- [bodycam] Log #1082195 Vimeo BWC 23
+  https://player.vimeo.com/video/307768439
+- [documents] 1082195 Original Case Incident Report #3 Redacted 2
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1082195-Original-Case-Incident-Report-3-Redacted-2.pdf
+- [documents] Updated Case Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Updated-Case-Report-REDACTED-1.pdf
+- [documents] updated-case-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Updated-Case-Report-REDACTED.pdf
+- [documents] trr-officer-freeman-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-Officer-Freeman-REDACTED.pdf
+- [documents] trr-officer-collier-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-Officer-Collier-REDACTED.pdf
+- [documents] case-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Case-Report-REDACTED.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Arrest-report-REDACTED.pdf
+
 ### copa_2017_1085496  ·  V22 A0 D9 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1085496/
 - [bodycam] Log #2017-1085496 Vimeo BWC 1
@@ -1362,6 +2254,122 @@ case: https://www.chicagocopa.org/case/1085496/
   https://www.chicagocopa.org/wp-content/uploads/2017/08/Original-Case-Incident-Report-Redacted-5.pdf
 - [documents] Log # 1085496 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2017/08/Original-Case-Incident-Report-Redacted-TW-Revised-12-2-19.pdf
+
+### copa_2025_0004513  ·  V22 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0004513/
+- [bodycam] Log #2025-0004513 Vimeo BWC 1
+  https://player.vimeo.com/video/1133229783
+- [bodycam] Log #2025-0004513 Vimeo BWC 2
+  https://player.vimeo.com/video/1133229398
+- [bodycam] Log #2025-0004513 Vimeo BWC 3
+  https://player.vimeo.com/video/1133229736
+- [bodycam] Log #2025-0004513 Vimeo BWC 4
+  https://player.vimeo.com/video/1133229430
+- [bodycam] Log #2025-0004513 Vimeo BWC 5
+  https://player.vimeo.com/video/1133229695
+- [bodycam] Log #2025-0004513 Vimeo BWC 6
+  https://player.vimeo.com/video/1133229592
+- [bodycam] Log #2025-0004513 Vimeo BWC 7
+  https://player.vimeo.com/video/1133229539
+- [bodycam] Log #2025-0004513 Vimeo BWC 8
+  https://player.vimeo.com/video/1133229644
+- [bodycam] Log #2025-0004513 Vimeo BWC 9
+  https://player.vimeo.com/video/1133229292
+- [bodycam] Log #2025-0004513 Vimeo BWC 10
+  https://player.vimeo.com/video/1133229497
+- [bodycam] Log #2025-0004513 Vimeo BWC 11
+  https://player.vimeo.com/video/1133229365
+- [bodycam] Log #2025-0004513 Vimeo BWC 12
+  https://player.vimeo.com/video/1133229663
+- [bodycam] Log #2025-0004513 Vimeo BWC 13
+  https://player.vimeo.com/video/1133233214
+- [bodycam] Log #2025-0004513 Vimeo BWC 14
+  https://player.vimeo.com/video/1133233174
+- [bodycam] Log #2025-0004513 Vimeo BWC 15
+  https://player.vimeo.com/video/1133240517
+- [bodycam] Log #2025-0004513 Vimeo BWC 16
+  https://player.vimeo.com/video/1133241078
+- [bodycam] Log #2025-0004513 Vimeo BWC 17
+  https://player.vimeo.com/video/1133241355
+- [bodycam] Log #2025-0004513 Vimeo BWC 18
+  https://player.vimeo.com/video/1133241412
+- [bodycam] Log #2025-0004513 Vimeo BWC 19
+  https://player.vimeo.com/video/1133241627
+- [bodycam] Log #2025-0004513 Vimeo BWC 20
+  https://player.vimeo.com/video/1133241843
+- [bodycam] Log #2025-0004513 Vimeo BWC 21
+  https://player.vimeo.com/video/1133241864
+- [bodycam] Log #2025-0004513 Vimeo BWC 22
+  https://player.vimeo.com/video/1133241216
+- [documents] Log #2025-0004513 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2025/11/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-FATAL-OFFICER-INVOLVED-SHOOTING-NEAR-800-N.-WALLER-FINAL.pdf
+- [documents] Log #2025-0004513 Traffic Crash Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/11/Traffic-Crash-Report-JJ403933-redacted.pdf
+- [documents] Log #2025-0004513 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/11/Moreno-TRR-redacted.pdf
+- [documents] Log #2025-0004513 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/11/Hollis-TRR-redacted.pdf
+
+### copa_2018_1089886  ·  V22 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1089886/
+- [bodycam] Log #2018-1089886 Vimeo BWC 1
+  https://player.vimeo.com/video/284949051
+- [bodycam] Log #2018-1089886 Vimeo BWC 2
+  https://player.vimeo.com/video/284954177
+- [bodycam] Log #2018-1089886 Vimeo BWC 3
+  https://player.vimeo.com/video/284954639
+- [bodycam] Log #2018-1089886 Vimeo BWC 4
+  https://player.vimeo.com/video/284955402
+- [bodycam] Log #2018-1089886 Vimeo BWC 5
+  https://player.vimeo.com/video/284955777
+- [bodycam] Log #2018-1089886 Vimeo BWC 6
+  https://player.vimeo.com/video/284956507
+- [bodycam] Log #2018-1089886 Vimeo BWC 7
+  https://player.vimeo.com/video/284956975
+- [bodycam] Log #2018-1089886 Vimeo BWC 8
+  https://player.vimeo.com/video/284962069
+- [bodycam] Log #2018-1089886 Vimeo BWC 9
+  https://player.vimeo.com/video/285004110
+- [bodycam] Log #2018-1089886 Vimeo BWC 10
+  https://player.vimeo.com/video/285154718
+- [bodycam] Log #2018-1089886 Vimeo BWC 11
+  https://player.vimeo.com/video/285176887
+- [bodycam] Log #2018-1089886 Vimeo BWC 12
+  https://player.vimeo.com/video/381911051
+- [bodycam] Log #2018-1089886 Vimeo BWC 13
+  https://player.vimeo.com/video/383390477
+- [bodycam] Log #2018-1089886 Vimeo BWC 14
+  https://player.vimeo.com/video/382630103
+- [bodycam] Log #2018-1089886 Vimeo BWC 15
+  https://player.vimeo.com/video/383182465
+- [bodycam] Log #2018-1089886 Vimeo BWC 16
+  https://player.vimeo.com/video/382678033
+- [bodycam] Log #2018-1089886 Vimeo BWC 17
+  https://player.vimeo.com/video/383353399
+- [bodycam] Log #2018-1089886 Vimeo BWC 18
+  https://player.vimeo.com/video/383183229
+- [bodycam] Log #2018-1089886 Vimeo BWC 19
+  https://player.vimeo.com/video/383183449
+- [bodycam] Log #2018-1089886 Vimeo BWC 20
+  https://player.vimeo.com/video/383355692
+- [bodycam] Log #2018-1089886 Vimeo BWC 21
+  https://player.vimeo.com/video/383390192
+- [bodycam] Log #2018-1089886 Vimeo BWC 22
+  https://player.vimeo.com/video/391852280
+- [documents] 2018-1089886_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/2018-1089886_FSR.pdf
+- [documents] Log 1089886 OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1089886-OCIR-1.pdf
+- [documents] Log 1089886 OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1089886-OCIR.pdf
+- [documents] Log 1089886 TRR#2 (1)
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1089886-TRR2-1.pdf
+- [documents] Log 1089886 TRR #1
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1089886-TRR-1.pdf
+- [documents] Log 1089886 OCIR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1089886-OCIR-Redacted.pdf
+- [other] OneDrive_2018-08-14
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/OneDrive_2018-08-14.zip
 
 ### copa_2021_0001112  ·  V21 A0 D9 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2021-0001112/
@@ -1489,6 +2497,57 @@ case: https://www.chicagocopa.org/case/2025-0002597/
 - [documents] Log #2025-0002597 Foot Pursuit Report 4
   https://www.chicagocopa.org/wp-content/uploads/2025/07/011-Foot-Pursuit-Package-Officer-Bermudez-Redacted.pdf
 
+### copa_1090234  ·  V21 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1090234/
+- [bodycam] Log #1090234 Vimeo BWC 1
+  https://player.vimeo.com/video/285128875
+- [bodycam] Log #1090234 Vimeo BWC 2
+  https://player.vimeo.com/video/285129344
+- [bodycam] Log #1090234 Vimeo BWC 3
+  https://player.vimeo.com/video/285129695
+- [bodycam] Log #1090234 Vimeo BWC 4
+  https://player.vimeo.com/video/285130176
+- [bodycam] Log #1090234 Vimeo BWC 5
+  https://player.vimeo.com/video/285130459
+- [bodycam] Log #1090234 Vimeo BWC 6
+  https://player.vimeo.com/video/285131519
+- [bodycam] Log #1090234 Vimeo BWC 7
+  https://player.vimeo.com/video/285131872
+- [bodycam] Log #1090234 Vimeo BWC 8
+  https://player.vimeo.com/video/285132143
+- [bodycam] Log #1090234 Vimeo BWC 9
+  https://player.vimeo.com/video/285135543
+- [bodycam] Log #1090234 Vimeo BWC 10
+  https://player.vimeo.com/video/285132420
+- [bodycam] Log #1090234 Vimeo BWC 11
+  https://player.vimeo.com/video/285137375
+- [bodycam] Log #1090234 Vimeo BWC 12
+  https://player.vimeo.com/video/285137607
+- [bodycam] Log #1090234 Vimeo BWC 13
+  https://player.vimeo.com/video/285137869
+- [bodycam] Log #1090234 Vimeo BWC 14
+  https://player.vimeo.com/video/285138145
+- [bodycam] Log #1090234 Vimeo BWC 15
+  https://player.vimeo.com/video/362411822
+- [bodycam] Log #1090234 Vimeo BWC 16
+  https://player.vimeo.com/video/362412055
+- [bodycam] Log #1090234 Vimeo BWC 17
+  https://player.vimeo.com/video/285138512
+- [bodycam] Log #1090234 Vimeo BWC 18
+  https://player.vimeo.com/video/285139179
+- [bodycam] Log #1090234 Vimeo BWC 19
+  https://player.vimeo.com/video/285139549
+- [bodycam] Log #1090234 Vimeo BWC 20
+  https://player.vimeo.com/video/285139881
+- [bodycam] Log #1090234 Vimeo BWC 21
+  https://player.vimeo.com/video/356892659
+- [documents] Log 1090234 TRR #2
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090234-TRR-2.pdf
+- [documents] Log 1090234 TRR #1
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090234-TRR-1.pdf
+- [documents] Log 1090234 OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090234-OCIR.pdf
+
 ### copa_2020_0000672  ·  V21 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2020-0000672/
 - [bodycam] Log #2020-0000672 Vimeo BWC 1
@@ -1604,6 +2663,224 @@ case: https://www.chicagocopa.org/case/2020-0004077/
   https://www.chicagocopa.org/wp-content/uploads/2020/10/Final-JD351290_REDACTED.pdf
 - [documents] Log #2020-4077 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2020/10/Final-JD351213_REDACTED.pdf
+
+### copa_2025_0002202  ·  V21 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0002202/
+- [bodycam] Log #2025-0002202 Vimeo BWC 1
+  https://player.vimeo.com/video/1091289412
+- [bodycam] Log #2025-0002202 Vimeo BWC 2
+  https://player.vimeo.com/video/1091290474
+- [bodycam] Log #2025-0002202 Vimeo BWC 3
+  https://player.vimeo.com/video/1091290142
+- [bodycam] Log #2025-0002202 Vimeo BWC 4
+  https://player.vimeo.com/video/1091289755
+- [bodycam] Log #2025-0002202 Vimeo BWC 5
+  https://player.vimeo.com/video/1091290327
+- [bodycam] Log #2025-0002202 Vimeo BWC 6
+  https://player.vimeo.com/video/1091289623
+- [bodycam] Log #2025-0002202 Vimeo BWC 7
+  https://player.vimeo.com/video/1091290655
+- [bodycam] Log #2025-0002202 Vimeo BWC 8
+  https://player.vimeo.com/video/1091290027
+- [bodycam] Log #2025-0002202 Vimeo BWC 9
+  https://player.vimeo.com/video/1091289937
+- [bodycam] Log #2025-0002202 Vimeo BWC 10
+  https://player.vimeo.com/video/1091289356
+- [bodycam] Log #2025-0002202 Vimeo BWC 11
+  https://player.vimeo.com/video/1091289567
+- [bodycam] Log #2025-0002202 Vimeo BWC 12
+  https://player.vimeo.com/video/1091289249
+- [bodycam] Log #2025-0002202 Vimeo BWC 13
+  https://player.vimeo.com/video/1091289121
+- [bodycam] Log #2025-0002202 Vimeo BWC 14
+  https://player.vimeo.com/video/1091288926
+- [bodycam] Log #2025-0002202 Vimeo BWC 15
+  https://player.vimeo.com/video/1091289087
+- [bodycam] Log #2025-0002202 Vimeo BWC 16
+  https://player.vimeo.com/video/1091288946
+- [bodycam] Log #2025-0002202 Vimeo BWC 17
+  https://player.vimeo.com/video/1091288978
+- [bodycam] Log #2025-0002202 Vimeo BWC 18
+  https://player.vimeo.com/video/1091288773
+- [bodycam] Log #2025-0002202 Vimeo BWC 19
+  https://player.vimeo.com/video/1091288861
+- [bodycam] Log #2025-0002202 Vimeo BWC 20
+  https://player.vimeo.com/video/1091288886
+- [bodycam] Log #2025-0002202 Vimeo BWC 21
+  https://player.vimeo.com/video/1091288871
+- [documents] Log #2025-0002202 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/06/TRR-of-PO-Y.-Echeverria-Redacted.pdf
+- [documents] Log #2025-0002202 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/06/TRR-of-PO-C.-McMahon-Redacted.pdf
+- [documents] Log #2025-0002202 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/06/002-original_case_incident_report_jj247534-Redacted.pdf
+
+### copa_2020_0000062  ·  V20 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0000062/
+- [bodycam] Log #2020-0000062 Vimeo BWC 1
+  https://player.vimeo.com/video/395597457
+- [bodycam] Log #2020-0000062 Vimeo BWC 2
+  https://player.vimeo.com/video/395597579
+- [bodycam] Log #2020-0000062 Vimeo BWC 3
+  https://player.vimeo.com/video/395585693
+- [bodycam] Log #2020-0000062 Vimeo BWC 4
+  https://player.vimeo.com/video/395582675
+- [bodycam] Log #2020-0000062 Vimeo BWC 5
+  https://player.vimeo.com/video/395583332
+- [bodycam] Log #2020-0000062 Vimeo BWC 6
+  https://player.vimeo.com/video/395583653
+- [bodycam] Log #2020-0000062 Vimeo BWC 7
+  https://player.vimeo.com/video/395583822
+- [bodycam] Log #2020-0000062 Vimeo BWC 8
+  https://player.vimeo.com/video/395583961
+- [bodycam] Log #2020-0000062 Vimeo BWC 9
+  https://player.vimeo.com/video/395584107
+- [bodycam] Log #2020-0000062 Vimeo BWC 10
+  https://player.vimeo.com/video/395584313
+- [bodycam] Log #2020-0000062 Vimeo BWC 11
+  https://player.vimeo.com/video/395584474
+- [bodycam] Log #2020-0000062 Vimeo BWC 12
+  https://player.vimeo.com/video/395584634
+- [bodycam] Log #2020-0000062 Vimeo BWC 13
+  https://player.vimeo.com/video/395584789
+- [bodycam] Log #2020-0000062 Vimeo BWC 14
+  https://player.vimeo.com/video/395584931
+- [bodycam] Log #2020-0000062 Vimeo BWC 15
+  https://player.vimeo.com/video/395585091
+- [bodycam] Log #2020-0000062 Vimeo BWC 16
+  https://player.vimeo.com/video/395590012
+- [bodycam] Log #2020-0000062 Vimeo BWC 17
+  https://player.vimeo.com/video/395590162
+- [bodycam] Log #2020-0000062 Vimeo BWC 18
+  https://player.vimeo.com/video/395590253
+- [bodycam] Log #2020-0000062 Vimeo BWC 19
+  https://player.vimeo.com/video/395593504
+- [bodycam] Log #2020-0000062 Vimeo BWC 20
+  https://player.vimeo.com/video/395599027
+- [documents] Log # 2020-0062 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/03/2020-62-TRR-PO-Ruiz_REDACTED.pdf
+- [documents] Log # 2020-0062 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/03/2020-62-TRR-PO-Antar-Khan_REDACTED.pdf
+- [documents] Log # 2020-0062 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/03/2020-62-Original-Case-Incident-Report_REDACTED.pdf
+
+### copa_2023_0002357  ·  V20 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2023-0002357/
+- [bodycam] Log #2023-0002357 Vimeo BWC 1
+  https://player.vimeo.com/video/839115973
+- [bodycam] Log #2023-0002357 Vimeo BWC 2
+  https://player.vimeo.com/video/839115981
+- [bodycam] Log #2023-0002357 Vimeo BWC 3
+  https://player.vimeo.com/video/839115950
+- [bodycam] Log #2023-0002357 Vimeo BWC 4
+  https://player.vimeo.com/video/839115960
+- [bodycam] Log #2023-0002357 Vimeo BWC 5
+  https://player.vimeo.com/video/839116071
+- [bodycam] Log #2023-0002357 Vimeo BWC 6
+  https://player.vimeo.com/video/839116014
+- [bodycam] Log #2023-0002357 Vimeo BWC 7
+  https://player.vimeo.com/video/839116027
+- [bodycam] Log #2023-0002357 Vimeo BWC 8
+  https://player.vimeo.com/video/839116044
+- [bodycam] Log #2023-0002357 Vimeo BWC 9
+  https://player.vimeo.com/video/839116061
+- [bodycam] Log #2023-0002357 Vimeo BWC 10
+  https://player.vimeo.com/video/839116148
+- [bodycam] Log #2023-0002357 Vimeo BWC 11
+  https://player.vimeo.com/video/839116164
+- [bodycam] Log #2023-0002357 Vimeo BWC 12
+  https://player.vimeo.com/video/839116094
+- [bodycam] Log #2023-0002357 Vimeo BWC 13
+  https://player.vimeo.com/video/839116105
+- [bodycam] Log #2023-0002357 Vimeo BWC 14
+  https://player.vimeo.com/video/839116128
+- [bodycam] Log #2023-0002357 Vimeo BWC 15
+  https://player.vimeo.com/video/839113025
+- [bodycam] Log #2023-0002357 Vimeo BWC 16
+  https://player.vimeo.com/video/839113049
+- [bodycam] Log #2023-0002357 Vimeo BWC 17
+  https://player.vimeo.com/video/839113084
+- [bodycam] Log #2023-0002357 Vimeo BWC 18
+  https://player.vimeo.com/video/839113124
+- [bodycam] Log #2023-0002357 Vimeo BWC 19
+  https://player.vimeo.com/video/839113162
+- [bodycam] Log #2023-0002357 Vimeo BWC 20
+  https://player.vimeo.com/video/839113199
+- [documents] 2023-2357 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2023/06/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-2200-W.-MAYPOLE.pdf
+- [documents] Log #2023-0002357 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/06/TRR-Officer-Qwon-Spencer-RD-No.-JG282932-Redacted.pdf
+- [documents] Log #2023-0002357 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/06/CaseReport_JG282932-Redacted.pdf
+
+### copa_2021_0003097  ·  V20 A0 D13 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2021-0003097/
+- [bodycam] Log #2021-0003097 Vimeo BWC 1
+  https://player.vimeo.com/video/1201940215
+- [bodycam] Log #2021-0003097 Vimeo BWC 2
+  https://player.vimeo.com/video/1201940441
+- [bodycam] Log #2021-0003097 Vimeo BWC 3
+  https://player.vimeo.com/video/1201940212
+- [bodycam] Log #2021-0003097 Vimeo BWC 4
+  https://player.vimeo.com/video/1201940570
+- [bodycam] Log #2021-0003097 Vimeo BWC 5
+  https://player.vimeo.com/video/1201940214
+- [bodycam] Log #2021-0003097 Vimeo BWC 6
+  https://player.vimeo.com/video/1201940351
+- [bodycam] Log #2021-0003097 Vimeo BWC 7
+  https://player.vimeo.com/video/1201940370
+- [bodycam] Log #2021-0003097 Vimeo BWC 8
+  https://player.vimeo.com/video/1201940506
+- [bodycam] Log #2021-0003097 Vimeo BWC 9
+  https://player.vimeo.com/video/1201940390
+- [bodycam] Log #2021-0003097 Vimeo BWC 10
+  https://player.vimeo.com/video/1201940213
+- [bodycam] Log #2021-0003097 Vimeo BWC 11
+  https://player.vimeo.com/video/1201941072
+- [bodycam] Log #2021-0003097 Vimeo BWC 12
+  https://player.vimeo.com/video/1201940848
+- [bodycam] Log #2021-0003097 Vimeo BWC 13
+  https://player.vimeo.com/video/1201940850
+- [bodycam] Log #2021-0003097 Vimeo BWC 14
+  https://player.vimeo.com/video/1201940847
+- [bodycam] Log #2021-0003097 Vimeo BWC 15
+  https://player.vimeo.com/video/1201940849
+- [bodycam] Log #2021-0003097 Vimeo BWC 16
+  https://player.vimeo.com/video/1201940880
+- [bodycam] Log #2021-0003097 Vimeo BWC 17
+  https://player.vimeo.com/video/1201940879
+- [bodycam] Log #2021-0003097 Vimeo BWC 18
+  https://player.vimeo.com/video/1201940881
+- [bodycam] Log #2021-0003097 Vimeo BWC 19
+  https://player.vimeo.com/video/1201941071
+- [bodycam] Log #2021-0003097 Vimeo BWC 20
+  https://player.vimeo.com/video/1201941073
+- [documents] Log #2021-0003097 Tactical Response Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/TRR-_French-redacted.pdf
+- [documents] Log #2021-0003097 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/TRR-_Yanez-redacted.pdf
+- [documents] Log #2021-0003097 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/TRR-_Blas-redacted.pdf
+- [documents] Log #2021-0003097 Arrest Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Final-Arrest-Report-2-redacted.pdf
+- [documents] Log #2021-0003097 Case Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/JE329873_Original_Incident_Case_Report-redacted.pdf
+- [documents] Log #2021-0003097 Arrest Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Final-Arrest-Report-Emonte-Morgan-redacted.pdf
+- [documents] Log #2021-0003097 Final Summary Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/2021-0003097_FSR.pdf
+- [documents] Emonte Morgan updated court order redacted
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Emonte-Morgan-updated-court-order-redacted.pdf
+- [documents] Eric Morgan updated court order redacted
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Eric-Morgan-updated-court-order-redacted.pdf
+- [documents] Emonte Morgan COPA order REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Emonte-Morgan-COPA-order-REDACTED-1.pdf
+- [documents] 2021- 3097 Emonte Morgan COPA order REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Emonte-Morgan-COPA-order-REDACTED.pdf
+- [documents] 2021-3097 Updated Court Order
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Morgan-Updated-Court-Order-REDACTED.pdf
+- [documents] Morgan Court Order – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/Morgan-Court-Order-REDACTED.pdf
 
 ### copa_2020_0004833  ·  V19 A0 D8 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2020-0004833/
@@ -1721,6 +2998,63 @@ case: https://www.chicagocopa.org/case/2023-0005234/
 - [documents] Log #2023-0005234 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/12/Original-Case-Incident-Report-JG493613-Redacted.pdf
 
+### copa_2022_0005417  ·  V19 A0 D8 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2022-0005417/
+- [bodycam] Log #2022-0005417 Vimeo BWC 1
+  https://player.vimeo.com/video/797462159
+- [bodycam] Log #2022-0005417 Vimeo BWC 2
+  https://player.vimeo.com/video/797461932
+- [bodycam] Log #2022-0005417 Vimeo BWC 3
+  https://player.vimeo.com/video/797461946
+- [bodycam] Log #2022-0005417 Vimeo BWC 4
+  https://player.vimeo.com/video/797461963
+- [bodycam] Log #2022-0005417 Vimeo BWC 5
+  https://player.vimeo.com/video/797461980
+- [bodycam] Log #2022-0005417 Vimeo BWC 6
+  https://player.vimeo.com/video/797461990
+- [bodycam] Log #2022-0005417 Vimeo BWC 7
+  https://player.vimeo.com/video/797462002
+- [bodycam] Log #2022-0005417 Vimeo BWC 8
+  https://player.vimeo.com/video/797462022
+- [bodycam] Log #2022-0005417 Vimeo BWC 9
+  https://player.vimeo.com/video/797462036
+- [bodycam] Log #2022-0005417 Vimeo BWC 10
+  https://player.vimeo.com/video/797462050
+- [bodycam] Log #2022-0005417 Vimeo BWC 11
+  https://player.vimeo.com/video/797462070
+- [bodycam] Log #2022-0005417 Vimeo BWC 12
+  https://player.vimeo.com/video/797462090
+- [bodycam] Log #2022-0005417 Vimeo BWC 13
+  https://player.vimeo.com/video/797462334
+- [bodycam] Log #2022-0005417 Vimeo BWC 14
+  https://player.vimeo.com/video/797462449
+- [bodycam] Log #2022-0005417 Vimeo BWC 15
+  https://player.vimeo.com/video/797462109
+- [bodycam] Log #2022-0005417 Vimeo BWC 16
+  https://player.vimeo.com/video/797462134
+- [bodycam] Log #2022-0005417 Vimeo BWC 17
+  https://player.vimeo.com/video/797462309
+- [bodycam] Log #2022-0005417 Vimeo BWC 18
+  https://player.vimeo.com/video/797462329
+- [bodycam] Log #2022-0005417 Vimeo BWC 19
+  https://player.vimeo.com/video/797462170
+- [documents] 2022-0005417_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/2022-0005417_FSR.pdf
+- [documents] 2022-5417 Case Report
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/OCIR-JF521276-redacted.pdf
+- [documents] Log #2022-0005417 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/005-TRR_PO_Smith-Redacted.pdf
+- [documents] Log #2022-0005417 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/002-Arrest_Report_JF521276-Redacted.pdf
+- [documents] Log #2022-0005417 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/005-TRR_PO_Smith-Redbox.pdf
+- [documents] 2022-5417 rescinded court order-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/5.1.23-rescinded-court-order-Redacted.pdf
+- [documents] Updated court order Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/3.2.23-updated-court-order-Redacted.pdf
+- [documents] Mata Court order-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/Mata-Court-order-Redacted.pdf
+
 ### copa_2017_1085876  ·  V18 A0 D22 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1085876/
 - [bodycam] Log #2017-1085876 Vimeo BWC 1
@@ -1803,6 +3137,116 @@ case: https://www.chicagocopa.org/case/1085876/
   https://www.chicagocopa.org/wp-content/uploads/2017/09/Original-Case-Incident-Report-2-2.pdf
 - [documents] Original-Case-Incident-Report-1
   https://www.chicagocopa.org/wp-content/uploads/2017/09/Original-Case-Incident-Report-1-2.pdf
+
+### copa_2020_0000988  ·  V18 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2020-0000988/
+- [bodycam] Log #2020-0000988 Vimeo BWC 1
+  https://player.vimeo.com/video/411085658
+- [bodycam] Log #2020-0000988 Vimeo BWC 2
+  https://player.vimeo.com/video/411088861
+- [bodycam] Log #2020-0000988 Vimeo BWC 3
+  https://player.vimeo.com/video/411090214
+- [bodycam] Log #2020-0000988 Vimeo BWC 4
+  https://player.vimeo.com/video/411092716
+- [bodycam] Log #2020-0000988 Vimeo BWC 5
+  https://player.vimeo.com/video/411094570
+- [bodycam] Log #2020-0000988 Vimeo BWC 6
+  https://player.vimeo.com/video/411098489
+- [bodycam] Log #2020-0000988 Vimeo BWC 7
+  https://player.vimeo.com/video/411423071
+- [bodycam] Log #2020-0000988 Vimeo BWC 8
+  https://player.vimeo.com/video/411424333
+- [bodycam] Log #2020-0000988 Vimeo BWC 9
+  https://player.vimeo.com/video/411425389
+- [bodycam] Log #2020-0000988 Vimeo BWC 10
+  https://player.vimeo.com/video/411426821
+- [bodycam] Log #2020-0000988 Vimeo BWC 11
+  https://player.vimeo.com/video/411428031
+- [bodycam] Log #2020-0000988 Vimeo BWC 12
+  https://player.vimeo.com/video/411439760
+- [bodycam] Log #2020-0000988 Vimeo BWC 13
+  https://player.vimeo.com/video/411440157
+- [bodycam] Log #2020-0000988 Vimeo BWC 14
+  https://player.vimeo.com/video/411442991
+- [bodycam] Log #2020-0000988 Vimeo BWC 15
+  https://player.vimeo.com/video/411443390
+- [bodycam] Log #2020-0000988 Vimeo BWC 16
+  https://player.vimeo.com/video/411446561
+- [bodycam] Log #2020-0000988 Vimeo BWC 17
+  https://player.vimeo.com/video/411447289
+- [bodycam] Log #2020-0000988 Vimeo BWC 18
+  https://player.vimeo.com/video/411448825
+- [documents] 2020-988 FINAL REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2021/04/2020-988-FINAL-REDACTED.pdf
+- [documents] Log # 2020-0988 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/04/NEW_Att.-6-Final-Arrest-Report-CB-19944287-Ariel-Roman_REDACTED.pdf
+- [documents] Log #2020-0988 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/04/NEW_Att.-3-TRR-Br-final_REDACTED_Rev-4-23-20.pdf
+- [documents] Log #2020-0988 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/04/NEW_Att.-2-TRR-Bd-final_REDACTED_Rev-4-23-20.pdf
+- [documents] Log # 2020-0988 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/04/Att.-5-OCIR_Redacted.pdf
+
+### copa_2023_0000632  ·  V18 A0 D11 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2023-0000632/
+- [bodycam] Log #2023-0000632 Vimeo BWC 1
+  https://player.vimeo.com/video/817306105
+- [bodycam] Log #2023-0000632 Vimeo BWC 2
+  https://player.vimeo.com/video/817305442
+- [bodycam] Log #2023-0000632 Vimeo BWC 3
+  https://player.vimeo.com/video/817305322
+- [bodycam] Log #2023-0000632 Vimeo BWC 4
+  https://player.vimeo.com/video/817305861
+- [bodycam] Log #2023-0000632 Vimeo BWC 5
+  https://player.vimeo.com/video/817305954
+- [bodycam] Log #2023-0000632 Vimeo BWC 6
+  https://player.vimeo.com/video/817305738
+- [bodycam] Log #2023-0000632 Vimeo BWC 7
+  https://player.vimeo.com/video/817306024
+- [bodycam] Log #2023-0000632 Vimeo BWC 8
+  https://player.vimeo.com/video/817305639
+- [bodycam] Log #2023-0000632 Vimeo BWC 9
+  https://player.vimeo.com/video/817305775
+- [bodycam] Log #2023-0000632 Vimeo BWC 10
+  https://player.vimeo.com/video/817305701
+- [bodycam] Log #2023-0000632 Vimeo BWC 11
+  https://player.vimeo.com/video/817306067
+- [bodycam] Log #2023-0000632 Vimeo BWC 12
+  https://player.vimeo.com/video/817305581
+- [bodycam] Log #2023-0000632 Vimeo BWC 13
+  https://player.vimeo.com/video/817305993
+- [bodycam] Log #2023-0000632 Vimeo BWC 14
+  https://player.vimeo.com/video/910534809
+- [bodycam] Log #2023-0000632 Vimeo BWC 15
+  https://player.vimeo.com/video/817311566
+- [bodycam] Log #2023-0000632 Vimeo BWC 16
+  https://player.vimeo.com/video/817311550
+- [bodycam] Log #2023-0000632 Vimeo BWC 17
+  https://player.vimeo.com/video/817311590
+- [bodycam] Log #2023-0000632 Vimeo BWC 18
+  https://player.vimeo.com/video/817305248
+- [documents] Log #2023-0000632 Investigatory Stop Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/ISR-Redacted.pdf
+- [documents] Log #2023-0000632 Investigatory Stop Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Kindred-ISR-Redacted-1.pdf
+- [documents] Log #2023-0000632 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/TRR-Redacted-1.pdf
+- [documents] Log #2023-0000632 Arrest Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Final-Arrest-Report-Redacted-1.pdf
+- [documents] Log #2023-0000632 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Case-Report-Redacted-1.pdf
+- [documents] 2023-0632 second Court Order-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Javontay-Kindred-COPA-Court-Order-Redacted.pdf
+- [documents] Court Order 2023-0632-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Court-Order-2023-0632-Redacted.pdf
+- [documents] Log #2023-0000632 Investigatory Stop Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Kindred-ISR-Redacted.pdf
+- [documents] Log #2023-0000632 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/TRR-Redacted.pdf
+- [documents] Log #2023-0000632 Arrest Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Final-Arrest-Report-Redacted.pdf
+- [documents] Log #2023-0000632 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/Case-Report-Redacted.pdf
 
 ### copa_2020_0003466  ·  V17 A0 D18 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2020-0003466/
@@ -1979,6 +3423,98 @@ case: https://www.chicagocopa.org/case/1058573-2/
 - [documents] Log#1058573-CHI-R-00000286
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1058573-CHI-R-00000286.pdf
 
+### copa_2019_0004934  ·  V17 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0004934/
+- [bodycam] Log #2019-0004934 Vimeo BWC 1
+  https://player.vimeo.com/video/388542226
+- [bodycam] Log #2019-0004934 Vimeo BWC 2
+  https://player.vimeo.com/video/388542368
+- [bodycam] Log #2019-0004934 Vimeo BWC 3
+  https://player.vimeo.com/video/388542515
+- [bodycam] Log #2019-0004934 Vimeo BWC 4
+  https://player.vimeo.com/video/388543537
+- [bodycam] Log #2019-0004934 Vimeo BWC 5
+  https://player.vimeo.com/video/388543774
+- [bodycam] Log #2019-0004934 Vimeo BWC 6
+  https://player.vimeo.com/video/388596442
+- [bodycam] Log #2019-0004934 Vimeo BWC 7
+  https://player.vimeo.com/video/396452392
+- [bodycam] Log #2019-0004934 Vimeo BWC 8
+  https://player.vimeo.com/video/396452496
+- [bodycam] Log #2019-0004934 Vimeo BWC 9
+  https://player.vimeo.com/video/396506144
+- [bodycam] Log #2019-0004934 Vimeo BWC 10
+  https://player.vimeo.com/video/396452702
+- [bodycam] Log #2019-0004934 Vimeo BWC 11
+  https://player.vimeo.com/video/396452812
+- [bodycam] Log #2019-0004934 Vimeo BWC 12
+  https://player.vimeo.com/video/396452580
+- [bodycam] Log #2019-0004934 Vimeo BWC 13
+  https://player.vimeo.com/video/388545057
+- [bodycam] Log #2019-0004934 Vimeo BWC 14
+  https://player.vimeo.com/video/388545394
+- [bodycam] Log #2019-0004934 Vimeo BWC 15
+  https://player.vimeo.com/video/388545520
+- [bodycam] Log #2019-0004934 Vimeo BWC 16
+  https://player.vimeo.com/video/388545710
+- [bodycam] Log #2019-0004934 Vimeo BWC 17
+  https://player.vimeo.com/video/388545897
+- [documents] 2019-0004934_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/2019-0004934_FSR.pdf
+- [documents] Log # 2019-4934 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/TRR_Ds_REDACTED.pdf
+- [documents] Log # 2019-4934 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/Att-34-Final-Arrest-Report-Rw_REDACTED.pdf
+- [documents] Log # 2019-4934 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/CaseReport_JC534930_REDACTED.pdf
+
+### copa_2025_0000032  ·  V17 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0000032/
+- [bodycam] Log #2025-0000032 Vimeo BWC 1
+  https://player.vimeo.com/video/1053080782
+- [bodycam] Log #2025-0000032 Vimeo BWC 2
+  https://player.vimeo.com/video/1053080385
+- [bodycam] Log #2025-0000032 Vimeo BWC 3
+  https://player.vimeo.com/video/1053081301
+- [bodycam] Log #2025-0000032 Vimeo BWC 4
+  https://player.vimeo.com/video/1053080448
+- [bodycam] Log #2025-0000032 Vimeo BWC 5
+  https://player.vimeo.com/video/1053081682
+- [bodycam] Log #2025-0000032 Vimeo BWC 6
+  https://player.vimeo.com/video/1053081404
+- [bodycam] Log #2025-0000032 Vimeo BWC 7
+  https://player.vimeo.com/video/1053080877
+- [bodycam] Log #2025-0000032 Vimeo BWC 8
+  https://player.vimeo.com/video/1053080688
+- [bodycam] Log #2025-0000032 Vimeo BWC 9
+  https://player.vimeo.com/video/1053081103
+- [bodycam] Log #2025-0000032 Vimeo BWC 10
+  https://player.vimeo.com/video/1053080552
+- [bodycam] Log #2025-0000032 Vimeo BWC 11
+  https://player.vimeo.com/video/1053081518
+- [bodycam] Log #2025-0000032 Vimeo BWC 12
+  https://player.vimeo.com/video/1053081608
+- [bodycam] Log #2025-0000032 Vimeo BWC 13
+  https://player.vimeo.com/video/1053080615
+- [bodycam] Log #2025-0000032 Vimeo BWC 14
+  https://player.vimeo.com/video/1053080982
+- [bodycam] Log #2025-0000032 Vimeo BWC 15
+  https://player.vimeo.com/video/1053081214
+- [bodycam] Log #2025-0000032 Vimeo BWC 16
+  https://player.vimeo.com/video/1053081760
+- [bodycam] Log #2025-0000032 Vimeo BWC 17
+  https://player.vimeo.com/video/1053080199
+- [documents] Log #2025-0000032 Tactical Response Report 4
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/124-trr_po_pagan-Redacted.pdf
+- [documents] Log #2025-0000032 Tactical Response Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/123-trr_po_castillo-Redacted.pdf
+- [documents] Log #2025-0000032 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/126-trr_po_urbano_mateo-Redacted.pdf
+- [documents] Log #2025-0000032 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/125-trr_po_saleh-Redacted.pdf
+- [documents] Log #2025-0000032 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/112-police_report_jj102267_-_ocir-Redacted.pdf
+
 ### copa_2021_0002862  ·  V16 A0 D4 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0002862/
 - [bodycam] Log #2021-0002862 Vimeo BWC 1
@@ -2083,6 +3619,135 @@ case: https://www.chicagocopa.org/case/1071970-2/
 - [documents] Log#1071970 – CHI-R-00000781
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1071970-CHI-R-00000781.pdf
 
+### copa_2019_0001703  ·  V16 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0001703/
+- [bodycam] Log #2019-0001703 Vimeo BWC 1
+  https://player.vimeo.com/video/347529252
+- [bodycam] Log #2019-0001703 Vimeo BWC 2
+  https://player.vimeo.com/video/347529564
+- [bodycam] Log #2019-0001703 Vimeo BWC 3
+  https://player.vimeo.com/video/347529712
+- [bodycam] Log #2019-0001703 Vimeo BWC 4
+  https://player.vimeo.com/video/347529917
+- [bodycam] Log #2019-0001703 Vimeo BWC 5
+  https://player.vimeo.com/video/347530074
+- [bodycam] Log #2019-0001703 Vimeo BWC 6
+  https://player.vimeo.com/video/347530592
+- [bodycam] Log #2019-0001703 Vimeo BWC 7
+  https://player.vimeo.com/video/347530804
+- [bodycam] Log #2019-0001703 Vimeo BWC 8
+  https://player.vimeo.com/video/377648431
+- [bodycam] Log #2019-0001703 Vimeo BWC 9
+  https://player.vimeo.com/video/377648546
+- [bodycam] Log #2019-0001703 Vimeo BWC 10
+  https://player.vimeo.com/video/377648605
+- [bodycam] Log #2019-0001703 Vimeo BWC 11
+  https://player.vimeo.com/video/377648673
+- [bodycam] Log #2019-0001703 Vimeo BWC 12
+  https://player.vimeo.com/video/377648758
+- [bodycam] Log #2019-0001703 Vimeo BWC 13
+  https://player.vimeo.com/video/377648852
+- [bodycam] Log #2019-0001703 Vimeo BWC 14
+  https://player.vimeo.com/video/377648973
+- [bodycam] Log #2019-0001703 Vimeo BWC 15
+  https://player.vimeo.com/video/377649067
+- [bodycam] Log #2019-0001703 Vimeo BWC 16
+  https://player.vimeo.com/video/377649153
+- [documents] 2019-0001703_Concurrence
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/2019-0001703_Concurrence.pdf
+- [documents] 2019-0001703_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/2019-0001703_FSR.pdf
+- [documents] Log # 2019-0001703 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/ocir-Case-JC266100-REDACTED.pdf
+
+### copa_2019_0001780  ·  V16 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0001780/
+- [bodycam] Log #2019-0001780 Vimeo BWC 1
+  https://player.vimeo.com/video/349127707
+- [bodycam] Log #2019-0001780 Vimeo BWC 2
+  https://player.vimeo.com/video/349128161
+- [bodycam] Log #2019-0001780 Vimeo BWC 3
+  https://player.vimeo.com/video/349128622
+- [bodycam] Log #2019-0001780 Vimeo BWC 4
+  https://player.vimeo.com/video/349129069
+- [bodycam] Log #2019-0001780 Vimeo BWC 5
+  https://player.vimeo.com/video/349129389
+- [bodycam] Log #2019-0001780 Vimeo BWC 6
+  https://player.vimeo.com/video/349140808
+- [bodycam] Log #2019-0001780 Vimeo BWC 7
+  https://player.vimeo.com/video/349752808
+- [bodycam] Log #2019-0001780 Vimeo BWC 8
+  https://player.vimeo.com/video/349752995
+- [bodycam] Log #2019-0001780 Vimeo BWC 9
+  https://player.vimeo.com/video/352349668
+- [bodycam] Log #2019-0001780 Vimeo BWC 10
+  https://player.vimeo.com/video/352349814
+- [bodycam] Log #2019-0001780 Vimeo BWC 11
+  https://player.vimeo.com/video/352349946
+- [bodycam] Log #2019-0001780 Vimeo BWC 12
+  https://player.vimeo.com/video/352350045
+- [bodycam] Log #2019-0001780 Vimeo BWC 13
+  https://player.vimeo.com/video/352350153
+- [bodycam] Log #2019-0001780 Vimeo BWC 14
+  https://player.vimeo.com/video/352350244
+- [bodycam] Log #2019-0001780 Vimeo BWC 15
+  https://player.vimeo.com/video/352360950
+- [bodycam] Log #2019-0001780 Vimeo BWC 16
+  https://player.vimeo.com/video/352361058
+- [documents] Log #2019-1780 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/2019-1780-Case-Incident-Report-JC274054_REDACTED.pdf
+- [documents] Log #2019-1780 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/2019-1780-Case-Incident-Report-JC273557_REDACTED.pdf
+- [documents] Log # 2019-0001780 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/TRR-2-REDACTED.pdf
+- [documents] Log # 2019-0001780 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/TRR-1-REDACTED.pdf
+
+### copa_2020_0001703  ·  V16 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0001703/
+- [bodycam] Log #2020-0001703 Vimeo BWC 1
+  https://player.vimeo.com/video/432902992
+- [bodycam] Log #2020-0001703 Vimeo BWC 2
+  https://player.vimeo.com/video/432904493
+- [bodycam] Log #2020-0001703 Vimeo BWC 3
+  https://player.vimeo.com/video/432905934
+- [bodycam] Log #2020-0001703 Vimeo BWC 4
+  https://player.vimeo.com/video/432907322
+- [bodycam] Log #2020-0001703 Vimeo BWC 5
+  https://player.vimeo.com/video/432924809
+- [bodycam] Log #2020-0001703 Vimeo BWC 6
+  https://player.vimeo.com/video/432933782
+- [bodycam] Log #2020-0001703 Vimeo BWC 7
+  https://player.vimeo.com/video/432939757
+- [bodycam] Log #2020-0001703 Vimeo BWC 8
+  https://player.vimeo.com/video/432942286
+- [bodycam] Log #2020-0001703 Vimeo BWC 9
+  https://player.vimeo.com/video/432945208
+- [bodycam] Log #2020-0001703 Vimeo BWC 10
+  https://player.vimeo.com/video/432954456
+- [bodycam] Log #2020-0001703 Vimeo BWC 11
+  https://player.vimeo.com/video/432954748
+- [bodycam] Log #2020-0001703 Vimeo BWC 12
+  https://player.vimeo.com/video/432955359
+- [bodycam] Log #2020-0001703 Vimeo BWC 13
+  https://player.vimeo.com/video/432956706
+- [bodycam] Log #2020-0001703 Vimeo BWC 14
+  https://player.vimeo.com/video/432957804
+- [bodycam] Log #2020-0001703 Vimeo BWC 15
+  https://player.vimeo.com/video/432959408
+- [bodycam] Log #2020-0001703 Vimeo BWC 16
+  https://player.vimeo.com/video/432960315
+- [documents] 2020-0001703_Nonconcur
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/2020-0001703_Nonconcur.pdf
+- [documents] 2020-0001703_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/2020-0001703_FSR.pdf
+- [documents] Log # 2020-1703 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/TRR-PO-D_REDACTED.pdf
+- [documents] Log # 2020-1703 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/JD221811_CaseReport_REDACTED.pdf
+- [documents] Log # 2020-1703 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/JD221448_CaseReport_REDACTED.pdf
+
 ### copa_2020_0003647  ·  V16 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2020-0003647/
 - [bodycam] Log #2020-0003647 Vimeo BWC 1
@@ -2129,6 +3794,98 @@ case: https://www.chicagocopa.org/case/2020-0003647/
   https://www.chicagocopa.org/wp-content/uploads/2020/09/Arrest-Report-L.-Allen_REDACTED.pdf
 - [documents] Log# 2020-3647 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2020/09/OCIR-RD-JD326-230_REDACTED.pdf
+
+### copa_2020_0003949  ·  V16 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0003949/
+- [bodycam] Log #2020-0003949 Vimeo BWC 1
+  https://player.vimeo.com/video/468975280
+- [bodycam] Log #2020-0003949 Vimeo BWC 2
+  https://player.vimeo.com/video/468978140
+- [bodycam] Log #2020-0003949 Vimeo BWC 3
+  https://player.vimeo.com/video/468987280
+- [bodycam] Log #2020-0003949 Vimeo BWC 4
+  https://player.vimeo.com/video/468987692
+- [bodycam] Log #2020-0003949 Vimeo BWC 5
+  https://player.vimeo.com/video/468988514
+- [bodycam] Log #2020-0003949 Vimeo BWC 6
+  https://player.vimeo.com/video/468989941
+- [bodycam] Log #2020-0003949 Vimeo BWC 7
+  https://player.vimeo.com/video/468990452
+- [bodycam] Log #2020-0003949 Vimeo BWC 8
+  https://player.vimeo.com/video/469002978
+- [bodycam] Log #2020-0003949 Vimeo BWC 9
+  https://player.vimeo.com/video/469004287
+- [bodycam] Log #2020-0003949 Vimeo BWC 10
+  https://player.vimeo.com/video/469005360
+- [bodycam] Log #2020-0003949 Vimeo BWC 11
+  https://player.vimeo.com/video/469005811
+- [bodycam] Log #2020-0003949 Vimeo BWC 12
+  https://player.vimeo.com/video/469006337
+- [bodycam] Log #2020-0003949 Vimeo BWC 13
+  https://player.vimeo.com/video/469009847
+- [bodycam] Log #2020-0003949 Vimeo BWC 14
+  https://player.vimeo.com/video/469012731
+- [bodycam] Log #2020-0003949 Vimeo BWC 15
+  https://player.vimeo.com/video/469014565
+- [bodycam] Log #2020-0003949 Vimeo BWC 16
+  https://player.vimeo.com/video/469016745
+- [documents] 2020-0003949 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/Woods_Tactical-Response-Report_REDACTED-1.pdf
+- [documents] 2020-0003949_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/2020-0003949_FSR.pdf
+- [documents] 2020-0003949 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/Woods_Tactical-Response-Report_REDACTED.pdf
+- [documents] Log #2020-3949 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/Griggs_Tactical-Response-Report_REDACTED.pdf
+- [documents] Log #2020-3949 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/Original-Case-Incident-Report-JD340751_REDACTED.pdf
+
+### copa_1080972  ·  V16 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080972-2/
+- [bodycam] Log #1080972 Vimeo BWC 1
+  https://player.vimeo.com/video/170880093
+- [bodycam] Log #1080972 Vimeo BWC 2
+  https://player.vimeo.com/video/178406967
+- [bodycam] Log #1080972 Vimeo BWC 3
+  https://player.vimeo.com/video/178406444
+- [bodycam] Log #1080972 Vimeo BWC 4
+  https://player.vimeo.com/video/178406445
+- [bodycam] Log #1080972 Vimeo BWC 5
+  https://player.vimeo.com/video/178371533
+- [bodycam] Log #1080972 Vimeo BWC 6
+  https://player.vimeo.com/video/178371835
+- [bodycam] Log #1080972 Vimeo BWC 7
+  https://player.vimeo.com/video/178371915
+- [bodycam] Log #1080972 Vimeo BWC 8
+  https://player.vimeo.com/video/178399355
+- [bodycam] Log #1080972 Vimeo BWC 9
+  https://player.vimeo.com/video/178399356
+- [bodycam] Log #1080972 Vimeo BWC 10
+  https://player.vimeo.com/video/178399399
+- [bodycam] Log #1080972 Vimeo BWC 11
+  https://player.vimeo.com/video/178403273
+- [bodycam] Log #1080972 Vimeo BWC 12
+  https://player.vimeo.com/video/178403333
+- [bodycam] Log #1080972 Vimeo BWC 13
+  https://player.vimeo.com/video/178403334
+- [bodycam] Log #1080972 Vimeo BWC 14
+  https://player.vimeo.com/video/178405120
+- [bodycam] Log #1080972 Vimeo BWC 15
+  https://player.vimeo.com/video/178405121
+- [bodycam] Log #1080972 Vimeo BWC 16
+  https://player.vimeo.com/video/178406348
+- [documents] TRR – Rosen — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/TRR-Rosen-REDACTED.pdf
+- [documents] TRR – Pratscher — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/TRR-Pratscher-REDACTED.pdf
+- [documents] OCIR — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OCIR-REDACTED-2.pdf
+- [documents] OBR – Rosen — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OBR-Rosen-REDACTED.pdf
+- [documents] OBR – Pratscher — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OBR-Pratscher-REDACTED.pdf
+- [documents] Arrest Report_ONeal — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Arrest-Report_ONeal-REDACTED.pdf
 
 ### copa_2023_0003276  ·  V15 A0 D7 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2023-0003276/
@@ -2270,6 +4027,96 @@ case: https://www.chicagocopa.org/case/2022-0003421/
   https://www.chicagocopa.org/wp-content/uploads/2022/10/OCIR_JF354210-Redacted.pdf
 - [documents] 2022-0003421_Court Order
   https://www.chicagocopa.org/wp-content/uploads/2022/10/2022-0003421_Court-Order.pdf
+
+### copa_2026_0000349  ·  V15 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2026-0000349/
+- [bodycam] Log #2026-0000349 Vimeo BWC 1
+  https://player.vimeo.com/video/1194832458
+- [bodycam] Log #2026-0000349 Vimeo BWC 2
+  https://player.vimeo.com/video/1194832449
+- [bodycam] Log #2026-0000349 Vimeo BWC 3
+  https://player.vimeo.com/video/1194832414
+- [bodycam] Log #2026-0000349 Vimeo BWC 4
+  https://player.vimeo.com/video/1194832413
+- [bodycam] Log #2026-0000349 Vimeo BWC 5
+  https://player.vimeo.com/video/1194832412
+- [bodycam] Log #2026-0000349 Vimeo BWC 6
+  https://player.vimeo.com/video/1194832455
+- [bodycam] Log #2026-0000349 Vimeo BWC 7
+  https://player.vimeo.com/video/1194832540
+- [bodycam] Log #2026-0000349 Vimeo BWC 8
+  https://player.vimeo.com/video/1194832546
+- [bodycam] Log #2026-0000349 Vimeo BWC 9
+  https://player.vimeo.com/video/1194832459
+- [bodycam] Log #2026-0000349 Vimeo BWC 10
+  https://player.vimeo.com/video/1194832553
+- [bodycam] Log #2026-0000349 Vimeo BWC 11
+  https://player.vimeo.com/video/1194832547
+- [bodycam] Log #2026-0000349 Vimeo BWC 12
+  https://player.vimeo.com/video/1194832415
+- [bodycam] Log #2026-0000349 Vimeo BWC 13
+  https://player.vimeo.com/video/1194833068
+- [bodycam] Log #2026-0000349 Vimeo BWC 14
+  https://player.vimeo.com/video/1194833071
+- [bodycam] Log #2026-0000349 Vimeo BWC 15
+  https://player.vimeo.com/video/1194833069
+- [documents] Log #2026-0000349 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/TRR-of-PO-Omar-Chaarawi-redacted.pdf
+- [documents] Log #2026-0000349 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/TRR-of-PO-Jack-Apke-redacted.pdf
+- [documents] Log #2026-0000349 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/Final-Arrest-Report-redacted.pdf
+- [documents] Log #2026-0000349 Case Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/012-police_report_jk125616_-_ocir-redacted.pdf
+- [documents] Log #2026-0000349 Court Order
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/2026-0349-Pierre-Davis-court-order-redacted.pdf
+
+### copa_2022_0002295  ·  V15 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2022-0002295/
+- [bodycam] Log #2022-0002295 Vimeo BWC 1
+  https://player.vimeo.com/video/724867784
+- [bodycam] Log #2022-0002295 Vimeo BWC 2
+  https://player.vimeo.com/video/724868938
+- [bodycam] Log #2022-0002295 Vimeo BWC 3
+  https://player.vimeo.com/video/724869368
+- [bodycam] Log #2022-0002295 Vimeo BWC 4
+  https://player.vimeo.com/video/724870188
+- [bodycam] Log #2022-0002295 Vimeo BWC 5
+  https://player.vimeo.com/video/724871469
+- [bodycam] Log #2022-0002295 Vimeo BWC 6
+  https://player.vimeo.com/video/724871998
+- [bodycam] Log #2022-0002295 Vimeo BWC 7
+  https://player.vimeo.com/video/724872994
+- [bodycam] Log #2022-0002295 Vimeo BWC 8
+  https://player.vimeo.com/video/724873276
+- [bodycam] Log #2022-0002295 Vimeo BWC 9
+  https://player.vimeo.com/video/724873758
+- [bodycam] Log #2022-0002295 Vimeo BWC 10
+  https://player.vimeo.com/video/724874506
+- [bodycam] Log #2022-0002295 Vimeo BWC 11
+  https://player.vimeo.com/video/724874823
+- [bodycam] Log #2022-0002295 Vimeo BWC 12
+  https://player.vimeo.com/video/724875124
+- [bodycam] Log #2022-0002295 Vimeo BWC 13
+  https://player.vimeo.com/video/724875965
+- [bodycam] Log #2022-0002295 Vimeo BWC 14
+  https://player.vimeo.com/video/724876222
+- [bodycam] Log #2022-0002295 Vimeo BWC 15
+  https://player.vimeo.com/video/724877098
+- [documents] 2022-0002295_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/2022-0002295_FSR.pdf
+- [documents] 2022-2295 Press release
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/COPA-RELEASES-VIDEO-OTHER-MATERIALS-RELATED-TO-OFFICER-INVOLVED-SHOOTING-OFFICER-INVOLVED-SHOOTING-NEAR-6900-S.-SANGAMON-FINALv.pdf
+- [documents] Arrest Report Jerome Halsey final arrest report- Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/Jerome-Halsey-final-arrest-report-Redacted.pdf
+- [documents] Log #2022-0002295 TRR_of_Jerome_Halsey_completed_by_PO_Jose_Velaquez_(Force_Panel_Review)- Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/TRR_of_Jerome_Halsey_completed_by_PO_Jose_Velaquez_Force_Panel_Review-Redacted.pdf
+- [documents] Log #2022-0002295 TRR_of_Jerome_Halsey_completed_by_PO_Fabian_Arreola_(Approved)- Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/TRR_of_Jerome_Halsey_completed_by_PO_Fabian_Arreola_Approved-Redacted.pdf
+- [documents] Log #2022-0002295 TRR_of_Jerome_Halsey_completed_by_PO_Erik_Moreno_(Force_Review_Panel)- redacted
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/TRR_of_Jerome_Halsey_completed_by_PO_Erik_Moreno_Force_Review_Panel-redacted.pdf
+- [documents] 2022-0002295 OCIR JF268601- Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/OCIR-JF268601-Redacted.pdf
 
 ### copa_2023_0001622  ·  V14 A0 D6 P0  ·  score 8
 case: https://www.chicagocopa.org/case/2023-0001622/
@@ -2481,6 +4328,43 @@ case: https://www.chicagocopa.org/case/2021-002350/
 - [documents] Log # 2021-2350 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/07/OCIR-JE268704_REDACTED.pdf
 
+### copa_1090215  ·  V14 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1090215/
+- [bodycam] Log #1090215 Vimeo BWC 1
+  https://player.vimeo.com/video/288225991
+- [bodycam] Log #1090215 Vimeo BWC 2
+  https://player.vimeo.com/video/288226590
+- [bodycam] Log #1090215 Vimeo BWC 3
+  https://player.vimeo.com/video/288227100
+- [bodycam] Log #1090215 Vimeo BWC 4
+  https://player.vimeo.com/video/288227936
+- [bodycam] Log #1090215 Vimeo BWC 5
+  https://player.vimeo.com/video/288228497
+- [bodycam] Log #1090215 Vimeo BWC 6
+  https://player.vimeo.com/video/288229419
+- [bodycam] Log #1090215 Vimeo BWC 7
+  https://player.vimeo.com/video/288230233
+- [bodycam] Log #1090215 Vimeo BWC 8
+  https://player.vimeo.com/video/288230582
+- [bodycam] Log #1090215 Vimeo BWC 9
+  https://player.vimeo.com/video/288231297
+- [bodycam] Log #1090215 Vimeo BWC 10
+  https://player.vimeo.com/video/288232249
+- [bodycam] Log #1090215 Vimeo BWC 11
+  https://player.vimeo.com/video/288232611
+- [bodycam] Log #1090215 Vimeo BWC 12
+  https://player.vimeo.com/video/288233280
+- [bodycam] Log #1090215 Vimeo BWC 13
+  https://player.vimeo.com/video/288233591
+- [bodycam] Log #1090215 Vimeo BWC 14
+  https://player.vimeo.com/video/288234169
+- [documents] Log 1090215 TRR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/09/Log-1090215-TRR-Redacted.pdf
+- [documents] Log 1090215 TRR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090215-TRR-Redacted.pdf
+- [documents] Log 1090215 OCIR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090215-OCIR-Redacted.pdf
+
 ### copa_2021_0001162  ·  V13 A0 D7 P0  ·  score 15
 case: https://www.chicagocopa.org/case/2021-0001162/
 - [bodycam] Log #2021-0001162 Vimeo BWC 1
@@ -2523,6 +4407,127 @@ case: https://www.chicagocopa.org/case/2021-0001162/
   https://www.chicagocopa.org/wp-content/uploads/2021/05/OCIR_JE184-877_REDACTED.pdf
 - [documents] 2021-1162 Signed copa order Jose Mendoza REDACTED
   https://www.chicagocopa.org/wp-content/uploads/2021/05/signed-copa-order-Jose-Mendoza-REDACTED.pdf
+
+### copa_2020_0005517  ·  V13 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0005517/
+- [bodycam] Log #2020-0005517 Vimeo BWC 1
+  https://player.vimeo.com/video/509953922
+- [bodycam] Log #2020-0005517 Vimeo BWC 2
+  https://player.vimeo.com/video/509954826
+- [bodycam] Log #2020-0005517 Vimeo BWC 3
+  https://player.vimeo.com/video/509955711
+- [bodycam] Log #2020-0005517 Vimeo BWC 4
+  https://player.vimeo.com/video/509960614
+- [bodycam] Log #2020-0005517 Vimeo BWC 5
+  https://player.vimeo.com/video/509960929
+- [bodycam] Log #2020-0005517 Vimeo BWC 6
+  https://player.vimeo.com/video/509962855
+- [bodycam] Log #2020-0005517 Vimeo BWC 7
+  https://player.vimeo.com/video/509963799
+- [bodycam] Log #2020-0005517 Vimeo BWC 8
+  https://player.vimeo.com/video/509965439
+- [bodycam] Log #2020-0005517 Vimeo BWC 9
+  https://player.vimeo.com/video/509966564
+- [bodycam] Log #2020-0005517 Vimeo BWC 10
+  https://player.vimeo.com/video/509967351
+- [bodycam] Log #2020-0005517 Vimeo BWC 11
+  https://player.vimeo.com/video/509968020
+- [bodycam] Log #2020-0005517 Vimeo BWC 12
+  https://player.vimeo.com/video/509968217
+- [bodycam] Log #2020-0005517 Vimeo BWC 13
+  https://player.vimeo.com/video/509968390
+- [documents] 2020-0005517_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/2020-0005517_FSR.pdf
+- [documents] COPA Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/COPA-RELEASES-MATERIALS-OF-OFFICER-INVOLVED-SHOOTING-NEAR-3300-W.-IRVING-PARK-ROAD.pdf
+- [documents] Log # 2020-5517 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/Tactical-Response-Report-Bunge-Kevin_REDACTED.pdf
+- [documents] Log # 2020-5517 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/Original-Case-Report-JD456674_REDACTED.pdf
+
+### copa_1081059  ·  V13 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081059/
+- [bodycam] Log #1081059 Vimeo BWC 1
+  https://player.vimeo.com/video/179525620
+- [bodycam] Log #1081059 Vimeo BWC 2
+  https://player.vimeo.com/video/179525619
+- [bodycam] Log #1081059 Vimeo BWC 3
+  https://player.vimeo.com/video/179526235
+- [bodycam] Log #1081059 Vimeo BWC 4
+  https://player.vimeo.com/video/179527041
+- [bodycam] Log #1081059 Vimeo BWC 5
+  https://player.vimeo.com/video/180669262
+- [bodycam] Log #1081059 Vimeo BWC 6
+  https://player.vimeo.com/video/179527135
+- [bodycam] Log #1081059 Vimeo BWC 7
+  https://player.vimeo.com/video/179527136
+- [bodycam] Log #1081059 Vimeo BWC 8
+  https://player.vimeo.com/video/180669270
+- [bodycam] Log #1081059 Vimeo BWC 9
+  https://player.vimeo.com/video/179527134
+- [bodycam] Log #1081059 Vimeo BWC 10
+  https://player.vimeo.com/video/180947606
+- [bodycam] Log #1081059 Vimeo BWC 11
+  https://player.vimeo.com/video/180947609
+- [bodycam] Log #1081059 Vimeo BWC 12
+  https://player.vimeo.com/video/180947607
+- [bodycam] Log #1081059 Vimeo BWC 13
+  https://player.vimeo.com/video/180947608
+- [documents] TRR — Jarosz — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Jarosz-REDACTED.pdf
+- [documents] TRR — Cravens — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Cravens-REDACTED.pdf
+- [documents] OCIR — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-12.pdf
+- [documents] OCIR2 — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR2-REDACTED-1.pdf
+- [documents] OBR — Cravens — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Cravens-REDACTED.pdf
+- [documents] Arrest Report — Gonzalez — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Gonzalez-REDACTED.pdf
+- [documents] Arrest Report — Dixon — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Dixon-REDACTED.pdf
+
+### copa_1082645  ·  V13 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082645/
+- [bodycam] Log #1082645 Vimeo BWC 1
+  https://player.vimeo.com/video/193957196
+- [bodycam] Log #1082645 Vimeo BWC 2
+  https://player.vimeo.com/video/193957686
+- [bodycam] Log #1082645 Vimeo BWC 3
+  https://player.vimeo.com/video/195957475
+- [bodycam] Log #1082645 Vimeo BWC 4
+  https://player.vimeo.com/video/195957593
+- [bodycam] Log #1082645 Vimeo BWC 5
+  https://player.vimeo.com/video/193957969
+- [bodycam] Log #1082645 Vimeo BWC 6
+  https://player.vimeo.com/video/193958023
+- [bodycam] Log #1082645 Vimeo BWC 7
+  https://player.vimeo.com/video/195543586
+- [bodycam] Log #1082645 Vimeo BWC 8
+  https://player.vimeo.com/video/213884905
+- [bodycam] Log #1082645 Vimeo BWC 9
+  https://player.vimeo.com/video/213884932
+- [bodycam] Log #1082645 Vimeo BWC 10
+  https://player.vimeo.com/video/213884971
+- [bodycam] Log #1082645 Vimeo BWC 11
+  https://player.vimeo.com/video/213885005
+- [bodycam] Log #1082645 Vimeo BWC 12
+  https://player.vimeo.com/video/213885061
+- [bodycam] Log #1082645 Vimeo BWC 13
+  https://player.vimeo.com/video/213885084
+- [documents] 1082645 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/03/1082645-with-Redactions.pdf
+- [documents] obr-po-cervantes-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Cervantes-REDACTED.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Arrest-Report-REDACTED.pdf
+- [documents] trr-po-teper-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Teper-REDACTED.pdf
+- [documents] trr-po-cervantes-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Cervantes-REDACTED.pdf
+- [documents] original-case-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Original-Case-Report-REDACTED.pdf
 
 ### copa_2021_0000117  ·  V12 A0 D7 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0000117/
@@ -2618,6 +4623,41 @@ case: https://www.chicagocopa.org/case/1069721-2/
 - [documents] Log#1069721 – CHI-R-00000523
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1069721-CHI-R-00000523.pdf
 
+### copa_2020_0004103  ·  V12 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0004103/
+- [bodycam] Log #2020-0004103 Vimeo BWC 1
+  https://player.vimeo.com/video/459514420
+- [bodycam] Log #2020-0004103 Vimeo BWC 2
+  https://player.vimeo.com/video/459514917
+- [bodycam] Log #2020-0004103 Vimeo BWC 3
+  https://player.vimeo.com/video/459515489
+- [bodycam] Log #2020-0004103 Vimeo BWC 4
+  https://player.vimeo.com/video/459515825
+- [bodycam] Log #2020-0004103 Vimeo BWC 5
+  https://player.vimeo.com/video/459516189
+- [bodycam] Log #2020-0004103 Vimeo BWC 6
+  https://player.vimeo.com/video/459516523
+- [bodycam] Log #2020-0004103 Vimeo BWC 7
+  https://player.vimeo.com/video/459517092
+- [bodycam] Log #2020-0004103 Vimeo BWC 8
+  https://player.vimeo.com/video/459517381
+- [bodycam] Log #2020-0004103 Vimeo BWC 9
+  https://player.vimeo.com/video/459518435
+- [bodycam] Log #2020-0004103 Vimeo BWC 10
+  https://player.vimeo.com/video/459518698
+- [bodycam] Log #2020-0004103 Vimeo BWC 11
+  https://player.vimeo.com/video/459519205
+- [bodycam] Log #2020-0004103 Vimeo BWC 12
+  https://player.vimeo.com/video/459520069
+- [documents] 2020-0004103_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/2020-0004103_FSR.pdf
+- [documents] Log # 2020-4103 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/TRR_ZacharyKuta_REDACTED.pdf
+- [documents] Log # 2020-4103 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/TRR_MatthewKrzeptowski_REDACTED.pdf
+- [documents] Log # 2020-4103 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/Case-Report_REDACTED.pdf
+
 ### copa_2021_0005001  ·  V12 A0 D10 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2021-0005001/
 - [bodycam] Log #2021-0005001 Vimeo BWC 1
@@ -2703,6 +4743,39 @@ case: https://www.chicagocopa.org/case/2023-0003622/
   https://www.chicagocopa.org/wp-content/uploads/2023/09/2023-3622_TRR-Redacted.pdf
 - [documents] Log #2023-0003622 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/09/Case_Report_JG378868-Redacted.pdf
+
+### copa_1085722  ·  V12 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085722/
+- [bodycam] Log #1085722 Vimeo BWC 1
+  https://player.vimeo.com/video/231119056
+- [bodycam] Log #1085722 Vimeo BWC 2
+  https://player.vimeo.com/video/231129182
+- [bodycam] Log #1085722 Vimeo BWC 3
+  https://player.vimeo.com/video/231129632
+- [bodycam] Log #1085722 Vimeo BWC 4
+  https://player.vimeo.com/video/231129781
+- [bodycam] Log #1085722 Vimeo BWC 5
+  https://player.vimeo.com/video/231130081
+- [bodycam] Log #1085722 Vimeo BWC 6
+  https://player.vimeo.com/video/231131219
+- [bodycam] Log #1085722 Vimeo BWC 7
+  https://player.vimeo.com/video/231132994
+- [bodycam] Log #1085722 Vimeo BWC 8
+  https://player.vimeo.com/video/231133127
+- [bodycam] Log #1085722 Vimeo BWC 9
+  https://player.vimeo.com/video/231133642
+- [bodycam] Log #1085722 Vimeo BWC 10
+  https://player.vimeo.com/video/231134017
+- [bodycam] Log #1085722 Vimeo BWC 11
+  https://player.vimeo.com/video/231134126
+- [bodycam] Log #1085722 Vimeo BWC 12
+  https://player.vimeo.com/video/231134294
+- [documents] Original-Case-Incident-Report-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Original-Case-Incident-Report-Redacted-4.pdf
+- [documents] IPRA Extension Response
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/IPRA-Extension-Response.pdf
+- [documents] 1085722 VRP Extension request
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/1085722-request-for-delay-8-24-17.pdf
 
 ### copa_2020_0003664  ·  V11 A0 D19 P0  ·  score 9
 case: https://www.chicagocopa.org/case/2020-0003664/
@@ -2841,6 +4914,39 @@ case: https://www.chicagocopa.org/case/2024-0005768/
 - [documents] 2024-0005768 Court order redacted
   https://www.chicagocopa.org/wp-content/uploads/2024/07/2024-5768-David-Curry-signed-order-redacted.pdf
 
+### copa_1075692  ·  V11 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1075692-2/
+- [bodycam] Log #1075692 Vimeo BWC 1
+  https://player.vimeo.com/video/167331777
+- [bodycam] Log #1075692 Vimeo BWC 2
+  https://player.vimeo.com/video/167331770
+- [bodycam] Log #1075692 Vimeo BWC 3
+  https://player.vimeo.com/video/167331776
+- [bodycam] Log #1075692 Vimeo BWC 4
+  https://player.vimeo.com/video/167331769
+- [bodycam] Log #1075692 Vimeo BWC 5
+  https://player.vimeo.com/video/167331774
+- [bodycam] Log #1075692 Vimeo BWC 6
+  https://player.vimeo.com/video/167331773
+- [bodycam] Log #1075692 Vimeo BWC 7
+  https://player.vimeo.com/video/167331772
+- [bodycam] Log #1075692 Vimeo BWC 8
+  https://player.vimeo.com/video/167331771
+- [bodycam] Log #1075692 Vimeo BWC 9
+  https://player.vimeo.com/video/167331766
+- [bodycam] Log #1075692 Vimeo BWC 10
+  https://player.vimeo.com/video/167331768
+- [bodycam] Log #1075692 Vimeo BWC 11
+  https://player.vimeo.com/video/167331767
+- [documents] Log#1075692-10_OBR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1075692-10_OBR.pdf
+- [documents] Log#1075692-9_TRR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1075692-9_TRR.pdf
+- [documents] Log#1075692-7_OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1075692-7_OCIR.pdf
+- [documents] Log#1075692-5_Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1075692-5_Arrest-Report.pdf
+
 ### copa_1080018  ·  V11 A0 D9 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1080018-2/
 - [bodycam] Log #1080018 Vimeo BWC 1
@@ -2884,6 +4990,160 @@ case: https://www.chicagocopa.org/case/1080018-2/
 - [documents] OBR L. Payne
   https://www.chicagocopa.org/wp-content/uploads/2016/06/OBR-L.-Payne.pdf
 
+### copa_2022_0005227  ·  V11 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0005227/
+- [bodycam] Log #2022-0005227 Vimeo BWC 1
+  https://player.vimeo.com/video/870312072
+- [bodycam] Log #2022-0005227 Vimeo BWC 2
+  https://player.vimeo.com/video/870312242
+- [bodycam] Log #2022-0005227 Vimeo BWC 3
+  https://player.vimeo.com/video/870312149
+- [bodycam] Log #2022-0005227 Vimeo BWC 4
+  https://player.vimeo.com/video/870312216
+- [bodycam] Log #2022-0005227 Vimeo BWC 5
+  https://player.vimeo.com/video/870312047
+- [bodycam] Log #2022-0005227 Vimeo BWC 6
+  https://player.vimeo.com/video/870311977
+- [bodycam] Log #2022-0005227 Vimeo BWC 7
+  https://player.vimeo.com/video/870312098
+- [bodycam] Log #2022-0005227 Vimeo BWC 8
+  https://player.vimeo.com/video/870312118
+- [bodycam] Log #2022-0005227 Vimeo BWC 9
+  https://player.vimeo.com/video/870312025
+- [bodycam] Log #2022-0005227 Vimeo BWC 10
+  https://player.vimeo.com/video/870312181
+- [bodycam] Log #2022-0005227 Vimeo BWC 11
+  https://player.vimeo.com/video/870312273
+- [documents] Log #2022-0005227 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/10/038-TRR_Redacted.pdf
+- [documents] Log #2022-0005227 Arrest Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/10/002-Arrest-Report-for-Jordon-Novorita_Redacted.pdf
+- [documents] Log #2022-0005227 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/10/009-Case-Report-Jordon-Novorita_Redacted.pdf
+
+### copa_2025_0006070  ·  V11 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0006070/
+- [bodycam] Log #2025-0006070 Vimeo BWC 1
+  https://player.vimeo.com/video/1156618179
+- [bodycam] Log #2025-0006070 Vimeo BWC 2
+  https://player.vimeo.com/video/1156618362
+- [bodycam] Log #2025-0006070 Vimeo BWC 3
+  https://player.vimeo.com/video/1156618211
+- [bodycam] Log #2025-0006070 Vimeo BWC 4
+  https://player.vimeo.com/video/1156618272
+- [bodycam] Log #2025-0006070 Vimeo BWC 5
+  https://player.vimeo.com/video/1156618454
+- [bodycam] Log #2025-0006070 Vimeo BWC 6
+  https://player.vimeo.com/video/1156618318
+- [bodycam] Log #2025-0006070 Vimeo BWC 7
+  https://player.vimeo.com/video/1156618406
+- [bodycam] Log #2025-0006070 Vimeo BWC 8
+  https://player.vimeo.com/video/1156618253
+- [bodycam] Log #2025-0006070 Vimeo BWC 9
+  https://player.vimeo.com/video/1156618438
+- [bodycam] Log #2025-0006070 Vimeo BWC 10
+  https://player.vimeo.com/video/1156618751
+- [bodycam] Log #2025-0006070 Vimeo BWC 11
+  https://player.vimeo.com/video/1156618733
+- [documents] Log #2025-0006070 Traffic Crash Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/01/Traffic-Crash-Report-with-diagram-JJ517182-redacted.pdf
+- [documents] Log #2025-0006070 Investigatory Stop Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/01/013-isr_roberto_calvario-redacted.pdf
+- [documents] Log #2025-0006070 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2026/01/012-trr_po_gilberto_gomez-redacted.pdf
+- [documents] Log #2025-0006070 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2026/01/011-trr_po_jose_salazar-redacted.pdf
+- [documents] Log #2025-0006070 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/01/003-original_case_incident_report_rd_jj517-126-redacted.pdf
+
+### copa_1045673  ·  V11 A0 D14 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1045673/
+- [bodycam] Log #1045673 Vimeo BWC 1
+  https://player.vimeo.com/video/174867595
+- [bodycam] Log #1045673 Vimeo BWC 2
+  https://player.vimeo.com/video/174867596
+- [bodycam] Log #1045673 Vimeo BWC 3
+  https://player.vimeo.com/video/174867486
+- [bodycam] Log #1045673 Vimeo BWC 4
+  https://player.vimeo.com/video/174879016
+- [bodycam] Log #1045673 Vimeo BWC 5
+  https://player.vimeo.com/video/174879828
+- [bodycam] Log #1045673 Vimeo BWC 6
+  https://player.vimeo.com/video/174879825
+- [bodycam] Log #1045673 Vimeo BWC 7
+  https://player.vimeo.com/video/174879827
+- [bodycam] Log #1045673 Vimeo BWC 8
+  https://player.vimeo.com/video/174879824
+- [bodycam] Log #1045673 Vimeo BWC 9
+  https://player.vimeo.com/video/174879829
+- [bodycam] Log #1045673 Vimeo BWC 10
+  https://player.vimeo.com/video/174879831
+- [bodycam] Log #1045673 Vimeo BWC 11
+  https://player.vimeo.com/video/174879835
+- [documents] 1045673 Supp redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/1045673-redacted.pdf
+- [documents] OCIR-REDACTED-6
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-6-2.pdf
+- [documents] TRR-Vera
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Vera.pdf
+- [documents] TRR-Tottas-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Tottas-1.pdf
+- [documents] TRR-Ortiz
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Ortiz.pdf
+- [documents] TRR-McDermott
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-McDermott.pdf
+- [documents] TRR-Bracken
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Bracken.pdf
+- [documents] TRR-Aguirre
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Aguirre.pdf
+- [documents] OBR-Bracken-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Bracken-REDACTED.pdf
+- [documents] OCIR-REDACTED-6
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-6-1.pdf
+- [documents] OCIR-2-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-2-REDACTED-1.pdf
+- [documents] Arrest-Report-May-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-May-REDACTED.pdf
+- [documents] Arrest-Report-Jacobs-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Jacobs-REDACTED.pdf
+- [documents] L1045673U11_24
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/L1045673U11_24.pdf
+
+### copa_1081577  ·  V11 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081577/
+- [bodycam] Log #1081577 Vimeo BWC 1
+  https://player.vimeo.com/video/184056319
+- [bodycam] Log #1081577 Vimeo BWC 2
+  https://player.vimeo.com/video/184056607
+- [bodycam] Log #1081577 Vimeo BWC 3
+  https://player.vimeo.com/video/184056663
+- [bodycam] Log #1081577 Vimeo BWC 4
+  https://player.vimeo.com/video/184056706
+- [bodycam] Log #1081577 Vimeo BWC 5
+  https://player.vimeo.com/video/184056771
+- [bodycam] Log #1081577 Vimeo BWC 6
+  https://player.vimeo.com/video/184056868
+- [bodycam] Log #1081577 Vimeo BWC 7
+  https://player.vimeo.com/video/185654359
+- [bodycam] Log #1081577 Vimeo BWC 8
+  https://player.vimeo.com/video/184056867
+- [bodycam] Log #1081577 Vimeo BWC 9
+  https://player.vimeo.com/video/187384319
+- [bodycam] Log #1081577 Vimeo BWC 10
+  https://player.vimeo.com/video/187384461
+- [bodycam] Log #1081577 Vimeo BWC 11
+  https://player.vimeo.com/video/187384496
+- [documents] arrest-report-metcalf-1-pdf-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Arrest-Report-Metcalf-1.pdf-redacted.pdf
+- [documents] trr-pdf-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/TRR.pdf-redacted.pdf
+- [documents] obr-pdf-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OBR.pdf-redacted.pdf
+- [documents] case-incident-report-stolen-vehicle-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Case-Incident-Report-Stolen-Vehicle-REDACTED.pdf
+- [documents] case-incident-report-redacted-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Case-Incident-Report-REDACTED-1.pdf
+
 ### copa_2021_0003709  ·  V10 A0 D7 P0  ·  score 21
 case: https://www.chicagocopa.org/case/2021-0003709/
 - [bodycam] Log #2021-0003709 Vimeo BWC 1
@@ -2920,6 +5180,99 @@ case: https://www.chicagocopa.org/case/2021-0003709/
   https://www.chicagocopa.org/wp-content/uploads/2021/10/TRR_PO_B._Rambert_REDACTED.pdf
 - [documents] Log # 2021-3709 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2021/10/Original_Case_Incident_Report_REDACTED.pdf
+
+### copa_2020_0004177  ·  V10 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0004177/
+- [bodycam] Log #2020-0004177 Vimeo BWC 1
+  https://player.vimeo.com/video/461537997
+- [bodycam] Log #2020-0004177 Vimeo BWC 2
+  https://player.vimeo.com/video/461538142
+- [bodycam] Log #2020-0004177 Vimeo BWC 3
+  https://player.vimeo.com/video/461538484
+- [bodycam] Log #2020-0004177 Vimeo BWC 4
+  https://player.vimeo.com/video/461538797
+- [bodycam] Log #2020-0004177 Vimeo BWC 5
+  https://player.vimeo.com/video/461539065
+- [bodycam] Log #2020-0004177 Vimeo BWC 6
+  https://player.vimeo.com/video/461539882
+- [bodycam] Log #2020-0004177 Vimeo BWC 7
+  https://player.vimeo.com/video/461540147
+- [bodycam] Log #2020-0004177 Vimeo BWC 8
+  https://player.vimeo.com/video/461540664
+- [bodycam] Log #2020-0004177 Vimeo BWC 9
+  https://player.vimeo.com/video/859133045
+- [bodycam] Log #2020-0004177 Vimeo BWC 10
+  https://player.vimeo.com/video/461541308
+- [documents] 2020-0004177_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/2020-0004177_FSR.pdf
+- [documents] Log #2020-4177 Tactical Response Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/TRR-Sgt-Salgado_REDACTED.pdf
+- [documents] Log #2020-4177 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/TRR-PO-Johnson_REDACTED.pdf
+- [documents] Log #2020-4177 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/TRR-PO-Gurskis_REDACTED.pdf
+- [documents] Log #2020-4177 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/09/Case-Report_REDACTED-1.pdf
+
+### copa_2023_0005870  ·  V10 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2023-0005870/
+- [bodycam] Log #2023-0005870 Vimeo BWC 1
+  https://player.vimeo.com/video/902317536
+- [bodycam] Log #2023-0005870 Vimeo BWC 2
+  https://player.vimeo.com/video/902317511
+- [bodycam] Log #2023-0005870 Vimeo BWC 3
+  https://player.vimeo.com/video/902317462
+- [bodycam] Log #2023-0005870 Vimeo BWC 4
+  https://player.vimeo.com/video/902317431
+- [bodycam] Log #2023-0005870 Vimeo BWC 5
+  https://player.vimeo.com/video/902317443
+- [bodycam] Log #2023-0005870 Vimeo BWC 6
+  https://player.vimeo.com/video/902317497
+- [bodycam] Log #2023-0005870 Vimeo BWC 7
+  https://player.vimeo.com/video/902317554
+- [bodycam] Log #2023-0005870 Vimeo BWC 8
+  https://player.vimeo.com/video/902317525
+- [bodycam] Log #2023-0005870 Vimeo BWC 9
+  https://player.vimeo.com/video/902317481
+- [bodycam] Log #2023-0005870 Vimeo BWC 10
+  https://player.vimeo.com/video/902317385
+- [documents] 2023-0005870_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2024/01/2023-0005870_FSR.pdf
+- [documents] 2023-0005870 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2024/01/COPA-RELEASES-VIDEO-OTHER-MATERIAL-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-8000-S.-SACRAMENTO-FINAL.pdf
+- [documents] Log #2023-0005870 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/01/TRR_Redacted.pdf
+- [documents] Log #2023-0005870 Case Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/01/OCIR-JG545110_Redacted.pdf
+
+### copa_2024_0000155  ·  V10 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0000155/
+- [bodycam] Log #2024-0000155 Vimeo BWC 1
+  https://player.vimeo.com/video/909191290
+- [bodycam] Log #2024-0000155 Vimeo BWC 2
+  https://player.vimeo.com/video/909191253
+- [bodycam] Log #2024-0000155 Vimeo BWC 3
+  https://player.vimeo.com/video/909190995
+- [bodycam] Log #2024-0000155 Vimeo BWC 4
+  https://player.vimeo.com/video/909191124
+- [bodycam] Log #2024-0000155 Vimeo BWC 5
+  https://player.vimeo.com/video/909191045
+- [bodycam] Log #2024-0000155 Vimeo BWC 6
+  https://player.vimeo.com/video/909191084
+- [bodycam] Log #2024-0000155 Vimeo BWC 7
+  https://player.vimeo.com/video/909191029
+- [bodycam] Log #2024-0000155 Vimeo BWC 8
+  https://player.vimeo.com/video/909191060
+- [bodycam] Log #2024-0000155 Vimeo BWC 9
+  https://player.vimeo.com/video/909191104
+- [bodycam] Log #2024-0000155 Vimeo BWC 10
+  https://player.vimeo.com/video/909191145
+- [documents] 2024-0000155_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/2024-0000155_FSR.pdf
+- [documents] Log #2024-0000155 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/KILGORE-WOODEN-TRR-Redacted.pdf
+- [documents] Log #2024-0000155 Case Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/CASE-RPT-JH109960-CO-13333791-202410095336IL01656ADQ-Redacted.pdf
 
 ### copa_1073105  ·  V9 A0 D5 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1073105-2/
@@ -3051,6 +5404,64 @@ case: https://www.chicagocopa.org/case/2019-0001617/
 - [documents] Log # 2019-0001617 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2019/07/Att.-4-JC259152-original-case-report-REDACTED.pdf
 
+### copa_2019_0001855  ·  V9 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0001855/
+- [bodycam] Log #2019-0001855 Vimeo BWC 1
+  https://player.vimeo.com/video/350367486
+- [bodycam] Log #2019-0001855 Vimeo BWC 2
+  https://player.vimeo.com/video/350367640
+- [bodycam] Log #2019-0001855 Vimeo BWC 3
+  https://player.vimeo.com/video/350367737
+- [bodycam] Log #2019-0001855 Vimeo BWC 4
+  https://player.vimeo.com/video/350367849
+- [bodycam] Log #2019-0001855 Vimeo BWC 5
+  https://player.vimeo.com/video/350367916
+- [bodycam] Log #2019-0001855 Vimeo BWC 6
+  https://player.vimeo.com/video/350368010
+- [bodycam] Log #2019-0001855 Vimeo BWC 7
+  https://player.vimeo.com/video/350368086
+- [bodycam] Log #2019-0001855 Vimeo BWC 8
+  https://player.vimeo.com/video/350368161
+- [bodycam] Log #2019-0001855 Vimeo BWC 9
+  https://player.vimeo.com/video/350368410
+- [documents] 2019-0001855_ FSR
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/2019-0001855_-FSR.pdf
+- [documents] Log # 2019-0001855 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/TRR-2-REDACTED2.pdf
+- [documents] Log # 2019-0001855 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/TRR-1-6-REDACTED2.pdf
+- [documents] Log # 2019-0001855 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/07/CASE-RPT-REDACTED.pdf
+
+### copa_2019_0002529  ·  V9 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0002529/
+- [bodycam] Log #2019-0002529 Vimeo BWC 1
+  https://player.vimeo.com/video/358374597
+- [bodycam] Log #2019-0002529 Vimeo BWC 2
+  https://player.vimeo.com/video/358375481
+- [bodycam] Log #2019-0002529 Vimeo BWC 3
+  https://player.vimeo.com/video/358376086
+- [bodycam] Log #2019-0002529 Vimeo BWC 4
+  https://player.vimeo.com/video/358377365
+- [bodycam] Log #2019-0002529 Vimeo BWC 5
+  https://player.vimeo.com/video/358377878
+- [bodycam] Log #2019-0002529 Vimeo BWC 6
+  https://player.vimeo.com/video/358379592
+- [bodycam] Log #2019-0002529 Vimeo BWC 7
+  https://player.vimeo.com/video/358398848
+- [bodycam] Log #2019-0002529 Vimeo BWC 8
+  https://player.vimeo.com/video/358381638
+- [bodycam] Log #2019-0002529 Vimeo BWC 9
+  https://player.vimeo.com/video/358390160
+- [documents] Log # 2019-2529 Tactical Response Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2019/08/TRR-SGT.-Sullins-REDACTED.pdf
+- [documents] Log # 2019-2529 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/08/TRR-PO-OGrady-REDACTED.pdf
+- [documents] Log # 2019-2529 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/08/TRR-PO-Barton-REDACTED.pdf
+- [documents] Log # 2019-2529 Case Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/08/Case-Report-REDACTED.pdf
+
 ### copa_2020_0003121  ·  V9 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2020-0003121/
 - [bodycam] Log #2020-0003121 Vimeo BWC 1
@@ -3086,6 +5497,35 @@ case: https://www.chicagocopa.org/case/2020-0003121/
 - [documents] Log # 2020-3121 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2020/09/CaseReport_JD292289-3_REDACTED.pdf
 
+### copa_2022_0003994  ·  V9 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0003994/
+- [bodycam] Log #2022-0003994 Vimeo BWC 1
+  https://player.vimeo.com/video/768594390
+- [bodycam] Log #2022-0003994 Vimeo BWC 2
+  https://player.vimeo.com/video/768594432
+- [bodycam] Log #2022-0003994 Vimeo BWC 3
+  https://player.vimeo.com/video/768593341
+- [bodycam] Log #2022-0003994 Vimeo BWC 4
+  https://player.vimeo.com/video/768593944
+- [bodycam] Log #2022-0003994 Vimeo BWC 5
+  https://player.vimeo.com/video/768593649
+- [bodycam] Log #2022-0003994 Vimeo BWC 6
+  https://player.vimeo.com/video/768593550
+- [bodycam] Log #2022-0003994 Vimeo BWC 7
+  https://player.vimeo.com/video/768593718
+- [bodycam] Log #2022-0003994 Vimeo BWC 8
+  https://player.vimeo.com/video/769520409
+- [bodycam] Log #2022-0003994 Vimeo BWC 9
+  https://player.vimeo.com/video/768593464
+- [documents] 2022-0003994_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/2022-0003994_FSR.pdf
+- [documents] Log 2022-3994 Investigatory Stop Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/Att.12ISR-Redacted.pdf
+- [documents] Log 2022-3994 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/033-Police_Rpt_JF399098_-_UUW_-_OCIR-Redacted.pdf
+- [documents] Log 2022-3994 Traffic Crash Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/032-Police_Rpt_JF398913_-_Traffic_Crash_-_OCIR-Redacted.pdf
+
 ### copa_2023_0004040  ·  V9 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2023-0004040/
 - [bodycam] Log #2023-0004040 Vimeo BWC 1
@@ -3118,6 +5558,149 @@ case: https://www.chicagocopa.org/case/2023-0004040/
   https://www.chicagocopa.org/wp-content/uploads/2023/10/TRRPOHuerta-2023-0004040-REDACTED.pdf
 - [documents] Log #2023-0004040 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/10/Original_Case_Incident_Report-REDACTED.pdf
+
+### copa_2024_0007745  ·  V9 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0007745/
+- [bodycam] Log #2024-0007745 Vimeo BWC 1
+  https://player.vimeo.com/video/1036140007
+- [bodycam] Log #2024-0007745 Vimeo BWC 2
+  https://player.vimeo.com/video/1036140061
+- [bodycam] Log #2024-0007745 Vimeo BWC 3
+  https://player.vimeo.com/video/1036140130
+- [bodycam] Log #2024-0007745 Vimeo BWC 4
+  https://player.vimeo.com/video/1036140080
+- [bodycam] Log #2024-0007745 Vimeo BWC 5
+  https://player.vimeo.com/video/1036140145
+- [bodycam] Log #2024-0007745 Vimeo BWC 6
+  https://player.vimeo.com/video/1036140166
+- [bodycam] Log #2024-0007745 Vimeo BWC 7
+  https://player.vimeo.com/video/1036139987
+- [bodycam] Log #2024-0007745 Vimeo BWC 8
+  https://player.vimeo.com/video/1036140202
+- [bodycam] Log #2024-0007745 Vimeo BWC 9
+  https://player.vimeo.com/video/1036140215
+- [documents] Log #2024-0007745 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/12/013-trr_-Redacted.pdf
+- [documents] Log #2024-0007745 Case Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2024/12/004-ocir_rd_jh467-385-Redacted.pdf
+- [documents] Log #2024-0007745 Case Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/12/003-ocir_rd_jh467-242-Redacted.pdf
+
+### copa_1062377  ·  V9 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1062377/
+- [bodycam] Log #1062377 Vimeo BWC 1
+  https://player.vimeo.com/video/175425651
+- [bodycam] Log #1062377 Vimeo BWC 2
+  https://player.vimeo.com/video/175426281
+- [bodycam] Log #1062377 Vimeo BWC 3
+  https://player.vimeo.com/video/175426279
+- [bodycam] Log #1062377 Vimeo BWC 4
+  https://player.vimeo.com/video/175429323
+- [bodycam] Log #1062377 Vimeo BWC 5
+  https://player.vimeo.com/video/175429320
+- [bodycam] Log #1062377 Vimeo BWC 6
+  https://player.vimeo.com/video/175433442
+- [bodycam] Log #1062377 Vimeo BWC 7
+  https://player.vimeo.com/video/175433441
+- [bodycam] Log #1062377 Vimeo BWC 8
+  https://player.vimeo.com/video/175437662
+- [bodycam] Log #1062377 Vimeo BWC 9
+  https://player.vimeo.com/video/175437661
+- [documents] TRR-MORSI-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-MORSI-REDACTED.pdf
+- [documents] OBR-MORSI-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-MORSI-REDACTED.pdf
+- [documents] OCIR-REDACTED-8
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-8.pdf
+- [documents] Arrest-Report-REDACTED-3
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED-3.pdf
+
+### copa_1081086  ·  V9 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081086/
+- [bodycam] Log #1081086 Vimeo BWC 1
+  https://player.vimeo.com/video/179516948
+- [bodycam] Log #1081086 Vimeo BWC 2
+  https://player.vimeo.com/video/180670253
+- [bodycam] Log #1081086 Vimeo BWC 3
+  https://player.vimeo.com/video/179518243
+- [bodycam] Log #1081086 Vimeo BWC 4
+  https://player.vimeo.com/video/179518234
+- [bodycam] Log #1081086 Vimeo BWC 5
+  https://player.vimeo.com/video/179518237
+- [bodycam] Log #1081086 Vimeo BWC 6
+  https://player.vimeo.com/video/179518241
+- [bodycam] Log #1081086 Vimeo BWC 7
+  https://player.vimeo.com/video/179518240
+- [bodycam] Log #1081086 Vimeo BWC 8
+  https://player.vimeo.com/video/179511491
+- [bodycam] Log #1081086 Vimeo BWC 9
+  https://player.vimeo.com/video/179511490
+- [documents] Final Redaction 1081086
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/Final-Redaction-1081086.pdf
+- [documents] OCIR — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-11.pdf
+- [documents] OCIR3 — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR3-REDACTED.pdf
+- [documents] OCIR2 — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR2-REDACTED.pdf
+- [documents] Arrest Report — Gipson — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Gipson-REDACTED.pdf
+
+### copa_1082025  ·  V9 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082025/
+- [bodycam] Log #1082025 Vimeo BWC 1
+  https://player.vimeo.com/video/189195468
+- [bodycam] Log #1082025 Vimeo BWC 2
+  https://player.vimeo.com/video/189197401
+- [bodycam] Log #1082025 Vimeo BWC 3
+  https://player.vimeo.com/video/189166720
+- [bodycam] Log #1082025 Vimeo BWC 4
+  https://player.vimeo.com/video/189168551
+- [bodycam] Log #1082025 Vimeo BWC 5
+  https://player.vimeo.com/video/189170449
+- [bodycam] Log #1082025 Vimeo BWC 6
+  https://player.vimeo.com/video/189174894
+- [bodycam] Log #1082025 Vimeo BWC 7
+  https://player.vimeo.com/video/189175230
+- [bodycam] Log #1082025 Vimeo BWC 8
+  https://player.vimeo.com/video/189175630
+- [bodycam] Log #1082025 Vimeo BWC 9
+  https://player.vimeo.com/video/189175976
+- [documents] trr-flaherty-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-FLAHERTY-redacted.pdf
+- [documents] trr-brouder-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-BROUDER-redacted.pdf
+- [documents] trr-brady-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-BRADY-redacted.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR-redacted-2.pdf
+- [documents] obr-flaherty-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-FLAHERTY-redacted.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/ARREST-REPORT-redacted.pdf
+
+### copa_1085898  ·  V9 A0 D1 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085898/
+- [bodycam] Log #1085898 Vimeo BWC 1
+  https://player.vimeo.com/video/233044177
+- [bodycam] Log #1085898 Vimeo BWC 2
+  https://player.vimeo.com/video/233057128
+- [bodycam] Log #1085898 Vimeo BWC 3
+  https://player.vimeo.com/video/233055877
+- [bodycam] Log #1085898 Vimeo BWC 4
+  https://player.vimeo.com/video/233049426
+- [bodycam] Log #1085898 Vimeo BWC 5
+  https://player.vimeo.com/video/233050566
+- [bodycam] Log #1085898 Vimeo BWC 6
+  https://player.vimeo.com/video/233051037
+- [bodycam] Log #1085898 Vimeo BWC 7
+  https://player.vimeo.com/video/233052101
+- [bodycam] Log #1085898 Vimeo BWC 8
+  https://player.vimeo.com/video/233057976
+- [bodycam] Log #1085898 Vimeo BWC 9
+  https://player.vimeo.com/video/233058319
+- [documents] Original Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/Original-Case-Incident-Report-Redacted-1.pdf
 
 ### copa_2021_0004309  ·  V8 A0 D3 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2021-0004309/
@@ -3255,6 +5838,33 @@ case: https://www.chicagocopa.org/case/1075770-2/
 - [documents] Log#1075770 – CHI-R-00000871
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1075770-CHI-R-00000871.pdf
 
+### copa_1076214  ·  V8 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1076214-2/
+- [bodycam] Log #1076214 Vimeo BWC 1
+  https://player.vimeo.com/video/169292465
+- [bodycam] Log #1076214 Vimeo BWC 2
+  https://player.vimeo.com/video/165214028
+- [bodycam] Log #1076214 Vimeo BWC 3
+  https://player.vimeo.com/video/166891368
+- [bodycam] Log #1076214 Vimeo BWC 4
+  https://player.vimeo.com/video/166891348
+- [bodycam] Log #1076214 Vimeo BWC 5
+  https://player.vimeo.com/video/169287308
+- [bodycam] Log #1076214 Vimeo BWC 6
+  https://player.vimeo.com/video/169289930
+- [bodycam] Log #1076214 Vimeo BWC 7
+  https://player.vimeo.com/video/169291399
+- [bodycam] Log #1076214 Vimeo BWC 8
+  https://player.vimeo.com/video/235941656
+- [documents] Log1076214 – CHI-R-00000931
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/CHI-R-00000931.pdf
+- [documents] Log#1076214 – CHI-R-00000932
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076241-CHI-R-00000932.pdf
+- [documents] Log#1076241 – CHI-R-00000931
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076241-CHI-R-00000931.pdf
+- [documents] Log#1076214 – CHI-R-00000930
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076241-CHI-R-00000930.pdf
+
 ### copa_2020_0002102  ·  V8 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2020-0002102/
 - [bodycam] Log #2020-0002102 Vimeo BWC 1
@@ -3317,6 +5927,132 @@ case: https://www.chicagocopa.org/case/2022-0003169/
 - [documents] Log #2022-0003169 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2022/09/Original_Case_Incident_Report-Redacted.pdf
 
+### copa_2022_0004050  ·  V8 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0004050/
+- [bodycam] Log #2022-0004050 Vimeo BWC 1
+  https://player.vimeo.com/video/768289649
+- [bodycam] Log #2022-0004050 Vimeo BWC 2
+  https://player.vimeo.com/video/768289620
+- [bodycam] Log #2022-0004050 Vimeo BWC 3
+  https://player.vimeo.com/video/768289575
+- [bodycam] Log #2022-0004050 Vimeo BWC 4
+  https://player.vimeo.com/video/768289678
+- [bodycam] Log #2022-0004050 Vimeo BWC 5
+  https://player.vimeo.com/video/768289563
+- [bodycam] Log #2022-0004050 Vimeo BWC 6
+  https://player.vimeo.com/video/768289523
+- [bodycam] Log #2022-0004050 Vimeo BWC 7
+  https://player.vimeo.com/video/768289537
+- [bodycam] Log #2022-0004050 Vimeo BWC 8
+  https://player.vimeo.com/video/768289555
+- [documents] 2022-0004050 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/COPA-RELEASES-VIDEO-OTHER-MATERIALS-RELATED-TO-AN-OFFICER-INVOLVED-SHOOTING-NEAR-5000-W.-LAWRENCE-FINAL1.pdf
+- [documents] Log 2022-4050 Traffic Crash Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/Traffic-Crash-Report-JF403982-II-OIS-Redacted.pdf
+- [documents] Log 2022-4050 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/TRR-for-Officer-Babilonia-Redacted.pdf
+- [documents] Log 2022-4050 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/TRR-for-Officer-Kanski-Redacted.pdf
+- [documents] Log 2022-4050 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2022/11/Case-Report-JF403950-OIS-II-Redacted.pdf
+
+### copa_2025_0002115  ·  V8 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0002115/
+- [bodycam] Log #2025-0002115 Vimeo BWC 1
+  https://player.vimeo.com/video/1089099350
+- [bodycam] Log #2025-0002115 Vimeo BWC 2
+  https://player.vimeo.com/video/1089099473
+- [bodycam] Log #2025-0002115 Vimeo BWC 3
+  https://player.vimeo.com/video/1089099606
+- [bodycam] Log #2025-0002115 Vimeo BWC 4
+  https://player.vimeo.com/video/1089098595
+- [bodycam] Log #2025-0002115 Vimeo BWC 5
+  https://player.vimeo.com/video/1089098751
+- [bodycam] Log #2025-0002115 Vimeo BWC 6
+  https://player.vimeo.com/video/1089098962
+- [bodycam] Log #2025-0002115 Vimeo BWC 7
+  https://player.vimeo.com/video/1089099216
+- [bodycam] Log #2025-0002115 Vimeo BWC 8
+  https://player.vimeo.com/video/1089098515
+- [documents] Log #2025-0002115 Tactical Response Report 4
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/066-trr_po_saucedo-Redacted.pdf
+- [documents] Log #2025-0002115 Tactical Response Report 3
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/068-trr_sgt._velez-Redacted.pdf
+- [documents] Log #2025-0002115 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/069-trr_po_reynolds-Redacted.pdf
+- [documents] Log #2025-0002115 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/067-trr_po_case-Redacted.pdf
+- [documents] Log #2025-0002115 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/017-Original-Report-ID-13826161-Redacted.pdf
+
+### copa_1086285  ·  V8 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1086285/
+- [bodycam] Log #1086285 Vimeo BWC 1
+  https://player.vimeo.com/video/295414881
+- [bodycam] Log #1086285 Vimeo BWC 2
+  https://player.vimeo.com/video/295401964
+- [bodycam] Log #1086285 Vimeo BWC 3
+  https://player.vimeo.com/video/295413162
+- [bodycam] Log #1086285 Vimeo BWC 4
+  https://player.vimeo.com/video/295414299
+- [bodycam] Log #1086285 Vimeo BWC 5
+  https://player.vimeo.com/video/295414459
+- [bodycam] Log #1086285 Vimeo BWC 6
+  https://player.vimeo.com/video/295414660
+- [bodycam] Log #1086285 Vimeo BWC 7
+  https://player.vimeo.com/video/295418802
+- [bodycam] Log #1086285 Vimeo BWC 8
+  https://player.vimeo.com/video/295420634
+- [documents] Log 1086285 TRR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/Log-1086285-TRR-Redacted.pdf
+- [documents] 1086285_Officers Battery Report_Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/1086285_Officers-Battery-Report_Redacted.pdf
+- [documents] 1086285 OCIR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/1086285-OCIR-Redacted.pdf
+- [documents] 1086285 OCIR 2 Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/1086285-OCIR-2-Redacted.pdf
+
+### copa_2017_1085062  ·  V8 A0 D11 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085062/
+- [bodycam] Log #2017-1085062 Vimeo BWC 1
+  https://player.vimeo.com/video/447263570
+- [bodycam] Log #2017-1085062 Vimeo BWC 2
+  https://player.vimeo.com/video/447263767
+- [bodycam] Log #2017-1085062 Vimeo BWC 3
+  https://player.vimeo.com/video/447264113
+- [bodycam] Log #2017-1085062 Vimeo BWC 4
+  https://player.vimeo.com/video/447264383
+- [bodycam] Log #2017-1085062 Vimeo BWC 5
+  https://player.vimeo.com/video/447264644
+- [bodycam] Log #2017-1085062 Vimeo BWC 6
+  https://player.vimeo.com/video/447264780
+- [bodycam] Log #2017-1085062 Vimeo BWC 7
+  https://player.vimeo.com/video/447264924
+- [bodycam] Log #2017-1085062 Vimeo BWC 8
+  https://player.vimeo.com/video/447265082
+- [documents] 1085062 REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/1085062-REDACTED.pdf
+- [documents] Log #1085062 Arrest Report (Gomez) Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/Log-1085062-Arrest-Report-Gomez-Redacted.pdf
+- [documents] Tactical-Response-Report-Ryan-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Tactical-Response-Report-Ryan-REDACTED.pdf
+- [documents] Tactical-Response-Report-Augle-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Tactical-Response-Report-Augle-REDACTED.pdf
+- [documents] Officers-Battery-Report-Ryan-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Officers-Battery-Report-Ryan-REDACTED.pdf
+- [documents] Officers-Battery-Report-Augle-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Officers-Battery-Report-Augle-REDACTED.pdf
+- [documents] Original-Case-Incident-Report-REDACTED2
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Original-Case-Incident-Report-REDACTED2.pdf
+- [documents] Arrest-Report-Diaz-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Arrest-Report-Diaz-REDACTED-1.pdf
+- [documents] Arrest-Report-Calderon-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Arrest-Report-Calderon-REDACTED-1.pdf
+- [documents] 1085062 COPA — June 30 extension request
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/1085062-COPA-June-30-extension-request.pdf
+- [documents] 1085062 COPA — June 30 extension granting
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/1085062-COPA-June-30-extension-granting.pdf
+
 ### copa_2016_1079728  ·  V7 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2016-1079728/
 - [bodycam] Log #2016-1079728 Vimeo BWC 1
@@ -3345,6 +6081,52 @@ case: https://www.chicagocopa.org/case/2016-1079728/
   https://www.chicagocopa.org/wp-content/uploads/2016/05/TRR.pdf
 - [documents] OICR
   https://www.chicagocopa.org/wp-content/uploads/2016/05/OICR.pdf
+
+### copa_2017_1087518  ·  V7 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1087518-2/
+- [bodycam] Log #2017-1087518 Vimeo BWC 1
+  https://player.vimeo.com/video/315994226
+- [bodycam] Log #2017-1087518 Vimeo BWC 2
+  https://player.vimeo.com/video/315994459
+- [bodycam] Log #2017-1087518 Vimeo BWC 3
+  https://player.vimeo.com/video/315994671
+- [bodycam] Log #2017-1087518 Vimeo BWC 4
+  https://player.vimeo.com/video/315994809
+- [bodycam] Log #2017-1087518 Vimeo BWC 5
+  https://player.vimeo.com/video/315995609
+- [bodycam] Log #2017-1087518 Vimeo BWC 6
+  https://player.vimeo.com/video/315995002
+- [bodycam] Log #2017-1087518 Vimeo BWC 7
+  https://player.vimeo.com/video/315995060
+- [documents] 2017-1087518_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/2017-1087518_FSR.pdf
+- [documents] Case Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Case-Report-Att-9-Redacted.pdf
+- [documents] Case Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Case-Report-Att-8-Redacted.pdf
+- [documents] Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Arrest-Report-Att-7-Redacted.pdf
+
+### copa_2018_1091317  ·  V7 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1091317/
+- [bodycam] Log #2018-1091317 Vimeo BWC 1
+  https://player.vimeo.com/video/305086733
+- [bodycam] Log #2018-1091317 Vimeo BWC 2
+  https://player.vimeo.com/video/305087017
+- [bodycam] Log #2018-1091317 Vimeo BWC 3
+  https://player.vimeo.com/video/305087373
+- [bodycam] Log #2018-1091317 Vimeo BWC 4
+  https://player.vimeo.com/video/305087826
+- [bodycam] Log #2018-1091317 Vimeo BWC 5
+  https://player.vimeo.com/video/305087979
+- [bodycam] Log #2018-1091317 Vimeo BWC 6
+  https://player.vimeo.com/video/305088219
+- [bodycam] Log #2018-1091317 Vimeo BWC 7
+  https://player.vimeo.com/video/305088435
+- [documents] Log 1091317 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Arrest-Report-Aguilar_redacted.pdf
+- [documents] Log 1091317 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Original-Case-Aguilar_redacted.pdf
 
 ### copa_2019_0002605  ·  V7 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2019-0002605/
@@ -3408,6 +6190,157 @@ case: https://www.chicagocopa.org/case/2020-0004697/
 - [documents] 2020-4697 CCSAO Extension Request
   https://www.chicagocopa.org/wp-content/uploads/2020/12/2020-4697-CCSAO-Extension-Request.pdf
 
+### copa_2026_0000268  ·  V7 A0 D1 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2026-0000268/
+- [bodycam] Log #2026-0000268 Vimeo BWC 1
+  https://player.vimeo.com/video/1174098822
+- [bodycam] Log #2026-0000268 Vimeo BWC 2
+  https://player.vimeo.com/video/1174098795
+- [bodycam] Log #2026-0000268 Vimeo BWC 3
+  https://player.vimeo.com/video/1174098840
+- [bodycam] Log #2026-0000268 Vimeo BWC 4
+  https://player.vimeo.com/video/1174098883
+- [bodycam] Log #2026-0000268 Vimeo BWC 5
+  https://player.vimeo.com/video/1174098904
+- [bodycam] Log #2026-0000268 Vimeo BWC 6
+  https://player.vimeo.com/video/1174098915
+- [bodycam] Log #2026-0000268 Vimeo BWC 7
+  https://player.vimeo.com/video/1174098936
+- [documents] Log #2026-0000268 Traffic Crash Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/03/094-JK119537-OCIR-redacted.pdf
+
+### copa_1083171  ·  V7 A0 D14 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083171/
+- [bodycam] Log #1083171 Vimeo BWC 1
+  https://player.vimeo.com/video/200192746
+- [bodycam] Log #1083171 Vimeo BWC 2
+  https://player.vimeo.com/video/199040429
+- [bodycam] Log #1083171 Vimeo BWC 3
+  https://player.vimeo.com/video/201173697
+- [bodycam] Log #1083171 Vimeo BWC 4
+  https://player.vimeo.com/video/201173741
+- [bodycam] Log #1083171 Vimeo BWC 5
+  https://player.vimeo.com/video/201173757
+- [bodycam] Log #1083171 Vimeo BWC 6
+  https://player.vimeo.com/video/201173776
+- [bodycam] Log #1083171 Vimeo BWC 7
+  https://player.vimeo.com/video/201173821
+- [documents] 1083171_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/1083171_FSR.pdf
+- [documents] TRR-Officer Wallace – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Wallace-REDACTED.pdf
+- [documents] TRR-Officer Surma – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Surma-REDACTED.pdf
+- [documents] TRR-Officer Najm – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Najm-REDACTED.pdf
+- [documents] TRR-Officer Karcz – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Karcz-REDACTED.pdf
+- [documents] TRR-Officer Furlet – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Furlet-REDACTED.pdf
+- [documents] TRR- Officer Calixto – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Calixto-REDACTED.pdf
+- [documents] OBR-Officer Wallace – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Wallace-REDACTED.pdf
+- [documents] OBR-Officer Surma – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Surma-REDACTED.pdf
+- [documents] OBR-Officer Najm – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Najm-REDACTED.pdf
+- [documents] OBR-Officer Karcz – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Karcz-REDACTED.pdf
+- [documents] OBR-Officer Furlet – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Furlet-REDACTED.pdf
+- [documents] OBR-Officer Calixto – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-Officer-Calixto-REDACTED.pdf
+- [documents] Case report HZ-531419 (U# incident) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Case-report-HZ-531419-U-incident-REDACTED.pdf
+
+### copa_1087021  ·  V7 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1087021-2/
+- [bodycam] Log #1087021 Vimeo BWC 1
+  https://player.vimeo.com/video/315990612
+- [bodycam] Log #1087021 Vimeo BWC 2
+  https://player.vimeo.com/video/315990438
+- [bodycam] Log #1087021 Vimeo BWC 3
+  https://player.vimeo.com/video/315990696
+- [bodycam] Log #1087021 Vimeo BWC 4
+  https://player.vimeo.com/video/315990750
+- [bodycam] Log #1087021 Vimeo BWC 5
+  https://player.vimeo.com/video/315989707
+- [bodycam] Log #1087021 Vimeo BWC 6
+  https://player.vimeo.com/video/315989808
+- [bodycam] Log #1087021 Vimeo BWC 7
+  https://player.vimeo.com/video/315991354
+- [documents] Log 1087021 Tactical Response Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/1087021-Tactical-Response-Report-Redacted.pdf
+- [documents] 1087021 Original Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/1087021-Original-Case-Incident-Report-Redacted.pdf
+- [documents] 1087021 Officer’s Battery Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/1087021-Officers-Battery-Report-Redacted.pdf
+- [documents] 1087021 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/1087021-Arrest-Report-Redacted.pdf
+
+### copa_1089772  ·  V7 A0 D9 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1089772/
+- [bodycam] Log #1089772 Vimeo BWC 1
+  https://player.vimeo.com/video/281634936
+- [bodycam] Log #1089772 Vimeo BWC 2
+  https://player.vimeo.com/video/281636431
+- [bodycam] Log #1089772 Vimeo BWC 3
+  https://player.vimeo.com/video/281636800
+- [bodycam] Log #1089772 Vimeo BWC 4
+  https://player.vimeo.com/video/281637111
+- [bodycam] Log #1089772 Vimeo BWC 5
+  https://player.vimeo.com/video/281642264
+- [bodycam] Log #1089772 Vimeo BWC 6
+  https://player.vimeo.com/video/281642438
+- [bodycam] Log #1089772 Vimeo BWC 7
+  https://player.vimeo.com/video/281642746
+- [documents] 1089772 Final SRI.red
+  https://www.chicagocopa.org/wp-content/uploads/2021/08/1089772-Final-SRI.red_.pdf
+- [documents] Log 1089772 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Tactical-Response-Report-1.pdf
+- [documents] Log 1089772 Original Case IncidentReport
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Original-Case-IncidentReport.pdf
+- [documents] Log 1089772 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Tactical-Response-Report.pdf
+- [documents] Log 1089772 Supplemental Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Supplemental-Case-Incident-Report-1.pdf
+- [documents] Log 1089772 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Original-Case-Incident-Report.pdf
+- [documents] Log 1089772 Tactical Response Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Tactical-Response-Report-Redacted.pdf
+- [documents] Log 1089772 Supplemental Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Supplemental-Case-Incident-Report.pdf
+- [documents] Log 1089772 Original Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Log-1089772-Original-Case-Incident-Report-Redacted.pdf
+
+### copa_1092023  ·  V7 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1092023/
+- [bodycam] Log #1092023 Vimeo BWC 1
+  https://player.vimeo.com/video/317354852
+- [bodycam] Log #1092023 Vimeo BWC 2
+  https://player.vimeo.com/video/317355894
+- [bodycam] Log #1092023 Vimeo BWC 3
+  https://player.vimeo.com/video/317356086
+- [bodycam] Log #1092023 Vimeo BWC 4
+  https://player.vimeo.com/video/317558484
+- [bodycam] Log #1092023 Vimeo BWC 5
+  https://player.vimeo.com/video/317358215
+- [bodycam] Log #1092023 Vimeo BWC 6
+  https://player.vimeo.com/video/317358386
+- [bodycam] Log #1092023 Vimeo BWC 7
+  https://player.vimeo.com/video/317358531
+- [documents] 1092023 REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2020/11/1092023-REDACTED.pdf
+- [documents] Log # 1092023Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Original-incident-case-report-JB557816-Redacted.pdf
+- [documents] Log # 1092023 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Officer-Scanlons-TRR-Redacted.pdf
+- [documents] Log # 1092023 Arrest Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Naeem-Coker-arrest-report-Redacted.pdf
+- [documents] Log # 1092023 Arrest Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/02/Eric-McMiller-arrest-report-Redacted.pdf
+
 ### copa_2022_0001369  ·  V6 A0 D7 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2022-0001369/
 - [bodycam] Log #2022-0001369 Vimeo BWC 1
@@ -3436,6 +6369,27 @@ case: https://www.chicagocopa.org/case/2022-0001369/
   https://www.chicagocopa.org/wp-content/uploads/2022/04/2022-000136920200403TRRKirkel_REDACTED.pdf
 - [documents] Log # 2022-0001369 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2022/04/2022-0001369-20220403-Original-Case-Incident-Report_REDACTED.pdf
+
+### copa_1072859  ·  V6 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1072859-2/
+- [bodycam] Log #1072859 Vimeo BWC 1
+  https://player.vimeo.com/video/170200966
+- [bodycam] Log #1072859 Vimeo BWC 2
+  https://player.vimeo.com/video/170201028
+- [bodycam] Log #1072859 Vimeo BWC 3
+  https://player.vimeo.com/video/170201206
+- [bodycam] Log #1072859 Vimeo BWC 4
+  https://player.vimeo.com/video/166887589
+- [bodycam] Log #1072859 Vimeo BWC 5
+  https://player.vimeo.com/video/166887674
+- [bodycam] Log #1072859 Vimeo BWC 6
+  https://player.vimeo.com/video/166887590
+- [documents] Log#1072859 – CHI-R-00000626
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1072859-CHI-R-00000626.pdf
+- [documents] Log#1072859 – CHI-R-00000628
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1072859-CHI-R-00000628.pdf
+- [documents] Log#1072859 – CHI-R-00000627
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1072859-CHI-R-00000627.pdf
 
 ### copa_1073693  ·  V6 A0 D13 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1073693-2/
@@ -3509,6 +6463,29 @@ case: https://www.chicagocopa.org/case/1088587/
 - [documents] Arrest Report (White)
   https://www.chicagocopa.org/wp-content/uploads/2018/04/Arrest-Report-Redacted.pdf
 
+### copa_2018_1091592  ·  V6 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1091592/
+- [bodycam] Log #2018-1091592 Vimeo BWC 1
+  https://player.vimeo.com/video/308443758
+- [bodycam] Log #2018-1091592 Vimeo BWC 2
+  https://player.vimeo.com/video/308444631
+- [bodycam] Log #2018-1091592 Vimeo BWC 3
+  https://player.vimeo.com/video/308445250
+- [bodycam] Log #2018-1091592 Vimeo BWC 4
+  https://player.vimeo.com/video/308445646
+- [bodycam] Log #2018-1091592 Vimeo BWC 5
+  https://player.vimeo.com/video/308446635
+- [bodycam] Log #2018-1091592 Vimeo BWC 6
+  https://player.vimeo.com/video/308447353
+- [documents] 2018-1091592_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/2018-1091592_FSR.pdf
+- [documents] Log 1091592 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Redacted-Case-Report-JB498187.pdf
+- [documents] Log 1091592 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Redacted-Derrell-Johnson-arrest-report.pdf
+- [documents] Log 1091592 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Redacted-TRR-Officer-Martinez.pdf
+
 ### copa_2019_0000233  ·  V6 A0 D8 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2019-0000233/
 - [bodycam] Log #2019-0000233 Vimeo BWC 1
@@ -3569,6 +6546,98 @@ case: https://www.chicagocopa.org/case/2019-0000294/
 - [documents] Log # 2019-0000294 Arrest Report
   https://www.chicagocopa.org/wp-content/uploads/2019/05/Arrest-Report-of-Donell-Davis._REDACTED.pdf
 
+### copa_2019_0005220  ·  V6 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0005220/
+- [bodycam] Log #2019-0005220 Vimeo BWC 1
+  https://player.vimeo.com/video/392774830
+- [bodycam] Log #2019-0005220 Vimeo BWC 2
+  https://player.vimeo.com/video/392775023
+- [bodycam] Log #2019-0005220 Vimeo BWC 3
+  https://player.vimeo.com/video/392778950
+- [bodycam] Log #2019-0005220 Vimeo BWC 4
+  https://player.vimeo.com/video/392783350
+- [bodycam] Log #2019-0005220 Vimeo BWC 5
+  https://player.vimeo.com/video/392783469
+- [bodycam] Log #2019-0005220 Vimeo BWC 6
+  https://player.vimeo.com/video/392784180
+- [documents] Log # 2019-5220 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/02/CaseReport_JC558502_REDACTED.pdf
+- [documents] Log # 2019-5220 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/02/CaseReport_JC558453_REDACTED.pdf
+
+### copa_2021_0001600  ·  V6 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2021-0001600/
+- [bodycam] Log #2021-0001600 Vimeo BWC 1
+  https://player.vimeo.com/video/566645152
+- [bodycam] Log #2021-0001600 Vimeo BWC 2
+  https://player.vimeo.com/video/566646818
+- [bodycam] Log #2021-0001600 Vimeo BWC 3
+  https://player.vimeo.com/video/566662999
+- [bodycam] Log #2021-0001600 Vimeo BWC 4
+  https://player.vimeo.com/video/566693012
+- [bodycam] Log #2021-0001600 Vimeo BWC 5
+  https://player.vimeo.com/video/566693814
+- [bodycam] Log #2021-0001600 Vimeo BWC 6
+  https://player.vimeo.com/video/566694879
+- [documents] 2021-0001600_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2021/06/2021-0001600_FSR.pdf
+- [documents] Log # 2021-1600 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2021/06/TRR-Shockley-Curran_REDACTED.pdf
+- [documents] Log # 2021-1600 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2021/06/TRR-Paschal-Christopher_REDACTED.pdf
+- [documents] Log # 2021-1600 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/06/Arrest-Report-Boozier-Pierre-30047716_REDACTED.pdf
+- [documents] Log # 2021-1600 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/06/Original-Case-Incident-Report-JE213347_REDACTED.pdf
+
+### copa_2021_0002232  ·  V6 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2021-0002232/
+- [bodycam] Log #2021-0002232 Vimeo BWC 1
+  https://player.vimeo.com/video/572563915
+- [bodycam] Log #2021-0002232 Vimeo BWC 2
+  https://player.vimeo.com/video/572566273
+- [bodycam] Log #2021-0002232 Vimeo BWC 3
+  https://player.vimeo.com/video/572567722
+- [bodycam] Log #2021-0002232 Vimeo BWC 4
+  https://player.vimeo.com/video/572569403
+- [bodycam] Log #2021-0002232 Vimeo BWC 5
+  https://player.vimeo.com/video/572573699
+- [bodycam] Log #2021-0002232 Vimeo BWC 6
+  https://player.vimeo.com/video/572571532
+- [documents] 2021-0002232_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/2021-0002232_FSR.pdf
+- [documents] COPA Press RELEASE 2021-2232
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/COPA-RELEASES-VIDEO-OTHER-MATERIALS-OF-AN-OFFICER-INVOLVED-SHOOTING-NEAR-8300-S.-KERFOOT-AVENUE.pdf
+- [documents] Log# 2021-2232 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/PO-Marin-TRR_REDACTED.pdf
+- [documents] Log# 2021-2232 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/PO-Ponce-TRR_REDACTED.pdf
+- [documents] Log# 2021-2232 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/07/Case-Report-JE259080_REDACTED.pdf
+
+### copa_2022_0005419  ·  V6 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0005419/
+- [bodycam] Log #2022-0005419 Vimeo BWC 1
+  https://player.vimeo.com/video/795285434
+- [bodycam] Log #2022-0005419 Vimeo BWC 2
+  https://player.vimeo.com/video/795285383
+- [bodycam] Log #2022-0005419 Vimeo BWC 3
+  https://player.vimeo.com/video/795285799
+- [bodycam] Log #2022-0005419 Vimeo BWC 4
+  https://player.vimeo.com/video/795286092
+- [bodycam] Log #2022-0005419 Vimeo BWC 5
+  https://player.vimeo.com/video/795285549
+- [bodycam] Log #2022-0005419 Vimeo BWC 6
+  https://player.vimeo.com/video/795286239
+- [documents] 2022-0005419 press release
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/COPA-RELEASES-VIDEO-OTHER-MATERIALS-RELATED-TO-OFFICER-INVOLVED-SHOOTING-NEAR-5900-S.-HALSTED.pdf
+- [documents] Log #2022-0005419 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/015-TRR-Redacted.pdf
+- [documents] Log #2022-0005419 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/016-OCIR-JF521980-Redacted.pdf
+- [documents] Log #2022-0005419 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/02/014-OCIR-JF521828-Redacted.pdf
+
 ### copa_2023_0001277  ·  V6 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2023-0001277/
 - [bodycam] Log #2023-0001277 Vimeo BWC 1
@@ -3597,6 +6666,151 @@ case: https://www.chicagocopa.org/case/2023-0001277/
   https://www.chicagocopa.org/wp-content/uploads/2023/05/004-Arrest_Report_1-Redacted.pdf
 - [documents] Log #2023-0001277 Original Case Incident Report 1
   https://www.chicagocopa.org/wp-content/uploads/2023/05/003-Orig_Case_Incid_Report_JG199197-Redacted.pdf
+
+### copa_2024_0008451  ·  V6 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0008451/
+- [bodycam] Log #2024-0008451 Vimeo BWC 1
+  https://player.vimeo.com/video/1046529696
+- [bodycam] Log #2024-0008451 Vimeo BWC 2
+  https://player.vimeo.com/video/1046529726
+- [bodycam] Log #2024-0008451 Vimeo BWC 3
+  https://player.vimeo.com/video/1046529768
+- [bodycam] Log #2024-0008451 Vimeo BWC 4
+  https://player.vimeo.com/video/1046529801
+- [bodycam] Log #2024-0008451 Vimeo BWC 5
+  https://player.vimeo.com/video/1046529747
+- [bodycam] Log #2024-0008451 Vimeo BWC 6
+  https://player.vimeo.com/video/1046529844
+- [documents] Log #2024-0008451 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/103-TRR-Det-Chris-Matias-Redacted.pdf
+- [documents] Log #2024-0008451 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/012-OCIR-JH513810-Redacted.pdf
+
+### copa_2025_0001315  ·  V6 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0001315/
+- [bodycam] Log #2025-0001315 Vimeo BWC 1
+  https://player.vimeo.com/video/1077344691
+- [bodycam] Log #2025-0001315 Vimeo BWC 2
+  https://player.vimeo.com/video/1077344844
+- [bodycam] Log #2025-0001315 Vimeo BWC 3
+  https://player.vimeo.com/video/1077344138
+- [bodycam] Log #2025-0001315 Vimeo BWC 4
+  https://player.vimeo.com/video/1077344285
+- [bodycam] Log #2025-0001315 Vimeo BWC 5
+  https://player.vimeo.com/video/1077344398
+- [bodycam] Log #2025-0001315 Vimeo BWC 6
+  https://player.vimeo.com/video/1077344552
+- [documents] Log #2025-0001315 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/04/TRR-FTO-John-Dalcason_Redacted.pdf
+- [documents] Log #2025-0001315 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/04/Original-Case-Incident-Report-RD-No.-JJ188223_Redacted.pdf
+
+### copa_1080505  ·  V6 A0 D18 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080505/
+- [bodycam] Log #1080505 Vimeo BWC 1
+  https://player.vimeo.com/video/183047193
+- [bodycam] Log #1080505 Vimeo BWC 2
+  https://player.vimeo.com/video/183047188
+- [bodycam] Log #1080505 Vimeo BWC 3
+  https://player.vimeo.com/video/183047189
+- [bodycam] Log #1080505 Vimeo BWC 4
+  https://player.vimeo.com/video/183047192
+- [bodycam] Log #1080505 Vimeo BWC 5
+  https://player.vimeo.com/video/183047191
+- [bodycam] Log #1080505 Vimeo BWC 6
+  https://player.vimeo.com/video/183047194
+- [documents] OCIR-REDACTED-5
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED-5.pdf
+- [documents] TRR-Quinn-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Quinn-REDACTED.pdf
+- [documents] TRR-Paxson-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Paxson-REDACTED.pdf
+- [documents] TRR-Pantano-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Pantano-REDACTED.pdf
+- [documents] TRR-Mocarski-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Mocarski-REDACTED.pdf
+- [documents] TRR-Mathias-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Mathias-REDACTED.pdf
+- [documents] TRR-Fiedler-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Fiedler-REDACTED.pdf
+- [documents] TRR-Conrad-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Conrad-REDACTED.pdf
+- [documents] TRR-Bartlett-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Bartlett-REDACTED.pdf
+- [documents] TRR-Amelio-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Amelio-REDACTED.pdf
+- [documents] OBR-Paxson-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Paxson-REDACTED.pdf
+- [documents] OBR-Pantano-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Pantano-REDACTED.pdf
+- [documents] OBR-Mocarski-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Mocarski-REDACTED.pdf
+- [documents] OBR-Mathias-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Mathias-REDACTED.pdf
+- [documents] OBR-Fiedler-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Fiedler-REDACTED.pdf
+- [documents] OBR-Conrad-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Conrad-REDACTED.pdf
+- [documents] OBR-Bartlett-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Bartlett-REDACTED.pdf
+- [documents] OCIR-REDACTED-5
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-5.pdf
+
+### copa_1080674  ·  V6 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080674/
+- [bodycam] Log #1080674 Vimeo BWC 1
+  https://player.vimeo.com/video/176236014
+- [bodycam] Log #1080674 Vimeo BWC 2
+  https://player.vimeo.com/video/176667661
+- [bodycam] Log #1080674 Vimeo BWC 3
+  https://player.vimeo.com/video/176661289
+- [bodycam] Log #1080674 Vimeo BWC 4
+  https://player.vimeo.com/video/176661288
+- [bodycam] Log #1080674 Vimeo BWC 5
+  https://player.vimeo.com/video/176661287
+- [bodycam] Log #1080674 Vimeo BWC 6
+  https://player.vimeo.com/video/176661286
+- [documents] OCIR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-redacted.pdf
+- [documents] OBR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OBR-redacted.pdf
+- [documents] TRR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/TRR-redacted.pdf
+- [documents] TRR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-redacted.pdf
+- [documents] OBR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-redacted.pdf
+- [documents] OCIR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-redacted.pdf
+
+### copa_1083127  ·  V6 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083127/
+- [bodycam] Log #1083127 Vimeo BWC 1
+  https://player.vimeo.com/video/200183495
+- [bodycam] Log #1083127 Vimeo BWC 2
+  https://player.vimeo.com/video/199036071
+- [bodycam] Log #1083127 Vimeo BWC 3
+  https://player.vimeo.com/video/199035884
+- [bodycam] Log #1083127 Vimeo BWC 4
+  https://player.vimeo.com/video/199036317
+- [bodycam] Log #1083127 Vimeo BWC 5
+  https://player.vimeo.com/video/199037483
+- [bodycam] Log #1083127 Vimeo BWC 6
+  https://player.vimeo.com/video/199038351
+- [documents] 1083127 – FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/1083127-REDACTED.pdf
+- [documents] OCR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OCR-REDACTED-2.pdf
+- [documents] OBR – PO James – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-PO-James-REDACTED.pdf
+- [documents] TRR- PO James – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-PO-James-REDACTED.pdf
+- [documents] TRR – PO Page – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-PO-Page-REDACTED.pdf
+- [documents] OCR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OCR-REDACTED.pdf
+- [documents] OBR – PO Page – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OBR-PO-Page-REDACTED.pdf
 
 ### copa_2023_0000239  ·  V5 A0 D4 P0  ·  score 16
 case: https://www.chicagocopa.org/case/2023-0000239/
@@ -3694,6 +6908,121 @@ case: https://www.chicagocopa.org/case/1086925/
 - [documents] Officer’s Battery Report (Dorsch)
   https://www.chicagocopa.org/wp-content/uploads/2017/11/Officers-Battery-Report-Dorsch.pdf
 
+### copa_2021_0003213  ·  V5 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2021-0003213/
+- [bodycam] Log #2021-0003213 Vimeo BWC 1
+  https://player.vimeo.com/video/616991247
+- [bodycam] Log #2021-0003213 Vimeo BWC 2
+  https://player.vimeo.com/video/616992596
+- [bodycam] Log #2021-0003213 Vimeo BWC 3
+  https://player.vimeo.com/video/616993027
+- [bodycam] Log #2021-0003213 Vimeo BWC 4
+  https://player.vimeo.com/video/616994046
+- [bodycam] Log #2021-0003213 Vimeo BWC 5
+  https://player.vimeo.com/video/616994777
+- [documents] 2021-0003213_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2021/09/2021-0003213_FSR.pdf
+- [documents] Log # 2021-3213 911 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/09/TRR-Officer-Blanco_REDACTED.pdf
+- [documents] Log # 2021-3213 911 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/09/002-Case_Report_REDACTED.pdf
+
+### copa_1080417  ·  V5 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080417/
+- [bodycam] Log #1080417 Vimeo BWC 1
+  https://player.vimeo.com/video/173676985
+- [bodycam] Log #1080417 Vimeo BWC 2
+  https://player.vimeo.com/video/173527380
+- [bodycam] Log #1080417 Vimeo BWC 3
+  https://player.vimeo.com/video/173534564
+- [bodycam] Log #1080417 Vimeo BWC 4
+  https://player.vimeo.com/video/173535660
+- [bodycam] Log #1080417 Vimeo BWC 5
+  https://player.vimeo.com/video/173536399
+- [documents] OCIR-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED-1.pdf
+- [documents] TRR-Det.-Ross-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Det.-Ross-REDACTED.pdf
+- [documents] OCIR-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-1.pdf
+- [documents] OBR-Det.-Ross-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Det.-Ross-REDACTED.pdf
+- [documents] Arrest-Report-Beasley-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Beasley-REDACTED.pdf
+
+### copa_1082513  ·  V5 A0 D10 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082513/
+- [bodycam] Log #1082513 Vimeo BWC 1
+  https://player.vimeo.com/video/191666774
+- [bodycam] Log #1082513 Vimeo BWC 2
+  https://player.vimeo.com/video/191651506
+- [bodycam] Log #1082513 Vimeo BWC 3
+  https://player.vimeo.com/video/194071445
+- [bodycam] Log #1082513 Vimeo BWC 4
+  https://player.vimeo.com/video/194071648
+- [bodycam] Log #1082513 Vimeo BWC 5
+  https://player.vimeo.com/video/194071823
+- [documents] CASE REPORT – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/CASE-REPORT-REDACTED-1.pdf
+- [documents] ARREST REPORT – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/ARREST-REPORT-REDACTED-1.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/ARREST-REPORT-REDACTED.pdf
+- [documents] trr-warner-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-WARNER-REDACTED.pdf
+- [documents] trr-thomas-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-THOMAS-REDACTED.pdf
+- [documents] trr-murillo-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-MURILLO-REDACTED.pdf
+- [documents] trr-mousa-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-MOUSA-REDACTED.pdf
+- [documents] obr-murillo-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OBR-MURILLO-REDACTED.pdf
+- [documents] obr-mousa-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OBR-MOUSA-REDACTED.pdf
+- [documents] case-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/CASE-REPORT-REDACTED.pdf
+
+### copa_1083757  ·  V5 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083757/
+- [bodycam] Log #1083757 Vimeo BWC 1
+  https://player.vimeo.com/video/226221089
+- [bodycam] Log #1083757 Vimeo BWC 2
+  https://player.vimeo.com/video/226221246
+- [bodycam] Log #1083757 Vimeo BWC 3
+  https://player.vimeo.com/video/226221290
+- [bodycam] Log #1083757 Vimeo BWC 4
+  https://player.vimeo.com/video/226221328
+- [bodycam] Log #1083757 Vimeo BWC 5
+  https://player.vimeo.com/video/226221358
+- [documents] 1083757 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/06/Final-Redaction-log-1083757.pdf
+- [documents] Tactical Response Report (Rosiles) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/07/Tactical-Response-Report-Rosiles-REDACTED.pdf
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/07/Original-Case-Incident-Report-REDACTED-1.pdf
+- [documents] Arrest Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/07/Arrest-Report-REDACTED-2.pdf
+
+### copa_2019_0003403  ·  V5 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2019-0003403/
+- [bodycam] Log #2019-0003403 Vimeo BWC 1
+  https://player.vimeo.com/video/368380023
+- [bodycam] Log #2019-0003403 Vimeo BWC 2
+  https://player.vimeo.com/video/368380887
+- [bodycam] Log #2019-0003403 Vimeo BWC 3
+  https://player.vimeo.com/video/368381851
+- [bodycam] Log #2019-0003403 Vimeo BWC 4
+  https://player.vimeo.com/video/368387748
+- [bodycam] Log #2019-0003403 Vimeo BWC 5
+  https://player.vimeo.com/video/368387508
+- [documents] Log # 2019-3403 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/10/TRR-PO-Redacted_jw.pdf
+- [documents] OCIR-Redacted_jw
+  https://www.chicagocopa.org/wp-content/uploads/2019/10/OCIR-Redacted_jw-1.pdf
+- [documents] Log # 2019-3403 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/10/OCIR-Redacted_jw.pdf
+
 ### copa_2021_0003940  ·  V4 A0 D8 P0  ·  score 20
 case: https://www.chicagocopa.org/case/2021-0003940/
 - [bodycam] Log #2021-0003940 Vimeo BWC 1
@@ -3777,6 +7106,23 @@ case: https://www.chicagocopa.org/case/1056803-2/
 - [documents] Log#1056803-CHI-R-00000263
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1056803-CHI-R-00000263.pdf
 
+### copa_1073410  ·  V4 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1073410-2/
+- [bodycam] Log #1073410 Vimeo BWC 1
+  https://player.vimeo.com/video/165977913
+- [bodycam] Log #1073410 Vimeo BWC 2
+  https://player.vimeo.com/video/165978047
+- [bodycam] Log #1073410 Vimeo BWC 3
+  https://player.vimeo.com/video/165979263
+- [bodycam] Log #1073410 Vimeo BWC 4
+  https://player.vimeo.com/video/167049965
+- [documents] 1073410 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/1073410-FSR.pdf
+- [documents] Log1073410-OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1073410-OCIR.pdf
+- [documents] Log#1073410 – CHI-R-00000826
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1073410-CHI-R-00000826.pdf
+
 ### copa_1089601  ·  V4 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1089601/
 - [bodycam] Log #1089601 Vimeo BWC 1
@@ -3831,6 +7177,21 @@ case: https://www.chicagocopa.org/case/1091275/
 - [documents] Original Case Incident Report #1
   https://www.chicagocopa.org/wp-content/uploads/2018/12/OCIR_1_JB462677-Agg-Batt-to-PO_redacted.pdf
 
+### copa_2019_0000048  ·  V4 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0000048/
+- [bodycam] Log #2019-0000048 Vimeo BWC 1
+  https://player.vimeo.com/video/330116576
+- [bodycam] Log #2019-0000048 Vimeo BWC 2
+  https://player.vimeo.com/video/330116991
+- [bodycam] Log #2019-0000048 Vimeo BWC 3
+  https://player.vimeo.com/video/330121147
+- [bodycam] Log #2019-0000048 Vimeo BWC 4
+  https://player.vimeo.com/video/330117399
+- [documents] Log # 2019-0000048 Case Report 2 CaseReport
+  https://www.chicagocopa.org/wp-content/uploads/2019/04/CaseReport_JC151653_REDACTED.pdf
+- [documents] Log # 2019-0000048 Case Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2019/04/CaseReport_JC151607_REDACTED.pdf
+
 ### copa_2019_0001099  ·  V4 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2019-0001099/
 - [bodycam] Log #2019-0001099 Vimeo BWC 1
@@ -3855,6 +7216,281 @@ case: https://www.chicagocopa.org/case/2019-0001099/
   https://www.chicagocopa.org/wp-content/uploads/2019/07/P.O.Black-REDACTED.pdf
 - [documents] Log # 2019-0001099 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2019/07/Original-Case-Report-REDACTED.pdf
+
+### copa_2019_0004249  ·  V4 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0004249/
+- [bodycam] Log #2019-0004249 Vimeo BWC 1
+  https://player.vimeo.com/video/386984600
+- [bodycam] Log #2019-0004249 Vimeo BWC 2
+  https://player.vimeo.com/video/386984721
+- [bodycam] Log #2019-0004249 Vimeo BWC 3
+  https://player.vimeo.com/video/386985442
+- [bodycam] Log #2019-0004249 Vimeo BWC 4
+  https://player.vimeo.com/video/386985638
+- [documents] Log # 2019-4249 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/TRR-D_REDACTED.pdf
+- [documents] Log # 2019-4249 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/TRR-C_REDACTED.pdf
+- [documents] Log # 2019-4249 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/Arrest-Report_REDACTED.pdf
+- [documents] Log # 2019-4249 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/01/OriginalCaseIncidentReport_REDACTED.pdf
+
+### copa_2020_0004052  ·  V4 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0004052/
+- [bodycam] Log #2020-0004052 Vimeo BWC 1
+  https://player.vimeo.com/video/472225796
+- [bodycam] Log #2020-0004052 Vimeo BWC 2
+  https://player.vimeo.com/video/472226137
+- [bodycam] Log #2020-0004052 Vimeo BWC 3
+  https://player.vimeo.com/video/472227173
+- [bodycam] Log #2020-0004052 Vimeo BWC 4
+  https://player.vimeo.com/video/472228233
+- [documents] 2020-0004052_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/2020-0004052_FSR-1.pdf
+- [documents] 2020-0004052_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/2020-0004052_FSR.pdf
+- [documents] Log # 2020-4052 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/TRR_PO_Gabriel_Rodriguez_REDACTED.pdf
+- [documents] Log # 2020-4052 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/CaseReport_JD349301_Agg_Bat_PO_REDACTED.pdf
+- [documents] Log # 2020-4052 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2020/10/CaseReport_JD349521_Firearm_Discharge_REDACTED.pdf
+
+### copa_2024_0002095  ·  V4 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0002095/
+- [bodycam] Log #2024-0002095 Vimeo BWC 1
+  https://player.vimeo.com/video/915703363
+- [bodycam] Log #2024-0002095 Vimeo BWC 2
+  https://player.vimeo.com/video/915703280
+- [bodycam] Log #2024-0002095 Vimeo BWC 3
+  https://player.vimeo.com/video/915703317
+- [bodycam] Log #2024-0002095 Vimeo BWC 4
+  https://player.vimeo.com/video/915719891
+- [documents] Log #2024-0002095 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/COPA-RELEASES-VIDEO-OTHER-MATERIAL-FROM-OFFICER-INVOLVED-SHOOTING-NEAR-8500-S.-WINCHESTER-AVE-FINAL.pdf
+- [documents] Log #2024-0002095 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/029-TRR_Officer-Nelson_Redacted.pdf
+- [documents] Log #2024-0002095 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/030-TRR_Officer-Eyman_Redacted.pdf
+- [documents] Log #2024-0002095 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/02/006-Updated-Original-Case-Incident-Report-JH-128376-NO-NARRATIVE_Redacted.pdf
+
+### copa_2025_0003873  ·  V4 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0003873/
+- [bodycam] Log #2025-0003873 Vimeo BWC 1
+  https://player.vimeo.com/video/1119122162
+- [bodycam] Log #2025-0003873 Vimeo BWC 2
+  https://player.vimeo.com/video/1119122117
+- [bodycam] Log #2025-0003873 Vimeo BWC 3
+  https://player.vimeo.com/video/1119122090
+- [bodycam] Log #2025-0003873 Vimeo BWC 4
+  https://player.vimeo.com/video/1119122045
+- [documents] 2025-0003873_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2025/09/2025-0003873_FSR.pdf
+- [documents] Log #2025-0003873 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/09/TRR-Officer-Mercado-Redacted.pdf
+- [documents] Log #2025-0003873 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/09/OCIR-JJ359965_Off-Duty-OIS-Redacted.pdf
+
+### copa_2025_0003972  ·  V4 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0003972/
+- [bodycam] Log #2025-0003972 Vimeo BWC 1
+  https://player.vimeo.com/video/1121982989
+- [bodycam] Log #2025-0003972 Vimeo BWC 2
+  https://player.vimeo.com/video/1121983059
+- [bodycam] Log #2025-0003972 Vimeo BWC 3
+  https://player.vimeo.com/video/1121983120
+- [bodycam] Log #2025-0003972 Vimeo BWC 4
+  https://player.vimeo.com/video/1121983144
+- [documents] Log #2025-0003972 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/09/014-TRR_PO-Castro_Redacted.pdf
+- [documents] Log #2025-0003972 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/09/012-OCIR-JJ365180_Redacted.pdf
+
+### copa_1079922  ·  V4 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1079922/
+- [bodycam] Log #1079922 Vimeo BWC 1
+  https://player.vimeo.com/video/187405226
+- [bodycam] Log #1079922 Vimeo BWC 2
+  https://player.vimeo.com/video/187405224
+- [bodycam] Log #1079922 Vimeo BWC 3
+  https://player.vimeo.com/video/187405607
+- [bodycam] Log #1079922 Vimeo BWC 4
+  https://player.vimeo.com/video/189072497
+- [documents] 1079922_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/1079922_FSR.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/Arrest-Report-REDACTED.pdf
+- [documents] trr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-REDACTED.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR-REDACTED-1.pdf
+- [documents] obr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-REDACTED.pdf
+
+### copa_1081378  ·  V4 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081378/
+- [bodycam] Log #1081378 Vimeo BWC 1
+  https://player.vimeo.com/video/181835559
+- [bodycam] Log #1081378 Vimeo BWC 2
+  https://player.vimeo.com/video/181838021
+- [bodycam] Log #1081378 Vimeo BWC 3
+  https://player.vimeo.com/video/181838458
+- [bodycam] Log #1081378 Vimeo BWC 4
+  https://player.vimeo.com/video/181838533
+- [documents] 1081378 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/1081378-REDACTED.pdf
+- [documents] tactical-response-report-kearns
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Tactical-Response-Report-Kearns.pdf
+- [documents] tactical-response-report-delgado
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Tactical-Response-Report-Delgado.pdf
+- [documents] officers-battery-report-delgado
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Officers-Battery-Report-Delgado.pdf
+- [documents] original-case-incident-report
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Original-Case-Incident-Report.pdf
+- [documents] officers-battery-report-kearns
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Officers-Battery-Report-Kearns.pdf
+- [documents] arrest-report-redacted2
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Arrest-Report-REDACTED2.pdf
+
+### copa_1081704  ·  V4 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081704/
+- [bodycam] Log #1081704 Vimeo BWC 1
+  https://player.vimeo.com/video/185077838
+- [bodycam] Log #1081704 Vimeo BWC 2
+  https://player.vimeo.com/video/185077931
+- [bodycam] Log #1081704 Vimeo BWC 3
+  https://player.vimeo.com/video/185077993
+- [bodycam] Log #1081704 Vimeo BWC 4
+  https://player.vimeo.com/video/185078027
+- [documents] obr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OBR-redacted-1.pdf
+- [documents] trr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/TRR-redacted-1.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OCIR-redacted-2.pdf
+
+### copa_1081870  ·  V4 A0 D12 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081870/
+- [bodycam] Log #1081870 Vimeo BWC 1
+  https://player.vimeo.com/video/187409358
+- [bodycam] Log #1081870 Vimeo BWC 2
+  https://player.vimeo.com/video/187409404
+- [bodycam] Log #1081870 Vimeo BWC 3
+  https://player.vimeo.com/video/187409587
+- [bodycam] Log #1081870 Vimeo BWC 4
+  https://player.vimeo.com/video/361889170
+- [documents] 1081870_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/1081870_FSR.pdf
+- [documents] Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR_HZ395137-Redacted_jw.pdf
+- [documents] obr-guevara-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-Guevara-REDACTED.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/Arrest-Report-REDACTED-1.pdf
+- [documents] trr-psik-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-Psik-REDACTED.pdf
+- [documents] trr-mcdonald-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-McDonald-REDACTED.pdf
+- [documents] trr-hernandez-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-Hernandez-REDACTED.pdf
+- [documents] trr-guevara-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-Guevara-REDACTED.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR-REDACTED-2.pdf
+- [documents] obr-psik-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-Psik-REDACTED.pdf
+- [documents] obr-mc-donald-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-Mc-Donald-REDACTED.pdf
+- [documents] obr-hernandez-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-Hernandez-REDACTED.pdf
+
+### copa_1083546  ·  V4 A0 D8 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083546/
+- [bodycam] Log #1083546 Vimeo BWC 1
+  https://player.vimeo.com/video/206070785
+- [bodycam] Log #1083546 Vimeo BWC 2
+  https://player.vimeo.com/video/206070910
+- [bodycam] Log #1083546 Vimeo BWC 3
+  https://player.vimeo.com/video/206434304
+- [bodycam] Log #1083546 Vimeo BWC 4
+  https://player.vimeo.com/video/206439636
+- [documents] TRR (RASKE) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/TRR-RASKE-REDACTED.pdf
+- [documents] TRR (FENNELL) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/TRR-FENNELL-REDACTED.pdf
+- [documents] TRR (BOGYO) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/TRR-BOGYO-REDACTED.pdf
+- [documents] OCIR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OCIR-REDACTED-1.pdf
+- [documents] OBR (RASKE) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OBR-RASKE-REDACTED.pdf
+- [documents] OBR (FENNELL) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OBR-FENNELL-REDACTED.pdf
+- [documents] OBR (BOGYO) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OBR-BOGYO-REDACTED.pdf
+- [documents] ARREST REPORT – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/ARREST-REPORT-REDACTED.pdf
+
+### copa_2018_1089164  ·  V4 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1089164/
+- [bodycam] Log #2018-1089164 Vimeo BWC 1
+  https://player.vimeo.com/video/275882555
+- [bodycam] Log #2018-1089164 Vimeo BWC 2
+  https://player.vimeo.com/video/275883469
+- [bodycam] Log #2018-1089164 Vimeo BWC 3
+  https://player.vimeo.com/video/275884123
+- [bodycam] Log #2018-1089164 Vimeo BWC 4
+  https://player.vimeo.com/video/275885120
+- [documents] 2018-1089164_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/2018-1089164_FSR.pdf
+- [documents] Redacted TRR Log 1089164
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-TRR-Log-1089164-1.pdf
+- [documents] Redacted Original Case Incident Report Log 1089164
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-Original-Case-Incident-Report-Log-1089164-1.pdf
+- [documents] Redacted TRR Log 1089164
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-TRR-Log-1089164.pdf
+- [documents] Redacted Original Case Incident Report Log 1089164
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-Original-Case-Incident-Report-Log-1089164.pdf
+
+### copa_2018_1090501  ·  V4 A0 D3 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1090501/
+- [bodycam] Log #2018-1090501 Vimeo BWC 1
+  https://player.vimeo.com/video/292742440
+- [bodycam] Log #2018-1090501 Vimeo BWC 2
+  https://player.vimeo.com/video/292747701
+- [bodycam] Log #2018-1090501 Vimeo BWC 3
+  https://player.vimeo.com/video/292748926
+- [bodycam] Log #2018-1090501 Vimeo BWC 4
+  https://player.vimeo.com/video/292750187
+- [documents] 1090501 FINAL – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2019/10/1090501-FINAL-REDACTED.pdf
+- [documents] Log 1090501 TRR
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Log-1090501-TRR.pdf
+- [documents] Log 1090501 case report
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Log-1090501-case-report.pdf
+
+### copa_2018_1090601  ·  V4 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1090601/
+- [bodycam] Log #2018-1090601 Vimeo BWC 1
+  https://player.vimeo.com/video/294660585
+- [bodycam] Log #2018-1090601 Vimeo BWC 2
+  https://player.vimeo.com/video/294663483
+- [bodycam] Log #2018-1090601 Vimeo BWC 3
+  https://player.vimeo.com/video/294802267
+- [bodycam] Log #2018-1090601 Vimeo BWC 4
+  https://player.vimeo.com/video/294808046
+- [documents] 2018-1090601_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/2018-1090601_FSR.pdf
+- [documents] Tactical Response Report – Ramirez 1090601_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Tactical-Response-Report-Ramirez-1090601_redacted.pdf
+- [documents] Tactical Response Report – Keaty 1090601_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Tactical-Response-Report-Keaty-1090601_redacted.pdf
+- [documents] Tactical Response Report – Ghiotto 1090601_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Tactical-Response-Report-Ghiotto-1090601_redacted.pdf
+- [documents] Original Case Incident Report 1090601_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/10/Original-Case-Incident-Report-1090601_redacted.pdf
 
 ### copa_1071320  ·  V3 A0 D11 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1071320-2/
@@ -3972,6 +7608,514 @@ case: https://www.chicagocopa.org/case/2020-0002881/
 - [documents] Log # 2020-2881 Extension Letter
   https://www.chicagocopa.org/wp-content/uploads/2020/08/COPA-extension-letter-Mares-case.pdf
 
+### copa_2022_0004681  ·  V3 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2022-0004681/
+- [bodycam] Log #2022-0004681 Vimeo BWC 1
+  https://player.vimeo.com/video/780426463
+- [bodycam] Log #2022-0004681 Vimeo BWC 2
+  https://player.vimeo.com/video/780426353
+- [bodycam] Log #2022-0004681 Vimeo BWC 3
+  https://player.vimeo.com/video/780426246
+- [documents] 2022-0004681_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/12/2022-0004681_FSR.pdf
+- [documents] 2022-0004681 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2022/12/COPA-RELEASES-VIDEO-OTHER-MATERIALS-RELATED-TO-AN-OFFICER-INVOLVED-SHOOTING-NEAR-1800-N.-MONTICELLO.pdf
+- [documents] TRR PO Heinzel
+  https://www.chicagocopa.org/wp-content/uploads/2022/12/TRR-PO-Heinzel-Redacted.pdf
+- [documents] TRR PO Belluomini
+  https://www.chicagocopa.org/wp-content/uploads/2022/12/TRR-PO-Belluomini-Anne-Redacted.pdf
+- [documents] 2022-0004681 OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2022/12/Original-Case-Incident-Report-JF457456-Redacted.pdf
+
+### copa_2024_0002259  ·  V3 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0002259/
+- [bodycam] Log #2024-0002259 Vimeo BWC 1
+  https://player.vimeo.com/video/918500296
+- [bodycam] Log #2024-0002259 Vimeo BWC 2
+  https://player.vimeo.com/video/918500277
+- [bodycam] Log #2024-0002259 Vimeo BWC 3
+  https://player.vimeo.com/video/919722989
+- [documents] 2024-0002259
+  https://www.chicagocopa.org/wp-content/uploads/2024/03/2024-0002259.pdf
+- [documents] 2024-0002259 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2024/03/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-1600-E.-95th-ST.pdf
+- [documents] Log #2024-0002259 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/03/002-Case-Incident-Report-JH141757-Redacted.pdf
+- [documents] Log #2024-0002259 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/03/003-TRR-of-PO-Terrance-Mack-JR-Redacted.pdf
+
+### copa_2024_0006256  ·  V3 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0006256/
+- [bodycam] Log #2024-0006256 Vimeo BWC 1
+  https://player.vimeo.com/video/999570418
+- [bodycam] Log #2024-0006256 Vimeo BWC 2
+  https://player.vimeo.com/video/999570445
+- [bodycam] Log #2024-0006256 Vimeo BWC 3
+  https://player.vimeo.com/video/999570432
+- [documents] 2024-0006256_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2024/08/2024-0006256_FSR.pdf
+- [documents] 2024-0006256 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2024/08/COPA-RELEASES-VIDEO-OTHER-MATERIAL-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-10800-S.-CAMPBELL-FINAL.pdf
+- [documents] Log #2024-0006256 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2024/08/Tactical-Response-Report-Redacted.pdf
+- [documents] Log #2024-0006256 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2024/08/Case-Report-JH358205-Traffic-Crash-Redacted.pdf
+- [documents] Log #2024-0006256 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/08/Case-Report-JH358131-Agg-Assault-Redacted.pdf
+
+### copa_2024_0008396  ·  V3 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0008396/
+- [bodycam] Log #2024-0008396 Vimeo BWC 1
+  https://player.vimeo.com/video/1046463040
+- [bodycam] Log #2024-0008396 Vimeo BWC 2
+  https://player.vimeo.com/video/1046463118
+- [bodycam] Log #2024-0008396 Vimeo BWC 3
+  https://player.vimeo.com/video/1046463012
+- [documents] 2024-0008396_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/2024-0008396_FSR.pdf
+- [documents] Log #2024-0008396 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-OFF-DUTY-OFFICER-INVOLVED-SHOOTING-NEAR-50-W.-POLK-FINAL.pdf
+- [documents] Log #2024-0008396 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/012-PO-ALVAREZ-TRR-Redacted.pdf
+- [documents] Log #2024-0008396 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/011-OCIR-JH509746-Redacted.pdf
+
+### copa_2024_0008534  ·  V3 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0008534/
+- [bodycam] Log #2024-0008534 Vimeo BWC 1
+  https://player.vimeo.com/video/1047983391
+- [bodycam] Log #2024-0008534 Vimeo BWC 2
+  https://player.vimeo.com/video/1047983376
+- [bodycam] Log #2024-0008534 Vimeo BWC 3
+  https://player.vimeo.com/video/1047983415
+- [documents] Log #2024-0008534 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/JH519295-Redacted-update.2.pdf
+- [documents] Log #2024-0008534 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/JH519291-Redacted-update.2.pdf
+- [documents] Log #2024-0008534 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/TRR-PO-Taylor-Redacted.pdf
+- [documents] Log #2024-0008534 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/JH519295-Redacted-update.pdf
+- [documents] Log #2024-0008534 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/01/JH519291-Redacted-update.pdf
+
+### copa_2024_0008840  ·  V3 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0008840/
+- [bodycam] Log #2024-0008840 Vimeo BWC 1
+  https://player.vimeo.com/video/1054553651
+- [bodycam] Log #2024-0008840 Vimeo BWC 2
+  https://player.vimeo.com/video/1054553670
+- [bodycam] Log #2024-0008840 Vimeo BWC 3
+  https://player.vimeo.com/video/1054553634
+- [documents] Log #2024-0008840 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/TRR-PO-Earl-Dorsey_Redacted.pdf
+- [documents] Log #2024-0008840 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/TRR-PO-Trevor-Ben_Redacted.pdf
+- [documents] Log #2024-0008840 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/02/OCIR-JH542066_Redacted.pdf
+
+### copa_2025_0002747  ·  V3 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0002747/
+- [bodycam] Log #2025-0002747 Vimeo BWC 1
+  https://player.vimeo.com/video/1183822504
+- [bodycam] Log #2025-0002747 Vimeo BWC 2
+  https://player.vimeo.com/video/1183822539
+- [bodycam] Log #2025-0002747 Vimeo BWC 3
+  https://player.vimeo.com/video/1183822570
+- [documents] Log #2025-0002747 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2026/04/TRR-2025-03021-Rivera-redacted.pdf
+- [documents] Log #2025-0002747 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2026/04/TRR-2025-03017-Baker-redacted.pdf
+- [documents] Log #2025-0002747 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2026/04/Case-Report-JJ283172-redacted.pdf
+- [documents] Log #2025-0002747 Appellate Decision
+  https://www.chicagocopa.org/wp-content/uploads/2026/04/25-2112_R23.pdf
+- [documents] Log #2025-0002747 Court Order
+  https://www.chicagocopa.org/wp-content/uploads/2026/04/Rucker-copa-order-06132025123606-redacted.pdf
+
+### copa_1052578  ·  V3 A0 D15 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1052578-2/
+- [bodycam] Log #1052578 Vimeo BWC 1
+  https://player.vimeo.com/video/166088319
+- [bodycam] Log #1052578 Vimeo BWC 2
+  https://player.vimeo.com/video/166088316
+- [bodycam] Log #1052578 Vimeo BWC 3
+  https://player.vimeo.com/video/166088317
+- [documents] 1052578 Redacted FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/1052578-Redacted-FSR.pdf
+- [documents] Log#1052578-CHI-R-00000182
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000182.pdf
+- [documents] Log#1052578-CHI-R-00000181
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000181.pdf
+- [documents] Log#1052578-CHI-R-00000180
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000180.pdf
+- [documents] Log#1052578-CHI-R-00000179
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000179.pdf
+- [documents] Log#1052578-CHI-R-00000178
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000178.pdf
+- [documents] Log#1052578-CHI-R-00000177
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000177.pdf
+- [documents] Log#1052578-CHI-R-00000176
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000176.pdf
+- [documents] Log#1052578-CHI-R-00000175
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000175.pdf
+- [documents] Log#1052578-CHI-R-00000174
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000174.pdf
+- [documents] Log#1052578-CHI-R-00000173
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000173.pdf
+- [documents] Log#1052578-CHI-R-00000172
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000172.pdf
+- [documents] Log#1052578-CHI-R-00000171
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000171.pdf
+- [documents] Log#1052578-CHI-R-00000170
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000170.pdf
+- [documents] Log#1052578-CHI-R-00000169
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1052578-CHI-R-00000169.pdf
+
+### copa_1072664  ·  V3 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1072664/
+- [bodycam] Log #1072664 Vimeo BWC 1
+  https://player.vimeo.com/video/245991039
+- [bodycam] Log #1072664 Vimeo BWC 2
+  https://player.vimeo.com/video/245989205
+- [bodycam] Log #1072664 Vimeo BWC 3
+  https://player.vimeo.com/video/245989519
+- [documents] 1072664 TRR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1072664-TRR-Redacted.pdf
+- [documents] 1072664 Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1072664-Case-Incident-Report-Redacted.pdf
+- [documents] 1072664 Case Incident Report 2 Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1072664-Case-Incident-Report-2-Redacted.pdf
+- [documents] 1072664 Arrest Report (DUI) Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1072664-Arrest-Report-DUI-Redacted.pdf
+
+### copa_1079080  ·  V3 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1079080-2/
+- [bodycam] Log #1079080 Vimeo BWC 1
+  https://player.vimeo.com/video/165083122
+- [bodycam] Log #1079080 Vimeo BWC 2
+  https://player.vimeo.com/video/165083123
+- [bodycam] Log #1079080 Vimeo BWC 3
+  https://player.vimeo.com/video/165083121
+- [documents] 1079080 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/1079080-REDACTED.pdf
+- [documents] Log#1079080 – CHI-R-00001200
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001200.pdf
+- [documents] Log#1079080 – CHI-R-00001199
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001199.pdf
+- [documents] Log#1079080 – CHI-R-00001198
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001198.pdf
+- [documents] Log#1079080 – CHI-R-00001197
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001197.pdf
+- [documents] Log#1079080 – CHI-R-00001196
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001196.pdf
+- [documents] Log#1079080 – CHI-R-00001195
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1079080-CHI-R-00001195.pdf
+
+### copa_1080395  ·  V3 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080395/
+- [bodycam] Log #1080395 Vimeo BWC 1
+  https://player.vimeo.com/video/183056828
+- [bodycam] Log #1080395 Vimeo BWC 2
+  https://player.vimeo.com/video/183056857
+- [bodycam] Log #1080395 Vimeo BWC 3
+  https://player.vimeo.com/video/183056862
+- [documents] OCIR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED.pdf
+- [documents] TRR-Ramkumar-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Ramkumar-REDACTED.pdf
+- [documents] OCIR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED.pdf
+- [documents] Arrest-Report-Escobedo-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Escobedo-REDACTED.pdf
+
+### copa_1080871  ·  V3 A0 D10 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080871/
+- [bodycam] Log #1080871 Vimeo BWC 1
+  https://player.vimeo.com/video/177622427
+- [bodycam] Log #1080871 Vimeo BWC 2
+  https://player.vimeo.com/video/177622425
+- [bodycam] Log #1080871 Vimeo BWC 3
+  https://player.vimeo.com/video/177622504
+- [documents] 1080871_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/1080871_FSR.pdf
+- [documents] Arrest-Report-Macbride-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Macbride-redacted_2.pdf
+- [documents] OCIR-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-redacted-2.pdf
+- [documents] TRR — Wojtaczka — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Wojtaczka-redacted.pdf
+- [documents] TRR — Wilberg — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Wilberg-redacted.pdf
+- [documents] TRR — Josephs — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Josephs-redacted.pdf
+- [documents] TRR — Coleman — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Coleman-redacted.pdf
+- [documents] TRR — Bandola — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Bandola-redacted.pdf
+- [documents] OCIR — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-redacted-1.pdf
+- [documents] Arrest Report — Shields — redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Shields-redacted.pdf
+
+### copa_1081463  ·  V3 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081463/
+- [bodycam] Log #1081463 Vimeo BWC 1
+  https://player.vimeo.com/video/182773067
+- [bodycam] Log #1081463 Vimeo BWC 2
+  https://player.vimeo.com/video/182773114
+- [bodycam] Log #1081463 Vimeo BWC 3
+  https://player.vimeo.com/video/182773254
+- [documents] trr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/TRR-redacted.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OCIR-redacted.pdf
+- [documents] obr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OBR-redacted.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Arrest-Report-REDACTED.pdf
+
+### copa_1081732  ·  V3 A0 D9 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081732/
+- [bodycam] Log #1081732 Vimeo BWC 1
+  https://player.vimeo.com/video/189668555
+- [bodycam] Log #1081732 Vimeo BWC 2
+  https://player.vimeo.com/video/189666708
+- [bodycam] Log #1081732 Vimeo BWC 3
+  https://player.vimeo.com/video/189664046
+- [documents] ORG CASE REPORT – redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/ORG-CASE-REPORT-redacted-1.pdf
+- [documents] obr-jonas-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OBR-JONAS-redacted.pdf
+- [documents] arrest-report-beckwith-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/ARREST-REPORT-BECKWITH-redacted.pdf
+- [documents] trr-polson-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-POLSON-redacted.pdf
+- [documents] trr-jung-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-JUNG-redacted.pdf
+- [documents] trr-jonas-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-JONAS-redacted.pdf
+- [documents] org-case-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/ORG-CASE-REPORT-redacted.pdf
+- [documents] obr-polson-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OBR-POLSON-redacted.pdf
+- [documents] obr-jung-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OBR-JUNG-redacted.pdf
+
+### copa_1082890  ·  V3 A0 D13 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082890/
+- [bodycam] Log #1082890 Vimeo BWC 1
+  https://player.vimeo.com/video/197960936
+- [bodycam] Log #1082890 Vimeo BWC 2
+  https://player.vimeo.com/video/197961503
+- [bodycam] Log #1082890 Vimeo BWC 3
+  https://player.vimeo.com/video/197961561
+- [documents] 1088416_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/1088416_FSR.pdf
+- [documents] 1088416_Non Concur
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/1088416_Non-Concur.pdf
+- [documents] Case Report- HZ503783 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Case-Report-HZ503783-REDACTED-1.pdf
+- [documents] Case Report- HZ503783 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Case-Report-HZ503783-REDACTED.pdf
+- [documents] OCIR
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OCIR.pdf
+- [documents] trr-sgt-derouin-j-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-Sgt.-Derouin-J.Beal-REDACTED.pdf
+- [documents] trr-po-treacy-m-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Treacy-M.Beal-REDACTED.pdf
+- [documents] trr-po-treacy-j-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Treacy-J.Beal-REDACTED.pdf
+- [documents] obr-sgt-derouin-j-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-Sgt.-Derouin-J.Beal-REDACTED.pdf
+- [documents] obr-po-treacy-j-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Treacy-J.Beal-REDACTED.pdf
+- [documents] obr-po-treacy-m-beal-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Treacy-M.Beal-REDACTED.pdf
+- [documents] m-beal-arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/M.-Beal-Arrest-Report-REDACTED.pdf
+- [documents] case-report-hz503783-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Case-Report-HZ503783-REDACTED.pdf
+
+### copa_1083121  ·  V3 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083121/
+- [bodycam] Log #1083121 Vimeo BWC 1
+  https://player.vimeo.com/video/197220612
+- [bodycam] Log #1083121 Vimeo BWC 2
+  https://player.vimeo.com/video/197220625
+- [bodycam] Log #1083121 Vimeo BWC 3
+  https://player.vimeo.com/video/197220593
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Original-Case-Incident-Report-REDACTED-3.pdf
+- [documents] Tactical Response Report (Poulos) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Tactical-Response-Report-Poulos-REDACTED.pdf
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Original-Case-Incident-Report-REDACTED.pdf
+- [documents] Officer’s Battery Report (Poulos) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Officers-Battery-Report-Poulos-REDACTED.pdf
+
+### copa_1083291  ·  V3 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083291/
+- [bodycam] Log #1083291 Vimeo BWC 1
+  https://player.vimeo.com/video/206637806
+- [bodycam] Log #1083291 Vimeo BWC 2
+  https://player.vimeo.com/video/206637604
+- [bodycam] Log #1083291 Vimeo BWC 3
+  https://player.vimeo.com/video/206639419
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/Original-Case-Incident-Report-REDACTED.pdf
+- [documents] Extension Request_020317
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/Extension-Request_020317.pdf
+- [documents] Extension Letter Log No. 1083127
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/Extension-Letter-Log-No.-1083127.pdf
+- [documents] TRR (Dowling) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/TRR-Dowling-REDACTED.pdf
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/Original-Case-Incident-Report-REDACTED.pdf
+- [documents] OBR (Dowling) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/OBR-Dowling-REDACTED.pdf
+- [documents] Arrest Report (Hill) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/02/Arrest-Report-Hill-REDACTED.pdf
+
+### copa_1084029  ·  V3 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1084029/
+- [bodycam] Log #1084029 Vimeo BWC 1
+  https://player.vimeo.com/video/212613052
+- [bodycam] Log #1084029 Vimeo BWC 2
+  https://player.vimeo.com/video/212748982
+- [bodycam] Log #1084029 Vimeo BWC 3
+  https://player.vimeo.com/video/212749109
+- [documents] TRR (Storce) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/TRR-Storce-REDACTED.pdf
+- [documents] TRR (Romanski) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/TRR-Romanski-REDACTED.pdf
+- [documents] OCIR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/OCIR-REDACTED.pdf
+- [documents] OBR (Storce) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/OBR-Storce-REDACTED.pdf
+- [documents] OBR (Romanski) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/OBR-Romanski-REDACTED.pdf
+
+### copa_1085782  ·  V3 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085782/
+- [bodycam] Log #1085782 Vimeo BWC 1
+  https://player.vimeo.com/video/231937700
+- [bodycam] Log #1085782 Vimeo BWC 2
+  https://player.vimeo.com/video/231939337
+- [bodycam] Log #1085782 Vimeo BWC 3
+  https://player.vimeo.com/video/231939159
+- [documents] 1088052_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/1088052_FSR.pdf
+- [documents] 1085782 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2019/12/Final-Redaction.pdf
+- [documents] Tactical-Response-Report-Redacted-1
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Tactical-Response-Report-Redacted-1-1.pdf
+- [documents] Officers-Battery-Report-Redacted-1
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Officers-Battery-Report-Redacted-1-1.pdf
+- [documents] Attachment-6-from-1085782
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Attachment-6-from-1085782.pdf
+- [documents] Original-Case-Incident-Report-Redacted-3
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Original-Case-Incident-Report-Redacted-3-1.pdf
+
+### copa_1089158  ·  V3 A0 D2 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1089158/
+- [bodycam] Log #1089158 Vimeo BWC 1
+  https://player.vimeo.com/video/275926317
+- [bodycam] Log #1089158 Vimeo BWC 2
+  https://player.vimeo.com/video/276055623
+- [bodycam] Log #1089158 Vimeo BWC 3
+  https://player.vimeo.com/video/276078547
+- [documents] Redacted TRR
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-TRR.pdf
+- [documents] Redacted case report (no narrrative)
+  https://www.chicagocopa.org/wp-content/uploads/2018/06/Redacted-case-report-no-narrrative.pdf
+
+### copa_2017_1083687  ·  V3 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083687/
+- [bodycam] Log #2017-1083687 Vimeo BWC 1
+  https://player.vimeo.com/video/208372592
+- [bodycam] Log #2017-1083687 Vimeo BWC 2
+  https://player.vimeo.com/video/208372634
+- [bodycam] Log #2017-1083687 Vimeo BWC 3
+  https://player.vimeo.com/video/208372670
+- [documents] 1083687_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/1083687_FSR.pdf
+- [documents] OBR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OBR-REDACTED.pdf
+- [documents] Arrest Report (Johnson) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/Arrest-Report-Johnson-REDACTED.pdf
+- [documents] TRR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/TRR-REDACTED.pdf
+- [documents] OCIR (Schmuck) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OCIR-Schmuck-REDACTED.pdf
+- [documents] OCIR (Cortez) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/03/OCIR-Cortez-REDACTED.pdf
+
+### copa_2017_1086683  ·  V3 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1086683/
+- [bodycam] Log #2017-1086683 Vimeo BWC 1
+  https://player.vimeo.com/video/241541469
+- [bodycam] Log #2017-1086683 Vimeo BWC 2
+  https://player.vimeo.com/video/241543199
+- [bodycam] Log #2017-1086683 Vimeo BWC 3
+  https://player.vimeo.com/video/241544503
+- [documents] 2017-1086814 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/11/2017-1086814-FSR.pdf
+- [documents] Log 1086683 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/12/Log-1086683-9.27.CM_.Final_redacted.pdf
+- [documents] Tactical Response Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/11/Tactical-Response-Report-Redacted.pdf
+- [documents] Officer’s Battery Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/11/Officers-Battery-Report-Redacted.pdf
+- [documents] Original Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/11/Original-Case-Incident-Report-Redacted.pdf
+
+### copa_2018_1088756  ·  V3 A0 D10 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1088756/
+- [bodycam] Log #2018-1088756 Vimeo BWC 1
+  https://player.vimeo.com/video/296959501
+- [bodycam] Log #2018-1088756 Vimeo BWC 2
+  https://player.vimeo.com/video/296961035
+- [bodycam] Log #2018-1088756 Vimeo BWC 3
+  https://player.vimeo.com/video/296963126
+- [documents] 1088756_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/1088756_FSR.pdf
+- [documents] WEN Arrest Report_redacted_
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/WEN-Arrest-Report_redacted_.pdf
+- [documents] TRR Sgt Mosquera_redacted_
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/TRR-Sgt-Mosquera_redacted_.pdf
+- [documents] TRR PO Perez_redacted_
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/TRR-PO-Perez_redacted_.pdf
+- [documents] OCIR_redacted_
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/OCIR_redacted_.pdf
+- [documents] OCIR_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/OCIR_redacted-1.pdf
+- [documents] WEN Arrest Report_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/WEN-Arrest-Report_redacted.pdf
+- [documents] Log 1088756 TRR # 2
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/TRR-Sgt-Mosquera_redacted.pdf
+- [documents] Log 1088756 TRR #1
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/TRR-PO-Perez_redacted.pdf
+- [documents] OCIR_redacted
+  https://www.chicagocopa.org/wp-content/uploads/2018/05/OCIR_redacted.pdf
+
+### copa_2022_0001742  ·  V3 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2022-0001742/
+- [bodycam] Log #2022-0001742 Vimeo BWC 1
+  https://player.vimeo.com/video/716456143
+- [bodycam] Log #2022-0001742 Vimeo BWC 2
+  https://player.vimeo.com/video/716455572
+- [bodycam] Log #2022-0001742 Vimeo BWC 3
+  https://player.vimeo.com/video/716456719
+- [documents] 2022-0001742_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/2022-0001742_FSR.pdf
+- [documents] 2022-0001742_Nonconcur
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/2022-0001742_Nonconcur.pdf
+- [documents] 004-2022-0001742_20220428_TRR_Rojas REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/004-2022-0001742_20220428_TRR_Rojas-REDACTED-.pdf
+- [documents] 2022-0001742 20220428 OCIR JF222649 REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2022/06/2022-0001742-20220428-OCIR-JF222649-REDACTED.pdf
+
 ### copa_1056252  ·  V2 A0 D5 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1056252-2/
 - [bodycam] Log #1056252 Vimeo BWC 1
@@ -4055,6 +8199,21 @@ case: https://www.chicagocopa.org/case/1068046-2/
 - [documents] Log#1068046-CHI-R-00000444
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1068046-CHI-R-00000444.pdf
 
+### copa_1069633  ·  V2 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1069633-2/
+- [bodycam] Log #1069633 Vimeo BWC 1
+  https://player.vimeo.com/video/168935861
+- [bodycam] Log #1069633 Vimeo BWC 2
+  https://player.vimeo.com/video/168935860
+- [documents] 1069633 Police Board Decision
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/1069633-Police-Board.pdf
+- [documents] Log # 1069633 Tactical Response Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Hawkins-TRR_REDACTED.pdf
+- [documents] Log # 1069633 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Gause-TRR_REDACTED.pdf
+- [documents] Log # 1069633 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OCIR-RD-HX289033_REDACTED.pdf
+
 ### copa_1070445  ·  V2 A0 D8 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1070445-2/
 - [bodycam] Log #1070445 Vimeo BWC 1
@@ -4077,6 +8236,39 @@ case: https://www.chicagocopa.org/case/1070445-2/
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1070445-CHI-R-00000750.pdf
 - [documents] Log#1070445-CHI-R-00000749
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1070445-CHI-R-00000749.pdf
+
+### copa_1070681  ·  V2 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1070681-2/
+- [bodycam] Log #1070681 Vimeo BWC 1
+  https://player.vimeo.com/video/165951134
+- [bodycam] Log #1070681 Vimeo BWC 2
+  https://player.vimeo.com/video/165951133
+- [documents] Log # 1070681-OICR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log-1070681-OICR.pdf
+- [documents] Log # 1070681
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log-1070681.pdf
+- [documents] Log # 1070681-GOCR
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log-1070681-GOCR.pdf
+
+### copa_1071635  ·  V2 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1071635-2/
+- [bodycam] Log #1071635 Vimeo BWC 1
+  https://player.vimeo.com/video/213888122
+- [bodycam] Log #1071635 Vimeo BWC 2
+  https://player.vimeo.com/video/213888138
+- [documents] 1071635 – FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/1071635-REDACTED.pdf
+- [documents] Log#1071635 – CHI-R-00000775
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1071635-CHI-R-00000775.pdf
+
+### copa_1073789  ·  V2 A0 D1 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1073789-2/
+- [bodycam] Log #1073789 Vimeo BWC 1
+  https://player.vimeo.com/video/167159092
+- [bodycam] Log #1073789 Vimeo BWC 2
+  https://player.vimeo.com/video/167159091
+- [documents] Log#1073789-Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1073789-Arrest-Report.pdf
 
 ### copa_1074934  ·  V2 A0 D12 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1074934-2/
@@ -4126,6 +8318,19 @@ case: https://www.chicagocopa.org/case/1076216-2/
 - [documents] Log#1076216 – CHI-R-00000935
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076216-CHI-R-00000935.pdf
 
+### copa_1076980  ·  V2 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1076980-2/
+- [bodycam] Log #1076980 Vimeo BWC 1
+  https://player.vimeo.com/video/166890860
+- [bodycam] Log #1076980 Vimeo BWC 2
+  https://player.vimeo.com/video/166890858
+- [documents] Log#1076980 – CHI-R-00001056
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076980-CHI-R-00001056.pdf
+- [documents] Log#1076980 – CHI-R-00001058
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076980-CHI-R-00001058.pdf
+- [documents] Log#1076980 – CHI-R-00001057
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076980-CHI-R-00001057.pdf
+
 ### copa_1078530  ·  V2 A0 D8 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1078530-2/
 - [bodycam] Log #1078530 Vimeo BWC 1
@@ -4148,6 +8353,34 @@ case: https://www.chicagocopa.org/case/1078530-2/
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1078530-CHI-R-00001156.pdf
 - [documents] Log#1078530-CHI-R-00001155
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1078530-CHI-R-00001155.pdf
+
+### copa_1087659  ·  V2 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1087659/
+- [bodycam] Log #1087659 Vimeo BWC 1
+  https://player.vimeo.com/video/252964308
+- [bodycam] Log #1087659 Vimeo BWC 2
+  https://player.vimeo.com/video/252965422
+- [documents] Log #1087659 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/Log-1087659-Tactical-Response-Report.pdf
+- [documents] Log #1087659 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/Log-1087659-Original-Case-Incident-Report.pdf
+- [documents] Log #1087659 Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/Log-1087659-Arrest-Report.pdf
+
+### copa_2018_1089338  ·  V2 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1089338/
+- [bodycam] Log #2018-1089338 Vimeo BWC 1
+  https://player.vimeo.com/video/280270991
+- [bodycam] Log #2018-1089338 Vimeo BWC 2
+  https://player.vimeo.com/video/280377723
+- [documents] 2018-1089338_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/2018-1089338_FSR.pdf
+- [documents] Tactical Response Report with redactions
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/Tactical-Response-Report_REDACTED.pdf
+- [documents] OCIR with redactions
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/OCIR-with-redactions-2.pdf
+- [documents] OCIR with redactions
+  https://www.chicagocopa.org/wp-content/uploads/2018/07/OCIR-with-redactions-1.pdf
 
 ### copa_2018_1089983  ·  V2 A0 D10 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1089983/
@@ -4196,6 +8429,232 @@ case: https://www.chicagocopa.org/case/2019-0002248/
   https://www.chicagocopa.org/wp-content/uploads/2019/08/ArrRepJC312566.pdf
 - [documents] Log # 2019-0002248 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2019/08/CaseSuppJC312566.pdf
+
+### copa_2019_0003064  ·  V2 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2019-0003064/
+- [bodycam] Log #2019-0003064 Vimeo BWC 1
+  https://player.vimeo.com/video/361395289
+- [bodycam] Log #2019-0003064 Vimeo BWC 2
+  https://player.vimeo.com/video/361395351
+- [documents] 2019-3064_Blackbox
+  https://www.chicagocopa.org/wp-content/uploads/2022/02/2019-3064_Blackbox.pdf
+- [documents] Log # 2019-3064 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/09/TRR-Redacted.pdf
+- [documents] Log # 2019-3064 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2019/09/Case-Report-PO-Redacted.pdf
+
+### copa_2020_0005621  ·  V2 A0 D5 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2020-0005621/
+- [bodycam] Log #2020-0005621 Vimeo BWC 1
+  https://player.vimeo.com/video/508002192
+- [bodycam] Log #2020-0005621 Vimeo BWC 2
+  https://player.vimeo.com/video/508005652
+- [documents] 2020-0005621_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/2020-0005621_FSR.pdf
+- [documents] COPA Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/COPA-RELEASE-VIDEO-AND-OTHER-MATERIALS-OF-OFFICER-INVOLVED-SHOOTING-NEAR-1500-N.-LARAMIE-1.pdf
+- [documents] 1.29.2021 Upcoming Portal Release Chart INTERNAL
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/1.29.2021-Upcoming-Portal-Release-Chart-INTERNAL.pdf
+- [documents] Log #2020-5621 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/TRR_REDACTED.pdf
+- [documents] Log # 2020-5621 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2021/02/JD462480-OCIR_REDACTED.pdf
+
+### copa_2024_0003540  ·  V2 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0003540/
+- [bodycam] Log #2024-0003540 Vimeo BWC 1
+  https://player.vimeo.com/video/949971398
+- [bodycam] Log #2024-0003540 Vimeo BWC 2
+  https://player.vimeo.com/video/949971416
+- [documents] Log #2024-0003540 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/05/TRR-Redacted.pdf
+- [documents] Log #2024-0003540 Original Case Incident Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2024/05/JH233484-approved-Redacted.pdf
+
+### copa_2024_0007132  ·  V2 A0 D3 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2024-0007132/
+- [bodycam] Log #2024-0007132 Vimeo BWC 1
+  https://player.vimeo.com/video/1022145998
+- [bodycam] Log #2024-0007132 Vimeo BWC 2
+  https://player.vimeo.com/video/1022144886
+- [documents] Log #2024-0007132 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2024/10/COPA-RELEASES-VIDEO-OTHER-MATERIALS-FROM-ON-DUTY-WEAPONS-DISCHARGE-AT-AN-ANIMAL-NEAR-8400-S.-RACINE-AVE-FINAL.pdf
+- [documents] Log #2024-0007132 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2024/10/010-2024-7132-OCIR-JH425315_Redacted.pdf
+- [documents] Log #2024-0007132 Tactical Response Report
+  https://www.chicagocopa.org/wp-content/uploads/2024/10/039-2024-7132-TRR_Redacted.pdf
+
+### copa_1078435  ·  V2 A0 D8 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1078435/
+- [bodycam] Log #1078435 Vimeo BWC 1
+  https://player.vimeo.com/video/173972013
+- [bodycam] Log #1078435 Vimeo BWC 2
+  https://player.vimeo.com/video/173972014
+- [documents] TRR-Zayas-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/TRR-Zayas-REDACTED.pdf
+- [documents] OBR-Zayas-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OBR-Zayas-REDACTED.pdf
+- [documents] OCIR-REDACTED-2
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED-2.pdf
+- [documents] Arrest-Report-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/Arrest-Report-REDACTED.pdf
+- [documents] TRR-Zayas-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Zayas-REDACTED.pdf
+- [documents] OBR-Zayas-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Zayas-REDACTED.pdf
+- [documents] OCIR-REDACTED-2
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-2.pdf
+- [documents] Arrest-Report-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED.pdf
+
+### copa_1080476  ·  V2 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1080476/
+- [bodycam] Log #1080476 Vimeo BWC 1
+  https://player.vimeo.com/video/173989079
+- [bodycam] Log #1080476 Vimeo BWC 2
+  https://player.vimeo.com/video/173989080
+- [documents] OCIR-REDACTED-4
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/OCIR-REDACTED-4.pdf
+- [documents] TRR-HONDA-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-HONDA-REDACTED.pdf
+- [documents] OBR-HONDA-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-HONDA-REDACTED.pdf
+- [documents] OCIR-REDACTED-4
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-4.pdf
+- [documents] Arrest-Report-Mendoza-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Mendoza-REDACTED.pdf
+- [documents] Arrest-Report-Hernandez-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Hernandez-REDACTED.pdf
+
+### copa_1081004  ·  V2 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081004/
+- [bodycam] Log #1081004 Vimeo BWC 1
+  https://player.vimeo.com/video/188355255
+- [bodycam] Log #1081004 Vimeo BWC 2
+  https://player.vimeo.com/video/188354332
+- [documents] trr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/TRR-redacted.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OCIR-redacted.pdf
+- [documents] obr-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/OBR-redacted.pdf
+- [documents] Arrest Report
+  https://www.chicagocopa.org/wp-content/uploads/2016/10/Arrest-report-redacted.pdf
+
+### copa_1081017  ·  V2 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081017/
+- [bodycam] Log #1081017 Vimeo BWC 1
+  https://player.vimeo.com/video/214231450
+- [bodycam] Log #1081017 Vimeo BWC 2
+  https://player.vimeo.com/video/214239667
+- [documents] TRR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/TRR-REDACTED-1.pdf
+- [documents] OBR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/OBR-REDACTED.pdf
+- [documents] CASE REPORT – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/CASE-REPORT-REDACTED.pdf
+- [documents] ARREST REPORT – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/04/ARREST-REPORT-REDACTED.pdf
+
+### copa_1081228  ·  V2 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081228/
+- [bodycam] Log #1081228 Vimeo BWC 1
+  https://player.vimeo.com/video/187410067
+- [bodycam] Log #1081228 Vimeo BWC 2
+  https://player.vimeo.com/video/187410015
+- [documents] Original Case Incident Report — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Original-Case-Incident-Report-REDACTED.pdf
+- [documents] Arrest Report — Stevenson — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Stevenson-REDACTED.pdf
+- [documents] Arrest Report — Malone — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Malone-REDACTED.pdf
+- [documents] Arrest Report — Cokes — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Cokes-REDACTED.pdf
+- [documents] Arrest Report — Arrington — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Arrington-REDACTED.pdf
+
+### copa_1082330  ·  V2 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082330/
+- [bodycam] Log #1082330 Vimeo BWC 1
+  https://player.vimeo.com/video/241709172
+- [bodycam] Log #1082330 Vimeo BWC 2
+  https://player.vimeo.com/video/241716160
+- [documents] trr-of-sgt-denis-vale-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-of-Sgt.-Denis-Vale-REDACTED.pdf
+- [documents] trr-of-p-o-valente-lara-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-of-P.O.-Valente-Lara-REDACTED.pdf
+- [documents] ocir-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/OCIR-REDACTED.pdf
+- [documents] arrest-report-of-justin-taylor-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Arrest-Report-of-Justin-Taylor-REDACTED.pdf
+- [documents] arrest-report-of-ignacio-munguia-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Arrest-Report-of-Ignacio-Munguia-REDACTED.pdf
+- [documents] arrest-report-of-enrique-carlo-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Arrest-report-of-Enrique-Carlo-REDACTED.pdf
+
+### copa_1082731  ·  V2 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082731/
+- [bodycam] Log #1082731 Vimeo BWC 1
+  https://player.vimeo.com/video/192521074
+- [bodycam] Log #1082731 Vimeo BWC 2
+  https://player.vimeo.com/video/196789345
+- [documents] Case Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Case-Report-REDACTED-1.pdf
+- [documents] Arrest Report- Devon Freeman – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Arrest-Report-Devon-Freeman-REDACTED.pdf
+- [documents] Arrest Report- Deleon Dixon – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Arrest-Report-Deleon-Dixon-REDACTED.pdf
+- [documents] Arrest Report- Dejuan Harris – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Arrest-Report-Dejuan-Harris-REDACTED.pdf
+- [documents] TRR-PO Craig – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Craig-REDACTED.pdf
+- [documents] OBR- PO Craig – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Craig-REDACTED.pdf
+
+### copa_1083050  ·  V2 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083050/
+- [bodycam] Log #1083050 Vimeo BWC 1
+  https://player.vimeo.com/video/197215943
+- [bodycam] Log #1083050 Vimeo BWC 2
+  https://player.vimeo.com/video/197215903
+- [documents] OCR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/OCR-REDACTED-1.pdf
+- [documents] TRR PO Meehan – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Meehan-REDACTED.pdf
+- [documents] TRR PO Arroyo – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-PO-Arroyo-REDACTED.pdf
+- [documents] OCR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OCR-REDACTED.pdf
+- [documents] OBR PO Meehan – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Meehan-REDACTED.pdf
+- [documents] OBR PO Arroyo – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-PO-Arroyo-REDACTED.pdf
+
+### copa_2017_1087843  ·  V2 A0 D2 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1087843/
+- [bodycam] Log #2017-1087843 Vimeo BWC 1
+  https://player.vimeo.com/video/252356375
+- [bodycam] Log #2017-1087843 Vimeo BWC 2
+  https://player.vimeo.com/video/252356760
+- [documents] 2017-1087843_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/2017-1087843_FSR.pdf
+- [documents] 006 Original Case Incident Report Redacted 2
+  https://www.chicagocopa.org/wp-content/uploads/2018/01/006-Original-Case-Incident-Report-Redacted-2.pdf
+
+### copa_2023_0000787  ·  V2 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/2023-0000787/
+- [bodycam] Log #2023-0000787 Vimeo BWC 1
+  https://player.vimeo.com/video/815645293
+- [bodycam] Log #2023-0000787 Vimeo BWC 2
+  https://player.vimeo.com/video/815645041
+- [documents] 2023-0787 Press Release
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/COPA-RELEASES-VIDEO-OTHER-MATERIAL-FROM-USE-OF-FORCE-INCIDENT-AT-MIDWAY-AIRPORT.pdf
+- [documents] Log #2023-0000787 Original Case Incident Report 2
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/2023-0787-Case-Report-JG211730-Redacted.pdf
+- [documents] 2023-0787 CaseReport_JG163707- Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/2023-0787-CaseReport_JG163707-Redacted.pdf
+- [documents] Log #2023-0000787 Tactical Response Report 1
+  https://www.chicagocopa.org/wp-content/uploads/2023/04/2023-0787-TRR_ShawnMonroe-Redacted.pdf
 
 ### copa_2021_0002917  ·  V1 A0 D6 P0  ·  score 21
 case: https://www.chicagocopa.org/case/2021-0002917/
@@ -4443,6 +8902,26 @@ case: https://www.chicagocopa.org/case/1076261-2/
 - [documents] Log#1076261 – CHI-R-00000951
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1076261-CHI-R-00000951.pdf
 
+### copa_1078979  ·  V1 A0 D1 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1078979/
+- [bodycam] Log #1078979 Vimeo BWC 1
+  https://player.vimeo.com/video/233036801
+- [documents] 1078979_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/1078979_FSR.pdf
+
+### copa_1079273  ·  V1 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1079273-3/
+- [bodycam] Log #1079273 Vimeo BWC 1
+  https://player.vimeo.com/video/166735551
+- [documents] TRR PO Zayas Brandon
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/TRR-PO-Zayas-Brandon.pdf
+- [documents] TRR PO Zayas
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/TRR-PO-Zayas.pdf
+- [documents] Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Original-Case-Incident-Report.pdf
+- [documents] Arrest Report Cook
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Arrest-Report-Cook.pdf
+
 ### copa_1080437  ·  V1 A0 D7 P0  ·  score 5
 case: https://www.chicagocopa.org/case/1080437/
 - [bodycam] Log #1080437 Vimeo BWC 1
@@ -4496,6 +8975,19 @@ case: https://www.chicagocopa.org/case/1060762-2/
 - [documents] Log#1060762-CHI-R-00000299
   https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1060762-CHI-R-00000299.pdf
 
+### copa_2014_1069058  ·  V1 A0 D4 P0  ·  score 5
+case: https://www.chicagocopa.org/case/1069058-2/
+- [bodycam] Log #2014-1069058 Vimeo BWC 1
+  https://player.vimeo.com/video/165218781
+- [documents] 1069058_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/1069058_FSR.pdf
+- [documents] Log#1069058 – CHI-R-00000477
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1069058-CHI-R-00000477.pdf
+- [documents] Log#1069058 – CHI-R-00000476
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1069058-CHI-R-00000476.pdf
+- [documents] Log#1069058 – CHI-R-00000475
+  https://www.chicagocopa.org/wp-content/uploads/2016/05/Log1069058-CHI-R-00000475.pdf
+
 ### copa_2017_1086127  ·  V1 A0 D6 P0  ·  score 5
 case: https://www.chicagocopa.org/case/2017-1086127/
 - [bodycam] Log #2017-1086127 Vimeo BWC 1
@@ -4531,6 +9023,274 @@ case: https://www.chicagocopa.org/case/2019-0003354/
   https://www.chicagocopa.org/wp-content/uploads/2019/10/3354-TRR-Redacted.pdf
 - [documents] Log # 2019-3354 Original Case Incident Report
   https://www.chicagocopa.org/wp-content/uploads/2019/10/3354-INCIDENT-REPORT-redacted.pdf
+
+### copa_2025_0001291  ·  V1 A0 D2 P0  ·  score 5
+case: https://www.chicagocopa.org/case/2025-0001291/
+- [bodycam] Log #2025-0001291 Vimeo BWC 1
+  https://player.vimeo.com/video/1083697927
+- [documents] 2025-0001291_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/2025-0001291_FSR.pdf
+- [documents] Log #2025-0001291 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2025/05/Casereport_jj186957-Redacted.pdf
+
+### copa_1066371  ·  V1 A0 D10 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1066371/
+- [bodycam] Log #1066371 Vimeo BWC 1
+  https://player.vimeo.com/video/175422069
+- [documents] 1066371 Police Board Decision
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/1066371-Police-Board-Decision.pdf
+- [documents] 1066371 Response to non-concurrence
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/1066371-Response-to-non-concurrence-REDACTED.pdf
+- [documents] 1066371 Non-concurrence
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/1066371-Non-concurrence-REDACTED.pdf
+- [documents] 1066371 Disciplinary recommendations
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/1066371-Disciplinary-recommendations-REDACTED.pdf
+- [documents] Log#1066371 FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Log1066371-REDACTED.pdf
+- [documents] TRR-LOBAIN-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-LOBAIN-REDACTED.pdf
+- [documents] TRR-FRY-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-FRY-REDACTED.pdf
+- [documents] OBR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-REDACTED.pdf
+- [documents] OCIR-REDACTED-7
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-7.pdf
+- [documents] Arrest-Report-REDACTED-2
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED-2-1.pdf
+
+### copa_1071166  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1071166/
+- [bodycam] Log #1071166 Vimeo BWC 1
+  https://player.vimeo.com/video/236606088
+- [documents] 1071166 summary Report_REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2019/10/1071166-summary-Report_REDACTED.pdf
+- [documents] Log #1071166 TRR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/Log-1071166-TRR-Redacted.pdf
+- [documents] Log #1071166 OBR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/Log-1071166-OBR-Redacted.pdf
+- [documents] Log #1071166 OCIR Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/10/Log-1071166-OCIR-Redacted.pdf
+- [documents] L1071166U14_29
+  https://www.chicagocopa.org/wp-content/uploads/2016/07/L1071166U14_29.pdf
+
+### copa_1074270  ·  V1 A0 D8 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1074270/
+- [bodycam] Log #1074270 Vimeo BWC 1
+  https://player.vimeo.com/video/172141927
+- [documents] Original Case Incident Report #2
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Original-Case-Incident-Report-1.pdf
+- [documents] TRR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/TRR-REDACTED.pdf
+- [documents] OCIR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OCIR-REDACTED.pdf
+- [documents] Arrest-Report-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Arrest-Report-REDACTED-1.pdf
+- [documents] Arrest-Report-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Arrest-Report-REDACTED.pdf
+- [documents] TRR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-REDACTED.pdf
+- [documents] OCIR-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-6.pdf
+- [documents] Arrest-Report-REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED-2.pdf
+
+### copa_1074294  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1074294/
+- [bodycam] Log #1074294 Vimeo BWC 1
+  https://player.vimeo.com/video/173537210
+- [documents] 1074294 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/12/1074294-REDACTED.pdf
+- [documents] OCIR-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/OCIR-REDACTED-1.pdf
+- [documents] Arrest-Report-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/06/Arrest-Report-REDACTED-1-1.pdf
+- [documents] OCIR-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-1-1.pdf
+- [documents] Arrest-Report-REDACTED-1
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-REDACTED-1-1.pdf
+
+### copa_1081009  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081009/
+- [bodycam] Log #1081009 Vimeo BWC 1
+  https://player.vimeo.com/video/178951100
+- [documents] TRR — Yanez — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Yanez-REDACTED.pdf
+- [documents] TRR — Guzman-Sanchez — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Guzman-Sanchez-REDACTED.pdf
+- [documents] OCIR — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-9.pdf
+- [documents] OBR — Yanez — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OBR-Yanez-REDACTED.pdf
+- [documents] Arrest.report.Carrizalez — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest.report.Carrizalez-REDACTED.pdf
+
+### copa_1081058  ·  V1 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081058/
+- [bodycam] Log #1081058 Vimeo BWC 1
+  https://player.vimeo.com/video/179474039
+- [documents] TRR – Rivas — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Rivas-REDACTED.pdf
+- [documents] TRR — Bilina — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/TRR-Bilina-REDACTED.pdf
+- [documents] OCIR — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/OCIR-REDACTED-10.pdf
+- [documents] Arrest Report — Foreman — REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/08/Arrest-Report-Foreman-REDACTED.pdf
+
+### copa_1081639  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081639/
+- [bodycam] Log #1081639 Vimeo BWC 1
+  https://player.vimeo.com/video/184424510
+- [documents] 1081639_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/1081639_FSR.pdf
+- [documents] arrest-reportredacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/Arrest-ReportREDACTED.pdf
+- [documents] trrredacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/TRRREDACTED.pdf
+- [documents] obrredacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/OBRREDACTED.pdf
+- [documents] general-offense-case-reportredacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/09/General-Offense-Case-ReportREDACTED.pdf
+
+### copa_1081740  ·  V1 A0 D4 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1081740/
+- [bodycam] Log #1081740 Vimeo BWC 1
+  https://player.vimeo.com/video/194529403
+- [documents] trr-czapla-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-Czapla-REDACTED.pdf
+- [documents] trr-allen-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/TRR-Allen-REDACTED.pdf
+- [documents] case-incident-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Case-Incident-Report-REDACTED.pdf
+- [documents] arrest-report-redacted
+  https://www.chicagocopa.org/wp-content/uploads/2016/11/Arrest-Report-REDACTED.pdf
+
+### copa_1082687  ·  V1 A0 D9 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082687/
+- [bodycam] Log #1082687 Vimeo BWC 1
+  https://player.vimeo.com/video/193960711
+- [documents] CASE REPORT HZ481527 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/CASE-REPORT-HZ481527-REDACTED-1.pdf
+- [documents] ARREST COLEMAN – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/ARREST-COLEMAN-REDACTED.pdf
+- [documents] TRR O CONNOR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-O-CONNOR-REDACTED.pdf
+- [documents] TRR BASTIEN – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-BASTIEN-REDACTED.pdf
+- [documents] OBR O CONNOR – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-O-CONNOR-REDACTED.pdf
+- [documents] OBR BASTIEN – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-BASTIEN-REDACTED.pdf
+- [documents] CASE REPORT HZ481527 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/CASE-REPORT-HZ481527-REDACTED.pdf
+- [documents] CASE REPORT HZ481447 – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/CASE-REPORT-HZ481447-REDACTED.pdf
+- [documents] ARREST MULDROW – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/ARREST-MULDROW-REDACTED.pdf
+
+### copa_1082884  ·  V1 A0 D6 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082884/
+- [bodycam] Log #1082884 Vimeo BWC 1
+  https://player.vimeo.com/video/198070309
+- [documents] Case Incident Report (HZ503071) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Case-Incident-Report-HZ503071-REDACTED.pdf
+- [documents] Arrest Report (Jardian) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Arrest-Report-Jardian-REDACTED.pdf
+- [documents] TRR (Corona) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/TRR-Corona-REDACTED.pdf
+- [documents] OBR (Corona) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/OBR-Corona-REDACTED.pdf
+- [documents] Case Incident Report (HZ503123) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Case-Incident-Report-HZ503123-REDACTED.pdf
+- [documents] Case Incident Report (HZ503071) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2016/12/Case-Incident-Report-HZ503071-REDACTED.pdf
+
+### copa_1082952  ·  V1 A0 D9 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1082952/
+- [bodycam] Log #1082952 Vimeo BWC 1
+  https://player.vimeo.com/video/221950641
+- [documents] TRR PO Kociolek – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/TRR-PO-Kociolek-REDACTED.pdf
+- [documents] TRR PO Cosentino – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/TRR-PO-Cosentino-REDACTED.pdf
+- [documents] TRR PO Baker – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/TRR-PO-Baker-REDACTED.pdf
+- [documents] TRR PO Archuleta – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/TRR-PO-Archuleta-REDACTED.pdf
+- [documents] OBR PO Kociolek – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/OBR-PO-Kociolek-REDACTED.pdf
+- [documents] OBR PO Baker – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/OBR-PO-Baker-REDACTED.pdf
+- [documents] OBR PO Archuleta – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/OBR-PO-Archuleta-REDACTED.pdf
+- [documents] Case Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Case-Report-REDACTED.pdf
+- [documents] Arrest Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/06/Arrest-Report-REDACTED.pdf
+
+### copa_1083133  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1083133/
+- [bodycam] Log #1083133 Vimeo BWC 1
+  https://player.vimeo.com/video/200880560
+- [documents] Arrest Report (Grant) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Arrest-Report-Grant-REDACTED-1.pdf
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Original-Case-Incident-Report-REDACTED-4.pdf
+- [documents] TRR–Officer Brannigan – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/TRR-Officer-Brannigan-REDACTED.pdf
+- [documents] Original Case Incident Report – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Original-Case-Incident-Report-REDACTED-1.pdf
+- [documents] Arrest Report (Grant) – REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2017/01/Arrest-Report-Grant-REDACTED.pdf
+
+### copa_1085761  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085761/
+- [bodycam] Log #1085761 Vimeo BWC 1
+  https://player.vimeo.com/video/238804572
+- [documents] Arrest-Report-Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Arrest-Report-Redacted-1.pdf
+- [documents] Tactical Response Report (Rolon) Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Tactical-Response-Report-Rolon-Redacted.pdf
+- [documents] Tactical Response Report (Lloyd) Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Tactical-Response-Report-Lloyd-Redacted.pdf
+- [documents] Original Case Incident Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Original-Case-Incident-Report-Redacted-1.pdf
+- [documents] Officer’s Battery Report (Rolon) Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/08/Officers-Battery-Report-Rolon-Redacted.pdf
+
+### copa_1090087  ·  V1 A0 D5 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1090087/
+- [bodycam] Log #1090087 Vimeo BWC 1
+  https://player.vimeo.com/video/287128908
+- [documents] 1090087 REDACTED
+  https://www.chicagocopa.org/wp-content/uploads/2020/04/1090087-REDACTED-2.pdf
+- [documents] Log 1090087 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090087-Original-Case-Incident-Report-1.pdf
+- [documents] Log 1090087 Original Case Incident Report
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090087-Original-Case-Incident-Report.pdf
+- [documents] Log 1090087 Tactical Response Report #1
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090087-Tactical-Response-Report-1.pdf
+- [documents] Log 1090087 Tactical Response Report #2
+  https://www.chicagocopa.org/wp-content/uploads/2018/08/Log-1090087-Tactical-Response-Report-2.pdf
+
+### copa_2017_1085949  ·  V1 A0 D7 P0  ·  score 4
+case: https://www.chicagocopa.org/case/1085949/
+- [bodycam] Log #2017-1085949 Vimeo BWC 1
+  https://player.vimeo.com/video/233882045
+- [documents] 1085949_FSR
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/1085949_FSR.pdf
+- [documents] TRR- Sean Ronan Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/TRR-Sean-Ronan-Redacted.pdf
+- [documents] Tactical Response Report- Michael Rodriguez Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/Tactical-Response-Report-Michael-Rodriguez-Redacted.pdf
+- [documents] Original Case Incident Report JA349890 Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/Original-Case-Incident-Report-JA349890-Redacted.pdf
+- [documents] OBR- Sean Ronan Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/OBR-Sean-Ronan-Redacted.pdf
+- [documents] OBR- Michael Rodriguez Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/OBR-Michael-Rodriguez-Redacted.pdf
+- [documents] Arrest Report Redacted
+  https://www.chicagocopa.org/wp-content/uploads/2017/09/Arrest-Report-Redacted.pdf
 
 ## longbeach_laserfiche — Long Beach Police Department
 
