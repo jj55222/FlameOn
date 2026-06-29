@@ -263,6 +263,8 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
             "kind": "clip", "media": media,
             "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
             "lower_third": f"{lt_text}  ·  {credit}".strip().strip("·").strip(),
+            # Narration rides the footage as a top-third slide (no narrator/TTS yet).
+            "narration_top": nb_text,
             # B-roll plays as footage only — no quote card.
             "transcript_excerpt": "" if b.get("is_broll") else (b.get("quote") or {}).get("text", ""),
             "description": b.get("description") or b.get("broll_note") or "",
