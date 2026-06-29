@@ -1,21 +1,14 @@
 # Case Bundle Vet Report
 
-- Mode: classification/tier dry run
-- Candidate files rewritten: yes
-- Generated: 2026-06-29T00:37:59+00:00
+- Mode: verify-only probes
+- Candidate files rewritten: no
+- Generated: 2026-06-29T00:45:24+00:00
 
 | source | bundles | files | live | dead | unknown | A | B | C | D |
 |--------|--------:|------:|-----:|-----:|--------:|--:|--:|--:|--:|
-| chicago_copa | 2131 | 7375 | 0 | 0 | 7375 | 0 | 1 | 259 | 1871 |
-| longbeach_laserfiche | 443 | 12225 | 0 | 0 | 12225 | 0 | 123 | 320 | 0 |
-| muckrock | 53 | 702 | 0 | 0 | 702 | 0 | 12 | 16 | 25 |
-| sdpd | 50 | 956 | 0 | 0 | 956 | 28 | 9 | 0 | 13 |
-| sfdpa_nextrequest | 95 | 397 | 0 | 0 | 397 | 0 | 31 | 0 | 64 |
+| chicago_copa | 2131 | 7375 | 8 | 0 | 7367 | 0 | 0 | 1 | 2130 |
 
 ## Notes
 
 ### chicago_copa
 - 1871 bundle(s): COPA case has no captured video in candidate file; run copa_harvest.py --capture-vimeo to enrich.
-
-### longbeach_laserfiche
-- 307 bundle(s): Laserfiche mediahandler URL replaced with ElectronicFile download_url where available.
