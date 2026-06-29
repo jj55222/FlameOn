@@ -31,19 +31,29 @@ _session = requests.Session()
 _session.headers.update({"User-Agent": UA})
 
 
-def probe(url: str, timeout: float = 15.0) -> dict:
-    try:
-        r = _session.get(url, headers={"Range": "bytes=0-0"}, allow_redirects=True,
-                         timeout=timeout, stream=True)
-        cr = r.headers.get("Content-Range", "")
-        ct = r.headers.get("Content-Type", "")[:40]
-        size = int(cr.split("/")[-1]) if "/" in cr and cr.split("/")[-1].isdigit() else None
-        live = r.status_code in (200, 206)
-        r.close()
-        return {"live": live, "status": r.status_code,
-                "size_mb": round(size / 1e6, 1) if size else None, "ctype": ct}
-    except requests.RequestException as e:
-        return {"live": False, "status": None, "error": type(e).__name__}
+def probe(url: str, timeout: float = 15.0, retries: int = 3) -> dict:
+    # Some hosts (NextRequest) 429 under concurrency — back off and retry so a
+    # rate-limit doesn't masquerade as a dead URL.
+    for attempt in range(retries):
+        try:
+            r = _session.get(url, headers={"Range": "bytes=0-0"}, allow_redirects=True,
+                             timeout=timeout, stream=True)
+            status = r.status_code
+            cr = r.headers.get("Content-Range", "")
+            ct = r.headers.get("Content-Type", "")[:40]
+            size = int(cr.split("/")[-1]) if "/" in cr and cr.split("/")[-1].isdigit() else None
+            r.close()
+            if status == 429 and attempt < retries - 1:
+                time.sleep(3 * (attempt + 1))      # 3s, 6s backoff
+                continue
+            return {"live": status in (200, 206), "status": status,
+                    "size_mb": round(size / 1e6, 1) if size else None, "ctype": ct}
+        except requests.RequestException as e:
+            if attempt < retries - 1:
+                time.sleep(2 * (attempt + 1))
+                continue
+            return {"live": False, "status": None, "error": type(e).__name__}
+    return {"live": False, "status": 429, "error": "rate_limited"}
 
 
 def main() -> int:
