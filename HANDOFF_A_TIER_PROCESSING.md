@@ -134,10 +134,12 @@ LLM's? — NOT beat_miner. For each of the 10 cases, after the transcripts exist
 ```
 
 **Read the result honestly:**
-- **It's a structured-LLM-pipeline (P4 = Gemini-Flash pass-1 + Claude-Sonnet pass-2,
-  winner-weights) vs a raw strong LLM.** So you're testing whether P4's *structure*
-  tracks a strong model's holistic judgment — not "model vs non-model." Agreement ≠
-  ground truth (both are LLMs); the useful signal is **where they DISAGREE.**
+- **It's a structured pipeline vs a raw strong LLM.** P4 isn't just an LLM: it's a
+  **deterministic winner-weighted `narrative_score`** (the real spine) + a Gemini-Flash
+  *extraction* pass + a Qwen *modulation* pass, reconciled so the LLM can't swing
+  SKIP↔PRODUCE (see `P4_TRUST_DETERMINISTIC_PRODUCE`). So you're testing whether that
+  *structure + calibration* tracks a strong model's holistic judgment — not "model vs
+  non-model." Agreement ≠ ground truth; the useful signal is **where they DISAGREE.**
 - **All 10 are A-tier GOLD cases**, so a good documentary selector should rate most
   PRODUCE. If **P4 says HOLD/SKIP on cases the LLM finds compelling** (it rated Morales
   HOLD), that's evidence P4 is calibrated for *case-DISCOVERY triage* (find the rare gem
