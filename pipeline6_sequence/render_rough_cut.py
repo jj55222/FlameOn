@@ -646,7 +646,8 @@ def render(paper_edit: Dict[str, Any], out_dir: Path) -> Path:
             dur = max(0.5, float(ev["out_sec"]) - float(ev["in_sec"]))
             if _is_video(media):
                 lt = card_dir / f"{i:02d}_lt.png"
-                make_lower_third_png(lt, ev.get("lower_third", ev.get("label", "")))
+                make_lower_third_png(lt, ev.get("lower_third", ev.get("label", "")),
+                                     top_text=ev.get("narration_top", ""))
                 seg_video(media, float(ev["in_sec"]), dur, seg, lt)
             else:
                 png = card_dir / f"{i:02d}.png"
