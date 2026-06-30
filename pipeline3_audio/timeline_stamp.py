@@ -70,8 +70,8 @@ def detect_kind(path: Path) -> str:
         return "911"
     if "radio" in low:
         return "radio"
-    if {"bwc", "bodycam", "bodyworn"} & toks:
-        return "bodycam"
+    if {"bwc", "bodycam", "bodyworn"} & toks or re.search(r"body.?cam|body.?worn", low):
+        return "bodycam"  # also catches SDPD "Officer1BodyCameraVideo" (one token)
     if {"icc", "dash", "dashcam"} & toks:
         return "dashcam"
     if {"interview", "interrogation", "dpa", "iad", "interrog"} & toks:
