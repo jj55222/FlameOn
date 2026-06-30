@@ -95,21 +95,37 @@ def windows(pstart, pend, contact, peak):
     return out
 
 
-def narrate(basket, phase_text, agency):
-    """One-line narration per phase via the case doc/transcript (LLM); generic fallback."""
+def narrate(basket, phase_text, agency, facts=""):
+    """One-line narration per phase, grounded in the transcript AND the documented
+    OUTCOME (facts). Critical: gunfire/force is often NOT in the transcript words, so
+    transcript-only narration can read a command->'there you go'->handcuff sequence as
+    COMPLIANCE when the subject was actually shot. The outcome fact prevents that."""
     generic = {"stop": "Officers make contact.", "escalation": "The situation escalates.",
                "aftermath": "The aftermath."}
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "pipeline4_scoring"))
         from llm_backends import build_backend
-        sysmsg = ("You narrate police bodycam mini-docs (Midwest-Safety style): ONE plain, "
-                  "factual sentence per phase, grounded ONLY in the transcript. No editorializing. Return JSON.")
-        user = ("Write one-sentence narration for each phase below. Return "
+        sysmsg = ("You narrate police bodycam mini-docs (Midwest-Safety style): ONE plain, factual "
+                  "sentence per phase. Ground in the transcript AND the documented outcome. "
+                  "CRITICAL: if a shooting or use of force occurred, the narration MUST state it plainly "
+                  "(gunfire is often NOT in the transcript words, but it happened) — NEVER imply the person "
+                  "complied or it ended peacefully when they were shot or seriously injured. Return JSON.")
+        user = (f"DOCUMENTED OUTCOME (ground truth — the narration must be consistent with this): {facts[:600]}\n\n"
+                "Write one factual sentence per phase. Return "
                 '{"stop":"...","escalation":"...","aftermath":"..."}.\n\n' +
-                "\n\n".join(f"[{ph}]\n{txt[:1400]}" for ph, txt in phase_text.items()))
+                "\n\n".join(f"[{ph}]\n{txt[:1300]}" for ph, txt in phase_text.items()))
         raw = build_backend("google/gemini-3.1-flash-lite-preview").complete(system=sysmsg, user=user, max_tokens=400, temperature=0.2)
         d = json.loads(raw)
-        return {k: (d.get(k) or generic[k]) for k in generic}
+        out = {k: (d.get(k) or generic[k]) for k in generic}
+        # accuracy guard: a shooting/death outcome must not be narrated as compliance
+        fl = facts.lower()
+        if any(w in fl for w in ("shot", "shoot", "fatal", "killed", "kill", "deadly")):
+            blob = " ".join(out.values()).lower()
+            if any(w in blob for w in ("complied", "cooperat", "peaceful", "without incident")) or \
+               not any(w in blob for w in ("shot", "shoot", "fire", "fired", "force")):
+                print("[rawwalk] WARN: shooting/death outcome but narration omits/contradicts it — flagging", file=sys.stderr)
+                out["_warn"] = "narration may understate the shooting; review"
+        return out
     except Exception as e:
         print(f"[rawwalk] narration LLM unavailable ({str(e)[:80]}); generic", file=sys.stderr)
         return generic
@@ -131,7 +147,7 @@ def main():
     psegs, pep = tx.get(primary, []), epoch[primary]
     pdur = dur.get(primary) or (psegs[-1].get("end_sec", 600) if psegs else 600)
     pend = pep + pdur
-    peak = first_time(psegs, pep, SHOT) or first_time(psegs, pep, ACTION) or (pep + pdur * 0.7)
+    peak = first_time(psegs, pep, PEAK) or first_time(psegs, pep, ACTION) or (pep + pdur * 0.7)
     contact = first_time(psegs, pep, CONTACT) or (pep + 20)
     W = windows(pep, pend, contact, peak)
     if not W:
