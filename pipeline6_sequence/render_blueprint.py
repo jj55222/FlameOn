@@ -138,6 +138,8 @@ def resolve_clip_overlaps(timeline: List[Dict], min_dur: float = 1.5) -> List[Di
     them) — exactly the replays the judge's craft check flags."""
     shown_until: Dict[str, float] = {}
     for c in (e for e in timeline if e["kind"] == "clip"):
+        if c.get("cold_open"):        # a teaser intentionally replays the climax — don't trim it or let it advance the cursor
+            continue
         m = c["media"]
         prev = shown_until.get(m)
         if prev is not None and c["in_sec"] < prev - 0.5:
