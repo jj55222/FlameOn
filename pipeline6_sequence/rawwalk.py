@@ -32,6 +32,9 @@ ACTION = re.compile(r"shots? fired|\bshot\b|\bgun\b|\bfirearm\b|drop (it|the)|ta
                     r"don'?t move|he'?s got|stop fighting|let me see your hands", re.I)
 COMMAND = re.compile(r"hands|step out|get out|drop|stop|don'?t move|on the ground|turn (the|your)|"
                      r"show me|put your|get back", re.I)
+# Control/medical cues that mark where the action ENDS (used to bound the climax teaser).
+AFTER = re.compile(r"turn around|hands behind|roll over|you'?re okay|we'?re okay|keep breathing|"
+                   r"\bbreathing\b|\bpulse\b|\bmedic\b|\bcuff|suspect is down|get behind cover|hands out", re.I)
 
 
 def stem(s): return os.path.splitext(os.path.basename(str(s)))[0]
