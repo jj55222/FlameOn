@@ -675,7 +675,8 @@ def render(paper_edit: Dict[str, Any], out_dir: Path) -> Path:
                 lt = card_dir / f"{i:02d}_lt.png"
                 make_lower_third_png(lt, ev.get("lower_third", ev.get("label", "")),
                                      top_text=ev.get("narration_top", ""))
-                seg_video(media, float(ev["in_sec"]), dur, seg, lt)
+                seg_video(media, float(ev["in_sec"]), dur, seg, lt,
+                          captions=ev.get("captions"))
             else:
                 png = card_dir / f"{i:02d}.png"
                 render_card(png, card_kind="context",
