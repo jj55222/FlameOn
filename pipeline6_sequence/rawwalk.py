@@ -75,13 +75,16 @@ def first_time(segs, ep, rx):
 
 
 def windows(pstart, pend, contact, peak):
-    """3 continuous runs (in_sec) around the action peak. Clamp + de-overlap."""
+    """Continuous runs (in_sec) around the action ONSET. POST is wide enough that the
+    shooting is captured even when the onset cue (e.g. 'drop the knife') precedes the
+    gunfire by ~20s. The stop window collapses gracefully on fast incidents -> 2 runs."""
+    PRE, POST, AFT = 115, 45, 55
     c, p = contact - pstart, peak - pstart           # to in_sec
     dur = pend - pstart
     raw = [
-        ("stop", max(0.0, c - 5), min(c + 120, p - 115)),
-        ("escalation", max(0.0, p - 115), p + 12),
-        ("aftermath", p + 12, min(dur, p + 62)),
+        ("stop", max(0.0, c - 5), min(c + 120, p - PRE)),
+        ("escalation", max(0.0, p - PRE), p + POST),
+        ("aftermath", p + POST, min(dur, p + POST + AFT)),
     ]
     out, last_end = [], -1.0
     for ph, a, z in raw:
