@@ -46,14 +46,19 @@ def load(basket):
 
 
 def pick_primary(epoch, tx):
-    """Rank stamped bodycams: most action+command+contact cues, earliest on scene."""
-    scored = []
+    """Primary = the EARLIEST-on-scene bodycam that has real incident presence
+    (contact dialogue and/or action cues). The first officer on scene is the
+    contact officer who carries the stop -> action -> aftermath arc on one camera;
+    a later-arriving supervisor who only RELAYS 'shots fired' on the radio must not
+    win on cue count. Tiebreak: more contact+action cues."""
+    cand = []
     for k, ep in epoch.items():
         txt = " ".join(s.get("text", "") for s in tx.get(k, []))
-        score = 3 * len(ACTION.findall(txt)) + len(COMMAND.findall(txt)) + 2 * len(CONTACT.findall(txt))
-        scored.append((score, -ep, k))
-    scored.sort(reverse=True)
-    return [k for _, _, k in scored]
+        ch, ah = len(CONTACT.findall(txt)), len(ACTION.findall(txt))
+        if ch or ah:
+            cand.append((ep, -(ch * 4 + ah), k))     # earliest start first
+    cand.sort()
+    return [k for _, _, k in cand] or list(epoch)
 
 
 def first_time(segs, ep, rx):
