@@ -261,11 +261,15 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
         lt_text = (b.get("lower_third") or {}).get("text", "")
         # Clip-synced captions (EWU-style) from the source transcript, rebased to the clip.
         mseg = (transcripts or {}).get(Path(media).stem) or []
+        _HALLUC = {"thank you", "thanks for watching", "thanks for watching!", "you", "thanks",
+                   "please subscribe", "subscribe", "bye", "bye.", "music", "silence", ".", "thank you."}
         caps = [{"start": round(max(0.0, s.get("start_sec", 0) - in_sec), 2),
                  "end": round(min(out_sec, s.get("end_sec", 0)) - in_sec, 2),
                  "text": s.get("text", "").strip()}
                 for s in mseg
-                if s.get("end_sec", 0) > in_sec and s.get("start_sec", 0) < out_sec and s.get("text", "").strip()]
+                if s.get("end_sec", 0) > in_sec and s.get("start_sec", 0) < out_sec
+                and s.get("text", "").strip()
+                and s["text"].strip().lower().rstrip(".!?, ") not in _HALLUC]   # drop Whisper silence-hallucinations
         timeline.append({
             "kind": "clip", "media": media,
             "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
