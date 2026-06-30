@@ -548,44 +548,53 @@ def _run(cmd: List[str]) -> None:
         raise RuntimeError("ffmpeg failed:\n" + " ".join(cmd) + "\n" + r.stderr[-1500:])
 
 
-def _srt_ts(t: float) -> str:
-    t = max(0.0, t)
-    h, m, s = int(t // 3600), int((t % 3600) // 60), int(t % 60)
-    return f"{h:02d}:{m:02d}:{s:02d},{int((t - int(t)) * 1000):03d}"
-
-
-def write_srt(captions: List[Dict[str, Any]], path: Path) -> None:
-    """Clip-rebased captions -> SRT for ffmpeg subtitles burn-in."""
-    out = []
-    for i, c in enumerate(captions, 1):
-        a = float(c.get("start", 0))
-        z = max(float(c.get("end", a + 1.0)), a + 0.4)
-        txt = (c.get("text") or "").strip()
-        if txt:
-            out.append(f"{i}\n{_srt_ts(a)} --> {_srt_ts(z)}\n{txt}\n")
-    Path(path).write_text("\n".join(out), encoding="utf-8")
+def make_caption_png(out_png: Path, text: str) -> None:
+    """A transparent frame with one caption line(s) centered in the lower band —
+    drawn with PIL (this ffmpeg lacks drawtext/subtitles), overlaid timed."""
+    from PIL import Image, ImageDraw
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    f = _font("bold", 30)
+    lines = _wrap_lines(d, text, f, W - 240)
+    lh = int(f.size * 1.3)
+    block_h = lh * len(lines)
+    y0 = H - 178 - block_h            # sits above the bottom-left source strip
+    for j, ln in enumerate(lines):
+        tw = d.textlength(ln, font=f)
+        x = (W - tw) / 2
+        y = y0 + j * lh
+        d.rectangle([x - 16, y - 4, x + tw + 16, y + lh - 2], fill=(8, 8, 12, 200))
+        for dx, dy in ((-2, 0), (2, 0), (0, -2), (0, 2)):   # outline for legibility
+            d.text((x + dx, y + dy), ln, font=f, fill=(0, 0, 0, 255))
+        d.text((x, y), ln, font=f, fill=(245, 245, 248, 255))
+    img.save(out_png)
 
 
 def seg_video(media: Path, in_sec: float, dur: float, out_mp4: Path,
               lower_third_png: Optional[Path],
               captions: Optional[List[Dict[str, Any]]] = None) -> None:
     inputs = ["-ss", f"{in_sec}", "-t", f"{dur}", "-i", str(media)]
-    vchain = _VF
-    if captions:
-        srt = out_mp4.with_suffix(".srt")
-        write_srt(captions, srt)
-        esc = str(srt.resolve()).replace("\\", "/").replace(":", r"\:")
-        # bottom-center captions, lifted above the lower-third strip
-        vchain = (f"{_VF},subtitles='{esc}':force_style='FontSize=17,Outline=1,"
-                  f"Shadow=0,BorderStyle=1,Alignment=2,MarginV=44'")
+    filters = [f"[0:v]{_VF}[v0]"]
+    cur, n, idx = "v0", 1, 1
     if lower_third_png:
         inputs += ["-i", str(lower_third_png)]
-        filt = (f"[0:v]{vchain}[bg];[bg][1:v]overlay=0:0[v]")
-        maps = ["-map", "[v]", "-map", "0:a?"]
-        _run([FFMPEG, "-y", *inputs, "-filter_complex", filt, *maps,
-              "-shortest", *_ENC, str(out_mp4)])
+        filters.append(f"[{cur}][{idx}:v]overlay=0:0[v{n}]")
+        cur, n, idx = f"v{n}", n + 1, idx + 1
+    for k, c in enumerate(captions or []):
+        txt = (c.get("text") or "").strip()
+        if not txt:
+            continue
+        cap_png = out_mp4.parent / f"{out_mp4.stem}_cap{k}.png"
+        make_caption_png(cap_png, txt)
+        inputs += ["-i", str(cap_png)]
+        a, z = float(c.get("start", 0)), max(float(c.get("end", 0)), float(c.get("start", 0)) + 0.4)
+        filters.append(f"[{cur}][{idx}:v]overlay=0:0:enable='between(t,{a:.2f},{z:.2f})'[v{n}]")
+        cur, n, idx = f"v{n}", n + 1, idx + 1
+    if idx == 1:        # no overlays at all
+        _run([FFMPEG, "-y", *inputs, "-vf", _VF, *_ENC, "-shortest", str(out_mp4)])
     else:
-        _run([FFMPEG, "-y", *inputs, "-vf", vchain, *_ENC, "-shortest", str(out_mp4)])
+        _run([FFMPEG, "-y", *inputs, "-filter_complex", ";".join(filters),
+              "-map", f"[{cur}]", "-map", "0:a?", "-shortest", *_ENC, str(out_mp4)])
 
 
 def seg_audio_over_card(card_png: Path, media: Path, in_sec: float, dur: float,
