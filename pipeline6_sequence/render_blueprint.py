@@ -277,6 +277,7 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
             "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
             "lower_third": f"{lt_text}  ·  {credit}".strip().strip("·").strip(),
             "captions": caps,
+            "cold_open": b.get("cold_open", False),   # teaser preview — exempt from replay-trim
             # Narration rides the footage as a top-third slide (no narrator/TTS yet).
             "narration_top": nb_text,
             # B-roll plays as footage only — no quote card.
