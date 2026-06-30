@@ -157,7 +157,18 @@ def main():
     def text_in(a, z):
         return " ".join(s.get("text", "") for s in psegs if z >= (s.get("start_sec") or 0) >= a)
     phase_text = {ph: text_in(a, z) for ph, a, z in W}
-    narr = narrate(args.basket, phase_text, args.agency) if args.narrate else \
+    # documented outcome for narration grounding: doc_extract -> tier1 verdict -> none
+    facts = ""
+    de0 = glob.glob(f"{args.basket}/d2/doc_extract*.json")
+    if de0:
+        dd = json.load(open(de0[0]))
+        disp = dd.get("disposition"); disp = disp.get("summary") if isinstance(disp, dict) else disp
+        facts = f"{dd.get('subject','')} {(dd.get('narrative') or {}).get('text','')[:300]} {disp or ''}".strip()
+    t1 = glob.glob(f"{args.basket}/d2/tier1_verdict.json")
+    if not facts and t1:
+        v = json.load(open(t1[0]))
+        facts = f"{v.get('pitch','')} {v.get('rationale','')}".strip()
+    narr = narrate(args.basket, phase_text, args.agency, facts) if args.narrate else \
         {"stop": "Officers make contact.", "escalation": "The situation escalates.", "aftermath": "The aftermath."}
 
     media_path = next((a["path"] for a in arts if stem(a.get("artifact_id", "")) == primary), None)
