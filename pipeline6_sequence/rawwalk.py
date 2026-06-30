@@ -178,6 +178,20 @@ def main():
     manifest = [{"asset_id": primary, "pov_label": primary, "path": media_path,
                  "kind": "bodycam", "duration_sec": pdur}]
     beats = []
+    # COLD-OPEN climax teaser: the last command -> the shots, a short PREVIEW (not the whole
+    # interaction). Bounded by where control/medical cues begin. Exempt from replay-trim, so
+    # the chronological walk below still shows the moment in full.
+    aft = next((pep + (s.get("start_sec") or 0) for s in psegs
+                if (pep + (s.get("start_sec") or 0)) > peak and AFTER.search(s.get("text", ""))), peak + 20)
+    t_in, t_out = max(0.0, aft - pep - 12), aft - pep + 2
+    if t_out - t_in >= 5:
+        beats.append({
+            "beat_id": "cold_open", "act_id": None, "is_broll": False, "is_document": False,
+            "cold_open": True,
+            "primary_asset": {"asset_id": primary, "in_sec": round(t_in, 1), "out_sec": round(t_out, 1)},
+            "narration_bridge": {}, "lower_third": {"text": "Body-Worn Camera"},
+            "quote": {}, "inserts": [], "source_refs": [],
+        })
     for i, (ph, a, z) in enumerate(W):
         beats.append({
             "beat_id": f"raw_{i}", "act_id": None, "is_broll": False, "is_document": False,
