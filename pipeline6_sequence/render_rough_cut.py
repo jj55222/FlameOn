@@ -548,17 +548,44 @@ def _run(cmd: List[str]) -> None:
         raise RuntimeError("ffmpeg failed:\n" + " ".join(cmd) + "\n" + r.stderr[-1500:])
 
 
+def _srt_ts(t: float) -> str:
+    t = max(0.0, t)
+    h, m, s = int(t // 3600), int((t % 3600) // 60), int(t % 60)
+    return f"{h:02d}:{m:02d}:{s:02d},{int((t - int(t)) * 1000):03d}"
+
+
+def write_srt(captions: List[Dict[str, Any]], path: Path) -> None:
+    """Clip-rebased captions -> SRT for ffmpeg subtitles burn-in."""
+    out = []
+    for i, c in enumerate(captions, 1):
+        a = float(c.get("start", 0))
+        z = max(float(c.get("end", a + 1.0)), a + 0.4)
+        txt = (c.get("text") or "").strip()
+        if txt:
+            out.append(f"{i}\n{_srt_ts(a)} --> {_srt_ts(z)}\n{txt}\n")
+    Path(path).write_text("\n".join(out), encoding="utf-8")
+
+
 def seg_video(media: Path, in_sec: float, dur: float, out_mp4: Path,
-              lower_third_png: Optional[Path]) -> None:
+              lower_third_png: Optional[Path],
+              captions: Optional[List[Dict[str, Any]]] = None) -> None:
     inputs = ["-ss", f"{in_sec}", "-t", f"{dur}", "-i", str(media)]
+    vchain = _VF
+    if captions:
+        srt = out_mp4.with_suffix(".srt")
+        write_srt(captions, srt)
+        esc = str(srt.resolve()).replace("\\", "/").replace(":", r"\:")
+        # bottom-center captions, lifted above the lower-third strip
+        vchain = (f"{_VF},subtitles='{esc}':force_style='FontSize=17,Outline=1,"
+                  f"Shadow=0,BorderStyle=1,Alignment=2,MarginV=44'")
     if lower_third_png:
         inputs += ["-i", str(lower_third_png)]
-        filt = (f"[0:v]{_VF}[bg];[bg][1:v]overlay=0:0[v]")
+        filt = (f"[0:v]{vchain}[bg];[bg][1:v]overlay=0:0[v]")
         maps = ["-map", "[v]", "-map", "0:a?"]
         _run([FFMPEG, "-y", *inputs, "-filter_complex", filt, *maps,
               "-shortest", *_ENC, str(out_mp4)])
     else:
-        _run([FFMPEG, "-y", *inputs, "-vf", _VF, *_ENC, "-shortest", str(out_mp4)])
+        _run([FFMPEG, "-y", *inputs, "-vf", vchain, *_ENC, "-shortest", str(out_mp4)])
 
 
 def seg_audio_over_card(card_png: Path, media: Path, in_sec: float, dur: float,
