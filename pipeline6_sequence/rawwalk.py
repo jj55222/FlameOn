@@ -152,8 +152,13 @@ def main():
     de = glob.glob(f"{args.basket}/d2/doc_extract*.json")
     if de:
         d = json.load(open(de[0]))
-        incident = {"subject": d.get("subject"), "disposition": d.get("disposition"),
-                    "summary": (d.get("narrative") or {}).get("text", "")[:240]}
+        disp = d.get("disposition")
+        if isinstance(disp, dict):                       # render wants a string
+            disp = "; ".join(disp.get("discipline_signals") or []) or (disp.get("summary") or "")[:120]
+        charges = d.get("charges") or []
+        charges = [c for c in charges if isinstance(c, str)]
+        incident = {"subject": str(d.get("subject") or ""), "charges": charges,
+                    "disposition": str(disp or "")}
 
     bp = {"case_id": args.case_id, "agency": args.agency,
           "logline": f"{args.agency} bodycam — raw walk.", "acts": [],
