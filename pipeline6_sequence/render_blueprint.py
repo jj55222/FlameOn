@@ -259,10 +259,18 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                 new_in = max(0.0, new_out - min_clip_sec)
             in_sec, out_sec = new_in, new_out
         lt_text = (b.get("lower_third") or {}).get("text", "")
+        # Clip-synced captions (EWU-style) from the source transcript, rebased to the clip.
+        mseg = (transcripts or {}).get(Path(media).stem) or []
+        caps = [{"start": round(max(0.0, s.get("start_sec", 0) - in_sec), 2),
+                 "end": round(min(out_sec, s.get("end_sec", 0)) - in_sec, 2),
+                 "text": s.get("text", "").strip()}
+                for s in mseg
+                if s.get("end_sec", 0) > in_sec and s.get("start_sec", 0) < out_sec and s.get("text", "").strip()]
         timeline.append({
             "kind": "clip", "media": media,
             "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
             "lower_third": f"{lt_text}  ·  {credit}".strip().strip("·").strip(),
+            "captions": caps,
             # Narration rides the footage as a top-third slide (no narrator/TTS yet).
             "narration_top": nb_text,
             # B-roll plays as footage only — no quote card.
