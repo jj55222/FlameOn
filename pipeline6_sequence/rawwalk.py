@@ -20,7 +20,13 @@ from pathlib import Path
 CONTACT = re.compile(r"pulled over|brake light|good evening|license|registration|step out|"
                      r"reason (we|i|you).{0,14}(stop|pull)|do you have|any weapons|roll (down|your) window|"
                      r"driver'?s? license|where (are|you) (going|headed)|stop the car", re.I)
-SHOT = re.compile(r"shots? fired|\bshot\b|\bshooting\b", re.I)
+# The action ONSET: the verbalized moment force begins. Prefer "shots fired" and
+# force commands; do NOT use bare "shot"/"shooting" — those recur in the medical
+# aftermath ("how many times he's shot") and mis-place the peak. When the shooting
+# isn't spoken (just commands + gunfire), the "drop the knife/gun" cluster IS the onset.
+PEAK = re.compile(r"shots? fired|drop (the |it|that )?(knife|gun|weapon)|drop it\b|"
+                  r"put (the |it )?(knife|gun|weapon)?\s*down|\btaser\b|tase (him|her)|"
+                  r"stop resisting|hands behind your back now", re.I)
 ACTION = re.compile(r"shots? fired|\bshot\b|\bgun\b|\bfirearm\b|drop (it|the)|taser|tase|"
                     r"stop resisting|get on the ground|put your hands|show me your hands|"
                     r"don'?t move|he'?s got|stop fighting|let me see your hands", re.I)
