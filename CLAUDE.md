@@ -38,6 +38,8 @@ paths and their runbooks are skills — load them when you're producing:
   (doc-driven arc, ~10–40 min). One-shot: `make_documentary.py --flagship`.
 - **`.claude/skills/rawwalk-shortform/`** — Path A: chronological raw-bodycam replay (~7–10 min).
 - **`.claude/skills/case-selection/`** — the cheap Tier-1 selector that decides what's worth producing.
+- **`.claude/skills/foia-sourcing/`** — P0: scan news/OSINT for FOIA-worthy cases → draft requests
+  (targets permissive "sunshine states"; runs autonomously, operator submits). MVP built.
 
 ## Current focus (2026-07)
 
