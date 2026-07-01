@@ -25,6 +25,18 @@ _STOP = {
 SIM_THRESHOLD = 0.62       # normalized-title similarity to merge
 SHARED_TOKENS_MIN = 2      # OR: this many shared rare tokens
 
+# lower-cased full state names — used only as a BLOCKING key (different explicit
+# states => never the same incident), so structurally-identical headlines about
+# different states ("...man dead in Florida" vs "...in Pennsylvania") don't merge.
+_STATES = {
+    "alabama", "alaska", "arizona", "arkansas", "california", "colorado", "connecticut",
+    "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa",
+    "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan",
+    "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "ohio",
+    "oklahoma", "oregon", "pennsylvania", "tennessee", "texas", "utah", "vermont",
+    "virginia", "washington", "wisconsin", "wyoming",
+}
+
 
 def _norm(title: str) -> str:
     t = title.lower()
@@ -36,7 +48,15 @@ def _tokens(norm_title: str) -> set:
     return {w for w in norm_title.split() if w not in _STOP and len(w) > 2}
 
 
+def _state_hint(text: str) -> str:
+    hits = {s for s in _STATES if re.search(rf"\b{s}\b", text)}
+    return next(iter(hits)) if len(hits) == 1 else ""   # only a clean single-state hit blocks
+
+
 def _same_incident(a: Dict, b: Dict) -> bool:
+    # blocking key: two clean, DIFFERENT state hints => definitely not the same incident
+    if a["_state"] and b["_state"] and a["_state"] != b["_state"]:
+        return False
     na, nb = a["_norm"], b["_norm"]
     if SequenceMatcher(None, na, nb).ratio() >= SIM_THRESHOLD:
         return True
