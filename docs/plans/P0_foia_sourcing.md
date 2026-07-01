@@ -125,7 +125,8 @@ per-state access-profile table; request drafting; the filing + status-tracking l
 ## 8. Concrete next steps
 
 1. Decide build-now vs. after-first-cut (recommend: after).
-2. Stand up the **per-state access-profile table** (seed §3, validate vs. RCFP) — useful even alone.
+2. ✅ **Done** — per-state access-profile table stood up at `discovered_cases/foia/state_access_profiles.json`
+   (12 states). Remaining: a human verifies each row against its `rcfp` link and flips `verified: true`.
 3. Confirm whether MuckRock supports programmatic request creation for our account (determines §4.7).
 4. Run the **MVP**: 10–20 hand-picked fresh FL/WA/CA incidents → score → draft → file by hand → track.
 5. If MVP filings yield usable releases, automate ingestion (§4.1–4.3).
