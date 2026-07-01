@@ -66,6 +66,16 @@ documented outcome + case facts, never the transcript alone).
 - **AXON OCR trust** — only trust `axon_ocr`-stamped cams for chronology; some BWCs fall back to a
   wrong export-date metadata stamp (la jolla BWC_1). Distrust metadata stamps.
 
+## Known gaps (NOT built — don't assume these exist)
+
+- **No proactive FOIA sourcing / "FOIA-worthy case" finder.** All current intake sources from records
+  that are ALREADY released: `muckrock_harvest.py` reads only `status=done` (fulfilled) FOIA requests,
+  the agency-portal harvesters scrape released SB1421/SB16 packages, and P2/AutoResearch finds sources
+  for a case you already name. **Nothing scans public signals (news, blotters, dockets) to find serious
+  incidents worth filing a NEW FOIA for, and nothing files requests.** This is the top-of-funnel gap.
+  Design + build plan: [docs/plans/P0_foia_sourcing.md](docs/plans/P0_foia_sourcing.md). Target the
+  permissive "sunshine states" (FL / WA / CA first) — see the plan for the tiered jurisdiction model.
+
 ## Load-bearing fixes already made (don't re-hit)
 
 - `render_blueprint --no-audio-aware` is **required** for chronological cuts (audio-aware snap drags
