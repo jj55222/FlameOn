@@ -26,6 +26,10 @@ Six numbered stages, each a directory, each with a clean handoff to the next:
 | P5 | `pipeline5_assembly/` | Assemble a production brief (no LLM) | `pipeline5_assemble.py` |
 | P6 | `pipeline6_sequence/` | **Sequence + render the actual video** | `make_documentary.py` |
 
+**Each pipeline dir has its own `CLAUDE.md`** — the detailed context for that stage. When you work
+inside a pipeline, read its local `CLAUDE.md` first (Claude Code auto-loads it). `pipeline6_sequence/`
+is the editorial engine and has the richest one.
+
 **The editorial action is in P6.** That's where a case becomes a watchable cut. The two production
 paths and their runbooks are skills — load them when you're producing:
 
