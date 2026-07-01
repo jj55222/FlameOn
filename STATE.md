@@ -66,15 +66,22 @@ documented outcome + case facts, never the transcript alone).
 - **AXON OCR trust** — only trust `axon_ocr`-stamped cams for chronology; some BWCs fall back to a
   wrong export-date metadata stamp (la jolla BWC_1). Distrust metadata stamps.
 
-## Known gaps (NOT built — don't assume these exist)
+## Proactive FOIA sourcing — P0 (MVP built 2026-07-01)
 
-- **No proactive FOIA sourcing / "FOIA-worthy case" finder.** All current intake sources from records
-  that are ALREADY released: `muckrock_harvest.py` reads only `status=done` (fulfilled) FOIA requests,
-  the agency-portal harvesters scrape released SB1421/SB16 packages, and P2/AutoResearch finds sources
-  for a case you already name. **Nothing scans public signals (news, blotters, dockets) to find serious
-  incidents worth filing a NEW FOIA for, and nothing files requests.** This is the top-of-funnel gap.
-  Design + build plan: [docs/plans/P0_foia_sourcing.md](docs/plans/P0_foia_sourcing.md). Target the
-  permissive "sunshine states" (FL / WA / CA first) — see the plan for the tiered jurisdiction model.
+The old top-of-funnel gap (all intake sourced only ALREADY-released records) now has a working MVP:
+**`pipeline0_sourcing/`** — `ingest` (free Google News RSS + GDELT, no key) → `cluster` → `extract`
+(LLM or offline `--mock`) → `score` (`foia_worth`, reads the state table, gates on severity + sunshine
+tier + residency) → `draft` (submit-ready FOIA write-ups w/ correct statute cite) → ranked
+`foia_queue.md`. Autonomous (`--seen` de-dupes across runs); **operator submits manually — P0 does not
+file.** Entry: `sourcing_run.py`. Skill: `.claude/skills/foia-sourcing/`. 8 offline tests pass.
+Jurisdiction rules: [discovered_cases/foia/state_access_profiles.json](discovered_cases/foia/state_access_profiles.json)
+(rows `verified: false` — confirm vs RCFP before filing). Plan/roadmap:
+[docs/plans/P0_foia_sourcing.md](docs/plans/P0_foia_sourcing.md).
+
+**Still open on P0:** live-run validation (network + LLM path only smoke-tested via `--mock`/fixtures);
+verify each state-table row vs RCFP; confirm whether MuckRock exposes a request-CREATE API (else keep
+manual filing); v2 re-cluster on (state, agency, date) for precision. FOIA latency is weeks–months —
+this fills the funnel for later, NOT the EOW cut.
 
 ## Load-bearing fixes already made (don't re-hit)
 
