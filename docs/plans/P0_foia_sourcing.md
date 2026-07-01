@@ -61,10 +61,11 @@ reports actually releasable** + workable response deadline + no residency requir
 | **2 — good, with caveats** | Ohio, Georgia, Arizona, Wisconsin, Colorado, Texas | OH/GA/AZ/WI: strong presumption, BWC generally releasable (redaction rules). CO: audio-disclosure mandate + courts ordering BWC release, BUT criminal-justice records are custodian-**discretionary**. TX: TPIA solid but the "**dead-suspect loophole**" lets agencies withhold non-conviction records. |
 | **avoid / hard** | Pennsylvania, Virginia, New York | PA Act 22 routes BWC OUT of the normal Right-to-Know Law into a harder, denial-prone process. VA: **residency requirement** + discretionary release of LE records. NY: FOIL slow on police records. |
 
-**Don't hard-code this in code.** Build a small **per-state access profile** table (data, not logic)
-the scorer reads: `{state, response_deadline_days, residency_required, bodycam_rule, 911_rule,
-fee_regime, key_exemptions, statute_cite}`. Seed it from the tiers above, then correct against the
-authoritative live references:
+**Don't hard-code this in code.** Keep it as a **per-state access profile** table (data, not logic)
+the scorer reads. ✅ **Built:** [`discovered_cases/foia/state_access_profiles.json`](../../discovered_cases/foia/state_access_profiles.json)
+(12 states seeded, schema in [that dir's README](../../discovered_cases/foia/README.md); every row
+`verified: false` pending human check against RCFP). Correct it against the authoritative live
+references:
 - **RCFP** — Reporters Committee: [Open Government Guide](https://www.rcfp.org/open-government-guide/)
   (state-by-state) + [police BWC access map](https://www.rcfp.org/resources/bodycams/).
 - **MuckRock** state FOIA guides + agency contacts.
