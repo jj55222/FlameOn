@@ -68,7 +68,8 @@ def cluster_signals(signals: List[Dict]) -> List[Dict]:
     enriched = []
     for s in signals:
         n = _norm(s.get("title", ""))
-        enriched.append({**s, "_norm": n, "_tok": _tokens(n)})
+        blob = _norm(s.get("title", "") + " " + s.get("snippet", ""))
+        enriched.append({**s, "_norm": n, "_tok": _tokens(n), "_state": _state_hint(blob)})
 
     incidents: List[List[Dict]] = []
     for s in enriched:
