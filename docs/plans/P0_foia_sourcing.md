@@ -1,7 +1,9 @@
 # PLAN — P0: Proactive FOIA sourcing (top-of-funnel)
 
-**Status:** proposed, not built (2026-07-01). Recorded as a gap in [/STATE.md](../../STATE.md).
-**Owner decision needed:** whether to build now or after the first flagship cut lands.
+**Status:** ✅ **MVP built (2026-07-01)** — runnable pipeline at [`/pipeline0_sourcing/`](../../pipeline0_sourcing/)
+(ingest → cluster → extract → score → draft → queue; 8 offline tests pass; skill `foia-sourcing`).
+Live network + LLM path is built but only smoke-tested via `--mock`/fixtures. This doc is now the
+design/roadmap of record; see §8 for what's done vs. remaining.
 
 ---
 
