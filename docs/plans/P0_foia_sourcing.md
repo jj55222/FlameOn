@@ -126,9 +126,12 @@ per-state access-profile table; request drafting; the filing + status-tracking l
 
 ## 8. Concrete next steps
 
-1. Decide build-now vs. after-first-cut (recommend: after).
-2. ✅ **Done** — per-state access-profile table stood up at `discovered_cases/foia/state_access_profiles.json`
-   (12 states). Remaining: a human verifies each row against its `rcfp` link and flips `verified: true`.
-3. Confirm whether MuckRock supports programmatic request creation for our account (determines §4.7).
-4. Run the **MVP**: 10–20 hand-picked fresh FL/WA/CA incidents → score → draft → file by hand → track.
-5. If MVP filings yield usable releases, automate ingestion (§4.1–4.3).
+- ✅ **Done** — per-state access-profile table (`discovered_cases/foia/state_access_profiles.json`, 12 states).
+- ✅ **Done** — the P0 pipeline itself (`pipeline0_sourcing/`: ingest→cluster→extract→score→draft→queue),
+  offline-tested via `--mock` + fixtures, wired as skill `foia-sourcing`.
+- ▢ **Live run** — do a real `sourcing_run.py --since 3 --tier1-only` (needs network + `OPENROUTER_API_KEY`);
+  confirm ingestion volume + extraction quality on live headlines. Tune `ingest.DEFAULT_TERMS` + `score` thresholds.
+- ▢ **Verify state rows** — a human checks each state-table row vs. its `rcfp` link, flips `verified: true`.
+- ▢ **MuckRock filing** — confirm whether the account can create requests via API (else keep manual submit).
+- ▢ **Precision v2** — re-cluster on (state, agency, date) after extraction; add agency BWC-policy data to
+  sharpen `records_likely`; add a light incident-date parser to sharpen `filing_window`.
