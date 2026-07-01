@@ -19,6 +19,7 @@ Six numbered stages, each a directory, each with a clean handoff to the next:
 
 | Stage | Dir | Job | Primary entry point |
 |-------|-----|-----|---------------------|
+| P0 | `pipeline0_sourcing/` | Find FOIA-worthy cases from news/OSINT → draft requests to file | `sourcing_run.py` |
 | P1 | `pipeline1_winners/` | Learn what makes winning cuts work → scoring weights | `analyze_winner.py` |
 | P2 | `pipeline2_discovery/` | Discover cases with downloadable footage | `evaluate.py` (drives `research.py`) |
 | P3 | `pipeline3_audio/` | Footage → clean timestamped transcripts | `pipeline3_transcribe.py` |
