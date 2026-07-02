@@ -107,20 +107,36 @@ def fetch_google_news(term: str, since_days: int, limit: int) -> List[Dict]:
     return out
 
 
-def fetch_gdelt(term: str, since_days: int, limit: int) -> List[Dict]:
-    """GDELT 2.0 Doc API ArtList (JSON). Keyless. Returns normalized signals."""
+def fetch_gdelt(term: str, since_days: int, limit: int, max_retries: int = 3) -> List[Dict]:
+    """GDELT 2.0 Doc API ArtList (JSON). Keyless. Returns normalized signals.
+
+    GDELT 429s aggressively under fan-out; throttle to a min interval and retry a
+    429 with growing backoff before giving up (degrading to [])."""
     params = {
         "query": f'"{term}" sourcecountry:US', "mode": "ArtList",
         "format": "json", "maxrecords": str(min(limit, 75)),
         "timespan": f"{since_days}d", "sort": "DateDesc",
     }
     out: List[Dict] = []
-    try:
-        r = _http_get(_GDELT, params)
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:  # noqa: BLE001
-        print(f"  [ingest] gdelt '{term}' failed: {str(e)[:120]}", file=sys.stderr)
+    data = None
+    for attempt in range(max_retries):
+        try:
+            _throttle("gdelt", _GDELT_MIN_INTERVAL)
+            r = _http_get(_GDELT, params)
+            if r.status_code == 429:
+                wait = _GDELT_MIN_INTERVAL * (attempt + 2)   # 10s, 15s, 20s
+                print(f"  [ingest] gdelt '{term}' 429; backing off {wait:.0f}s "
+                      f"({attempt + 1}/{max_retries})", file=sys.stderr)
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            data = r.json()          # GDELT sometimes returns non-JSON on overload
+            break
+        except Exception as e:  # noqa: BLE001 — degrade gracefully
+            print(f"  [ingest] gdelt '{term}' failed: {str(e)[:120]}", file=sys.stderr)
+            return out
+    if data is None:
+        print(f"  [ingest] gdelt '{term}' gave up after {max_retries} 429s", file=sys.stderr)
         return out
     for art in data.get("articles", []):
         out.append({
