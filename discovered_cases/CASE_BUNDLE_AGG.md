@@ -6,15 +6,17 @@
 > This index lists the **media bundles (video/audio)**. The COMPLETE registry — including
 > 2080 document-only bundles and every URL — is in `CASE_BUNDLE_AGG.json`.
 
-**2769 working bundles total (689 with media, 2080 doc-only) · 21652 files** — media index below: 7522 video · 3327 audio · 1091 photo/exhibit.
+**3152 working bundles total (1072 with media, 2080 doc-only) · 22035 files** — media index below: 7905 video · 3327 audio · 1091 photo/exhibit.
 
 | source | media bundles | video | audio | docs | photos | (all working) |
 |--------|--------------:|------:|------:|-----:|-------:|--------------:|
 | chicago_copa | 260 | 2487 | 3 | 1756 | 0 | 2128 |
+| lapd_civ | 370 | 370 | 0 | 0 | 0 | 370 |
 | longbeach_laserfiche | 320 | 4400 | 2442 | 1472 | 1091 | 443 |
 | muckrock | 28 | 352 | 77 | 106 | 0 | 53 |
 | sdpd | 50 | 253 | 649 | 54 | 0 | 50 |
 | sfdpa_nextrequest | 31 | 30 | 156 | 56 | 0 | 95 |
+| sjpd_civ | 13 | 13 | 0 | 0 | 0 | 13 |
 
 ## chicago_copa — Chicago Civilian Office of Police Accountability
 
@@ -9291,6 +9293,1858 @@ case: https://www.chicagocopa.org/case/1085949/
   https://www.chicagocopa.org/wp-content/uploads/2017/09/OBR-Michael-Rodriguez-Redacted.pdf
 - [documents] Arrest Report Redacted
   https://www.chicagocopa.org/wp-content/uploads/2017/09/Arrest-Report-Redacted.pdf
+
+## lapd_civ — Los Angeles Police Department
+
+### lapd_civ_nrf004_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=MQ17hdJj41c
+- [bodycam] Central Area Officer Involved Shooting 2/14/2019 (NRF004-19)
+  https://www.youtube.com/watch?v=MQ17hdJj41c
+
+### lapd_civ_nrf005_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=tOjAcv1-Niw
+- [bodycam] Central Area Officer Involved Shooting 2/14/19 (NRF005-19)
+  https://www.youtube.com/watch?v=tOjAcv1-Niw
+
+### lapd_civ_nrf013_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=1FurqP2EYYk
+- [bodycam] Central Area Officer Involved Shooting 4/14/19 (NRF013-19)
+  https://www.youtube.com/watch?v=1FurqP2EYYk
+
+### lapd_civ_nrf015_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=vGU93fhMnfU
+- [bodycam] Newton Area Officer Involved Shooting 4/20/19 (NRF015-19)
+  https://www.youtube.com/watch?v=vGU93fhMnfU
+
+### lapd_civ_nrf016_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=rkyDCKEA-kQ
+- [bodycam] Southeast Area Officer Involved Shooting 4/22/19 (NRF016-19)
+  https://www.youtube.com/watch?v=rkyDCKEA-kQ
+
+### lapd_civ_nrf018_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=uEFjjB9Vy08
+- [bodycam] Southeast Area Officer Involved Shooting 4/30/19 (NRF018-19)
+  https://www.youtube.com/watch?v=uEFjjB9Vy08
+
+### lapd_civ_nrf020_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=N3Y4yx0MEcE
+- [bodycam] Southeast Area Officer Involved Shooting 5/20/19 (NRF020-19)
+  https://www.youtube.com/watch?v=N3Y4yx0MEcE
+
+### lapd_civ_nrf025_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=rwq1r_OBSCQ
+- [bodycam] Hollenbeck Area Officer Involved Shooting 6/05/19 (NRF025-19)
+  https://www.youtube.com/watch?v=rwq1r_OBSCQ
+
+### lapd_civ_nrf026_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=klUjs4AENUQ
+- [bodycam] Northeast Area Officer Involved Shooting 6/06/19 (NRF026-19)
+  https://www.youtube.com/watch?v=klUjs4AENUQ
+
+### lapd_civ_nrf032_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=nx_foWAmZpY
+- [bodycam] 77th Street Area Officer Involved Shooting 5/12/18 (NRF032-18)
+  https://www.youtube.com/watch?v=nx_foWAmZpY
+
+### lapd_civ_nrf033_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=2dAplsUppak
+- [bodycam] Rampart Area Officer Involved Shooting 7/16/19 (NRF033-19)
+  https://www.youtube.com/watch?v=2dAplsUppak
+
+### lapd_civ_nrf034_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=U8Xpyz1FbQg
+- [bodycam] Northeast Area Officer Involved Shooting 5/21/18 (NRF034-18)
+  https://www.youtube.com/watch?v=U8Xpyz1FbQg
+
+### lapd_civ_nrf035_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=uXPrOZjLfEk
+- [bodycam] Foothill Area Officer Involved Shooting 5/30/18 (NRF035-18)
+  https://www.youtube.com/watch?v=uXPrOZjLfEk
+
+### lapd_civ_nrf035_19  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=gtzgzrZjBWE
+- [bodycam] 77th Area Officer Involved Shooting 7/26/19 (NRF035-19)
+  https://www.youtube.com/watch?v=gtzgzrZjBWE
+
+### lapd_civ_nrf036_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=oUG0_XqwbtU
+- [bodycam] Hollenbeck Area Officer Involved Shooting 6/09/18 (NRF036-18)
+  https://www.youtube.com/watch?v=oUG0_XqwbtU
+
+### lapd_civ_nrf040_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=BrBoIWNnbhU
+- [bodycam] Van Nuys Area Officer Involved Shooting 6/16/18 (NRF040-18)
+  https://www.youtube.com/watch?v=BrBoIWNnbhU
+
+### lapd_civ_nrf041_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=eP8waTkVQoE
+- [bodycam] Devonshire Area Officer Involved Shooting 6/20/18 (NRF041-18)
+  https://www.youtube.com/watch?v=eP8waTkVQoE
+
+### lapd_civ_nrf043_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=2yVVn48mYf4
+- [bodycam] Van Nuys Officer Involved Shooting 7/06/18 (NRF043-18)
+  https://www.youtube.com/watch?v=2yVVn48mYf4
+
+### lapd_civ_nrf044_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=yBjIGwGSb4g
+- [bodycam] West Valley Officer Involved Shooting 7/07/18 (NRF044-18)
+  https://www.youtube.com/watch?v=yBjIGwGSb4g
+
+### lapd_civ_nrf047_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=-Ny7dBpqdOc
+- [bodycam] Mission Area Officer Involved Shooting 7/27/18 ( NRF047-18)
+  https://www.youtube.com/watch?v=-Ny7dBpqdOc
+
+### lapd_civ_nrf048_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=RhbTLlM2TdU
+- [bodycam] Southwest Area Officer Involved Shooting 7/29/18 (NRF048-18)
+  https://www.youtube.com/watch?v=RhbTLlM2TdU
+
+### lapd_civ_nrf049_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=_asLQQqnlvg
+- [bodycam] Newton Area Officer Involved Shooting 8/07/18 (NRF049-18)
+  https://www.youtube.com/watch?v=_asLQQqnlvg
+
+### lapd_civ_nrf051_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=QIRB1lvMg3A
+- [bodycam] Metropolitan Division Officer Involved Shooting 8/20/18 (NRF051-18)
+  https://www.youtube.com/watch?v=QIRB1lvMg3A
+
+### lapd_civ_nrf059_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=SW2nTcLjsvY
+- [bodycam] Hollywood Division Officer Involved Shooting 10/29/18 (NRF059-18)
+  https://www.youtube.com/watch?v=SW2nTcLjsvY
+
+### lapd_civ_nrf061_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=kBpkuD6J0Vw
+- [bodycam] Harbor Area Officer Involved Shooting 11/11/18 (NRF061-18 )
+  https://www.youtube.com/watch?v=kBpkuD6J0Vw
+
+### lapd_civ_nrf063_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=S7ViZgKH8Fs
+- [bodycam] Southeast Area Officer Involved Shooting 11/18/18 (NRF063-18)
+  https://www.youtube.com/watch?v=S7ViZgKH8Fs
+
+### lapd_civ_nrf064_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=Ca-HFSiNiQU
+- [bodycam] Hollywood Officer Involved Shooting 11/18/18 (NRF064-18 )
+  https://www.youtube.com/watch?v=Ca-HFSiNiQU
+
+### lapd_civ_nrf064_21  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=VnrJraG7BPQ
+- [bodycam] Newton Area Officer Involved Shooting 12/18/21 (NRF064-21)
+  https://www.youtube.com/watch?v=VnrJraG7BPQ
+
+### lapd_civ_nrf065_18  ·  V1 A0 D0 P0  ·  score 17
+case: https://www.youtube.com/watch?v=ruaB5ZnkuXM
+- [bodycam] Metropolitan Division Officer Involved Shooting 11/25/18 (NRF065-18)
+  https://www.youtube.com/watch?v=ruaB5ZnkuXM
+
+### lapd_civ_6DS8hH2G7kg  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=6DS8hH2G7kg
+- [bodycam] Harbor Gang Enforcement Detail (GED) OIS
+  https://www.youtube.com/watch?v=6DS8hH2G7kg
+
+### lapd_civ_G8pmJDBasv4  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=G8pmJDBasv4
+- [bodycam] Above & Beyond - Purple Heart / Medal of Valor (Mission OIS)
+  https://www.youtube.com/watch?v=G8pmJDBasv4
+
+### lapd_civ_J0-NEWbZLOE  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=J0-NEWbZLOE
+- [bodycam] Devonshire Officers shot / OIS (1973)
+  https://www.youtube.com/watch?v=J0-NEWbZLOE
+
+### lapd_civ_XoLrWqa-Ldk  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=XoLrWqa-Ldk
+- [bodycam] 2 - OIS in Hollenbeck with gang suspect
+  https://www.youtube.com/watch?v=XoLrWqa-Ldk
+
+### lapd_civ_d9zxh-hLizU  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=d9zxh-hLizU
+- [bodycam] Critical Incident Video Release F023-19 - Harbor OIS
+  https://www.youtube.com/watch?v=d9zxh-hLizU
+
+### lapd_civ_nrf001_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ZqI7WgcFDig
+- [bodycam] Northeast Area OIS 1-5-20 (NRF001-20)
+  https://www.youtube.com/watch?v=ZqI7WgcFDig
+
+### lapd_civ_nrf001_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=L19ITDp9Sfw
+- [bodycam] LASD OIS 01/10/2022 (NRF001-22)
+  https://www.youtube.com/watch?v=L19ITDp9Sfw
+
+### lapd_civ_nrf001_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7G2afA-hu-4
+- [bodycam] Rampart Area OIS 1/2/23 (NRF001-23)
+  https://www.youtube.com/watch?v=7G2afA-hu-4
+
+### lapd_civ_nrf001_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ltino49pPNg
+- [bodycam] Rampart Area (Newton) OIS 01/14/2024 (NRF001-24)
+  https://www.youtube.com/watch?v=ltino49pPNg
+
+### lapd_civ_nrf001_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=G76lmnBaxpA
+- [bodycam] Southwest Area OIS 01/11/25 (NRF001-25)
+  https://www.youtube.com/watch?v=G76lmnBaxpA
+
+### lapd_civ_nrf002_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=v5RedvV_gH4
+- [bodycam] Central Area OIS 1/21/21 (NRF002-21)
+  https://www.youtube.com/watch?v=v5RedvV_gH4
+
+### lapd_civ_nrf002_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=jCTPtbF2bSw
+- [bodycam] Hollenbeck Area OIS 01/11/2022 (NRF002-22)
+  https://www.youtube.com/watch?v=jCTPtbF2bSw
+
+### lapd_civ_nrf002_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Tk-KJMmYqXo
+- [bodycam] Southwest Area (Newton) OIS 01/19/2024 (NRF002-24)
+  https://www.youtube.com/watch?v=Tk-KJMmYqXo
+
+### lapd_civ_nrf003_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xXyqU-nUY2A
+- [bodycam] Central Area In-Custody Death 2/12/19 (NRF003-19)
+  https://www.youtube.com/watch?v=xXyqU-nUY2A
+
+### lapd_civ_nrf003_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=FP_gcGdNp-U
+- [bodycam] Pacific Area OIS 1-11-20 (NRF003-20)
+  https://www.youtube.com/watch?v=FP_gcGdNp-U
+
+### lapd_civ_nrf003_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=lXDvMurPNsQ
+- [bodycam] Southwest Area OIS 1/27/21 (NRF003-21)
+  https://www.youtube.com/watch?v=lXDvMurPNsQ
+
+### lapd_civ_nrf003_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=VwUQgdbQxeM
+- [bodycam] Hollenbeck Area OIS 01/28/2022 (NRF003-22)
+  https://www.youtube.com/watch?v=VwUQgdbQxeM
+
+### lapd_civ_nrf003_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=4l56UVp9CNM
+- [bodycam] Newton Area OIS 1/3/23 (NRF003-23)
+  https://www.youtube.com/watch?v=4l56UVp9CNM
+
+### lapd_civ_nrf003_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=r6XXO13UEec
+- [bodycam] Central Area OIS 02/03/2024 (NRF003-24)
+  https://www.youtube.com/watch?v=r6XXO13UEec
+
+### lapd_civ_nrf003_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ADQ2eKsQxDQ
+- [bodycam] Southwest Area OIS 01/20/25 (NRF003-25)
+  https://www.youtube.com/watch?v=ADQ2eKsQxDQ
+
+### lapd_civ_nrf004_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=RQiVUi3d9Y8
+- [bodycam] West Valley Area OIS 1/29/21 (NRF004-21)
+  https://www.youtube.com/watch?v=RQiVUi3d9Y8
+
+### lapd_civ_nrf004_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=TrUdNPOEqj8
+- [bodycam] Foothill Area OIS 02/01/2022 (NRF004-22)
+  https://www.youtube.com/watch?v=TrUdNPOEqj8
+
+### lapd_civ_nrf004_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=72NVXTRwZ2A
+- [bodycam] Mission Area OIS (NRF004-23) - Surveillance Footage
+  https://www.youtube.com/watch?v=72NVXTRwZ2A
+
+### lapd_civ_nrf004_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xyJCYtUfadE
+- [bodycam] Foothill Area OIS 02/7/25 (NRF004-25)
+  https://www.youtube.com/watch?v=xyJCYtUfadE
+
+### lapd_civ_nrf005_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=SXkMg6Yd8Zo
+- [bodycam] Van Nuys OIS 2/7/23 (NRF005-23)
+  https://www.youtube.com/watch?v=SXkMg6Yd8Zo
+
+### lapd_civ_nrf005_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=sK7pPJjayzA
+- [bodycam] Foothill Area OIS 02/16/2024 (NRF005-24)
+  https://www.youtube.com/watch?v=sK7pPJjayzA
+
+### lapd_civ_nrf005_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=x_gq7s57Nx4
+- [bodycam] Harbor Area (SWAT) OIS 02/11/2025 (NRF005-25)
+  https://www.youtube.com/watch?v=x_gq7s57Nx4
+
+### lapd_civ_nrf006_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=CmC7G7BxoVY
+- [bodycam] 77th Area OIS 2-21-20 (NRF006-20)
+  https://www.youtube.com/watch?v=CmC7G7BxoVY
+
+### lapd_civ_nrf006_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=RBS-C4Xkx60
+- [bodycam] Wilshire Area OIS 2/19/2025 (NRF006-25)
+  https://www.youtube.com/watch?v=RBS-C4Xkx60
+
+### lapd_civ_nrf007_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_zSjVeDdxqk
+- [bodycam] Newton Area OIS 2-25-2020 (NRF007-20)
+  https://www.youtube.com/watch?v=_zSjVeDdxqk
+
+### lapd_civ_nrf007_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=utrrDxRCvM4
+- [bodycam] Southeast Area OIS 2/9/21 (NRF007-21)
+  https://www.youtube.com/watch?v=utrrDxRCvM4
+
+### lapd_civ_nrf007_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=9n0vagkjfGs
+- [bodycam] Newton Area OIS 03/29/2022 (NRF007-22)
+  https://www.youtube.com/watch?v=9n0vagkjfGs
+
+### lapd_civ_nrf007_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=AbR3-Kpzw6k
+- [bodycam] Central Area OIS 02/20/2024 (NRF007-24)
+  https://www.youtube.com/watch?v=AbR3-Kpzw6k
+
+### lapd_civ_nrf007_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=oKgLgJrhBwo
+- [bodycam] Rampart Area OIS 3/3/2025 (NRF007-25)
+  https://www.youtube.com/watch?v=oKgLgJrhBwo
+
+### lapd_civ_nrf008_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xfkWc2SnJnk
+- [bodycam] Mission Area OIS 04/06/2022 (NRF008-22)
+  https://www.youtube.com/watch?v=xfkWc2SnJnk
+
+### lapd_civ_nrf008_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=iPalCDuiN7c
+- [bodycam] Southwest Area OIS 2/5/2026 (NRF008-26)
+  https://www.youtube.com/watch?v=iPalCDuiN7c
+
+### lapd_civ_nrf009_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_Hc5pErY-bQ
+- [bodycam] Southwest Area OIS 3/11/2025  (NRF009-25)
+  https://www.youtube.com/watch?v=_Hc5pErY-bQ
+
+### lapd_civ_nrf010_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=x1wLW-4dyg0
+- [bodycam] Topanga Area OIS 3-30-20 (NRF010-20)
+  https://www.youtube.com/watch?v=x1wLW-4dyg0
+
+### lapd_civ_nrf010_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=lmx4th6b_Ds
+- [bodycam] Rampart Area OIS 2/22/23 (NRF010-23)
+  https://www.youtube.com/watch?v=lmx4th6b_Ds
+
+### lapd_civ_nrf010_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=n9SaHRbTqN8
+- [bodycam] 77th Area OIS 03/07/2024 (NRF010-24)
+  https://www.youtube.com/watch?v=n9SaHRbTqN8
+
+### lapd_civ_nrf010_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=U8ZE86SEH_c
+- [bodycam] Southeast Area OIS 3/14/2025 (NRF010-25)
+  https://www.youtube.com/watch?v=U8ZE86SEH_c
+
+### lapd_civ_nrf011_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=4VkpJn3VVrE
+- [bodycam] Metropolitan Division OIS  3-31-20 (NRF011-20)
+  https://www.youtube.com/watch?v=4VkpJn3VVrE
+
+### lapd_civ_nrf011_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=cRbKwEhsed4
+- [bodycam] Hollenbeck Area OIS 03/08/23 (NRF011-23)
+  https://www.youtube.com/watch?v=cRbKwEhsed4
+
+### lapd_civ_nrf011_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=hPecEs0Cc3o
+- [bodycam] Mission Area (SWAT) OIS 03/09/24 (NRF011-24)
+  https://www.youtube.com/watch?v=hPecEs0Cc3o
+
+### lapd_civ_nrf011_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rwNXw3EzCak
+- [bodycam] 77th Area (SWAT) OIS 3/26/2025 (NRF011-25)
+  https://www.youtube.com/watch?v=rwNXw3EzCak
+
+### lapd_civ_nrf011_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ZlsAg5QKTJo
+- [bodycam] Southeast Area OIS  3/7/2026 (NRF011-26)
+  https://www.youtube.com/watch?v=ZlsAg5QKTJo
+
+### lapd_civ_nrf012_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=cUvLhgqdT0s
+- [bodycam] Van Nuys Area In-Custody Death 4/08/19 (NRF012-19)
+  https://www.youtube.com/watch?v=cUvLhgqdT0s
+
+### lapd_civ_nrf012_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=sWBtysoe-Bg
+- [bodycam] Hollenbeck Division OIS - 4/15/20 (NRF012-20)
+  https://www.youtube.com/watch?v=sWBtysoe-Bg
+
+### lapd_civ_nrf012_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=fbFL1hPT_A4
+- [bodycam] Northeast Area OIS 4/8/2025 (NRF012-25)
+  https://www.youtube.com/watch?v=fbFL1hPT_A4
+
+### lapd_civ_nrf012_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=vnONXekrNbw
+- [bodycam] Wilshire Area OIS  3/10/2026 (NRF012-26)
+  https://www.youtube.com/watch?v=vnONXekrNbw
+
+### lapd_civ_nrf013_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=2r2UQu6EIt4
+- [bodycam] Southwest Area OIS 3/16/21 (NRF013-21)
+  https://www.youtube.com/watch?v=2r2UQu6EIt4
+
+### lapd_civ_nrf013_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=LyuOBAXs3X4
+- [bodycam] West Valley Area OIS 4/20/2025 (NRF013-25)
+  https://www.youtube.com/watch?v=LyuOBAXs3X4
+
+### lapd_civ_nrf014_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=PtSSNn_0GCU
+- [bodycam] Newton Division OIS - 4/22/20 (NRF014-20)
+  https://www.youtube.com/watch?v=PtSSNn_0GCU
+
+### lapd_civ_nrf014_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7IZJUsoCy9s
+- [bodycam] Southeast Area OIS 3/16/21 (NRF014-21)
+  https://www.youtube.com/watch?v=7IZJUsoCy9s
+
+### lapd_civ_nrf014_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=fU8JfGuvnUY
+- [bodycam] Central Area OIS 05/03/2022 (NRF014-22)
+  https://www.youtube.com/watch?v=fU8JfGuvnUY
+
+### lapd_civ_nrf014_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rVJ55FdTnEA
+- [bodycam] West Valley Area (SWAT) OIS 03/21/2024 (NRF014-24)
+  https://www.youtube.com/watch?v=rVJ55FdTnEA
+
+### lapd_civ_nrf014_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=aDLNgWmnR6o
+- [bodycam] Southeast Area OIS 4/23/2025 (NRF014-25)
+  https://www.youtube.com/watch?v=aDLNgWmnR6o
+
+### lapd_civ_nrf014_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=6MpSNVpFI0k
+- [bodycam] Central Area OIS 3/19/2026 (NRF014-26)
+  https://www.youtube.com/watch?v=6MpSNVpFI0k
+
+### lapd_civ_nrf015_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=UXWJIX2rL4Y
+- [bodycam] Hollenbeck Area Off-Duty OIS 3/17/2021 (NRF015-21)
+  https://www.youtube.com/watch?v=UXWJIX2rL4Y
+
+### lapd_civ_nrf015_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=t9q2WftCmUY
+- [bodycam] North Hollywood Area OIS 4/22/23 (NRF015-23)
+  https://www.youtube.com/watch?v=t9q2WftCmUY
+
+### lapd_civ_nrf015_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=l_M8zKtGXzY
+- [bodycam] Southeast Area OIS 5/3/2025 (NRF015-25)
+  https://www.youtube.com/watch?v=l_M8zKtGXzY
+
+### lapd_civ_nrf016_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=8-XAupNyswE
+- [bodycam] Rampart Area OIS 3/19/2021 (NRF016-21)
+  https://www.youtube.com/watch?v=8-XAupNyswE
+
+### lapd_civ_nrf017_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=dSjUuhD2F0M
+- [bodycam] Newton Division OIS 5/22/20 (NRF017-20)
+  https://www.youtube.com/watch?v=dSjUuhD2F0M
+
+### lapd_civ_nrf017_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=obBx5s6qz28
+- [bodycam] Hollenbeck Area OIS 3/19/2021 (NRF017-21)
+  https://www.youtube.com/watch?v=obBx5s6qz28
+
+### lapd_civ_nrf017_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=VzyvsHuKYYA
+- [bodycam] Rampart Area OIS 05/19/2022 (NRF017-22)
+  https://www.youtube.com/watch?v=VzyvsHuKYYA
+
+### lapd_civ_nrf017_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=isbUzGtWA4U
+- [bodycam] Hollenbeck Area OIS 03/31/24 (NRF017-24)
+  https://www.youtube.com/watch?v=isbUzGtWA4U
+
+### lapd_civ_nrf017_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rc_9BnI7ao0
+- [bodycam] West Valley Area OIS 5/12/2025 (NRF017-25)
+  https://www.youtube.com/watch?v=rc_9BnI7ao0
+
+### lapd_civ_nrf017_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=4vv1CNDkC8o
+- [bodycam] 77th Street Area (Outside) OIS  4/03/2026 (NRF017-26)
+  https://www.youtube.com/watch?v=4vv1CNDkC8o
+
+### lapd_civ_nrf018_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=cu1rLt3SmAE
+- [bodycam] Olympic Area OIS 3/23/2021 (NRF018-21)
+  https://www.youtube.com/watch?v=cu1rLt3SmAE
+
+### lapd_civ_nrf018_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=-js8TXNzlPM
+- [bodycam] Southeast Area (Newton Area) OIS 05/05/2023 (NRF018-23)
+  https://www.youtube.com/watch?v=-js8TXNzlPM
+
+### lapd_civ_nrf018_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=9DfXuwJ2H0s
+- [bodycam] Torrance OIS 04/18/2024 (NRF018-24)
+  https://www.youtube.com/watch?v=9DfXuwJ2H0s
+
+### lapd_civ_nrf018_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=6TOcUUfHga0
+- [bodycam] Foothill Area OIS 5/16/2025 (NRF018-25)
+  https://www.youtube.com/watch?v=6TOcUUfHga0
+
+### lapd_civ_nrf019_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=sQRu1qE7ofE
+- [bodycam] Rampart Area OIS 3/29/2021 (NRF019-21)
+  https://www.youtube.com/watch?v=sQRu1qE7ofE
+
+### lapd_civ_nrf019_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=PBmfgHazzbg
+- [bodycam] Newton Area OIS 05/31/2022 (NRF019-22)
+  https://www.youtube.com/watch?v=PBmfgHazzbg
+
+### lapd_civ_nrf019_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BYiihkAr6eo
+- [bodycam] Central Area OIS 4/18/24 (NRF019-24)
+  https://www.youtube.com/watch?v=BYiihkAr6eo
+
+### lapd_civ_nrf019_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=sq0ZEwwMJHU
+- [bodycam] Central Area (Outside) OIS 4/8/2026 (NRF019-26)
+  https://www.youtube.com/watch?v=sq0ZEwwMJHU
+
+### lapd_civ_nrf020_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=pqRACiHxcPQ
+- [bodycam] North Hollywood Division OIS - 5/27/20 (NRF020-20)
+  https://www.youtube.com/watch?v=pqRACiHxcPQ
+
+### lapd_civ_nrf020_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=dQ1_5EPgt3c
+- [bodycam] Rampart Area OIS 4/02/21 (NRF020-21)
+  https://www.youtube.com/watch?v=dQ1_5EPgt3c
+
+### lapd_civ_nrf020_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_r8tUXGWD20
+- [bodycam] Olympic Area OIS 06/02/22 (NRF020-22)
+  https://www.youtube.com/watch?v=_r8tUXGWD20
+
+### lapd_civ_nrf021_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=K9AiFx0i2Xc
+- [bodycam] Topanga Area (Van Nuys) OIS 5/26/2025 (NRF021-25)
+  https://www.youtube.com/watch?v=K9AiFx0i2Xc
+
+### lapd_civ_nrf021_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=iWx8Vs7s8Wg
+- [bodycam] 77th Street Area OIS 5/1/2026 (NRF021-26)
+  https://www.youtube.com/watch?v=iWx8Vs7s8Wg
+
+### lapd_civ_nrf022_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xY7J-g_izn8
+- [bodycam] Central Area OIS 5/30/2020 (NRF022-20)
+  https://www.youtube.com/watch?v=xY7J-g_izn8
+
+### lapd_civ_nrf022_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=JDkAf5uGFp8
+- [bodycam] Hollywood Area OIS 6/8/2022 (NRF022-22)
+  https://www.youtube.com/watch?v=JDkAf5uGFp8
+
+### lapd_civ_nrf022_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=hSPrFB9OhcM
+- [bodycam] 77th Area OIS 05/26/23 (NRF022-23)
+  https://www.youtube.com/watch?v=hSPrFB9OhcM
+
+### lapd_civ_nrf022_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ZjybHLhN0B0
+- [bodycam] Olympic Area OIS 5/28/25 (NRF022-25)
+  https://www.youtube.com/watch?v=ZjybHLhN0B0
+
+### lapd_civ_nrf023_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=zzpaugVLZ6Q
+- [bodycam] Olympic Area OIS 5/31/2020 (NRF023-20)
+  https://www.youtube.com/watch?v=zzpaugVLZ6Q
+
+### lapd_civ_nrf023_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=toVARITKNE8
+- [bodycam] North Hollywood Area OIS 4/23/2021 (NRF023-21)
+  https://www.youtube.com/watch?v=toVARITKNE8
+
+### lapd_civ_nrf023_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=0saMWFtA7fk
+- [bodycam] Newton Area OIS 6/12/2022 (NRF023-22)
+  https://www.youtube.com/watch?v=0saMWFtA7fk
+
+### lapd_civ_nrf023_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=wcAngkUeLBY
+- [bodycam] Olympic Area OIS 6/3/25 (NRF023-25)
+  https://www.youtube.com/watch?v=wcAngkUeLBY
+
+### lapd_civ_nrf023_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=tnQiPLgZdW8
+- [bodycam] Mission Area OIS 5/5/2026 (NRF023-26)
+  https://www.youtube.com/watch?v=tnQiPLgZdW8
+
+### lapd_civ_nrf024_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=b1ORYq8OaKQ
+- [bodycam] Southwest Area OIS 6/1/2020 (NRF024-20)
+  https://www.youtube.com/watch?v=b1ORYq8OaKQ
+
+### lapd_civ_nrf024_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=5iG47dVgsXI
+- [bodycam] Hollywood Area OIS 4/24/21 (NRF024-21)
+  https://www.youtube.com/watch?v=5iG47dVgsXI
+
+### lapd_civ_nrf024_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=0GTvW4wyYLs
+- [bodycam] Olympic Area OIS 05/02/2024 (NRF024-24)
+  https://www.youtube.com/watch?v=0GTvW4wyYLs
+
+### lapd_civ_nrf024_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=nUqCqZqOYc4
+- [bodycam] Olympic Area OIS 6/5/25 (NRF024-25)
+  https://www.youtube.com/watch?v=nUqCqZqOYc4
+
+### lapd_civ_nrf024_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=77RuVw2t9gg
+- [bodycam] Hollenbeck Area OIS 5/16/2026 (NRF024-26)
+  https://www.youtube.com/watch?v=77RuVw2t9gg
+
+### lapd_civ_nrf025_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=hwPtumbcmic
+- [bodycam] Southeast Area OIS 6/3/2020 (NRF025-20)
+  https://www.youtube.com/watch?v=hwPtumbcmic
+
+### lapd_civ_nrf025_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=w8TfSkePlyg
+- [bodycam] Metropolitan Division OIS 4/27/21 (NRF025-21)
+  https://www.youtube.com/watch?v=w8TfSkePlyg
+
+### lapd_civ_nrf026_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=VoOxBcO95JA
+- [bodycam] North Hollywood Area OIS 6/7/2020 (NRF026-20)
+  https://www.youtube.com/watch?v=VoOxBcO95JA
+
+### lapd_civ_nrf026_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=QgESIr-MIUg
+- [bodycam] Van Nuys Area OIS 4/28/21 (NRF026-21)
+  https://www.youtube.com/watch?v=QgESIr-MIUg
+
+### lapd_civ_nrf026_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=oW4o3fbO_TI
+- [bodycam] Wilshire Area OIS 06/17/2022 (NRF026-22)
+  https://www.youtube.com/watch?v=oW4o3fbO_TI
+
+### lapd_civ_nrf027_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_Tdo48GMe2k
+- [bodycam] Foothill Area OIS 6/19/22 (NRF027-22)
+  https://www.youtube.com/watch?v=_Tdo48GMe2k
+
+### lapd_civ_nrf027_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Wsio3GyBgbU
+- [bodycam] Central Area OIS 06/25/23 (NRF027-23)
+  https://www.youtube.com/watch?v=Wsio3GyBgbU
+
+### lapd_civ_nrf027_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=z70-bPYF4_E
+- [bodycam] Southeast Area OIS (NRF027-24)
+  https://www.youtube.com/watch?v=z70-bPYF4_E
+
+### lapd_civ_nrf027_26  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=6G5qLm-qNv0
+- [bodycam] Topanga Area OIS 6/13/26 (NRF027-26)
+  https://www.youtube.com/watch?v=6G5qLm-qNv0
+
+### lapd_civ_nrf028_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=1kSb_ILMJEs
+- [bodycam] Off-Duty LAPD OIS - Costco - (NRF028-19)
+  https://www.youtube.com/watch?v=1kSb_ILMJEs
+
+### lapd_civ_nrf028_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=lWfyS5YgRw4
+- [bodycam] Southwest Area OIS 6/23/22 (NRF028-22)
+  https://www.youtube.com/watch?v=lWfyS5YgRw4
+
+### lapd_civ_nrf028_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=gK4KZOqWwjk
+- [bodycam] 77th Area OIS 06/28/23 (NRF028-23)
+  https://www.youtube.com/watch?v=gK4KZOqWwjk
+
+### lapd_civ_nrf028_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=E1qjU2C7u6I
+- [bodycam] Rampart Area OIS 6/19/25 (NRF028-25)
+  https://www.youtube.com/watch?v=E1qjU2C7u6I
+
+### lapd_civ_nrf029_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=1cdVqS1WqB0
+- [bodycam] Topanga Area OIS 5/29/21 (NRF029-21)
+  https://www.youtube.com/watch?v=1cdVqS1WqB0
+
+### lapd_civ_nrf029_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BnF-W3UNynw
+- [bodycam] West Valley Area OIS 07/09/23 (NRF029-23)
+  https://www.youtube.com/watch?v=BnF-W3UNynw
+
+### lapd_civ_nrf029_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DcUjbKMlSKw
+- [bodycam] Newton Area OIS 6/28/25 (NRF029-25)
+  https://www.youtube.com/watch?v=DcUjbKMlSKw
+
+### lapd_civ_nrf030_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=-MRAIeicWMg
+- [bodycam] Newton Area OIS 7/2/22 (NRF030-22)
+  https://www.youtube.com/watch?v=-MRAIeicWMg
+
+### lapd_civ_nrf030_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xsrkOQ0pygc
+- [bodycam] Foothill Area OIS (NRF030-24)
+  https://www.youtube.com/watch?v=xsrkOQ0pygc
+
+### lapd_civ_nrf031_18  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=zc3ES5_f8zk
+- [bodycam] Newton Area In-Custody Death 5/06/18 (NRF031-18)
+  https://www.youtube.com/watch?v=zc3ES5_f8zk
+
+### lapd_civ_nrf031_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=zqYypze-kQY
+- [bodycam] Harbor Area OIS 7/5/22 (NRF031-22)
+  https://www.youtube.com/watch?v=zqYypze-kQY
+
+### lapd_civ_nrf031_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Y9h4xA27JKs
+- [bodycam] Newton Area OIS 07/20/2023 (NRF031-23)
+  https://www.youtube.com/watch?v=Y9h4xA27JKs
+
+### lapd_civ_nrf031_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=dnzXs0XvpRk
+- [bodycam] Mission Area OIS 6/15/2024 (NRF031-24)
+  https://www.youtube.com/watch?v=dnzXs0XvpRk
+
+### lapd_civ_nrf032_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=-O4z0ZEARxg
+- [bodycam] 77th Area OIS 6/24/21 (NRF032-21)
+  https://www.youtube.com/watch?v=-O4z0ZEARxg
+
+### lapd_civ_nrf032_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=zydZUuqQahI
+- [bodycam] West Valley Area OIS 07/25/2023 (NRF032-23)
+  https://www.youtube.com/watch?v=zydZUuqQahI
+
+### lapd_civ_nrf032_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_HGOZISRJIk
+- [bodycam] Southwest Area OIS 7/5/2025 (NRF032-25)
+  https://www.youtube.com/watch?v=_HGOZISRJIk
+
+### lapd_civ_nrf033_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=dGdN4Tfs3p0
+- [bodycam] Hollywood Area OIS 8/5/2020 (NRF033-20)
+  https://www.youtube.com/watch?v=dGdN4Tfs3p0
+
+### lapd_civ_nrf033_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=C2sqJMfVbAg
+- [bodycam] 77th Area OIS 7/10/25 (NRF033-25)
+  https://www.youtube.com/watch?v=C2sqJMfVbAg
+
+### lapd_civ_nrf034_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7O-oNSmp_BY
+- [bodycam] West Valley Area OIS 8/7/20 (NRF034-20)
+  https://www.youtube.com/watch?v=7O-oNSmp_BY
+
+### lapd_civ_nrf034_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=eNEeH2pZ1K0
+- [bodycam] Foothill Area OIS 6/28/21 (NRF034-21)
+  https://www.youtube.com/watch?v=eNEeH2pZ1K0
+
+### lapd_civ_nrf034_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=_RKoBMTnBas
+- [bodycam] West Los Angeles Area OIS 7/7/22 (NRF034-22)
+  https://www.youtube.com/watch?v=_RKoBMTnBas
+
+### lapd_civ_nrf034_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Pp-QE7N-4LE
+- [bodycam] Olympic Area OIS 08/06/23 (NRF034-23)
+  https://www.youtube.com/watch?v=Pp-QE7N-4LE
+
+### lapd_civ_nrf034_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DkWWOubY2f4
+- [bodycam] Southeast Area OIS 7/3/2024 (NRF034-24)
+  https://www.youtube.com/watch?v=DkWWOubY2f4
+
+### lapd_civ_nrf034_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=kJlULR9BEDI
+- [bodycam] Central Area OIS 7/13/25 (NRF034-25)
+  https://www.youtube.com/watch?v=kJlULR9BEDI
+
+### lapd_civ_nrf035_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=AkbjDOcyBW4
+- [bodycam] Foothill Area (Northeast) OIS 08/09/23 (NRF035-23)
+  https://www.youtube.com/watch?v=AkbjDOcyBW4
+
+### lapd_civ_nrf035_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=4CBbKAgYD1Y
+- [bodycam] Hollenbeck Area OIS 7/14/25 (NRF035-25)
+  https://www.youtube.com/watch?v=4CBbKAgYD1Y
+
+### lapd_civ_nrf036_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ewi2M1tNcLg
+- [bodycam] Wilshire Area OIS 7/14/22 (NRF036-22)
+  https://www.youtube.com/watch?v=ewi2M1tNcLg
+
+### lapd_civ_nrf037_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ggWD7ldnkXM
+- [bodycam] Hollywood Area OIS 7/15/2021 (NRF037-21)
+  https://www.youtube.com/watch?v=ggWD7ldnkXM
+
+### lapd_civ_nrf037_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=MA9pXOZ0suY
+- [bodycam] Southwest Area OIS 07/21/2022 (NRF037-22)
+  https://www.youtube.com/watch?v=MA9pXOZ0suY
+
+### lapd_civ_nrf037_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=k9fpsS5z1p8
+- [bodycam] Olympic Area OIS 08/12/23 (NRF037-23)
+  https://www.youtube.com/watch?v=k9fpsS5z1p8
+
+### lapd_civ_nrf037_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=i_m0mSVJzy4
+- [bodycam] 77th Street Area OIS  7/13/24 (NRF037-24)
+  https://www.youtube.com/watch?v=i_m0mSVJzy4
+
+### lapd_civ_nrf037_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=JC5N-fFPHfg
+- [bodycam] Devonshire Area OIS 7/20/25 (NRF037-25)
+  https://www.youtube.com/watch?v=JC5N-fFPHfg
+
+### lapd_civ_nrf038_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=2PJeuP4MdNA
+- [bodycam] Hollenbeck Area OIS 7/20/21 (NRF038-21)
+  https://www.youtube.com/watch?v=2PJeuP4MdNA
+
+### lapd_civ_nrf038_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=WfMX6Bps1Ts
+- [bodycam] 77th Area OIS 08/13/2023 (NRF038-23)
+  https://www.youtube.com/watch?v=WfMX6Bps1Ts
+
+### lapd_civ_nrf039_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=GWR-TG1SaMo
+- [bodycam] Pacific Area OIS 8/14/19 (NRF039-19)
+  https://www.youtube.com/watch?v=GWR-TG1SaMo
+
+### lapd_civ_nrf039_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=fUq0FHN_hng
+- [bodycam] Southeast Area OIS 8/24/2020 (NRF039-20)
+  https://www.youtube.com/watch?v=fUq0FHN_hng
+
+### lapd_civ_nrf039_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=gUccfZfgAiY
+- [bodycam] Foothill Area OIS 07/21/2022 (NRF039-22)
+  https://www.youtube.com/watch?v=gUccfZfgAiY
+
+### lapd_civ_nrf040_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=NALJapb--XU
+- [bodycam] Hollenbeck Area OIS 07/22/22 (NRF040-22)
+  https://www.youtube.com/watch?v=NALJapb--XU
+
+### lapd_civ_nrf040_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=T-lyR3RhVZY
+- [bodycam] Southeast Area OIS 08/18/2023 (NRF040-23)
+  https://www.youtube.com/watch?v=T-lyR3RhVZY
+
+### lapd_civ_nrf040_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BMkC--Lbry0
+- [bodycam] WLA Division (SWAT) OIS 7/29/2024 (NRF040-24)
+  https://www.youtube.com/watch?v=BMkC--Lbry0
+
+### lapd_civ_nrf041_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=O-VDC6BO5rQ
+- [bodycam] Hollenbeck Area OIS 8-18-19 (NRF041-19)
+  https://www.youtube.com/watch?v=O-VDC6BO5rQ
+
+### lapd_civ_nrf041_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=REAhdKSVyCw
+- [bodycam] Pacific Area OIS 7/26/21 (NRF041-21)
+  https://www.youtube.com/watch?v=REAhdKSVyCw
+
+### lapd_civ_nrf041_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xsM_gB0w5tY
+- [bodycam] Hollenbeck Area OIS 7/22/2022 (NRF041-22)
+  https://www.youtube.com/watch?v=xsM_gB0w5tY
+
+### lapd_civ_nrf041_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=KnT85Lh8ou0
+- [bodycam] Bakersfield OIS 08/24/2023 (NRF041-23)
+  https://www.youtube.com/watch?v=KnT85Lh8ou0
+
+### lapd_civ_nrf041_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Knsnj6oEaKg
+- [bodycam] Mission (Foothill) Area OIS 8/14/2025 (NRF041-25)
+  https://www.youtube.com/watch?v=Knsnj6oEaKg
+
+### lapd_civ_nrf042_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=RSoHBmwRtq8
+- [bodycam] Mission Area OIS 8-19-19 (NRF042-19)
+  https://www.youtube.com/watch?v=RSoHBmwRtq8
+
+### lapd_civ_nrf042_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=1hcH7tqKrjY
+- [bodycam] Harbor Area OIS 9/26/2020 (NRF042-20)
+  https://www.youtube.com/watch?v=1hcH7tqKrjY
+
+### lapd_civ_nrf042_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DYYhjHxJapw
+- [bodycam] Rampart Area OIS 7/26/21 (NRF042-21)
+  https://www.youtube.com/watch?v=DYYhjHxJapw
+
+### lapd_civ_nrf042_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Iv09oJc_cMc
+- [bodycam] Northeast Area OIS 08/26/2023 (NRF042-23)
+  https://www.youtube.com/watch?v=Iv09oJc_cMc
+
+### lapd_civ_nrf042_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=WowBR_9lJhA
+- [bodycam] Rampart Area OIS 8/21/2025 (NRF042-25)
+  https://www.youtube.com/watch?v=WowBR_9lJhA
+
+### lapd_civ_nrf043_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=8IUc__jEER4
+- [bodycam] 77th Area OIS 8-19-19 (NRF043-19)
+  https://www.youtube.com/watch?v=8IUc__jEER4
+
+### lapd_civ_nrf043_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=RGupYZ9hJ1w
+- [bodycam] Devonshire OIS 08/27/2023 (NRF043-23)
+  https://www.youtube.com/watch?v=RGupYZ9hJ1w
+
+### lapd_civ_nrf043_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=vqkH2QiYG3E
+- [bodycam] Hollenbeck Area OIS 8/22/2025 (NRF043-25)
+  https://www.youtube.com/watch?v=vqkH2QiYG3E
+
+### lapd_civ_nrf044_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=LGZ3o1ThXws
+- [bodycam] North Hollywood Area OIS 8/6/2021 (NRF044-21)
+  https://www.youtube.com/watch?v=LGZ3o1ThXws
+
+### lapd_civ_nrf044_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rloE95gOdzU
+- [bodycam] West Valley Area OIS 08/17/22 (NRF044-22)
+  https://www.youtube.com/watch?v=rloE95gOdzU
+
+### lapd_civ_nrf044_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xz5nYCrR8p0
+- [bodycam] North Hollywood Area OIS 9/2/24 (NRF044-24)
+  https://www.youtube.com/watch?v=xz5nYCrR8p0
+
+### lapd_civ_nrf044_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=04m3ffLOJ9w
+- [bodycam] Southwest Area OIS 8/23/2025 (NRF044-25)
+  https://www.youtube.com/watch?v=04m3ffLOJ9w
+
+### lapd_civ_nrf045_18  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=U-SlN3Zn8Ws
+- [bodycam] Olympic Area In-Custody Death 7/20/18 (NRF045-18)
+  https://www.youtube.com/watch?v=U-SlN3Zn8Ws
+
+### lapd_civ_nrf045_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=0U3Se2zeEM0
+- [bodycam] Harbor Area OIS 9-23-19 (NRF045-19)
+  https://www.youtube.com/watch?v=0U3Se2zeEM0
+
+### lapd_civ_nrf045_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=wvDVvPXvHWg
+- [bodycam] Harbor Area OIS 08/20/22 (NRF045-22)
+  https://www.youtube.com/watch?v=wvDVvPXvHWg
+
+### lapd_civ_nrf045_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=U7f-eUC97OA
+- [bodycam] Hollywood Area OIS 9/09/2023 (NRF045-23)
+  https://www.youtube.com/watch?v=U7f-eUC97OA
+
+### lapd_civ_nrf045_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7BbYS2PdzwQ
+- [bodycam] 77th St. Area OIS 9/3/24 (NRF045-24)
+  https://www.youtube.com/watch?v=7BbYS2PdzwQ
+
+### lapd_civ_nrf045_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=9JWwPDOeR_c
+- [bodycam] Southwest Area OIS 8/31/2025 (NRF045-25)
+  https://www.youtube.com/watch?v=9JWwPDOeR_c
+
+### lapd_civ_nrf046_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=J-PvN4V9NIQ
+- [bodycam] Southeast Area OIS 10/14/2020 (NRF046-20)
+  https://www.youtube.com/watch?v=J-PvN4V9NIQ
+
+### lapd_civ_nrf046_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=CggeLiC34-w
+- [bodycam] Harbor Area OIS 8/13/2021 (NRF046-21)
+  https://www.youtube.com/watch?v=CggeLiC34-w
+
+### lapd_civ_nrf046_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xT9RCElOMN8
+- [bodycam] Rampart Area OIS 09/11/2022 (NRF046-22)
+  https://www.youtube.com/watch?v=xT9RCElOMN8
+
+### lapd_civ_nrf047_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=dDORLOsm2ss
+- [bodycam] Topanga Area OIS 10/15/2020 (NRF047-20)
+  https://www.youtube.com/watch?v=dDORLOsm2ss
+
+### lapd_civ_nrf047_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BDgtnbP1jB4
+- [bodycam] North Hollywood Area OIS 9/16/24 (NRF047-24)
+  https://www.youtube.com/watch?v=BDgtnbP1jB4
+
+### lapd_civ_nrf047_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=aF0IePvBliU
+- [bodycam] Mission Area OIS 9/10/2025 (NRF047-25)
+  https://www.youtube.com/watch?v=aF0IePvBliU
+
+### lapd_civ_nrf048_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=WT4Ss6ASOrE
+- [bodycam] Southwest Area OIS 10/17/2020 (NRF048-20)
+  https://www.youtube.com/watch?v=WT4Ss6ASOrE
+
+### lapd_civ_nrf048_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=-vBnn3T3ipU
+- [bodycam] Southeast Area OIS 9/17/22 (NRF048-22)
+  https://www.youtube.com/watch?v=-vBnn3T3ipU
+
+### lapd_civ_nrf048_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=mw1lOmR_2xk
+- [bodycam] Olympic Area OIS 9/13/2023 (NRF048-23)
+  https://www.youtube.com/watch?v=mw1lOmR_2xk
+
+### lapd_civ_nrf048_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=kKw2pjM1EbE
+- [bodycam] Hollenbeck Area OIS 9/14/2025 (NRF048-25)
+  https://www.youtube.com/watch?v=kKw2pjM1EbE
+
+### lapd_civ_nrf049_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=G7U8y60V2VA
+- [bodycam] *REVISED*  Van Nuys Area OIS 10-17-2019 (NRF049-19)
+  https://www.youtube.com/watch?v=G7U8y60V2VA
+
+### lapd_civ_nrf049_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BXBrkeyYDFo
+- [bodycam] Hollywood Area OIS 10/18/2020 (NRF049-20)
+  https://www.youtube.com/watch?v=BXBrkeyYDFo
+
+### lapd_civ_nrf049_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=RL_30kV6VWM
+- [bodycam] Southeast Area OIS 09/22/2022 (NRF049-22)
+  https://www.youtube.com/watch?v=RL_30kV6VWM
+
+### lapd_civ_nrf049_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DOVeaMrTtlI
+- [bodycam] Newton Area OIS 9/15/23 (NRF049-23)
+  https://www.youtube.com/watch?v=DOVeaMrTtlI
+
+### lapd_civ_nrf049_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rgNvvsJaSbE
+- [bodycam] Hollywood Area OIS 10/3/2024 {NRF049-24)
+  https://www.youtube.com/watch?v=rgNvvsJaSbE
+
+### lapd_civ_nrf050_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=uKJ_bb3dZgY
+- [bodycam] Hollenbeck Area OIS 10-22-2019 (NRF050-19)
+  https://www.youtube.com/watch?v=uKJ_bb3dZgY
+
+### lapd_civ_nrf050_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=UDThHbrtQE4
+- [bodycam] Central Area OIS 10/23/2020 (NRF050-20)
+  https://www.youtube.com/watch?v=UDThHbrtQE4
+
+### lapd_civ_nrf051_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=2RfaafDHAms
+- [bodycam] Newton Area OIS 10/01/2021 (NRF051-21)
+  https://www.youtube.com/watch?v=2RfaafDHAms
+
+### lapd_civ_nrf051_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Dw5mDzniywE
+- [bodycam] Southeast Area OIS 11/1/24 (NRF051-24)
+  https://www.youtube.com/watch?v=Dw5mDzniywE
+
+### lapd_civ_nrf051_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=PdDaiHg3N38
+- [bodycam] Hollenbeck Area OIS 9/21/2025 (NRF051-25)
+  https://www.youtube.com/watch?v=PdDaiHg3N38
+
+### lapd_civ_nrf052_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BYk1JkUnl-k
+- [bodycam] Devonshire Area OIS 11/01/2020 (NRF052-20)
+  https://www.youtube.com/watch?v=BYk1JkUnl-k
+
+### lapd_civ_nrf052_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Is1mYScNIwU
+- [bodycam] Southeast Area OIS 09/29/2022 (NRF052-22)
+  https://www.youtube.com/watch?v=Is1mYScNIwU
+
+### lapd_civ_nrf052_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=56amt9WdbQc
+- [bodycam] Northeast Area OIS 11/22/24 (NRF052-24)
+  https://www.youtube.com/watch?v=56amt9WdbQc
+
+### lapd_civ_nrf053_18  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=0fneJjRe0qI
+- [bodycam] Rampart Area Officer In-Custody Death 9/15/18 (NRF053-18)
+  https://www.youtube.com/watch?v=0fneJjRe0qI
+
+### lapd_civ_nrf053_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Icoi09FwZxs
+- [bodycam] Newton Area OIS 11-19-2019 (NRF053-19)
+  https://www.youtube.com/watch?v=Icoi09FwZxs
+
+### lapd_civ_nrf053_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=jMG9uyr0_y8
+- [bodycam] Hollywood Area OIS 10/02/2021 (NRF053-21)
+  https://www.youtube.com/watch?v=jMG9uyr0_y8
+
+### lapd_civ_nrf053_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=W12Cm6eUxCs
+- [bodycam] Harbor Area OIS 10/11/22 (NRF053-22)
+  https://www.youtube.com/watch?v=W12Cm6eUxCs
+
+### lapd_civ_nrf053_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=bv7QPiyFQIo
+- [bodycam] 77th Area OIS 09/27/2023 (NRF053-23)
+  https://www.youtube.com/watch?v=bv7QPiyFQIo
+
+### lapd_civ_nrf053_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ddHHB6eZTWk
+- [bodycam] Southwest Area (HARB/SOE) OIS 11/26/24 (NRF053-24)
+  https://www.youtube.com/watch?v=ddHHB6eZTWk
+
+### lapd_civ_nrf053_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=IdgMEB2-IIM
+- [bodycam] Central Area OIS 10/6/25 (NRF053-25)
+  https://www.youtube.com/watch?v=IdgMEB2-IIM
+
+### lapd_civ_nrf054_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=eWS9Y5sIwxs
+- [bodycam] Hollywood Area OIS 11-25-2019 (NRF054-19)
+  https://www.youtube.com/watch?v=eWS9Y5sIwxs
+
+### lapd_civ_nrf054_20  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=-9ItnUhSiF0
+- [bodycam] Southeast Area OIS 11/20/20 (NRF054-20)
+  https://www.youtube.com/watch?v=-9ItnUhSiF0
+
+### lapd_civ_nrf054_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=OMA3ZAK9bE0
+- [bodycam] Harbor Area OIS 10/01/2023 (NRF054-23)
+  https://www.youtube.com/watch?v=OMA3ZAK9bE0
+
+### lapd_civ_nrf055_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=UW3rWDzlqUE
+- [bodycam] Hollenbeck Area OIS 11-29-2019 (NRF055-19)
+  https://www.youtube.com/watch?v=UW3rWDzlqUE
+
+### lapd_civ_nrf055_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=CSmzsLZfA-U
+- [bodycam] Central Area OIS 10/06/21 (NRF055-21)
+  https://www.youtube.com/watch?v=CSmzsLZfA-U
+
+### lapd_civ_nrf055_22  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=rtb37VcR9I0
+- [bodycam] Newton Area OIS 11/14/22 (NRF055-22)
+  https://www.youtube.com/watch?v=rtb37VcR9I0
+
+### lapd_civ_nrf055_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=20sA9QIVncc
+- [bodycam] Southeast Area OIS 12/26/24 (NRF055-24)
+  https://www.youtube.com/watch?v=20sA9QIVncc
+
+### lapd_civ_nrf056_19  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BBbNGoPh5kk
+- [bodycam] Newton Area OIS 12-1-2019 (NRF056-19)
+  https://www.youtube.com/watch?v=BBbNGoPh5kk
+
+### lapd_civ_nrf056_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=UjMcn8vHixU
+- [bodycam] Central Area OIS 10/08/21 (NRF056-21)
+  https://www.youtube.com/watch?v=UjMcn8vHixU
+
+### lapd_civ_nrf056_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=8C3rdoT0Jcw
+- [bodycam] Southeast Area OIS 12/28/24 (NRF056-24)
+  https://www.youtube.com/watch?v=8C3rdoT0Jcw
+
+### lapd_civ_nrf057_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=v7FpFirMXE0
+- [bodycam] Topanga Area OIS 10/07/2023 (NRF057-23)
+  https://www.youtube.com/watch?v=v7FpFirMXE0
+
+### lapd_civ_nrf057_24  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BjlJ9-xegJQ
+- [bodycam] Topanga Area OIS 12/29/24 (NRF057-24)
+  https://www.youtube.com/watch?v=BjlJ9-xegJQ
+
+### lapd_civ_nrf057_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=cs3-LSTv4JU
+- [bodycam] Devonshire Area OIS 11/2/25 (NRF057-25)
+  https://www.youtube.com/watch?v=cs3-LSTv4JU
+
+### lapd_civ_nrf058_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=vPaUSXajooE
+- [bodycam] Pacific Area OIS 10/13/21 (NRF058-21)
+  https://www.youtube.com/watch?v=vPaUSXajooE
+
+### lapd_civ_nrf059_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=36nMXqwG4-E
+- [bodycam] Mission Area OIS 10/24/21 (NRF059-21)
+  https://www.youtube.com/watch?v=36nMXqwG4-E
+
+### lapd_civ_nrf059_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=5dkAuADVJjI
+- [bodycam] Downey OIS 10/11/2023 (NRF059-23)
+  https://www.youtube.com/watch?v=5dkAuADVJjI
+
+### lapd_civ_nrf059_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ZaIYeHbhjgs
+- [bodycam] Southeast Area OIS 11/11/25 (NRF059-25)
+  https://www.youtube.com/watch?v=ZaIYeHbhjgs
+
+### lapd_civ_nrf060_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xy_2C1L9be8
+- [bodycam] Van Nuys Area OIS 10/31/21 (NRF060-21)
+  https://www.youtube.com/watch?v=xy_2C1L9be8
+
+### lapd_civ_nrf060_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=zOZfsDdbM5M
+- [bodycam] Central Area OIS 10/14/2023 (NRF060-23)
+  https://www.youtube.com/watch?v=zOZfsDdbM5M
+
+### lapd_civ_nrf061_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=S0Qjx241s1s
+- [bodycam] Topanga Area OIS 11/2/25 (NRF061-25)
+  https://www.youtube.com/watch?v=S0Qjx241s1s
+
+### lapd_civ_nrf063_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=IsQBobo-n9o
+- [bodycam] Newton Area OIS 12/18/2021 (NRF063-21)
+  https://www.youtube.com/watch?v=IsQBobo-n9o
+
+### lapd_civ_nrf063_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ryjp1h58dMk
+- [bodycam] 77th Area OIS 11/20/25 (NRF063-25)
+  https://www.youtube.com/watch?v=ryjp1h58dMk
+
+### lapd_civ_nrf064_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=8En8ywk0r8E
+- [bodycam] Topanga Area OIS 06 11/1/2023 (NRF064-23)
+  https://www.youtube.com/watch?v=8En8ywk0r8E
+
+### lapd_civ_nrf065_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=bjcdanUhmSY
+- [bodycam] North Hollywood Area OIS 12/23/21 (NRF065-21)
+  https://www.youtube.com/watch?v=bjcdanUhmSY
+
+### lapd_civ_nrf066_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=BErJwZVT3uQ
+- [bodycam] West Valley Area OIS (NRF066-21)
+  https://www.youtube.com/watch?v=BErJwZVT3uQ
+
+### lapd_civ_nrf066_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DSz-BipYvCc
+- [bodycam] Olympic Area OIS 11/28/25 (NRF066-25)
+  https://www.youtube.com/watch?v=DSz-BipYvCc
+
+### lapd_civ_nrf067_18  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=9iSwzeqTOKo
+- [bodycam] Central Area In-Custody Death 12/19/18 (NRF067-18)
+  https://www.youtube.com/watch?v=9iSwzeqTOKo
+
+### lapd_civ_nrf067_21  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=jPMFkbFyCYw
+- [bodycam] Northeast Area OIS (NRF067-21)
+  https://www.youtube.com/watch?v=jPMFkbFyCYw
+
+### lapd_civ_nrf067_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=YlGVxDv4NJI
+- [bodycam] Olympic Area OIS (NRF067-23)
+  https://www.youtube.com/watch?v=YlGVxDv4NJI
+
+### lapd_civ_nrf067_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=OwsdM_tHC1I
+- [bodycam] Rampart Area OIS 12/02/25 (NRF067-25)
+  https://www.youtube.com/watch?v=OwsdM_tHC1I
+
+### lapd_civ_nrf068_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=KbM6WPRmamg
+- [bodycam] North Hollywood Area OIS (NRF068-23)
+  https://www.youtube.com/watch?v=KbM6WPRmamg
+
+### lapd_civ_nrf068_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=bBaB2xYtNyc
+- [bodycam] West Valley Area OIS 12/3/25 (NRF068-25)
+  https://www.youtube.com/watch?v=bBaB2xYtNyc
+
+### lapd_civ_nrf069_23  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=Aj5vujvJhSY
+- [bodycam] Devonshire Area OIS 12/01/23 (NRF069-23)
+  https://www.youtube.com/watch?v=Aj5vujvJhSY
+
+### lapd_civ_nrf070_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7XKXvbD8h-Q
+- [bodycam] West Valley Area OIS 12/8/25 (NRF070-25)
+  https://www.youtube.com/watch?v=7XKXvbD8h-Q
+
+### lapd_civ_nrf071_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ca8qeWbzR-o
+- [bodycam] Topanga Area OIS 12/16/25 (NRF071-25)
+  https://www.youtube.com/watch?v=ca8qeWbzR-o
+
+### lapd_civ_nrf072_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=e02TgTAzvnI
+- [bodycam] Hollywood Area OIS 12/18/25 (NRF072-25)
+  https://www.youtube.com/watch?v=e02TgTAzvnI
+
+### lapd_civ_nrf073_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=gSMVgSCnSNA
+- [bodycam] Newton Area (Central) OIS 12/19/25 (NRF073-25)
+  https://www.youtube.com/watch?v=gSMVgSCnSNA
+
+### lapd_civ_nrf075_25  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=oZgYn4aojQc
+- [bodycam] Harbor Area OIS 12/31/25 (NRF075-25)
+  https://www.youtube.com/watch?v=oZgYn4aojQc
+
+### lapd_civ_xS2xHXzcu_A  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xS2xHXzcu_A
+- [bodycam] Critical Incident Video Release - F021-19 - West Valley OIS
+  https://www.youtube.com/watch?v=xS2xHXzcu_A
+
+### lapd_civ_nrf003_26  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=5JYDPQDj-k8
+- [bodycam] Harbor Area K-9 Contact 1/8/2026 (NRF003-26)
+  https://www.youtube.com/watch?v=5JYDPQDj-k8
+
+### lapd_civ_nrf006_24  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=xyxZefeR9ic
+- [bodycam] Wilshire Area K-9 Contact 02/17/2024 (NRF006-24)
+  https://www.youtube.com/watch?v=xyxZefeR9ic
+
+### lapd_civ_nrf051_23  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=7hmG-kZpggQ
+- [bodycam] Southeast Area K-9 Contact 9/25/2023 (NRF051-23)
+  https://www.youtube.com/watch?v=7hmG-kZpggQ
+
+### lapd_civ_nrf056_23  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=r-jVDlMUJL0
+- [bodycam] Harbor Area K-9 Contact 10/05/2023 (NRF056-23)
+  https://www.youtube.com/watch?v=r-jVDlMUJL0
+
+### lapd_civ_nrf062_25  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=tIT8DyT04T0
+- [bodycam] Harbor Area K-9 Contact 11/18/25 (NRF062-25)
+  https://www.youtube.com/watch?v=tIT8DyT04T0
+
+### lapd_civ_nrf063_23  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=dnQOzy5NFC8
+- [bodycam] Devonshire Area K-9 Contact 10/27/2023 (NRF063-23)
+  https://www.youtube.com/watch?v=dnQOzy5NFC8
+
+### lapd_civ_nrf066_23  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=N2TfxbbGOOA
+- [bodycam] Rampart Area K-9 Contact 11/27/23 (NRF066-23)
+  https://www.youtube.com/watch?v=N2TfxbbGOOA
+
+### lapd_civ_Zi4NC0lcZ-A  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Zi4NC0lcZ-A
+- [bodycam] Rampart Area (SWAT) LERI  9/4/2025 (NRF046 25)
+  https://www.youtube.com/watch?v=Zi4NC0lcZ-A
+
+### lapd_civ_nrf002_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=N0GcKpvGerg
+- [bodycam] North Hollywood Area LERI 1-5-20 (NRF002-20)
+  https://www.youtube.com/watch?v=N0GcKpvGerg
+
+### lapd_civ_nrf002_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=MVTYcbPX0GA
+- [bodycam] Pacific Area ICD 1/3/2023 (NRF002-23)
+  https://www.youtube.com/watch?v=MVTYcbPX0GA
+
+### lapd_civ_nrf002_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=TreGLRONZlw
+- [bodycam] 77th Street Area LERI 1/7/2026 (NRF002-26)
+  https://www.youtube.com/watch?v=TreGLRONZlw
+
+### lapd_civ_nrf004_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=2tQZzKP9eVs
+- [bodycam] Newton Area LERI 1/12/2026 (NRF004-26)
+  https://www.youtube.com/watch?v=2tQZzKP9eVs
+
+### lapd_civ_nrf005_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Pmaxg0i7Pgw
+- [bodycam] Topanga Area LERI 2/04/21 (NRF005-21)
+  https://www.youtube.com/watch?v=Pmaxg0i7Pgw
+
+### lapd_civ_nrf005_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=mwpp5w9NJSI
+- [bodycam] Newton Area LERI 02/11/2022 (NRF005-22)
+  https://www.youtube.com/watch?v=mwpp5w9NJSI
+
+### lapd_civ_nrf005_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=lSNG-Cn4UKc
+- [bodycam] Northeast Area LERI 1/27/26 (NRF005-26)
+  https://www.youtube.com/watch?v=lSNG-Cn4UKc
+
+### lapd_civ_nrf006_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=wN9AgdpGz-U
+- [bodycam] Central Area Law Enforcement Related Injury 2/26/19 (NRF006-19)
+  https://www.youtube.com/watch?v=wN9AgdpGz-U
+
+### lapd_civ_nrf006_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=nXANlLJAltQ
+- [bodycam] Wilshire Area CUOF 5/30/20 (NRF006-21)
+  https://www.youtube.com/watch?v=nXANlLJAltQ
+
+### lapd_civ_nrf006_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=cz8NJV1D-hA
+- [bodycam] North Hollywood CUOF 2/8/23 (NRF006-23)
+  https://www.youtube.com/watch?v=cz8NJV1D-hA
+
+### lapd_civ_nrf007_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=T5rk0fJX9nY
+- [bodycam] Critical Incident Video Release - NRF007-19 Hollenbeck LERI
+  https://www.youtube.com/watch?v=T5rk0fJX9nY
+
+### lapd_civ_nrf007_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=O0xh_ljK3JU
+- [bodycam] 77th Division LERI 02/10/23 (NRF007-23)
+  https://www.youtube.com/watch?v=O0xh_ljK3JU
+
+### lapd_civ_nrf008_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=FBtLGcqOIys
+- [bodycam] Southwest Area LERI 02/13/23 (NRF008-23)
+  https://www.youtube.com/watch?v=FBtLGcqOIys
+
+### lapd_civ_nrf008_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=dZmRhPSH5ig
+- [bodycam] Hollenbeck Area CUOF 03/01/2024 (NRF008-24)
+  https://www.youtube.com/watch?v=dZmRhPSH5ig
+
+### lapd_civ_nrf008_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=tGNT7y3Ufzg
+- [bodycam] Van Nuys (Valley Jail) Area ICD 4/11/2025 (NRF008-25)
+  https://www.youtube.com/watch?v=tGNT7y3Ufzg
+
+### lapd_civ_nrf009_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=8cq6CE58xNk
+- [bodycam] Topanga Area LERI 3/09/21 (NRF009-21)
+  https://www.youtube.com/watch?v=8cq6CE58xNk
+
+### lapd_civ_nrf009_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=2RTRORKv6kk
+- [bodycam] Northeast Area CUOF 2/13/23 (NRF009-23)
+  https://www.youtube.com/watch?v=2RTRORKv6kk
+
+### lapd_civ_nrf010_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=R7BYwtJ1Cms
+- [bodycam] Southeast Area Law Enforcement Related Injury 4/08/19 (NRF010-19)
+  https://www.youtube.com/watch?v=R7BYwtJ1Cms
+
+### lapd_civ_nrf010_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=NA6Xu5cpeJA
+- [bodycam] Hollywood Area LERI 3/13/21 (NRF010-21)
+  https://www.youtube.com/watch?v=NA6Xu5cpeJA
+
+### lapd_civ_nrf010_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=0WF8k3AOKqk
+- [bodycam] Mission Area LERI  2/25/2026 (NRF010-26)
+  https://www.youtube.com/watch?v=0WF8k3AOKqk
+
+### lapd_civ_nrf011_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=OU3hb8O01R0
+- [bodycam] Hollenbeck Area LERI 3/14/21 (NRF011-21)
+  https://www.youtube.com/watch?v=OU3hb8O01R0
+
+### lapd_civ_nrf013_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=qJ1V1jy5wAw
+- [bodycam] Central Area UOF - 4/17/20 (NRF013-20)
+  https://www.youtube.com/watch?v=qJ1V1jy5wAw
+
+### lapd_civ_nrf013_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=T_6gZju-x8g
+- [bodycam] Valley Jail ICD 03/08/23 (NRF013-23)
+  https://www.youtube.com/watch?v=T_6gZju-x8g
+
+### lapd_civ_nrf013_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=1LkR6lIp0sk
+- [bodycam] Transit Services Division ICD (NRF013-24)
+  https://www.youtube.com/watch?v=1LkR6lIp0sk
+
+### lapd_civ_nrf015_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=KhbeYpSqUqE
+- [bodycam] Foothill Area LERI  05/10/2022 (NRF015-22)
+  https://www.youtube.com/watch?v=KhbeYpSqUqE
+
+### lapd_civ_nrf015_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=fJ2BFyYCXX4
+- [bodycam] 77th Street Area LERI 03/24/2024 (NRF015-24)
+  https://www.youtube.com/watch?v=fJ2BFyYCXX4
+
+### lapd_civ_nrf016_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Tln5JSTAlns
+- [bodycam] Hollenbeck Area UOF - April 27, 2020 (NRF016-20)
+  https://www.youtube.com/watch?v=Tln5JSTAlns
+
+### lapd_civ_nrf016_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=XOGRbBcPM8I
+- [bodycam] Southwest Area CUOF 05/13/2022 (NRF016-22)
+  https://www.youtube.com/watch?v=XOGRbBcPM8I
+
+### lapd_civ_nrf016_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=DWS6EaCLRZw
+- [bodycam] Central Area (Southeast) LERI 3/28/2026 (NRF016-26)
+  https://www.youtube.com/watch?v=DWS6EaCLRZw
+
+### lapd_civ_nrf017_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=9rfysAZ6-L4
+- [bodycam] Transit Services Division (Rampart Div) 5/2/23 (NRF017-23)
+  https://www.youtube.com/watch?v=9rfysAZ6-L4
+
+### lapd_civ_nrf018_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=5IM7uqEFLdw
+- [bodycam] Topanga Area CUOF 5/21/22 (NRF018-22)
+  https://www.youtube.com/watch?v=5IM7uqEFLdw
+
+### lapd_civ_nrf019_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=1a6innBju6o
+- [bodycam] Central Area ICD 5/18/2025 (NRF019-25)
+  https://www.youtube.com/watch?v=1a6innBju6o
+
+### lapd_civ_nrf020_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=CdqX2FJ9jUg
+- [bodycam] Newton Area (77th Area) ICD 05/12/2023 (NRF020-23)
+  https://www.youtube.com/watch?v=CdqX2FJ9jUg
+
+### lapd_civ_nrf020_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=0pjYbD6llvw
+- [bodycam] Hollenbeck Area LERI 4/26/2024 (NRF020-24)
+  https://www.youtube.com/watch?v=0pjYbD6llvw
+
+### lapd_civ_nrf020_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=XsNXvnvyYeU
+- [bodycam] 77th Area ICD 5/18/2025 (NRF020-25)
+  https://www.youtube.com/watch?v=XsNXvnvyYeU
+
+### lapd_civ_nrf021_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=50_AlYE1PzM
+- [bodycam] Topanga Area CUOF 06/06/2022 (NRF021-22)
+  https://www.youtube.com/watch?v=50_AlYE1PzM
+
+### lapd_civ_nrf021_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=1ASZn59gxgI
+- [bodycam] Southeast Area CUOF 4/27/2024 (NRF021-24)
+  https://www.youtube.com/watch?v=1ASZn59gxgI
+
+### lapd_civ_nrf022_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=UKGwRqU9-lo
+- [bodycam] Olympic Area ICD 4/29/2024 (NRF022-24)
+  https://www.youtube.com/watch?v=UKGwRqU9-lo
+
+### lapd_civ_nrf022_26  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Tvet8bEZbLU
+- [bodycam] Central Area LERI 5/2/2026 (NRF022-26)
+  https://www.youtube.com/watch?v=Tvet8bEZbLU
+
+### lapd_civ_nrf023_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=8uHKgLJrIVk
+- [bodycam] Wilshire Area LERI 06/02/23 (NRF023-23)
+  https://www.youtube.com/watch?v=8uHKgLJrIVk
+
+### lapd_civ_nrf023_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Cw9_aFS3dMU
+- [bodycam] Newton Area ICD (NRF023-24) / Newton Area Traffic Collision Investigation (M24-04)
+  https://www.youtube.com/watch?v=Cw9_aFS3dMU
+
+### lapd_civ_nrf025_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=tdBsAgZd6vw
+- [bodycam] Central Area LERI 6/10/25 (NRF025-25)
+  https://www.youtube.com/watch?v=tdBsAgZd6vw
+
+### lapd_civ_nrf026_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=a0r2GU_Uqjg
+- [bodycam] Central Area LERI 06/19/23 (NRF026-23)
+  https://www.youtube.com/watch?v=a0r2GU_Uqjg
+
+### lapd_civ_nrf026_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=ElDHkYgyZtI
+- [bodycam] Rampart Area LERI 5/18/2024 (NRF026-24)
+  https://www.youtube.com/watch?v=ElDHkYgyZtI
+
+### lapd_civ_nrf026_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=FLIT53-Z0hU
+- [bodycam] Central Area LERI 6/14/25 (NRF026-25)
+  https://www.youtube.com/watch?v=FLIT53-Z0hU
+
+### lapd_civ_nrf027_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=K7XLN6B7Vfw
+- [bodycam] Hollywood Area ICD 5/1/21 (NRF027-21)
+  https://www.youtube.com/watch?v=K7XLN6B7Vfw
+
+### lapd_civ_nrf027_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=3hQ_MoYhJDk
+- [bodycam] Central Area LERI 6/14/25 (NRF027-25)
+  https://www.youtube.com/watch?v=3hQ_MoYhJDk
+
+### lapd_civ_nrf028_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=7fL5S0Po4rA
+- [bodycam] Wilshire Area CUOF 5/30/20 (NRF028-20)
+  https://www.youtube.com/watch?v=7fL5S0Po4rA
+
+### lapd_civ_nrf029_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=BfOVLADHe7s
+- [bodycam] 77th Area LERI (Law Enforcement Related Injury) 6/15/19 (NRF029-19)
+  https://www.youtube.com/watch?v=BfOVLADHe7s
+
+### lapd_civ_nrf029_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=hwZMZvlHEI4
+- [bodycam] Wilshire Area LERI 5/30/20 (NRF029-20)
+  https://www.youtube.com/watch?v=hwZMZvlHEI4
+
+### lapd_civ_nrf030_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=q_12ja3ohls
+- [bodycam] Devonshire Area LERI (Law Enforcement Related Injury) 1/6/19 (NRF030-19)
+  https://www.youtube.com/watch?v=q_12ja3ohls
+
+### lapd_civ_nrf030_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=0lyEbNA5AHg
+- [bodycam] Van Nuys Area LERI 6/15/21 (NRF030-21)
+  https://www.youtube.com/watch?v=0lyEbNA5AHg
+
+### lapd_civ_nrf030_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=QbiDAaIuBu4
+- [bodycam] 77th Jail ICD 07/15/23 (NRF030-23)
+  https://www.youtube.com/watch?v=QbiDAaIuBu4
+
+### lapd_civ_nrf031_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=80mbC5ANH80
+- [bodycam] Van Nuys Area ICD 7/28/2020 (NRF031-20)
+  https://www.youtube.com/watch?v=80mbC5ANH80
+
+### lapd_civ_nrf032_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Ks4I8Ps3QHk
+- [bodycam] Rampart Area CUOF 7/5/22 (NRF032-22)
+  https://www.youtube.com/watch?v=Ks4I8Ps3QHk
+
+### lapd_civ_nrf033_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=L91TjTOP2tY
+- [bodycam] Hollywood CUOF-ICD 6/25/21 (NRF033-21)
+  https://www.youtube.com/watch?v=L91TjTOP2tY
+
+### lapd_civ_nrf033_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=EebTMAMGsbI
+- [bodycam] Hollenbeck Area LERI  6/18/22 (NRF033-22)
+  https://www.youtube.com/watch?v=EebTMAMGsbI
+
+### lapd_civ_nrf033_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=FasaAv6hChY
+- [bodycam] 77th Area LERI 07/26/23 (NRF033-23)
+  https://www.youtube.com/watch?v=FasaAv6hChY
+
+### lapd_civ_nrf033_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=BZFzFHUa_Iw
+- [bodycam] West Valley Area (S.W.A.T.) ICD  6/21/2024 (NRF033-24)
+  https://www.youtube.com/watch?v=BZFzFHUa_Iw
+
+### lapd_civ_nrf034_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=p1u3HE3MluM
+- [bodycam] Rampart Area LERI, 7/21/19 (NRF034-19)
+  https://www.youtube.com/watch?v=p1u3HE3MluM
+
+### lapd_civ_nrf035_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=EudpweCQqL8
+- [bodycam] Mission Area ICD 8/14/2020 (NRF035-20)
+  https://www.youtube.com/watch?v=EudpweCQqL8
+
+### lapd_civ_nrf035_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=AeQ3r_sRkFg
+- [bodycam] Newton Area LERI 7/7/22 (NRF035-22)
+  https://www.youtube.com/watch?v=AeQ3r_sRkFg
+
+### lapd_civ_nrf035_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=k5OmFgaE_gU
+- [bodycam] Newton Area LERI 7/4/2024 (NRF035-24)
+  https://www.youtube.com/watch?v=k5OmFgaE_gU
+
+### lapd_civ_nrf036_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=mf5peCTuuhQ
+- [bodycam] Newton Area LERI 7/31/19 (NRF036-19)
+  https://www.youtube.com/watch?v=mf5peCTuuhQ
+
+### lapd_civ_nrf036_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=2kR4I2i06F8
+- [bodycam] Rampart Area ICD 7/6/2024 (NRF036-24)
+  https://www.youtube.com/watch?v=2kR4I2i06F8
+
+### lapd_civ_nrf036_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=CV_rtFvLhqg
+- [bodycam] Central Area LERI 6/08/25 (NRF036-25)
+  https://www.youtube.com/watch?v=CV_rtFvLhqg
+
+### lapd_civ_nrf037_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=SotO28tOjp4
+- [bodycam] Hollywood Area LERI 06/02/20 (NRF037-20)
+  https://www.youtube.com/watch?v=SotO28tOjp4
+
+### lapd_civ_nrf038_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=_YLay1U_EhU
+- [bodycam] Wilshire Area LERI 8/12/19 (NRF038-19)
+  https://www.youtube.com/watch?v=_YLay1U_EhU
+
+### lapd_civ_nrf038_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=v8rd-xbtLZU
+- [bodycam] Hollywood Area LERI 8/24/2020 (NRF038-20)
+  https://www.youtube.com/watch?v=v8rd-xbtLZU
+
+### lapd_civ_nrf039_18  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=UzY7lyMhtPs
+- [bodycam] Devonshire Area Law Enforcement Related Injury 6/12/18 (NRF039-18)
+  https://www.youtube.com/watch?v=UzY7lyMhtPs
+
+### lapd_civ_nrf039_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=pQuw-VGBfzw
+- [bodycam] Hollenbeck Area LERI 7/21/21 (NRF039-21)
+  https://www.youtube.com/watch?v=pQuw-VGBfzw
+
+### lapd_civ_nrf039_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=vyOnmOeQgXg
+- [bodycam] Central Area LERI 08/14/23 (NRF039-23)
+  https://www.youtube.com/watch?v=vyOnmOeQgXg
+
+### lapd_civ_nrf039_24  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=gI6wJx69Olo
+- [bodycam] North Hollywood Area (Transit Services Division) ICD 7/27/2024 (NRF039-24)
+  https://www.youtube.com/watch?v=gI6wJx69Olo
+
+### lapd_civ_nrf039_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=lrUUmJNg3gw
+- [bodycam] Foothill Area LERI 8/01/25 (NRF039-25)
+  https://www.youtube.com/watch?v=lrUUmJNg3gw
+
+### lapd_civ_nrf040_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=MTSlUSxgBxM
+- [bodycam] Wilshire Area LERI 05/30/20 (NRF040-20)
+  https://www.youtube.com/watch?v=MTSlUSxgBxM
+
+### lapd_civ_nrf040_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=XjUPjisp1nQ
+- [bodycam] Rampart Area LERI 8/10/25 (NRF040-25)
+  https://www.youtube.com/watch?v=XjUPjisp1nQ
+
+### lapd_civ_nrf042_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=-uPDqj4wyVE
+- [bodycam] Van Nuys Area LERI 07/24/22 (NRF042-22)
+  https://www.youtube.com/watch?v=-uPDqj4wyVE
+
+### lapd_civ_nrf043_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=JMikspVpifs
+- [bodycam] Rampart Area LERI 7/7/2020 (NRF043-20)
+  https://www.youtube.com/watch?v=JMikspVpifs
+
+### lapd_civ_nrf043_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=ps8F1jp-EVE
+- [bodycam] Topanga Area UOF 7/28/2021 (NRF043-21)
+  https://www.youtube.com/watch?v=ps8F1jp-EVE
+
+### lapd_civ_nrf044_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=v_ZfkM7Jjzw
+- [bodycam] Van Nuys Area LERI 09/23/2020 (NRF044-20)
+  https://www.youtube.com/watch?v=v_ZfkM7Jjzw
+
+### lapd_civ_nrf044_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=sYpUWNpqlVA
+- [bodycam] 77th Area LERI 8/29/2023 (NRF044-23)
+  https://www.youtube.com/watch?v=sYpUWNpqlVA
+
+### lapd_civ_nrf045_20  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=wI-N9Wk7Ddo
+- [bodycam] Central Area LERI 10/12/2020 (NRF045-20)
+  https://www.youtube.com/watch?v=wI-N9Wk7Ddo
+
+### lapd_civ_nrf046_18  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=2_yEVY6PbCo
+- [bodycam] NRF046-18
+  https://www.youtube.com/watch?v=2_yEVY6PbCo
+
+### lapd_civ_nrf046_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=9ApThC-yOws
+- [bodycam] Hollywood Area LERI 09/11/2023 (NRF046-23)
+  https://www.youtube.com/watch?v=9ApThC-yOws
+
+### lapd_civ_nrf047_19  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=BcWdKJAeaBM
+- [bodycam] Pacific Area CUOF - 10-06-19 (NRF047-19)
+  https://www.youtube.com/watch?v=BcWdKJAeaBM
+
+### lapd_civ_nrf048_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=fu92RbmePi0
+- [bodycam] Hollenbeck Area CUOF 09/03/2021 (NRF048-21)
+  https://www.youtube.com/watch?v=fu92RbmePi0
+
+### lapd_civ_nrf049_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=rNHkQKaVdMM
+- [bodycam] Harbor Area ICD 9/16/2025 (NRF049-25)
+  https://www.youtube.com/watch?v=rNHkQKaVdMM
+
+### lapd_civ_nrf052_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=i0P-mZELbL0
+- [bodycam] Olympic Area LERI 10/01/2021 (NRF052-21)
+  https://www.youtube.com/watch?v=i0P-mZELbL0
+
+### lapd_civ_nrf052_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=Jevtwul79Nk
+- [bodycam] Central Area (MDC) ICD 10/2/2025 (NRF052-25)
+  https://www.youtube.com/watch?v=Jevtwul79Nk
+
+### lapd_civ_nrf055_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=tGvfkVnzz5M
+- [bodycam] North Hollywood Area CUOF 10/04/23 (NRF055-23)
+  https://www.youtube.com/watch?v=tGvfkVnzz5M
+
+### lapd_civ_nrf055_25  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=YXu0gfis578
+- [bodycam] Newton Area LERI 10/20/25 (NRF055-25)
+  https://www.youtube.com/watch?v=YXu0gfis578
+
+### lapd_civ_nrf056_18  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=VKFjVEEUzSg
+- [bodycam] Hollywood Area Law Enforcement Related Injury 10/11/18 (NRF056-18)
+  https://www.youtube.com/watch?v=VKFjVEEUzSg
+
+### lapd_civ_nrf057_21  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=eTdNv0krczI
+- [bodycam] Southeast Area LERI 10/12/21 (NRF057-21)
+  https://www.youtube.com/watch?v=eTdNv0krczI
+
+### lapd_civ_nrf058_22  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=XXaYu1Ck3kM
+- [bodycam] Newton Area LERI 12/19/22 (NRF058-22)
+  https://www.youtube.com/watch?v=XXaYu1Ck3kM
+
+### lapd_civ_nrf061_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=raDjV3Lo0qw
+- [bodycam] Central Area ICD 10/26/2023 (NRF061-23)
+  https://www.youtube.com/watch?v=raDjV3Lo0qw
+
+### lapd_civ_nrf071_23  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=HnNuVr-aUrI
+- [bodycam] Northeast Area CUOF 12/5/23 (NRF071-23)
+  https://www.youtube.com/watch?v=HnNuVr-aUrI
+
+### lapd_civ_sRAnY5B5HkU  ·  V1 A0 D0 P0  ·  score 6
+case: https://www.youtube.com/watch?v=sRAnY5B5HkU
+- [bodycam] Wilshire Area LERI 5/30/20 (F028A-20)
+  https://www.youtube.com/watch?v=sRAnY5B5HkU
 
 ## longbeach_laserfiche — Long Beach Police Department
 
@@ -32848,3 +34702,70 @@ case: https://sfdpa.nextrequest.com/requests/20-5
   https://sfdpa.nextrequest.com/documents/60197712/download
 - [documents] Production - 00048961-21.pdf
   https://sfdpa.nextrequest.com/documents/55739871/download
+
+## sjpd_civ — San José Police Department
+
+### sjpd_civ_22_019_0741  ·  V1 A0 D0 P0  ·  score 13
+case: https://www.youtube.com/watch?v=hIx7seNUDPg
+- [bodycam] Press Conference 1-21-2022  Officer involved Shooting Case #22-019-0741
+  https://www.youtube.com/watch?v=hIx7seNUDPg
+
+### sjpd_civ_19_304_0546  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=xMSRsRM1Oto
+- [bodycam] Case # 19-304-0546 OIS Francis Rey Calonge
+  https://www.youtube.com/watch?v=xMSRsRM1Oto
+
+### sjpd_civ_19_313_0553  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=IlaPhpwVjLs
+- [bodycam] Case #19-313-0553 OIS Andrew Joseph Roberts
+  https://www.youtube.com/watch?v=IlaPhpwVjLs
+
+### sjpd_civ_20_004_0185  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=ncHknmIoChQ
+- [bodycam] Case #20-004-0185 OIS Jose Antonio Delossantos
+  https://www.youtube.com/watch?v=ncHknmIoChQ
+
+### sjpd_civ_20_122_0866  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=TmrF4ycQcuI
+- [bodycam] Case #20-122-0866 OIS  -  Cristoban Martinez-Lima on 05-01-20
+  https://www.youtube.com/watch?v=TmrF4ycQcuI
+
+### sjpd_civ_20_124_0229  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=7uBuwdCMa_k
+- [bodycam] Case #20-124-0229 OIS Armando_Salvatierra 5/3/20
+  https://www.youtube.com/watch?v=7uBuwdCMa_k
+
+### sjpd_civ_20_154_0878  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=j04Uo9vb-SY
+- [bodycam] #20-154-0878 OIS Yurida Ochoa
+  https://www.youtube.com/watch?v=j04Uo9vb-SY
+
+### sjpd_civ_20_230_0116  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=8uB29vV0FAY
+- [bodycam] Case# 20 230 0116 OIS Trevon Richardson on 08/17/2020
+  https://www.youtube.com/watch?v=8uB29vV0FAY
+
+### sjpd_civ_21_021_0129  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=4irBBgIRVCc
+- [bodycam] Case #21-021-0129 OIS David Lee Tovar 1-21-21
+  https://www.youtube.com/watch?v=4irBBgIRVCc
+
+### sjpd_civ_21_151_0821  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=DJ_I0ptBikg
+- [bodycam] Case #21-151-0821 OIS Demetrius Stanley - on 05-31-2021
+  https://www.youtube.com/watch?v=DJ_I0ptBikg
+
+### sjpd_civ_XLpquXpwlk8  ·  V1 A0 D0 P0  ·  score 12
+case: https://www.youtube.com/watch?v=XLpquXpwlk8
+- [bodycam] OIS 4 2024
+  https://www.youtube.com/watch?v=XLpquXpwlk8
+
+### sjpd_civ_24_089_0106  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=PD6VPm5Sx84
+- [bodycam] OIS Press Conference 3-29-24 Case# 24-089-0106
+  https://www.youtube.com/watch?v=PD6VPm5Sx84
+
+### sjpd_civ_24_140_0546  ·  V1 A0 D0 P0  ·  score 8
+case: https://www.youtube.com/watch?v=Yuo-uCip11I
+- [bodycam] OIS #3 Press Conference 24-140-0546
+  https://www.youtube.com/watch?v=Yuo-uCip11I

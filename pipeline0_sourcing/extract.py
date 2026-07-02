@@ -24,6 +24,11 @@ from typing import Dict, List, Optional
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "pipeline4_scoring"))
 
+# Cheap, fast, JSON-clean triage model (validated live on OpenRouter, $0.10/M prompt
+# vs $0.25/M for gemini-3.1-flash-lite-preview). Extraction is a shallow read of a
+# headline + snippets, so a lite model is the right tier.
+DEFAULT_MODEL = "google/gemini-2.5-flash-lite"
+
 RECORD_TYPES = ["bodycam", "dashcam", "911", "dispatch_cad", "incident_report",
                 "internal_affairs", "interrogation", "autopsy_me"]
 
