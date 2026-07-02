@@ -106,7 +106,9 @@ class Dropbox:
         for _ in range(50):                      # pagination guard
             data = {"is_xhr": "true", "t": token, "link_key": link_key,
                     "link_type": link_type, "secure_hash": secure_hash,
-                    "rlkey": rlkey, "sub_path": sub_path}
+                    "sub_path": sub_path}
+            if rlkey:                    # old /sh/ links carry no rlkey; sending "" -> HTTP 500
+                data["rlkey"] = rlkey
             if voucher:
                 data["voucher"] = voucher
             for attempt in range(retries):
