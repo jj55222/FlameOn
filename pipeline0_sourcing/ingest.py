@@ -125,11 +125,14 @@ def fetch_google_news(term: str, since_days: int, limit: int) -> List[Dict]:
     return out
 
 
-def fetch_gdelt(term: str, since_days: int, limit: int, max_retries: int = 3) -> List[Dict]:
-    """GDELT 2.0 Doc API ArtList (JSON). Keyless. Returns normalized signals.
+def fetch_gdelt(term: str, since_days: int, limit: int, max_retries: int = 2) -> List[Dict]:
+    """GDELT 2.0 Doc API ArtList (JSON). Keyless. Best-effort, returns [] on trouble.
 
-    GDELT 429s aggressively under fan-out; throttle to a min interval and retry a
-    429 with growing backoff before giving up (degrading to [])."""
+    GDELT 429s aggressively under fan-out; throttle + a couple short backoffs recover
+    soft limits, and a per-run circuit breaker skips GDELT once it is clearly
+    hard-limiting so a dead source can't cost minutes."""
+    if _gdelt_state["tripped"]:
+        return []
     params = {
         "query": f'"{term}" sourcecountry:US', "mode": "ArtList",
         "format": "json", "maxrecords": str(min(limit, 75)),
@@ -142,7 +145,7 @@ def fetch_gdelt(term: str, since_days: int, limit: int, max_retries: int = 3) ->
             _throttle("gdelt", _GDELT_MIN_INTERVAL)
             r = _http_get(_GDELT, params)
             if r.status_code == 429:
-                wait = _GDELT_MIN_INTERVAL * (attempt + 2)   # 10s, 15s, 20s
+                wait = 4 * (attempt + 1)   # 4s, 8s — recover a soft limit, then give up
                 print(f"  [ingest] gdelt '{term}' 429; backing off {wait:.0f}s "
                       f"({attempt + 1}/{max_retries})", file=sys.stderr)
                 time.sleep(wait)
@@ -154,8 +157,14 @@ def fetch_gdelt(term: str, since_days: int, limit: int, max_retries: int = 3) ->
             print(f"  [ingest] gdelt '{term}' failed: {str(e)[:120]}", file=sys.stderr)
             return out
     if data is None:
+        _gdelt_state["consecutive_giveups"] += 1
+        if _gdelt_state["consecutive_giveups"] >= _GDELT_BREAKER_TRIP:
+            _gdelt_state["tripped"] = True
+            print(f"  [ingest] gdelt circuit tripped ({_GDELT_BREAKER_TRIP} give-ups) — "
+                  f"skipping GDELT for the rest of this run", file=sys.stderr)
         print(f"  [ingest] gdelt '{term}' gave up after {max_retries} 429s", file=sys.stderr)
         return out
+    _gdelt_state["consecutive_giveups"] = 0   # a success resets the breaker
     for art in data.get("articles", []):
         out.append({
             "title": (art.get("title") or "").strip(),
