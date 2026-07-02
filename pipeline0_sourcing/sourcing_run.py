@@ -155,6 +155,19 @@ def run(args) -> int:
         if s["verdict"] in ("FILE", "WATCH"):
             seen.add(s["incident_key"])
     _save_seen(seen_path, seen)
+
+    # audit trail for the WS2 health check (proves live daily autonomy over time)
+    _append_run_history(out, {
+        "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "mock": bool(args.mock),
+        "since_days": args.since,
+        "n_signals": len(signals),
+        "n_incidents_new": len(incidents),
+        "n_file": stats["n_file"],
+        "n_watch": stats["n_watch"],
+        "n_drafts": len(drafts),
+        "seen_total": len(seen),
+    })
     return 0
 
 
