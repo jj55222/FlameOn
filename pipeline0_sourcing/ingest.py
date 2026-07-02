@@ -188,6 +188,8 @@ def _strip_html(s: str) -> str:
 def fetch_signals(terms: List[str], since_days: int = 3, limit_per: int = 40,
                   sources=("google_news", "gdelt")) -> List[Dict]:
     """Fan out over terms x sources, return the merged, URL-deduped signal list."""
+    _gdelt_state["consecutive_giveups"] = 0   # fresh circuit breaker each run
+    _gdelt_state["tripped"] = False
     signals: List[Dict] = []
     seen_urls = set()
     for term in terms:
