@@ -47,6 +47,23 @@ _UA = "FlameOn-P0-sourcing/0.1 (+https://github.com/jj55222/FlameOn)"
 _GNEWS = "https://news.google.com/rss/search"
 _GDELT = "https://api.gdeltproject.org/api/v2/doc/doc"
 
+# GDELT's DOC 2.0 API rate-limits an unauthenticated client HARD: fanning our
+# 8-term query set at it back-to-back 429s every call, silently dropping GDELT
+# entirely. It asks for gentle polling — hold a minimum spacing between calls and
+# back off on a 429. Google News RSS is more tolerant but also 429s under a fast
+# fan-out, so we space it too (much shorter).
+_GDELT_MIN_INTERVAL = 5.0        # seconds between GDELT calls (module-global clock)
+_GNEWS_MIN_INTERVAL = 1.0        # seconds between Google News calls
+_last_call = {"gdelt": 0.0, "google_news": 0.0}
+
+
+def _throttle(source: str, min_interval: float) -> None:
+    """Sleep just enough to keep `min_interval` between calls to `source`."""
+    dt = time.monotonic() - _last_call.get(source, 0.0)
+    if dt < min_interval:
+        time.sleep(min_interval - dt)
+    _last_call[source] = time.monotonic()
+
 
 def _http_get(url: str, params: Dict, timeout: int = 20):
     if requests is None:
