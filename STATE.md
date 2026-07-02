@@ -83,15 +83,24 @@ The old top-of-funnel gap (all intake sourced only ALREADY-released records) now
 (LLM or offline `--mock`) → `score` (`foia_worth`, reads the state table, gates on severity + sunshine
 tier + residency) → `draft` (submit-ready FOIA write-ups w/ correct statute cite) → ranked
 `foia_queue.md`. Autonomous (`--seen` de-dupes across runs); **operator submits manually — P0 does not
-file.** Entry: `sourcing_run.py`. Skill: `.claude/skills/foia-sourcing/`. 8 offline tests pass.
+file.** Entry: `sourcing_run.py`. Skill: `.claude/skills/foia-sourcing/`. 12 offline tests pass.
 Jurisdiction rules: [discovered_cases/foia/state_access_profiles.json](discovered_cases/foia/state_access_profiles.json)
 (rows `verified: false` — confirm vs RCFP before filing). Plan/roadmap:
 [docs/plans/P0_foia_sourcing.md](docs/plans/P0_foia_sourcing.md).
 
-**Still open on P0:** live-run validation (network + LLM path only smoke-tested via `--mock`/fixtures);
-verify each state-table row vs RCFP; confirm whether MuckRock exposes a request-CREATE API (else keep
-manual filing); v2 re-cluster on (state, agency, date) for precision. FOIA latency is weeks–months —
-this fills the funnel for later, NOT the EOW cut.
+**WS2 DONE (2026-07-02) — live-validated + autonomous daily.** Live network+LLM path proven (289
+signals → 106 incidents → LLM extract 0/106 parse errors → credible tier-1 FILE queue). Live-path
+fixes: GDELT 429 throttle + circuit breaker (Google News is the workhorse); extraction retry so a
+transient JSON truncation never defaults a real sev-85 case to SKIP; model → `gemini-2.5-flash-lite`;
+terms tuned to 10 (added domestic / murder-suicide EWU shapes). Daily autonomy: `run_daily.sh` +
+launchd `com.flameon.p0` (07:30, `./install_launchd.sh`) + `run_history.jsonl` audit trail. Green
+gate: `python goals/ws2_p0_health.py`. **Weekly ritual (Fri):** review `.tmp/p0/foia_queue.md`,
+verify rows vs RCFP, submit by hand.
+
+**Still open on P0:** verify each state-table row vs RCFP; confirm whether MuckRock exposes a
+request-CREATE API (else keep manual filing); v2 re-cluster on (state, agency, date) for precision (a
+live run split one Broward deputy-shooting across a few rows). FOIA latency is weeks–months — this
+fills the funnel for later, NOT the EOW cut.
 
 ## Load-bearing fixes already made (don't re-hit)
 
