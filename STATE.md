@@ -17,11 +17,17 @@ Start from [CLAUDE.md](CLAUDE.md); this doc is the current-state layer under it.
 
 Four workstreams, run by Opus/Codex against goal scripts (done = checker exits 0), detailed in
 **[docs/plans/WEEK_2026-07-01_goals.md](docs/plans/WEEK_2026-07-01_goals.md)** (+ `goals/`):
-**WS1** final public-source sweep → aggregator (KEY EOW); **WS2** P0 FOIA finder autonomous
-(daily ingest via launchd, weekly review); **WS3** evidence-completeness "EWU-ready" shortlist from
-the registry (KEY EOW, gates WS4); **WS4** Remotion mograph render lane (KEY EOW: WS3's top case
-rendered through it). **TTS deprioritized this week** (operator, 2026-07-01). Remotion is additive —
-the ffmpeg lane stays the fallback.
+**WS1** final public-source sweep → aggregator (KEY EOW) — ✅ **GREEN 07-02** (registry 2,769→3,152;
+media bundles 495→878; +`lapd_civ` 370, +`sjpd_civ` 13); **WS2** P0 FOIA finder autonomous — ✅
+**GREEN 07-02** (live-validated, launchd 07:30 daily); **WS3** evidence-completeness "EWU-ready"
+shortlist (KEY EOW) — ✅ **GREEN 07-02** (67 cases in `discovered_cases/ewu_shortlist.json`; top-3
+Tier-1-verified PRODUCE; **#1 handoff → `sdpd_08_28_2023_500_iona_drive`**, basket has doc+911 only —
+**video NOT yet downloaded**); **WS4** Remotion mograph lane (KEY EOW: render the WS3 #1 case) — in
+flight; build against Morales (fully-processed basket) until Iona's Tier-2 prep (download → stamp →
+transcribe → blueprint) lands. **TTS deprioritized this week** (operator, 2026-07-01). Remotion is
+additive — the ffmpeg lane stays the fallback. ⚠️ Sessions shared one checkout: WS1/WS2/WS3 commits
+all live on branch `ws3-ewu-selector` — do NOT switch branches while sessions run; merge once into
+`p6-documentary-assembly` when the week's sessions finish.
 
 ## Active task (EWU-longform)
 
