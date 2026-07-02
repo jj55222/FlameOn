@@ -52,19 +52,26 @@ Return ONLY a JSON object with these keys:
 Be conservative on severity; do not inflate. Output JSON only, no prose."""
 
 
-def extract_incident_llm(incident: Dict, backend, max_tokens: int = 900) -> Dict:
+def extract_incident_llm(incident: Dict, backend, max_tokens: int = 1200,
+                         retries: int = 2) -> Dict:
     user = (
         f"HEADLINE: {incident.get('headline','')}\n"
         f"REPORTS: {incident.get('n_reports',1)} outlet(s): {', '.join(incident.get('sources',[])[:6])}\n"
         f"SNIPPETS:\n" + "\n".join(f"- {s}" for s in incident.get("snippets", [])[:5]) +
         "\n\nExtract the JSON record."
     )
-    raw = backend.complete(system=_SYSTEM, user=user, max_tokens=max_tokens, temperature=0.1)
-    try:
-        data = json.loads(raw)
-    except Exception as e:  # noqa: BLE001
-        data = {"is_crime_incident": True, "_parse_error": f"{type(e).__name__}", "reasoning": raw[:200]}
-    return _coerce(data)
+    # Flash-lite JSON is *mostly* clean but intermittently truncates or wraps prose;
+    # a single retry recovers those (a parse failure otherwise silently defaults a
+    # real sev=85 case to a sev=0 SKIP). Generous max_tokens kills truncation.
+    last_raw = ""
+    for _ in range(max(1, retries)):
+        last_raw = backend.complete(system=_SYSTEM, user=user, max_tokens=max_tokens, temperature=0.1)
+        try:
+            return _coerce(json.loads(last_raw))
+        except Exception:  # noqa: BLE001 — retry, then fall through to a safe default
+            continue
+    return _coerce({"is_crime_incident": True, "_parse_error": "json_decode",
+                    "reasoning": last_raw[:200]})
 
 
 # ---- MOCK (offline heuristic) -------------------------------------------------
