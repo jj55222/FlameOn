@@ -47,6 +47,8 @@ Branch `p6-documentary-assembly`. **Active task:** find an EWU/Dr.Insanity-*shap
 (high-severity crime + rich case doc + footage) and build a **longform flagship cut** + shape-aware
 templates. Flagship candidate: `sdpd_01_05_2025_4400_fanuel_street` (footage-vs-report contradiction).
 Full runbook: [HANDOFF_LONGFORM_EWU_STYLE.md](HANDOFF_LONGFORM_EWU_STYLE.md). Details: [STATE.md](STATE.md).
+**This week's executor plan** (4 workstreams + goal scripts, incl. the new **Remotion render lane**):
+[docs/plans/WEEK_2026-07-01_goals.md](docs/plans/WEEK_2026-07-01_goals.md) + `goals/`.
 
 ## Setup & the gotchas that will bite you
 
