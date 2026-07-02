@@ -309,9 +309,14 @@ Axon/Dropbox/YouTube side channels; GovQA/JustFOIA are often login-walled).
    for its SB1421/AB748 critical-incident page or CIV YouTube channel (generalize the
    `lapd_civ`/`sjpd_civ` pattern WS1 found) → new `<agency>_candidates.json` per hit. Add CO
    (21-day misconduct-BWC rule) + WA self-publishers. Expect dozens of near-certain media sources.
-2. **NextRequest media-detector crawl (finder, low hit rate):** crawl public Documents tabs only,
-   filter for media signals (.mp4/.wav/.zip, evidence.com/Vimeo/Dropbox links, video/BWC titles).
-   Its job is finding outlier instances like SFDPA — each hit becomes a persistent source.
+2. **NextRequest media-detector crawl — CORRECTED by WS1's empirical finding (2026-07-02):** big
+   instances are infeasible — Oakland (303k docs) and SF (602k) are overwhelmingly PDF and their
+   search/`query`/`page` params are **silently ignored**, so you cannot filter to the sparse video;
+   full enumeration isn't worth it. Restrict this layer to SMALL instances only: size-probe first
+   (doc counts are one cheap request), full-scan only instances < ~5k docs, filter for media signals
+   (.mp4/.wav/.zip, evidence.com/Vimeo/Dropbox links). Outlier hits like SFDPA become persistent
+   sources; expect mostly misses. Reusable asset for layer 1: `sacso_harvest.py`'s Dropbox
+   shared-folder listing technique (incl. the `rlkey=""`→HTTP 500 gotcha — in memory).
 3. **PDF-as-intel → P0 loop:** published IA/homicide PDFs enumerate evidence that EXISTS (BWC,
    recorded interviews, case numbers) → emit `foia_targets.json` (agency, case #, records cited) →
    P0 drafts precise, case-numbered requests (harder to deny, faster to fulfill). PDFs stop being
