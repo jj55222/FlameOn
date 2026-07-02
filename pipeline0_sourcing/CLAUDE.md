@@ -57,17 +57,25 @@ fast; FOIA responses take weeks):
   + residency. Those rows are `verified: false` — the queue flags `verify_before_send` until a human
   checks them against RCFP.
 - Tunables at the top of `score.py`: `SEV_GATE` (50), `FILE_THRESHOLD` (35), `WATCH_THRESHOLD` (18),
-  record weights. Default search terms (the EWU-shape query set) at the top of `ingest.py`.
+  record weights. Default search terms (10, EWU-shape, FOIA-anchored) at the top of `ingest.py`.
+- **Extraction model:** `extract.DEFAULT_MODEL` = `google/gemini-2.5-flash-lite` (OpenRouter, ~$0.10/M,
+  validated live 0/106 parse errors). `extract_incident_llm` retries once on a JSON parse failure so a
+  transient truncation never silently defaults a real sev-85 case to a sev-0 SKIP.
+- **GDELT rate-limits hard** under the multi-term fan-out (429s). `ingest.py` throttles GDELT to a
+  5s min interval + backs off on 429 (best-effort — Google News RSS carries the main load). A full
+  live ingest is a few minutes, mostly GDELT spacing; fine for an unattended 07:30 job.
 - **Leads, not findings.** Extraction reads what reporting says + reasons about likely records; it
   asserts no facts. Letters ask for records by category and must be verified before sending.
 
 ## Tests
-`python -m pytest -q` (8 tests, offline/deterministic — clustering, severity gate, sunshine-vs-avoid
-ranking, residency flag, end-to-end mock, statute-cite drafting).
+`python -m pytest -q` (12 tests, offline/deterministic — clustering, severity gate, sunshine-vs-avoid
+ranking, residency flag, end-to-end mock, statute-cite drafting, LLM retry/fallback robustness,
+run-history append, terms coverage).
 
 ## Known limitations (v1)
-- Headline-only clustering; state-aware but can still over/under-merge — a post-extract re-cluster on
-  (state, agency, date) would be more precise.
+- Headline-only clustering; state-aware but can still over/under-merge (a live run showed one Broward
+  deputy-shooting cluster split across a few rows) — a post-extract re-cluster on (state, agency,
+  date) would be more precise. Operator dedupes at weekly review for now.
 - `records_likely` is inferred from reporting, not agency BWC-policy data — some agencies don't wear
   cameras. `filing_window` uses `incident_date` when present, else a 0.7 default.
 - No auto-filing (by design). If MuckRock exposes a request-create API for the account, step 6 could
