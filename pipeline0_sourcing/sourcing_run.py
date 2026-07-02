@@ -46,6 +46,20 @@ def _save_seen(path: Optional[Path], seen: set) -> None:
         path.write_text(json.dumps({"seen": sorted(seen)}, indent=2))
 
 
+def _append_run_history(out_dir: Path, record: Dict) -> None:
+    """Append one line per run to run_history.jsonl.
+
+    This is the audit trail the WS2 health check reads: it proves the daily job
+    actually ran (real, not --mock) across >= 2 runs and that the de-dupe store
+    (`seen`) is accumulating. Best-effort — never fail a run over logging.
+    """
+    try:
+        with (out_dir / "run_history.jsonl").open("a") as f:
+            f.write(json.dumps(record) + "\n")
+    except OSError as e:  # noqa: BLE001
+        print(f"[p0] warning: could not append run_history.jsonl: {e}")
+
+
 def render_markdown(drafts: List[Dict], stats: Dict) -> str:
     lines = ["# FlameOn — FOIA sourcing queue", ""]
     lines.append(f"_{stats['n_file']} FILE · {stats['n_watch']} WATCH · "
