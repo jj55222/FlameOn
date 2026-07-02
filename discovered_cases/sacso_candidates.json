@@ -1,6 +1,180 @@
 [
   {
     "source": "sacso",
+    "case_id": "sacso_22_319884",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-319884 UOF — Oak Ave",
+    "case_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AEayKwJduCucZuab_JQN2Ms?rlkey=0d9deit876o3nhf7k8nyayl97&st=hyphdb8i&dl=0",
+    "incident_date": "10/25/2022",
+    "incident_type": "UOF",
+    "location": "Oak Ave",
+    "n_video": 7,
+    "n_audio": 3,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-319884",
+      "incident_type": "UOF",
+      "location": "Oak Ave"
+    },
+    "titles": [
+      "22-319884 Use of Force Report.pdf",
+      "CSI Photos 23-319884.pdf",
+      "Report 22-319884.pdf",
+      "911 22-319884.mp3",
+      "911 22-319884A.mp3",
+      "BWC-1.mp4",
+      "BWC-1b.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "BWC-4.mp4",
+      "ICC-1a.mp4",
+      "ICC-1b.mp4",
+      "Radio Traffic 22-319884.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "911 22-319884.mp3",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AO2WnJ9YEKC30LY2BQaBy_Y/Media/911%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AO2WnJ9YEKC30LY2BQaBy_Y/Media/911%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 7.3
+      },
+      {
+        "name": "911 22-319884A.mp3",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKocfz6KdXHA3tCxeIp6xgQ/Media/911%2022-319884A.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKocfz6KdXHA3tCxeIp6xgQ/Media/911%2022-319884A.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.8
+      },
+      {
+        "name": "BWC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ABPJq6s_fZT7DgLr-FCh_YM/Media/BWC-1.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ABPJq6s_fZT7DgLr-FCh_YM/Media/BWC-1.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 996.2
+      },
+      {
+        "name": "BWC-1b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ADaXJOaQbLYAa0jWgoCXs5g/Media/BWC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ADaXJOaQbLYAa0jWgoCXs5g/Media/BWC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 4118.4
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AE5-dkhGq-Mjv2LL2E-x0YA/Media/BWC-2.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AE5-dkhGq-Mjv2LL2E-x0YA/Media/BWC-2.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 972.0
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AEdAai1CUUrLI8IGNVSGEZk/Media/BWC-3.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AEdAai1CUUrLI8IGNVSGEZk/Media/BWC-3.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1796.1
+      },
+      {
+        "name": "BWC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AL6bb4mP-FdFgmeDuhGj6Ik/Media/BWC-4.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AL6bb4mP-FdFgmeDuhGj6Ik/Media/BWC-4.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1046.8
+      },
+      {
+        "name": "ICC-1a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKGxJvMRUAy7Nh_tFx2wMYA/Media/ICC-1a.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKGxJvMRUAy7Nh_tFx2wMYA/Media/ICC-1a.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 573.3
+      },
+      {
+        "name": "ICC-1b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AHHsPiPoP5IrURJ5dT9l0RM/Media/ICC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AHHsPiPoP5IrURJ5dT9l0RM/Media/ICC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 574.0
+      },
+      {
+        "name": "Radio Traffic 22-319884.mp3",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AN7JLW6ytwcKdQeoM-3e1Zw/Media/Radio%20Traffic%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AN7JLW6ytwcKdQeoM-3e1Zw/Media/Radio%20Traffic%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 0.3
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "22-319884 Use of Force Report.pdf",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AO2DIbmwPGmrZLc2IA-3Lgc/Documents/22-319884%20Use%20of%20Force%20Report.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AO2DIbmwPGmrZLc2IA-3Lgc/Documents/22-319884%20Use%20of%20Force%20Report.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.3
+      },
+      {
+        "name": "CSI Photos 23-319884.pdf",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ANXK_tKF0VxUVMxL9B2cCDE/Documents/CSI%20Photos%2023-319884.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ANXK_tKF0VxUVMxL9B2cCDE/Documents/CSI%20Photos%2023-319884.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 51.8
+      },
+      {
+        "name": "Report 22-319884.pdf",
+        "url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AGs1ocHeXpDgQseg4nWpUpE/Documents/Report%2022-319884.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AGs1ocHeXpDgQseg4nWpUpE/Documents/Report%2022-319884.pdf?rlkey=0d9deit876o3nhf7k8nyayl97&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.9
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AO2WnJ9YEKC30LY2BQaBy_Y/Media/911%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKocfz6KdXHA3tCxeIp6xgQ/Media/911%2022-319884A.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ABPJq6s_fZT7DgLr-FCh_YM/Media/BWC-1.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/ADaXJOaQbLYAa0jWgoCXs5g/Media/BWC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AE5-dkhGq-Mjv2LL2E-x0YA/Media/BWC-2.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AEdAai1CUUrLI8IGNVSGEZk/Media/BWC-3.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AL6bb4mP-FdFgmeDuhGj6Ik/Media/BWC-4.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AKGxJvMRUAy7Nh_tFx2wMYA/Media/ICC-1a.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AHHsPiPoP5IrURJ5dT9l0RM/Media/ICC-1b.mp4?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1",
+      "https://www.dropbox.com/scl/fo/huex7jcdypcps441u30xw/AN7JLW6ytwcKdQeoM-3e1Zw/Media/Radio%20Traffic%2022-319884.mp3?rlkey=0d9deit876o3nhf7k8nyayl97&dl=1"
+    ],
+    "keyword_score": 7,
+    "artifact_bonus": 16,
+    "score": 23,
+    "hits": [
+      "+4 use of force",
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_23_206045",
     "agency": "Sacramento County Sheriff's Office",
     "title": "23-206045 UOF — Fruitridge Rd",
@@ -2196,6 +2370,411 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_22_324374",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-324374 UOF — Watt Ave.",
+    "case_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+    "incident_date": "10/30/2022",
+    "incident_type": "UOF",
+    "location": "Watt Ave.",
+    "n_video": 8,
+    "n_audio": 1,
+    "n_docs": 4,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-324374",
+      "incident_type": "UOF",
+      "location": "Watt Ave."
+    },
+    "titles": [
+      "22-324374 Blue Team.pdf",
+      "22-324374 Report.pdf",
+      "CSI Photos Robinson-2.pdf",
+      "CSI Photos-1.pdf",
+      "BWC-1.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "BWC-4.mp4",
+      "ICC-1a.mp4",
+      "ICC-1b.mp4",
+      "ICC-2a.mp4",
+      "ICC-2b.mp4",
+      "Radio Traffic 22-324374.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "BWC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-1.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-1.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 548.9
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-2.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-2.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 656.7
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-3.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-3.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 646.0
+      },
+      {
+        "name": "BWC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-4.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-4.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 763.7
+      },
+      {
+        "name": "ICC-1a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 1524.0
+      },
+      {
+        "name": "ICC-1b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 1837.8
+      },
+      {
+        "name": "ICC-2a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 402.4
+      },
+      {
+        "name": "ICC-2b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 399.9
+      },
+      {
+        "name": "Radio Traffic 22-324374.mp3",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/Radio%20Traffic%2022-324374.mp3?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/Radio%20Traffic%2022-324374.mp3?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 4.3
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "22-324374 Blue Team.pdf",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/22-324374%20Blue%20Team.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/22-324374%20Blue%20Team.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.3
+      },
+      {
+        "name": "22-324374 Report.pdf",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/22-324374%20Report.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/22-324374%20Report.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.5
+      },
+      {
+        "name": "CSI Photos Robinson-2.pdf",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/CSI%20Photos%20Robinson-2.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/CSI%20Photos%20Robinson-2.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 30.3
+      },
+      {
+        "name": "CSI Photos-1.pdf",
+        "url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/CSI%20Photos-1.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Documents/CSI%20Photos-1.pdf?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 154.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-1.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-2.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-3.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/BWC-4.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-1b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2a.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/ICC-2b.mp4?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1",
+      "https://www.dropbox.com/scl/fo/s3k3bbew6bg8t6dlz8ss5/h/Media/Radio%20Traffic%2022-324374.mp3?rlkey=4nb0hxfeqnz3z201v4oqck95y&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 16,
+    "score": 19,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_23_020035",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "23-020035 UOF — Bolivar Avenue",
+    "case_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+    "incident_date": "1/19/2023",
+    "incident_type": "UOF",
+    "location": "Bolivar Avenue",
+    "n_video": 14,
+    "n_audio": 2,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "23-020035",
+      "incident_type": "UOF",
+      "location": "Bolivar Avenue"
+    },
+    "titles": [
+      "BlueTeam 23-20035.pdf",
+      "CSI Photos 23-20035.pdf",
+      "Report 23-20035.pdf",
+      "911 Audio 23-20035.mp3",
+      "BWC-1a.mp4",
+      "BWC-1b.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "BWC-4.mp4",
+      "BWC-5.mp4",
+      "BWC-6.mp4",
+      "BWC-7.mp4",
+      "ICC-1.mp4",
+      "ICC-2a.mp4",
+      "ICC-2b.mp4",
+      "ICC-3.mp4",
+      "IMG_7330.mp4",
+      "IMG_7331.mp4",
+      "Radio Traffic 23-20035.mp3"
+    ],
+    "media_files": [
+      {
+        "name": "911 Audio 23-20035.mp3",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/911%20Audio%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/911%20Audio%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.7
+      },
+      {
+        "name": "BWC-1a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 196.1
+      },
+      {
+        "name": "BWC-1b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 958.4
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-2.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-2.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 116.1
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1434.9
+      },
+      {
+        "name": "BWC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-4.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-4.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 137.3
+      },
+      {
+        "name": "BWC-5.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-5.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-5.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1022.7
+      },
+      {
+        "name": "BWC-6.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-6.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-6.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 622.0
+      },
+      {
+        "name": "BWC-7.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-7.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-7.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 285.1
+      },
+      {
+        "name": "ICC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-1.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-1.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 586.2
+      },
+      {
+        "name": "ICC-2a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 350.3
+      },
+      {
+        "name": "ICC-2b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 349.4
+      },
+      {
+        "name": "ICC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 435.6
+      },
+      {
+        "name": "IMG_7330.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7330.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7330.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 81.5
+      },
+      {
+        "name": "IMG_7331.mp4",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7331.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7331.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 43.7
+      },
+      {
+        "name": "Radio Traffic 23-20035.mp3",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/Radio%20Traffic%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/Radio%20Traffic%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 0.8
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "BlueTeam 23-20035.pdf",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/BlueTeam%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/BlueTeam%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.6
+      },
+      {
+        "name": "CSI Photos 23-20035.pdf",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/CSI%20Photos%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/CSI%20Photos%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 41.9
+      },
+      {
+        "name": "Report 23-20035.pdf",
+        "url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/Report%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Documents/Report%2023-20035.pdf?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/911%20Audio%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-1b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-2.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-4.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-5.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-6.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/BWC-7.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-1.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2a.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-2b.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/ICC-3.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7330.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/IMG_7331.mp4?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1",
+      "https://www.dropbox.com/scl/fo/56aylppieazgv5nvqdcny/h/Media/Radio%20Traffic%2023-20035.mp3?rlkey=3cv4643o6t1e7rplkhwstli4y&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 16,
+    "score": 19,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_23_117201",
     "agency": "Sacramento County Sheriff's Office",
     "title": "23-117201 UOF — 1400 Howe Ave",
@@ -2599,6 +3178,229 @@
       "https://www.dropbox.com/scl/fo/3d0n27xxn3nxofnbqbei8/AILspY9ZSjItomHXoEyRC_g/Media/Video/ICC-5a.mp4?rlkey=iw67m23hxfvovp98yd6i3h0db&dl=1",
       "https://www.dropbox.com/scl/fo/3d0n27xxn3nxofnbqbei8/ALXZOsxzwXIvjQR7puC-3pU/Media/Video/ICC-5b.mp4?rlkey=iw67m23hxfvovp98yd6i3h0db&dl=1",
       "https://www.dropbox.com/scl/fo/3d0n27xxn3nxofnbqbei8/AHEz1KL4b_MiysWaCEbCoHA/Media/Video/ICC-6.mp4?rlkey=iw67m23hxfvovp98yd6i3h0db&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 16,
+    "score": 19,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_23_15039",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "23-15039 UOF — Sunrise East Way",
+    "case_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AP12IWTisSuJ_Sx23HLstr4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&st=vbkvxou2&dl=0",
+    "incident_date": "1/14/2023",
+    "incident_type": "UOF",
+    "location": "Sunrise East Way",
+    "n_video": 13,
+    "n_audio": 2,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "23-15039",
+      "incident_type": "UOF",
+      "location": "Sunrise East Way"
+    },
+    "titles": [
+      "23-15039 Report.pdf",
+      "2023PSB-398.pdf",
+      "911 Audio 23-15039.mp3",
+      "2023-15036 Air.mp4",
+      "BWC 1.mp4",
+      "BWC 2a.mp4",
+      "BWC 2b.mp4",
+      "BWC 3.mp4",
+      "BWC 4.mp4",
+      "BWC 5.mp4",
+      "BWC 6.mp4",
+      "BWC 7a.mp4",
+      "BWC 7b.mp4",
+      "BWC 8a.mp4",
+      "BWC 8b.mp4",
+      "BWC 8c.mp4",
+      "CSI PHOTOS.pdf",
+      "Radio_Traffic 23-15039.m4a"
+    ],
+    "media_files": [
+      {
+        "name": "911 Audio 23-15039.mp3",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANfrO8zF4jD9SM0DBSR1I8E/Media/911%20Audio%2023-15039.mp3?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANfrO8zF4jD9SM0DBSR1I8E/Media/911%20Audio%2023-15039.mp3?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.6
+      },
+      {
+        "name": "2023-15036 Air.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AK0Su2fsFRHkuydIXZiBiQM/Media/2023-15036%20Air.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AK0Su2fsFRHkuydIXZiBiQM/Media/2023-15036%20Air.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 109.4
+      },
+      {
+        "name": "BWC 1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMyiEF-NL9fcg9H8PwRzV9c/Media/BWC%201.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMyiEF-NL9fcg9H8PwRzV9c/Media/BWC%201.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 3976.9
+      },
+      {
+        "name": "BWC 2a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AO7GzmK2atXLhkP79VpFN6w/Media/BWC%202a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AO7GzmK2atXLhkP79VpFN6w/Media/BWC%202a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 563.0
+      },
+      {
+        "name": "BWC 2b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ABsI4T-GduTEp0_3bSGWz3Y/Media/BWC%202b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ABsI4T-GduTEp0_3bSGWz3Y/Media/BWC%202b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1768.0
+      },
+      {
+        "name": "BWC 3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AG3uHmW8WWQXMCsALSWEkJo/Media/BWC%203.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AG3uHmW8WWQXMCsALSWEkJo/Media/BWC%203.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 44.5
+      },
+      {
+        "name": "BWC 4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMSwvla5m2pGR3xm16dnF5M/Media/BWC%204.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMSwvla5m2pGR3xm16dnF5M/Media/BWC%204.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 626.1
+      },
+      {
+        "name": "BWC 5.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AKkUX0YgZ7IPRohfaI5PNYk/Media/BWC%205.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AKkUX0YgZ7IPRohfaI5PNYk/Media/BWC%205.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 492.4
+      },
+      {
+        "name": "BWC 6.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANTgKJHkgIL1evO7LUIZx1Y/Media/BWC%206.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANTgKJHkgIL1evO7LUIZx1Y/Media/BWC%206.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 160.8
+      },
+      {
+        "name": "BWC 7a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ALMurwYuquDVIrqhlhOAbx0/Media/BWC%207a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ALMurwYuquDVIrqhlhOAbx0/Media/BWC%207a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1163.9
+      },
+      {
+        "name": "BWC 7b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMO2VJx9eiBiKcf0K7Whhfs/Media/BWC%207b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMO2VJx9eiBiKcf0K7Whhfs/Media/BWC%207b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 575.1
+      },
+      {
+        "name": "BWC 8a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AIdUpQHkqFfGZ2GQwskbt8U/Media/BWC%208a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AIdUpQHkqFfGZ2GQwskbt8U/Media/BWC%208a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 996.4
+      },
+      {
+        "name": "BWC 8b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AF2UEJfXxXEAJNGGrwXNXzA/Media/BWC%208b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AF2UEJfXxXEAJNGGrwXNXzA/Media/BWC%208b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 139.9
+      },
+      {
+        "name": "BWC 8c.mp4",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/APuhGY_IkLg9k38jAvcQPuU/Media/BWC%208c.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/APuhGY_IkLg9k38jAvcQPuU/Media/BWC%208c.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 282.9
+      },
+      {
+        "name": "Radio_Traffic 23-15039.m4a",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AOsE8jCMD53trUlrLpcLXJc/Media/Radio_Traffic%2023-15039.m4a?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AOsE8jCMD53trUlrLpcLXJc/Media/Radio_Traffic%2023-15039.m4a?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".m4a",
+        "evidence_type": "radio",
+        "size_mb": 1.1
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "23-15039 Report.pdf",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ADZGgovVKOUr3-gsOmk5Bdo/Documents/23-15039%20Report.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ADZGgovVKOUr3-gsOmk5Bdo/Documents/23-15039%20Report.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 1.1
+      },
+      {
+        "name": "2023PSB-398.pdf",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMNqQ25RM6HzQ2GVbpE5Mo0/Documents/2023PSB-398.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMNqQ25RM6HzQ2GVbpE5Mo0/Documents/2023PSB-398.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 170.7
+      },
+      {
+        "name": "CSI PHOTOS.pdf",
+        "url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ABldBtT1JZ9c86LqxKHe7os/Media/CSI%20PHOTOS.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ABldBtT1JZ9c86LqxKHe7os/Media/CSI%20PHOTOS.pdf?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 34.9
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANfrO8zF4jD9SM0DBSR1I8E/Media/911%20Audio%2023-15039.mp3?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AK0Su2fsFRHkuydIXZiBiQM/Media/2023-15036%20Air.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMyiEF-NL9fcg9H8PwRzV9c/Media/BWC%201.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AO7GzmK2atXLhkP79VpFN6w/Media/BWC%202a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ABsI4T-GduTEp0_3bSGWz3Y/Media/BWC%202b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AG3uHmW8WWQXMCsALSWEkJo/Media/BWC%203.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMSwvla5m2pGR3xm16dnF5M/Media/BWC%204.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AKkUX0YgZ7IPRohfaI5PNYk/Media/BWC%205.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ANTgKJHkgIL1evO7LUIZx1Y/Media/BWC%206.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/ALMurwYuquDVIrqhlhOAbx0/Media/BWC%207a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AMO2VJx9eiBiKcf0K7Whhfs/Media/BWC%207b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AIdUpQHkqFfGZ2GQwskbt8U/Media/BWC%208a.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AF2UEJfXxXEAJNGGrwXNXzA/Media/BWC%208b.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/APuhGY_IkLg9k38jAvcQPuU/Media/BWC%208c.mp4?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1",
+      "https://www.dropbox.com/scl/fo/vhwhcfwj13pp9xfqg67vc/AOsE8jCMD53trUlrLpcLXJc/Media/Radio_Traffic%2023-15039.m4a?rlkey=dmu2ixcuhcg4bavz6jcmru92e&dl=1"
     ],
     "keyword_score": 3,
     "artifact_bonus": 16,
@@ -3292,6 +4094,138 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_23_7827",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "23-7827 UOF — Bell St",
+    "case_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AODTv8mOUy69FYmSpiTDh2U?rlkey=0990shkpf88l2q58cugyl050u&st=ujivy7ia&dl=0",
+    "incident_date": "1/8/2023",
+    "incident_type": "UOF",
+    "location": "Bell St",
+    "n_video": 1,
+    "n_audio": 4,
+    "n_docs": 4,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "23-7827",
+      "incident_type": "UOF",
+      "location": "Bell St"
+    },
+    "titles": [
+      "CAD_23-7827.pdf",
+      "CAD_23-7999.pdf",
+      "IA Report.pdf",
+      "911_23-7827 a.wav",
+      "911_23-7827 b.wav",
+      "911_23-7999 a.wav",
+      "911_23-7999 b.wav",
+      "Officer 1 BWC.mp4",
+      "PDF PHOTOS.pdf"
+    ],
+    "media_files": [
+      {
+        "name": "911_23-7827 a.wav",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AAP5WfSGCu4qy6FeOV3v_bo/Media/911_23-7827%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AAP5WfSGCu4qy6FeOV3v_bo/Media/911_23-7827%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".wav",
+        "evidence_type": "911_audio",
+        "size_mb": 14.0
+      },
+      {
+        "name": "911_23-7827 b.wav",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/ACwaqvqWm_pIedsv0I8WThk/Media/911_23-7827%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/ACwaqvqWm_pIedsv0I8WThk/Media/911_23-7827%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".wav",
+        "evidence_type": "911_audio",
+        "size_mb": 1.0
+      },
+      {
+        "name": "911_23-7999 a.wav",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AELSXweTGXWmsF98pYJPPwQ/Media/911_23-7999%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AELSXweTGXWmsF98pYJPPwQ/Media/911_23-7999%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".wav",
+        "evidence_type": "911_audio",
+        "size_mb": 2.7
+      },
+      {
+        "name": "911_23-7999 b.wav",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AI5Qc1Vl16ckL1jcsKxPNn8/Media/911_23-7999%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AI5Qc1Vl16ckL1jcsKxPNn8/Media/911_23-7999%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".wav",
+        "evidence_type": "911_audio",
+        "size_mb": 1.7
+      },
+      {
+        "name": "Officer 1 BWC.mp4",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/APM-wSMGKVD7SEo1TkNNKQQ/Media/Officer%201%20BWC.mp4?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/APM-wSMGKVD7SEo1TkNNKQQ/Media/Officer%201%20BWC.mp4?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 800.1
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "CAD_23-7827.pdf",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/APLYAjZWNjQh51D1vtZVXWI/Documents/CAD_23-7827.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/APLYAjZWNjQh51D1vtZVXWI/Documents/CAD_23-7827.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 1.3
+      },
+      {
+        "name": "CAD_23-7999.pdf",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AF2v_4YqYIK8SH3SB88WGEA/Documents/CAD_23-7999.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AF2v_4YqYIK8SH3SB88WGEA/Documents/CAD_23-7999.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 1.0
+      },
+      {
+        "name": "IA Report.pdf",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AIbd5422HkPYa_8Ew4-MBss/Documents/IA%20Report.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AIbd5422HkPYa_8Ew4-MBss/Documents/IA%20Report.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 14.0
+      },
+      {
+        "name": "PDF PHOTOS.pdf",
+        "url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/ADd3rBvoD9-La269q46033c/Photographs/PDF%20PHOTOS.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/ADd3rBvoD9-La269q46033c/Photographs/PDF%20PHOTOS.pdf?rlkey=0990shkpf88l2q58cugyl050u&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 142.8
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AAP5WfSGCu4qy6FeOV3v_bo/Media/911_23-7827%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+      "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/ACwaqvqWm_pIedsv0I8WThk/Media/911_23-7827%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+      "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AELSXweTGXWmsF98pYJPPwQ/Media/911_23-7999%20a.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+      "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/AI5Qc1Vl16ckL1jcsKxPNn8/Media/911_23-7999%20b.wav?rlkey=0990shkpf88l2q58cugyl050u&dl=1",
+      "https://www.dropbox.com/scl/fo/t1cky5u2vcs3wavcyctkn/APM-wSMGKVD7SEo1TkNNKQQ/Media/Officer%201%20BWC.mp4?rlkey=0990shkpf88l2q58cugyl050u&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 16,
+    "score": 19,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_24_383462",
     "agency": "Sacramento County Sheriff's Office",
     "title": "24-383462 UOF — Bruceville Rd",
@@ -3467,6 +4401,221 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_22_385628",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-385628 UOF — Sutter Ave",
+    "case_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+    "incident_date": "12/30/2022",
+    "incident_type": "UOF",
+    "location": "Sutter Ave",
+    "n_video": 11,
+    "n_audio": 4,
+    "n_docs": 2,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-385628",
+      "incident_type": "UOF",
+      "location": "Sutter Ave"
+    },
+    "titles": [
+      "22-385628 Photos.pdf",
+      "22-385628.pdf",
+      "911 22-385628a (Redacted).mp3",
+      "911 22-385628b (Redacted).mp3",
+      "911 23-385628 (Redacted).mp3",
+      "BWC-1.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "BWC-4.mp4",
+      "BWC-5.mp4",
+      "ICC-1.mp4",
+      "ICC-2.mp4",
+      "ICC-3.mp4",
+      "ICC-4a.mp4",
+      "ICC-4b.mp4",
+      "ICC-5.mp4",
+      "Radio 22-385628 (Redacted).mp3"
+    ],
+    "media_files": [
+      {
+        "name": "911 22-385628a (Redacted).mp3",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628a%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628a%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.2
+      },
+      {
+        "name": "911 22-385628b (Redacted).mp3",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628b%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628b%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.2
+      },
+      {
+        "name": "911 23-385628 (Redacted).mp3",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2023-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2023-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 1.6
+      },
+      {
+        "name": "BWC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 735.2
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1647.1
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 988.4
+      },
+      {
+        "name": "BWC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-4.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-4.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1351.0
+      },
+      {
+        "name": "BWC-5.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 738.7
+      },
+      {
+        "name": "ICC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 671.3
+      },
+      {
+        "name": "ICC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 748.8
+      },
+      {
+        "name": "ICC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 668.2
+      },
+      {
+        "name": "ICC-4a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4a.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4a.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 158.4
+      },
+      {
+        "name": "ICC-4b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4b.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4b.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 202.9
+      },
+      {
+        "name": "ICC-5.mp4",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 678.7
+      },
+      {
+        "name": "Radio 22-385628 (Redacted).mp3",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/Radio%2022-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/Radio%2022-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 1.7
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "22-385628 Photos.pdf",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Documents/22-385628%20Photos.pdf?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Documents/22-385628%20Photos.pdf?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 14.8
+      },
+      {
+        "name": "22-385628.pdf",
+        "url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Documents/22-385628.pdf?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Documents/22-385628.pdf?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 4.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628a%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2022-385628b%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/911%2023-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-4.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/BWC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-1.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-2.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-3.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4a.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-4b.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/ICC-5.mp4?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1",
+      "https://www.dropbox.com/scl/fo/7dac0mm1ykgorqmvqk8jj/h/Media/Radio%2022-385628%20%28Redacted%29.mp3?rlkey=zdc4lew2mjflkcjki3sgqms7i&dl=1"
+    ],
+    "keyword_score": 2,
+    "artifact_bonus": 16,
+    "score": 18,
+    "hits": [
+      "+3 bwc",
+      "-1 redacted"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_23_038461",
     "agency": "Sacramento County Sheriff's Office",
     "title": "23-038461 UOF — I80WB/Madison Ave",
@@ -3566,6 +4715,171 @@
     "hits": [
       "+4 use of force",
       "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_22_376427",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-376427 UOF — McKinley Ave",
+    "case_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AMTbAwLMF2Ct25O4YDaqhTI?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&st=cvapk1g3&dl=0",
+    "incident_date": "12/21/2022",
+    "incident_type": "UOF",
+    "location": "McKinley Ave",
+    "n_video": 9,
+    "n_audio": 0,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "C",
+    "downloadable": null,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-376427",
+      "incident_type": "UOF",
+      "location": "McKinley Ave"
+    },
+    "titles": [
+      "BWC 1_Redacted.mp4",
+      "BWC 2_Redacted_1.mp4",
+      "BWC 3_Redacted.mp4",
+      "BWC 4_Redacted.mp4",
+      "BWC 5_Redacted.mp4",
+      "BWC 6_Redacted.mp4",
+      "BWC 7_Redacted.mp4",
+      "BWC 8_Redacted.mp4",
+      "BWC 9_Redacted.mp4",
+      "22-376427 Report REDACTED.pdf",
+      "22-376427 Use of Force Report REDACTED.pdf",
+      "CAD 22-376427 REDACTED.pdf"
+    ],
+    "media_files": [
+      {
+        "name": "BWC 1_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AE1ze0Z7nrfY5bBR6OAXu24/BWC/BWC%201_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AE1ze0Z7nrfY5bBR6OAXu24/BWC/BWC%201_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 2254.9
+      },
+      {
+        "name": "BWC 2_Redacted_1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJ7dwpFjQ2ElNtM0ZZ3ybFY/BWC/BWC%202_Redacted_1.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJ7dwpFjQ2ElNtM0ZZ3ybFY/BWC/BWC%202_Redacted_1.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 876.4
+      },
+      {
+        "name": "BWC 3_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AFf3SsPMBF1wB8StU1Pfg-E/BWC/BWC%203_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AFf3SsPMBF1wB8StU1Pfg-E/BWC/BWC%203_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1445.3
+      },
+      {
+        "name": "BWC 4_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/ADvmS893OISBWJQDTVXR1ew/BWC/BWC%204_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/ADvmS893OISBWJQDTVXR1ew/BWC/BWC%204_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 684.1
+      },
+      {
+        "name": "BWC 5_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AKzk3HYz1FTxulHjCsQYdmI/BWC/BWC%205_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AKzk3HYz1FTxulHjCsQYdmI/BWC/BWC%205_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 814.6
+      },
+      {
+        "name": "BWC 6_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJhU6cjGPLpXhK1_CTP1k2A/BWC/BWC%206_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJhU6cjGPLpXhK1_CTP1k2A/BWC/BWC%206_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1029.7
+      },
+      {
+        "name": "BWC 7_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AH9C8DRbOjEWkDRc4Ev9Rbs/BWC/BWC%207_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AH9C8DRbOjEWkDRc4Ev9Rbs/BWC/BWC%207_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 2444.8
+      },
+      {
+        "name": "BWC 8_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AGN4uuBRyTwYjvzs3zPyzpU/BWC/BWC%208_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AGN4uuBRyTwYjvzs3zPyzpU/BWC/BWC%208_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 2539.8
+      },
+      {
+        "name": "BWC 9_Redacted.mp4",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AMk-0eWAhaX6Kbb99kljQ1A/BWC/BWC%209_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AMk-0eWAhaX6Kbb99kljQ1A/BWC/BWC%209_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 3452.4
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "22-376427 Report REDACTED.pdf",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AAU9e4V4mzc_AQQ9xWN731U/Documents/22-376427%20Report%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AAU9e4V4mzc_AQQ9xWN731U/Documents/22-376427%20Report%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 2.5
+      },
+      {
+        "name": "22-376427 Use of Force Report REDACTED.pdf",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AFtccfSQiQcTzfQ4oNkCxqA/Documents/22-376427%20Use%20of%20Force%20Report%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AFtccfSQiQcTzfQ4oNkCxqA/Documents/22-376427%20Use%20of%20Force%20Report%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.5
+      },
+      {
+        "name": "CAD 22-376427 REDACTED.pdf",
+        "url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AGO0MBK4SaGXz1nnqR1_hOA/Documents/CAD%2022-376427%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AGO0MBK4SaGXz1nnqR1_hOA/Documents/CAD%2022-376427%20REDACTED.pdf?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AE1ze0Z7nrfY5bBR6OAXu24/BWC/BWC%201_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJ7dwpFjQ2ElNtM0ZZ3ybFY/BWC/BWC%202_Redacted_1.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AFf3SsPMBF1wB8StU1Pfg-E/BWC/BWC%203_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/ADvmS893OISBWJQDTVXR1ew/BWC/BWC%204_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AKzk3HYz1FTxulHjCsQYdmI/BWC/BWC%205_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AJhU6cjGPLpXhK1_CTP1k2A/BWC/BWC%206_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AH9C8DRbOjEWkDRc4Ev9Rbs/BWC/BWC%207_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AGN4uuBRyTwYjvzs3zPyzpU/BWC/BWC%208_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1",
+      "https://www.dropbox.com/scl/fo/p8k9xdmk0ghzw5jyepuko/AMk-0eWAhaX6Kbb99kljQ1A/BWC/BWC%209_Redacted.mp4?rlkey=zuxgo2jsu1v5qxltbjw3cyf1b&dl=1"
+    ],
+    "keyword_score": 6,
+    "artifact_bonus": 11,
+    "score": 17,
+    "hits": [
+      "+4 use of force",
+      "+3 bwc",
+      "-1 redacted"
     ],
     "_checked": true
   },
@@ -3714,6 +5028,392 @@
       "https://www.dropbox.com/scl/fo/bm2vchww6y16xjuxx5r0p/AM69B_8KRB-HDKnzwD18rzU/BWC-3c.mp4?rlkey=kq2mydisspxpttv5vwvl37e1a&dl=1",
       "https://www.dropbox.com/scl/fo/bm2vchww6y16xjuxx5r0p/AF5sbGNG2qU6RKyYIJW2sLE/BWC-4.mp4?rlkey=kq2mydisspxpttv5vwvl37e1a&dl=1",
       "https://www.dropbox.com/scl/fo/bm2vchww6y16xjuxx5r0p/APcVNWxfX8vH9i7abczryz8/BWC-5.mp4?rlkey=kq2mydisspxpttv5vwvl37e1a&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 11,
+    "score": 14,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_22_322740",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-322740 UOF — 10695 Folsom Blvd.",
+    "case_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+    "incident_date": "10/28/2022",
+    "incident_type": "UOF",
+    "location": "10695 Folsom Blvd.",
+    "n_video": 19,
+    "n_audio": 0,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "C",
+    "downloadable": null,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-322740",
+      "incident_type": "UOF",
+      "location": "10695 Folsom Blvd."
+    },
+    "titles": [
+      "22-322740 Blue Team.pdf",
+      "CSI Photos SD1004623-1.pdf",
+      "Report 22-322740.pdf",
+      "BWC-1.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "BWC-4.mp4",
+      "BWC-5.mp4",
+      "BWC-6.mp4",
+      "BWC-7.mp4",
+      "BWC-8.mp4",
+      "BWC-9.mp4",
+      "HV.mp4",
+      "ICC-1.mp4",
+      "ICC-2.mp4",
+      "ICC-4.mp4",
+      "ICC-5a.mp4",
+      "ICC-5b.mp4",
+      "ICC-5c.mp4",
+      "ICC-6.mp4",
+      "ICC-7.mp4",
+      "ICC-8.mp4"
+    ],
+    "media_files": [
+      {
+        "name": "BWC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 772.4
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 767.4
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-3.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-3.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 2243.3
+      },
+      {
+        "name": "BWC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 473.9
+      },
+      {
+        "name": "BWC-5.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-5.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-5.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 681.7
+      },
+      {
+        "name": "BWC-6.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 472.5
+      },
+      {
+        "name": "BWC-7.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 938.5
+      },
+      {
+        "name": "BWC-8.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 594.7
+      },
+      {
+        "name": "BWC-9.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-9.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-9.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 367.9
+      },
+      {
+        "name": "HV.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/HV.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/HV.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 2086.0
+      },
+      {
+        "name": "ICC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 210.3
+      },
+      {
+        "name": "ICC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 202.1
+      },
+      {
+        "name": "ICC-4.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 349.8
+      },
+      {
+        "name": "ICC-5a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5a.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5a.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 514.2
+      },
+      {
+        "name": "ICC-5b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5b.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5b.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 544.8
+      },
+      {
+        "name": "ICC-5c.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5c.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5c.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 270.1
+      },
+      {
+        "name": "ICC-6.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 303.2
+      },
+      {
+        "name": "ICC-7.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 265.3
+      },
+      {
+        "name": "ICC-8.mp4",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 198.7
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "22-322740 Blue Team.pdf",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/22-322740%20Blue%20Team.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/22-322740%20Blue%20Team.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.3
+      },
+      {
+        "name": "CSI Photos SD1004623-1.pdf",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/CSI%20Photos%20SD1004623-1.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/CSI%20Photos%20SD1004623-1.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 42.1
+      },
+      {
+        "name": "Report 22-322740.pdf",
+        "url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/Report%2022-322740.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Documents/Report%2022-322740.pdf?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.3
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-3.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-5.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/BWC-9.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/HV.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-1.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-2.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-4.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5a.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5b.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-5c.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-6.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-7.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1",
+      "https://www.dropbox.com/scl/fo/icve6lq34yah4khgk3ne1/h/Media/ICC-8.mp4?rlkey=lwha7sbkutdckt4d1upw8hu25&dl=1"
+    ],
+    "keyword_score": 3,
+    "artifact_bonus": 11,
+    "score": 14,
+    "hits": [
+      "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_22_337649",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "22-337649 UOF — 4315 Don Julio Blvd",
+    "case_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+    "incident_date": "11/11/2022",
+    "incident_type": "UOF",
+    "location": "4315 Don Julio Blvd",
+    "n_video": 5,
+    "n_audio": 0,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "tier": "C",
+    "downloadable": null,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "22-337649",
+      "incident_type": "UOF",
+      "location": "4315 Don Julio Blvd"
+    },
+    "titles": [
+      "BlueTeam Report 22-337649.pdf",
+      "CSI Photos 22-337649.pdf",
+      "Report 22-337649.pdf",
+      "BWC-1.mp4",
+      "BWC-2.mp4",
+      "BWC-3.mp4",
+      "ICC-1a.mp4",
+      "ICC-1b.mp4"
+    ],
+    "media_files": [
+      {
+        "name": "BWC-1.mp4",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-1.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-1.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 615.8
+      },
+      {
+        "name": "BWC-2.mp4",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-2.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-2.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1453.7
+      },
+      {
+        "name": "BWC-3.mp4",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-3.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-3.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "bodycam",
+        "size_mb": 1460.9
+      },
+      {
+        "name": "ICC-1a.mp4",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1a.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1a.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 174.3
+      },
+      {
+        "name": "ICC-1b.mp4",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1b.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1b.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "dashcam",
+        "size_mb": 206.9
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "BlueTeam Report 22-337649.pdf",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/BlueTeam%20Report%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/BlueTeam%20Report%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.3
+      },
+      {
+        "name": "CSI Photos 22-337649.pdf",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/CSI%20Photos%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/CSI%20Photos%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 63.0
+      },
+      {
+        "name": "Report 22-337649.pdf",
+        "url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/Report%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Documents/Report%2022-337649.pdf?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.1
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-1.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+      "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-2.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+      "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/BWC-3.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+      "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1a.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1",
+      "https://www.dropbox.com/scl/fo/xw0b153223zfcpc9mz0si/h/Media/ICC-1b.mp4?rlkey=9ozpuu6wscb0tp28su30s5cag&dl=1"
     ],
     "keyword_score": 3,
     "artifact_bonus": 11,
@@ -4874,5 +6574,13 @@
       "+3 bwc"
     ],
     "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_2022psd_0617",
+    "case_url": "https://www.dropbox.com/sh/4r5e96rlnrx48zh/AACMIL7LtYSLMGpvqNfRIH0Za?dl=0",
+    "_checked": true,
+    "_error": "no files listed",
+    "media_files": []
   }
 ]
