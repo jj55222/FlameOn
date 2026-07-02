@@ -196,7 +196,7 @@ def extract_incidents(incidents: List[Dict], mock: bool = True,
         from _env import load_env
         load_env()
         from llm_backends import build_backend
-        backend = build_backend(model or "google/gemini-3.1-flash-lite-preview")
+        backend = build_backend(model or DEFAULT_MODEL)
     out = []
     for inc in incidents:
         ext = extract_incident_mock(inc) if mock else extract_incident_llm(inc, backend)
