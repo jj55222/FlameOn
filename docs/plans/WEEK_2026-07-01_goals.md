@@ -294,6 +294,12 @@ and run full slates as an overnight queue instead of interactively.
 Dependencies: WS1 → enriches WS3's input (but WS3 can start on today's 2,769 rows). WS3 → gives WS4
 its content. WS2 independent. Parallel-safe: WS1/2/3 vs WS4 touch disjoint files.
 
+**WS5/WS6 (added mid-week):** WS5 (shorts study) is independent — dispatch anytime; its final JOIN
+step needs WS3's `ewu_shortlist.json`. WS6 (library census) **depends on WS3's classifier — dispatch
+after WS3 is green**, ideally as an overnight batch (Thu night fits). Neither blocks the EOW
+keystones; WS6's census output is the operator's sort-the-library deliverable and re-runs cheaply
+when WS1 lands new bundles.
+
 ## Risks / decisions on record
 - **Remotion is additive, not a rewrite** — ffmpeg lane stays the fallback; if Remotion slips, the
   EOW cut still ships old-skin. Check Remotion license tier before publishing revenue content.
