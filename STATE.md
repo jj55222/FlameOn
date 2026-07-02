@@ -17,12 +17,15 @@ Start from [CLAUDE.md](CLAUDE.md); this doc is the current-state layer under it.
 
 Four workstreams, run by Opus/Codex against goal scripts (done = checker exits 0), detailed in
 **[docs/plans/WEEK_2026-07-01_goals.md](docs/plans/WEEK_2026-07-01_goals.md)** (+ `goals/`):
-**WS1** final public-source sweep → aggregator (KEY EOW) — ✅ **GREEN 07-02** (registry 2,769→3,152;
-media bundles 495→878; +`lapd_civ` 370, +`sjpd_civ` 13); **WS2** P0 FOIA finder autonomous — ✅
-**GREEN 07-02** (live-validated, launchd 07:30 daily); **WS3** evidence-completeness "EWU-ready"
-shortlist (KEY EOW) — ✅ **GREEN 07-02** (67 cases in `discovered_cases/ewu_shortlist.json`; top-3
-Tier-1-verified PRODUCE; **#1 handoff → `sdpd_08_28_2023_500_iona_drive`**, basket has doc+911 only —
-**video NOT yet downloaded**); **WS4** Remotion mograph lane (KEY EOW: render the WS3 #1 case) — in
+**WS1** final public-source sweep → aggregator (KEY EOW) — ✅ **GREEN, FINAL 07-02** (registry
+2,769→**3,413**, media bundles 495→**1,077**; +`lapd_civ` 370, +`sjpd_civ` 13, +`sacso` 261 — **115
+tier-B EWU full-package**; new A/B liveness 6,978/6,978 = 100%; clean review branch
+`ws1-source-sweep` tagged `ws1-done`; NextRequest big instances = confirmed dead end, see WS7);
+**WS2** P0 FOIA finder autonomous — ✅ **GREEN 07-02** (live-validated, launchd 07:30 daily);
+**WS3** evidence-completeness "EWU-ready" shortlist (KEY EOW) — ✅ **GREEN 07-02, refreshed with
+sacso** (**115 cases** in `discovered_cases/ewu_shortlist.json`: sdpd 37 / sacso 48 / sfdpa 29 /
+muckrock 1; top-3 Tier-1-verified PRODUCE; **#1 handoff → `sdpd_08_28_2023_500_iona_drive`**
+unchanged; Tier-2 prep dispatched as a media-only session, see plan §WS4-prep); **WS4** Remotion mograph lane (KEY EOW: render the WS3 #1 case) — in
 flight; build against Morales (fully-processed basket) until Iona's Tier-2 prep (download → stamp →
 transcribe → blueprint) lands. **TTS deprioritized this week** (operator, 2026-07-01). Remotion is
 additive — the ffmpeg lane stays the fallback. ⚠️ Sessions shared one checkout: WS1/WS2/WS3 commits
