@@ -34,9 +34,23 @@ python sourcing_run.py --dry-run
 Output: `<out>/foia_queue.md` (human — review, fill `[BRACKETS]`, submit by hand), `foia_queue.json`
 (machine), `scored.json` (all incidents + components). Append `&& open <out>/foia_queue.md`.
 
-## Autonomy
-Safe to cron / `/loop`: pass `--seen <store.json>` and each run surfaces only NEW incidents (already-
-surfaced keys are skipped). The operator still submits manually — P0 drafts, it does not file.
+## Autonomy — daily launchd job (WS2, live-validated 2026-07-02)
+`--seen <store.json>` makes each run surface only NEW incidents, so P0 is safe to schedule. The
+production loop is **DAILY ingest, WEEKLY human review** (news links + BWC retention clocks decay
+fast; FOIA responses take weeks):
+- **`run_daily.sh`** — one autonomous pass (brew shellenv + venv + `sourcing_run.py --since 3
+  --tier1-only --seen .tmp/p0/seen.json --out .tmp/p0`), always exits 0, logs to `.tmp/p0/run.log`.
+  Pure Python — no Claude in the loop. Keys auto-load from `../.env` inside `extract.py`.
+- **`com.flameon.p0.plist`** — launchd agent, 07:30 daily. Install/reload with
+  `./install_launchd.sh` (idempotent; `--uninstall` to remove). launchd survives sleep/wake and
+  coalesces a missed 07:30 → next wake.
+- **Weekly review (operator, ~15 min, Fri):** `open .tmp/p0/foia_queue.md` → confirm each row's
+  agency + jurisdiction, resolve `verify_before_send` rows against RCFP, fill `[BRACKETS]`, submit
+  by hand. **P0 drafts only — it never files.**
+- **`sourcing_run.py` writes `.tmp/p0/run_history.jsonl`** (one line/run: ts, mock flag, counts,
+  `seen_total`) — the audit trail proving live daily autonomy over time.
+- **Health check:** `python ../goals/ws2_p0_health.py` (exit 0 = live+fresh queue, seen grew across
+  ≥2 live runs, launchd loaded, top-5 rows pass required-field assertions).
 
 ## Key facts / tunables
 - **Reads** `../discovered_cases/foia/state_access_profiles.json` for `jurisdiction_access` + statute

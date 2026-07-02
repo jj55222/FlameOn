@@ -9,9 +9,9 @@
 
 | # | case_id | src | tier | evidence | full pkg | comp | sev | worth | rank | verdict |
 |--:|---------|-----|:----:|----------|:-------:|-----:|----:|------:|-----:|:-------:|
-| 1 | sdpd_08_28_2023_500_iona_drive | sdpd | A | BWC4 INT5 911×29 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 |  |
+| 1 | sdpd_08_28_2023_500_iona_drive | sdpd | A | BWC4 INT5 911×29 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 | PRODUCE |
 | 2 | sdpd_12_07_2023_10500_4s_commons_drive | sdpd | A | BWC5 INT12 911×10 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 | PRODUCE |
-| 3 | sdpd_08_11_2023_3400_lebon_drive | sdpd | A | BWC6 INT4 911×9 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 |  |
+| 3 | sdpd_08_11_2023_3400_lebon_drive | sdpd | A | BWC6 INT4 911×9 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 | PRODUCE |
 | 4 | sdpd_01_17_2023_la_cresta_blvd_el_cajon | sdpd | A | BWC10 INT11 911×6 DOC2 PH0 | ✅ | 100 | 80 | 89 | 89 | PRODUCE |
 | 5 | sdpd_01_20_2023_logan_avenue | sdpd | A | BWC4 INT8 911×5 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 | PRODUCE |
 | 6 | sdpd_05_19_2024_400_47th_street | sdpd | A | BWC4 INT4 911×5 DOC1 PH0 | ✅ | 100 | 80 | 89 | 89 |  |
@@ -83,7 +83,7 @@
 - **08-28-2023 500 Iona Drive (Officer Involved Shootings)** — San Diego Police Department
 - evidence: BWC4 INT5 911×29 DOC1 PH0  ·  extra {'surveillance': 0, 'video': 0, 'audio': 40, 'other': 0}
 - severity 80 (officer-involved-shooting) · shape 85 · proximity 75 · completeness 100 · **full package**
-- basket: exists=False docs=0 911=0 verdict=None
+- basket: exists=True docs=1 911=21 verdict=PRODUCE
 - case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-28-2023%20500%20Iona%20Drive&cat=Officer%20Involved%20Shootings
 
 ### 2. sdpd_12_07_2023_10500_4s_commons_drive  ·  A-tier  ·  worth 89 ·  rank 89
@@ -97,7 +97,7 @@
 - **08-11-2023 3400 Lebon Drive (Officer Involved Shootings)** — San Diego Police Department
 - evidence: BWC6 INT4 911×9 DOC1 PH0  ·  extra {'surveillance': 0, 'video': 64, 'audio': 28, 'other': 0}
 - severity 80 (officer-involved-shooting) · shape 85 · proximity 75 · completeness 100 · **full package**
-- basket: exists=False docs=0 911=0 verdict=None
+- basket: exists=True docs=1 911=5 verdict=PRODUCE
 - case: https://www.sandiego.gov/police/data-transparency/mandated-disclosures/case?id=08-11-2023%203400%20Lebon%20Drive&cat=Officer%20Involved%20Shootings
 
 ### 4. sdpd_01_17_2023_la_cresta_blvd_el_cajon  ·  A-tier  ·  worth 89 ·  rank 89

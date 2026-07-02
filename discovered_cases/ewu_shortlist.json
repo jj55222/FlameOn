@@ -36,8 +36,8 @@
       "human_proximity": 75,
       "worth": 89,
       "rank_score": 89.0,
-      "tier1_verdict": null,
-      "tier1_worth": null
+      "tier1_verdict": "PRODUCE",
+      "tier1_worth": 100
     },
     {
       "case_id": "sdpd_12_07_2023_10500_4s_commons_drive",
@@ -102,8 +102,8 @@
       "human_proximity": 75,
       "worth": 89,
       "rank_score": 89.0,
-      "tier1_verdict": null,
-      "tier1_worth": null
+      "tier1_verdict": "PRODUCE",
+      "tier1_worth": 93
     },
     {
       "case_id": "sdpd_01_17_2023_la_cresta_blvd_el_cajon",
