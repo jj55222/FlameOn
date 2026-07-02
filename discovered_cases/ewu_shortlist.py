@@ -99,6 +99,10 @@ def classify_file(name: str, ftype: Optional[str], url: str = "") -> str:
     t = (ftype or "").lower()
     name = name or ""
     e = ext_of(name) or ext_of(url)
+    # SDPD/portal filenames use '_' and '+' (URL-encoded spaces) as token separators,
+    # but '_' is a regex word char so `\bofficer` fails on "_Officer". Normalise both
+    # to spaces so every \b anchor below behaves as intended.
+    n = re.sub(r"[_+]+", " ", name)
 
     # 1) authoritative registry types
     if t in ("bodycam", "dashcam"):
@@ -115,19 +119,19 @@ def classify_file(name: str, ftype: Optional[str], url: str = "") -> str:
         return "surveillance"
 
     # 2) ambiguous types -> reuse muckrock's regexes, then extension, then heuristics
-    if RE_BWC.search(name):
+    if RE_BWC.search(n):
         return "bwc"
-    if RE_INTERR.search(name):
+    if RE_INTERR.search(n):
         return "interrogation"
-    if RE_911.search(name):
+    if RE_911.search(n):
         return "911"
-    if RE_SB16.search(name) or RE_DOC.search(name) or e in DOC_EXTS:
+    if RE_SB16.search(n) or RE_DOC.search(n) or e in DOC_EXTS:
         return "doc"
-    if RE_PHOTO.search(name) or e in PHOTO_EXTS:
+    if RE_PHOTO.search(n) or e in PHOTO_EXTS:
         return "photos"
     # crude "video" that is really officer body-worn (OIS "_Video_Officer_...")
     if (t in ("video", "media") or e in VIDEO_EXTS):
-        if RE_OFFICER.search(name) and not RE_NOT_BWC.search(name):
+        if RE_OFFICER.search(n) and not RE_NOT_BWC.search(n):
             return "bwc"
         return "video"          # uncategorised incident video (cell-phone / civilian)
     if e in AUDIO_EXTS or t == "audio":
