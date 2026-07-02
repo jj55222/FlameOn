@@ -82,6 +82,9 @@ def main() -> int:
     ap.add_argument("--case-id", required=True)
     ap.add_argument("--basket", required=True, type=Path)
     ap.add_argument("--media-only", action="store_true", help="skip doc/PDF files (defer the big production PDF)")
+    ap.add_argument("--doc-911-only", action="store_true",
+                    help="fetch ONLY the cheap Tier-1 inputs: case doc(s) + 911/dispatch audio "
+                         "(skip the GB of bodycam/interview video). For the Tier-1 selector.")
     ap.add_argument("--max-mb", type=float, default=0.0, help="skip any single file larger than this (MB)")
     args = ap.parse_args()
 
