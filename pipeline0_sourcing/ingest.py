@@ -32,15 +32,26 @@ except ImportError:  # pragma: no cover
     requests = None
 
 # The EWU/Dr.Insanity worth model as search intent: serious crime + likely records.
+# Anchored on incidents that reliably generate FOIA-able police records (BWC, 911,
+# CAD, IA, interrogation) — not general crime news. Three bands:
+#   * officer-involved / use-of-force  — mandatory IA review + BWC-release statutes
+#     make these the most reliable FOIA targets;
+#   * in-custody / jail / pursuit death — a top EWU shape with a rich record trail
+#     (jail surveillance, BWC, ME/autopsy);
+#   * civilian homicides police respond to — the domestic / murder-suicide shapes
+#     dominate the EWU catalog (~24%) and yield the dramatic 911 call + BWC +
+#     interrogation records those cuts are built on.
 DEFAULT_TERMS = [
     "officer involved shooting",
-    "in custody death",
     "deputy involved shooting",
     "fatal police shooting",
     "police use of force investigation",
+    "police body camera footage released",
+    "in custody death",
     "custodial death jail",
-    "body camera footage released",
     "police pursuit death",
+    "domestic violence homicide",
+    "murder suicide",
 ]
 
 _UA = "FlameOn-P0-sourcing/0.1 (+https://github.com/jj55222/FlameOn)"
