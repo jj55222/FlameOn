@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.flameon.p0 — daily P0 FOIA sourcing (07:30 local).
+
+  Versioned source of truth. Install with:
+      cp pipeline0_sourcing/com.flameon.p0.plist ~/Library/LaunchAgents/
+      launchctl load ~/Library/LaunchAgents/com.flameon.p0.plist
+  (see pipeline0_sourcing/install_launchd.sh). launchd survives sleep/wake and
+  coalesces a missed 07:30 (asleep at the time) to the next wake — better than cron.
+  Paths are absolute for this machine; edit if the repo moves.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.flameon.p0</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/jmoney/FlameOn-main/pipeline0_sourcing/run_daily.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jmoney/FlameOn-main/pipeline0_sourcing</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>7</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jmoney/FlameOn-main/pipeline0_sourcing/.tmp/p0/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jmoney/FlameOn-main/pipeline0_sourcing/.tmp/p0/launchd.err.log</string>
+</dict>
+</plist>
