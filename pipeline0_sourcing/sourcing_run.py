@@ -27,7 +27,7 @@ from typing import Dict, List, Optional
 
 from ingest import DEFAULT_TERMS, fetch_signals
 from cluster import cluster_signals
-from extract import extract_incidents
+from extract import extract_incidents, DEFAULT_MODEL
 from score import score_incidents, load_state_profiles
 from draft import draft_incidents
 
