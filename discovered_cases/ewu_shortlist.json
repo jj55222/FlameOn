@@ -2,7 +2,7 @@
   "what": "EWU-ready shortlist: registry cases with enough evidence to produce a full-package documentary, ranked by completeness x Tier-1 worth.",
   "regenerate": "python discovered_cases/ewu_shortlist.py",
   "selector": "Tier-1 (severity x story-shape x human-proximity); NOT pipeline4 moment-density.",
-  "n_scanned": 2769,
+  "n_scanned": 3152,
   "n_eligible": 67,
   "top_pick": "sdpd_08_28_2023_500_iona_drive",
   "shortlist": [
