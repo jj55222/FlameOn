@@ -306,8 +306,10 @@ def build_row(bundle: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def rank(bundles: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    rows = [build_row(b) for b in bundles]
-    rows = [r for r_b in zip(rows, bundles) for r in (r_b[0],) if eligible(r_b[1], classify_bundle(r_b[1]))]
+    rows: List[Dict[str, Any]] = []
+    for b in bundles:
+        if eligible(b, classify_bundle(b)):
+            rows.append(build_row(b))
     rows.sort(key=lambda r: (
         r["rank_score"],
         r["full_package"],
