@@ -209,6 +209,17 @@ pin remotion version; note Remotion's company-license terms — fine for individ
 
 ---
 
+## WS4-prep — Iona Tier-2 (media-only session; feeds WS4's keystone)
+
+WS3's #1 handoff `sdpd_08_28_2023_500_iona_drive` has only doc+911 on disk — WS4's keystone needs
+its full Tier-2 prep. **Media-only session** (CLAUDE.md §Concurrent sessions: main checkout, writes
+only `.tmp/<cid>/`, no tracked edits, no branch switches, GPU lock). Resume-safe: every step checks
+for its output first. Done = timeline + full-slate transcripts + shaped blueprint + ffmpeg baseline
+cut/segments/paper-edit + judge verdict + `WS4_HANDOFF.md` in the basket. The ffmpeg cut doubles as
+the EOW fallback if Remotion slips. Dispatch with `/loop` (self-paced) — the multi-hour download +
+transcription makes loop resumption valuable. Kickoff prompt: see §"How to launch" or ask the
+coordinating session.
+
 ## WS5 — Shorts worth-study (one channel, cheap, directional)
 
 **Objective.** One true-crime shorts channel (an EWU property; operator supplies the URL) clears
