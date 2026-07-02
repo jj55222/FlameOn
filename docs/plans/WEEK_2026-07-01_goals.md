@@ -294,6 +294,44 @@ and run full slates as an overnight queue instead of interactively.
 
 ---
 
+## WS7 — Shape-targeted source expansion (NEXT WEEK; dispatch after WS6's census)
+
+**Objective.** The registry proved sourcing is now shape-limited, not count-limited (1,077 media
+bundles, but portals structurally emit OIS-accountability shape). Expand sources by *legal mandate
+and shape*, not by platform. Key fact (verified in our own registry): 7/8 media-rich sources are
+CA agencies or Chicago COPA — **proactive-release mandates (SB1421/SB16/AB748, COPA ordinance) are
+what make a source media-rich; the hosting platform is incidental.** Blind platform crawls of
+NextRequest/GovQA/JustFOIA yield mostly PDFs (request-trackers, not video hosts; video ships via
+Axon/Dropbox/YouTube side channels; GovQA/JustFOIA are often login-walled).
+
+**Three layers, by hit rate:**
+1. **Mandate-first sweep (primary):** enumerate CA LE agencies (~500; CA POST list) and probe each
+   for its SB1421/AB748 critical-incident page or CIV YouTube channel (generalize the
+   `lapd_civ`/`sjpd_civ` pattern WS1 found) → new `<agency>_candidates.json` per hit. Add CO
+   (21-day misconduct-BWC rule) + WA self-publishers. Expect dozens of near-certain media sources.
+2. **NextRequest media-detector crawl (finder, low hit rate):** crawl public Documents tabs only,
+   filter for media signals (.mp4/.wav/.zip, evidence.com/Vimeo/Dropbox links, video/BWC titles).
+   Its job is finding outlier instances like SFDPA — each hit becomes a persistent source.
+3. **PDF-as-intel → P0 loop:** published IA/homicide PDFs enumerate evidence that EXISTS (BWC,
+   recorded interviews, case numbers) → emit `foia_targets.json` (agency, case #, records cited) →
+   P0 drafts precise, case-numbered requests (harder to deny, faster to fulfill). PDFs stop being
+   dead weight and become the targeting system for exclusives.
+4. Also fold in: expand `muckrock_harvest` terms beyond OIS to murder/domestic/interrogation shapes.
+
+**Done (goal script `goals/ws7_source_expansion_check.py`)** — exit 0 when: ≥ 5 new mandate-swept
+sources land in the AGG with ≥ 100 new media bundles total (validated live, gentle probes); the
+NextRequest crawler has scanned ≥ 50 instances and reported hits/misses honestly; and P0 has
+consumed ≥ 10 PDF-derived `foia_targets` rows into drafted case-numbered requests.
+
+**Kickoff prompt (verbatim):**
+> Read CLAUDE.md (§Concurrent sessions), STATE.md, docs/plans/WEEK_2026-07-01_goals.md §WS7, and
+> discovered_cases/CASE_BUNDLE_SPEC.md. Code session → work in a worktree, branch ws7-source-expansion.
+> Build goals/ws7_source_expansion_check.py per spec, then execute the three layers in order
+> (mandate-first CA/CO/WA sweep generalizing the lapd_civ pattern; NextRequest media-detector crawl;
+> PDF-evidence-mention extractor emitting foia_targets.json for P0). Registry writes only via
+> <portal>_candidates.json + case_bundle_agg.py; probe portals GENTLY (NextRequest 429s under
+> concurrency). Iterate until the goal script exits 0; report hit-rates per layer honestly.
+
 ## Sequencing
 
 | Day | Track A (python/Opus) | Track B (TS/Codex-or-Opus) |
