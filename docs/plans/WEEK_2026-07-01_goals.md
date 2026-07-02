@@ -7,6 +7,27 @@ week** (operator call, 2026-07-01) — do not spend time on it.
 
 ---
 
+## How to launch this plan (operator cheat-sheet)
+
+One Claude Code session ≈ ONE workstream. Don't feed the whole doc to one session and expect four
+parallel loops — dispatch the per-WS kickoff prompts instead. Modes:
+
+- **Interactive, bounded** (fine for WS2, it's short): start `claude`, then:
+  `Read docs/plans/WEEK_2026-07-01_goals.md and execute §WS2.`
+- **Autonomous iterate-until-green** (WS1, WS3, WS4): in a session type
+  `/loop <the WS kickoff prompt, verbatim>` — self-paced; the loop ends when the goal script
+  exits 0 (each kickoff prompt says "iterate until it exits 0"). Add an interval (`/loop 30m …`)
+  if you prefer a fixed cadence.
+- **Headless fire-and-forget:** `claude -p "<kickoff prompt>"` per workstream; check the branch after.
+- **Parallel workstreams = separate checkouts.** Two sessions in one working dir fight over files
+  and the auto-commit hook: `git worktree add ../FlameOn-ws4 -b ws4-remotion` and run WS4's session
+  there while WS1 runs here. (WS1/WS3 touch `discovered_cases/` — run those sequentially or in
+  their own worktrees too.)
+- **Permissions:** an unattended loop STALLS at the first permission prompt. Run autonomous
+  sessions in acceptEdits mode (or pre-allowlist the bash they need) so they don't block overnight.
+- WS2's end state needs no Claude at all — the daily P0 job is plain Python under launchd; only the
+  build/tuning session is a Claude task.
+
 ## Executor protocol (read first)
 
 1. Entry context: `CLAUDE.md` → `STATE.md` → this plan → the one workstream section you own.
