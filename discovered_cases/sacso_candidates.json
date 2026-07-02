@@ -1888,6 +1888,110 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_05_54516",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "05-54516 OIS — Elk Grove Florin Rd.",
+    "case_url": "https://www.dropbox.com/sh/0zpeappj02dhc1h/AABpMSBDsdn9mbi4md9i6eeXa?dl=0",
+    "incident_date": "7/13/2005",
+    "incident_type": "OIS",
+    "location": "Elk Grove Florin Rd.",
+    "n_video": 1,
+    "n_audio": 2,
+    "n_docs": 3,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "05-54516",
+      "incident_type": "OIS",
+      "location": "Elk Grove Florin Rd."
+    },
+    "titles": [
+      "05-3846 Interview.pdf",
+      "05-3947 Interview.pdf",
+      "05-3975.mp4",
+      "05-54516 911 Call.mp3",
+      "05-54516 Radio Traffic.mp3",
+      "05-54516.pdf"
+    ],
+    "media_files": [
+      {
+        "name": "05-3975.mp4",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ADHQKrdrmb1OY4DSTE1aR04/05-3975.mp4?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ADHQKrdrmb1OY4DSTE1aR04/05-3975.mp4?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 90.3
+      },
+      {
+        "name": "05-54516 911 Call.mp3",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AB4nexSKUhtzf8lGqSshZ_4/05-54516%20911%20Call.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AB4nexSKUhtzf8lGqSshZ_4/05-54516%20911%20Call.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 3.3
+      },
+      {
+        "name": "05-54516 Radio Traffic.mp3",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ACu4PvQvYEbuJMgfb6nANOc/05-54516%20Radio%20Traffic.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ACu4PvQvYEbuJMgfb6nANOc/05-54516%20Radio%20Traffic.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 13.2
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "05-3846 Interview.pdf",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AIn5Q0ULkVHsaEYLCv7U6sk/05-3846%20Interview.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AIn5Q0ULkVHsaEYLCv7U6sk/05-3846%20Interview.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.8
+      },
+      {
+        "name": "05-3947 Interview.pdf",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AOhPMQ8p2eZqJ37aTtyG_Qw/05-3947%20Interview.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AOhPMQ8p2eZqJ37aTtyG_Qw/05-3947%20Interview.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.2
+      },
+      {
+        "name": "05-54516.pdf",
+        "url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AD5RshvWYMUCRmkl9lZ7ZYs/05-54516.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AD5RshvWYMUCRmkl9lZ7ZYs/05-54516.pdf?rlkey=cu282v13cqxdl2swxc71816yl&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 39.5
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ADHQKrdrmb1OY4DSTE1aR04/05-3975.mp4?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+      "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/AB4nexSKUhtzf8lGqSshZ_4/05-54516%20911%20Call.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=1",
+      "https://www.dropbox.com/scl/fo/9jx8fu6myto6dhqrbf60g/ACu4PvQvYEbuJMgfb6nANOc/05-54516%20Radio%20Traffic.mp3?rlkey=cu282v13cqxdl2swxc71816yl&dl=1"
+    ],
+    "keyword_score": 10,
+    "artifact_bonus": 16,
+    "score": 26,
+    "hits": [
+      "+6 ois",
+      "+4 interview"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_06_8138",
     "agency": "Sacramento County Sheriff's Office",
     "title": "06-8138 OIS — 8140 Gerber Rd.",
@@ -12549,6 +12653,320 @@
     "hits": [
       "+4 use of force",
       "+3 bwc"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_00_1230",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "00-1230 OIS — River Rd",
+    "case_url": "https://www.dropbox.com/sh/1rtbjg9b154f2fl/AABXHIM_PpEmmrjbbEVZrEr4a?dl=0",
+    "incident_date": "1/5/2000",
+    "incident_type": "OIS",
+    "location": "River Rd",
+    "n_video": 1,
+    "n_audio": 4,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "00-1230",
+      "incident_type": "OIS",
+      "location": "River Rd"
+    },
+    "titles": [
+      "5311 - CH 3 Radio Traffic.mp3",
+      "5312 - CH 4 Radio Traffic.mp3",
+      "5313 - CH 3 Radio Traffic.mp3",
+      "5314 - 911 Call.mp3",
+      "00-1230.pdf",
+      "Scene Video.mp4"
+    ],
+    "media_files": [
+      {
+        "name": "5311 - CH 3 Radio Traffic.mp3",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AHDSHCMjSWxI0A76tPc2sdE/5311%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AHDSHCMjSWxI0A76tPc2sdE/5311%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 30.7
+      },
+      {
+        "name": "5312 - CH 4 Radio Traffic.mp3",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADOSbqQ7WpvZzI2-oECcMw0/5312%20-%20CH%204%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADOSbqQ7WpvZzI2-oECcMw0/5312%20-%20CH%204%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 11.1
+      },
+      {
+        "name": "5313 - CH 3 Radio Traffic.mp3",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADGyrgedXVcNV08bvzYl4Ek/5313%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADGyrgedXVcNV08bvzYl4Ek/5313%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 22.7
+      },
+      {
+        "name": "5314 - 911 Call.mp3",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AAvvGc3UnhGD29EnUzaPAXU/5314%20-%20911%20Call.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AAvvGc3UnhGD29EnUzaPAXU/5314%20-%20911%20Call.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 0.8
+      },
+      {
+        "name": "Scene Video.mp4",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADFgmiqL6S89LjOp25lR2A8/Scene%20Video.mp4?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADFgmiqL6S89LjOp25lR2A8/Scene%20Video.mp4?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 203.8
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "00-1230.pdf",
+        "url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AOL8QCT_tSuakfG0KNsIToQ/00-1230.pdf?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AOL8QCT_tSuakfG0KNsIToQ/00-1230.pdf?rlkey=r28szwibss2pykh2e0wa44vuo&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 183.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AHDSHCMjSWxI0A76tPc2sdE/5311%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+      "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADOSbqQ7WpvZzI2-oECcMw0/5312%20-%20CH%204%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+      "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADGyrgedXVcNV08bvzYl4Ek/5313%20-%20CH%203%20Radio%20Traffic.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+      "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/AAvvGc3UnhGD29EnUzaPAXU/5314%20-%20911%20Call.mp3?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1",
+      "https://www.dropbox.com/scl/fo/1asnyus5776nf439lc615/ADFgmiqL6S89LjOp25lR2A8/Scene%20Video.mp4?rlkey=r28szwibss2pykh2e0wa44vuo&dl=1"
+    ],
+    "keyword_score": 6,
+    "artifact_bonus": 16,
+    "score": 22,
+    "hits": [
+      "+6 ois"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_05_2999",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "05-2999 OIS — Bama Ct.",
+    "case_url": "https://www.dropbox.com/sh/dcgmn7ydjyad4y2/AAAoBXINMtl8nlF5K2oYqesba?dl=0",
+    "incident_date": "1/7/2005",
+    "incident_type": "OIS",
+    "location": "Bama Ct.",
+    "n_video": 1,
+    "n_audio": 1,
+    "n_docs": 2,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "05-2999",
+      "incident_type": "OIS",
+      "location": "Bama Ct."
+    },
+    "titles": [
+      "#3684 CSI on VHS.mp4",
+      "#7042 911 Call.mp3",
+      "05-2999 Mulligan Int Redactions Applied.pdf",
+      "05-002999.pdf"
+    ],
+    "media_files": [
+      {
+        "name": "#3684 CSI on VHS.mp4",
+        "url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AIajl-4XO55_0LwpLgTZPvc/%233684%20CSI%20on%20VHS.mp4?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AIajl-4XO55_0LwpLgTZPvc/%233684%20CSI%20on%20VHS.mp4?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 417.1
+      },
+      {
+        "name": "#7042 911 Call.mp3",
+        "url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AMcXnyAQitiNkH-7z1vsFaM/%237042%20911%20Call.mp3?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AMcXnyAQitiNkH-7z1vsFaM/%237042%20911%20Call.mp3?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "911_audio",
+        "size_mb": 1.3
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "05-2999 Mulligan Int Redactions Applied.pdf",
+        "url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AANDqCFi4EKcAWkhrE-8e5o/05-2999%20Mulligan%20Int%20Redactions%20Applied.pdf?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AANDqCFi4EKcAWkhrE-8e5o/05-2999%20Mulligan%20Int%20Redactions%20Applied.pdf?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 0.9
+      },
+      {
+        "name": "05-002999.pdf",
+        "url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AK-zSghyZ0N2NOBr_mKjgOY/05-002999.pdf?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AK-zSghyZ0N2NOBr_mKjgOY/05-002999.pdf?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 191.0
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AIajl-4XO55_0LwpLgTZPvc/%233684%20CSI%20on%20VHS.mp4?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1",
+      "https://www.dropbox.com/scl/fo/hdt7q2e0kjohr64c5nw5o/AMcXnyAQitiNkH-7z1vsFaM/%237042%20911%20Call.mp3?rlkey=vkn2atw125h7hb9pne8b5pbgr&dl=1"
+    ],
+    "keyword_score": 6,
+    "artifact_bonus": 16,
+    "score": 22,
+    "hits": [
+      "+6 ois"
+    ],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_05_36618",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "05-36618 OIS — 3411 Power Inn Rd.",
+    "case_url": "https://www.dropbox.com/sh/fdubtn60g2kc4wo/AADbC8xz7iHPrAuMyE8E9lmTa?dl=0",
+    "incident_date": "5/8/2005",
+    "incident_type": "OIS",
+    "location": "3411 Power Inn Rd.",
+    "n_video": 6,
+    "n_audio": 1,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": true,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "B",
+    "downloadable": null,
+    "artifact_kinds": 3,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "05-36618",
+      "incident_type": "OIS",
+      "location": "3411 Power Inn Rd."
+    },
+    "titles": [
+      "05-36618 CSI Video.mp4",
+      "05-36618 Dispatch Audio.mp3",
+      "05-036618.pdf",
+      "0063-05 R1019.avi",
+      "0063A-05 R1019.avi",
+      "0063B-05 R1019.avi",
+      "0063C-05 R1019.avi",
+      "0063D-05 R1019.avi"
+    ],
+    "media_files": [
+      {
+        "name": "05-36618 CSI Video.mp4",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AHpy0LJ1X9vM4l7e1dAasOk/05-36618%20CSI%20Video.mp4?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AHpy0LJ1X9vM4l7e1dAasOk/05-36618%20CSI%20Video.mp4?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 428.3
+      },
+      {
+        "name": "05-36618 Dispatch Audio.mp3",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ACAawGIMAP6peiXnxSp6kXY/05-36618%20Dispatch%20Audio.mp3?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ACAawGIMAP6peiXnxSp6kXY/05-36618%20Dispatch%20Audio.mp3?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".mp3",
+        "evidence_type": "radio",
+        "size_mb": 24.4
+      },
+      {
+        "name": "0063-05 R1019.avi",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADAocJhBC8FGRk2WKUoZe0A/0063-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADAocJhBC8FGRk2WKUoZe0A/0063-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".avi",
+        "evidence_type": "video",
+        "size_mb": 76.7
+      },
+      {
+        "name": "0063A-05 R1019.avi",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AOhg6CT6fNGfp4ecE_1XKXU/0063A-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AOhg6CT6fNGfp4ecE_1XKXU/0063A-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".avi",
+        "evidence_type": "video",
+        "size_mb": 31.5
+      },
+      {
+        "name": "0063B-05 R1019.avi",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AJBT7B7ocDBbzXIHc1Kj0Ac/0063B-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AJBT7B7ocDBbzXIHc1Kj0Ac/0063B-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".avi",
+        "evidence_type": "video",
+        "size_mb": 1006.9
+      },
+      {
+        "name": "0063C-05 R1019.avi",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AFQyXsHZaThsakhzNUxPLyo/0063C-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AFQyXsHZaThsakhzNUxPLyo/0063C-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".avi",
+        "evidence_type": "video",
+        "size_mb": 476.8
+      },
+      {
+        "name": "0063D-05 R1019.avi",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADt5O8rqkL3pvOp-8rDDlDo/0063D-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADt5O8rqkL3pvOp-8rDDlDo/0063D-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".avi",
+        "evidence_type": "video",
+        "size_mb": 54.0
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "05-036618.pdf",
+        "url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AMebypimiDa8MAVe-tKSzuw/05-036618.pdf?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AMebypimiDa8MAVe-tKSzuw/05-036618.pdf?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 57.1
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AHpy0LJ1X9vM4l7e1dAasOk/05-36618%20CSI%20Video.mp4?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ACAawGIMAP6peiXnxSp6kXY/05-36618%20Dispatch%20Audio.mp3?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADAocJhBC8FGRk2WKUoZe0A/0063-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AOhg6CT6fNGfp4ecE_1XKXU/0063A-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AJBT7B7ocDBbzXIHc1Kj0Ac/0063B-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/AFQyXsHZaThsakhzNUxPLyo/0063C-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1",
+      "https://www.dropbox.com/scl/fo/bdtiyn120qrauwpoxfgv0/ADt5O8rqkL3pvOp-8rDDlDo/0063D-05%20R1019.avi?rlkey=cp9dxibti3eqkb5n0ncyqoe9u&dl=1"
+    ],
+    "keyword_score": 6,
+    "artifact_bonus": 16,
+    "score": 22,
+    "hits": [
+      "+6 ois"
     ],
     "_checked": true
   },
@@ -83937,6 +84355,69 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_04_11603",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "04-11603 UOF — 651 I St.",
+    "case_url": "https://www.dropbox.com/sh/ujtahbm4e2ssqhp/AACbPquzCajBg1yXz-DkYa3Ma?dl=0",
+    "incident_date": "3/22/2004",
+    "incident_type": "UOF",
+    "location": "651 I St.",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "C",
+    "downloadable": null,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "04-11603",
+      "incident_type": "UOF",
+      "location": "651 I St."
+    },
+    "titles": [
+      "04-11603.pdf",
+      "VHS Jail.mp4"
+    ],
+    "media_files": [
+      {
+        "name": "VHS Jail.mp4",
+        "url": "https://www.dropbox.com/scl/fo/w99kkhrxwdqua9go9dncm/ALyO0GaZJQX0easm5DHuxeM/VHS%20Jail.mp4?rlkey=zoobe4kjypvdhv85b5xa9hshh&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/w99kkhrxwdqua9go9dncm/ALyO0GaZJQX0easm5DHuxeM/VHS%20Jail.mp4?rlkey=zoobe4kjypvdhv85b5xa9hshh&dl=0",
+        "ext": ".mp4",
+        "evidence_type": "video",
+        "size_mb": 454.0
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "04-11603.pdf",
+        "url": "https://www.dropbox.com/scl/fo/w99kkhrxwdqua9go9dncm/AJ75UulXDc_Pf9jQNcgtgSg/04-11603.pdf?rlkey=zoobe4kjypvdhv85b5xa9hshh&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/w99kkhrxwdqua9go9dncm/AJ75UulXDc_Pf9jQNcgtgSg/04-11603.pdf?rlkey=zoobe4kjypvdhv85b5xa9hshh&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 43.7
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [
+      "https://www.dropbox.com/scl/fo/w99kkhrxwdqua9go9dncm/ALyO0GaZJQX0easm5DHuxeM/VHS%20Jail.mp4?rlkey=zoobe4kjypvdhv85b5xa9hshh&dl=1"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 11,
+    "score": 11,
+    "hits": [],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_05_1000002",
     "agency": "Sacramento County Sheriff's Office",
     "title": "05-1000002 UOF — 651 I St.",
@@ -89983,6 +90464,57 @@
   },
   {
     "source": "sacso",
+    "case_id": "sacso_04_100001",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "04-100001 UOF — 651 I St.",
+    "case_url": "https://www.dropbox.com/sh/2whwnyqbdxh9xwr/AAAM_Nkxql6uxROT14rJaPXya?dl=0",
+    "incident_date": "3/21/2004",
+    "incident_type": "UOF",
+    "location": "651 I St.",
+    "n_video": 0,
+    "n_audio": 0,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "D",
+    "downloadable": null,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "04-100001",
+      "incident_type": "UOF",
+      "location": "651 I St."
+    },
+    "titles": [
+      "04-100001 R1220.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "04-100001 R1220.pdf",
+        "url": "https://www.dropbox.com/scl/fo/o241ppfnzn4w0big81lzj/ACrc3O_vlla9VbFZXJjXR28/04-100001%20R1220.pdf?rlkey=z4aqo2dl0gtiwb8wm0mjk57ne&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/o241ppfnzn4w0big81lzj/ACrc3O_vlla9VbFZXJjXR28/04-100001%20R1220.pdf?rlkey=z4aqo2dl0gtiwb8wm0mjk57ne&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 8.2
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": [],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
     "case_id": "sacso_05_1000001",
     "agency": "Sacramento County Sheriff's Office",
     "title": "05-1000001 UOF — 651 I St.",
@@ -90021,6 +90553,108 @@
         "ext": ".pdf",
         "evidence_type": "documents",
         "size_mb": 78.0
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": [],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_05_59498",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "05-59498 UOF — 4141 Palm Ave.",
+    "case_url": "https://www.dropbox.com/sh/7giy1pp46bfraoz/AAD8AoHpYy62gmP8DMNTXffDa?dl=0",
+    "incident_date": "8/4/2005",
+    "incident_type": "UOF",
+    "location": "4141 Palm Ave.",
+    "n_video": 0,
+    "n_audio": 0,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "D",
+    "downloadable": null,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "05-59498",
+      "incident_type": "UOF",
+      "location": "4141 Palm Ave."
+    },
+    "titles": [
+      "05-59498.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "05-59498.pdf",
+        "url": "https://www.dropbox.com/scl/fo/i6uo7eeuc74ulzsve7wr8/AG0m66_Tc2uFgzxdY_Hw-vk/05-59498.pdf?rlkey=oom7gnonx1n8ysfwvj4b1nof7&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/i6uo7eeuc74ulzsve7wr8/AG0m66_Tc2uFgzxdY_Hw-vk/05-59498.pdf?rlkey=oom7gnonx1n8ysfwvj4b1nof7&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 73.6
+      }
+    ],
+    "photo_files": [],
+    "other_files": [],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 5,
+    "score": 5,
+    "hits": [],
+    "_checked": true
+  },
+  {
+    "source": "sacso",
+    "case_id": "sacso_06_81000",
+    "agency": "Sacramento County Sheriff's Office",
+    "title": "06-81000 UOF — 651 I St.",
+    "case_url": "https://www.dropbox.com/sh/4tdxeaxy6x8q3ki/AADllRtk_Rx-oNOrR8tPSanFa?dl=0",
+    "incident_date": "10/29/2005",
+    "incident_type": "UOF",
+    "location": "651 I St.",
+    "n_video": 0,
+    "n_audio": 0,
+    "n_docs": 1,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "tier": "D",
+    "downloadable": null,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Sacramento County Sheriff's Office",
+      "case_title": "06-81000",
+      "incident_type": "UOF",
+      "location": "651 I St."
+    },
+    "titles": [
+      "06-81000.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "06-81000.pdf",
+        "url": "https://www.dropbox.com/scl/fo/2dixh36nc5944f8hbmkgm/AG5uUsXk2MBp3QfY9aX8tdc/06-81000.pdf?rlkey=2rjt7p3l9dn6fwgq99o0vpef9&dl=1",
+        "browse_url": "https://www.dropbox.com/scl/fo/2dixh36nc5944f8hbmkgm/AG5uUsXk2MBp3QfY9aX8tdc/06-81000.pdf?rlkey=2rjt7p3l9dn6fwgq99o0vpef9&dl=0",
+        "ext": ".pdf",
+        "evidence_type": "documents",
+        "size_mb": 67.3
       }
     ],
     "photo_files": [],
