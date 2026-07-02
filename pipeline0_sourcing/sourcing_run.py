@@ -178,7 +178,7 @@ def main() -> int:
     ap.add_argument("--limit", type=int, default=40, help="max signals per term per source")
     ap.add_argument("--signals", default=None, help="load signals from JSON instead of fetching")
     ap.add_argument("--mock", action="store_true", help="offline heuristic extraction (no API/network)")
-    ap.add_argument("--model", default="google/gemini-3.1-flash-lite-preview", help="OpenRouter model for extraction")
+    ap.add_argument("--model", default=DEFAULT_MODEL, help="OpenRouter model for extraction")
     ap.add_argument("--tier1-only", action="store_true", help="keep only tier-1 sunshine states (FL/WA/CA)")
     ap.add_argument("--include-watch", action="store_true", help="also draft WATCH incidents")
     ap.add_argument("--min-worth", type=float, default=0.0, help="drop SKIPs below this worth from output")
