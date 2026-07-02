@@ -26,7 +26,12 @@ import requests
 ROOT = Path(__file__).parent
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
-MEDIA_TYPES = {"bodycam", "dashcam", "surveillance", "interrogation", "audio", "video", "media", "911", "radio"}
+MEDIA_TYPES = {"bodycam", "dashcam", "surveillance", "interrogation", "audio", "video", "media",
+               "911", "911_audio", "radio"}
+# Cheap Tier-1 inputs only: the case DOC + the inciting 911/dispatch — NOT the GB
+# of bodycam/interview video. Used by --doc-911-only (see the case-selection skill).
+DOC_TYPES = {"documents", "document", "doc"}
+DISPATCH_TYPES = {"911", "911_audio", "radio", "dispatch"}
 
 
 def _safe(name: str) -> str:
