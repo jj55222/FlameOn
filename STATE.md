@@ -13,6 +13,16 @@ Start from [CLAUDE.md](CLAUDE.md); this doc is the current-state layer under it.
   and `sac_so_2023psb-0530` (24 moments, creator-consensus validated).
 - **P3 tests green:** `cd pipeline3_audio && python -m pytest -q` → 76 pass. P6: ~107 tests pass.
 
+## Week goals (2026-07-01 → 07-05) — executor plan
+
+Four workstreams, run by Opus/Codex against goal scripts (done = checker exits 0), detailed in
+**[docs/plans/WEEK_2026-07-01_goals.md](docs/plans/WEEK_2026-07-01_goals.md)** (+ `goals/`):
+**WS1** final public-source sweep → aggregator (KEY EOW); **WS2** P0 FOIA finder autonomous
+(daily ingest via launchd, weekly review); **WS3** evidence-completeness "EWU-ready" shortlist from
+the registry (KEY EOW, gates WS4); **WS4** Remotion mograph render lane (KEY EOW: WS3's top case
+rendered through it). **TTS deprioritized this week** (operator, 2026-07-01). Remotion is additive —
+the ffmpeg lane stays the fallback.
+
 ## Active task (EWU-longform)
 
 Find an EWU/Dr.Insanity-**shape** case (high-severity crime + rich case DOC + footage —
