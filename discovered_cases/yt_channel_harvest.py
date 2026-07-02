@@ -60,8 +60,9 @@ PRESETS: Dict[str, Dict[str, str]] = {
     "sjpd_civ": {
         "channel": "https://www.youtube.com/@SanJosePolice/videos",
         "agency": "San José Police Department",
-        "match": r"officer[- ]involved shooting|\bOIS\b|critical incident|in[- ]custody death|use of force",
-        "case_id_re": r"\b(\d{2}-\d{3,})\b",
+        # SJPD names OIS releases "Case #NN-NNN-NNNN OIS <name>" (dashes or spaces).
+        "match": r"\bOIS\b|officer[- ]involved shooting|critical incident|in[- ]custody death",
+        "case_id_re": r"(\d{2}[-\s]\d{3}[-\s]\d{4})",
     },
 }
 
