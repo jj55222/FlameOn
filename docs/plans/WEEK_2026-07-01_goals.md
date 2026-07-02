@@ -208,6 +208,80 @@ pin remotion version; note Remotion's company-license terms — fine for individ
 
 ---
 
+## WS5 — Shorts worth-study (one channel, cheap, directional)
+
+**Objective.** One true-crime shorts channel (an EWU property; operator supplies the URL) clears
+200k+ views while shorts flop for everyone else — and it publishes sporadically, so each short is a
+deliberate pick. Mine it: which MOMENT shapes survive the shorts format, and which of OUR bundles
+contain those moments. Feeds the "shorts as scouts" lane. Framing rules: the signal is
+**within-channel over/under-performance vs the channel median** (absolute shorts views are feed
+noise), and the output is a **directional prior, not calibration truth** (n small, one channel).
+
+**Done (goal script `goals/ws5_shorts_study_check.py`)** — exit 0 when:
+- `pipeline1_winners/shorts_study.json` covers the channel's ENTIRE shorts tab (yt-dlp
+  `--flat-playlist` on `/shorts`, then per-video `view_count,upload_date,duration,title,description`
+  — yt-dlp only, no YouTube API; brew shellenv first) with transcripts (mlx-whisper; ~60s each);
+- each short is tagged {ewu_shape, moment_type: contradiction|911_audio|action_peak|
+  interrogation_quote|reveal|aftermath, hook_style} via one flash-LLM pass;
+- `shorts_study.md` reports: top-vs-bottom quartile shape distribution (relative to channel median),
+  publish cadence, duration sweet-spot;
+- and the JOIN: for the top-3 moment types, a count + list of our A/B bundles whose classified
+  evidence (WS3 `ewu_shortlist.json`) can produce that moment type.
+
+**Steps.** yt-dlp harvest → transcribe → LLM tag → quartile analysis → join vs WS3 output.
+Loop-safe. Est: 0.5 day. Independent of WS1/2/4; the join needs WS3's shortlist (run last).
+
+**Kickoff prompt (verbatim):**
+> Read CLAUDE.md, STATE.md, docs/plans/WEEK_2026-07-01_goals.md §WS5. Branch ws5-shorts-study.
+> Channel shorts URL: <OPERATOR FILLS IN>. Build goals/ws5_shorts_study_check.py per spec, then
+> harvest the channel's full shorts tab via yt-dlp (no YouTube API), transcribe with mlx-whisper,
+> tag shapes/moment-types with one cheap LLM pass, produce shorts_study.json/.md with the
+> within-channel quartile analysis, and join top moment types against discovered_cases/
+> ewu_shortlist.json. Iterate until the goal script exits 0. Treat findings as a directional prior —
+> say so in the report.
+
+---
+
+## WS6 — Library census: card every A/B case WITHOUT production-cost processing
+
+**Objective.** Inventory the on-hand library (204 A/B bundles, 2,769 total) so the operator can
+sort by "what kind of case is this and what can we make from it" — without the ~30-min/case
+full-transcription tax. Principle (proven by Tier-1, 9/10 operator concordance): **doc + 911 alone
+classifies a case; full transcription is a PRODUCTION cost, paid only when a case enters production.**
+
+**Done (goal script `goals/ws6_census_check.py`)** — exit 0 when:
+- **Census layer (free, all 2,769):** every registry bundle has classified evidence counts
+  {bwc, interrogation, 911, doc, photos} — reuse WS3's classifier output; no downloads;
+- **Card layer (all A/B):** every A/B bundle has a case card in `discovered_cases/library_census.json`:
+  {case_id, agency, evidence, severity, ewu_shape, subject, outcome/charges (doc front-matter),
+  has_911_audio, recommended_lane: flagship|rawwalk|shorts_scout|hold|skip, full_processing_cost_est};
+- cards are built from CHEAP probes only: doc text-layer extract first, Vision OCR `--end 30` only
+  for scanned PDFs, 911/dispatch transcripts (short files), one flash-LLM pass per case — for cases
+  not yet on disk, download **doc + 911 only, never video**;
+- `library_census.md` renders a sortable table + lane/shape/severity rollups;
+- the batch is RESUMABLE (per-case done-markers; re-running skips carded cases) and a full A/B run
+  fits overnight (log per-case wall-clock; amortized target ≤ ~4 min/case).
+
+**Steps.** (1) census from WS3 classifier; (2) probe harness (doc-first routing exists in
+`doc_ocr.py`; 911 via mlx); (3) card LLM pass (tier-1 rubric as the system prompt); (4) rollup MD;
+(5) overnight batch run. **Depends on WS3's classifier — dispatch after WS3 is green** (or as the
+same session's continuation). WS1's new bundles fold in by re-running (cheap, resumable).
+
+**Production-speed levers (note for later, not this WS):** for cases that DO enter production —
+`large-v3-turbo`/distil model for draft passes, transcribe primary-cam+911 only for the first cut,
+and run full slates as an overnight queue instead of interactively.
+
+**Kickoff prompt (verbatim):**
+> Read CLAUDE.md, STATE.md, docs/plans/WEEK_2026-07-01_goals.md §WS6, and the case-selection skill.
+> Branch ws6-library-census. Requires discovered_cases/ewu_shortlist.json (WS3) to exist. Build
+> goals/ws6_census_check.py per spec, then the resumable census+card harness: free filename census
+> for all bundles, cheap probes (doc text-layer → Vision --end 30 fallback; 911 transcripts; doc+911
+> downloads only, never video) + one flash-LLM card per A/B case, emitting library_census.json/.md
+> with recommended lanes. Iterate until the goal script exits 0; log per-case wall-clock and report
+> the total.
+
+---
+
 ## Sequencing
 
 | Day | Track A (python/Opus) | Track B (TS/Codex-or-Opus) |
