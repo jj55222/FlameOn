@@ -77,6 +77,7 @@ def fetch_google_news(term: str, since_days: int, limit: int) -> List[Dict]:
     params = {"q": q, "hl": "en-US", "gl": "US", "ceid": "US:en"}
     out: List[Dict] = []
     try:
+        _throttle("google_news", _GNEWS_MIN_INTERVAL)
         r = _http_get(_GNEWS, params)
         r.raise_for_status()
         root = ET.fromstring(r.content)
