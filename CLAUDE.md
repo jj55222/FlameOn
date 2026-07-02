@@ -79,6 +79,22 @@ density even when fatal — P4 says HOLD where a strong LLM says PRODUCE. **For 
 with the Tier-1 selector + `beat_miner`, not P4's gate.** See [STATE.md](STATE.md) and
 [P4_VS_CLAUDE_CONCORDANCE.md](P4_VS_CLAUDE_CONCORDANCE.md).
 
+## Concurrent sessions (multi-instance rules — required)
+
+Multiple Claude sessions run in parallel on this repo. Before starting work, classify your session:
+
+- **Code/doc session** (edits tracked files): work in a **dedicated git worktree + branch**
+  (`git worktree add ../FlameOn-<ws> -b <branch>`), never the shared main checkout. Merge into
+  `p6-documentary-assembly` when your goal script is green.
+- **Media/basket session** (writes only gitignored `.tmp/<cid>/`, `~/Downloads`): run in the MAIN
+  checkout (baskets live here) but make **zero tracked-file edits** and **never `git switch`** —
+  the auto-commit hook commits to whatever branch is checked out, so a switch scatters other
+  sessions' commits.
+- **One heavy GPU job at a time** (mlx-whisper / Vision OCR — 24 GB RAM): before transcribing,
+  check `pgrep -f "mlx|ocrmac"`; if busy, wait and retry.
+- Registry writes go through the generated-file flow only (`<portal>_candidates.json` →
+  `case_bundle_agg.py`) — two sessions must not both regenerate the AGG at the same time.
+
 ## Conventions
 
 - `--dry-run` exists on most tools; `make_documentary.py` is dry-run by default (`--run` to execute).
