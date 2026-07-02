@@ -67,6 +67,13 @@ _GDELT_MIN_INTERVAL = 5.0        # seconds between GDELT calls (module-global cl
 _GNEWS_MIN_INTERVAL = 1.0        # seconds between Google News calls
 _last_call = {"gdelt": 0.0, "google_news": 0.0}
 
+# GDELT circuit breaker: when GDELT is in a hard rate-limit window it 429s to
+# exhaustion on every term, and more calls just burn minutes for zero data. After
+# a few consecutive give-ups, trip the breaker and skip GDELT for the rest of the
+# run — Google News RSS carries the load. Reset per fetch_signals() call.
+_GDELT_BREAKER_TRIP = 2
+_gdelt_state = {"consecutive_giveups": 0, "tripped": False}
+
 
 def _throttle(source: str, min_interval: float) -> None:
     """Sleep just enough to keep `min_interval` between calls to `source`."""
