@@ -26,8 +26,12 @@ Tier-1-verified PRODUCE; **#1 handoff → `sdpd_08_28_2023_500_iona_drive`**, ba
 flight; build against Morales (fully-processed basket) until Iona's Tier-2 prep (download → stamp →
 transcribe → blueprint) lands. **TTS deprioritized this week** (operator, 2026-07-01). Remotion is
 additive — the ffmpeg lane stays the fallback. ⚠️ Sessions shared one checkout: WS1/WS2/WS3 commits
-all live on branch `ws3-ewu-selector` — do NOT switch branches while sessions run; merge once into
-`p6-documentary-assembly` when the week's sessions finish.
+all live on branch `ws3-ewu-selector`. **RESOLVED (operator+coordinator, 07-02): no per-WS branch
+surgery/carve-outs** (WS2 offered; declined — the per-WS branches were isolation means, not ends;
+the work is disjoint and green). `ws3-ewu-selector` is the week's de facto integration branch — do
+NOT switch branches in the main checkout while any session runs; merge it once into
+`p6-documentary-assembly` when WS1 (still harvesting, e.g. Sacramento SO) and WS4 finish. Future
+sessions: CLAUDE.md §Concurrent sessions (code → worktrees; media → main checkout, `.tmp/` only).
 
 ## Active task (EWU-longform)
 
