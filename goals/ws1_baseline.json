@@ -1,0 +1,13 @@
+{
+  "snapshot_date": "2026-07-01",
+  "total_bundles": 2769,
+  "media_bundles": 495,
+  "sources": {
+    "longbeach_laserfiche": 443,
+    "muckrock": 53,
+    "sdpd": 50,
+    "chicago_copa": 2128,
+    "sfdpa_nextrequest": 95
+  },
+  "note": "WS1 baseline \u2014 goals/ws1_registry_check.py diffs the regenerated AGG against this."
+}
