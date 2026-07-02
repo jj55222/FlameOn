@@ -113,3 +113,60 @@ def test_draft_carries_state_caveats(profiles):
                "snippets": ["man killed, body camera exists, no charges"]})}
     d = draft_incident(tx, profiles)
     assert any("dead-suspect" in c.lower() for c in d["caveats"])
+
+
+# ---- live-path robustness (offline, with fake backends) -----------------------
+
+def test_extract_llm_falls_back_on_persistent_parse_error():
+    """A backend that never returns valid JSON must not drop the incident — it
+    retries, then returns a safe coerced record flagged _parse_error."""
+    from extract import extract_incident_llm
+
+    class BadBackend:
+        def __init__(self): self.calls = 0
+        def complete(self, **kw): self.calls += 1; return "sorry, I can't help with that"
+
+    b = BadBackend()
+    out = extract_incident_llm({"headline": "x", "snippets": []}, b, retries=2)
+    assert b.calls == 2                        # actually retried
+    assert out.get("_parse_error")             # flagged, not crashed
+    assert out["is_crime_incident"] is True    # coerced safe default
+    assert isinstance(out["severity"], int)
+
+
+def test_extract_llm_recovers_on_retry():
+    """First call garbage, second call valid JSON -> parsed cleanly (no flag)."""
+    from extract import extract_incident_llm
+    good = ('{"is_crime_incident": true, "incident_type": "homicide", '
+            '"severity": 90, "state": "FL", "record_types_likely": ["bodycam"]}')
+
+    class FlakyBackend:
+        def __init__(self): self.calls = 0
+        def complete(self, **kw):
+            self.calls += 1
+            return "```" if self.calls == 1 else good
+
+    b = FlakyBackend()
+    out = extract_incident_llm({"headline": "x", "snippets": []}, b, retries=2)
+    assert b.calls == 2
+    assert "_parse_error" not in out
+    assert out["severity"] == 90 and out["state"] == "FL"
+
+
+def test_run_history_append(tmp_path):
+    """The autonomy audit trail the WS2 health check reads is a valid JSONL append."""
+    from sourcing_run import _append_run_history
+    _append_run_history(tmp_path, {"ts": "t1", "mock": False, "seen_total": 3})
+    _append_run_history(tmp_path, {"ts": "t2", "mock": False, "seen_total": 7})
+    lines = (tmp_path / "run_history.jsonl").read_text().splitlines()
+    assert len(lines) == 2
+    assert json.loads(lines[0])["seen_total"] == 3
+    assert json.loads(lines[1])["seen_total"] == 7
+
+
+def test_default_terms_cover_ewu_shapes():
+    """Terms stay FOIA-anchored on police incidents and cover the domestic shape."""
+    from ingest import DEFAULT_TERMS
+    assert DEFAULT_TERMS
+    assert "officer involved shooting" in DEFAULT_TERMS
+    assert any("domestic" in t or "murder suicide" in t for t in DEFAULT_TERMS)
