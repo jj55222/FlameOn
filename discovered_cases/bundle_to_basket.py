@@ -96,7 +96,11 @@ def main() -> int:
     print(f"[basket] {args.case_id} -> {args.basket}  (V{b['n_video']} A{b['n_audio']} D{b['n_docs']})")
     got: List[str] = []
     for f in b.get("files", []):
-        is_media = f.get("type") in MEDIA_TYPES
+        ftype = f.get("type")
+        is_media = ftype in MEDIA_TYPES
+        if args.doc_911_only and ftype not in (DOC_TYPES | DISPATCH_TYPES):
+            print(f"  - skip (not doc/911, --doc-911-only): [{ftype}] {f.get('name','')[:44]}")
+            continue
         if not is_media and args.media_only:
             print(f"  - skip (doc, --media-only): {f.get('name','')[:54]}")
             continue
