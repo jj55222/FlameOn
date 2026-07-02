@@ -394,7 +394,7 @@ def write_md(rows: List[Dict[str, Any]]) -> None:
 # ---------------------------------------------------------------------------
 # pull cheap Tier-1 inputs (doc + 911) for the top-N via bundle_to_basket.py
 # ---------------------------------------------------------------------------
-def pull_top(rows: List[Dict[str, Any]], n: int, max_mb: float = 60.0) -> None:
+def pull_top(rows: List[Dict[str, Any]], n: int, max_mb: float = 150.0) -> None:
     for r in rows[:n]:
         cid = r["case_id"]
         basket = BASKET_ROOT / cid
