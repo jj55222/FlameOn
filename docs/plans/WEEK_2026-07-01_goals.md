@@ -22,7 +22,8 @@ parallel loops — dispatch the per-WS kickoff prompts instead. Modes:
 - **Parallel workstreams = separate checkouts.** Two sessions in one working dir fight over files
   and the auto-commit hook: `git worktree add ../FlameOn-ws4 -b ws4-remotion` and run WS4's session
   there while WS1 runs here. (WS1/WS3 touch `discovered_cases/` — run those sequentially or in
-  their own worktrees too.)
+  their own worktrees too.) **Full rules (code vs media sessions, GPU lock, AGG writes): CLAUDE.md
+  §Concurrent sessions — required reading for every instance.**
 - **Permissions:** an unattended loop STALLS at the first permission prompt. Run autonomous
   sessions in acceptEdits mode (or pre-allowlist the bash they need) so they don't block overnight.
 - WS2's end state needs no Claude at all — the daily P0 job is plain Python under launchd; only the
