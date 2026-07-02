@@ -325,8 +325,9 @@ Axon/Dropbox/YouTube side channels; GovQA/JustFOIA are often login-walled).
 
 **Done (goal script `goals/ws7_source_expansion_check.py`)** — exit 0 when: ≥ 5 new mandate-swept
 sources land in the AGG with ≥ 100 new media bundles total (validated live, gentle probes); the
-NextRequest crawler has scanned ≥ 50 instances and reported hits/misses honestly; and P0 has
-consumed ≥ 10 PDF-derived `foia_targets` rows into drafted case-numbered requests.
+NextRequest layer has SIZE-PROBED ≥ 50 instances, full-scanned only the small ones, and reported
+hit-rates honestly; and P0 has consumed ≥ 10 PDF-derived `foia_targets` rows into drafted
+case-numbered requests.
 
 **Kickoff prompt (verbatim):**
 > Read CLAUDE.md (§Concurrent sessions), STATE.md, docs/plans/WEEK_2026-07-01_goals.md §WS7, and
