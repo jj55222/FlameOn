@@ -174,11 +174,16 @@ def ground_filter(candidates: list, blob: str, tokens: set, segments: list) -> t
     return kept, dropped
 
 
-def dedup(beats: list, window: float = 8.0) -> list:
-    """Merge near-duplicate beats of the same type within `window` seconds."""
+def dedup(beats: list, window: float = 8.0, same_source: bool = False) -> list:
+    """Merge near-duplicate beats of the same type within `window` seconds.
+
+    ``same_source`` guards the merge on matching ``artifact_id`` — required when
+    merging across files, whose ``start_sec`` are each FILE-relative (so a BWC beat
+    at t=100 and a 911 beat at t=102 are unrelated, not a duplicate)."""
     out = []
     for b in sorted(beats, key=lambda x: (x.get("start_sec") is None, x.get("start_sec") or 0)):
         dup = next((o for o in out if o["moment_type"] == b["moment_type"]
+                    and (not same_source or o.get("artifact_id") == b.get("artifact_id"))
                     and o.get("start_sec") is not None and b.get("start_sec") is not None
                     and abs(o["start_sec"] - b["start_sec"]) <= window), None)
         if dup:
@@ -187,6 +192,109 @@ def dedup(beats: list, window: float = 8.0) -> list:
         else:
             out.append(b)
     return out
+
+
+# ------------------------------------------------------ per-file mining (the fix)
+#
+# Flattening ALL transcripts into ONE proposal drowns long, chaotic BWC transcripts:
+# short 911 calls are dense with salience-5 cues ("shots fired", "he's dead") and win
+# the global top-K, so A-roll bodycam gets ~0 beats (Iona: 4 mined, 0 from 4 BWC
+# cams). Mining each file with its own budget, then round-robining across evidence
+# KINDS under the global cap, guarantees the scarce A-roll a fair share.
+
+_KIND_ORDER = ["video", "911", "interview", "radio", "dispatch", "audio"]
+
+
+def _infer_kind(name: str) -> str:
+    """Coarse evidence-kind bucket from the artifact/file name. Heuristic and
+    non-critical: it only affects the ORDER beats are drawn in, never grounding —
+    a wrong guess costs some spread, never correctness."""
+    a = (name or "").lower()
+    if any(k in a for k in ("video", "bodyworn", "body_worn", "bwc", "dashcam", "dash_cam", "bodycam")):
+        return "video"
+    if "911" in a:
+        return "911"
+    if "interview" in a:
+        return "interview"
+    if "radio" in a:
+        return "radio"
+    if "dispatch" in a:
+        return "dispatch"
+    return "audio"
+
+
+def _kind_rank(k: str) -> int:
+    return _KIND_ORDER.index(k) if k in _KIND_ORDER else len(_KIND_ORDER)
+
+
+def expand_files(paths: list) -> list:
+    """Expand file/dir paths to individual transcript files (dirs → their *.json)."""
+    files = []
+    for p in paths or []:
+        p = Path(p)
+        files.extend(sorted(p.glob("*.json")) if p.is_dir() else [p])
+    return files
+
+
+def interleave_by_kind(files: list) -> list:
+    """Order files so kinds alternate (video, 911, interview, ... , video, ...),
+    video first — keeps scarce A-roll near the front so it isn't starved when
+    ``max_beats`` < file count and the first round is all we get."""
+    by_kind: dict = {}
+    for f in files:
+        by_kind.setdefault(_infer_kind(Path(f).name), []).append(f)
+    lists = [by_kind[k] for k in sorted(by_kind, key=_kind_rank)]
+    ordered = []
+    for i in range(max((len(l) for l in lists), default=0)):
+        for lst in lists:
+            if i < len(lst):
+                ordered.append(lst[i])
+    return ordered
+
+
+def mine_one(path, per_file_max: int, mock: bool, case_id: str, model: str) -> list:
+    """Mine a SINGLE transcript file end-to-end: propose → ground-filter → within-file
+    dedup → sort by salience. Grounding is against THIS file's blob only."""
+    segs = load_segments([path])
+    if not segs:
+        return []
+    blob, tokens = load_transcript_blob([path])
+    cands = (propose_mock(segs, per_file_max) if mock
+             else propose_llm(segs, case_id, model, per_file_max))
+    kept, _dropped = ground_filter(cands, blob, tokens, segs)
+    beats = dedup(kept)                       # same file ⇒ same clock, plain dedup ok
+    beats.sort(key=lambda b: -b.get("salience", 0))
+    return beats
+
+
+def _round_robin(per_file_beats: list, cap: int) -> list:
+    """Take one beat per file per round (files pre-ordered kind-interleaved, each
+    queue salience-sorted) until the global ``cap`` — so every file and kind is
+    represented before any file's surplus."""
+    queues = [list(q) for q in per_file_beats]
+    out: list = []
+    while len(out) < cap and any(queues):
+        for q in queues:
+            if q:
+                out.append(q.pop(0))
+                if len(out) >= cap:
+                    return out
+    return out
+
+
+def mine_per_file(paths: list, max_beats: int, per_file_max: int,
+                  mock: bool = False, case_id: str = "", model: str = "") -> tuple:
+    """Mine each transcript file independently, then round-robin across kinds/files
+    under ``max_beats``. Returns ``(beats, n_files_mined)``."""
+    files = interleave_by_kind(expand_files(paths))
+    per_file_beats = []
+    for f in files:
+        beats = mine_one(f, per_file_max, mock, case_id, model)
+        if beats:
+            per_file_beats.append(beats)
+    selected = _round_robin(per_file_beats, max_beats)
+    # cross-file merge: same_source so file-relative timestamps aren't cross-matched
+    return dedup(selected, same_source=True), len(per_file_beats)
 
 
 def assemble_golden(beats: list, case_id: str, agency: str, source: str) -> dict:
@@ -226,23 +334,42 @@ def main() -> int:
     ap.add_argument("--case-id", required=True)
     ap.add_argument("--agency", default="")
     ap.add_argument("--model", default="google/gemini-3.1-flash-lite-preview", help="OpenRouter model for proposal")
-    ap.add_argument("--max-beats", type=int, default=40)
+    ap.add_argument("--max-beats", type=int, default=40, help="global cap on emitted moments")
+    ap.add_argument("--per-file-max", type=int, default=8,
+                    help="per-transcript beat budget before the global max-beats merge (default path)")
+    ap.add_argument("--legacy", action="store_true",
+                    help="mine ALL transcripts in ONE combined prompt (pre-fix behavior; "
+                         "long BWC transcripts get drowned by dense short audio)")
     ap.add_argument("--mock", action="store_true", help="heuristic proposer (no LLM/key/network)")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    segments = load_segments(args.transcripts)
-    if not segments:
-        print("[beat_miner] no transcript segments found.", file=sys.stderr)
-        return 1
-    blob, tokens = load_transcript_blob(args.transcripts)
-    print(f"[beat_miner] {len(segments)} segments; proposing via {'mock heuristic' if args.mock else args.model} ...")
-
-    candidates = propose_mock(segments, args.max_beats) if args.mock else propose_llm(segments, args.case_id, args.model, args.max_beats)
-    kept, dropped = ground_filter(candidates, blob, tokens, segments)
-    beats = dedup(kept)
-    print(f"[beat_miner] proposed={len(candidates)} grounded={len(kept)} dropped_ungrounded={len(dropped)} after_dedup={len(beats)}")
+    via = "mock heuristic" if args.mock else args.model
+    if args.legacy:
+        segments = load_segments(args.transcripts)
+        if not segments:
+            print("[beat_miner] no transcript segments found.", file=sys.stderr)
+            return 1
+        blob, tokens = load_transcript_blob(args.transcripts)
+        print(f"[beat_miner] LEGACY (single combined prompt): {len(segments)} segments; proposing via {via} ...")
+        candidates = (propose_mock(segments, args.max_beats) if args.mock
+                      else propose_llm(segments, args.case_id, args.model, args.max_beats))
+        kept, dropped = ground_filter(candidates, blob, tokens, segments)
+        beats = dedup(kept)
+        print(f"[beat_miner] proposed={len(candidates)} grounded={len(kept)} "
+              f"dropped_ungrounded={len(dropped)} after_dedup={len(beats)}")
+    else:
+        print(f"[beat_miner] per-file mining (per_file_max={args.per_file_max}, "
+              f"max_beats={args.max_beats}) proposing via {via} ...")
+        beats, n_files = mine_per_file(args.transcripts, args.max_beats, args.per_file_max,
+                                       mock=args.mock, case_id=args.case_id, model=args.model)
+        if n_files == 0:
+            print("[beat_miner] no transcript segments found.", file=sys.stderr)
+            return 1
+        srcs = len({b.get("artifact_id") for b in beats})
+        print(f"[beat_miner] mined {n_files} file(s) → {len(beats)} beats after merge+dedup "
+              f"({srcs} distinct source(s)).")
 
     golden = assemble_golden(beats, args.case_id, args.agency, "heuristic-cue" if args.mock else args.model)
     if args.dry_run:
