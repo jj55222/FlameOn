@@ -1,0 +1,123 @@
+{
+  "template_id": "solvedfiles_standoff",
+  "label": "SolvedFiles standoff / action (bang-first)",
+  "use_for": "incident that reads chronologically on tape and peaks in a tactical resolution (standoff, OIS, pursuit, barricade, active-scene arrest)",
+  "schema_version": 1,
+  "derived_from": {
+    "channel": "SolvedFiles",
+    "n_videos": 55,
+    "source": ".tmp/creator_catalog/solvedfiles/TEMPLATE_solvedfiles_standoff.json",
+    "grammar": ".tmp/grammar_corpus/grammar/SolvedFiles_grammar.json",
+    "exemplar_ids": ["yYATXkzTqpo", "bluTo2vkCQQ"]
+  },
+  "global_rules": {
+    "runtime_min_range": [22, 40],
+    "runtime_min_median_ref": 35.4,
+    "vo_word_share_target": 0.31,
+    "cold_open_variant": "bang_first",
+    "climax_onset_pct_range": [75, 82],
+    "cta_placement": ["outro", "single_mid_roll_pocket_after_cliffhanger"],
+    "cta_forbidden_span_pct": [75, 83],
+    "outro_max_sec": 20,
+    "records_touchpoints_pct": [18, 69, 98],
+    "multicam_label_by": "place_or_role_never_name",
+    "legal_cover_on_accusations": true,
+    "structure_predicts_views": false,
+    "note": "format is a constant; do not tune dials per-video for views (structure<->views ~0)"
+  },
+  "acts": [
+    {
+      "id": "cold_open",
+      "title": "Cold Open",
+      "phase": "pre_incident",
+      "function": "hook",
+      "span_pct": [0, 4],
+      "beat_functions": ["scene_set", "emotional_peak", "reveal"],
+      "vo_moves": ["scene_set", "stakes", "hook"],
+      "required_beats": ["footage_bang_audio_transient", "vo_stakes_3_sentences", "nine_one_one_bite", "peaks_montage_4_6_shots", "hook_question_withhold_fate", "date_address_line_once"],
+      "notes": "loudest footage line at 0:00; VO stakes by ~0.4% of runtime; spoil HOW it looks, withhold WHY + victim fate"
+    },
+    {
+      "id": "arrival_first_contact",
+      "title": "Arrival & First Contact",
+      "phase": "incident",
+      "function": "establish",
+      "span_pct": [4, 16],
+      "beat_functions": ["scene_set", "tension_shift", "procedure"],
+      "vo_moves": ["scene_set", "context", "procedure"],
+      "required_beats": ["officer_arrival", "first_volley_or_contact_two_angle", "protect_under_fire", "establish_ticking_clock_unknown"],
+      "notes": "gunfire in/out points from audio transients / wall-clock, NOT transcript quote timestamps"
+    },
+    {
+      "id": "attempt_cycles",
+      "title": "Attempt Cycles",
+      "phase": "incident",
+      "function": "escalate",
+      "span_pct": [16, 66],
+      "loop": true,
+      "loop_beat_gap_sec": [60, 150],
+      "beat_functions": ["tension_shift", "reveal", "emotional_peak", "detail_noticed"],
+      "vo_moves": ["scene_set", "context", "foreshadow"],
+      "required_beats": ["plan", "attempt", "failure", "regroup_vo_recap", "human_thread_rotation", "escalation_step"],
+      "notes": "the tactical middle is a loop; alternate tactical beats with the human thread (neighbors, evacuations, dispatch, resident 911); multi-cam heaviest here, label by role"
+    },
+    {
+      "id": "records_bridge",
+      "title": "Records Bridge",
+      "phase": "investigation",
+      "function": "accountability",
+      "span_pct": [66, 72],
+      "target_sec": 60,
+      "beat_functions": ["record", "detail_noticed"],
+      "vo_moves": ["scene_set", "transition", "context"],
+      "required_beats": ["what_to_why_pivot", "priors_or_intel", "first_forensic_read"],
+      "notes": "narrated never cited; the middle of the 3-touch records pattern"
+    },
+    {
+      "id": "pivot_to_climax",
+      "title": "Pivot to Climax",
+      "phase": "investigation",
+      "function": "escalate",
+      "span_pct": [72, 75],
+      "beat_functions": ["tension_shift"],
+      "vo_moves": ["foreshadow", "stakes"],
+      "required_beats": ["just_as_things_looked_worse_one_sentence"],
+      "notes": "single-sentence trigger into the climax"
+    },
+    {
+      "id": "climax",
+      "title": "Climax",
+      "phase": "aftermath",
+      "function": "climax",
+      "span_pct": [75, 83],
+      "max_sec": 60,
+      "beat_functions": ["reveal", "tension_shift"],
+      "vo_moves": ["scene_set", "contradiction"],
+      "required_beats": ["tactical_resolution_raw", "resolve_ticking_clock_unknown"],
+      "notes": "sniper/breach/surrender; raw footage, minimal VO"
+    },
+    {
+      "id": "aftermath",
+      "title": "Aftermath",
+      "phase": "aftermath",
+      "function": "aftermath",
+      "span_pct": [83, 97],
+      "beat_functions": ["emotional_peak", "procedure", "detail_noticed"],
+      "vo_moves": ["scene_set", "context", "verdict"],
+      "required_beats": ["approach_aid", "officer_retellings_human_color", "records_closeout"],
+      "notes": "last 20-24% of runtime"
+    },
+    {
+      "id": "outro",
+      "title": "Outro",
+      "phase": "outcome",
+      "function": "resolve",
+      "span_pct": [97, 100],
+      "max_sec": 20,
+      "beat_functions": ["verdict", "record"],
+      "vo_moves": ["verdict", "stakes"],
+      "required_beats": ["evidence_recap", "charge_line_legal_cover", "conviction_or_finding", "hard_stop"],
+      "notes": "facts only; CTA may bundle here (majority pattern) but never across the climax"
+    }
+  ]
+}

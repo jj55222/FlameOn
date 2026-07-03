@@ -339,6 +339,121 @@ def build_acts(timeline: Dict, beats: List[Dict], doc_extracts: List[Dict],
 
 
 # ---------------------------------------------------------------------------
+# 4b. Template-driven act skeleton (shape-aware, opt-in via --template)
+#
+# The generic build_acts() sizes acts ∝ beat-count over the phases PRESENT. A
+# creator template (e.g. the SolvedFiles standoff/discovery skeletons) instead
+# imposes a FIXED ordered act list with target %-spans and per-act beat-function
+# quotas learned from the corpus. Beats are slotted into the skeleton by phase
+# (chronological within a phase, split across same-phase acts ∝ their span), so a
+# 9-act SolvedFiles arc replaces the flat 5-phase split.
+# ---------------------------------------------------------------------------
+
+TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
+_CANON_PHASES = {"pre_incident", "incident", "aftermath", "transport", "investigation", "outcome"}
+_PHASE_ALIASES = {"incident_aftermath_loop": "incident", "pre-incident": "pre_incident"}
+
+
+def load_template(name_or_path) -> Dict:
+    """Resolve a template by bare name (``templates/<name>.json``) or explicit path."""
+    p = Path(name_or_path)
+    if p.suffix == ".json" and p.exists():
+        return json.loads(p.read_text(encoding="utf-8"))
+    for cand in (TEMPLATES_DIR / f"{name_or_path}.json", TEMPLATES_DIR / str(name_or_path)):
+        if cand.exists():
+            return json.loads(cand.read_text(encoding="utf-8"))
+    avail = ", ".join(sorted(t.stem for t in TEMPLATES_DIR.glob("*.json"))) if TEMPLATES_DIR.exists() else "(none)"
+    raise FileNotFoundError(f"template not found: {name_or_path!r} — available in templates/: {avail}")
+
+
+def _canon_phase(p) -> str:
+    p = (p or "").strip()
+    if p in _CANON_PHASES:
+        return p
+    return _PHASE_ALIASES.get(p, "incident")
+
+
+def _span_pct(ta) -> Tuple[float, float]:
+    s, e = (list(ta.get("span_pct") or [0, 0]) + [0, 0])[:2]
+    return float(s), float(e)
+
+
+def _titleize(s: str) -> str:
+    return " ".join(w.capitalize() for w in str(s).replace("_", " ").split()) or "Act"
+
+
+def _proportional_split(items: List, weights: List[float]) -> List[List]:
+    """Partition ``items`` into ``len(weights)`` contiguous chunks sized ∝ weights
+    (the last chunk absorbs the rounding remainder so nothing is dropped)."""
+    n = len(items)
+    tot = sum(weights) or 1.0
+    chunks, start = [], 0
+    for k, w in enumerate(weights):
+        end = n if k == len(weights) - 1 else min(n, max(start, start + int(round(n * (w / tot)))))
+        chunks.append(items[start:end])
+        start = end
+    return chunks
+
+
+def _nearest_act_idx(phase: str, canon: List[str]) -> int:
+    """Index of the template act whose canonical phase is closest to ``phase`` in
+    the documentary phase order (fallback for a beat-phase the template omits)."""
+    order = [p for p, _, _ in _PHASE_ACT]
+    want = order.index(phase) if phase in order else len(order)
+    return min(range(len(canon)),
+              key=lambda i: abs((order.index(canon[i]) if canon[i] in order else len(order)) - want))
+
+
+def build_acts_from_template(template: Dict, beats: List[Dict], target_runtime: float) -> List[Dict]:
+    """Build the act list from a template skeleton: fixed acts, target_sec from the
+    declared %-span, per-act beat-function quotas, and beats slotted in by phase.
+    MUTATES each beat's ``act_id`` to the template act it lands in so the beat sheet
+    / render / judge all group under the skeleton's acts."""
+    tacts = template.get("acts") or []
+    if not tacts:
+        raise ValueError(f"template {template.get('template_id')!r} has no acts")
+    canon = [_canon_phase(ta.get("phase")) for ta in tacts]
+
+    beats_by_phase: Dict[str, List[Dict]] = {}
+    for b in beats:                                  # beats arrive chronologically sorted
+        ph = _canon_phase((b.get("act_id") or "").replace("act_", "") or b.get("_phase"))
+        beats_by_phase.setdefault(ph, []).append(b)
+
+    idx_by_phase: Dict[str, List[int]] = {}
+    for i, ph in enumerate(canon):
+        idx_by_phase.setdefault(ph, []).append(i)
+
+    assigned: Dict[int, List[Dict]] = {i: [] for i in range(len(tacts))}
+    for ph, bs in beats_by_phase.items():
+        idxs = idx_by_phase.get(ph) or [_nearest_act_idx(ph, canon)]
+        weights = [(_span_pct(tacts[i])[1] - _span_pct(tacts[i])[0]) or 1.0 for i in idxs]
+        for i, chunk in zip(idxs, _proportional_split(bs, weights)):
+            assigned[i].extend(chunk)
+
+    acts: List[Dict] = []
+    for i, ta in enumerate(tacts):
+        s, e = _span_pct(ta)
+        aid = f"act_{ta.get('id') or ta.get('name') or i}"
+        for b in assigned[i]:
+            b["act_id"] = aid
+        acts.append({
+            "act_id": aid,
+            "title": ta.get("title") or _titleize(ta.get("id") or ta.get("name")),
+            "phase": canon[i],
+            "function": ta.get("function") or _PHASE_FUNC.get(canon[i], "establish"),
+            "target_sec": round((e - s) / 100.0 * target_runtime, 1),
+            "span_pct": [s, e],
+            "beat_function_quota": ta.get("beat_functions") or [],
+            "vo_moves": ta.get("vo_moves") or [],
+            "required_beats": ta.get("required_beats") or [],
+            "thesis": ta.get("notes"),
+            "beat_ids": [b["beat_id"] for b in assigned[i]],
+            "template_id": template.get("template_id"),
+        })
+    return acts
+
+
+# ---------------------------------------------------------------------------
 # 5. Integrity ledger + 6. gaps + 7. metadata
 # ---------------------------------------------------------------------------
 
@@ -705,7 +820,8 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
                     sources: List, timeline_index: Dict[str, Dict], agency: str,
                     target_runtime: float = DEFAULT_RUNTIME,
                     media_dir: Optional[Path] = None,
-                    vision_events: Optional[List[Dict]] = None) -> Dict:
+                    vision_events: Optional[List[Dict]] = None,
+                    template: Optional[Dict] = None) -> Dict:
     transcribed_stems = {Path(str(s.media_path)).stem for s in sources if s.media_path}
     manifest, stem_to_id = build_asset_manifest(
         artifacts, timeline_index, transcribed_stems, doc_extracts, doc_paths,
@@ -732,7 +848,10 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
             b["beat_id"] = f"b{n:02d}"
             b["ordinal"] = n
     resolve_same_asset_overlaps(beats)   # no replaying the same footage
-    acts = build_acts(timeline, beats, doc_extracts, target_runtime)
+    # A template imposes a fixed act skeleton + %-spans + quotas (and re-tags beat
+    # act_ids); absent one, the generic phase-∝-beats split is unchanged.
+    acts = (build_acts_from_template(template, beats, target_runtime) if template
+            else build_acts(timeline, beats, doc_extracts, target_runtime))
     ledger = build_integrity_ledger(beats, incident, doc_extracts)
     gaps = build_gaps(manifest, timeline, beats, incident)
     metadata = build_metadata(manifest, acts, beats, timeline, target_runtime)
@@ -742,6 +861,7 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
         "case_id": verdict.get("case_id"),
         "logline": None,
         "target_runtime_sec": target_runtime,
+        "template": template.get("template_id") if template else None,
         "agency": agency,
         "incident": incident,
         "asset_manifest": manifest,
@@ -889,8 +1009,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--auto-anchor", action="store_true",
                     help="re-derive the incident anchor from salience×camera-convergence "
                          "(+IA-report cross-check) and re-bucket phases — no operator --incident needed")
+    ap.add_argument("--template", default=None,
+                    help="act-skeleton template: a name in templates/ (e.g. solvedfiles_standoff) "
+                         "or a path to a template .json. Sets act structure, %-spans, and per-act "
+                         "beat-function quotas instead of the generic phase-∝-beats split.")
     ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
     args = ap.parse_args(argv)
+
+    template = load_template(args.template) if args.template else None
 
     artifacts = json.loads(args.artifacts.read_text(encoding="utf-8"))
     timeline = json.loads(args.timeline.read_text(encoding="utf-8"))
@@ -909,10 +1035,14 @@ def main(argv: Optional[List[str]] = None) -> int:
             artifacts, timeline, verdict, doc_extracts, sources,
             args.media_dir, timeline_index)
 
+    if template:
+        print(f"[blueprint] template: {template.get('template_id')} "
+              f"({len(template.get('acts', []))} acts) — {template.get('label', '')}")
+
     bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,
                          sources, timeline_index, args.agency,
                          target_runtime=args.target_runtime, media_dir=args.media_dir,
-                         vision_events=vision_events)
+                         vision_events=vision_events, template=template)
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)

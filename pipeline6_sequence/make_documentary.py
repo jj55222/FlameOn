@@ -152,7 +152,11 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
                    "--auto-anchor", "--out", str(bp_dir)]
         if a.doc:
             bp_argv += ["--doc-extract", str(doc_extract)]
-        steps.append(Step("blueprint", _py(P6 / "blueprint.py", *bp_argv),
+        bp_label = "blueprint"
+        if getattr(a, "template", None):
+            bp_argv += ["--template", a.template]
+            bp_label = f"blueprint [template: {a.template}]"
+        steps.append(Step(bp_label, _py(P6 / "blueprint.py", *bp_argv),
                           produces=str(blueprint_json)))
 
         steps.append(Step(
@@ -233,6 +237,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                          "(--target-runtime) → judge gate, instead of the simple text-card cut")
     ap.add_argument("--target-runtime", type=float, default=600.0,
                     help="flagship cut length in seconds (auto-fit, never padded); default 600")
+    ap.add_argument("--template", default=None,
+                    help="flagship act-skeleton template (name in pipeline6_sequence/templates/, "
+                         "e.g. solvedfiles_standoff | solvedfiles_discovery, or a path to a .json)")
     ap.add_argument("--shape-model", default="deepseek/deepseek-v4-flash",
                     help="OpenRouter model for the editorial shaping tier")
     ap.add_argument("--judge-mock", action="store_true",
