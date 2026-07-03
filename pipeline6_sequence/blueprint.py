@@ -36,6 +36,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render_rough_cut as rc  # noqa: E402  (only zero-ffmpeg helpers used)
+import av_transients as avt     # noqa: E402  (opt-in gunshot snapping; ffmpeg only if used)
 
 DEFAULT_RUNTIME = 1800.0       # 30 min
 COLD_OPEN_SEC = 45.0
@@ -815,13 +816,31 @@ def _strip_private(beats: List[Dict]) -> List[Dict]:
     return [{k: v for k, v in b.items() if not k.startswith("_")} for b in beats]
 
 
+def _asset_path_resolver(manifest: List[Dict], media_dir: Optional[Path]):
+    """asset_id -> a decodable media path (for transient snapping). Tries the
+    manifest path, then <media_dir>/<basename>; returns None if nothing exists."""
+    id2path = {a.get("asset_id"): a.get("path") for a in manifest}
+
+    def resolve(asset_id: str) -> Optional[str]:
+        p = id2path.get(asset_id)
+        if p and Path(p).exists():
+            return p
+        if p and media_dir:
+            cand = Path(media_dir) / Path(p).name
+            if cand.exists():
+                return str(cand)
+        return None
+    return resolve
+
+
 def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
                     doc_extracts: List[Dict], doc_paths: List[Optional[str]],
                     sources: List, timeline_index: Dict[str, Dict], agency: str,
                     target_runtime: float = DEFAULT_RUNTIME,
                     media_dir: Optional[Path] = None,
                     vision_events: Optional[List[Dict]] = None,
-                    template: Optional[Dict] = None) -> Dict:
+                    template: Optional[Dict] = None,
+                    snap_transients: bool = False) -> Dict:
     transcribed_stems = {Path(str(s.media_path)).stem for s in sources if s.media_path}
     manifest, stem_to_id = build_asset_manifest(
         artifacts, timeline_index, transcribed_stems, doc_extracts, doc_paths,
@@ -847,6 +866,9 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
         for n, b in enumerate(beats):
             b["beat_id"] = f"b{n:02d}"
             b["ordinal"] = n
+    # Opt-in: snap salient force-onset beats to the audio bang (before overlap
+    # resolution, so any window shift is re-deconflicted). No-op without the flag.
+    snapped = avt.snap_beats(beats, _asset_path_resolver(manifest, media_dir)) if snap_transients else []
     resolve_same_asset_overlaps(beats)   # no replaying the same footage
     # A template imposes a fixed act skeleton + %-spans + quotas (and re-tags beat
     # act_ids); absent one, the generic phase-∝-beats split is unchanged.
@@ -855,6 +877,7 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
     ledger = build_integrity_ledger(beats, incident, doc_extracts)
     gaps = build_gaps(manifest, timeline, beats, incident)
     metadata = build_metadata(manifest, acts, beats, timeline, target_runtime)
+    metadata["snapped_beats"] = len(snapped)
     narration_points = [{"beat_id": b["beat_id"], **b["narration_bridge"]}
                         for b in beats if b.get("narration_bridge")]
     return {
@@ -1013,6 +1036,11 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="act-skeleton template: a name in templates/ (e.g. solvedfiles_standoff) "
                          "or a path to a template .json. Sets act structure, %-spans, and per-act "
                          "beat-function quotas instead of the generic phase-∝-beats split.")
+    ap.add_argument("--snap-transients", action="store_true",
+                    help="nudge salient force-onset beats (reveal/peak/tension_shift with a "
+                         "'shots fired'/'drop the gun'/... cue) so the audio bang lands ~3s into "
+                         "the clip — fixes speech-grounded beats starting AFTER the gunfire. "
+                         "Needs ffmpeg; opt-in, default off.")
     ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
     args = ap.parse_args(argv)
 
@@ -1042,7 +1070,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,
                          sources, timeline_index, args.agency,
                          target_runtime=args.target_runtime, media_dir=args.media_dir,
-                         vision_events=vision_events, template=template)
+                         vision_events=vision_events, template=template,
+                         snap_transients=args.snap_transients)
+    if args.snap_transients:
+        print(f"[blueprint] snap-transients: moved {bp['metadata'].get('snapped_beats', 0)} beat(s) "
+              f"to the audio bang")
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)

@@ -156,6 +156,9 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
         if getattr(a, "template", None):
             bp_argv += ["--template", a.template]
             bp_label = f"blueprint [template: {a.template}]"
+        if getattr(a, "snap_transients", False):
+            bp_argv.append("--snap-transients")
+            bp_label += " +snap"
         steps.append(Step(bp_label, _py(P6 / "blueprint.py", *bp_argv),
                           produces=str(blueprint_json)))
 
@@ -240,6 +243,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--template", default=None,
                     help="flagship act-skeleton template (name in pipeline6_sequence/templates/, "
                          "e.g. solvedfiles_standoff | solvedfiles_discovery, or a path to a .json)")
+    ap.add_argument("--snap-transients", action="store_true",
+                    help="flagship: snap salient force-onset beats to the audio bang (ffmpeg; opt-in)")
     ap.add_argument("--shape-model", default="deepseek/deepseek-v4-flash",
                     help="OpenRouter model for the editorial shaping tier")
     ap.add_argument("--judge-mock", action="store_true",
