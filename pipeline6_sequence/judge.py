@@ -39,8 +39,82 @@ SUBSTANCE_TYPES = {
 }
 SALIENCE_TYPES = {"emotional_peak", "reveal", "contradiction", "tension_shift",
                   "k9_deployment", "takedown", "foot_pursuit"}
+# Beat FUNCTIONS that are themselves a use of force (the P4/evaluate moment-type path).
+FORCE_FUNCTION_TYPES = {"k9_deployment", "taser", "strike", "takedown",
+                        "weapon_drawn", "firearm_pointed", "use_of_force_other"}
 _PHASE_ORDER = ["pre_incident", "incident", "aftermath", "transport",
                 "investigation", "outcome"]
+
+# asset_manifest kinds that are camera / moving-image footage (the A-roll). A
+# flagship blueprint carries these in primary_asset and never sets beat["source"],
+# so a 28-clip bodycam cut must be classified off the ASSET, not off b["source"].
+VISION_KINDS = {"bodycam", "body_worn_camera", "bwc", "dashcam", "dash_cam", "dash",
+                "video", "surveillance", "cctv", "helicopter", "aerial", "drone",
+                "cellphone_video", "cell_video", "security_camera"}
+# kinds that are still documents / images (record beats, not footage).
+DOCUMENT_KINDS = {"document", "report", "pdf", "photo", "photos", "image", "images",
+                  "exhibit", "map", "diagram"}
+# Force is present even when no beat FUNCTION is a force label — a beat_miner-driven
+# flagship tags a shooting as reveal/tension_shift, so the only signal is the words.
+_FORCE_CUES = re.compile(
+    r"\b(shots?\s+fired|gun\s*shots?|shot|shoot(?:s|ing)?|open(?:ed|ing)?\s+fire|"
+    r"gunfire|discharg(?:e|ed|ing)|tas(?:er|ed|ing|e)|bean\s*bag|k-?9|canine|"
+    r"takedown|baton|struck|punch(?:ed|es)?|pepper\s*spray|o\.?c\.?\s*spray)\b", re.I)
+
+
+def _asset_kind_lookup(bundle: Dict) -> Dict[str, str]:
+    """asset_id -> lowercased kind, from the bundle's asset_manifest (list or dict)."""
+    am = bundle.get("asset_manifest") or []
+    items = am.values() if isinstance(am, dict) else am
+    out: Dict[str, str] = {}
+    for a in items:
+        if isinstance(a, dict) and a.get("asset_id"):
+            out[a["asset_id"]] = str(a.get("kind") or "").lower()
+    return out
+
+
+def classify_beat_source(beat: Dict, kinds: Dict[str, str]) -> str:
+    """Classify one beat into vision|broll|document|transcript|narration by the KIND
+    of its primary asset (looked up in the asset_manifest), falling back to the
+    asset-id naming convention (``v_`` = footage, ``x_doc_``/``doc_`` = document) and
+    then the beat's own flags. This is the fix for the judge scoring flagship cuts
+    ``vision:0``: the footage lives in primary_asset (ids ``v_*``, kind bodycam), the
+    beat never sets ``source:"vision"``, and a quote is attached to every beat."""
+    pa = beat.get("primary_asset") or {}
+    aid = pa.get("asset_id") or ""
+    kind = kinds.get(aid, "")
+    # B-roll first: an explicit broll beat is broll even if its clip is footage.
+    if beat.get("is_broll") or kind == "broll":
+        return "broll"
+    # Moving-image footage — the A-roll the "visual integration" critique is about.
+    if kind in VISION_KINDS or aid.startswith("v_"):
+        return "vision"
+    # Documents / stills (record beats sourced to the IA report, photos, exhibits).
+    if beat.get("is_document") or kind in DOCUMENT_KINDS or aid.startswith("x_doc") or aid.startswith("doc_"):
+        return "document"
+    # Legacy explicit tag wins if a producer set it.
+    if beat.get("source") == "vision":
+        return "vision"
+    # An audio/other asset carrying a quote, or a quote-only beat ⇒ transcript.
+    if beat.get("quote"):
+        return "transcript"
+    # No asset and no quote ⇒ authored narration bridge.
+    if not aid:
+        return "narration"
+    return "transcript"
+
+
+def _force_in_beats(beats: List[Dict]) -> bool:
+    """True if any beat's words describe a use of force. Scans quote + narration +
+    description so an OIS cut whose beats are labelled reveal/tension_shift still
+    registers the shooting instead of a false ``has_use_of_force: false``."""
+    for b in beats:
+        parts = [(b.get("quote") or {}).get("text", ""),
+                 (b.get("narration_bridge") or {}).get("text", ""),
+                 str(b.get("description") or "")]
+        if _FORCE_CUES.search(" ".join(p for p in parts if p)):
+            return True
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -123,6 +197,11 @@ def coverage_findings(bundle: Dict, pool: Optional[List[Dict]] = None) -> Dict:
     substance_hit = sorted(tset & SUBSTANCE_TYPES)
     salience_hit = sorted(tset & SALIENCE_TYPES)
 
+    # Classify every beat once by the KIND of its primary asset (not b["source"],
+    # which flagship blueprints never set) so bodycam A-roll is counted as vision.
+    kinds = _asset_kind_lookup(bundle)
+    src_classes = [classify_beat_source(b, kinds) for b in beats]
+
     omissions: List[Dict] = []
     if pool:
         present = {(b.get("function"), round(float((b.get("primary_asset") or {}).get("in_sec", -1)) / 5))
@@ -139,13 +218,14 @@ def coverage_findings(bundle: Dict, pool: Optional[List[Dict]] = None) -> Dict:
         "substance_types_present": substance_hit,
         "salience_types_present": salience_hit,
         "has_procedural": "procedural_violation" in tset,
-        "has_use_of_force": bool(tset & {"k9_deployment", "taser", "strike", "takedown",
-                                         "weapon_drawn", "firearm_pointed", "use_of_force_other"}),
+        "has_use_of_force": bool(tset & FORCE_FUNCTION_TYPES) or _force_in_beats(beats),
         "phases_covered": sorted(p for p in phases if p),
         "source_mix": {
-            "vision": sum(1 for b in beats if b.get("source") == "vision"),
-            "broll": sum(1 for b in beats if b.get("is_broll")),
-            "transcript": sum(1 for b in beats if b.get("quote")),
+            "vision": src_classes.count("vision"),
+            "broll": src_classes.count("broll"),
+            "document": src_classes.count("document"),
+            "transcript": src_classes.count("transcript"),
+            "narration": src_classes.count("narration"),
         },
         "omissions": omissions,
     }
@@ -179,13 +259,14 @@ _SYSTEM = (
 
 
 def _bundle_digest(bundle: Dict) -> Dict:
+    kinds = _asset_kind_lookup(bundle)
     beats = []
     for b in bundle.get("beats", []):
         pa = b.get("primary_asset") or {}
         beats.append({
             "act": b.get("act_id"), "function": b.get("function"),
             "importance": b.get("importance") or b.get("_importance"),
-            "source": "vision" if b.get("source") == "vision" else ("broll" if b.get("is_broll") else "transcript"),
+            "source": classify_beat_source(b, kinds),
             "quote": (b.get("quote") or {}).get("text"),
             "desc": (b.get("description") or "")[:90],
             "asset": pa.get("asset_id"),
@@ -376,6 +457,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     cr = v["deterministic"]["craft"]
     print(f"  craft: {cr['replay_count']} replay(s), sourced={cr['all_sourced']}, "
           f"runtime {cr['runtime_flag']} ({cr['runtime_ratio']})")
+    cv = v["deterministic"]["coverage"]
+    sm = cv["source_mix"]
+    print(f"  coverage: source_mix vision={sm['vision']} broll={sm['broll']} "
+          f"document={sm.get('document', 0)} transcript={sm['transcript']} "
+          f"narration={sm.get('narration', 0)} | use_of_force={cv['has_use_of_force']} "
+          f"procedural={cv['has_procedural']}")
     if v["issues"]:
         print("  issues:")
         for i in v["issues"][:8]:

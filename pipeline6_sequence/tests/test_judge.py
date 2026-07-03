@@ -88,6 +88,63 @@ def test_coverage_omissions_vs_pool():
     assert not any(o["type"] == "emotional_peak" for o in cov["omissions"])   # that one's present
 
 
+# --- source_mix: classify off primary_asset kind, not b["source"] -----------
+
+def test_source_mix_classifies_by_asset_manifest_kind():
+    # A flagship-shaped bundle: footage lives in primary_asset (kinds bodycam/dashcam),
+    # a record beat cites a document, an audio beat carries a quote. NONE set
+    # beat["source"] and every beat has a quote — the old code scored this vision:0.
+    manifest = [{"asset_id": "v_anderson_bwc", "kind": "bodycam"},
+                {"asset_id": "cam_dash_2", "kind": "dashcam"},      # not v_ prefixed
+                {"asset_id": "x_doc_p1", "kind": "document"},
+                {"asset_id": "a_911_3", "kind": "911_audio"}]
+    beats = [_beat("reveal", asset="v_anderson_bwc", quote={"text": "shots fired"}),
+             _beat("scene_set", asset="cam_dash_2"),
+             _beat("record", asset="x_doc_p1"),
+             _beat("tension_shift", asset="a_911_3", quote={"text": "he has a gun"})]
+    sm = J.coverage_findings(_bundle(beats, asset_manifest=manifest))["source_mix"]
+    assert sm["vision"] == 2          # bodycam + dashcam, even w/ a quote and no source="vision"
+    assert sm["document"] == 1
+    assert sm["transcript"] == 1      # the 911 audio-with-quote
+
+
+def test_source_mix_counts_broll_beat_as_broll_not_vision():
+    manifest = [{"asset_id": "v_stock", "kind": "video"}]
+    beats = [_beat("scene", asset="v_stock", is_broll=True)]
+    sm = J.coverage_findings(_bundle(beats, asset_manifest=manifest))["source_mix"]
+    assert sm["broll"] == 1 and sm["vision"] == 0
+
+
+def test_source_mix_falls_back_to_v_prefix_without_manifest():
+    # legacy bundles with no asset_manifest still classify v_* as footage
+    sm = J.coverage_findings(_bundle([_beat("reveal", asset="v_bwc5a")]))["source_mix"]
+    assert sm["vision"] == 1
+
+
+def test_bundle_digest_reports_vision_source_to_llm():
+    # the digest is what the LLM judges; a bodycam beat must read as "vision", not
+    # "transcript" — otherwise the LLM is prompted into a false zero-visual critique.
+    manifest = [{"asset_id": "v_cam", "kind": "bodycam"}]
+    bundle = _bundle([_beat("reveal", asset="v_cam", quote={"text": "shots fired"})],
+                     asset_manifest=manifest)
+    assert J._bundle_digest(bundle)["beats"][0]["source"] == "vision"
+
+
+# --- use-of-force read from beat text when no force FUNCTION is present ------
+
+def test_use_of_force_detected_from_beat_text_without_force_function():
+    # beat_miner labels a shooting reveal/tension_shift (never a force FUNCTION), so
+    # use-of-force must be read from the words.
+    beats = [_beat("reveal", quote={"text": "He's shooting at the officer!"}),
+             _beat("tension_shift", asset="a_1", quote={"text": "keep your hands up"})]
+    assert J.coverage_findings(_bundle(beats))["has_use_of_force"] is True
+
+
+def test_use_of_force_not_triggered_by_benign_stop():
+    calm = [_beat("scene_set", quote={"text": "license and registration please"})]
+    assert J.coverage_findings(_bundle(calm))["has_use_of_force"] is False
+
+
 # --- blend (deterministic veto) --------------------------------------------
 
 def test_blend_penalizes_craft_for_replays():
