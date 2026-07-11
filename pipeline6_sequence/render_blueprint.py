@@ -11,7 +11,8 @@ B-roll, and the sourced outcome facts.
 Mapping:
   logline            -> title card
   each act (in order)-> a phase header card (title + thesis)
-  beat.narration     -> a narration card before the beat
+  beat.narration_bridge (realized text) -> an on-clip band (narration_top) on playable
+                        beats; a standalone narration card only for document/unplayable beats
   beat (clip)        -> a video clip (lower-third) or audio-over-card (quote)
   beat.is_broll      -> the same, with no quote (footage/establishing only)
   incident facts     -> the closing outcome card

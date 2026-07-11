@@ -112,13 +112,14 @@ def test_quote_beat_keeps_pinned_quote_and_credit():
     assert "Officer" in clip["lower_third"]
 
 
-def test_realized_narration_becomes_a_narration_event_before_its_clip():
+def test_realized_narration_becomes_a_band_on_its_clip():
+    # Operator direction (editorial round 2): narration over footage renders as an
+    # on-clip band (narration_top), never a standalone card that stalls the cut.
     pe = _pe()
-    kinds = _kinds(pe)
-    n_idx = kinds.index("narration")
-    assert pe["timeline"][n_idx]["text"] == "The K9 is deployed."
-    # the narration sits immediately before the bwc clip it introduces
-    assert "BWC-1a.mp4" in pe["timeline"][n_idx + 1]["media"]
+    clip = next(e for e in pe["timeline"] if e["kind"] == "clip" and "BWC-1a.mp4" in e["media"])
+    assert clip["narration_top"] == "The K9 is deployed."
+    # no standalone narration event for playable beats
+    assert not any(e["kind"] == "narration" for e in pe["timeline"])
 
 
 def test_non_playable_primary_becomes_a_gap():
@@ -270,8 +271,9 @@ def test_media_dir_remap_used_when_manifest_path_absent(tmp_path):
 # --- runtime projection + closed-loop solve (auto long-form fit) ----------
 
 def test_project_duration_matches_render_rules():
-    # title 5 + br00 clip 12 + phase 3 + narration 3 + b00 clip 18 + gap 0 + outcome 7
-    assert rb.project_duration(_pe()) == 48.0
+    # title 5 + br00 clip 12 + phase 3 + b00 clip 18 + gap 0 + outcome 7
+    # (realized narration on a playable beat is an on-clip band — adds no runtime)
+    assert rb.project_duration(_pe()) == 45.0
 
 
 def test_min_clip_sec_widens_moment_not_broll():
@@ -280,7 +282,7 @@ def test_min_clip_sec_widens_moment_not_broll():
     broll, moment = clips[True], clips[False]
     assert broll["out_sec"] - broll["in_sec"] == 12.0          # B-roll untouched
     assert round(moment["out_sec"] - moment["in_sec"], 1) == 30.0  # moment widened
-    assert rb.project_duration(pe) == 60.0                     # +12s reached the total
+    assert rb.project_duration(pe) == 57.0                     # +12s reached the total
 
 
 def test_solve_min_clip_sec_hits_reachable_target():
