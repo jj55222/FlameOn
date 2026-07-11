@@ -1,0 +1,21 @@
+{
+  "name": "flameon-pipeline6-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Case-generic Remotion assembly lane for validated FlameOn paper edits",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts Cut"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "@remotion/media-utils": "4.0.484",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.1",
+    "typescript": "5.4.5"
+  }
+}
