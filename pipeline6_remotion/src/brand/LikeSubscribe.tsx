@@ -6,7 +6,7 @@ import {BLUE, MagLens} from "./MagLens";
 
 /** Like & Subscribe sting (~6s): beacon rolls across, kicks a thumbs-up pop,
  * SUBSCRIBE pill sweeps red->blue, bell swings; red/blue underglow alternates. */
-export const LikeSubscribe: React.FC = () => {
+export const LikeSubscribe: React.FC<{transparent?: boolean}> = ({transparent = false}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
@@ -16,7 +16,7 @@ export const LikeSubscribe: React.FC = () => {
   const bell = t > 3.6 ? Math.sin((t - 3.6) * 14) * Math.max(0, 1 - (t - 3.6) / 1.2) * 22 : 0;
   const glow = Math.floor(t * 5) % 2 === 0 ? C.red : BLUE;
   return (
-    <AbsoluteFill style={{background: "#060607", alignItems: "center", justifyContent: "center"}}>
+    <AbsoluteFill style={{background: transparent ? undefined : "#060607", alignItems: "center", justifyContent: "center"}}>
       <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 92%, ${glow}26 0%, transparent 50%)`}} />
       <div style={{position: "absolute", left: `${roll}%`, top: "34%", transform: "translate(-50%,-50%)"}}>
         <MagLens size={170} spin={t * 300} glow={1} monogram="DR" tilt={Math.sin(t*1.3)*6} />

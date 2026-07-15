@@ -6,14 +6,14 @@ import {BLUE, MagLens} from "./MagLens";
 /** TRUE CRIME DR — logo lockup. Heavy white caps; the DR monogram lives inside
  * the detective's magnifying glass (red/blue rim arcs = the light DNA).
  * Firm and investigative, not horror. */
-export const LogoLockup: React.FC<{animate?: boolean; scale?: number}> = ({animate = true, scale = 1}) => {
+export const LogoLockup: React.FC<{animate?: boolean; scale?: number; transparent?: boolean}> = ({animate = true, scale = 1, transparent = false}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
   const spin = animate ? t * 140 : 22;
   const inP = animate ? interpolate(t, [0, 0.9], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}) : 1;
   return (
-    <AbsoluteFill style={{background: "#060607", alignItems: "center", justifyContent: "center"}}>
+    <AbsoluteFill style={{background: transparent ? undefined : "#060607", alignItems: "center", justifyContent: "center"}}>
       <svg width={0} height={0}><defs>
         <filter id="logo-grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.045 0"/></filter>
       </defs></svg>

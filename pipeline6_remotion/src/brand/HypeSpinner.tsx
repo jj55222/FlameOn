@@ -6,7 +6,7 @@ import {LogoLockup} from "./Logo";
 
 /** Hype opener (~4.5s): the beacon ball rolls in from the left, spins up as red/
  * blue arcs accelerate (police-light strobe builds), white flash — slam to logo. */
-export const HypeSpinner: React.FC = () => {
+export const HypeSpinner: React.FC<{transparent?: boolean}> = ({transparent = false}) => {
   const frame = useCurrentFrame();
   const {fps, width, height} = useVideoConfig();
   const t = frame / fps;
@@ -22,7 +22,7 @@ export const HypeSpinner: React.FC = () => {
   const S = 300;
 
   return (
-    <AbsoluteFill style={{background: "#060607", overflow: "hidden"}}>
+    <AbsoluteFill style={{background: transparent ? undefined : "#060607", overflow: "hidden"}}>
       {!logoIn ? (
         <>
           {/* alternating wall-wash — the police-light room feel */}
@@ -36,7 +36,7 @@ export const HypeSpinner: React.FC = () => {
           </div>
         </>
       ) : (
-        <LogoLockup animate={false} scale={0.9} />
+        <LogoLockup animate={false} scale={0.9} transparent={transparent} />
       )}
       <AbsoluteFill style={{background: "#fff", opacity: flash, pointerEvents: "none"}} />
     </AbsoluteFill>
