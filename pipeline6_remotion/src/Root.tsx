@@ -6,6 +6,8 @@ import {LikeSubscribe} from "./brand/LikeSubscribe";
 import {LogoLockup} from "./brand/Logo";
 import {MagLens} from "./brand/MagLens";
 import {MotifDemo} from "./motifs/MotifDemo";
+import {Full911Card} from "./motifs/Full911Card";
+import words911 from "../public/demo911/words.json";
 import type {CutProps} from "./types";
 
 
@@ -46,6 +48,13 @@ const Banner: React.FC = () => (
   </AbsoluteFill>
 );
 
+
+const Demo911: React.FC = () => (
+  <Full911Card audioSrc="demo911/call.wav" location="4S COMMONS DRIVE"
+    quote="There's a shootout right now." source="911 Call 1 · SDPD release · transcript checked against audio"
+    words={words911 as any} />
+);
+
 const BrandReel: React.FC = () => (
   <AbsoluteFill>
     <Sequence from={0} durationInFrames={135}><HypeSpinner /></Sequence>
@@ -72,6 +81,7 @@ const defaults: CutProps = {
 
 export const RemotionRoot: React.FC = () => (
   <>
+  <Composition id="Demo911" component={Demo911} fps={30} width={1920} height={1080} durationInFrames={450} />
   <Composition id="Banner" component={Banner} fps={30} width={2560} height={1440} durationInFrames={30} />
   <Composition id="LogoSquare800" component={LensMark} fps={30} width={800} height={800} durationInFrames={30} defaultProps={{spin: false}} />
   <Composition id="HypeOpener" component={HypeSpinner} fps={30} width={1920} height={1080} durationInFrames={135} />
