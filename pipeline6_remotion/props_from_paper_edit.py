@@ -138,6 +138,53 @@ def emphasize(text: str, phrases: Iterable[str]) -> str:
     return result
 
 
+# Operator spec: cards/lower-thirds must read for the AUDIENCE, never as internal file refs.
+_FILEREF = re.compile(
+    r"\b(?:BWC[\s_-]*\d+|Body[\s_-]*Worn[\s_-]*Camera\s*\d*|Officer\s*\d*\s*BWC|"
+    r"Surveillance\s*\d+|Communications?\s*\d+|911\s*Call\s*\d+|Interview\s*\w*\d*|"
+    r"Redacted|_mb\b|_SE\b|_KM\b)\b", re.I)
+
+
+def humanize_label(text: str) -> str:
+    """Turn 'BWC_3 · THE VOLLEY' into audience-facing 'Officer's body camera · The volley'."""
+    if not text:
+        return text
+    parts = re.split(r"\s*·\s*|\s*-\s*", text, maxsplit=1)
+    head = parts[0]
+    if _FILEREF.search(head):
+        low = head.lower()
+        if "surveillance" in low:
+            friendly = "Surveillance camera"
+        elif "911" in low:
+            friendly = "911 call"
+        elif "interview" in low or "interrogat" in low:
+            friendly = "Recorded interview"
+        elif "communication" in low or "radio" in low:
+            friendly = "Police radio"
+        else:
+            friendly = "Officer's body camera"
+        rest = f" · {parts[1].strip()}" if len(parts) > 1 and parts[1].strip() else ""
+        return f"{friendly}{rest}"
+    return text
+
+
+def silent_lead_sec(path: Path, ffmpeg: str) -> float:
+    """Detect a muted lead-in (Axon pre-event buffer) at the clip start; 0 if audio is live."""
+    try:
+        out = subprocess.run(
+            [ffmpeg, "-i", str(path), "-af", "silencedetect=noise=-45dB:d=1.5", "-f", "null", "-"],
+            capture_output=True, text=True, timeout=30).stderr
+    except Exception:
+        return 0.0
+    # only report a lead that starts at (or ~0) the clip beginning
+    starts = re.findall(r"silence_start:\s*([\d.]+)", out)
+    ends = re.findall(r"silence_end:\s*([\d.]+)", out)
+    if starts and float(starts[0]) <= 0.3 and ends:
+        lead = float(ends[0])
+        return round(lead, 1) if lead >= 2.0 else 0.0
+    return 0.0
+
+
 def extract_media(source: Path, output: Path, start: float, end: float,
                   media_type: str, ffmpeg: str, ffprobe: str) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -280,11 +327,21 @@ def build(args: argparse.Namespace) -> Dict[str, Any]:
         target = public_case / "media" / output_name
         if not args.no_extract:
             extract_media(source, target, start, end, media_type, ffmpeg, ffprobe)
-        events.append({"type": media_type, "eventId": event_id, "file": f"{public_prefix}/media/{output_name}",
-                       "durSec": round(end - start, 3), "lowerThird": str(item.get("lower_third") or ""),
+        # audience-facing label + muted-lead countdown (operator polish spec)
+        lower = humanize_label(str(item.get("lower_third") or ""))
+        resumes = 0.0
+        if media_type == "clip" and not args.no_extract and target.exists():
+            resumes = silent_lead_sec(target, ffmpeg)
+            if resumes:
+                degradations.append({"code": "muted_lead_countdown", "detail": f"{resumes}s silent lead", "eventId": event_id})
+        media_event = {"type": media_type, "eventId": event_id, "file": f"{public_prefix}/media/{output_name}",
+                       "durSec": round(end - start, 3), "lowerThird": lower,
                        "narrationTop": narration, "captions": captions,
                        "capOffset": float(item.get("capOffset", item.get("cap_offset", beat.get("capOffset", beat.get("cap_offset", 0)))) or 0),
-                       "creditLine": str(item.get("credit_line") or ""), "sourceLabel": source.stem[:100]})
+                       "creditLine": str(item.get("credit_line") or ""), "sourceLabel": source.stem[:100]}
+        if resumes:
+            media_event["audioResumesInSec"] = resumes
+        events.append(media_event)
 
     total = round(sum(float(event["durSec"]) for event in events), 3)
     props = {

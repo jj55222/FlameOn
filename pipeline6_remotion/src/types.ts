@@ -29,6 +29,7 @@ export type MediaEvent = Overlay & {
   capOffset: number;
   creditLine: string;
   sourceLabel: string;
+  audioResumesInSec?: number;
 };
 
 export type DocEvent = Overlay & {

@@ -33,18 +33,21 @@ export const NarrationBand: React.FC<{text: string; durSec: number; voDur?: numb
   const words = text.trim().split(/\s+/).length;
   const holdSec = Math.min(voDur ? voDur + 0.5 : Math.max(4.5, words / 3.2), Math.max(5, durSec - 0.35));
   const hold = holdSec * fps;
-  const opacity = interpolate(frame, [0, 10, Math.max(12, hold - 12), hold], [0, 1, 1, 0], {
+  // ~0.75s build (22f) in and out per operator polish spec
+  const opacity = interpolate(frame, [0, 22, Math.max(24, hold - 18), hold], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
+  const rise = interpolate(frame, [0, 22], [16, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const ruleW = interpolate(frame, [4, 26], [0, 46], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   if (opacity < 0.01) return null;
   return (
     <div style={{
-      position: "absolute", top: 0, left: 0, right: 0, opacity,
+      position: "absolute", top: 0, left: 0, right: 0, opacity, transform: `translateY(${-rise}px)`,
       background: "linear-gradient(180deg, rgba(6,6,8,0.94) 0%, rgba(6,6,8,0.82) 72%, rgba(6,6,8,0) 100%)",
       padding: "24px 7% 46px",
     }}>
-      <div style={{width: 46, height: 4, background: RED, marginBottom: 12}} />
+      <div style={{width: ruleW, height: 4, background: RED, marginBottom: 12}} />
       <div style={{color: INK, fontFamily: "Georgia, 'Times New Roman', serif", fontSize: 28,
         lineHeight: 1.4, maxWidth: "88%", textShadow: "0 1px 3px rgba(0,0,0,.9)"}}>
         <RichText text={text} />
@@ -70,9 +73,12 @@ export const CaptionTrack: React.FC<{captions: Caption[]; offset?: number; large
     return start;
   });
   const active = starts.filter((start) => time >= start).length - 1;
+  // gentle build-in for each caption box (~0.35s)
+  const inP = interpolate(time - current.start, [0, 0.35], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
     <div style={{position: "absolute", left: 0, right: 0, bottom: large ? "26%" : 112,
-      display: "flex", justifyContent: "center", pointerEvents: "none"}}>
+      display: "flex", justifyContent: "center", pointerEvents: "none", opacity: inP,
+      transform: `translateY(${(1 - inP) * 8}px)`}}>
       <div style={{background: "rgba(0,0,0,0.78)", borderRadius: 6, padding: "10px 22px",
         fontSize: large ? 45 : 38, lineHeight: 1.28, maxWidth: "84%", color: INK,
         fontFamily: "'Helvetica Neue',Arial,sans-serif", fontWeight: 650, textAlign: "center",
@@ -91,13 +97,15 @@ export const CaptionTrack: React.FC<{captions: Caption[]; offset?: number; large
 export const LowerThird: React.FC<{label: string}> = ({label}) => {
   const frame = useCurrentFrame();
   if (!label) return null;
-  const x = interpolate(frame, [0, 14], [-40, 0], {extrapolateRight: "clamp"});
-  const opacity = interpolate(frame, [0, 14], [0, 1], {extrapolateRight: "clamp"});
+  // ~0.75s build (22f): slide + fade + rule wipe
+  const x = interpolate(frame, [0, 22], [-46, 0], {extrapolateRight: "clamp"});
+  const opacity = interpolate(frame, [0, 22], [0, 1], {extrapolateRight: "clamp"});
+  const barH = interpolate(frame, [2, 24], [0, 100], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const [main, credit] = label.split("  -  ").length > 1 ? label.split("  -  ") : label.split("  ·  ");
   return (
     <div style={{position: "absolute", left: 30, bottom: 28, transform: `translateX(${x}px)`,
       opacity, display: "flex", alignItems: "stretch", maxWidth: "88%"}}>
-      <div style={{width: 6, background: RED, flex: "0 0 auto"}} />
+      <div style={{width: 6, background: RED, flex: "0 0 auto", height: `${barH}%`, alignSelf: "flex-end"}} />
       <div style={{background: "rgba(10,10,11,0.9)", padding: "8px 16px 9px", minWidth: 0}}>
         <div style={{color: INK, fontFamily: COND, fontSize: 25, letterSpacing: 0,
           textTransform: "uppercase", whiteSpace: "normal"}}>{main}</div>
@@ -135,6 +143,27 @@ const Waveform: React.FC<{src: string}> = ({src}) => {
   );
 };
 
+// Operator spec: muted bodycam lead-in (Axon pre-event buffer) shows a live countdown,
+// never dead silence. Driven by event.audioResumesInSec (set by the adapter on silent leads).
+const AudioResumeCountdown: React.FC<{resumesInSec: number}> = ({resumesInSec}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const remaining = Math.max(0, resumesInSec - frame / fps);
+  if (remaining <= 0.1) return null;
+  const secs = Math.ceil(remaining);
+  return (
+    <div style={{position: "absolute", left: 0, right: 0, top: "44%", textAlign: "center", pointerEvents: "none"}}>
+      <div style={{display: "inline-flex", alignItems: "center", gap: 14, background: "rgba(8,8,10,0.72)",
+        border: `1px solid ${RED}`, borderRadius: 8, padding: "12px 22px"}}>
+        <div style={{width: 11, height: 11, borderRadius: 11, background: RED, opacity: 0.5 + 0.5 * Math.sin(frame / 5)}} />
+        <span style={{fontFamily: MONO, fontSize: 26, color: INK, letterSpacing: 2}}>
+          AUDIO RESUMES IN {secs}s
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const ClipEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, props}) => {
   const {fps} = useVideoConfig();
   const vo = voice(props, event);
@@ -143,6 +172,7 @@ const ClipEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, props
       <OffthreadVideo src={staticFile(event.file)} style={{width: "100%", height: "100%", objectFit: "contain"}}
         volume={vo ? duck(event.voDur ?? 0, fps, props.audio.duckTo) : undefined} />
       {vo ? <Audio src={staticFile(vo.voFile!)} /> : null}
+      {event.audioResumesInSec ? <AudioResumeCountdown resumesInSec={event.audioResumesInSec} /> : null}
       <CaptionTrack captions={event.captions} offset={event.capOffset} />
       <NarrationBand text={event.narrationTop} durSec={event.durSec} voDur={vo?.voDur} />
       <LowerThird label={event.lowerThird} />
@@ -178,17 +208,23 @@ const AudioEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, prop
   const vo = voice(props, event);
   const [main, credit] = event.lowerThird.split("  ·  ");
   const is911 = /911/i.test(event.file) || /911/.test(event.lowerThird);
+  const isInterview = /interview|interrogat/i.test(event.file) || /interview|interrogat/i.test(event.lowerThird);
   const audioEl = <Audio src={staticFile(event.file)} volume={vo ? duck(event.voDur ?? 0, fps, props.audio.duckTo) : undefined} />;
 
-  if (is911) {
-    const loc = (main || "911 CALL").replace(/^911[\s·-]*/i, "").toUpperCase() || "911 CALL";
+  // Blue-line audio card (operator spec: ONE style for 911 + interview audio).
+  if (is911 || isInterview) {
+    const bignum = is911 ? "911" : "INTERVIEW";
+    const numSize = is911 ? 150 : 92;
+    const sub = is911
+      ? `${(main || "911 CALL").replace(/^911[\s·-]*/i, "").toUpperCase() || "CALL"} · ORIGINAL CALL AUDIO`
+      : `${(main || "RECORDED INTERVIEW").replace(/interview[\s·-]*/i, "").toUpperCase() || "RECORDED"} · INTERVIEW AUDIO`;
     return (
       <AbsoluteFill style={{background: "radial-gradient(ellipse at center, #0c1826 0%, #060a10 75%)", justifyContent: "center", alignItems: "center"}}>
         {audioEl}
         {vo ? <Audio src={staticFile(vo.voFile!)} /> : null}
         <div style={{position: "absolute", top: "18%", textAlign: "center"}}>
-          <div style={{fontFamily: MONO, fontSize: 150, fontWeight: 300, color: "#f4f4f2", letterSpacing: 6, textShadow: `0 0 40px ${CALL_BLUE}88`}}>911</div>
-          <div style={{fontFamily: MONO, fontSize: 28, color: CALL_BLUE, letterSpacing: 6, marginTop: 4}}>{loc} · ORIGINAL CALL AUDIO</div>
+          <div style={{fontFamily: MONO, fontSize: numSize, fontWeight: 300, color: "#f4f4f2", letterSpacing: 6, textShadow: `0 0 40px ${CALL_BLUE}88`}}>{bignum}</div>
+          <div style={{fontFamily: MONO, fontSize: 28, color: CALL_BLUE, letterSpacing: 6, marginTop: 8}}>{sub}</div>
         </div>
         <LineWaveform src={event.file} width={width} color={CALL_BLUE} />
         <div style={{position: "absolute", left: 60, bottom: 40, fontFamily: MONO, fontSize: 20, color: "#6f8296"}}>
