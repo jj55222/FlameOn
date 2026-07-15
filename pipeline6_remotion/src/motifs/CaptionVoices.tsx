@@ -37,6 +37,15 @@ export const CaptionNarrator: React.FC<{text: string; startSec?: number; bottom?
   </div>
 );
 
+/** Red bracketed non-speech caption: [ gunshots ], [ screaming ], [ throwing up ]. */
+export const CaptionSFX: React.FC<{text: string; startSec?: number; bottom?: number}> = ({text, startSec = 0, bottom = 110}) => (
+  <div style={{position: "absolute", left: 0, right: 0, bottom, textAlign: "center"}}>
+    <div style={{display: "inline-block", fontFamily: F.label, fontWeight: 800, fontSize: 42, color: C.red, textShadow: "0 2px 14px rgba(0,0,0,0.95)", letterSpacing: "0.04em"}}>
+      <TypeOn text={`[ ${text} ]`} startSec={startSec} charSec={0.03} />
+    </div>
+  </div>
+);
+
 export const FootageBadge: React.FC<{label?: string}> = ({label = "ACTUAL CASE FOOTAGE"}) => (
   <div style={{position: "absolute", top: 42, left: 42, background: "rgba(0,0,0,0.78)", color: C.white, fontFamily: F.label, fontWeight: 800, letterSpacing: "0.08em", fontSize: 24, padding: "8px 14px", borderLeft: `4px solid ${C.red}`}}>
     {label}

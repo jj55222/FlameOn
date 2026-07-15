@@ -1,6 +1,9 @@
 import React from "react";
 import {AbsoluteFill, Sequence} from "remotion";
-import {Caption911, FootageBadge} from "./CaptionVoices";
+import {Caption911, CaptionSFX, FootageBadge} from "./CaptionVoices";
+import {DiagramAnnotate} from "./DiagramAnnotate";
+import {RouteTracePiP} from "./EvidencePiP";
+import {MessageThread} from "./MessageThread";
 import {DocQuote} from "./DocQuote";
 import {EvidenceBoard} from "./EvidenceBoard";
 import {ComingUpGrid, ProgressInterstitial, RecordsArtifact, TitleCard} from "./Interstitials";
@@ -55,7 +58,44 @@ export const MotifDemo: React.FC<{hasAerial: boolean}> = ({hasAerial}) => (
         <FootageBadge />
         <RoleLowerThird role="RESPONDING DEPUTY" quote="Leave that door open so it airs out." startSec={0.4} />
         <Caption911 text="Austin 911, what's your emergency?" startSec={4.5} />
+        <CaptionSFX text="gunshots" startSec={8.6} bottom={190} />
       </AbsoluteFill>
+    </Sequence>
+
+    <Sequence from={76 * 30} durationInFrames={9 * 30}>
+      <MessageThread
+        header="Unknown Number"
+        bubbles={[
+          {text: "Hi Kristil, it's Anthony.", from: "them", appearSec: 1.4},
+          {text: "Hope it's OK i looked you up.", from: "them", appearSec: 3.2},
+          {text: "I go to Boulder every few weeks and thought we should hook up. U game?", from: "them", appearSec: 5.4},
+        ]}
+      />
+    </Sequence>
+
+    <Sequence from={85 * 30} durationInFrames={9 * 30}>
+      <RouteTracePiP
+        aerial="aerial_4s/4s_mid.png"
+        route={[[18, 78], [30, 64], [42, 55], [50, 44], [49, 33]]}
+        durSec={5.5}
+        pipImage="board_demo/card_pallets.jpg"
+        pipLabel="OFFICER 2 — BWC"
+        header="THE APPROACH"
+      />
+    </Sequence>
+
+    <Sequence from={94 * 30} durationInFrames={9 * 30}>
+      <DiagramAnnotate
+        page="board_demo/doc_page1.png"
+        markers={[
+          {at: [46, 38], appearSec: 1.4, label: "entry"},
+          {at: [58, 52], appearSec: 3.0, label: "exchange"},
+          {at: [52, 70], appearSec: 4.6, label: "aid rendered", color: "#d81f26"},
+        ]}
+        legend="● markers keyed to CAD + BWC positions"
+        source="Case report p.1 · SDPD 4S Commons"
+        glowAt={[52, 52]}
+      />
     </Sequence>
 
     {/* EvidenceBoard — narration-synced: cards/links appear as the narrator names them.
