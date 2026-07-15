@@ -23,17 +23,17 @@
     960,
     540
    ],
-   "bytes": 1125194
+   "bytes": 1239704
   },
   {
    "name": "tight",
-   "half_width_m": 130.0,
+   "half_width_m": 150.0,
    "file": "4s_tight.png",
    "px": [
     960,
     540
    ],
-   "bytes": 150020
+   "bytes": 241689
   }
  ]
 }

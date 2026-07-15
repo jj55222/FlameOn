@@ -21,8 +21,10 @@ NAIP = ("https://imagery.nationalmap.gov/arcgis/rest/services/"
         "USGSNAIPPlus/ImageServer/exportImage")
 CENSUS = "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress"
 
-# zoom ladder: half-width of the view in meters
-LADDER = [("wide", 1400.0), ("mid", 420.0), ("tight", 130.0)]
+# zoom ladder: half-width of the view in meters + fetch resolution.
+# Tight levels fetch at 4K so Remotion downscales (supersampling) instead of
+# upscaling past NAIP's ~0.6m GSD — that upscale was the source of zoom blur.
+LADDER = [("wide", 1400.0, 1920), ("mid", 420.0, 2560), ("tight", 150.0, 3840)]
 W, H = 1920, 1080
 
 
@@ -45,12 +47,13 @@ def webmerc(lat, lon):
     return x, y
 
 
-def fetch(lat, lon, half_w_m, out_png):
+def fetch(lat, lon, half_w_m, out_png, px_w=W):
     x, y = webmerc(lat, lon)
     half_h_m = half_w_m * H / W
+    px_h = int(px_w * H / W)
     bbox = f"{x-half_w_m},{y-half_h_m},{x+half_w_m},{y+half_h_m}"
     q = urllib.parse.urlencode({
-        "bbox": bbox, "bboxSR": 3857, "imageSR": 3857, "size": f"{W},{H}",
+        "bbox": bbox, "bboxSR": 3857, "imageSR": 3857, "size": f"{px_w},{px_h}",
         "format": "png", "f": "image"})
     url = f"{NAIP}?{q}"
     with urllib.request.urlopen(url, timeout=120) as r, open(out_png, "wb") as f:
@@ -75,9 +78,9 @@ def main():
             "source": "USGS NAIPPlus (public domain) via imagery.nationalmap.gov; "
                       "geocode: US Census (public domain)",
             "levels": []}
-    for name, half in LADDER:
+    for name, half, px_w in LADDER:
         png = f"{a.out}/{a.label}_{name}.png"
-        size = fetch(lat, lon, half, png)
+        size = fetch(lat, lon, half, png, px_w)
         # address is at the exact center at every level by construction
         meta["levels"].append({"name": name, "half_width_m": half, "file": os.path.basename(png),
                                "px": [W // 2, H // 2], "bytes": size})

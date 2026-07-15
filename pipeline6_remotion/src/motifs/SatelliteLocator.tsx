@@ -2,6 +2,7 @@ import React from "react";
 import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig} from "remotion";
 import {Build, TypeOn} from "./TypeOn";
 import {C, F, kicker, sourceLine} from "./theme";
+import {UnitDot, UnitDots} from "./UnitDots";
 
 export type SatelliteLocatorProps = {
   /** zoom ladder from fetch_aerial.py, wide->tight, under public/ */
@@ -12,6 +13,9 @@ export type SatelliteLocatorProps = {
   person?: {photo?: string; name: string};   // optional pinned card
   illustrated?: boolean;     // SolvedFiles night-illustration treatment
   holdSec?: number;
+  /** motion-graphic unit dots shown once the zoom lands (percent coords on the tight frame) */
+  dots?: UnitDot[];
+  sharpen?: boolean;         // unsharp-mask on the tight level (default true)
 };
 
 /** Motifs 5+6 — real-address satellite zoom (public-domain NAIP), optional
@@ -30,23 +34,39 @@ export const SatelliteLocator: React.FC<SatelliteLocatorProps> = (p) => {
 
   return (
     <AbsoluteFill style={{backgroundColor: C.bg, overflow: "hidden"}}>
+      {/* unsharp-mask kernel for the supersampled tight level */}
+      <svg width={0} height={0} style={{position: "absolute"}}>
+        <defs>
+          <filter id="flameon-sharpen">
+            <feConvolveMatrix order="3" kernelMatrix="0 -0.55 0 -0.55 3.2 -0.55 0 -0.55 0" preserveAlpha="true" />
+          </filter>
+        </defs>
+      </svg>
       {p.levels.map((lvl, i) => {
+        const last = i === p.levels.length - 1;
         const a = i * perLevel;
         const b = a + perLevel;
         const local = interpolate(t, [a, b], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-        // each level scales 1 -> ratio to hand off seamlessly to the next
-        const ratio = i < p.levels.length - 1 ? p.levels[i].half_width_m / p.levels[i + 1].half_width_m : 1.6;
+        // each level scales 1 -> ratio to hand off seamlessly to the next; the tight
+        // level lands at a modest 1.18 so we stay inside the supersampled resolution
+        const ratio = !last ? p.levels[i].half_width_m / p.levels[i + 1].half_width_m : 1.18;
         const scale = 1 + (ratio - 1) * (1 - Math.pow(1 - local, 2));
-        const visible = t >= a - 0.05 && t < b + 0.05;
+        const visible = t >= a - 0.05 && (last || t < b + 0.05);
+        const sharp = last && p.sharpen !== false ? " url(#flameon-sharpen)" : "";
         return visible ? (
           <AbsoluteFill key={lvl.file} style={{transform: `scale(${scale})`, transformOrigin: "50% 50%"}}>
-            <Img src={staticFile(lvl.file)} style={{width, height, objectFit: "cover", filter: filt}} />
+            <Img src={staticFile(lvl.file)} style={{width, height, objectFit: "cover", filter: filt + sharp}} />
             {p.illustrated ? (
               <AbsoluteFill style={{background: "radial-gradient(ellipse at center, rgba(10,16,26,0) 45%, rgba(4,6,10,0.88) 100%)"}} />
             ) : null}
           </AbsoluteFill>
         ) : null;
       })}
+
+      {/* unit dots once the zoom lands */}
+      {p.dots && t >= total - 0.2 ? (
+        <UnitDots dots={p.dots.map((d) => ({...d, startSec: (d.startSec ?? 0) + total}))} />
+      ) : null}
 
       {/* header builds immediately */}
       <div style={{position: "absolute", top: 64, left: 0, right: 0, textAlign: "center"}}>

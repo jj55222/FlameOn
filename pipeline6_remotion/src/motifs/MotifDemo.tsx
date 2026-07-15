@@ -21,19 +21,25 @@ export const MotifDemo: React.FC<{hasAerial: boolean}> = ({hasAerial}) => (
         source="Internal Affairs Report · 2013PSB-0530 · p.14"
       />
     </Sequence>
-    <Sequence from={10 * 30} durationInFrames={9 * 30}>
+    <Sequence from={10 * 30} durationInFrames={13 * 30}>
       {hasAerial ? (
         <SatelliteLocator
           levels={[
             {file: "aerial_4s/4s_wide.png", half_width_m: 1400},
             {file: "aerial_4s/4s_mid.png", half_width_m: 420},
-            {file: "aerial_4s/4s_tight.png", half_width_m: 130},
+            {file: "aerial_4s/4s_tight.png", half_width_m: 150},
           ]}
           dateTime="DEC 07 2023 · 23:23"
           place="4S COMMONS DRIVE — RALPHS"
           coords="33.0219 N · 117.1015 W"
           person={{name: "CURTIS HARRIS"}}
           illustrated={false}
+          dots={[
+            {mode: "path", color: "#d81f26", label: "HARRIS", trail: true, durSec: 4.2,
+             points: [[38, 24], [43, 33], [47, 41], [46, 52]], startSec: 0.4},
+            {mode: "free", color: "#35c8e8", label: "OFFICER 2", wanderPct: 1.0,
+             points: [[62, 58]], startSec: 1.2},
+          ]}
         />
       ) : (
         <AbsoluteFill style={{alignItems: "center", justifyContent: "center", color: C.dim, fontSize: 40}}>
@@ -41,7 +47,7 @@ export const MotifDemo: React.FC<{hasAerial: boolean}> = ({hasAerial}) => (
         </AbsoluteFill>
       )}
     </Sequence>
-    <Sequence from={19 * 30} durationInFrames={11 * 30}>
+    <Sequence from={23 * 30} durationInFrames={11 * 30}>
       <AbsoluteFill style={{background: "linear-gradient(180deg,#141416,#0a0a0b)"}}>
         <FootageBadge />
         <RoleLowerThird role="RESPONDING DEPUTY" quote="Leave that door open so it airs out." startSec={0.4} />
