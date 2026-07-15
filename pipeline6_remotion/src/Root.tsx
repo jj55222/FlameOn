@@ -7,6 +7,7 @@ import {LogoLockup} from "./brand/Logo";
 import {MagLens} from "./brand/MagLens";
 import {MotifDemo} from "./motifs/MotifDemo";
 import {Full911Card} from "./motifs/Full911Card";
+import {Thumb4S} from "./brand/Thumb4S";
 import words911 from "../public/demo911/words.json";
 import type {CutProps} from "./types";
 
@@ -82,6 +83,7 @@ const defaults: CutProps = {
 export const RemotionRoot: React.FC = () => (
   <>
   <Composition id="Demo911" component={Demo911} fps={30} width={1920} height={1080} durationInFrames={450} />
+  <Composition id="Thumb4S" component={Thumb4S} fps={30} width={1280} height={720} durationInFrames={1} />
   <Composition id="Banner" component={Banner} fps={30} width={2560} height={1440} durationInFrames={30} />
   <Composition id="LogoSquare800" component={LensMark} fps={30} width={800} height={800} durationInFrames={30} defaultProps={{spin: false}} />
   <Composition id="HypeOpener" component={HypeSpinner} fps={30} width={1920} height={1080} durationInFrames={135} />
