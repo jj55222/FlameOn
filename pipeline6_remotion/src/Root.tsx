@@ -1,6 +1,7 @@
 import React from "react";
 import {Composition} from "remotion";
 import {Cut} from "./Cut";
+import {MotifDemo} from "./motifs/MotifDemo";
 import type {CutProps} from "./types";
 
 const defaults: CutProps = {
@@ -20,6 +21,16 @@ const defaults: CutProps = {
 };
 
 export const RemotionRoot: React.FC = () => (
+  <>
+  <Composition
+    id="MotifDemo"
+    component={MotifDemo}
+    fps={30}
+    width={1920}
+    height={1080}
+    durationInFrames={30 * 30}
+    defaultProps={{hasAerial: true}}
+  />
   <Composition
     id="Cut"
     component={Cut}
@@ -38,4 +49,5 @@ export const RemotionRoot: React.FC = () => (
       };
     }}
   />
+  </>
 );

@@ -1,0 +1,39 @@
+{
+ "label": "4s",
+ "lat": 33.018822928776,
+ "lon": -117.111065787249,
+ "matched_address": "10500 4S COMMONS DR, SAN DIEGO, CA, 92127",
+ "source": "USGS NAIPPlus (public domain) via imagery.nationalmap.gov; geocode: US Census (public domain)",
+ "levels": [
+  {
+   "name": "wide",
+   "half_width_m": 1400.0,
+   "file": "4s_wide.png",
+   "px": [
+    960,
+    540
+   ],
+   "bytes": 3503092
+  },
+  {
+   "name": "mid",
+   "half_width_m": 420.0,
+   "file": "4s_mid.png",
+   "px": [
+    960,
+    540
+   ],
+   "bytes": 1125194
+  },
+  {
+   "name": "tight",
+   "half_width_m": 130.0,
+   "file": "4s_tight.png",
+   "px": [
+    960,
+    540
+   ],
+   "bytes": 150020
+  }
+ ]
+}
