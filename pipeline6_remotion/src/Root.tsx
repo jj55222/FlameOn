@@ -23,6 +23,29 @@ const LensInner: React.FC<{spin: boolean}> = ({spin}) => {
   return <MagLens size={760} spin={spin ? (f / fps) * 120 : 22} glow={1} monogram="DR" tilt={-8} />;
 };
 
+
+/** YouTube channel banner 2560x1440 — critical content inside the 1546x423 center
+ * safe area (all-device visible); oversized arcs bleed outside for desktop/TV. */
+const Banner: React.FC = () => (
+  <AbsoluteFill style={{background: "#060607", alignItems: "center", justifyContent: "center"}}>
+    <div style={{position: "absolute", left: -340, top: "50%", transform: "translateY(-50%)", opacity: 0.5}}>
+      <MagLens size={900} spin={205} glow={1} monogram="" tilt={18} />
+    </div>
+    <div style={{position: "absolute", right: -340, top: "50%", transform: "translateY(-50%)", opacity: 0.5}}>
+      <MagLens size={900} spin={65} glow={1} monogram="" tilt={-24} />
+    </div>
+    <div style={{display: "flex", alignItems: "center", gap: 40}}>
+      <span style={{fontFamily: "'Anton','Arial Narrow','Impact',sans-serif", color: "#f4f4f2", fontSize: 150, letterSpacing: "0.02em"}}>TRUE CRIME</span>
+      <MagLens size={230} spin={22} glow={1} monogram="DR" tilt={-8} />
+    </div>
+    <div style={{display: "flex", alignItems: "center", gap: 20, marginTop: 6}}>
+      <div style={{width: 120, height: 3, background: "#d81f26"}} />
+      <div style={{fontFamily: "'Archivo','Helvetica Neue',sans-serif", fontWeight: 800, letterSpacing: "0.42em", color: "#f4f4f2", fontSize: 22}}>EVERY&nbsp;CASE&nbsp;ON&nbsp;RECORD</div>
+      <div style={{width: 120, height: 3, background: "#2456f0"}} />
+    </div>
+  </AbsoluteFill>
+);
+
 const BrandReel: React.FC = () => (
   <AbsoluteFill>
     <Sequence from={0} durationInFrames={135}><HypeSpinner /></Sequence>
@@ -49,6 +72,9 @@ const defaults: CutProps = {
 
 export const RemotionRoot: React.FC = () => (
   <>
+  <Composition id="Banner" component={Banner} fps={30} width={2560} height={1440} durationInFrames={30} />
+  <Composition id="LogoSquare800" component={LensMark} fps={30} width={800} height={800} durationInFrames={30} defaultProps={{spin: false}} />
+  <Composition id="HypeOpener" component={HypeSpinner} fps={30} width={1920} height={1080} durationInFrames={135} />
   <Composition id="BrandReel" component={BrandReel} fps={30} width={1920} height={1080} durationInFrames={420} />
   <Composition id="LogoAlpha" component={LogoLockup} fps={30} width={1920} height={1080} durationInFrames={30} defaultProps={{animate: false, transparent: true}} />
   <Composition id="LensAvatar" component={LensMark} fps={30} width={1024} height={1024} durationInFrames={30} defaultProps={{spin: false}} />
