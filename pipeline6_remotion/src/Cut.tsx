@@ -150,14 +150,58 @@ const ClipEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, props
   );
 };
 
-const AudioEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, props}) => {
+const CALL_BLUE = "#2456f0";
+
+// Blue line waveform reactive to the actual call audio.
+const LineWaveform: React.FC<{src: string; width: number; color: string}> = ({src, width, color}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
+  const data = useAudioData(staticFile(src));
+  const N = 90;
+  const samples = data ? visualizeAudio({fps, frame, audioData: data, numberOfSamples: N * 2}) : null;
+  const w = width * 0.72;
+  const step = w / (N - 1);
+  const amp = (i: number) => (samples ? Math.min(1, Math.pow((samples[i] ?? 0) * 6, 0.6)) * 70 : 2 * Math.sin(frame / 6 + i));
+  const up = Array.from({length: N}, (_, i) => `${i === 0 ? "M" : "L"}${(i * step).toFixed(1)},${(80 - amp(i)).toFixed(1)}`).join(" ");
+  const dn = Array.from({length: N}, (_, i) => `${i === 0 ? "M" : "L"}${(i * step).toFixed(1)},${(80 + amp(i)).toFixed(1)}`).join(" ");
+  return (
+    <svg width={w} height={160} style={{overflow: "visible"}}>
+      <path d={up} fill="none" stroke={color} strokeWidth={3} strokeLinecap="round" style={{filter: `drop-shadow(0 0 9px ${color})`}} />
+      <path d={dn} fill="none" stroke={color} strokeWidth={3} strokeLinecap="round" opacity={0.35} />
+    </svg>
+  );
+};
+
+const AudioEvent: React.FC<{event: MediaEvent; props: CutProps}> = ({event, props}) => {
+  const frame = useCurrentFrame();
+  const {fps, width} = useVideoConfig();
   const vo = voice(props, event);
   const [main, credit] = event.lowerThird.split("  ·  ");
+  const is911 = /911/i.test(event.file) || /911/.test(event.lowerThird);
+  const audioEl = <Audio src={staticFile(event.file)} volume={vo ? duck(event.voDur ?? 0, fps, props.audio.duckTo) : undefined} />;
+
+  if (is911) {
+    const loc = (main || "911 CALL").replace(/^911[\s·-]*/i, "").toUpperCase() || "911 CALL";
+    return (
+      <AbsoluteFill style={{background: "radial-gradient(ellipse at center, #0c1826 0%, #060a10 75%)", justifyContent: "center", alignItems: "center"}}>
+        {audioEl}
+        {vo ? <Audio src={staticFile(vo.voFile!)} /> : null}
+        <div style={{position: "absolute", top: "18%", textAlign: "center"}}>
+          <div style={{fontFamily: MONO, fontSize: 150, fontWeight: 300, color: "#f4f4f2", letterSpacing: 6, textShadow: `0 0 40px ${CALL_BLUE}88`}}>911</div>
+          <div style={{fontFamily: MONO, fontSize: 28, color: CALL_BLUE, letterSpacing: 6, marginTop: 4}}>{loc} · ORIGINAL CALL AUDIO</div>
+        </div>
+        <LineWaveform src={event.file} width={width} color={CALL_BLUE} />
+        <div style={{position: "absolute", left: 60, bottom: 40, fontFamily: MONO, fontSize: 20, color: "#6f8296"}}>
+          <span style={{color: CALL_BLUE}}>▪ </span>{credit || event.creditLine}
+        </div>
+        <CaptionTrack captions={event.captions} offset={event.capOffset} />
+      </AbsoluteFill>
+    );
+  }
+
   return (
     <AbsoluteFill style={{background: BG, justifyContent: "center", alignItems: "center"}}>
-      <Audio src={staticFile(event.file)} volume={vo ? duck(event.voDur ?? 0, fps, props.audio.duckTo) : undefined} />
+      {audioEl}
       {vo ? <Audio src={staticFile(vo.voFile!)} /> : null}
       <div style={{position: "absolute", top: 40, right: 46, display: "flex", alignItems: "center", gap: 12}}>
         <div style={{width: 12, height: 12, borderRadius: 12, background: RED,
