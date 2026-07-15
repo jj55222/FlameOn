@@ -1,7 +1,7 @@
 import React from "react";
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import {C} from "../motifs/theme";
-import {Beacon, BLUE} from "./Beacon";
+import {BLUE, MagLens} from "./MagLens";
 import {LogoLockup} from "./Logo";
 
 /** Hype opener (~4.5s): the beacon ball rolls in from the left, spins up as red/
@@ -28,11 +28,11 @@ export const HypeSpinner: React.FC = () => {
           {/* alternating wall-wash — the police-light room feel */}
           <AbsoluteFill style={{background: `radial-gradient(ellipse at ${rollIn * 100}% 60%, ${strobe}22 0%, transparent 55%)`}} />
           <div style={{position: "absolute", left: `${rollIn * 100}%`, top: "50%", transform: `translate(-50%,-50%) scale(${grow})`}}>
-            <Beacon size={S} spin={spin} glow={Math.min(1.6, 0.4 + t * 0.5)} ball="black" />
+            <MagLens size={S} spin={spin} glow={Math.min(1.6, 0.4 + t * 0.5)} monogram="DR" tilt={Math.sin(t*1.3)*6} />
           </div>
           {/* ground reflection */}
           <div style={{position: "absolute", left: `${rollIn * 100}%`, top: "50%", transform: `translate(-50%, ${S * grow * 0.42}px) scaleY(-0.35) scale(${grow})`, opacity: 0.22, filter: "blur(6px)"}}>
-            <Beacon size={S} spin={spin} glow={0} ball="black" />
+            <MagLens size={S} spin={spin} glow={0} monogram="DR" tilt={Math.sin(t*1.3)*6} />
           </div>
         </>
       ) : (

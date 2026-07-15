@@ -2,7 +2,7 @@ import React from "react";
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from "remotion";
 import {TypeOn} from "../motifs/TypeOn";
 import {C, F} from "../motifs/theme";
-import {Beacon, BLUE} from "./Beacon";
+import {BLUE, MagLens} from "./MagLens";
 
 /** Like & Subscribe sting (~6s): beacon rolls across, kicks a thumbs-up pop,
  * SUBSCRIBE pill sweeps red->blue, bell swings; red/blue underglow alternates. */
@@ -19,7 +19,7 @@ export const LikeSubscribe: React.FC = () => {
     <AbsoluteFill style={{background: "#060607", alignItems: "center", justifyContent: "center"}}>
       <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 92%, ${glow}26 0%, transparent 50%)`}} />
       <div style={{position: "absolute", left: `${roll}%`, top: "34%", transform: "translate(-50%,-50%)"}}>
-        <Beacon size={170} spin={t * 300} glow={1} ball="black" />
+        <MagLens size={170} spin={t * 300} glow={1} monogram="DR" tilt={Math.sin(t*1.3)*6} />
       </div>
       {/* thumbs up */}
       <div style={{position: "absolute", left: "50%", top: "33%", transform: `translate(-50%,-50%) scale(${thumbPop})`, opacity: thumbPop > 0 ? 1 : 0}}>
