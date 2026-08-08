@@ -19,3 +19,10 @@ edit a mirror); check handlers in `taste_gate.py` `_CHECKS`; the thesis gate rea
 the taste gate reads the PAPER EDIT; gates are craft-only, never worth (WORKFLOW_FREEZE holds).
 Any change: full `pipeline6_sequence/tests/` green, then commit on this branch — never leave the
 layer as uncommitted working-tree state.
+
+## Longform editorial standard (2026-08-08)
+`EDP_CONTRACT_ADDENDUM_20260808.md` (BWC-spine standard, from the Kyle Gray v3 rebuild handoff)
+binds every longform production: BWC is the spine, documents are footnotes with a visual purpose;
+runtime is earned; document-use 4-question gate; hero-POV-first multicam grammar (no nested
+splits); no-VO zones over commands/gunfire; music contract. The ratio, dwell, and no-VO rules are
+machine-enforced by taste_gate (REVISE); the rest is contract. Read it before authoring any EDP.

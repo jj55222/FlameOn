@@ -570,6 +570,87 @@
     "operator_critique.zenobia.cta_all_formats"
    ],
    "exceptions": []
+  },
+  {
+   "rule_id": "event_footage_carries_runtime",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "runtime_ratios",
+    "parameters": {
+     "event_min_ratio": 0.7,
+     "static_max_ratio": 0.15
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "BWC is the spine; documents are footnotes with a visual purpose. 70-85% of runtime in direct event footage, <=10-15% documents/static. Editorial target, not a quota: REVISE surfaces drift without blocking.",
+   "source_refs": [
+    "KYLE_GRAY_V3_CODEX_EDITORIAL_REBUILD_HANDOFF.md (operator-endorsed 2026-08-08)"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "document_dwell_max",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "max_static_dwell",
+    "parameters": {
+     "max_consecutive_sec": 12
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "No uninterrupted document/card sequence longer than ~8-12s without a strong reason: the viewer must remain inside the event, not a narrated slideshow.",
+   "source_refs": [
+    "KYLE_GRAY_V3_CODEX_EDITORIAL_REBUILD_HANDOFF.md (operator-endorsed 2026-08-08)"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "no_vo_over_commands",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "no_narration_over_commands",
+    "parameters": {}
+   },
+   "on_fail": "REVISE",
+   "reason": "Protected no-VO zones: clearest commands, credited warnings, gunfire and immediate reactions play clean - narration must not ride over them.",
+   "source_refs": [
+    "KYLE_GRAY_V3_CODEX_EDITORIAL_REBUILD_HANDOFF.md (operator-endorsed 2026-08-08)"
+   ],
+   "exceptions": []
   }
  ]
 }

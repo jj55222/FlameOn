@@ -145,3 +145,52 @@ def test_enum_critic_has_no_scores():
     result = J.deterministic_enum_judgment(bp, paper_edit={"timeline": []})
     assert result["verdict"] in {"SHIP", "REVISE", "ABSTAIN", "REJECT"}
     assert "scores" not in result
+
+
+# --- Kyle Gray v3 rebuild critique (2026-08-08): BWC-spine ratio, static dwell, no-VO zones ---
+
+def test_runtime_ratio_flags_document_led_cut():
+    rules = _rules(_rule("ratio", "runtime_ratios", fail="REVISE",
+                         params={"event_min_ratio": 0.70, "static_max_ratio": 0.15},
+                         formats=("longform",)))
+    doc_led = {"timeline": [{"kind": "clip", "in_sec": 0, "out_sec": 10}]
+               + [{"kind": "narration", "text": f"doc {i}"} for i in range(10)]}
+    got = TG.evaluate_rules(rules, _bp(), doc_led, fmt="longform", platform="youtube")
+    assert got["verdict"] == "REVISE" and got["failed_rule_ids"] == ["ratio"]
+    bwc_led = {"timeline": [{"kind": "clip", "in_sec": 0, "out_sec": 60},
+                            {"kind": "narration", "text": "bridge"},
+                            {"kind": "card", "card_kind": "title", "dur": 4}]}
+    got = TG.evaluate_rules(rules, _bp(), bwc_led, fmt="longform", platform="youtube")
+    assert got["verdict"] == "SHIP"
+
+
+def test_static_dwell_caps_uninterrupted_document_runs():
+    rules = _rules(_rule("dwell", "max_static_dwell", fail="REVISE",
+                         params={"max_consecutive_sec": 12}, formats=("longform",)))
+    wall = {"timeline": [{"kind": "clip", "in_sec": 0, "out_sec": 8}]
+            + [{"kind": "narration", "text": t} for t in "abcde"]
+            + [{"kind": "clip", "in_sec": 8, "out_sec": 16}]}
+    got = TG.evaluate_rules(rules, _bp(), wall, fmt="longform", platform="youtube")
+    assert got["verdict"] == "REVISE" and got["failed_rule_ids"] == ["dwell"]
+    interleaved = {"timeline": [{"kind": "narration", "text": "a"},
+                                {"kind": "narration", "text": "b"},
+                                {"kind": "clip", "in_sec": 0, "out_sec": 8},
+                                {"kind": "narration", "text": "c"},
+                                {"kind": "narration", "text": "d"}]}
+    got = TG.evaluate_rules(rules, _bp(), interleaved, fmt="longform", platform="youtube")
+    assert got["verdict"] == "SHIP"
+
+
+def test_no_narration_over_command_audio():
+    rules = _rules(_rule("novo", "no_narration_over_commands", fail="REVISE"))
+    over = {"timeline": [{"kind": "clip", "in_sec": 0, "out_sec": 10,
+                          "narration_top": "Officers close in on the suspect.",
+                          "captions": [{"start": 1, "end": 3, "text": "Get on the ground!"}]}]}
+    got = TG.evaluate_rules(rules, _bp(), over, fmt="longform", platform="youtube")
+    assert got["verdict"] == "REVISE" and got["failed_rule_ids"] == ["novo"]
+    clean = {"timeline": [{"kind": "clip", "in_sec": 0, "out_sec": 10,
+                           "captions": [{"start": 1, "end": 3, "text": "Get on the ground!"}]},
+                          {"kind": "clip", "in_sec": 10, "out_sec": 20,
+                           "narration_top": "Minutes earlier, dispatch had flagged the car."}]}
+    got = TG.evaluate_rules(rules, _bp(), clean, fmt="longform", platform="youtube")
+    assert got["verdict"] == "SHIP"

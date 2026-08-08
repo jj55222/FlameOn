@@ -301,6 +301,104 @@ def _short_structure_floor(fmt: str, pe: Dict) -> Optional[Dict]:
             "source_refs": ["operator.short_craft_floor"]}
 
 
+# --- Kyle Gray v3 rebuild critique (operator-endorsed, 2026-08-08): BWC is the spine. ---
+
+def _event_dur(ev: Dict) -> float:
+    """Mirror render_blueprint.project_duration's timing model exactly:
+    card=dur (default 5), clip=out-in (>=0.5), narration=3.0, gap=0."""
+    k = ev.get("kind")
+    if k == "card":
+        return float(ev.get("dur", 5.0))
+    if k == "clip":
+        return max(0.5, float(ev.get("out_sec", 0)) - float(ev.get("in_sec", 0)))
+    if k == "narration":
+        return 3.0
+    return 0.0
+
+
+def _is_static(ev: Dict) -> bool:
+    """Non-footage screen time: narration cards and non-structural cards. Structural
+    title/phase/outcome cards are chrome, not evidence dwell (same exemption the
+    promise-payoff scan uses)."""
+    if ev.get("kind") == "narration":
+        return True
+    return ev.get("kind") == "card" and ev.get("card_kind") not in ("title", "phase", "outcome")
+
+
+def _check_runtime_ratios(rule: Dict, bp: Dict, pe: Dict) -> Dict:
+    """The film must live in event footage. Kyle Gray v3 targets: 70-85% of runtime in direct
+    event footage, max 10-15% in documents/static evidence. Editorial targets, not quotas —
+    pair with on_fail REVISE so drift is surfaced without stopping the encode. Narration that
+    rides footage (narration_top on a clip) counts as footage: the screen stays in the event."""
+    params = (rule.get("check") or {}).get("parameters") or {}
+    event_min = float(params.get("event_min_ratio") or 0.70)
+    static_max = float(params.get("static_max_ratio") or 0.15)
+    tl = pe.get("timeline") or []
+    total = sum(_event_dur(e) for e in tl)
+    if total <= 0:
+        return _finding(rule, "PASS", "Empty timeline — nothing to ratio.")
+    clip = sum(_event_dur(e) for e in tl if e.get("kind") == "clip")
+    static = sum(_event_dur(e) for e in tl if _is_static(e))
+    obs = f"event footage {clip / total:.0%}, static/documents {static / total:.0%} of {total:.0f}s"
+    hits = []
+    if clip / total < event_min:
+        hits.append(f"event footage {clip / total:.0%} < target {event_min:.0%}")
+    if static / total > static_max:
+        hits.append(f"static/documents {static / total:.0%} > target {static_max:.0%}")
+    return (_finding(rule, "FAIL", f"{obs} — {'; '.join(hits)}", hits)
+            if hits else _finding(rule, "PASS", obs))
+
+
+def _check_max_static_dwell(rule: Dict, bp: Dict, pe: Dict) -> Dict:
+    """No uninterrupted document/static run longer than ~max_consecutive_sec (Kyle Gray v3:
+    8-12s): the viewer must stay inside the event. gap events render nothing and do not
+    break a static run."""
+    params = (rule.get("check") or {}).get("parameters") or {}
+    max_sec = float(params.get("max_consecutive_sec") or 12)
+    tl = pe.get("timeline") or []
+    hits = []
+    run, start_i = 0.0, None
+    for i, ev in enumerate(tl):
+        if _is_static(ev):
+            if start_i is None:
+                start_i = i
+            run += _event_dur(ev)
+        elif ev.get("kind") == "gap":
+            continue
+        else:
+            if run > max_sec:
+                hits.append(f"timeline[{start_i}..{i - 1}] {run:.1f}s static run")
+            run, start_i = 0.0, None
+    if run > max_sec:
+        hits.append(f"timeline[{start_i}..] {run:.1f}s static run")
+    return (_finding(rule, "FAIL", f"{len(hits)} static run(s) exceed {max_sec:g}s.", hits)
+            if hits else _finding(rule, "PASS", f"No static run exceeds {max_sec:g}s."))
+
+
+_CMD_RE = re.compile(
+    r"shots? fired|drop the (gun|knife|weapon)|show me your hands|get on the ground|"
+    r"put your hands|hands up|don't move|stop reaching|let me see your hands", re.I)
+
+
+def _check_no_vo_over_commands(rule: Dict, bp: Dict, pe: Dict) -> Dict:
+    """Protected no-VO zones (Kyle Gray v3 §7): the clearest commands, credited warnings,
+    gunfire and immediate reactions play CLEAN — narration must not ride over them.
+    Deterministic proxy: a clip whose timed captions / pull quote match the command lexicon
+    while narration_top is non-empty."""
+    tl = pe.get("timeline") or []
+    hits = []
+    for i, ev in enumerate(tl):
+        if ev.get("kind") != "clip" or not (ev.get("narration_top") or "").strip():
+            continue
+        text = (" ".join(c.get("text", "") for c in ev.get("captions") or [])
+                + " " + (ev.get("transcript_excerpt") or ""))
+        m = _CMD_RE.search(text)
+        if m:
+            hits.append(f"timeline[{i}] narration over command audio ('{m.group(0)}')")
+    return (_finding(rule, "FAIL", f"{len(hits)} narration line(s) ride command audio.", hits)
+            if hits else _finding(rule, "PASS", "No narration rides command/warning audio."))
+
+
 _CHECKS = {
     "forbidden_text": _check_forbidden_text,
     "minimum_visual_story_beats": _check_minimum_visual,
@@ -314,6 +412,10 @@ _CHECKS = {
     "promise_payoff_latency": _check_promise_payoff_latency,
     "redundant_blur": _check_redundant_blur,
     "required_text": _check_required_text,
+    # Kyle Gray v3 rebuild critique 2026-08-08:
+    "runtime_ratios": _check_runtime_ratios,
+    "max_static_dwell": _check_max_static_dwell,
+    "no_narration_over_commands": _check_no_vo_over_commands,
 }
 
 
