@@ -18,6 +18,10 @@ angle. Never select outside this file or NEXT_CUTS.md. Vet sheets: durable `.tmp
 
 **CONDITIONAL — EDP required** (selection gates closed 2026-08-08; editorial plan = the audit)
 
+> **EDP ISSUED 2026-08-08:** `EDP_copa_2021_0001076_20260808.md` + `EDP_copa1076_excerpts.json`
+> (camera map w/ ms offsets, triple-verified action anchor, spine, ledgers, ratios, verification
+> owners). Ready for final pre-render review.
+
 | gate | status | evidence |
 |---|---|---|
 | 1. BWC exists | YES — **32 in registry, 12 on disk at vet** | `Log #2021-0001076 Vimeo BWC 1-32` (registry, Vimeo player URLs). BWC 13-32 hydration launched 2026-08-08 (`hydrate_1076_extra.log`); some "BWC"-numbered exhibits may actually be ICV/surveillance/news video under COPA's generic numbering |
