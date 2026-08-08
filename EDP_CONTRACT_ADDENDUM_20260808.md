@@ -7,6 +7,14 @@ extends `EDP_CONTRACT_2026-08-06.md`. Machine-checked pieces are marked [GATE] �
 enforces them pre-render (`event_footage_carries_runtime`, `document_dwell_max`,
 `no_vo_over_commands`, all on_fail=REVISE).
 
+## Central-event rule (revised by the COPA-1076 pre-render audit, 2026-08-08)
+Clear visual coverage of the central event is PREFERRED, not a hard gate. An occluded event
+still qualifies when it is captured on an original camera track and the surrounding footage
+makes the approach, commands, gunfire, reactions, custody, and outcome narratively
+understandable. The editor must search every plausible camera for a clearer angle before
+accepting the occlusion — and the camera map must document the search. Selection verdicts are
+story-strength audits, not visibility vetoes.
+
 ## Source hierarchy (binding order)
 1. Full, continuous BWC moments — primary narrative and emotional material.
 2. Other synced BWC/ICV — only when they add geography, causality, clearer action, a reaction,
@@ -78,6 +86,17 @@ gunfire, immediate reactions [GATE no_vo_over_commands].
 6. Music map — exact ranges where music appears and why.
 7. Exclusion list — supplied evidence intentionally omitted for lacking an on-camera payoff.
 8. Proof stills — hero POV, any split screen, document treatment, captions, CTA placement.
+9. Hydration result — every video exhibit CITED in the investigative record (surveillance,
+   cellphone, news, ICV, 911/OEMC, interviews): located, downloaded, or explicitly recorded as
+   unavailable. Never substitute report screenshots for missing footage.
+10. Action anchor — first/last shot impulses verified against burn-in clocks on at least two
+    cameras.
+11. Dialogue anchors — every used excerpt audibly reviewed with verbatim captions;
+    `[unclear audio]` where uncertain. Raw ASR NEVER reaches audience-facing captions
+    ("12/12 transcribed" is discovery status, not caption approval).
+12. Redaction map — exact frames/windows for plates, blood, the subject, and civilians.
+    Standing visual rule: NO visible blood; blur the subject whenever dead or visibly bleeding;
+    lift the blur the moment the subject leaves frame or the source is already redacted.
 
 ## Definition of done (longform)
 Viewer sees meaningful BWC within the opening seconds and stays primarily in event footage; the
