@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "treatment_id": "interrogation_contradiction_longform_v1",
+  "label": "Interrogation-led contradiction (BWC + interview + docs)",
+  "format": "longform",
+  "platform": "youtube",
+  "route_id": "interrogation_contradiction",
+  "structure_only": true,
+  "provenance": {
+    "reference_ids": [],
+    "channels": [
+      "Dr.Insanity-shape (structure only)"
+    ],
+    "sample_count": 0,
+    "analysis_date": "2026-07-26",
+    "allow_wording_transfer": false,
+    "note": "insufficient_corpus (n<25) \u2014 STRUCTURE-ONLY, conservative defaults; matches Ohio BCI pool."
+  },
+  "applicability": {
+    "required_case_features": [
+      "interrogation_or_interview_present",
+      "contradiction_available"
+    ],
+    "forbidden_case_features": [
+      "no_identified_speakers",
+      "contradiction_is_topical_only"
+    ],
+    "required_media_kinds_any": [
+      "interview",
+      "bodycam"
+    ],
+    "supporting_media_kinds": [
+      "document",
+      "911_audio",
+      "radio",
+      "surveillance"
+    ],
+    "required_fact_fields": [
+      "incident.summary",
+      "incident.outcome"
+    ]
+  },
+  "global_rules": {
+    "runtime_minutes_range": [
+      8,
+      16
+    ],
+    "vo_word_share_range": [
+      0.28,
+      0.42
+    ],
+    "max_unmotivated_dead_space_sec": 3.0,
+    "max_same_modality_run_sec": 45,
+    "central_payoff_required": true,
+    "legal_cover_on_accusations": true,
+    "fallback_treatment_id": null
+  },
+  "acts": [
+    {
+      "id": "cold_open",
+      "title": "The Claim",
+      "phase": "incident",
+      "function": "hook",
+      "span_pct": [
+        0,
+        5
+      ],
+      "beat_functions": [
+        "reveal",
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "hook",
+        "stakes"
+      ],
+      "required_beats": [
+        "the_claim"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "the_claim",
+          "required": true,
+          "accepted_moment_types": [
+            "interrogation_admission",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "interview",
+            "bodycam"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Is this person telling the truth?",
+      "promise": "Open on a strong on-camera claim.",
+      "payoff": "The contradiction pays it off.",
+      "narration_role": "Let the claim play verbatim.",
+      "original_audio_share_range": [
+        0.5,
+        0.9
+      ],
+      "max_dead_space_sec": 2.0,
+      "transition": "To who they are and what happened.",
+      "forbidden_failures": [
+        "paraphrased_as_quote"
+      ]
+    },
+    {
+      "id": "context",
+      "title": "Who & What Happened",
+      "phase": "pre_incident",
+      "function": "establish",
+      "span_pct": [
+        5,
+        30
+      ],
+      "beat_functions": [
+        "context",
+        "character"
+      ],
+      "vo_moves": [
+        "scene_set",
+        "context"
+      ],
+      "required_beats": [
+        "identity_context",
+        "incident_context"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "identity_context",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "interview",
+            "bodycam"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "incident_context",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "escalation"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "911_audio",
+            "radio"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Who is this and what are they accused of?",
+      "promise": "Establish identified speakers + the event.",
+      "payoff": "Makes the contradiction matter.",
+      "narration_role": "Identify every interview subject before their words are used as story.",
+      "original_audio_share_range": [
+        0.4,
+        0.8
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the interrogation.",
+      "forbidden_failures": [
+        "unidentified_interview_subject",
+        "context_missing"
+      ]
+    },
+    {
+      "id": "interrogation",
+      "title": "The Interrogation",
+      "phase": "investigation",
+      "function": "escalate",
+      "span_pct": [
+        30,
+        70
+      ],
+      "beat_functions": [
+        "reveal",
+        "tension_shift",
+        "character"
+      ],
+      "vo_moves": [
+        "context",
+        "foreshadow"
+      ],
+      "required_beats": [
+        "interrogation_arc"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "interrogation_arc",
+          "required": true,
+          "accepted_moment_types": [
+            "interrogation_admission",
+            "tension_shift",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "interview"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What do they say under questioning?",
+      "promise": "Build the account that the evidence will break.",
+      "payoff": "Sets up the exposure.",
+      "narration_role": "Verbatim exchanges; VO bridges only.",
+      "original_audio_share_range": [
+        0.45,
+        0.85
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the contradiction.",
+      "forbidden_failures": [
+        "account_uncontextualized"
+      ]
+    },
+    {
+      "id": "contradiction",
+      "title": "The Contradiction Exposed",
+      "phase": "investigation",
+      "function": "climax",
+      "span_pct": [
+        70,
+        86
+      ],
+      "beat_functions": [
+        "contradiction",
+        "reveal"
+      ],
+      "vo_moves": [
+        "contradiction",
+        "stakes"
+      ],
+      "required_beats": [
+        "two_claims",
+        "exposure"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "two_claims",
+          "required": true,
+          "accepted_moment_types": [
+            "contradiction"
+          ],
+          "accepted_media_kinds": [
+            "interview",
+            "bodycam",
+            "document"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 2,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "exposure",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "contradiction"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "bodycam",
+            "interview"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "How is the lie exposed?",
+      "promise": "Two mutually-exclusive verbatim claims, then objective exposure.",
+      "payoff": "THE payoff.",
+      "narration_role": "Two claims that cannot both be true, identified speakers, exposed by evidence/questioning \u2014 not by a label.",
+      "original_audio_share_range": [
+        0.5,
+        0.9
+      ],
+      "max_dead_space_sec": 2.0,
+      "transition": "To the outcome.",
+      "forbidden_failures": [
+        "topical_not_exclusive_contradiction",
+        "edit_must_explain_the_contradiction",
+        "label_asserts_contradiction"
+      ]
+    },
+    {
+      "id": "outcome",
+      "title": "Outcome",
+      "phase": "outcome",
+      "function": "resolve",
+      "span_pct": [
+        86,
+        100
+      ],
+      "beat_functions": [
+        "consequence"
+      ],
+      "vo_moves": [
+        "verdict",
+        "stakes"
+      ],
+      "required_beats": [
+        "documented_outcome"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "documented_outcome",
+          "required": true,
+          "accepted_moment_types": [
+            "consequence",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What happened to them?",
+      "promise": "Documented outcome.",
+      "payoff": "Closes the loop.",
+      "narration_role": "Documented only.",
+      "original_audio_share_range": [
+        0.25,
+        0.65
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "End / loop.",
+      "forbidden_failures": [
+        "outcome_asserted_without_source"
+      ]
+    }
+  ]
+}

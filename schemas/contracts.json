@@ -75,6 +75,16 @@
           "items": { "type": "string" },
           "description": "Known charges if discovered"
         },
+        "disposition": {
+          "type": "string",
+          "enum": ["GUILTY", "ACQUITTED", "DISMISSED", "DECLINED_TO_CHARGE", "PENDING", "NO_CHARGES_FILED", "UNKNOWN"],
+          "default": "UNKNOWN",
+          "description": "Normalized legal/administrative outcome; never assert without disposition_source."
+        },
+        "disposition_source": {
+          "type": ["string", "null"],
+          "description": "Source-of-record / page citation backing disposition; null when unverified."
+        },
         "incident_date": {
           "type": "string",
           "description": "Approximate incident date if known (YYYY-MM-DD or YYYY-MM or YYYY)"
@@ -504,7 +514,8 @@
             "location": { "type": ["string", "null"] },
             "subjects": { "type": "array", "items": { "type": "string" } },
             "charges": { "type": "array", "items": { "type": "string" } },
-            "disposition": { "type": ["string", "null"] }
+            "disposition": { "type": ["string", "null"] },
+            "disposition_source": { "type": ["string", "null"], "description": "Source-of-record for the outcome; required for accountability conclusions." }
           }
         },
         "asset_manifest": {

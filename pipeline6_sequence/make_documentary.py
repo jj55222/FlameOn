@@ -43,13 +43,15 @@ class Step:
     paid OpenRouter key. ``produces`` documents the artifact it writes."""
 
     def __init__(self, label: str, argv: List[str], *, paid: bool = False,
-                 produces: str = "", optional: bool = False, gate: bool = False):
+                 produces: str = "", optional: bool = False, gate: bool = False,
+                 abort_on_fail: bool = False):
         self.label = label
         self.argv = argv
         self.paid = paid
         self.produces = produces
         self.optional = optional
-        self.gate = gate          # a release gate: its exit code is the run's verdict, never aborts
+        self.gate = gate          # release/report gate; retained for post-render compatibility
+        self.abort_on_fail = abort_on_fail  # a pre-render gate: non-zero stops the chain immediately
 
 
 def _py(script: Path, *args: str) -> List[str]:
@@ -132,8 +134,9 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
                 _py(P6 / "bridge_verdict.py", str(mined), str(verdict), str(d2 / "transcripts")),
                 produces=str(verdict)))
     if a.flagship:
-        # 7–10. FLAGSHIP: deterministic rails → LLM editorial shaping → long-form
-        #        render (auto-anchor + auto-runtime, no operator tuning) → judge gate.
+        # FLAGSHIP: deterministic editorial spine → thesis gate → shaping →
+        # final-equivalent paper edit → deterministic veto → one critic → encode.
+        # Every pre-render gate can actually abort; --stop-at-paper-edit omits encode.
         bp_dir = basket / "d6_blueprint"
         blueprint_json = bp_dir / f"{a.case_id}_blueprint.json"
         shaped_json = bp_dir / f"{a.case_id}_blueprint_shaped.json"
@@ -144,7 +147,14 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
         paper_edit = cuts_dir / f"{a.case_id}_paper_edit.json"
         final_mp4 = cut_dir / f"{a.case_id}_rough_cut.mp4"
         judge_json = cut_dir / f"{a.case_id}_judge.json"
+        taste_json = cuts_dir / f"VALIDATION_{a.case_id}.json"
         T = str(a.target_runtime)
+        reference_treatment = getattr(a, "reference_treatment", None)
+        legacy_template = getattr(a, "template", None)
+        contract_path = Path(getattr(a, "contract", None)) if getattr(a, "contract", None) else None
+        taste_rules = Path(getattr(a, "taste_rules", None) or (P6 / "TASTE_RULES.json"))
+        fmt = getattr(a, "format", "longform")
+        platform = getattr(a, "platform", "youtube")
 
         bp_argv = ["--artifacts", str(arts), "--timeline", str(timeline),
                    "--verdict", str(verdict), "--media-dir", str(video_dir),
@@ -153,34 +163,63 @@ def build_plan(a: argparse.Namespace) -> List[Step]:
         if a.doc:
             bp_argv += ["--doc-extract", str(doc_extract)]
         bp_label = "blueprint"
-        if getattr(a, "template", None):
-            bp_argv += ["--template", a.template]
-            bp_label = f"blueprint [template: {a.template}]"
+        if reference_treatment:
+            bp_argv += ["--reference-treatment", reference_treatment]
+            bp_label = f"blueprint [treatment: {reference_treatment}]"
+        elif legacy_template:
+            bp_argv += ["--template", legacy_template]
+            bp_label = f"blueprint [template: {legacy_template}]"
         if getattr(a, "snap_transients", False):
             bp_argv.append("--snap-transients")
             bp_label += " +snap"
         steps.append(Step(bp_label, _py(P6 / "blueprint.py", *bp_argv),
                           produces=str(blueprint_json)))
 
+        if contract_path:
+            thesis_out = bp_dir / f"{a.case_id}_thesis_validation.json"
+            thesis_argv = ["--blueprint", str(blueprint_json), "--contract", str(contract_path),
+                           "--out", str(bp_dir), "--gate"]
+            if reference_treatment and Path(reference_treatment).suffix == ".json":
+                thesis_argv += ["--reference-treatment", reference_treatment]
+            if getattr(a, "thesis_model", None) and not getattr(a, "thesis_mock", False):
+                thesis_argv += ["--model", a.thesis_model]
+            steps.append(Step(
+                "thesis-gate", _py(P6 / "thesis_gate.py", *thesis_argv),
+                paid=bool(getattr(a, "thesis_model", None) and not getattr(a, "thesis_mock", False)),
+                produces=str(thesis_out), abort_on_fail=True))
+
+        shape_argv = ["--blueprint", str(blueprint_json), "--model", a.shape_model,
+                      "--out", str(bp_dir)]
+        if reference_treatment and Path(reference_treatment).suffix == ".json":
+            shape_argv += ["--reference-treatment", reference_treatment]
         steps.append(Step(
-            "shape", _py(P6 / "blueprint_shape.py", "--blueprint", str(blueprint_json),
-                         "--model", a.shape_model, "--out", str(bp_dir)),
+            "shape", _py(P6 / "blueprint_shape.py", *shape_argv),
             paid=True, produces=str(shaped_json)))
 
         rb_argv = ["--blueprint", str(shaped_json), "--media-dir", str(video_dir),
                    "--transcripts", str(d2 / "transcripts"),
                    "--target-runtime", T, "--out", str(cuts_dir)]
-        steps.append(Step("render-blueprint", _py(P6 / "render_blueprint.py", *rb_argv),
-                          produces=str(final_mp4)))
+        steps.append(Step("paper-edit", _py(P6 / "render_blueprint.py", *rb_argv,
+                                             "--paper-edit-only"), produces=str(paper_edit)))
+
+        taste_argv = ["--blueprint", str(shaped_json), "--paper-edit", str(paper_edit),
+                      "--rules", str(taste_rules), "--format", fmt, "--platform", platform,
+                      "--out", str(cuts_dir), "--gate"]
+        steps.append(Step("taste-veto", _py(P6 / "taste_gate.py", *taste_argv),
+                          produces=str(taste_json), abort_on_fail=True))
 
         judge_argv = ["--bundle", str(shaped_json), "--paper-edit", str(paper_edit),
+                      "--taste-report", str(taste_json), "--enum-only",
                       "--gate", "--out", str(judge_json)]
         if a.judge_mock:
             judge_argv.append("--mock")
         elif a.judge_model:
             judge_argv += ["--model", a.judge_model]
         steps.append(Step("judge", _py(P6 / "judge.py", *judge_argv),
-                          paid=not a.judge_mock, produces=str(judge_json), gate=True))
+                          paid=not a.judge_mock, produces=str(judge_json), abort_on_fail=True))
+        if not getattr(a, "stop_at_paper_edit", False):
+            steps.append(Step("render-blueprint", _py(P6 / "render_blueprint.py", *rb_argv),
+                              produces=str(final_mp4)))
         return steps
 
     # 7. Render the SIMPLE rough cut (text-card path).
@@ -243,6 +282,20 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--template", default=None,
                     help="flagship act-skeleton template (name in pipeline6_sequence/templates/, "
                          "e.g. solvedfiles_standoff | solvedfiles_discovery, or a path to a .json)")
+    ap.add_argument("--reference-treatment", default=None,
+                    help="flagship v1 treatment id/path; replaces the generic chronological skeleton")
+    ap.add_argument("--contract", default=None,
+                    help="persisted upstream W1 contract; enables the pre-shaping thesis gate")
+    ap.add_argument("--taste-rules", default=None,
+                    help="operator-authored TASTE_RULES.json (default pipeline6_sequence/TASTE_RULES.json)")
+    ap.add_argument("--format", choices=["longform", "shortform"], default="longform")
+    ap.add_argument("--platform", choices=["youtube", "tiktok", "instagram"], default="youtube")
+    ap.add_argument("--thesis-model", default=None,
+                    help="optional one-call live thesis critic; omitted = deterministic thesis gate")
+    ap.add_argument("--thesis-mock", action="store_true",
+                    help="force the thesis gate to stay deterministic even when a model is configured")
+    ap.add_argument("--stop-at-paper-edit", action="store_true",
+                    help="produce blueprint, validation reports, paper edit and critic report; never encode video")
     ap.add_argument("--snap-transients", action="store_true",
                     help="flagship: snap salient force-onset beats to the audio bang (ffmpeg; opt-in)")
     ap.add_argument("--shape-model", default="deepseek/deepseek-v4-flash",
@@ -270,6 +323,9 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"\n=== [{i}/{len(steps)}] {s.label} ===")
         env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
         r = subprocess.run(s.argv, env=env)
+        if s.abort_on_fail and r.returncode != 0:
+            print(f"[gate] '{s.label}' -> HOLD (pre-render abort; rc={r.returncode})")
+            return r.returncode
         if s.gate:
             # The release gate's exit code IS the run's verdict — the cut is already
             # rendered, so we never abort on it; we report and propagate it.
@@ -282,7 +338,8 @@ def main(argv: Optional[List[str]] = None) -> int:
                 continue
             print(f"[fail] step '{s.label}' exited {r.returncode}; aborting.")
             return r.returncode
-    done_msg = "flagship cut + judge gate" if args.flagship else "rough cut"
+    done_msg = ("flagship paper edit + gates" if args.flagship and args.stop_at_paper_edit
+                else "flagship cut + gates" if args.flagship else "rough cut")
     print(f"\n[done] basket → {done_msg} complete"
           + (f"  (gate: {'PASS' if gate_code == 0 else 'HOLD — needs rework'})" if args.flagship else "")
           + ".")

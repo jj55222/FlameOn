@@ -1,0 +1,33 @@
+{
+  "route_id": "direct_event_bwc",
+  "label": "Direct on-camera event",
+  "when_to_use": [
+    "strong central event captured on BWC/dashcam",
+    "clear hook moment"
+  ],
+  "reject_when": [
+    "central event off-camera",
+    "only briefing/summary edits exist"
+  ],
+  "required_source_material": [
+    "incident bodycam covering the event"
+  ],
+  "optional_supporting_material": [
+    "911",
+    "radio"
+  ],
+  "minimum_visual_coverage": "central event visible on camera",
+  "necessary_outcome_documents": [],
+  "suitable_treatments": {
+    "longform": [
+      "standoff_tactical_longform_v1"
+    ],
+    "shortform": [
+      "direct_event_short_v1"
+    ]
+  },
+  "common_false_positives": [
+    "narrated 'critical incident briefing' edit",
+    "news-conference footage"
+  ]
+}

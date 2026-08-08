@@ -1,0 +1,39 @@
+{
+  "route_id": "interrogation_contradiction",
+  "label": "Interrogation-led contradiction",
+  "when_to_use": [
+    "interrogation/interview present",
+    "a genuine contradiction is available",
+    "speakers are identifiable"
+  ],
+  "reject_when": [
+    "no identified speakers",
+    "the 'contradiction' is merely topical",
+    "the difference has no consequence"
+  ],
+  "required_source_material": [
+    "interview/interrogation recording with identified subject"
+  ],
+  "optional_supporting_material": [
+    "BWC",
+    "documents",
+    "911",
+    "radio"
+  ],
+  "minimum_visual_coverage": "at least one visual beat; contradiction may be audio+doc",
+  "necessary_outcome_documents": [
+    "case outcome document"
+  ],
+  "suitable_treatments": {
+    "longform": [
+      "interrogation_contradiction_longform_v1"
+    ],
+    "shortform": [
+      "contradiction_short_v1"
+    ]
+  },
+  "common_false_positives": [
+    "two statements about the same subject that are not mutually exclusive",
+    "handgun-vs-handgun 'contradiction' with no real conflict"
+  ]
+}

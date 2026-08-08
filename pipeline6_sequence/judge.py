@@ -257,6 +257,16 @@ _SYSTEM = (
     '"severity":"low|med|high","note":".."}],"omissions":["..."]}'
 )
 
+_ENUM_SYSTEM = (
+    "You are the single editorial critic for a police-accountability documentary paper edit. "
+    "Judge the assembly only: evidence use, thesis delivery, pacing, and visual storytelling. "
+    "Never judge whether the underlying case is worth producing; never invent a replacement route. "
+    "Trust the deterministic report as ground truth. Return ONLY JSON with no numeric scores: "
+    '{"verdict":"SHIP|REVISE|ABSTAIN|REJECT","reasons":[{"code":"...","note":"...",'
+    '"source_refs":["beat:b00","rule:no_trace_language"]}],"strengths":["..."],'
+    '"omissions":["..."]}. Use ABSTAIN when the case/cut is outside the evidence you can judge.'
+)
+
 
 def _bundle_digest(bundle: Dict) -> Dict:
     kinds = _asset_kind_lookup(bundle)
@@ -375,6 +385,57 @@ def judge_bundle(bundle: Dict, backend, paper_edit: Optional[Dict] = None,
     }
 
 
+def deterministic_enum_judgment(bundle: Dict, paper_edit: Optional[Dict] = None,
+                                pool: Optional[List[Dict]] = None,
+                                taste: Optional[Dict] = None) -> Dict:
+    """Zero-cost enum critic used by ``--mock --enum-only``."""
+    report = deterministic_report(bundle, paper_edit, pool)
+    craft = report["craft"]
+    reasons: List[Dict] = []
+    verdict = "SHIP"
+    if not craft["all_sourced"]:
+        verdict = "REJECT"
+        reasons.append({"code": "unsourced_beats", "note": "One or more beats have no evidence source.",
+                        "source_refs": [f"beat:{b}" for b in craft["unsourced_beats"]]})
+    elif taste and taste.get("verdict") in {"ABSTAIN", "REJECT"}:
+        verdict = taste["verdict"]
+        reasons.append({"code": "deterministic_taste_veto", "note": "The paper edit failed a craft veto.",
+                        "source_refs": [f"rule:{r}" for r in taste.get("failed_rule_ids", [])]})
+    elif craft["replay_count"] or craft["runtime_flag"] != "ok" or (taste and taste.get("verdict") == "REVISE"):
+        verdict = "REVISE"
+        if craft["replay_count"]:
+            reasons.append({"code": "replayed_footage", "note": "The paper edit reuses an overlapping source window.",
+                            "source_refs": [f"media:{x['media']}" for x in craft["replays"]]})
+        if craft["runtime_flag"] != "ok":
+            reasons.append({"code": "runtime_drift", "note": f"Runtime is {craft['runtime_flag']} target.",
+                            "source_refs": ["paper_edit.runtime"]})
+        if taste and taste.get("verdict") == "REVISE":
+            reasons.append({"code": "taste_revision", "note": "Operator-authored finishing rules need revision.",
+                            "source_refs": [f"rule:{r}" for r in taste.get("failed_rule_ids", [])]})
+    if not reasons:
+        reasons.append({"code": "assembly_supported", "note": "No deterministic craft breach was found.",
+                        "source_refs": ["paper_edit.timeline"]})
+    return {"case_id": bundle.get("case_id"), "verdict": verdict, "reasons": reasons,
+            "strengths": [], "omissions": [o["type"] for o in report["coverage"]["omissions"]],
+            "deterministic": report, "taste": taste}
+
+
+def judge_bundle_enum(bundle: Dict, backend, paper_edit: Optional[Dict] = None,
+                      pool: Optional[List[Dict]] = None, taste: Optional[Dict] = None,
+                      max_tokens: int = 1500) -> Dict:
+    report = deterministic_report(bundle, paper_edit, pool)
+    payload = {"bundle": _bundle_digest(bundle), "deterministic": report, "taste": taste}
+    raw = backend.complete(system=_ENUM_SYSTEM, user=json.dumps(payload, ensure_ascii=False),
+                           max_tokens=max_tokens, temperature=0.0)
+    llm = parse_verdict(raw)
+    verdict = llm.get("verdict") if llm.get("verdict") in {"SHIP", "REVISE", "ABSTAIN", "REJECT"} else "ABSTAIN"
+    return {"case_id": bundle.get("case_id"), "verdict": verdict,
+            "reasons": llm.get("reasons") or [{"code": "critic_unparseable",
+                "note": "The critic did not return a valid enum verdict.", "source_refs": ["critic.output"]}],
+            "strengths": llm.get("strengths") or [], "omissions": llm.get("omissions") or [],
+            "deterministic": report, "taste": taste}
+
+
 def compare_bundles(bundle_a: Dict, bundle_b: Dict, backend,
                     pe_a: Optional[Dict] = None, pe_b: Optional[Dict] = None,
                     pool: Optional[List[Dict]] = None) -> Dict:
@@ -412,7 +473,7 @@ def gate_decision(v: Dict) -> Tuple[str, int]:
     craft = (v.get("deterministic") or {}).get("craft") or {}
     if not craft.get("all_sourced", True):
         return "REWORK (unsourced footage — faithfulness breach)", 3
-    if v.get("verdict") == "REWORK":
+    if v.get("verdict") in {"REWORK", "REJECT", "ABSTAIN"}:
         return "REWORK", 3
     soft = bool(craft.get("replay_count")) or craft.get("runtime_flag", "ok") != "ok"
     if v.get("verdict") == "SHIP" and not soft:
@@ -428,6 +489,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--pool", type=Path, default=None, help="candidate moments json (for omissions)")
     ap.add_argument("--model", default=None)
     ap.add_argument("--mock", action="store_true", help="deterministic report only, no LLM (zero cost)")
+    ap.add_argument("--enum-only", action="store_true",
+                    help="critic returns SHIP|REVISE|ABSTAIN|REJECT with cited reasons and no scores")
+    ap.add_argument("--taste-report", type=Path, default=None,
+                    help="VALIDATION_<case>.json from taste_gate.py")
     ap.add_argument("--gate", action="store_true",
                     help="release gate: exit 3 if the cut should be held (REWORK / unsourced), else 0")
     ap.add_argument("--out", type=Path, default=None)
@@ -436,6 +501,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     bundle = json.loads(args.bundle.read_text(encoding="utf-8"))
     paper_edit = json.loads(args.paper_edit.read_text(encoding="utf-8")) if args.paper_edit else None
     pool = json.loads(args.pool.read_text(encoding="utf-8")) if args.pool else None
+    taste = json.loads(args.taste_report.read_text(encoding="utf-8")) if args.taste_report else None
 
     if args.mock:
         backend = MockJudgeBackend()
@@ -450,10 +516,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         backend = JudgeBackend(args.model) if args.model else JudgeBackend()
         print(f"[judge] live: {backend.model} (paid)")
 
-    v = judge_bundle(bundle, backend, paper_edit=paper_edit, pool=pool)
-    sc = v["scores"]
-    print(f"\n  VERDICT: {v['verdict']}   substance={sc.get('substance')} "
-          f"salience={sc.get('salience')} craft={sc.get('craft')} overall={sc.get('overall')}")
+    if args.enum_only and args.mock:
+        v = deterministic_enum_judgment(bundle, paper_edit=paper_edit, pool=pool, taste=taste)
+    elif args.enum_only:
+        v = judge_bundle_enum(bundle, backend, paper_edit=paper_edit, pool=pool, taste=taste)
+    else:
+        v = judge_bundle(bundle, backend, paper_edit=paper_edit, pool=pool)
+    if args.enum_only:
+        print(f"\n  VERDICT: {v['verdict']}  (enum-only; no synthetic score)")
+        for reason in v.get("reasons") or []:
+            print(f"    - {reason.get('code')}: {reason.get('note')}")
+    else:
+        sc = v["scores"]
+        print(f"\n  VERDICT: {v['verdict']}   substance={sc.get('substance')} "
+              f"salience={sc.get('salience')} craft={sc.get('craft')} overall={sc.get('overall')}")
     cr = v["deterministic"]["craft"]
     print(f"  craft: {cr['replay_count']} replay(s), sourced={cr['all_sourced']}, "
           f"runtime {cr['runtime_flag']} ({cr['runtime_ratio']})")
@@ -470,6 +546,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     if v["omissions"]:
         print("  omissions:", ", ".join(str(o) for o in v["omissions"][:6]))
     if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(v, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"  -> {args.out}")
     if args.gate:

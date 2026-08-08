@@ -1,0 +1,41 @@
+{
+  "route_id": "accountability_prosecution",
+  "label": "Accountability / prosecution of a disputed or off-camera event",
+  "when_to_use": [
+    "central event disputed or off-camera",
+    "officer interview or witness accounts exist",
+    "prosecutorial/IA/court reasoning available",
+    "a consequential finding or unresolved legal question"
+  ],
+  "reject_when": [
+    "no legal disposition exists",
+    "officer's role is unclear",
+    "story depends entirely on speculation",
+    "available footage is only generic aftermath"
+  ],
+  "required_source_material": [
+    "officer interview or documented account",
+    "legal/administrative reasoning document"
+  ],
+  "optional_supporting_material": [
+    "BWC",
+    "witness interviews",
+    "objective forensic evidence"
+  ],
+  "minimum_visual_coverage": "not required to be visual \u2014 carried by account + evidence + documents",
+  "necessary_outcome_documents": [
+    "prosecutor decision OR IA finding OR court record"
+  ],
+  "suitable_treatments": {
+    "longform": [
+      "accountability_prosecution_longform_v1"
+    ],
+    "shortform": [
+      "contradiction_short_v1"
+    ]
+  },
+  "common_false_positives": [
+    "off-camera OIS with no legal outcome (reject)",
+    "'watch the shooting' framing with no accountability angle"
+  ]
+}

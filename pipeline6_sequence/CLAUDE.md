@@ -4,6 +4,7 @@
 the pipeline you'll spend the most time in for EWU-level work. Deterministic assembly — no LLM does
 the cutting; LLMs only author/shape narration. Root context: [/CLAUDE.md](../CLAUDE.md),
 [/STATE.md](../STATE.md). Full runbooks: `.claude/skills/{flagship-longform,rawwalk-shortform}`.
+Pre-render taste layer (gates, rules, maintenance contract): [TASTE_LAYER.md](TASTE_LAYER.md).
 
 ## Prereqs (always)
 ```

@@ -7,6 +7,7 @@ sourced outcome card.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -258,6 +259,25 @@ def test_audio_aware_off_by_default_leaves_broll_window():
     pe = rb.blueprint_to_paper_edit(_shaped())
     broll = next(e for e in pe["timeline"] if e["kind"] == "clip" and "911A.mp3" in e["media"])
     assert broll["in_sec"] == 0.0 and broll["out_sec"] == 12.0
+
+
+def test_paper_edit_cli_is_final_equivalent_and_never_encodes(tmp_path, monkeypatch):
+    bp_path = tmp_path / "bp.json"
+    bp_path.write_text(json.dumps(_shaped()), encoding="utf-8")
+    seen = {}
+    original = rb.blueprint_to_paper_edit
+
+    def capture(*args, **kwargs):
+        seen["audio_aware"] = kwargs.get("audio_aware")
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(rb, "blueprint_to_paper_edit", capture)
+    monkeypatch.setattr(rb.rc, "_resolve_ffmpeg", lambda: ("ffmpeg", "ffprobe"))
+    monkeypatch.setattr(rb.rc, "render", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("paper-edit-only must never encode")))
+    assert rb.main(["--blueprint", str(bp_path), "--out", str(tmp_path),
+                    "--paper-edit-only"]) == 0
+    assert seen["audio_aware"] is True
 
 
 def test_media_dir_remap_used_when_manifest_path_absent(tmp_path):

@@ -531,6 +531,9 @@ _SYSTEM = (
     "inside that asset's duration.\n"
     "- Narration is connective only; it may assert nothing beyond the beat's "
     "source_facts. Keep it spare.\n"
+    "- REFERENCE_TREATMENT is structure-only. Preserve its act order, evidence "
+    "requirements, promise/payoff and forbidden failures, but never copy reference "
+    "wording or conclusions into narration.\n"
     "- FACTUAL GROUNDING (this is a real person and a real case — getting the story "
     "wrong is defamation): the logline, every act thesis, and all narration MUST be "
     "consistent with the CASE FACTS block. Use the named subject(s) and the events "
@@ -557,6 +560,9 @@ _SYSTEM_ANALYSIS = (
     "- Never invent footage, quotes, or facts. Reference only beat_id and asset_id "
     "values that appear in the blueprint.\n"
     "- B-roll and inserts must cite an existing asset_id; windows inside its duration.\n"
+    "- REFERENCE_TREATMENT is structure-only. Preserve its act order, evidence "
+    "requirements, promise/payoff and forbidden failures, but never copy reference "
+    "wording or conclusions into narration.\n"
     "- GROUNDED ANALYSIS (this is a real person; an unsupported claim is defamation): "
     "every analytical claim must rest on CASE_FACTS or ANALYSIS_BASIS. ATTRIBUTE "
     "judgments to the record — 'Internal Affairs would sustain a finding of...', 'the "
@@ -620,13 +626,23 @@ def _grammar_directive(profile: Dict) -> str:
         f"OPEN the cut with: {opens}. Build toward the VERDICT at the end.\n")
 
 
-def _build_prompt(blueprint: Dict, style: str = "connective", grammar: Optional[Dict] = None) -> str:
+_TREATMENT_ACT_FIELDS = (
+    "act_id", "title", "phase", "function", "target_sec", "span_pct",
+    "beat_function_quota", "vo_moves", "required_beats", "evidence_slots",
+    "audience_question", "promise", "payoff", "narration_role",
+    "original_audio_share_range", "max_dead_space_sec", "transition",
+    "forbidden_failures",
+)
+
+
+def _build_prompt(blueprint: Dict, style: str = "connective", grammar: Optional[Dict] = None,
+                  reference_treatment: Optional[Dict] = None) -> str:
     manifest = [{"asset_id": a["asset_id"], "kind": a["kind"], "label": a.get("pov_label"),
                  "phase": a.get("phase"), "duration_sec": a.get("duration_sec"),
                  "has_transcript": a.get("has_transcript")}
                 for a in blueprint.get("asset_manifest", [])]
-    acts = [{"act_id": a["act_id"], "title": a["title"], "function": a["function"],
-             "target_sec": a["target_sec"]} for a in blueprint.get("acts", [])]
+    acts = [{k: a.get(k) for k in _TREATMENT_ACT_FIELDS if k in a}
+            for a in blueprint.get("acts", [])]
     beats = [{"beat_id": b["beat_id"], "act_id": b["act_id"], "function": b["function"],
               "kind": "record" if b.get("is_document") else "footage",
               "duration_sec": b["target_duration_sec"],
@@ -654,6 +670,20 @@ def _build_prompt(blueprint: Dict, style: str = "connective", grammar: Optional[
         "gaps": blueprint.get("gaps"),
         "current_planned_runtime_sec": blueprint.get("metadata", {}).get("planned_runtime_sec"),
     }
+    treatment = reference_treatment or blueprint.get("reference_treatment")
+    if treatment:
+        payload["REFERENCE_TREATMENT"] = {
+            "treatment_id": treatment.get("treatment_id") or treatment.get("template_id"),
+            "format": treatment.get("format"),
+            "platform": treatment.get("platform"),
+            "route_id": treatment.get("route_id"),
+            "structure_only": treatment.get("structure_only", True),
+            "allow_wording_transfer": bool((treatment.get("provenance") or {}).get("allow_wording_transfer")),
+            "applicability": treatment.get("applicability") or {},
+            "global_rules": treatment.get("global_rules") or {},
+            "acts": acts,
+            "validation": blueprint.get("treatment_validation"),
+        }
     if style == "analysis":
         # The sustained findings ARE the authoritative analysis — the only judgments
         # of wrongdoing the narration may invoke, and only attributed to the record.
@@ -721,7 +751,8 @@ class MockBackend:
 
 def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
                     temperature: float = 0.2, style: str = "connective",
-                    grammar: Optional[Dict] = None) -> Tuple[Dict, Dict]:
+                    grammar: Optional[Dict] = None,
+                    reference_treatment: Optional[Dict] = None) -> Tuple[Dict, Dict]:
     """Run one shaping pass. Returns ``(shaped_blueprint, report)``. ``report``
     carries the rejection list + raw edit, so a caller can see exactly what the
     model proposed and what the validator threw out. ``style='analysis'`` switches
@@ -729,7 +760,8 @@ def shape_blueprint(blueprint: Dict, backend, *, max_tokens: int = 4000,
     EWU / Dr. Insanity tier), behind the same fact-check rail. ``grammar`` (a learned
     narration_grammar profile) steers per-phase analytical moves + cadence."""
     system = _SYSTEM_ANALYSIS if style == "analysis" else _SYSTEM
-    user = _build_prompt(blueprint, style=style, grammar=grammar)
+    user = _build_prompt(blueprint, style=style, grammar=grammar,
+                         reference_treatment=reference_treatment)
     raw = backend.complete(system=system, user=user, max_tokens=max_tokens,
                            temperature=temperature)
     try:
@@ -800,6 +832,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--grammar", type=Path, default=None,
                     help="a learned narration_grammar profile json — steer per-phase analytical "
                          "moves + cadence in the style of that channel (use with --analysis)")
+    ap.add_argument("--reference-treatment", type=Path, default=None,
+                    help="optional explicit v1 treatment JSON; normally already embedded by blueprint.py")
     ap.add_argument("--max-tokens", type=int, default=3500)
     args = ap.parse_args(argv)
     style = "analysis" if args.analysis else "connective"
@@ -823,8 +857,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         print(f"[shape] live: {backend.model}  (paid — one call)  style={style}{gtag}")
 
     grammar = json.loads(args.grammar.read_text(encoding="utf-8")) if args.grammar else None
+    treatment = (json.loads(args.reference_treatment.read_text(encoding="utf-8"))
+                 if args.reference_treatment else blueprint.get("reference_treatment"))
     shaped, report = shape_blueprint(blueprint, backend, max_tokens=args.max_tokens,
-                                     style=style, grammar=grammar)
+                                     style=style, grammar=grammar,
+                                     reference_treatment=treatment)
 
     out_dir = Path(args.out) if args.out else args.blueprint.parent
     out_dir.mkdir(parents=True, exist_ok=True)

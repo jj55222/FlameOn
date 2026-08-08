@@ -146,6 +146,7 @@ def _narrative_text(de: Dict) -> Optional[str]:
 def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
     inc: Dict[str, Any] = {"date": None, "time": None, "location": None,
                            "subjects": [], "charges": [], "disposition": None,
+                           "disposition_source": None,
                            "summary": None}
     for de in doc_extracts:
         inc["date"] = inc["date"] or de.get("doc_date")
@@ -177,6 +178,11 @@ def build_incident(doc_extracts: List[Dict], timeline: Dict) -> Dict:
         oc = de.get("outcome_card") or {}
         if not inc["disposition"] and (oc.get("subtitle") or (de.get("disposition") or {}).get("summary")):
             inc["disposition"] = oc.get("subtitle") or de["disposition"]["summary"]
+            disp = de.get("disposition") or {}
+            pages = disp.get("pages") or [f.get("page") for f in disp.get("findings", []) if f.get("page")]
+            page = next((p for p in pages if p is not None), None)
+            inc["disposition_source"] = (f"doc:{de.get('doc_type', 'document')}#p{page}"
+                                         if page is not None else None)
     if not inc["date"] and timeline.get("anchor_iso"):
         inc["date"] = str(timeline["anchor_iso"])[:10]
     return inc
@@ -351,20 +357,33 @@ def build_acts(timeline: Dict, beats: List[Dict], doc_extracts: List[Dict],
 # ---------------------------------------------------------------------------
 
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
+REFERENCE_TREATMENTS_DIR = Path(__file__).resolve().parent / "reference_cards" / "treatments"
 _CANON_PHASES = {"pre_incident", "incident", "aftermath", "transport", "investigation", "outcome"}
 _PHASE_ALIASES = {"incident_aftermath_loop": "incident", "pre-incident": "pre_incident"}
 
 
 def load_template(name_or_path) -> Dict:
-    """Resolve a template by bare name (``templates/<name>.json``) or explicit path."""
+    """Resolve a legacy template or a v1 reference treatment.
+
+    Reference treatments are a forward-compatible superset of the legacy
+    template contract.  Keeping one loader lets old ``--template`` invocations
+    continue to work while the flagship path moves to ``--reference-treatment``.
+    """
     p = Path(name_or_path)
     if p.suffix == ".json" and p.exists():
         return json.loads(p.read_text(encoding="utf-8"))
-    for cand in (TEMPLATES_DIR / f"{name_or_path}.json", TEMPLATES_DIR / str(name_or_path)):
+    for cand in (TEMPLATES_DIR / f"{name_or_path}.json", TEMPLATES_DIR / str(name_or_path),
+                 REFERENCE_TREATMENTS_DIR / f"{name_or_path}.json",
+                 REFERENCE_TREATMENTS_DIR / str(name_or_path)):
         if cand.exists():
             return json.loads(cand.read_text(encoding="utf-8"))
-    avail = ", ".join(sorted(t.stem for t in TEMPLATES_DIR.glob("*.json"))) if TEMPLATES_DIR.exists() else "(none)"
-    raise FileNotFoundError(f"template not found: {name_or_path!r} — available in templates/: {avail}")
+    paths = list(TEMPLATES_DIR.glob("*.json")) + list(REFERENCE_TREATMENTS_DIR.glob("*.json"))
+    avail = ", ".join(sorted(t.stem for t in paths)) or "(none)"
+    raise FileNotFoundError(f"template/treatment not found: {name_or_path!r} — available: {avail}")
+
+
+def _treatment_id(treatment: Dict) -> Optional[str]:
+    return treatment.get("treatment_id") or treatment.get("template_id")
 
 
 def _canon_phase(p) -> str:
@@ -405,31 +424,138 @@ def _nearest_act_idx(phase: str, canon: List[str]) -> int:
               key=lambda i: abs((order.index(canon[i]) if canon[i] in order else len(order)) - want))
 
 
-def build_acts_from_template(template: Dict, beats: List[Dict], target_runtime: float) -> List[Dict]:
+def _asset_kind_for_beat(beat: Dict, manifest_by_id: Dict[str, Dict]) -> str:
+    if beat.get("is_document"):
+        return "document"
+    aid = ((beat.get("primary_asset") or {}).get("asset_id"))
+    asset = manifest_by_id.get(aid) or {}
+    kind = str(asset.get("kind") or "other").lower()
+    label = " ".join(str(asset.get(k) or "") for k in ("pov_label", "path", "doc_type")).lower()
+    if kind == "other" and ("interview" in label or "interrog" in label):
+        return "interview"
+    return kind
+
+
+def _slot_matches(slot: Dict, beat: Dict, manifest_by_id: Dict[str, Dict]) -> bool:
+    types = set(slot.get("accepted_moment_types") or [])
+    if types and beat.get("function") not in types:
+        return False
+    kinds = set(slot.get("accepted_media_kinds") or [])
+    if kinds and _asset_kind_for_beat(beat, manifest_by_id) not in kinds:
+        return False
+    if slot.get("must_have_source") and not beat.get("source_refs"):
+        return False
+    if slot.get("must_be_verbatim") and not ((beat.get("quote") or {}).get("text")):
+        return False
+    if beat.get("is_document") and slot.get("card_substitution_allowed") is False:
+        return False
+    if slot.get("visual_requirement") == "required":
+        if _asset_kind_for_beat(beat, manifest_by_id) in {"911_audio", "radio", "document"}:
+            return False
+    return True
+
+
+def _importance_rank(beat: Dict) -> int:
+    return {"critical": 0, "high": 1, "medium": 2, "low": 3}.get(
+        str(beat.get("_importance") or beat.get("importance") or "medium").lower(), 2)
+
+
+def _treatment_assignment(tacts: List[Dict], canon: List[str], beats: List[Dict],
+                          manifest: List[Dict]) -> Dict[int, List[Dict]]:
+    """Bind evidence slots first, then place the remaining beats deterministically.
+
+    This is the editorial-spine change: a treatment no longer only renames a
+    chronological phase split. Required evidence functions get first claim on
+    matching, sourced beats; all remaining material is assigned by function,
+    phase, then nearest act. No LLM participates in this compile.
+    """
+    manifest_by_id = {a.get("asset_id"): a for a in manifest}
+    assigned: Dict[int, List[Dict]] = {i: [] for i in range(len(tacts))}
+    remaining = list(beats)
+
+    for i, ta in enumerate(tacts):
+        for slot in ta.get("evidence_slots") or []:
+            if not slot.get("required"):
+                continue
+            need = max(1, int(slot.get("minimum_count") or 1))
+            candidates = [b for b in remaining if _slot_matches(slot, b, manifest_by_id)]
+            candidates.sort(key=lambda b: (_importance_rank(b), b.get("ordinal", 10**9)))
+            for b in candidates[:need]:
+                assigned[i].append(b)
+                remaining.remove(b)
+
+    for b in remaining:
+        phase = _canon_phase((b.get("act_id") or "").replace("act_", "") or b.get("_phase"))
+
+        def score(i: int) -> Tuple[int, int]:
+            ta = tacts[i]
+            slot_hit = any(_slot_matches(s, b, manifest_by_id)
+                           for s in (ta.get("evidence_slots") or []))
+            fn_hit = b.get("function") in set(ta.get("beat_functions") or [])
+            phase_hit = canon[i] == phase
+            return (8 * int(slot_hit) + 4 * int(fn_hit) + 2 * int(phase_hit), -i)
+
+        best = max(range(len(tacts)), key=score)
+        if score(best)[0] == 0:
+            best = _nearest_act_idx(phase, canon)
+        assigned[best].append(b)
+
+    for bs in assigned.values():
+        bs.sort(key=lambda b: b.get("ordinal", 10**9))
+    return assigned
+
+
+def treatment_validation(template: Dict, acts: List[Dict], beats: List[Dict],
+                         manifest: List[Dict]) -> Dict:
+    """Return auditable evidence-slot bindings and hard missing requirements."""
+    manifest_by_id = {a.get("asset_id"): a for a in manifest}
+    beats_by_id = {b.get("beat_id"): b for b in beats}
+    bindings: List[Dict] = []
+    missing: List[Dict] = []
+    acts_by_id = {a.get("act_id"): a for a in acts}
+    for ta in template.get("acts") or []:
+        aid = f"act_{ta.get('id') or ta.get('name')}"
+        act_beats = [beats_by_id[bid] for bid in (acts_by_id.get(aid, {}).get("beat_ids") or [])
+                     if bid in beats_by_id]
+        for slot in ta.get("evidence_slots") or []:
+            matched = [b.get("beat_id") for b in act_beats if _slot_matches(slot, b, manifest_by_id)]
+            need = max(1, int(slot.get("minimum_count") or 1))
+            rec = {"act_id": aid, "slot_id": slot.get("slot_id"), "required": bool(slot.get("required")),
+                   "minimum_count": need, "beat_ids": matched, "covered": len(matched) >= need}
+            bindings.append(rec)
+            if rec["required"] and not rec["covered"]:
+                missing.append(rec)
+    return {"treatment_id": _treatment_id(template), "bindings": bindings,
+            "missing_required_slots": missing, "all_required_slots_covered": not missing}
+
+
+def build_acts_from_template(template: Dict, beats: List[Dict], target_runtime: float,
+                             manifest: Optional[List[Dict]] = None) -> List[Dict]:
     """Build the act list from a template skeleton: fixed acts, target_sec from the
     declared %-span, per-act beat-function quotas, and beats slotted in by phase.
     MUTATES each beat's ``act_id`` to the template act it lands in so the beat sheet
     / render / judge all group under the skeleton's acts."""
     tacts = template.get("acts") or []
     if not tacts:
-        raise ValueError(f"template {template.get('template_id')!r} has no acts")
+        raise ValueError(f"template {_treatment_id(template)!r} has no acts")
     canon = [_canon_phase(ta.get("phase")) for ta in tacts]
 
-    beats_by_phase: Dict[str, List[Dict]] = {}
-    for b in beats:                                  # beats arrive chronologically sorted
-        ph = _canon_phase((b.get("act_id") or "").replace("act_", "") or b.get("_phase"))
-        beats_by_phase.setdefault(ph, []).append(b)
-
-    idx_by_phase: Dict[str, List[int]] = {}
-    for i, ph in enumerate(canon):
-        idx_by_phase.setdefault(ph, []).append(i)
-
-    assigned: Dict[int, List[Dict]] = {i: [] for i in range(len(tacts))}
-    for ph, bs in beats_by_phase.items():
-        idxs = idx_by_phase.get(ph) or [_nearest_act_idx(ph, canon)]
-        weights = [(_span_pct(tacts[i])[1] - _span_pct(tacts[i])[0]) or 1.0 for i in idxs]
-        for i, chunk in zip(idxs, _proportional_split(bs, weights)):
-            assigned[i].extend(chunk)
+    if manifest is not None:
+        assigned = _treatment_assignment(tacts, canon, beats, manifest)
+    else:
+        beats_by_phase: Dict[str, List[Dict]] = {}
+        for b in beats:                              # legacy/test-compatible path
+            ph = _canon_phase((b.get("act_id") or "").replace("act_", "") or b.get("_phase"))
+            beats_by_phase.setdefault(ph, []).append(b)
+        idx_by_phase: Dict[str, List[int]] = {}
+        for i, ph in enumerate(canon):
+            idx_by_phase.setdefault(ph, []).append(i)
+        assigned = {i: [] for i in range(len(tacts))}
+        for ph, bs in beats_by_phase.items():
+            idxs = idx_by_phase.get(ph) or [_nearest_act_idx(ph, canon)]
+            weights = [(_span_pct(tacts[i])[1] - _span_pct(tacts[i])[0]) or 1.0 for i in idxs]
+            for i, chunk in zip(idxs, _proportional_split(bs, weights)):
+                assigned[i].extend(chunk)
 
     acts: List[Dict] = []
     for i, ta in enumerate(tacts):
@@ -447,9 +573,18 @@ def build_acts_from_template(template: Dict, beats: List[Dict], target_runtime: 
             "beat_function_quota": ta.get("beat_functions") or [],
             "vo_moves": ta.get("vo_moves") or [],
             "required_beats": ta.get("required_beats") or [],
+            "evidence_slots": ta.get("evidence_slots") or [],
+            "audience_question": ta.get("audience_question"),
+            "promise": ta.get("promise"),
+            "payoff": ta.get("payoff"),
+            "narration_role": ta.get("narration_role"),
+            "original_audio_share_range": ta.get("original_audio_share_range"),
+            "max_dead_space_sec": ta.get("max_dead_space_sec"),
+            "transition": ta.get("transition"),
+            "forbidden_failures": ta.get("forbidden_failures") or [],
             "thesis": ta.get("notes"),
             "beat_ids": [b["beat_id"] for b in assigned[i]],
-            "template_id": template.get("template_id"),
+            "template_id": _treatment_id(template),
         })
     return acts
 
@@ -872,8 +1007,9 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
     resolve_same_asset_overlaps(beats)   # no replaying the same footage
     # A template imposes a fixed act skeleton + %-spans + quotas (and re-tags beat
     # act_ids); absent one, the generic phase-∝-beats split is unchanged.
-    acts = (build_acts_from_template(template, beats, target_runtime) if template
+    acts = (build_acts_from_template(template, beats, target_runtime, manifest=manifest) if template
             else build_acts(timeline, beats, doc_extracts, target_runtime))
+    treatment_check = (treatment_validation(template, acts, beats, manifest) if template else None)
     ledger = build_integrity_ledger(beats, incident, doc_extracts)
     gaps = build_gaps(manifest, timeline, beats, incident)
     metadata = build_metadata(manifest, acts, beats, timeline, target_runtime)
@@ -884,7 +1020,9 @@ def build_blueprint(artifacts: List[Dict], timeline: Dict, verdict: Dict,
         "case_id": verdict.get("case_id"),
         "logline": None,
         "target_runtime_sec": target_runtime,
-        "template": template.get("template_id") if template else None,
+        "template": _treatment_id(template) if template else None,
+        "reference_treatment": template if template else None,
+        "treatment_validation": treatment_check,
         "agency": agency,
         "incident": incident,
         "asset_manifest": manifest,
@@ -1036,6 +1174,9 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="act-skeleton template: a name in templates/ (e.g. solvedfiles_standoff) "
                          "or a path to a template .json. Sets act structure, %-spans, and per-act "
                          "beat-function quotas instead of the generic phase-∝-beats split.")
+    ap.add_argument("--reference-treatment", default=None,
+                    help="v1 reference-treatment id or JSON path. Drives deterministic act order, "
+                         "pacing, required evidence slots, promise/payoff and failure constraints.")
     ap.add_argument("--snap-transients", action="store_true",
                     help="nudge salient force-onset beats (reveal/peak/tension_shift with a "
                          "'shots fired'/'drop the gun'/... cue) so the audio bang lands ~3s into "
@@ -1044,7 +1185,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--out", type=Path, default=Path(".tmp/blueprint"))
     args = ap.parse_args(argv)
 
-    template = load_template(args.template) if args.template else None
+    if args.template and args.reference_treatment:
+        ap.error("use either --template or --reference-treatment, not both")
+    treatment_arg = args.reference_treatment or args.template
+    template = load_template(treatment_arg) if treatment_arg else None
 
     artifacts = json.loads(args.artifacts.read_text(encoding="utf-8"))
     timeline = json.loads(args.timeline.read_text(encoding="utf-8"))
@@ -1064,7 +1208,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             args.media_dir, timeline_index)
 
     if template:
-        print(f"[blueprint] template: {template.get('template_id')} "
+        print(f"[blueprint] reference treatment: {_treatment_id(template)} "
               f"({len(template.get('acts', []))} acts) — {template.get('label', '')}")
 
     bp = build_blueprint(artifacts, timeline, verdict, doc_extracts, doc_paths,

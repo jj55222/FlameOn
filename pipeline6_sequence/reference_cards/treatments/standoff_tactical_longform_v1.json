@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "treatment_id": "standoff_tactical_longform_v1",
+  "label": "Tactical standoff / active-scene with captured resolution",
+  "format": "longform",
+  "platform": "youtube",
+  "route_id": "standoff_tactical",
+  "structure_only": true,
+  "provenance": {
+    "reference_ids": [
+      "solvedfiles_standoff"
+    ],
+    "channels": [
+      "SolvedFiles (structure only)"
+    ],
+    "sample_count": 55,
+    "analysis_date": "2026-07-26",
+    "allow_wording_transfer": false,
+    "note": "Proportions from SolvedFiles corpus (n=55); runtime range is OUR channel practice, not the 35min ref median. structure<->views ~0: this is a floor/consistency aid, not a view lever."
+  },
+  "applicability": {
+    "required_case_features": [
+      "reads_chronologically_on_tape",
+      "peaks_in_tactical_resolution"
+    ],
+    "forbidden_case_features": [
+      "central_event_off_camera",
+      "perimeter_only_without_resolution"
+    ],
+    "required_media_kinds_any": [
+      "bodycam",
+      "dashcam",
+      "surveillance"
+    ],
+    "supporting_media_kinds": [
+      "911_audio",
+      "radio",
+      "document",
+      "interview"
+    ],
+    "required_fact_fields": [
+      "incident.summary",
+      "incident.outcome"
+    ]
+  },
+  "global_rules": {
+    "runtime_minutes_range": [
+      8,
+      18
+    ],
+    "vo_word_share_range": [
+      0.25,
+      0.4
+    ],
+    "max_unmotivated_dead_space_sec": 3.0,
+    "max_same_modality_run_sec": 45,
+    "central_payoff_required": true,
+    "legal_cover_on_accusations": true,
+    "cold_open_variant": "bang_first",
+    "climax_onset_pct_range": [
+      75,
+      82
+    ],
+    "cta_forbidden_span_pct": [
+      75,
+      83
+    ],
+    "fallback_treatment_id": null
+  },
+  "acts": [
+    {
+      "id": "cold_open",
+      "title": "Crisis Hook",
+      "phase": "incident",
+      "function": "hook",
+      "span_pct": [
+        0,
+        4
+      ],
+      "beat_functions": [
+        "emotional_peak",
+        "reveal",
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "hook",
+        "stakes",
+        "foreshadow"
+      ],
+      "required_beats": [
+        "crisis_hook",
+        "central_unknown"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "crisis_hook",
+          "required": true,
+          "accepted_moment_types": [
+            "emotional_peak",
+            "reveal",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "911_audio",
+            "radio"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "central_unknown",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "911_audio",
+            "radio",
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What danger are officers confronting, and how will it end?",
+      "promise": "Open on the crisis without revealing the resolution.",
+      "payoff": "The resolution act answers this unknown.",
+      "narration_role": "Supply stakes, withhold outcome; do not narrate visible action redundantly.",
+      "original_audio_share_range": [
+        0.45,
+        0.85
+      ],
+      "max_dead_space_sec": 2.5,
+      "transition": "Move backward to the catalyst and first response.",
+      "forbidden_failures": [
+        "resolution_spoiled",
+        "generic_action_montage_without_question",
+        "editorial_label_substitutes_for_missing_event"
+      ]
+    },
+    {
+      "id": "arrival",
+      "title": "Catalyst & First Contact",
+      "phase": "pre_incident",
+      "function": "establish",
+      "span_pct": [
+        4,
+        16
+      ],
+      "beat_functions": [
+        "context",
+        "procedure"
+      ],
+      "vo_moves": [
+        "scene_set",
+        "context",
+        "procedure"
+      ],
+      "required_beats": [
+        "catalyst_5ws",
+        "first_contact"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "catalyst_5ws",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "detail_noticed"
+          ],
+          "accepted_media_kinds": [
+            "911_audio",
+            "radio",
+            "document",
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "first_contact",
+          "required": true,
+          "accepted_moment_types": [
+            "escalation",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Who called, what did officers believe was inside, and how did contact begin?",
+      "promise": "Establish the 5Ws and the threat picture.",
+      "payoff": "Sets the stakes the climax pays off.",
+      "narration_role": "Front-load context here (SolvedFiles: VO gaps 60-150s in front half).",
+      "original_audio_share_range": [
+        0.4,
+        0.8
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "Into containment and the tactical picture.",
+      "forbidden_failures": [
+        "dead_air_no_context",
+        "identity_unestablished"
+      ]
+    },
+    {
+      "id": "attempt_cycles",
+      "title": "Containment, Planning & Regroup Cycles",
+      "phase": "incident",
+      "function": "escalate",
+      "span_pct": [
+        16,
+        66
+      ],
+      "beat_functions": [
+        "tactical_decision",
+        "escalation",
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "scene_set",
+        "context",
+        "foreshadow"
+      ],
+      "required_beats": [
+        "containment",
+        "tactical_planning",
+        "attempt_failure_regroup"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "containment",
+          "required": true,
+          "accepted_moment_types": [
+            "escalation",
+            "tactical_decision"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "radio"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "tactical_planning",
+          "required": true,
+          "accepted_moment_types": [
+            "tactical_decision"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "radio"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "attempt_failure_regroup",
+          "required": true,
+          "accepted_moment_types": [
+            "escalation",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "How do they try to end it safely, and why doesn't it work the first time?",
+      "promise": "Show real decisions that change what happens next.",
+      "payoff": "Earns the strategy change and climax.",
+      "narration_role": "Let original radio/BWC dialogue carry; VO only to bridge. Kill hallway dead-space (max 3s).",
+      "original_audio_share_range": [
+        0.55,
+        0.9
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "A forced strategy change tips into the climax.",
+      "forbidden_failures": [
+        "officers_waiting_no_decision",
+        "label_claims_planning_without_audible_decision",
+        "same_modality_over_45s"
+      ]
+    },
+    {
+      "id": "records_bridge",
+      "title": "Records Bridge",
+      "phase": "investigation",
+      "function": "contextualize",
+      "span_pct": [
+        66,
+        72
+      ],
+      "beat_functions": [
+        "reveal"
+      ],
+      "vo_moves": [
+        "transition",
+        "context"
+      ],
+      "required_beats": [
+        "records_touchpoint"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "records_touchpoint",
+          "required": false,
+          "accepted_moment_types": [
+            "reveal",
+            "detail_noticed"
+          ],
+          "accepted_media_kinds": [
+            "document"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What does the paper record add that the footage can't show?",
+      "promise": "Bring in a document beat (SolvedFiles records touchpoints ~69%).",
+      "payoff": "Deepens the climax stakes.",
+      "narration_role": "Brief; a document callout, not a lecture.",
+      "original_audio_share_range": [
+        0.2,
+        0.6
+      ],
+      "max_dead_space_sec": 2.5,
+      "transition": "Pivot to the climax.",
+      "forbidden_failures": [
+        "doc_dump_lecture"
+      ]
+    },
+    {
+      "id": "pivot",
+      "title": "Pivot to Climax",
+      "phase": "incident",
+      "function": "escalate",
+      "span_pct": [
+        72,
+        75
+      ],
+      "beat_functions": [
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "foreshadow",
+        "stakes"
+      ],
+      "required_beats": [
+        "pivot"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "pivot",
+          "required": true,
+          "accepted_moment_types": [
+            "tension_shift",
+            "escalation"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "radio"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "This is the moment it turns \u2014 how?",
+      "promise": "Signal the turn.",
+      "payoff": "The climax delivers it.",
+      "narration_role": "One sharp VO stakes line; then get out of the way.",
+      "original_audio_share_range": [
+        0.5,
+        0.85
+      ],
+      "max_dead_space_sec": 2.0,
+      "transition": "Into the climax.",
+      "forbidden_failures": [
+        "premature_reveal"
+      ]
+    },
+    {
+      "id": "climax",
+      "title": "Breach / Surrender / Resolution",
+      "phase": "incident",
+      "function": "climax",
+      "span_pct": [
+        75,
+        83
+      ],
+      "beat_functions": [
+        "climax",
+        "reveal",
+        "emotional_peak"
+      ],
+      "vo_moves": [
+        "scene_set",
+        "contradiction"
+      ],
+      "required_beats": [
+        "resolution_on_tape"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "resolution_on_tape",
+          "required": true,
+          "accepted_moment_types": [
+            "climax",
+            "reveal",
+            "emotional_peak"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "How does it actually end?",
+      "promise": "The central unknown from the cold open is answered here.",
+      "payoff": "This IS the payoff the whole cut promised.",
+      "narration_role": "Minimal VO; let the moment play. No CTA in this span (cta_forbidden 75-83%).",
+      "original_audio_share_range": [
+        0.6,
+        0.95
+      ],
+      "max_dead_space_sec": 1.5,
+      "transition": "Into aftermath and human context.",
+      "forbidden_failures": [
+        "resolution_not_shown",
+        "label_substitutes_for_unseen_resolution",
+        "cta_over_climax"
+      ]
+    },
+    {
+      "id": "aftermath",
+      "title": "Aftermath & Human Context",
+      "phase": "aftermath",
+      "function": "resolve",
+      "span_pct": [
+        83,
+        97
+      ],
+      "beat_functions": [
+        "consequence",
+        "reveal"
+      ],
+      "vo_moves": [
+        "scene_set",
+        "context",
+        "verdict"
+      ],
+      "required_beats": [
+        "consequence",
+        "human_context"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "consequence",
+          "required": true,
+          "accepted_moment_types": [
+            "consequence",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "document",
+            "interview"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "human_context",
+          "required": false,
+          "accepted_moment_types": [
+            "emotional_peak"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "interview",
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What happened to the people involved?",
+      "promise": "Land the consequence and who this was.",
+      "payoff": "Closes the emotional loop.",
+      "narration_role": "VO can carry here; verdict/context moves.",
+      "original_audio_share_range": [
+        0.35,
+        0.75
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the outro.",
+      "forbidden_failures": [
+        "no_consequence_stated",
+        "accusation_without_cited_source"
+      ]
+    },
+    {
+      "id": "outro",
+      "title": "Outro",
+      "phase": "outcome",
+      "function": "close",
+      "span_pct": [
+        97,
+        100
+      ],
+      "beat_functions": [
+        "consequence"
+      ],
+      "vo_moves": [
+        "verdict",
+        "stakes"
+      ],
+      "required_beats": [
+        "outro_line"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "outro_line",
+          "required": true,
+          "accepted_moment_types": [
+            "consequence",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What's the takeaway?",
+      "promise": "One line + CTA.",
+      "payoff": "\u2014",
+      "narration_role": "Tight; outro <=20s.",
+      "original_audio_share_range": [
+        0.2,
+        0.6
+      ],
+      "max_dead_space_sec": 2.0,
+      "transition": "End / loop.",
+      "forbidden_failures": [
+        "cta_before_climax",
+        "overlong_outro"
+      ]
+    }
+  ]
+}

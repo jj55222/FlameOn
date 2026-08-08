@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from types import SimpleNamespace
 from pathlib import Path
 
 PARENT = Path(__file__).resolve().parent.parent
@@ -108,7 +109,8 @@ def test_dry_run_main_executes_nothing(capsys):
 
 def test_flagship_swaps_in_the_blueprint_chain():
     steps = _labels(md.build_plan(_args(doc=".tmp/case/docs/d.pdf", flagship=True)))
-    assert steps[-4:] == ["blueprint", "shape", "render-blueprint", "judge"]
+    assert steps[-6:] == ["blueprint", "shape", "paper-edit", "taste-veto", "judge",
+                          "render-blueprint"]
     assert "render" not in steps          # the simple text-card render is replaced
 
 
@@ -121,8 +123,51 @@ def test_flagship_blueprint_auto_anchors_and_fits_runtime():
 
 def test_flagship_judge_is_a_gate():
     judge = {s.label: s for s in md.build_plan(_args(flagship=True))}["judge"]
-    assert judge.gate is True
+    assert judge.abort_on_fail is True
     assert "--gate" in judge.argv
+
+
+def test_flagship_pre_render_gates_precede_encoding():
+    steps = md.build_plan(_args(flagship=True))
+    labels = _labels(steps)
+    render_i = labels.index("render-blueprint")
+    for label in ("paper-edit", "taste-veto", "judge"):
+        assert labels.index(label) < render_i
+    assert next(s for s in steps if s.label == "taste-veto").abort_on_fail
+
+
+def test_stop_at_paper_edit_omits_video_encoding():
+    labels = _labels(md.build_plan(_args(flagship=True, stop_at_paper_edit=True)))
+    assert "paper-edit" in labels and "taste-veto" in labels and "judge" in labels
+    assert "render-blueprint" not in labels
+
+
+def test_contract_inserts_thesis_gate_before_shaping():
+    steps = md.build_plan(_args(flagship=True, contract=".tmp/case/d6_blueprint/c_contract.json",
+                                reference_treatment="standoff_tactical_longform_v1"))
+    labels = _labels(steps)
+    blueprint_i = next(i for i, label in enumerate(labels) if label.startswith("blueprint"))
+    assert blueprint_i < labels.index("thesis-gate") < labels.index("shape")
+    assert next(s for s in steps if s.label == "thesis-gate").abort_on_fail
+
+
+def test_pre_render_gate_failure_prevents_encoder(monkeypatch):
+    calls = []
+
+    def fake_run(argv, env=None):
+        script = Path(argv[3]).name
+        calls.append((script, list(argv)))
+        if script == "taste_gate.py":
+            return SimpleNamespace(returncode=3)
+        return SimpleNamespace(returncode=0)
+
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only")
+    monkeypatch.setattr(md.subprocess, "run", fake_run)
+    rc = md.main(["--basket", ".tmp/case", "--case-id", "x", "--flagship",
+                  "--skip-score", "--judge-mock", "--run"])
+    assert rc == 3
+    render_calls = [a for script, a in calls if script == "render_blueprint.py"]
+    assert len(render_calls) == 1 and "--paper-edit-only" in render_calls[0]
 
 
 def test_flagship_judge_mock_is_free_else_paid():

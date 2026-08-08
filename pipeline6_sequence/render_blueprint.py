@@ -17,8 +17,9 @@ Mapping:
   beat.is_broll      -> the same, with no quote (footage/establishing only)
   incident facts     -> the closing outcome card
 
-Deterministic + zero-network for the paper-edit assembly (``--paper-edit-only``);
-the final mp4 step needs media + ffmpeg (via render_rough_cut). Global Python.
+Deterministic + zero-network for the paper-edit assembly (``--paper-edit-only``).
+That mode now uses the same audio-aware window resolver as a final render, but
+stops before encoding; the resulting timeline is the actual pre-render artifact.
 """
 from __future__ import annotations
 
@@ -199,6 +200,77 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
 
     timeline: List[Dict[str, Any]] = []
 
+    # PROMISE/PAYOFF anchors (Zenobia critique 2026-08-07): the treatment carries promise+payoff
+    # at the ACT level. Tag the act's SETUP beat as the promise and its REVEAL beat as the payoff,
+    # so taste_gate's promise_payoff_latency rule can catch "another line of exposition" wedged
+    # between a setup and its payoff. Uses beat FUNCTION (real data) — no invented fields.
+    _PROMISE_FN = {"tension_shift", "setup", "question", "establish", "audience_question"}
+    _PAYOFF_FN = {"reveal", "payoff", "comeuppance", "answer", "detail_noticed"}
+    _by_act: Dict[Any, List[Dict[str, Any]]] = {}
+    for _b in bp.get("beats", []):
+        _by_act.setdefault(_b.get("act_id"), []).append(_b)
+    promise_beat: Dict[str, str] = {}   # beat_id -> promise-id (the act_id)
+    payoff_beat: Dict[str, str] = {}
+    for _act in bp.get("acts", []):
+        if not (_act.get("promise") and _act.get("payoff")):
+            continue
+        _abeats = _by_act.get(_act["act_id"]) or []
+        if not _abeats:
+            continue
+        _pid = _act["act_id"]
+        _setup = next((b for b in _abeats if b.get("function") in _PROMISE_FN), _abeats[0])
+        _after = _abeats[_abeats.index(_setup) + 1:]
+        _payoff = next((b for b in _after if b.get("function") in _PAYOFF_FN),
+                       _after[-1] if _after else None)
+        if _payoff and _payoff is not _setup:
+            promise_beat[_setup.get("beat_id")] = _pid
+            payoff_beat[_payoff.get("beat_id")] = _pid
+
+    # BEAT-LEVEL promise/payoff (same critique, finer grain): a standalone SETUP narration naming
+    # a forthcoming specific moment ("the wife kept asking one question") must pay off on the very
+    # next FOOTAGE beat — exposition wedged between is the defect. Deterministic and high-precision:
+    # ordinary VO must never register as a promise (over-tagging only bites when real exposition
+    # actually intervenes). B-roll is never the payoff — it isn't a moment, and the act emitter
+    # re-sorts it ahead of the setup card anyway.
+    _SETUP_RE = re.compile(
+        r"\bkept asking\b|\basked\b[^.]{0,24}\bone question\b|\bone question\b|"
+        r"\b(his|her|their)\s+(only|final|last|first|dying)\s+words\b|"
+        r"\bwhat\s+(he|she|they)\s+(said|asked|told|did)\s+next\b|"
+        r"\bwould\s+(later\s+)?(say|ask|tell|admit|reveal)\b|"
+        r"\bhad\s+(just\s+)?one\s+(question|thing)\b", re.I)
+
+    def _has_clip(b: Dict[str, Any]) -> bool:
+        return bool(b.get("primary_asset") and not b.get("is_document"))
+
+    def _setup_text(b: Dict[str, Any]) -> str:
+        return (((b.get("narration_bridge") or {}).get("text", "") + " "
+                 + (b.get("lower_third") or {}).get("text", "")).strip())
+
+    beat_promise: Dict[str, str] = {}   # beat_id -> "pp_<setup beat_id>"
+    beat_payoff: Dict[str, str] = {}
+    for _abeats in _by_act.values():
+        for _i, _b in enumerate(_abeats):
+            if _has_clip(_b) or not _SETUP_RE.search(_setup_text(_b)):
+                continue                  # only standalone setup narrations promise
+            _pay = next((c for c in _abeats[_i + 1:]
+                         if _has_clip(c) and not c.get("is_broll")), None)
+            if _pay is not None:          # payoff = the next footage beat in this act
+                _ppid = f"pp_{_b.get('beat_id')}"
+                beat_promise[_b.get("beat_id")] = _ppid
+                beat_payoff[_pay.get("beat_id")] = _ppid
+
+    def _promise_payoff_tag(b: Dict[str, Any]) -> Optional[Dict[str, str]]:
+        bid = b.get("beat_id")
+        if bid in beat_promise:              # fine-grain beats act-level
+            return {"id": beat_promise[bid], "role": "promise"}
+        if bid in beat_payoff:
+            return {"payoff_for": beat_payoff[bid]}
+        if bid in promise_beat:
+            return {"id": promise_beat[bid], "role": "promise"}
+        if bid in payoff_beat:
+            return {"payoff_for": payoff_beat[bid]}
+        return None
+
     # 1. Title card — the logline if the LLM tier wrote one, else the case id.
     timeline.append({"kind": "card", "card_kind": "title",
                      "title": bp.get("logline") or f"Case {cid.split('_')[-1].upper()}",
@@ -217,7 +289,13 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
         # card IS the beat (the on-screen record). No footage, no gap.
         if b.get("is_document"):
             if nb_text:
-                timeline.append({"kind": "narration", "text": nb_text})
+                ev = {"kind": "narration", "text": nb_text,
+                      "beat_id": b.get("beat_id"), "act_id": b.get("act_id"),
+                      "function": b.get("function"), "source_refs": b.get("source_refs", [])}
+                pptag = _promise_payoff_tag(b)
+                if pptag:
+                    ev["promise_payoff"] = pptag
+                timeline.append(ev)
             return
         pa = b.get("primary_asset")
         asset = assets.get((pa or {}).get("asset_id"), {})
@@ -273,18 +351,43 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                 if s.get("end_sec", 0) > in_sec and s.get("start_sec", 0) < out_sec
                 and s.get("text", "").strip()
                 and s["text"].strip().lower().rstrip(".!?, ") not in _HALLUC]   # drop Whisper silence-hallucinations
+        quote_text = "" if b.get("is_broll") else (b.get("quote") or {}).get("text", "")
+        # One caption authority per zone: if timed captions exist, do not also
+        # render a duplicate pull quote in the center of the frame.
+        excerpt = "" if caps else quote_text
+        identity = (b.get("speaker_identity") or lt_text or "").strip()
+        generic_identity = identity.lower() in {"", "source", "interview", "witness", "officer"}
         timeline.append({
             "kind": "clip", "media": media,
             "in_sec": round(in_sec, 2), "out_sec": round(out_sec, 2),
+            "beat_id": b.get("beat_id"), "act_id": b.get("act_id"),
+            "function": b.get("function"), "asset_id": (pa or {}).get("asset_id"),
+            "asset_kind": kind, "source_refs": b.get("source_refs", []),
             "lower_third": f"{lt_text}  ·  {credit}".strip().strip("·").strip(),
             "captions": caps,
+            "caption_authorities": ([{"zone": "center", "kind": "timed_captions"}] if caps else [])
+                                   + ([{"zone": "center", "kind": "pull_quote"}] if excerpt else []),
             "cold_open": b.get("cold_open", False),   # teaser preview — exempt from replay-trim
             # Narration rides the footage as a top-third slide (no narrator/TTS yet).
             "narration_top": nb_text,
             # B-roll plays as footage only — no quote card.
-            "transcript_excerpt": "" if b.get("is_broll") else (b.get("quote") or {}).get("text", ""),
+            "transcript_excerpt": excerpt,
             "description": b.get("description") or b.get("broll_note") or "",
             "credit_line": credit,
+            "speaker_identity": identity or None,
+            "speaker_identified": bool(identity and not generic_identity),
+            "temporal_relation": b.get("temporal_relation"),
+            "visual_progression": b.get("visual_progression"),
+            "consequential_atmosphere": bool(quote_text or caps),
+            "blur_segments": b.get("blur_segments") or [],
+            "content_categories": b.get("content_categories") or [],
+            # Redaction state for the redundant_blur rule (Zenobia): pass through whatever the
+            # blueprint/redaction pass declared — subject_redacted/body_removed on the beat, and
+            # subject_present per blur segment. Absent = the rule's stale_after_sec arm still
+            # catches egregiously long blurs; present = it catches blur over an already-hidden body.
+            "subject_redacted": bool(b.get("subject_redacted")),
+            "body_removed": bool(b.get("body_removed")),
+            "promise_payoff": _promise_payoff_tag(b),
         })
 
     beats_by_act: Dict[Any, List[Dict[str, Any]]] = {}
@@ -324,12 +427,17 @@ def blueprint_to_paper_edit(bp: Dict[str, Any],
                      "subtitle": "  ·  ".join(sub_bits) if sub_bits else "",
                      "dur": rc.OUTCOME_SEC, "footer": credit})
 
-    return {
+    treatment = bp.get("reference_treatment") or {}
+    out = {
         "case_id": cid, "agency": agency,
         "built_from": bp.get("metadata", {}).get("built_by", "blueprint"),
+        "format": treatment.get("format") or "longform",
+        "platform": treatment.get("platform") or "youtube",
         "timeline": timeline,
         "_inputs": {"beats": len(bp.get("beats", [])), "clips": n_clips, "gaps": n_gaps},
     }
+    out["runtime_sec"] = project_duration(out)
+    return out
 
 
 def project_duration(paper_edit: Dict[str, Any]) -> float:
@@ -384,7 +492,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--media-dir", type=Path, default=None, help="override/remap media location")
     ap.add_argument("--out", type=Path, default=Path(".tmp/p6_long_cuts"))
     ap.add_argument("--paper-edit-only", action="store_true",
-                    help="write the paper_edit JSON and stop (no ffmpeg, zero media)")
+                    help="write the final-equivalent paper_edit JSON and stop before video encoding; "
+                         "audio analysis may still inspect B-roll unless --no-audio-aware is set")
     ap.add_argument("--no-audio-aware", action="store_true",
                     help="don't snap B-roll to audible windows (faster; may open on silence)")
     ap.add_argument("--transcripts", type=Path, default=None,
@@ -399,9 +508,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     args = ap.parse_args(argv)
 
     bp = json.loads(args.blueprint.read_text(encoding="utf-8"))
-    audio_aware = not args.paper_edit_only and not args.no_audio_aware
-    if not args.paper_edit_only:
-        rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()   # needed before audible_window
+    # Paper edits are a gate artifact, so their windows MUST match the eventual
+    # render. Audio-awareness therefore no longer turns off in paper-edit mode.
+    audio_aware = not args.no_audio_aware
+    if audio_aware:
+        rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()   # analysis only; no encode in paper-only mode
     transcripts = load_transcripts(args.transcripts)
 
     min_clip_sec = args.min_clip_sec
@@ -425,10 +536,11 @@ def main(argv: Optional[List[str]] = None) -> int:
           f"-> {pe_path}")
 
     if args.paper_edit_only:
-        print("[render-blueprint] paper-edit only (no render).")
+        print("[render-blueprint] final-equivalent paper edit complete (no video encoding).")
         return 0
 
-    rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()
+    if not audio_aware:
+        rc.FFMPEG, rc.FFPROBE = rc._resolve_ffmpeg()
     final = rc.render(paper_edit, out_dir)
     print(f"[render-blueprint] -> {final}  ({rc._duration(final) / 60:.1f} min)")
     return 0

@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "treatment_id": "direct_event_short_v1",
+  "label": "Direct-event short \u2014 hook, minimal context, primary evidence, payoff",
+  "format": "shortform",
+  "platform": "tiktok",
+  "route_id": "direct_event_bwc",
+  "structure_only": true,
+  "provenance": {
+    "reference_ids": [],
+    "channels": [],
+    "sample_count": 0,
+    "analysis_date": "2026-07-26",
+    "allow_wording_transfer": false,
+    "note": "Retention finding: loop endings beat CTA endings; hook must land <=3s; 35-45s target."
+  },
+  "applicability": {
+    "required_case_features": [],
+    "forbidden_case_features": [
+      "audio_only",
+      "blur_only_central_visual"
+    ],
+    "required_media_kinds_any": [
+      "bodycam",
+      "dashcam",
+      "surveillance"
+    ],
+    "supporting_media_kinds": [
+      "911_audio",
+      "radio",
+      "interview",
+      "document"
+    ],
+    "required_fact_fields": [
+      "incident.summary"
+    ]
+  },
+  "global_rules": {
+    "runtime_minutes_range": [
+      0.55,
+      0.75
+    ],
+    "vo_word_share_range": [
+      0.15,
+      0.35
+    ],
+    "max_unmotivated_dead_space_sec": 1.0,
+    "max_same_modality_run_sec": 20,
+    "central_payoff_required": true,
+    "legal_cover_on_accusations": true,
+    "loop_ending_required": true,
+    "cta_in_pinned_comment_not_end": true,
+    "fallback_treatment_id": null
+  },
+  "acts": [
+    {
+      "id": "hook",
+      "title": "Hook (<=3s)",
+      "phase": "incident",
+      "function": "hook",
+      "span_pct": [
+        0,
+        10
+      ],
+      "beat_functions": [
+        "emotional_peak",
+        "reveal",
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "hook"
+      ],
+      "required_beats": [
+        "visual_hook"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "visual_hook",
+          "required": true,
+          "accepted_moment_types": [
+            "emotional_peak",
+            "climax",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What is happening?",
+      "promise": "Open on the strongest visual second.",
+      "payoff": "The payoff resolves it.",
+      "narration_role": "Visual first; no title-card cold open.",
+      "original_audio_share_range": [
+        0.6,
+        0.95
+      ],
+      "max_dead_space_sec": 0.5,
+      "transition": "To minimal context.",
+      "forbidden_failures": [
+        "slow_start",
+        "title_card_open"
+      ]
+    },
+    {
+      "id": "body",
+      "title": "Context + Primary Evidence",
+      "phase": "incident",
+      "function": "escalate",
+      "span_pct": [
+        10,
+        70
+      ],
+      "beat_functions": [
+        "escalation",
+        "reveal"
+      ],
+      "vo_moves": [
+        "context"
+      ],
+      "required_beats": [
+        "context",
+        "primary_evidence"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "context",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "911_audio",
+            "radio"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "primary_evidence",
+          "required": true,
+          "accepted_moment_types": [
+            "climax",
+            "reveal",
+            "emotional_peak"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "How does it play out?",
+      "promise": "One line of context, then the event.",
+      "payoff": "The event is the payoff.",
+      "narration_role": "Minimal VO; the footage carries.",
+      "original_audio_share_range": [
+        0.6,
+        0.95
+      ],
+      "max_dead_space_sec": 0.7,
+      "transition": "To the payoff/loop.",
+      "forbidden_failures": [
+        "over_narrated",
+        "context_bloat"
+      ]
+    },
+    {
+      "id": "payoff",
+      "title": "Payoff / Loop",
+      "phase": "incident",
+      "function": "close",
+      "span_pct": [
+        70,
+        100
+      ],
+      "beat_functions": [
+        "consequence"
+      ],
+      "vo_moves": [
+        "stakes"
+      ],
+      "required_beats": [
+        "payoff_loop"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "payoff_loop",
+          "required": true,
+          "accepted_moment_types": [
+            "consequence",
+            "reveal",
+            "emotional_peak"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "(re-watch)",
+      "promise": "Resolve and loop.",
+      "payoff": "\u2014",
+      "narration_role": "No end CTA; loop.",
+      "original_audio_share_range": [
+        0.55,
+        0.95
+      ],
+      "max_dead_space_sec": 0.5,
+      "transition": "Loop.",
+      "forbidden_failures": [
+        "end_cta",
+        "blur_only_payoff"
+      ]
+    }
+  ]
+}

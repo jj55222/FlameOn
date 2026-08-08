@@ -411,6 +411,11 @@ def score_case(
         "scoring_breakdown": scoring["scoring_breakdown"],
         "transcript_refs": transcript_refs,
         "source_refs": source_refs,
+        # Preserve the router/thesis-gate discriminator already extracted in
+        # pass 1. A count alone never proves mutual exclusivity, but dropping the
+        # signal entirely made contradiction directions impossible to audit.
+        "contradiction_present": len(pass1.get("contradictions", [])) > 0,
+        "contradiction_count": len(pass1.get("contradictions", [])),
         "_pipeline4_metadata": {
             "pass1_model": pass1_backend.model,
             "pass2_model": pass2_backend.model,
