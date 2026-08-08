@@ -1,0 +1,1619 @@
+[
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_69147_sb_1421_police_complaints_oakland_pd",
+    "foia_id": 69147,
+    "title": "SB 1421 Police Complaints (Oakland PD)",
+    "agency": "Oakland Police Department",
+    "absolute_url": "",
+    "datetime_done": "2023-07-28T18:03:38.332396-04:00",
+    "n_docs": 23,
+    "n_video": 2,
+    "n_audio": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 2,
+    "pivot": {
+      "agency": "Oakland Police Department",
+      "case_title": "SB 1421 Police Complaints (Oakland PD)",
+      "done": "2023-07-28T18:03:38.332396-04:00"
+    },
+    "titles": [
+      "PICT0007_2015.06.06_15.44.40.AVI",
+      "PICT0052_2015.06.06_15.07.20201.AVI",
+      "OPD20Officers.pdf",
+      "District20Attorneys20Final20Report201.pdf",
+      "18-024920Frame20By20Frame20IA201.pdf",
+      "18-006720EFRB20Report20Pawlik201.pdf",
+      "18-006720Chiefs20Addendum201.pdf",
+      "02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+      "08-081720-20EFRB20Results20and20UOF20Report.pdf",
+      "08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+      "07-106520-20EFRB20Hearing20Results.pdf",
+      "Oakland20Pawlik20Skelly20Report2020Final.pdf",
+      "2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT",
+      "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration",
+      "Table20of20Contents20Web20Version5B95D",
+      "2021-03-0320Yu20STEP20320RESPONSE",
+      "Table20of20Contents20YuWeb20Version5B75D",
+      "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T",
+      "2021-03-0220NEGRETE20RPT20TO20CLIENT",
+      "Table20of20Contents20NegreteWeb20Version5B115D",
+      "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr",
+      "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201",
+      "5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision",
+      "5B2021.03.025DMLR20to20ERDemand20for20Implementation",
+      "2021-12-13_Class_Notice_Final_5_St803Tb"
+    ],
+    "media_files": [
+      {
+        "name": "PICT0007_2015.06.06_15.44.40.AVI",
+        "url": "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0007_2015.06.06_15.44.40.AVI",
+        "ext": ".avi"
+      },
+      {
+        "name": "PICT0052_2015.06.06_15.07.20201.AVI",
+        "url": "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0052_2015.06.06_15.07.20201.AVI",
+        "ext": ".avi"
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "OPD20Officers.pdf",
+        "url": "https://cdn.muckrock.com/outbound_composer_attachments/JPatBrown/67726/OPD20Officers.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "District20Attorneys20Final20Report201.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/District20Attorneys20Final20Report201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "18-024920Frame20By20Frame20IA201.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-024920Frame20By20Frame20IA201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "18-006720EFRB20Report20Pawlik201.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-006720EFRB20Report20Pawlik201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "18-006720Chiefs20Addendum201.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/18-006720Chiefs20Addendum201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/02191920Compliance20Director20EFRB2018F-006720Addendum201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "08-081720-20EFRB20Results20and20UOF20Report.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/08-081720-20EFRB20Results20and20UOF20Report.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/08-081720-2020Jimenez2C20Hector20-20Arbitration20Decision.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "07-106520-20EFRB20Hearing20Results.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2019/04/24/07-106520-20EFRB20Hearing20Results.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Oakland20Pawlik20Skelly20Report2020Final.pdf",
+        "url": "https://cdn.muckrock.com/foia_files/2020/04/10/Oakland20Pawlik20Skelly20Report2020Final.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0120Pawlik20Report20Complete20FINAL20DRAFT.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Table20of20Contents20Web20Version5B95D",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20Web20Version5B95D.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "2021-03-0320Yu20STEP20320RESPONSE",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0320Yu20STEP20320RESPONSE.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Table20of20Contents20YuWeb20Version5B75D",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20YuWeb20Version5B75D.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "2021-03-0220NEGRETE20RPT20TO20CLIENT",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/2021-03-0220NEGRETE20RPT20TO20CLIENT.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Table20of20Contents20NegreteWeb20Version5B115D",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Table20of20Contents20NegreteWeb20Version5B115D.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/Grievances20re20Sgt.20Negrete20and20Officers20Phillips2C20Hraiz2C20Berger2C20and20T_Q2Z66jr.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20IALetter20Requesting20Arbitration201.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.015DMLR20to20ERLetter20re20Step20320Decision.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "5B2021.03.025DMLR20to20ERDemand20for20Implementation",
+        "url": "https://cdn.muckrock.com/foia_files/2021/03/08/5B2021.03.025DMLR20to20ERDemand20for20Implementation.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "2021-12-13_Class_Notice_Final_5_St803Tb",
+        "url": "https://cdn.muckrock.com/foia_files/2021/12/14/2021-12-13_Class_Notice_Final_5_St803Tb.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [
+      "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0007_2015.06.06_15.44.40.AVI",
+      "https://cdn.muckrock.com/foia_files/2019/06/04/PICT0052_2015.06.06_15.07.20201.AVI"
+    ],
+    "keyword_score": 8,
+    "artifact_bonus": 12,
+    "bundle_bonus": 3,
+    "score": 23,
+    "hits": [
+      "+6 ois",
+      "+2 canine"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_178289_body_camera_footage_7_30_2022",
+    "foia_id": 178289,
+    "title": "Body Camera Footage (7/30/2022)",
+    "agency": "St. Croix County Sheriff's Office",
+    "absolute_url": "",
+    "datetime_done": "2025-03-12T15:16:37.432273-04:00",
+    "n_docs": 5,
+    "n_video": 1,
+    "n_audio": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "St. Croix County Sheriff's Office",
+      "case_title": "Body Camera Footage (7/30/2022)",
+      "done": "2025-03-12T15:16:37.432273-04:00"
+    },
+    "titles": [
+      "DJI_20220730180759_0001_T",
+      "1-3-25_MR178289",
+      "Payment Required",
+      "Payment Required",
+      "Payment Required",
+      "Payment Required",
+      "image001",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "picture1.JPG",
+      "picture2.JPG",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "sheriffsiglogo2_1855255d-257b-4278-957c-61a991b79423",
+      "20220731_123253",
+      "20220731_123326",
+      "20220731_123450",
+      "20220731_123511",
+      "20220731_123452",
+      "Thumbs_vxyrDn9",
+      "DJI_20220730180759_0001_S",
+      "DJI_20220730180759_0001_T",
+      "Scene_Photos_by_8227_CONFIRM_NO_FACES_SEEN",
+      "Scene_Investigation"
+    ],
+    "media_files": [
+      {
+        "name": "DJI_20220730180759_0001_T",
+        "url": "https://cdn.muckrock.com/foia_files/2025/02/28/DJI_20220730180759_0001_T.MP4",
+        "ext": ".mp4"
+      }
+    ],
+    "doc_files": [
+      {
+        "name": "1-3-25_MR178289",
+        "url": "https://cdn.muckrock.com/foia_files/2025/02/28/1-3-25_MR178289.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Payment Required",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/01/1-3-25_MR178289.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Payment Required",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/04/1-3-25_MR178289.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Payment Required",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/14/1-16-25_MR178289.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Payment Required",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/19/2-19-25_MR178289.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [
+      "https://cdn.muckrock.com/foia_files/2025/02/28/DJI_20220730180759_0001_T.MP4"
+    ],
+    "keyword_score": 4,
+    "artifact_bonus": 7,
+    "bundle_bonus": 0,
+    "score": 11,
+    "hits": [
+      "+4 interview"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_83876_dpa_sb_1421_police_misconduct_records_im",
+    "foia_id": 83876,
+    "title": "DPA SB 1421 Police Misconduct Records - Immediate Disclosure Request and 67.21(c) request",
+    "agency": "Department Of Police Accountability",
+    "absolute_url": "",
+    "datetime_done": "2025-10-01T12:38:45.348808-04:00",
+    "n_docs": 123,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Department Of Police Accountability",
+      "case_title": "DPA SB 1421 Police Misconduct Records - Immediate Disclosure Request and 67.21(c) request",
+      "done": "2025-10-01T12:38:45.348808-04:00"
+    },
+    "titles": [
+      "0081-1920-20File20220of203.pdf",
+      "Gongora20-200164-1620-20Final20Production20-207.1.2019.pdf",
+      "FINAL20Redacted20-200188-16.pdf",
+      "0081-1920-20File20320of203_PJvoFm3.pdf",
+      "0881-9820-20Prepared20for20Production.pdf",
+      "0013-0520-20Prepared20for20Production.pdf",
+      "Duarte20ACLU20production20-20pdf20420of204.pdf",
+      "Duarte20ACLU20production20-20Part205.pdf",
+      "Lopez20-200134-1520-20Final20Production.pdf",
+      "REDACTED20-200503-0520SWW.pdf",
+      "Duarte20ACLU20production20-20pdf20320of204.pdf",
+      "Prepared20for20Production20-200126-05.pdf",
+      "Gongora20-200164-1620Third20Production20-2011.27.2019.pdf",
+      "Prepared20for20Production20-200006-07.pdf",
+      "Duarte20ACLU20production20-20pdf20120of204.pdf",
+      "Prepared20for20Production20-20184-04.pdf",
+      "0179-1420-20Production20Ready20-207.1.201920-20Final.pdf",
+      "Prepared20for20Production20-200068-06.pdf",
+      "Duarte20ACLU20production20-20pdf20220of204.pdf",
+      "Gongora20Redacted20OIS20-200164-1620-20Sustained20Report20and20Exhibits.pdf",
+      "FINAL20Redacted20Bates20Stamped20for20Disclosure200500-98.pdf",
+      "0081-1920-20File20320of203.pdf",
+      "0081-1920-20File20120of203.pdf",
+      "0081-1920-20File20220of203_JXYHXR2.pdf",
+      "0090-0020-20Prepared20for20Production.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "0081-1920-20File20220of203.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0081-1920-20File20220of203.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Gongora20-200164-1620-20Final20Production20-207.1.2019.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Gongora20-200164-1620-20Final20Production20-207.1.2019.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "FINAL20Redacted20-200188-16.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/FINAL20Redacted20-200188-16.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0081-1920-20File20320of203_PJvoFm3.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0081-1920-20File20320of203_PJvoFm3.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0881-9820-20Prepared20for20Production.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0881-9820-20Prepared20for20Production.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0013-0520-20Prepared20for20Production.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0013-0520-20Prepared20for20Production.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Duarte20ACLU20production20-20pdf20420of204.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Duarte20ACLU20production20-20pdf20420of204.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Duarte20ACLU20production20-20Part205.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Duarte20ACLU20production20-20Part205.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Lopez20-200134-1520-20Final20Production.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Lopez20-200134-1520-20Final20Production.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "REDACTED20-200503-0520SWW.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/REDACTED20-200503-0520SWW.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Duarte20ACLU20production20-20pdf20320of204.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Duarte20ACLU20production20-20pdf20320of204.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Prepared20for20Production20-200126-05.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Prepared20for20Production20-200126-05.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Gongora20-200164-1620Third20Production20-2011.27.2019.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Gongora20-200164-1620Third20Production20-2011.27.2019.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Prepared20for20Production20-200006-07.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Prepared20for20Production20-200006-07.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Duarte20ACLU20production20-20pdf20120of204.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Duarte20ACLU20production20-20pdf20120of204.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Prepared20for20Production20-20184-04.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Prepared20for20Production20-20184-04.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0179-1420-20Production20Ready20-207.1.201920-20Final.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0179-1420-20Production20Ready20-207.1.201920-20Final.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Prepared20for20Production20-200068-06.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Prepared20for20Production20-200068-06.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Duarte20ACLU20production20-20pdf20220of204.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Duarte20ACLU20production20-20pdf20220of204.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Gongora20Redacted20OIS20-200164-1620-20Sustained20Report20and20Exhibits.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/Gongora20Redacted20OIS20-200164-1620-20Sustained20Report20and20Exhibits.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "FINAL20Redacted20Bates20Stamped20for20Disclosure200500-98.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/FINAL20Redacted20Bates20Stamped20for20Disclosure200500-98.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0081-1920-20File20320of203.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0081-1920-20File20320of203.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0081-1920-20File20120of203.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0081-1920-20File20120of203.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0081-1920-20File20220of203_JXYHXR2.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0081-1920-20File20220of203_JXYHXR2.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "0090-0020-20Prepared20for20Production.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/DepartmentOfPoliceAccountability/83876/0090-0020-20Prepared20for20Production.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 11,
+    "hits": [
+      "+6 ois",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_88550_police_misconduct_records_sb_1421_becerr",
+    "foia_id": 88550,
+    "title": "Police Misconduct Records (SB 1421 / Becerra v Superior Court) - Immediate Disclosure Request - SF Police Commission",
+    "agency": "San Francisco Police Commission",
+    "absolute_url": "",
+    "datetime_done": "2025-04-09T14:48:33.566130-04:00",
+    "n_docs": 183,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Francisco Police Commission",
+      "case_title": "Police Misconduct Records (SB 1421 / Becerra v Superior Court) - Immediate Disclosure Request - SF Police Commission",
+      "done": "2025-04-09T14:48:33.566130-04:00"
+    },
+    "titles": [
+      "OIS 2013-0008 summary of investigative findings",
+      "RTD OIS 13-008",
+      "nov 6",
+      "mar 30 2016 (FDRB)",
+      "2016 1st Q FDRB",
+      "OIS RTD 14-003 RTD letter",
+      "RTD OIS 14-003 _Redacted",
+      "apr 2 2014 agenda1",
+      "OIS 2014-0003 summary of investigative findings",
+      "jun 30 2016 (FDRB)",
+      "RTD OIS 18-004",
+      "jun 13 2018 agenda",
+      "OIS 2014-0004 summary of investigative findings",
+      "OIS RTD 14-004 Return to duty letter from Chief to Commisison",
+      "April 2 2014 RTD agenda for OIS 2014-0004",
+      "jun 23 2015  (FDRB)",
+      "OIS RTD 16-003 RTD letter from Chief Chaplin to Commissioner Loftus Redacted",
+      "dec 7 2016 agenda1",
+      "nov 2 2016 agenda amended1",
+      "OIS RTD 19-001 Redacted",
+      "oct 2 2019 agenda2",
+      "sept 11 2019 agenda",
+      "RTD OIS 19-003 Redacted",
+      "RTD OIS 2019-002 Redacted",
+      "Jan 8 2020 agenda2"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "OIS 2013-0008 summary of investigative findings",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_2013-0008_summary_of_investigative_findings.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "RTD OIS 13-008",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/RTD_OIS_13-008.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "nov 6",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/nov_6.doc",
+        "ext": ".doc"
+      },
+      {
+        "name": "mar 30 2016 (FDRB)",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/mar_30_2016_FDRB.doc",
+        "ext": ".doc"
+      },
+      {
+        "name": "2016 1st Q FDRB",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/2016_1st_Q_FDRB.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "OIS RTD 14-003 RTD letter",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_RTD_14-003_RTD_letter.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "RTD OIS 14-003 _Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/RTD_OIS_14-003__Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "apr 2 2014 agenda1",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/apr_2_2014_agenda1.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "OIS 2014-0003 summary of investigative findings",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_2014-0003_summary_of_investigative_findings.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "jun 30 2016 (FDRB)",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/jun_30_2016_FDRB.doc",
+        "ext": ".doc"
+      },
+      {
+        "name": "RTD OIS 18-004",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/RTD_OIS_18-004.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "jun 13 2018 agenda",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/jun_13_2018_agenda.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "OIS 2014-0004 summary of investigative findings",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_2014-0004_summary_of_investigative_findings.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "OIS RTD 14-004 Return to duty letter from Chief to Commisison",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_RTD_14-004_Return_to_duty_letter_from_Chief_to_Commisison.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "April 2 2014 RTD agenda for OIS 2014-0004",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/April_2_2014_RTD_agenda_for_OIS_2014-0004.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "jun 23 2015  (FDRB)",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/jun_23_2015__FDRB.doc",
+        "ext": ".doc"
+      },
+      {
+        "name": "OIS RTD 16-003 RTD letter from Chief Chaplin to Commissioner Loftus Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_RTD_16-003_RTD_letter_from_Chief_Chaplin_to_Commissioner_Loftus_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "dec 7 2016 agenda1",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/dec_7_2016_agenda1.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "nov 2 2016 agenda amended1",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/nov_2_2016_agenda_amended1.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "OIS RTD 19-001 Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/OIS_RTD_19-001_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "oct 2 2019 agenda2",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/oct_2_2019_agenda2.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "sept 11 2019 agenda",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/sept_11_2019_agenda.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "RTD OIS 19-003 Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/RTD_OIS_19-003_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "RTD OIS 2019-002 Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/RTD_OIS_2019-002_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Jan 8 2020 agenda2",
+        "url": "https://cdn.muckrock.com/foia_files/2020/03/05/Jan_8_2020_agenda2.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 11,
+    "hits": [
+      "+6 ois",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_15168_briefing_slides_on_cia_interrogation_pro",
+    "foia_id": 15168,
+    "title": "Briefing slides on CIA Interrogation Program",
+    "agency": "Central Intelligence Agency",
+    "absolute_url": "",
+    "datetime_done": "2021-04-22T00:56:00-04:00",
+    "n_docs": 2,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Central Intelligence Agency",
+      "case_title": "Briefing slides on CIA Interrogation Program",
+      "done": "2021-04-22T00:56:00-04:00"
+    },
+    "titles": [
+      "Materials exempt from disclosure",
+      "Responsive Documents"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Materials exempt from disclosure",
+        "url": "https://cdn.muckrock.com/foia_files/1-23-15_MR15168_REJ-E_IDF-2015-00693.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Responsive Documents",
+        "url": "https://cdn.muckrock.com/foia_files/2021/05/05/4-22-21_MR15168.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_181627_eduardo_castro_interrogation",
+    "foia_id": 181627,
+    "title": "Eduardo Castro Interrogation",
+    "agency": "Dallas Police Department",
+    "absolute_url": "",
+    "datetime_done": "2025-03-20T16:57:35.675560-04:00",
+    "n_docs": 5,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Dallas Police Department",
+      "case_title": "Eduardo Castro Interrogation",
+      "done": "2025-03-20T16:57:35.675560-04:00"
+    },
+    "titles": [
+      "Angela_Samota_4_R",
+      "Angela_Samota_R_R",
+      "Angela_Samota_5_R",
+      "Angela_Samota_3_R",
+      "Angela_Samota_2_R_R",
+      "Audio_Recordings"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Angela_Samota_4_R",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Angela_Samota_4_R.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Angela_Samota_R_R",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Angela_Samota_R_R.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Angela_Samota_5_R",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Angela_Samota_5_R.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Angela_Samota_3_R",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Angela_Samota_3_R.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Angela_Samota_2_R_R",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Angela_Samota_2_R_R.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_181628_jessica_lopez_and_louis_perez_interrogat",
+    "foia_id": 181628,
+    "title": "Jessica Lopez and Louis Perez Interrogation",
+    "agency": "San Diego County Sheriff's Department",
+    "absolute_url": "",
+    "datetime_done": "2025-03-19T22:46:05.612390-04:00",
+    "n_docs": 12,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Diego County Sheriff's Department",
+      "case_title": "Jessica Lopez and Louis Perez Interrogation",
+      "done": "2025-03-19T22:46:05.612390-04:00"
+    },
+    "titles": [
+      "Killgore_Missing_Person_-_4_16_2012",
+      "Killgore_Missing_Person_-_4_15_2012",
+      "Killgore_Family_Statement_4_19_2012",
+      "Killgore_Third_Arrest_-_5_10_2012",
+      "Killgore_Second_Arrest_-_4_24_2012",
+      "Killgore_Media_Advisory_-_4_19_2012",
+      "Killgore_Husband_Statement_-_4_28_2012",
+      "Killgore_ID_-_4_18_2012",
+      "Killgore_Update_2_-_4_17_2012",
+      "Killgore_Update_-_4_17_2012",
+      "Call_For_Service_-_Case__12118974",
+      "Killgore_Media_Briefing_-_4_17_2012"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Killgore_Missing_Person_-_4_16_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Missing_Person_-_4_16_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Missing_Person_-_4_15_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Missing_Person_-_4_15_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Family_Statement_4_19_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Family_Statement_4_19_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Third_Arrest_-_5_10_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Third_Arrest_-_5_10_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Second_Arrest_-_4_24_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Second_Arrest_-_4_24_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Media_Advisory_-_4_19_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Media_Advisory_-_4_19_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Husband_Statement_-_4_28_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Husband_Statement_-_4_28_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_ID_-_4_18_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_ID_-_4_18_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Update_2_-_4_17_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Update_2_-_4_17_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Update_-_4_17_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Update_-_4_17_2012.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Call_For_Service_-_Case__12118974",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Call_For_Service_-_Case__12118974.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Killgore_Media_Briefing_-_4_17_2012",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/20/Killgore_Media_Briefing_-_4_17_2012.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_181171_john_albert_gardner_iii_interrogation_fo",
+    "foia_id": 181171,
+    "title": "John Albert Gardner III Interrogation Footage",
+    "agency": "San Diego County Sheriff's Department",
+    "absolute_url": "",
+    "datetime_done": "2025-03-09T04:20:33.909423-04:00",
+    "n_docs": 10,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "San Diego County Sheriff's Department",
+      "case_title": "John Albert Gardner III Interrogation Footage",
+      "done": "2025-03-09T04:20:33.909423-04:00"
+    },
+    "titles": [
+      "Chelsea_King_2010-03-07",
+      "Chelsea_King_2010-02-28_A",
+      "Chelsea_King_2010-02-27_B",
+      "Chelsea_King_2010-05-14",
+      "Chelsea_King_2010-02-27_D",
+      "Chelsea_King_2010-02-28_B",
+      "Chelsea_King_2010-02-27_C",
+      "Chelsea_King_2010-02-27_A",
+      "Chelsea_King_2010-02-26",
+      "Call_for_Service_-_Case__10020013"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Chelsea_King_2010-03-07",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-03-07.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-28_A",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-28_A.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-27_B",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-27_B.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-05-14",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-05-14.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-27_D",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-27_D.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-28_B",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-28_B.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-27_C",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-27_C.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-27_A",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-27_A.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Chelsea_King_2010-02-26",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Chelsea_King_2010-02-26.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Call_for_Service_-_Case__10020013",
+        "url": "https://cdn.muckrock.com/foia_files/2025/03/10/Call_for_Service_-_Case__10020013.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_16981_mandatory_declassification_request_for_2",
+    "foia_id": 16981,
+    "title": "Mandatory Declassification Request for 2004 CIA IG Report on CT Interrogation & Detention Program",
+    "agency": "Inspector General Central Intelligence Agency",
+    "absolute_url": "",
+    "datetime_done": "2016-11-07T19:00:00-05:00",
+    "n_docs": 3,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Inspector General Central Intelligence Agency",
+      "case_title": "Mandatory Declassification Request for 2004 CIA IG Report on CT Interrogation & Detention Program",
+      "done": "2016-11-07T19:00:00-05:00"
+    },
+    "titles": [
+      "Interim Response",
+      "Interim Response",
+      "Responsive Documents"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Interim Response",
+        "url": "https://cdn.muckrock.com/foia_files/2015/06/26/6-16-15_MR16981_INT_IDF-2015-01660.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Interim Response",
+        "url": "https://cdn.muckrock.com/foia_files/2016/03/11/3-2-16_MR16981_INT_IDF-2015-01660.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Responsive Documents",
+        "url": "https://cdn.muckrock.com/foia_files/2016/11/17/11-8-16_MR16981_RES_IDF-2015-01660.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_9864_mdr_for_full_text_of_july_1963_kubark_co",
+    "foia_id": 9864,
+    "title": "MDR for Full Text of July 1963 \"KUBARK Counterintelligence Interrogation\" Manual",
+    "agency": "Central Intelligence Agency",
+    "absolute_url": "",
+    "datetime_done": "2014-03-12T20:00:00-04:00",
+    "n_docs": 3,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Central Intelligence Agency",
+      "case_title": "MDR for Full Text of July 1963 \"KUBARK Counterintelligence Interrogation\" Manual",
+      "done": "2014-03-12T20:00:00-04:00"
+    },
+    "titles": [
+      "Acknowledgement Letter",
+      "Responsive Documents",
+      "Cover Letter"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Acknowledgement Letter",
+        "url": "https://cdn.muckrock.com/foia_files/1-24-14_MR9864_ACK_IDF-2014-00569.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Responsive Documents",
+        "url": "https://cdn.muckrock.com/foia_files/3-13-14_MR9864_RES.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Cover Letter",
+        "url": "https://cdn.muckrock.com/foia_files/3-13-14_MR9864_RES-C.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 5,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 10,
+    "hits": [
+      "+5 interrogation"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_190330_foil_request_pedro_hernandez_interrogati",
+    "foia_id": 190330,
+    "title": "FOIL Request – Pedro Hernandez Interrogation & Case Records (Etan Patz Case, 2012)",
+    "agency": "New York City Police Department",
+    "absolute_url": "",
+    "datetime_done": "2025-08-06T13:13:53.092521-04:00",
+    "n_docs": 3,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": true,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "New York City Police Department",
+      "case_title": "FOIL Request – Pedro Hernandez Interrogation & Case Records (Etan Patz Case, 2012)",
+      "done": "2025-08-06T13:13:53.092521-04:00"
+    },
+    "titles": [
+      "ECMS3_Redacted",
+      "ECMS1_Redacted",
+      "ECMS2_Redacted"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "ECMS3_Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2025/08/06/ECMS3_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "ECMS1_Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2025/08/06/ECMS1_Redacted.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "ECMS2_Redacted",
+        "url": "https://cdn.muckrock.com/foia_files/2025/08/06/ECMS2_Redacted.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 4,
+    "artifact_bonus": 5,
+    "bundle_bonus": 0,
+    "score": 9,
+    "hits": [
+      "+5 interrogation",
+      "-1 redacted"
+    ]
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_177306_body_camera_footage",
+    "foia_id": 177306,
+    "title": "Body Camera Footage",
+    "agency": "Camden County Police Department",
+    "absolute_url": "",
+    "datetime_done": "2024-12-18T16:14:05.801919-05:00",
+    "n_docs": 0,
+    "n_video": 9,
+    "n_audio": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Camden County Police Department",
+      "case_title": "Body Camera Footage",
+      "done": "2024-12-18T16:14:05.801919-05:00"
+    },
+    "titles": [
+      "Turner-_4_39-07_00-_16-2783NConstitutionP",
+      "McDowell-06_26-06_52_16-2783_N_Constitution_P",
+      "McDowell-00_00-05_20_16-2783_N_Constitution_P__1_",
+      "Figueroa_16-2783ConstitutionP_Video_2",
+      "Turner-19_00-26_00_16-2783NConstitutionP",
+      "Figueroa-00_00-11_45_16-2783ConstitutionP",
+      "Turner-8_11-18_00_16-2783NConstitutionP",
+      "Figueroa-_26_00-40_00-_16-2783ConstitutionP",
+      "McDowell_25_50-_40_00_16-2783_N_Constitution_P"
+    ],
+    "media_files": [
+      {
+        "name": "Turner-_4_39-07_00-_16-2783NConstitutionP",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-_4_39-07_00-_16-2783NConstitutionP.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "McDowell-06_26-06_52_16-2783_N_Constitution_P",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell-06_26-06_52_16-2783_N_Constitution_P.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "McDowell-00_00-05_20_16-2783_N_Constitution_P__1_",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell-00_00-05_20_16-2783_N_Constitution_P__1_.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "Figueroa_16-2783ConstitutionP_Video_2",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa_16-2783ConstitutionP_Video_2.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "Turner-19_00-26_00_16-2783NConstitutionP",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-19_00-26_00_16-2783NConstitutionP.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "Figueroa-00_00-11_45_16-2783ConstitutionP",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa-00_00-11_45_16-2783ConstitutionP.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "Turner-8_11-18_00_16-2783NConstitutionP",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-8_11-18_00_16-2783NConstitutionP.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "Figueroa-_26_00-40_00-_16-2783ConstitutionP",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa-_26_00-40_00-_16-2783ConstitutionP.mp4",
+        "ext": ".mp4"
+      },
+      {
+        "name": "McDowell_25_50-_40_00_16-2783_N_Constitution_P",
+        "url": "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell_25_50-_40_00_16-2783_N_Constitution_P.mp4",
+        "ext": ".mp4"
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-_4_39-07_00-_16-2783NConstitutionP.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell-06_26-06_52_16-2783_N_Constitution_P.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell-00_00-05_20_16-2783_N_Constitution_P__1_.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa_16-2783ConstitutionP_Video_2.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-19_00-26_00_16-2783NConstitutionP.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa-00_00-11_45_16-2783ConstitutionP.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Turner-8_11-18_00_16-2783NConstitutionP.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/Figueroa-_26_00-40_00-_16-2783ConstitutionP.mp4",
+      "https://cdn.muckrock.com/foia_files/2024/12/18/McDowell_25_50-_40_00_16-2783_N_Constitution_P.mp4"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_152018_body_camera_footage_and_dash_camera_foot",
+    "foia_id": 152018,
+    "title": "Body camera footage and Dash camera footage",
+    "agency": "Washington State Patrol",
+    "absolute_url": "",
+    "datetime_done": "2023-09-26T14:14:12.623787-04:00",
+    "n_docs": 0,
+    "n_video": 4,
+    "n_audio": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "is_sb16": false,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Washington State Patrol",
+      "case_title": "Body camera footage and Dash camera footage",
+      "done": "2023-09-26T14:14:12.623787-04:00"
+    },
+    "titles": [
+      "20111737_20230208110248",
+      "10222_20230208111158",
+      "20072477_20230208131235_0",
+      "20072477_20230208111235_0"
+    ],
+    "media_files": [
+      {
+        "name": "20111737_20230208110248",
+        "url": "https://cdn.muckrock.com/foia_files/2023/09/26/20111737_20230208110248.mpg",
+        "ext": ".mpg"
+      },
+      {
+        "name": "10222_20230208111158",
+        "url": "https://cdn.muckrock.com/foia_files/2023/09/26/10222_20230208111158.mpg",
+        "ext": ".mpg"
+      },
+      {
+        "name": "20072477_20230208131235_0",
+        "url": "https://cdn.muckrock.com/foia_files/2023/09/26/20072477_20230208131235_0.mpg",
+        "ext": ".mpg"
+      },
+      {
+        "name": "20072477_20230208111235_0",
+        "url": "https://cdn.muckrock.com/foia_files/2023/09/27/20072477_20230208111235_0.mpg",
+        "ext": ".mpg"
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://cdn.muckrock.com/foia_files/2023/09/26/20111737_20230208110248.mpg",
+      "https://cdn.muckrock.com/foia_files/2023/09/26/10222_20230208111158.mpg",
+      "https://cdn.muckrock.com/foia_files/2023/09/26/20072477_20230208131235_0.mpg",
+      "https://cdn.muckrock.com/foia_files/2023/09/27/20072477_20230208111235_0.mpg"
+    ],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_102079_california_public_records_act_request_sb",
+    "foia_id": 102079,
+    "title": "California Public Records Act Request: SB 1421 Police Complaints (Oxnard PD)",
+    "agency": "Oxnard Police Department",
+    "absolute_url": "",
+    "datetime_done": "2020-09-17T21:05:32.428587-04:00",
+    "n_docs": 1,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Oxnard Police Department",
+      "case_title": "California Public Records Act Request: SB 1421 Police Complaints (Oxnard PD)",
+      "done": "2020-09-17T21:05:32.428587-04:00"
+    },
+    "titles": [
+      "OPD20FOI20Request.pdf"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "OPD20FOI20Request.pdf",
+        "url": "https://cdn.muckrock.com/outbound_request_attachments/saspell/102079/OPD20FOI20Request.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_102106_california_public_records_act_request_sb",
+    "foia_id": 102106,
+    "title": "California Public Records Act Request: SB 1421 Police Records (Santa Paula PD)",
+    "agency": "Santa Paula Police Department",
+    "absolute_url": "",
+    "datetime_done": "2020-11-05T18:40:10.960468-05:00",
+    "n_docs": 4,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Santa Paula Police Department",
+      "case_title": "California Public Records Act Request: SB 1421 Police Records (Santa Paula PD)",
+      "done": "2020-11-05T18:40:10.960468-05:00"
+    },
+    "titles": [
+      "SPPD-Roster-2010.pdf",
+      "PRA Request",
+      "MuckRock 1 October 8,2020",
+      "MuckRock 1 November 5,2020"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "SPPD-Roster-2010.pdf",
+        "url": "https://cdn.muckrock.com/outbound_composer_attachments/saspell/88532/SPPD-Roster-2010.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "PRA Request",
+        "url": "https://cdn.muckrock.com/foia_files/2020/09/24/PRA_Request.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "MuckRock 1 October 8,2020",
+        "url": "https://cdn.muckrock.com/foia_files/2020/10/08/MuckRock_1_October_82020.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "MuckRock 1 November 5,2020",
+        "url": "https://cdn.muckrock.com/foia_files/2020/11/05/MuckRock_1_November_52020.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_131787_california_public_records_act_request_sb",
+    "foia_id": 131787,
+    "title": "California Public Records Act Request: SB1421 Records 2022",
+    "agency": "Los Angeles County District Attorney",
+    "absolute_url": "",
+    "datetime_done": "2022-08-11T14:49:57.733727-04:00",
+    "n_docs": 17,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Los Angeles County District Attorney",
+      "case_title": "California Public Records Act Request: SB1421 Records 2022",
+      "done": "2022-08-11T14:49:57.733727-04:00"
+    },
+    "titles": [
+      "MuckRock SB1421 PRA Reponse re since 2014 by CRP Harjani",
+      "18-0028 Memo",
+      "18-0475 Memo",
+      "19-0302 Memo",
+      "20-0089 Memo",
+      "20-0113 Memo",
+      "20-0220 Memo",
+      "20-0403 Memo",
+      "20-0423 Memo",
+      "21-0081R",
+      "21-0086 Memo",
+      "21-0425R",
+      "22-0038R",
+      "22-0065R",
+      "Cases Presented 2022",
+      "July Filed",
+      "Referral list 2022",
+      "~WRD000",
+      "Gascon Letters 02.2021"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "MuckRock SB1421 PRA Reponse re since 2014 by CRP Harjani",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/01/MuckRock_SB1421_PRA_Reponse_re_since_2014_by_CRP_Harjani.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "18-0028 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/18-0028_Memo_HUCuLoB.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "18-0475 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/18-0475_Memo_cTDjiTN.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "19-0302 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/19-0302_Memo_oPiLMGg.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "20-0089 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/20-0089_Memo_vBmlxc1.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "20-0113 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/20-0113_Memo_NISpXas.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "20-0220 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/20-0220_Memo_WREn9h3.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "20-0403 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/20-0403_Memo_FJyCHSH.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "20-0423 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/20-0423_Memo_m18ofHR.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "21-0081R",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/21-0081R_21OLaCa.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "21-0086 Memo",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/21-0086_Memo_6q6tmOn.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "21-0425R",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/21-0425R_ed5JrXE.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "22-0038R",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/22-0038R_JisXQoV.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "22-0065R",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/22-0065R_ytoBde2.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Cases Presented 2022",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/Cases_Presented_2022_aD1Eq7C.docx",
+        "ext": ".docx"
+      },
+      {
+        "name": "July Filed",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/July_Filed_aCYusJx.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Referral list 2022",
+        "url": "https://cdn.muckrock.com/foia_files/2022/08/11/Referral_list_2022_woRoyYF.docx",
+        "ext": ".docx"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  },
+  {
+    "source": "muckrock",
+    "case_id": "muckrock_80167_sb1421_records_request",
+    "foia_id": 80167,
+    "title": "SB1421 records request",
+    "agency": "Los Angeles County Sheriff's Department",
+    "absolute_url": "",
+    "datetime_done": "2019-09-24T12:26:07.621743-04:00",
+    "n_docs": 4,
+    "n_video": 0,
+    "n_audio": 0,
+    "has_video": false,
+    "has_mp3": false,
+    "has_pdf": true,
+    "is_bwc": false,
+    "is_interrogation": false,
+    "is_sb16": true,
+    "artifact_kinds": 1,
+    "pivot": {
+      "agency": "Los Angeles County Sheriff's Department",
+      "case_title": "SB1421 records request",
+      "done": "2019-09-24T12:26:07.621743-04:00"
+    },
+    "titles": [
+      "Response Letter_Signed",
+      "Response Letter_Signed",
+      "Response Letter_Signed",
+      "Response Letter_Signed",
+      "image001",
+      "image001",
+      "image001",
+      "image001"
+    ],
+    "media_files": [],
+    "doc_files": [
+      {
+        "name": "Response Letter_Signed",
+        "url": "https://cdn.muckrock.com/foia_files/2019/09/24/Response_Letter_Signed.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Response Letter_Signed",
+        "url": "https://cdn.muckrock.com/foia_files/2019/09/24/Response_Letter_Signed_qul4JXR.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Response Letter_Signed",
+        "url": "https://cdn.muckrock.com/foia_files/2019/09/24/Response_Letter_Signed_PBZQOqT.pdf",
+        "ext": ".pdf"
+      },
+      {
+        "name": "Response Letter_Signed",
+        "url": "https://cdn.muckrock.com/foia_files/2019/09/24/Response_Letter_Signed_HB1j5ui.pdf",
+        "ext": ".pdf"
+      }
+    ],
+    "urls": [],
+    "keyword_score": 0,
+    "artifact_bonus": 6,
+    "bundle_bonus": 0,
+    "score": 6,
+    "hits": []
+  }
+]

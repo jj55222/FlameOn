@@ -1,0 +1,82 @@
+{
+  "video_id": "q5kITpYMwUE",
+  "channel": "EXPLORE WITH US",
+  "title": "Woman Realizes Her Online Date Killed Her Husband",
+  "view_count": 6795027,
+  "duration_sec": 2094,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Dramatic 911 audio and chilling quotes from the crime scene immediately establish tension and mystery."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.02,
+        "end_pct": 0.13,
+        "description": "Narrator introduces the incident, followed by the full 911 call and initial police arrival at the bloody scene."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.13,
+        "end_pct": 0.32,
+        "description": "Bodycam footage shows paramedics treating the victim while officers interview Haley, revealing the tangled relationship and suspect's flight."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.32,
+        "end_pct": 0.37,
+        "description": "Suspect is located via family tip and arrested; narrative shifts from the active crime scene to the interrogation room."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.37,
+        "end_pct": 0.86,
+        "description": "Extended interrogation where Eddie confesses, detailing the Ouija board, drinking, sexual encounter, sudden rage, and the brutal stabbing."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.86,
+        "end_pct": 0.97,
+        "description": "Eddie reveals Haley's pregnancy, writes a tearful letter, and engages in raw self-talk, exposing his psychological state and rationalizations."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.97,
+        "end_pct": 1.0,
+        "description": "Narrator summarizes victim's injuries, legal charges, sentencing, and appeal outcome before channel outro."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 2,
+    "emotional_peak": 3,
+    "procedural_violation": 0,
+    "reveal": 3,
+    "detail_noticed": 3,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.21,
+    "total_segments": 948,
+    "bodycam_pct": 0.29,
+    "narration_pct": 0.09,
+    "interrogation_pct": 0.6,
+    "other_pct": 0.02
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 948,
+    "transcript_preview": "stab me at my house. >> Please don't do this to me. >> We were playing on Ouija board >> and he was talking about how he wants to summon a demon into the house. >> Just like a light switch. It was the scariest thing I ever saw. >> When dispatchers in Spokane, Washington answer a 911 call, an urgent cry for help is followed by chaos and screaming on the other end of the line. Police respond to a scene where a man lies naked and stabbed. A woman stands soaked in his blood and a third person has vanished, leaving behind a trail of questions and the fractured remains of a knight gone horribly wrong. The following is based on official police records and the footage has never been seen before until now. It's just before ..."
+  }
+}

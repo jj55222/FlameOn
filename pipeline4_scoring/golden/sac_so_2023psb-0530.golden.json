@@ -1,0 +1,365 @@
+{
+ "case_id": "sac_so_2023psb-0530",
+ "agency": "Sacramento County Sheriff's Office",
+ "labeling": {
+  "labeler": "creator-consensus (EWU+PT cuts + comment peaks) -> human keep/cut",
+  "status": "reviewed",
+  "reviewed_date": "2026-06-26",
+  "notes": "FROZEN HELD-OUT grading key for 2023PSB-0530. Derived from what 2 creators aired + audience comment peaks, grounded to raw BWC, then human reviewed. The harness must run BLIND (never sees the creator videos); score recall vs this. Immutable; version any change."
+ },
+ "moments": [
+  {
+   "artifact_id": "BWC-2.mp4",
+   "start_sec": 141.06,
+   "end_sec": 148.06,
+   "evidence_quote": "I don't want to fucking open it up and get us all exposed.",
+   "in_creators": [
+    "EWU"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 4,
+   "salience": 3,
+   "must_find": false,
+   "moment_id": "c03"
+  },
+  {
+   "artifact_id": "BWC-2.mp4",
+   "start_sec": 260.06,
+   "end_sec": 261.06,
+   "evidence_quote": "I'm glad you're all right, man.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c04"
+  },
+  {
+   "artifact_id": "BWC-3a.mp4",
+   "start_sec": 465.44,
+   "end_sec": 467.44,
+   "evidence_quote": "Is there anything around him at all in there?",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": true,
+   "moment_id": "c09"
+  },
+  {
+   "artifact_id": "BWC-3a.mp4",
+   "start_sec": 639.14,
+   "end_sec": 640.7,
+   "evidence_quote": "He's still unconscious but breathing.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 3,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c12"
+  },
+  {
+   "artifact_id": "BWC-3a.mp4",
+   "start_sec": 709.54,
+   "end_sec": 712.54,
+   "evidence_quote": "That's what I'm concerned about. There's a meth pipe sitting over by the door.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 4,
+   "salience": 4,
+   "must_find": true,
+   "moment_id": "c13"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 468.08,
+   "end_sec": 473.08,
+   "evidence_quote": "I don't see any gloves. I do see that liquid that was probably on the glove floating around back there though.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c23"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 486.08,
+   "end_sec": 489.08,
+   "evidence_quote": "I'd throw all my stuff in there. Right, like I'm just saying...",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c24"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 495.08,
+   "end_sec": 499.08,
+   "evidence_quote": "Do you think he was going to go and book it but use the bathroom first?",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 0,
+   "salience": 4,
+   "must_find": true,
+   "moment_id": "c25"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 499.08,
+   "end_sec": 505.08,
+   "evidence_quote": "Nah, there's no reason to... I mean he could have but there's no reason to pocket it because the stuff's all the way in the back of the station.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c26"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 505.08,
+   "end_sec": 508.08,
+   "evidence_quote": "So you'd have to get back in the car and drive in and grab it.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c27"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 508.08,
+   "end_sec": 512.08,
+   "evidence_quote": "And I know I avoid carrying shit on me.",
+   "in_creators": [
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c28"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 516.08,
+   "end_sec": 518.08,
+   "evidence_quote": "I know, I'm just trying to think outside the box.",
+   "in_creators": [
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c29"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 520.08,
+   "end_sec": 525.08,
+   "evidence_quote": "But I mean, you already checked his ticket book?",
+   "in_creators": [
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c30"
+  },
+  {
+   "artifact_id": "BWC-3c.mp4",
+   "start_sec": 525.08,
+   "end_sec": 528.08,
+   "evidence_quote": "Yeah, I checked everything inside.",
+   "in_creators": [
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 0,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c31"
+  },
+  {
+   "artifact_id": "BWC-4.mp4",
+   "start_sec": 97.8,
+   "end_sec": 99.92,
+   "evidence_quote": "I just saw you last week over here, bro.",
+   "in_creators": [
+    "EWU"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 0,
+   "salience": 3,
+   "must_find": false,
+   "moment_id": "c40"
+  },
+  {
+   "artifact_id": "BWC-4.mp4",
+   "start_sec": 150.0,
+   "end_sec": 154.0,
+   "evidence_quote": "So you could either hand it over or I could put your handcuffs and take it out of your pocket. It's up to you.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c45"
+  },
+  {
+   "artifact_id": "BWC-4.mp4",
+   "start_sec": 168.1,
+   "end_sec": 169.7,
+   "evidence_quote": "I'm giving you the chance just to hand it over.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c46"
+  },
+  {
+   "artifact_id": "BWC-4.mp4",
+   "start_sec": 1258.92,
+   "end_sec": 1260.92,
+   "evidence_quote": "It's not bad to be homeless, but...",
+   "in_creators": [
+    "EWU"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 4,
+   "salience": 3,
+   "must_find": false,
+   "moment_id": "c55"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 103.98,
+   "end_sec": 105.86,
+   "evidence_quote": "Hey, drag him out.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": true,
+   "moment_id": "c59"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 120.0,
+   "end_sec": 122.72,
+   "evidence_quote": "Hey, we got him still in there.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c60"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 126.42,
+   "end_sec": 127.42,
+   "evidence_quote": "Morales, wake up, dude.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 3,
+   "salience": 5,
+   "must_find": true,
+   "moment_id": "c62"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 195.0,
+   "end_sec": 198.76,
+   "evidence_quote": "I thought he was in there taking a poop and I soon open a door he's leaning",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": true,
+   "ewu_narration_emphasis": 3,
+   "salience": 5,
+   "must_find": false,
+   "moment_id": "c64"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 330.92,
+   "end_sec": 333.68,
+   "evidence_quote": "dragged him out of there.",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 2,
+   "salience": 4,
+   "must_find": false,
+   "moment_id": "c65"
+  },
+  {
+   "artifact_id": "BWC-5.mp4",
+   "start_sec": 665.24,
+   "end_sec": 671.14,
+   "evidence_quote": "The pipe that's on the ground wasn't next to him, was it? I don't remember. There's a meth pipe sitting over by the door. I don't remember but...",
+   "in_creators": [
+    "EWU",
+    "PoliceTransparency"
+   ],
+   "comment_peak": false,
+   "ewu_narration_emphasis": 4,
+   "salience": 4,
+   "must_find": true,
+   "moment_id": "c69"
+  }
+ ]
+}

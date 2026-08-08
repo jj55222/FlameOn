@@ -1,0 +1,650 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FlameOn Cross-Pipeline Data Contracts",
+  "description": "Defines the exact JSON shape for every pipeline handoff. Each pipeline MUST validate its output against these before writing.",
+
+  "definitions": {
+
+    "p2_to_p3_case": {
+      "description": "Pipeline 2 (Discovery) → Pipeline 3 (Audio). One per case.",
+      "type": "object",
+      "required": ["case_id", "defendant", "jurisdiction", "sources", "research_score", "confidence_tier"],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "description": "Unique case identifier, format: lastname_jurisdiction_YYYY (e.g., smith_harris_county_tx_2023)"
+        },
+        "defendant": {
+          "type": "string",
+          "description": "Full defendant name as discovered"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Jurisdiction string (county + state minimum)"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "evidence_type", "format"],
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Direct downloadable URL where possible"
+              },
+              "evidence_type": {
+                "type": "string",
+                "enum": ["bodycam", "interrogation", "court_video", "911_audio", "dash_cam", "news_report", "court_docket", "foia_document", "other"],
+                "description": "What kind of evidence this source contains"
+              },
+              "format": {
+                "type": "string",
+                "enum": ["video", "audio", "document", "webpage"],
+                "description": "Media format for Pipeline 3 routing"
+              },
+              "source_domain": {
+                "type": "string",
+                "description": "Domain the URL comes from (e.g., muckrock.com, youtube.com)"
+              },
+              "requires_download": {
+                "type": "boolean",
+                "description": "True if yt-dlp or similar tool needed vs. direct HTTP download"
+              },
+              "notes": {
+                "type": "string",
+                "description": "Any context about the source (e.g., 'partial footage, starts mid-encounter')"
+              }
+            }
+          },
+          "description": "All discovered source URLs, typed by evidence category"
+        },
+        "research_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Composite score from evaluate.py"
+        },
+        "confidence_tier": {
+          "type": "string",
+          "enum": ["ENOUGH", "BORDERLINE", "INSUFFICIENT"],
+          "description": "Agent's confidence assessment"
+        },
+        "charges": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known charges if discovered"
+        },
+        "disposition": {
+          "type": "string",
+          "enum": ["GUILTY", "ACQUITTED", "DISMISSED", "DECLINED_TO_CHARGE", "PENDING", "NO_CHARGES_FILED", "UNKNOWN"],
+          "default": "UNKNOWN",
+          "description": "Normalized legal/administrative outcome; never assert without disposition_source."
+        },
+        "disposition_source": {
+          "type": ["string", "null"],
+          "description": "Source-of-record / page citation backing disposition; null when unverified."
+        },
+        "incident_date": {
+          "type": "string",
+          "description": "Approximate incident date if known (YYYY-MM-DD or YYYY-MM or YYYY)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "One-paragraph case summary from research"
+        }
+      }
+    },
+
+    "p3_to_p4_transcript": {
+      "description": "Pipeline 3 (Audio) → Pipeline 4 (Scoring). One per processed audio file.",
+      "type": "object",
+      "required": ["case_id", "source_evidence_type", "transcript", "original_duration_sec", "processed_duration_sec"],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "description": "Must match case_id from P2 output"
+        },
+        "source_evidence_type": {
+          "type": "string",
+          "enum": ["bodycam", "interrogation", "court_video", "911_audio", "dash_cam", "news_report", "other"],
+          "description": "Which evidence type this transcript came from"
+        },
+        "source_url": {
+          "type": "string",
+          "description": "Original source URL from P2"
+        },
+        "transcript": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["start_sec", "end_sec", "text"],
+            "properties": {
+              "start_sec": {
+                "type": "number",
+                "description": "Start time in ORIGINAL video/audio (not trimmed)"
+              },
+              "end_sec": {
+                "type": "number",
+                "description": "End time in ORIGINAL video/audio (not trimmed)"
+              },
+              "text": {
+                "type": "string"
+              },
+              "speaker": {
+                "type": "string",
+                "description": "Speaker label from diarization (SPEAKER_00, SPEAKER_01, etc.)"
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Whisper word-level confidence if available"
+              }
+            }
+          }
+        },
+        "silence_map": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["original_start_sec", "original_end_sec", "duration_sec"],
+            "properties": {
+              "original_start_sec": { "type": "number" },
+              "original_end_sec": { "type": "number" },
+              "duration_sec": { "type": "number" }
+            }
+          },
+          "description": "Silence segments that were trimmed, in original timestamps"
+        },
+        "original_duration_sec": {
+          "type": "number",
+          "description": "Total duration of original audio before processing"
+        },
+        "processed_duration_sec": {
+          "type": "number",
+          "description": "Duration after silence trimming"
+        },
+        "speaker_count": {
+          "type": "integer",
+          "description": "Number of distinct speakers identified by diarization"
+        },
+        "processing_metadata": {
+          "type": "object",
+          "properties": {
+            "whisper_model": { "type": "string" },
+            "silence_threshold_db": { "type": "number" },
+            "min_silence_duration_sec": { "type": "number" },
+            "compression_applied": { "type": "boolean" },
+            "loudness_target_lufs": { "type": "number" }
+          }
+        }
+      }
+    },
+
+    "p1_winner_profile": {
+      "description": "Pipeline 1 (Winner Analysis) → Pipeline 4 (Scoring). One per analyzed winner video.",
+      "type": "object",
+      "required": ["video_id", "channel", "narrative_arc", "moment_types", "segment_stats"],
+      "properties": {
+        "video_id": {
+          "type": "string",
+          "description": "YouTube video ID"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "view_count": {
+          "type": "integer"
+        },
+        "duration_sec": {
+          "type": "integer"
+        },
+        "narrative_arc": {
+          "type": "object",
+          "required": ["structure_type", "beats"],
+          "properties": {
+            "structure_type": {
+              "type": "string",
+              "enum": ["chronological", "cold_open", "parallel_timeline", "reveal_structure", "escalation"],
+              "description": "High-level narrative structure used"
+            },
+            "beats": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["beat_type", "start_pct", "end_pct"],
+                "properties": {
+                  "beat_type": {
+                    "type": "string",
+                    "enum": ["hook", "setup", "escalation", "climax", "aftermath", "reveal", "context", "transition"],
+                    "description": "Narrative beat type"
+                  },
+                  "start_pct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Position in video as fraction (0.0 = start, 1.0 = end)"
+                  },
+                  "end_pct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "moment_types": {
+          "type": "object",
+          "description": "Count of each moment type identified in the video",
+          "properties": {
+            "contradiction": { "type": "integer" },
+            "emotional_peak": { "type": "integer" },
+            "procedural_violation": { "type": "integer" },
+            "reveal": { "type": "integer" },
+            "detail_noticed": { "type": "integer" },
+            "callback": { "type": "integer" },
+            "tension_shift": { "type": "integer" }
+          }
+        },
+        "segment_stats": {
+          "type": "object",
+          "properties": {
+            "avg_segment_length_sec": { "type": "number" },
+            "total_segments": { "type": "integer" },
+            "bodycam_pct": { "type": "number", "description": "Fraction of runtime that is bodycam footage" },
+            "narration_pct": { "type": "number" },
+            "interrogation_pct": { "type": "number" },
+            "other_pct": { "type": "number" }
+          }
+        },
+        "artifact_combination": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["bodycam", "interrogation", "911_audio", "court_video", "news_clips", "documents", "narration"]
+          },
+          "description": "Which artifact types were used in this video"
+        }
+      }
+    },
+
+    "p1_scoring_weights": {
+      "description": "Aggregated scoring weights derived from winner analysis + comment calibration. Consumed by Pipeline 4.",
+      "type": "object",
+      "required": ["moment_weights", "arc_patterns", "artifact_value"],
+      "properties": {
+        "moment_weights": {
+          "type": "object",
+          "description": "How much each moment type contributes to narrative score (should sum to 1.0)",
+          "properties": {
+            "contradiction": { "type": "number" },
+            "emotional_peak": { "type": "number" },
+            "procedural_violation": { "type": "number" },
+            "reveal": { "type": "number" },
+            "detail_noticed": { "type": "number" },
+            "callback": { "type": "number" },
+            "tension_shift": { "type": "number" }
+          }
+        },
+        "arc_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "structure_type": { "type": "string" },
+              "frequency": { "type": "number", "description": "How often this arc appears in winners (0-1)" },
+              "avg_view_count": { "type": "integer" }
+            }
+          },
+          "description": "Which narrative arcs correlate with performance"
+        },
+        "artifact_value": {
+          "type": "object",
+          "description": "Relative value of artifact combinations (higher = better content potential)",
+          "additionalProperties": { "type": "number" }
+        },
+        "comment_calibration": {
+          "type": "object",
+          "description": "Moment type distribution from comment analysis (if available)",
+          "properties": {
+            "total_comments_analyzed": { "type": "integer" },
+            "moment_distribution": {
+              "type": "object",
+              "additionalProperties": { "type": "number" }
+            },
+            "timestamp_comment_count": { "type": "integer" }
+          }
+        }
+      }
+    },
+
+    "p4_to_p5_verdict": {
+      "description": "Pipeline 4 (Scoring) → Pipeline 5 (Assembly). One per scored case.",
+      "type": "object",
+      "required": ["case_id", "verdict", "narrative_score", "key_moments", "content_pitch"],
+      "properties": {
+        "case_id": {
+          "type": "string"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["PRODUCE", "HOLD", "SKIP"],
+          "description": "Final content decision"
+        },
+        "narrative_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Overall narrative potential score"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Model confidence in the verdict"
+        },
+        "key_moments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["moment_type", "timestamp_sec", "description", "importance"],
+            "properties": {
+              "moment_type": {
+                "type": "string",
+                "enum": ["contradiction", "emotional_peak", "procedural_violation", "reveal", "detail_noticed", "callback", "tension_shift"]
+              },
+              "timestamp_sec": {
+                "type": "number",
+                "description": "Original video timestamp"
+              },
+              "end_timestamp_sec": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              },
+              "importance": {
+                "type": "string",
+                "enum": ["critical", "high", "medium", "low"],
+                "description": "How important this moment is to the narrative"
+              },
+              "transcript_excerpt": {
+                "type": "string",
+                "description": "Brief excerpt of what was said"
+              }
+            }
+          }
+        },
+        "content_pitch": {
+          "type": "string",
+          "description": "One-paragraph pitch for why this case should be produced"
+        },
+        "narrative_arc_recommendation": {
+          "type": "string",
+          "enum": ["chronological", "cold_open", "parallel_timeline", "reveal_structure", "escalation"],
+          "description": "Suggested narrative structure based on winner patterns"
+        },
+        "estimated_runtime_min": {
+          "type": "number",
+          "description": "Estimated final content length in minutes"
+        },
+        "artifact_completeness": {
+          "type": "object",
+          "properties": {
+            "available": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "missing_recommended": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Artifacts that winners typically have but this case lacks"
+            }
+          }
+        },
+        "scoring_breakdown": {
+          "type": "object",
+          "description": "How the score was calculated",
+          "properties": {
+            "moment_density_score": { "type": "number" },
+            "arc_similarity_score": { "type": "number" },
+            "artifact_completeness_score": { "type": "number" },
+            "uniqueness_score": { "type": "number" }
+          }
+        },
+        "transcript_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths to P3 transcript files used in scoring"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths to P2 research files used"
+        }
+      }
+    },
+
+    "golden_moments": {
+      "description": "Human-authored per-case ANSWER KEY of the salient moments that actually exist in a case bundle. This is the immutable yardstick `evaluate_salience.py` scores agent/harness moment extraction against (salience-weighted recall, timestamp accuracy, type, precision/no-hallucination). It is NOT produced by any pipeline — a human labels it once (optionally LLM-assisted), then freezes it. Multiple golden files across genres form the held-out generalization set.",
+      "type": "object",
+      "required": ["case_id", "moments"],
+      "properties": {
+        "case_id": { "type": "string", "description": "e.g. sac_so_20-269838" },
+        "agency": { "type": "string" },
+        "incident": {
+          "type": "object",
+          "properties": {
+            "date": { "type": ["string", "null"] },
+            "location": { "type": ["string", "null"] },
+            "summary": { "type": ["string", "null"] },
+            "subjects": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "description": "Source media files this key references, so moment.artifact_id resolves to a real file.",
+          "items": {
+            "type": "object",
+            "required": ["artifact_id", "kind"],
+            "properties": {
+              "artifact_id": { "type": "string", "description": "stable id, e.g. bwc_schmidt / dashcam_1 / 911_call" },
+              "kind": { "type": "string", "enum": ["bodycam", "dashcam", "911_audio", "radio", "interrogation", "document", "photo", "other"] },
+              "member": { "type": ["string", "null"], "description": "filename inside the case zip, e.g. 12.mp4 — fill once the footage is identified" },
+              "pov_label": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "labeling": {
+          "type": "object",
+          "description": "Provenance of the answer key — never let a 'draft' key gate a release.",
+          "properties": {
+            "labeler": { "type": "string" },
+            "status": { "type": "string", "enum": ["draft", "timestamps_pending", "reviewed", "frozen"] },
+            "notes": { "type": "string" }
+          }
+        },
+        "moments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["moment_id", "moment_type", "salience", "importance", "summary"],
+            "properties": {
+              "moment_id": { "type": "string" },
+              "artifact_id": { "type": ["string", "null"], "description": "which artifact this lives in; null = cross-cam / case-wide" },
+              "moment_type": { "type": "string", "enum": ["contradiction", "emotional_peak", "procedural_violation", "reveal", "detail_noticed", "callback", "tension_shift"] },
+              "salience": { "type": "integer", "minimum": 1, "maximum": 5, "description": "1=minor, 5=the moment the whole piece turns on. Drives salience-weighted recall." },
+              "importance": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+              "start_sec": { "type": ["number", "null"], "description": "ORIGINAL-video timestamp; null until the footage is labeled" },
+              "end_sec": { "type": ["number", "null"] },
+              "summary": { "type": "string" },
+              "evidence_quote": { "type": ["string", "null"], "description": "verbatim transcript line that anchors the moment" },
+              "angle": { "type": ["string", "null"], "description": "content angle it serves: tragedy|heroism|accountability|procedural|reveal|human_interest" },
+              "must_find": { "type": "boolean", "description": "if true, missing it is a hard miss — a release that omits it should not pass" }
+            }
+          }
+        }
+      }
+    },
+
+    "p6_blueprint": {
+      "description": "Pipeline 6 (Sequence) production blueprint — the end-to-end resource guide for a long-form (30+ min) cut. Built deterministically from artifacts.json + case_timeline + verdict + doc_extract; an optional LLM tier shapes acts/beats WITHIN these rails (every referenced asset_id + timecode must exist in asset_manifest, every claim must carry a source).",
+      "type": "object",
+      "required": ["case_id", "target_runtime_sec", "asset_manifest", "acts", "beats", "integrity_ledger", "gaps", "metadata"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "logline": { "type": ["string", "null"], "description": "≤30-word hook (LLM tier; null in the deterministic skeleton)" },
+        "target_runtime_sec": { "type": "number", "description": "Intended finished runtime (default 1800 = 30 min)" },
+        "agency": { "type": "string", "description": "Releasing custodian, for credits" },
+        "incident": {
+          "type": "object",
+          "description": "Sourced incident facts (from doc_extract / timeline).",
+          "properties": {
+            "date": { "type": ["string", "null"] },
+            "time": { "type": ["string", "null"] },
+            "location": { "type": ["string", "null"] },
+            "subjects": { "type": "array", "items": { "type": "string" } },
+            "charges": { "type": "array", "items": { "type": "string" } },
+            "disposition": { "type": ["string", "null"] },
+            "disposition_source": { "type": ["string", "null"], "description": "Source-of-record for the outcome; required for accountability conclusions." }
+          }
+        },
+        "asset_manifest": {
+          "type": "array",
+          "description": "Every available asset, typed, in one place — the resource pile.",
+          "items": {
+            "type": "object",
+            "required": ["asset_id", "kind"],
+            "properties": {
+              "asset_id": { "type": "string", "description": "Stable id, e.g. v_bwc1a / a_911_3 / doc_uof / still_1" },
+              "kind": { "type": "string", "enum": ["bodycam", "dashcam", "911_audio", "radio", "document", "photo", "other"] },
+              "pov_label": { "type": ["string", "null"] },
+              "path": { "type": ["string", "null"] },
+              "start_iso": { "type": ["string", "null"] },
+              "duration_sec": { "type": ["number", "null"] },
+              "phase": { "type": ["string", "null"], "description": "timeline bucket: pre_incident|incident|aftermath|transport|investigation|outcome" },
+              "has_transcript": { "type": "boolean" },
+              "custodian": { "type": ["string", "null"] },
+              "timestamp_source": { "type": ["string", "null"] },
+              "doc_type": { "type": ["string", "null"], "description": "for kind=document: uof_form|ia_narrative|..." }
+            }
+          }
+        },
+        "acts": {
+          "type": "array",
+          "description": "Narrative spine — acts mapped to timeline phases (+ a cold open).",
+          "items": {
+            "type": "object",
+            "required": ["act_id", "title", "function", "target_sec"],
+            "properties": {
+              "act_id": { "type": "string" },
+              "title": { "type": "string" },
+              "phase": { "type": ["string", "null"] },
+              "function": { "type": "string", "enum": ["hook", "establish", "escalate", "climax", "aftermath", "accountability", "resolve"] },
+              "target_sec": { "type": "number", "description": "Deterministic runtime budget for this act" },
+              "thesis": { "type": ["string", "null"], "description": "LLM tier; null in skeleton" },
+              "beat_ids": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "beats": {
+          "type": "array",
+          "description": "The build unit. One per key moment (skeleton); the LLM tier selects/orders/prunes to fit runtime.",
+          "items": {
+            "type": "object",
+            "required": ["beat_id", "act_id", "function", "source_refs"],
+            "properties": {
+              "beat_id": { "type": "string" },
+              "act_id": { "type": "string" },
+              "ordinal": { "type": "number" },
+              "function": { "type": "string" },
+              "target_duration_sec": { "type": "number" },
+              "primary_asset": {
+                "type": ["object", "null"],
+                "properties": {
+                  "asset_id": { "type": "string" },
+                  "in_sec": { "type": "number" },
+                  "out_sec": { "type": "number" }
+                }
+              },
+              "quote": {
+                "type": ["object", "null"],
+                "description": "A real transcript excerpt, pinned to source + timecode. Never paraphrased.",
+                "properties": {
+                  "text": { "type": "string" },
+                  "source": { "type": "string" },
+                  "timecode": { "type": "number" }
+                }
+              },
+              "inserts": { "type": "array", "items": { "type": "object" }, "description": "B-roll / document / still cutaways" },
+              "lower_third": { "type": ["object", "null"] },
+              "narration_bridge": {
+                "type": ["object", "null"],
+                "description": "A brief for the LLM, NOT finished VO. source_facts pins what it may assert.",
+                "properties": {
+                  "needed": { "type": "boolean" },
+                  "brief": { "type": ["string", "null"] },
+                  "source_facts": { "type": "array", "items": { "type": "string" } }
+                }
+              },
+              "credit": { "type": "string" },
+              "source_refs": { "type": "array", "items": { "type": "string" }, "description": "Everything this beat asserts → integrity_ledger" }
+            }
+          }
+        },
+        "narration_points": { "type": "array", "items": { "type": "object" }, "description": "Deref of beats[].narration_bridge where needed" },
+        "integrity_ledger": {
+          "type": "array",
+          "description": "Every on-screen claim → its source. ok=false flags an unsourced beat (a hard error).",
+          "items": {
+            "type": "object",
+            "required": ["claim", "ok"],
+            "properties": {
+              "claim": { "type": "string" },
+              "source": { "type": ["string", "null"] },
+              "ok": { "type": "boolean" },
+              "beat_id": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "description": "What's missing for a complete cut — feeds the discovery pipeline (GOAL_B).",
+          "items": {
+            "type": "object",
+            "required": ["missing"],
+            "properties": {
+              "phase": { "type": ["string", "null"] },
+              "kind": { "type": ["string", "null"] },
+              "missing": { "type": "string" },
+              "why": { "type": ["string", "null"] },
+              "acquire": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["planned_runtime_sec", "unsourced_beats"],
+          "properties": {
+            "available_footage_sec": { "type": "number" },
+            "planned_runtime_sec": { "type": "number" },
+            "runtime_vs_target_sec": { "type": "number" },
+            "coverage_by_phase": { "type": "object" },
+            "asset_completeness_pct": { "type": "number" },
+            "unsourced_beats": { "type": "number" },
+            "built_by": { "type": "string", "description": "skeleton (deterministic) | llm_shaped" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+Pipeline 4 AutoResearch Evaluation
+========================================================
+Cases: 10 | Dry run: False
+Pass 1 model: google/gemini-3.1-flash-lite-preview
+Pass 2 model: qwen/qwen3.6-plus
+
+  [1/10] t6h8Uae2Q_E (Dr Insanity) — How Police Captured Colorado's Smartest 
+
+======================================================================
+Scoring case: t6h8Uae2Q_E
+  Sources: 1
+  Total duration: 4336s (72.3 min)
+  Segments: 1806
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~27313 tokens (109,254 chars)
+    Returned in 12.6s
+  [Pass 1] Extracted: 8 moments, 1 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=49.5 (density=53.2, arc=50.0, artifact=50.0, unique=32.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.655)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2520 tokens (10,082 chars)
+    Returned in 84.9s
+    HOLD     (gt=PRODUCE) score=49.5 moments=8  [MISS]  97.6s
+  [2/10] Vn2Wqccg05w (Dr Insanity) — Cops Realize Psycho Daughters Car Is Fil
+
+======================================================================
+Scoring case: Vn2Wqccg05w
+  Sources: 1
+  Total duration: 5397s (89.9 min)
+  Segments: 2408
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~35061 tokens (140,244 chars)
+    Returned in 10.4s
+  [Pass 1] Extracted: 8 moments, 2 contradictions, 5 anchors, hint=cold_open
+  [Scoring] narrative_score=54.0 (density=60.9, arc=50.0, artifact=50.0, unique=47.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.682)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~3453 tokens (13,813 chars)
+    Returned in 62.2s
+    HOLD     (gt=PRODUCE) score=54.0 moments=7  [MISS]  72.5s
+  [3/10] s6CXNbzKlks (Dr Insanity) — Secret Killer Leads Cops Into Her $3,000
+
+======================================================================
+Scoring case: s6CXNbzKlks
+  Sources: 1
+  Total duration: 2998s (50.0 min)
+  Segments: 1299
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~19668 tokens (78,673 chars)
+    Returned in 12.8s
+  [Pass 1] Extracted: 7 moments, 2 contradictions, 5 anchors, hint=cold_open
+  [Scoring] narrative_score=50.6 (density=47.2, arc=50.0, artifact=50.0, unique=67.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.662)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2586 tokens (10,344 chars)
+    Returned in 65.8s
+    HOLD     (gt=PRODUCE) score=50.6 moments=7  [MISS]  78.6s
+  [4/10] QHAYwcCeKms (Dr Insanity) — Man Faints After Realizing He Accidental
+
+======================================================================
+Scoring case: QHAYwcCeKms
+  Sources: 1
+  Total duration: 3346s (55.8 min)
+  Segments: 1473
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~21899 tokens (87,599 chars)
+    Returned in 7.5s
+  [Pass 1] Extracted: 6 moments, 1 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=47.2 (density=43.7, arc=50.0, artifact=50.0, unique=47.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.642)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2245 tokens (8,981 chars)
+    Returned in 83.0s
+    HOLD     (gt=PRODUCE) score=47.2 moments=6  [MISS]  90.5s
+  [5/10] 6Ghe55PHc58 (EXPLORE WITH US) — Cops Make Worst Discovery of Their Lives
+
+======================================================================
+Scoring case: 6Ghe55PHc58
+  Sources: 1
+  Total duration: 3314s (55.2 min)
+  Segments: 1681
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~24131 tokens (96,524 chars)
+    Returned in 8.0s
+  [Pass 1] Extracted: 7 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=47.0 (density=44.6, arc=50.0, artifact=50.0, unique=42.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.641)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2154 tokens (8,617 chars)
+    Returned in 39.9s
+    HOLD     (gt=PRODUCE) score=47.0 moments=5  [MISS]  47.9s
+  [6/10] cgCYon_kKno (EXPLORE WITH US) — Teens Realize Cops Discovered Their Sick
+
+======================================================================
+Scoring case: cgCYon_kKno
+  Sources: 1
+  Total duration: 2892s (48.2 min)
+  Segments: 1333
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~19709 tokens (78,839 chars)
+    Returned in 6.6s
+  [Pass 1] Extracted: 4 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=40.3 (density=30.2, arc=50.0, artifact=50.0, unique=32.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.602)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2303 tokens (9,215 chars)
+    Returned in 76.3s
+    HOLD     (gt=PRODUCE) score=40.3 moments=4  [MISS]  82.9s
+  [7/10] JBRHS5vErpg (EXPLORE WITH US) — OnlyFans Mom Leaves Toddler to Starve Wi
+
+======================================================================
+Scoring case: JBRHS5vErpg
+  Sources: 1
+  Total duration: 3023s (50.4 min)
+  Segments: 1355
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~20185 tokens (80,740 chars)
+    Returned in 7.5s
+  [Pass 1] Extracted: 6 moments, 1 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=49.0 (density=43.7, arc=50.0, artifact=50.0, unique=65.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.652)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2260 tokens (9,040 chars)
+    Returned in 77.3s
+    HOLD     (gt=PRODUCE) score=49.0 moments=6  [MISS]  84.9s
+  [8/10] fsL0ag9ySao (EXPLORE WITH US) — 6-Year-Old Leads Cops to Her Secret Pris
+
+======================================================================
+Scoring case: fsL0ag9ySao
+  Sources: 1
+  Total duration: 2734s (45.6 min)
+  Segments: 1243
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~17760 tokens (71,043 chars)
+    Returned in 8.8s
+  [Pass 1] Extracted: 7 moments, 2 contradictions, 2 anchors, hint=cold_open
+  [Scoring] narrative_score=53.8 (density=60.2, arc=50.0, artifact=50.0, unique=47.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.68)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2245 tokens (8,981 chars)
+    Returned in 65.5s
+    HOLD     (gt=PRODUCE) score=53.8 moments=5  [MISS]  74.3s
+  [9/10] 29PVkF6hcnw (EXPLORE WITH US) — Husband Whistles As He Slowly Murders Hi
+
+======================================================================
+Scoring case: 29PVkF6hcnw
+  Sources: 1
+  Total duration: 3167s (52.8 min)
+  Segments: 1397
+  Evidence types: ['other']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~21135 tokens (84,542 chars)
+    Returned in 12.1s
+  [Pass 1] Extracted: 9 moments, 2 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=55.9 (density=61.7, arc=50.0, artifact=50.0, unique=62.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.693)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2754 tokens (11,019 chars)
+    Returned in 59.8s
+    HOLD     (gt=PRODUCE) score=55.9 moments=7  [MISS]  71.9s
+  [10/10] sfdpa_0409-18 (SF DPA (administrative hearing)) — Officer Sherry + Bradford use-of-force a
+
+======================================================================
+Scoring case: sfdpa_0409-18
+  Sources: 4
+  Total duration: 6963s (116.1 min)
+  Segments: 1519
+  Evidence types: ['interrogation', 'bodycam']
+  [WARN] No Pipeline 1 weights provided, using equal-weight fallback (1/7 per moment type)
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~25033 tokens (100,134 chars)
+    Returned in 10.8s
+  [Pass 1] Extracted: 10 moments, 2 contradictions, 4 anchors, hint=escalation
+  [Scoring] narrative_score=54.0 (density=60.0, arc=50.0, artifact=50.0, unique=50.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.682)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2582 tokens (10,329 chars)
+    Returned in 86.8s
+    HOLD     (gt=SKIP) score=54.0 moments=6  [MISS]  97.7s
+
+========================================================
+  Verdict Accuracy:        0.00 (x40%)
+  Narrative Calibration:  10.00 (x25%)
+  Arc Accuracy:           90.00 (x15%)
+  Moment Coverage:       100.00 (x15%)
+  Artifact Completeness:  10.00 (x5%)
+  ------------------------------------------------
+  NARRATIVE SCORING:      31.50 / 100
+  Cases completed:       10/10
+  Time:                  799s
+C:\FlameON\FlameOn-main\pipeline4_scoring\evaluate.py:482: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+
+  Experiment 10 logged to results.tsv

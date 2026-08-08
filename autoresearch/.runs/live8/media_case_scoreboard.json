@@ -1,0 +1,40 @@
+{
+  "validation": {
+    "total_entries": 11,
+    "accuracy_pct": 100.0,
+    "false_produce_count": 0,
+    "guard_counters": {
+      "document_only_produce_count": 0,
+      "claim_only_produce_count": 0,
+      "weak_identity_produce_count": 0,
+      "protected_or_pacer_produce_count": 0
+    },
+    "guard_counters_all_zero": true
+  },
+  "pilots": {
+    "total": 7,
+    "ready_for_live": 7,
+    "blocked": 0,
+    "by_readiness_status": {
+      "ready_for_live_smoke": 7
+    },
+    "blocked_pilots": []
+  },
+  "connector_demand": {
+    "courtlistener": 3,
+    "documentcloud": 3,
+    "muckrock": 1,
+    "youtube": 1
+  },
+  "expected_artifact_types": {
+    "bodycam": 5,
+    "court_video": 5,
+    "dispatch_911": 1,
+    "docket_docs": 6,
+    "interrogation": 1,
+    "video_footage": 1
+  },
+  "media_required_for_produce_count": 7,
+  "total_planned_max_live_calls": 8,
+  "warnings": []
+}

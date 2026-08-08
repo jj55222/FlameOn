@@ -1,0 +1,89 @@
+{
+  "video_id": "rL9jt9zEhAc",
+  "channel": "EXPLORE WITH US",
+  "title": "Cops Discover Predator Dad's RV of Horrors",
+  "view_count": 11355298,
+  "duration_sec": 3112,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Chaotic opening bodycam audio of distressed parents and first responders at the gas station."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.02,
+        "end_pct": 0.08,
+        "description": "Narrator introduces the case, location, and initial premise of an infant's medical emergency."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.08,
+        "end_pct": 0.27,
+        "description": "Police interact with the parents, noticing suspicious injuries and the father's volatile behavior."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.27,
+        "end_pct": 0.4,
+        "description": "Tension peaks as officers decide to detain the father, leading to a physical arrest and transport."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.4,
+        "end_pct": 0.58,
+        "description": "Separate interrogations uncover a history of domestic abuse, meth use, and financial control."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.58,
+        "end_pct": 0.77,
+        "description": "Investigators present medical evidence and past incidents that contradict the parents' accident claims."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.77,
+        "end_pct": 0.93,
+        "description": "Mounting forensic details and the older child's statement intensify the case against the father."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.93,
+        "end_pct": 1.0,
+        "description": "The infant's death is announced, followed by legal outcomes, sentencing, and investigator reflections."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 1,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 1.91,
+    "total_segments": 1630,
+    "bodycam_pct": 0.4,
+    "narration_pct": 0.2,
+    "interrogation_pct": 0.35,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration",
+    "documents",
+    "news_clips"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1630,
+    "transcript_preview": "Oh my god. >> Isn't that horrible? >> He just showed me pictures of the face, dude. Holy. >> I flipped him over again. I had his back, man. I tried to waking him up as best I freaked the out, man. I get up here, please. Please get >> I didn't do nothing. >> Watch. >> Stay in there. >> I just hurt my son. >> I'm not saying you did. >> All right. I'm not saying you did. Hey. Hey. >> Oh my god. Police and paramedics are called to a frantic scene at a Georgia gas station where the parents of an 8-month-old infant claim he suffered a ..."
+  }
+}

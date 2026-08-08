@@ -1,0 +1,93 @@
+{
+  "case_id": "muckrock_185689_joliet_zavala",
+  "verdict": "SKIP",
+  "narrative_score": 17.81,
+  "confidence": 0.85,
+  "key_moments": [
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 1,
+      "timestamp_sec": 141.0,
+      "end_timestamp_sec": 146.0,
+      "description": "Officer identifies a taser probe on the suspect's person.",
+      "importance": "high",
+      "transcript_excerpt": "There's a taser pill right in that left hand, so be careful."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 1,
+      "timestamp_sec": 36.0,
+      "end_timestamp_sec": 40.0,
+      "description": "Suspect shifts from yelling to direct verbal aggression toward officers.",
+      "importance": "high",
+      "transcript_excerpt": "Okay, bitch. Get the fuck on. And now I'm ready, bitch."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 3,
+      "timestamp_sec": 122.0,
+      "end_timestamp_sec": 125.0,
+      "description": "Suspect exhibits extreme distress regarding physical sensations on her chest/body.",
+      "importance": "high",
+      "transcript_excerpt": "There's something tickling up on my boobs, guys."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 3,
+      "timestamp_sec": 215.0,
+      "end_timestamp_sec": 220.0,
+      "description": "Suspect becomes highly agitated and vocal about physical discomfort.",
+      "importance": "high",
+      "transcript_excerpt": "Ma'am, there's nothing tickling on my pussy now."
+    },
+    {
+      "moment_type": "procedural_violation",
+      "source_idx": 1,
+      "timestamp_sec": 111.0,
+      "end_timestamp_sec": 114.0,
+      "description": "Suspect alleges physical battery by officer during the encounter.",
+      "importance": "medium",
+      "transcript_excerpt": "You fucking pushed me. He just pushed me."
+    }
+  ],
+  "content_pitch": "Low narrative score and poor structural fit with winner patterns, compounded by a single artifact type that limits storytelling depth.",
+  "narrative_arc_recommendation": "escalation",
+  "estimated_runtime_min": 10.5,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "documents"
+    ],
+    "missing_recommended": [
+      "interrogation",
+      "narration"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 2.46,
+    "arc_similarity_score": 8.09,
+    "artifact_completeness_score": 50.0,
+    "uniqueness_score": 44.0
+  },
+  "transcript_refs": [
+    "pipeline3_audio/transcripts/zavala_01_transcript.json",
+    "pipeline3_audio/transcripts/zavala_02_transcript.json",
+    "pipeline3_audio/transcripts/zavala_03_transcript.json",
+    "pipeline3_audio/transcripts/zavala_04_transcript.json"
+  ],
+  "source_refs": [
+    "muckrock_185689_joliet_zavala"
+  ],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "SKIP",
+    "reasoning_summary": "The case fails to meet the minimum narrative and density thresholds for production, and its low arc similarity combined with limited artifact diversity triggers the skip condition. Without additional footage or a stronger structural hook, it lacks the engagement potential of proven winners.",
+    "degraded": false,
+    "n_sources": 4,
+    "n_pass1_moments": 5,
+    "n_final_moments": 5,
+    "scored_at": "2026-06-27T21:06:59.595438Z"
+  }
+}

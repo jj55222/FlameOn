@@ -1,0 +1,95 @@
+{
+  "video_id": "g2YemY3Wxq4",
+  "channel": "Dr Insanity",
+  "title": "Pregnant Teen Discovers Mom Killed Her Boyfriend",
+  "view_count": 7983231,
+  "duration_sec": 3269,
+  "narrative_arc": {
+    "structure_type": "reveal_structure",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.04,
+        "description": "Cold open with fragmented interrogation dialogue introducing the pregnant teen, the murdered boyfriend, and the mother's hidden secret."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.04,
+        "end_pct": 0.12,
+        "description": "Chronological recounting of the crime scene: 16-year-old Jose Ruiz shot in an alley, police response, witness accounts of a fleeing gold Toyota."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.12,
+        "end_pct": 0.22,
+        "description": "Victim identification, grandfather's interview revealing Jay's secret involvement and Elizabeth's pregnancy, establishing initial motives and relationships."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.22,
+        "end_pct": 0.38,
+        "description": "Detective Bruciaga takes the case, reviews CCTV, interviews Elizabeth and mother Chavez, and connects Chavez's missing car to the getaway vehicle."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.38,
+        "end_pct": 0.52,
+        "description": "Interrogations of Chavez and son Angelo reveal contradictions in their alibis; phones are seized, uncovering texts about a planned fight and relationship breakdown."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.52,
+        "end_pct": 0.66,
+        "description": "Elizabeth's formal interrogation: detective confronts her with digital evidence, leading to an emotional breakdown and steadfast denial of family involvement."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.66,
+        "end_pct": 0.79,
+        "description": "Detective confronts Gilbert and Chavez at their home; cell tower data definitively places Angelo at the scene, leading to his arrest and juvenile detention."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.79,
+        "end_pct": 0.89,
+        "description": "One-year time jump: a Facebook tip reveals Gilbert's confession that the mother pulled the trigger; monitored jail calls capture Chavez's admission of guilt."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.89,
+        "end_pct": 1.0,
+        "description": "Angelo cooperates, Chavez is arrested and immediately invokes her right to counsel; final resolution details the mother's motive, Angelo's plea deal, and Elizabeth's clearance."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 3,
+    "procedural_violation": 1,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.23,
+    "total_segments": 1469,
+    "bodycam_pct": 0.3,
+    "narration_pct": 0.4,
+    "interrogation_pct": 0.25,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "documents",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1469,
+    "transcript_preview": "Yes. Did he already tell you? >> Yeah. >> Okay. You're lost. >> This is 17-year-old Elizabeth Pavonado. A few hours ago, her boyfriend was found mysteriously shot dead in a back alley. >> She's not. >> Yeah. She wants to talk about the person that did it. She's pregnant. Tragically, Elizabeth is also pregnant with their child. Her mother, Ortiz Chavez, is trying to comfort her daughter. What Elizabeth doesn't know yet is that her mother is hiding a dark secret that will ruin the family's life. >> Your mom's car is on video, leaving the homicide. >> You seriously think that they did it? >> Yes. My mom My mom loved that child. As ..."
+  }
+}

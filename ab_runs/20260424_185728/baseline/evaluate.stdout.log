@@ -1,0 +1,30 @@
+FlameOn AutoResearch Evaluation
+==================================================
+Cases: 1 | Time budget: 1600s
+Tiers: 1 ENOUGH, 0 BORDERLINE, 0 INSUFFICIENT
+
+  [1/1] Researching: Min Jian Guan...   [Exa] Credits exhausted â€” disabling Exa for this run
+done (76.4s, 7 sources, medium confidence)
+
+==================================================
+Scoring (1/1 cases researched, 88.5s total)
+
+  Evidence Recall:    60.00 (x40%)
+  Source Discovery:   25.00 (x30%)
+  Precision:          42.86 (x20%)
+  Tier Accuracy:      50.00 (x10%)
+  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  RESEARCH SCORE:     45.07 / 100
+
+  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  EFFICIENCY REPORT
+  API calls:    MR=0 CL=0 Brave=0 YT=0 (free)
+  Est. cost:    $0.00
+  Score/call:   0.000
+  Score/$:      âˆž (free)
+  Time:         89s (88.5s/case)
+
+==================================================
+Per-case breakdown:
+
+  Min Jian Guan                         [ENOUGH      ] conf=medium sources=7   bod:Nâœ— int:Nâœ— cou:Yâœ“ doc:Yâœ“ dis:Nâœ“

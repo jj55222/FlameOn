@@ -1,0 +1,80 @@
+{
+  "case_id": "pastor_shooting_wife",
+  "verdict": "SKIP",
+  "narrative_score": 34.03,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 120,
+      "end_timestamp_sec": 124,
+      "description": "Ofori makes a direct death threat against his wife.",
+      "importance": "critical",
+      "transcript_excerpt": "If I don't kill your sister, then me, I'm sick."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 439,
+      "end_timestamp_sec": 450,
+      "description": "Ofori clears a weapon jam to continue the execution, demonstrating premeditation.",
+      "importance": "critical",
+      "transcript_excerpt": "The gun jams... he calmly clears the jam, racks the slide... and fires again."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 1545,
+      "end_timestamp_sec": 1560,
+      "description": "Ofori confesses to the murder during interrogation.",
+      "importance": "critical",
+      "transcript_excerpt": "I'm asking you is you did yes yes okay i'm not gonna lie to you"
+    },
+    {
+      "moment_type": "contradiction",
+      "source_idx": 0,
+      "timestamp_sec": 1840,
+      "end_timestamp_sec": 1860,
+      "description": "Ofori claims he is a 'good guy' while justifying the murder as a result of his wife's actions.",
+      "importance": "high",
+      "transcript_excerpt": "You know, I'm a good guy, guys. I'm a good guy."
+    }
+  ],
+  "content_pitch": "Lacks essential artifact diversity (only 'other' available) and falls below the narrative score threshold of 35, making it unsuitable for production without additional footage or documents.",
+  "narrative_arc_recommendation": "cold_open",
+  "estimated_runtime_min": 8.4,
+  "artifact_completeness": {
+    "available": [
+      "other"
+    ],
+    "missing_recommended": [
+      "bodycam",
+      "narration",
+      "interrogation",
+      "documents"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 2.08,
+    "arc_similarity_score": 100.0,
+    "artifact_completeness_score": 0.0,
+    "uniqueness_score": 32.0
+  },
+  "transcript_refs": [
+    "..\\pipeline3_audio\\transcripts\\pastor_shooting_wife_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus:free",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "SKIP",
+    "reasoning_summary": "The case scores 34.0 on narrative metrics and has an artifact completeness score of 0.0, failing both the minimum score and artifact diversity requirements for production. Without bodycam, interrogation, or court footage, the story cannot be effectively visualized for the channel's format.",
+    "degraded": false,
+    "n_sources": 1,
+    "n_pass1_moments": 4,
+    "n_final_moments": 4,
+    "scored_at": "2026-04-06T03:03:23.883029Z"
+  }
+}

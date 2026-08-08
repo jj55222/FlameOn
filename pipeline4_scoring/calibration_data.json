@@ -1,0 +1,224 @@
+[
+  {
+    "case_id": "t6h8Uae2Q_E",
+    "source": "pipeline1_winner",
+    "channel": "Dr Insanity",
+    "title": "How Police Captured Colorado's Smartest Killer",
+    "view_count": 23577315,
+    "transcript_path": "../pipeline1_winners/winners/t6h8Uae2Q_E_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "news_clips",
+        "documents",
+        "narration"
+      ],
+      "notes": "Proven winner (23,577,315 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "Vn2Wqccg05w",
+    "source": "pipeline1_winner",
+    "channel": "Dr Insanity",
+    "title": "Cops Realize Psycho Daughters Car Is Filled With Bodies",
+    "view_count": 6627952,
+    "transcript_path": "../pipeline1_winners/winners/Vn2Wqccg05w_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "narration"
+      ],
+      "notes": "Proven winner (6,627,952 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "s6CXNbzKlks",
+    "source": "pipeline1_winner",
+    "channel": "Dr Insanity",
+    "title": "Secret Killer Leads Cops Into Her $3,000,000 Murder Mansion",
+    "view_count": 13278661,
+    "transcript_path": "../pipeline1_winners/winners/s6CXNbzKlks_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "narration"
+      ],
+      "notes": "Proven winner (13,278,661 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "QHAYwcCeKms",
+    "source": "pipeline1_winner",
+    "channel": "Dr Insanity",
+    "title": "Man Faints After Realizing He Accidentally Killed His Wife",
+    "view_count": 4384446,
+    "transcript_path": "../pipeline1_winners/winners/QHAYwcCeKms_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "narration"
+      ],
+      "notes": "Proven winner (4,384,446 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "6Ghe55PHc58",
+    "source": "pipeline1_winner",
+    "channel": "EXPLORE WITH US",
+    "title": "Cops Make Worst Discovery of Their Lives in Predator's Shed",
+    "view_count": 7907637,
+    "transcript_path": "../pipeline1_winners/winners/6Ghe55PHc58_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "narration",
+        "documents"
+      ],
+      "notes": "Proven winner (7,907,637 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "cgCYon_kKno",
+    "source": "pipeline1_winner",
+    "channel": "EXPLORE WITH US",
+    "title": "Teens Realize Cops Discovered Their Sick Secret",
+    "view_count": 4300548,
+    "transcript_path": "../pipeline1_winners/winners/cgCYon_kKno_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "narration",
+        "documents"
+      ],
+      "notes": "Proven winner (4,300,548 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "JBRHS5vErpg",
+    "source": "pipeline1_winner",
+    "channel": "EXPLORE WITH US",
+    "title": "OnlyFans Mom Leaves Toddler to Starve With Dead Baby",
+    "view_count": 5125226,
+    "transcript_path": "../pipeline1_winners/winners/JBRHS5vErpg_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "911_audio",
+        "documents",
+        "narration"
+      ],
+      "notes": "Proven winner (5,125,226 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "fsL0ag9ySao",
+    "source": "pipeline1_winner",
+    "channel": "EXPLORE WITH US",
+    "title": "6-Year-Old Leads Cops to Her Secret Prison",
+    "view_count": 8349082,
+    "transcript_path": "../pipeline1_winners/winners/fsL0ag9ySao_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "narration"
+      ],
+      "notes": "Proven winner (8,349,082 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "29PVkF6hcnw",
+    "source": "pipeline1_winner",
+    "channel": "EXPLORE WITH US",
+    "title": "Husband Whistles As He Slowly Murders His Wife",
+    "view_count": 6431734,
+    "transcript_path": "../pipeline1_winners/winners/29PVkF6hcnw_transcript.json",
+    "adapter": "winner",
+    "ground_truth": {
+      "verdict": "PRODUCE",
+      "min_narrative_score": 55,
+      "expected_arc": "cold_open",
+      "min_key_moments": 3,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation",
+        "documents",
+        "narration",
+        "court_video"
+      ],
+      "notes": "Proven winner (6,431,734 views) — transcript-only test of narrative detection"
+    }
+  },
+  {
+    "case_id": "sfdpa_0409-18",
+    "source": "pipeline3_p3_case",
+    "channel": "SF DPA (administrative hearing)",
+    "title": "Officer Sherry + Bradford use-of-force at protest — admin review",
+    "view_count": 0,
+    "transcript_dir": "../pipeline3_audio/transcripts",
+    "adapter": "p3",
+    "ground_truth": {
+      "verdict": "SKIP",
+      "max_narrative_score": 40,
+      "expected_arc": "chronological",
+      "min_key_moments": 0,
+      "expected_artifacts": [
+        "bodycam",
+        "interrogation"
+      ],
+      "notes": "Administrative review of officer use-of-force at a protest. No criminal narrative, no compelling arc. P4 previously verdicted SKIP @ 14.96."
+    }
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "video_id": "C9JrHmj16pQ",
+  "channel": "Dr Insanity",
+  "title": "40 SWAT Officers Face Utah's Deadliest Shooter Situation",
+  "view_count": 9876784,
+  "duration_sec": 1722,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.04,
+        "description": "Cold open featuring high-tension sniper and hostage radio chatter to immediately grab attention before backtracking."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.04,
+        "end_pct": 0.15,
+        "description": "Backtracks to the initial 911 call, establishes the suspect's active warrant, and details the prior day's kidnapping."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.15,
+        "end_pct": 0.4,
+        "description": "Police search the brother's house, receive a second 911 call, and pursue the suspect's abandoned vehicle on train tracks."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.4,
+        "end_pct": 0.56,
+        "description": "High-speed highway pursuit, spike strip deployment, suspect flees on foot into a residential neighborhood, and containment is established."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.56,
+        "end_pct": 0.72,
+        "description": "A third 911 call reveals a family hostage situation, prompting SWAT deployment, tactical planning, and deadly force authorization."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.72,
+        "end_pct": 0.89,
+        "description": "Detailed breakdown of sniper positioning, negotiation tactics, and the suspect's deteriorating mental state and suicide-by-cop motive."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.89,
+        "end_pct": 0.95,
+        "description": "Suspect steps to the door, sniper takes the decisive shot, and SWAT executes a tactical breach to rescue the remaining hostages."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.95,
+        "end_pct": 1.0,
+        "description": "Hostages are secured, suspect is pronounced dead, and investigators conclude the motive, timeline, and psychological collapse."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 0,
+    "emotional_peak": 2,
+    "procedural_violation": 0,
+    "reveal": 3,
+    "detail_noticed": 2,
+    "callback": 1,
+    "tension_shift": 3
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.44,
+    "total_segments": 705,
+    "bodycam_pct": 0.5,
+    "narration_pct": 0.35,
+    "interrogation_pct": 0.0,
+    "other_pct": 0.15
+  },
+  "artifact_combination": [
+    "bodycam",
+    "911_audio",
+    "narration"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 705,
+    "transcript_preview": "set. This sniper just took a shot at an armed fugitive holding a family of five hostage in their home. >> My family being held hostage. >> The gunman, Joseph Anthony, is a man with a purpose. He has a vendetta and he's going on a rampage, planning to kill his ex-girlfriend and multiple other people who wronged him in the past. Police don't know how far he's gotten on his list of targets. And if they don't capture him here, this family could be next. >> Running across the freeway. LET ME SEE YOUR HANDS. [screaming] >> ALL UNITS, I'M GOING TO SET CONTAINMENT. We're going to wait for the helicopter. All units, hold your position. >> Suck in. Right. This is showtime. ..."
+  }
+}

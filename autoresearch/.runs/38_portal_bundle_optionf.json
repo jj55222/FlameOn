@@ -1,0 +1,529 @@
+{
+  "experiment_id": "PIPE3-cli-portal-replay",
+  "mode": "portal_replay",
+  "wallclock_seconds": 0.0008,
+  "input_summary": {
+    "input_type": "manual",
+    "defendant_names": [
+      "Renee Example"
+    ],
+    "agency": null,
+    "jurisdiction": {
+      "city": null,
+      "county": "Maricopa County",
+      "state": "AZ"
+    },
+    "incident_date": null,
+    "candidate_query_count": 3,
+    "missing_field_count": 6
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 2,
+    "by_api": {
+      "agency_ois": 2
+    },
+    "by_role": {
+      "identity_source": 1,
+      "outcome_source": 1,
+      "possible_artifact_source": 1
+    },
+    "source_ids": [
+      "agency_ois::page::https_www_mcso_org_critical-incidents_2024-MCSO-009",
+      "agency_ois::media::https_www_mcso_org_critical-incidents_2024-MCSO-009::0"
+    ]
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": null,
+  "identity": {
+    "defendant_names": [
+      "Renee Example"
+    ],
+    "victim_names": [],
+    "agency": "Maricopa County Sheriff's Office",
+    "jurisdiction": {
+      "city": null,
+      "county": "Maricopa County",
+      "state": "AZ"
+    },
+    "incident_date": "2024-09-22",
+    "case_numbers": [
+      "2024-MCSO-009"
+    ],
+    "charges": [],
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "county",
+      "incident_date",
+      "case_number",
+      "source_authority"
+    ]
+  },
+  "outcome": {
+    "outcome_status": "convicted",
+    "charges": [],
+    "case_numbers": [
+      "2024-MCSO-009"
+    ]
+  },
+  "artifact_claims": [
+    {
+      "claim_id": "claim_agency_ois_page_https_www_mcso_org_critical_incidents_2024_MCSO_009_bodycam_artifact_mentioned_only",
+      "artifact_type": "bodycam",
+      "claim_label": "artifact_mentioned_only",
+      "claim_source_id": "agency_ois::page::https_www_mcso_org_critical-incidents_2024-MCSO-009",
+      "claim_source_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+      "supporting_snippet": "The subject, Renee Example, was charged with multiple offenses and pleaded guilty in 2024 to case number 2024-MCSO-009. Body-worn camera (BWC) footage from the resp On 2024-09-22 Maricopa County Sheriff's Office deputies responded to a residence in unincorporated Maricopa County. The subject, Re",
+      "claim_confidence": 0.5,
+      "risk_flags": [],
+      "next_actions": []
+    }
+  ],
+  "verified_artifacts": [
+    {
+      "artifact_id": "agency_ois_agency_ois_media_https_www_mcso_org_critical_incidents_2024_mcso_009_0_1_critica",
+      "artifact_type": "bodycam",
+      "artifact_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+      "source_authority": "official",
+      "downloadable": true,
+      "format": "video",
+      "source_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+      "matched_case_fields": [
+        "agency"
+      ],
+      "confidence": 0.88,
+      "claim_source_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "agency_ois_video_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "agency_ois::media::https_www_mcso_org_critical-incidents_2024-MCSO-009::0",
+        "agency": "Maricopa County Sheriff's Office",
+        "case_number": "2024-MCSO-009",
+        "host_page_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+        "link_type_hint": "bodycam_briefing",
+        "media_or_document": "media"
+      }
+    }
+  ],
+  "result": {
+    "verdict": "PRODUCE",
+    "research_completeness_score": 76.0,
+    "production_actionability_score": 78.0,
+    "actionability_score": 77.3,
+    "component_scores": {
+      "identity": 20.0,
+      "outcome": 13.0,
+      "artifact_claims": 2.0,
+      "verified_media_artifacts": 30.0,
+      "verified_document_artifacts": 0.0,
+      "artifact_portfolio": 6.0,
+      "downstream_readiness": 9.0,
+      "research_documents": 14.0,
+      "source_quality_diversity": 9.0,
+      "gap_clarity": 8.0
+    },
+    "artifact_category_counts": {
+      "bodycam": 1
+    },
+    "reason_codes": [
+      "high_identity",
+      "sentenced_or_convicted",
+      "media_artifact_present",
+      "bodycam_present",
+      "production_score_threshold_met"
+    ],
+    "risk_flags": [
+      "identity_not_locked",
+      "no_verified_artifacts",
+      "conflicting_outcome_signals"
+    ],
+    "next_actions": [
+      "Find identity_source corroborating defendant, jurisdiction, and incident details.",
+      "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status."
+    ]
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 1,
+      "HOLD": 0,
+      "SKIP": 0
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 0,
+      "document_only_holds": 0,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 0,
+      "no_verified_media_blocks": 0
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {
+        "bodycam": 1
+      },
+      "media_only_cases": 1,
+      "document_only_cases": 0,
+      "no_artifact_cases": 0,
+      "multi_media_cases": 0,
+      "multi_artifact_premium_cases": 0
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 76.0,
+        "max": 76.0,
+        "mean": 76.0,
+        "median": 76.0,
+        "p90": 76.0
+      },
+      "production_actionability": {
+        "min": 78.0,
+        "max": 78.0,
+        "mean": 78.0,
+        "median": 78.0,
+        "p90": 78.0
+      },
+      "actionability": {
+        "min": 77.3,
+        "max": 77.3,
+        "mean": 77.3,
+        "median": 77.3,
+        "p90": 77.3
+      }
+    },
+    "risk_flag_counts": {
+      "conflicting_outcome_signals": 1,
+      "identity_not_locked": 1,
+      "no_verified_artifacts": 1
+    },
+    "reason_code_counts": {
+      "bodycam_present": 1,
+      "high_identity": 1,
+      "media_artifact_present": 1,
+      "production_score_threshold_met": 1,
+      "sentenced_or_convicted": 1
+    },
+    "input_type_breakdown": {
+      "manual": 1
+    },
+    "produce_eligible_inventory": [
+      {
+        "case_id": "manual_renee_example_az",
+        "production_actionability_score": 78.0,
+        "media_categories": [
+          "bodycam"
+        ],
+        "reason_codes": [
+          "high_identity",
+          "sentenced_or_convicted",
+          "media_artifact_present",
+          "bodycam_present",
+          "production_score_threshold_met"
+        ]
+      }
+    ],
+    "media_quality": {
+      "total_media_artifacts": 1,
+      "tier_counts": {
+        "A": 1,
+        "B": 0,
+        "C": 0,
+        "unknown": 0
+      },
+      "primary_source_media_count": 1,
+      "secondary_source_media_count": 0,
+      "weak_or_uncertain_media_count": 0,
+      "official_source_likelihood_counts": {
+        "high": 1,
+        "medium": 0,
+        "low": 0
+      },
+      "needs_manual_review_count": 0,
+      "media_risk_flags": {},
+      "media_reason_codes": {
+        "official_source_likely": 1,
+        "primary_production_media_terms": 1
+      },
+      "produce_media_basis_counts": {
+        "A": 1,
+        "B": 0,
+        "C": 0,
+        "unknown": 0,
+        "none": 0
+      },
+      "produce_cases": [
+        {
+          "case_id": "manual_renee_example_az",
+          "highest_media_relevance_tier": "A",
+          "media_relevance_tiers": [
+            "A"
+          ],
+          "weak_or_uncertain_media_only": false,
+          "needs_manual_review": false
+        }
+      ],
+      "warnings": [],
+      "top_media_artifacts": [
+        {
+          "case_id": "manual_renee_example_az",
+          "artifact_id": "agency_ois_agency_ois_media_https_www_mcso_org_critical_incidents_2024_mcso_009_0_1_critica",
+          "artifact_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+          "artifact_type": "bodycam",
+          "media_relevance_tier": "A",
+          "media_relevance_score": 0.96,
+          "primary_source_likelihood": 0.88,
+          "official_source_likelihood": 0.7,
+          "needs_manual_review": false,
+          "reason_codes": [
+            "primary_production_media_terms",
+            "official_source_likely"
+          ],
+          "risk_flags": [],
+          "mismatch_warnings": []
+        }
+      ]
+    }
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "PIPE3-cli-portal-replay",
+    "timestamp": "2026-05-03T17:09:32Z",
+    "case_id": "manual_renee_example_az",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 0
+    },
+    "wallclock_seconds": 0.0008,
+    "source_record_count": 2,
+    "verified_artifact_count": 1,
+    "media_artifact_count": 1,
+    "document_artifact_count": 0,
+    "estimated_cost_usd": 0.0,
+    "verdict": "PRODUCE",
+    "research_completeness_score": 76.0,
+    "production_actionability_score": 78.0,
+    "actionability_score": 77.3,
+    "notes": [
+      "portal-replay",
+      "profile=agency_ois_detail",
+      "fixture=tests/fixtures/agency_ois/incident_detail_sheriff_bodycam_video.json"
+    ]
+  },
+  "next_actions": [
+    "Find identity_source corroborating defendant, jurisdiction, and incident details.",
+    "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status."
+  ],
+  "risk_flags": [
+    "identity_not_locked",
+    "no_verified_artifacts",
+    "conflicting_outcome_signals"
+  ],
+  "handoffs": {
+    "p2_to_p3": [
+      {
+        "case_id": "manual_renee_example_az",
+        "case_title": "Renee Example",
+        "artifact_id": "agency_ois_agency_ois_media_https_www_mcso_org_critical_incidents_2024_mcso_009_0_1_critica",
+        "artifact_type": "bodycam",
+        "source_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+        "source_authority": "official",
+        "downloadable": true,
+        "format": "video",
+        "duration_sec": null,
+        "requires_manual_download": false,
+        "confidence": 0.88,
+        "matched_case_fields": [
+          "agency"
+        ]
+      }
+    ],
+    "p2_to_p4": {
+      "case_id": "manual_renee_example_az",
+      "case_identity": {
+        "defendant_names": [
+          "Renee Example"
+        ],
+        "victim_names": [],
+        "agency": "Maricopa County Sheriff's Office",
+        "jurisdiction": {
+          "city": null,
+          "county": "Maricopa County",
+          "state": "AZ"
+        },
+        "incident_date": "2024-09-22",
+        "case_numbers": [
+          "2024-MCSO-009"
+        ],
+        "charges": [],
+        "outcome_status": "convicted",
+        "identity_confidence": "high",
+        "identity_anchors": [
+          "full_name",
+          "county",
+          "incident_date",
+          "case_number",
+          "source_authority"
+        ]
+      },
+      "outcome_status": "convicted",
+      "charges": [],
+      "summary_sources": [
+        "https://www.mcso.org/critical-incidents/2024-MCSO-009"
+      ],
+      "artifact_refs": [
+        "agency_ois_agency_ois_media_https_www_mcso_org_critical_incidents_2024_mcso_009_0_1_critica"
+      ],
+      "known_gaps": [
+        "victim_names",
+        "agency",
+        "incident_date",
+        "case_numbers",
+        "charges",
+        "outcome_status"
+      ],
+      "source_quality_notes": [
+        "identity_not_locked",
+        "no_verified_artifacts",
+        "conflicting_outcome_signals"
+      ]
+    },
+    "p2_to_p5": {
+      "case_id": "manual_renee_example_az",
+      "verdict": "PRODUCE",
+      "case_summary": "Renee Example is a CaseGraph packet for Maricopa County, AZ.",
+      "artifact_table": [
+        {
+          "artifact_id": "agency_ois_agency_ois_media_https_www_mcso_org_critical_incidents_2024_mcso_009_0_1_critica",
+          "artifact_type": "bodycam",
+          "artifact_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+          "source_authority": "official",
+          "downloadable": true,
+          "format": "video",
+          "source_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+          "matched_case_fields": [
+            "agency"
+          ],
+          "confidence": 0.88,
+          "claim_source_url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+          "verification_method": "agency_ois_video_url",
+          "risk_flags": [],
+          "metadata": {
+            "source_id": "agency_ois::media::https_www_mcso_org_critical-incidents_2024-MCSO-009::0",
+            "agency": "Maricopa County Sheriff's Office",
+            "case_number": "2024-MCSO-009",
+            "host_page_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+            "link_type_hint": "bodycam_briefing",
+            "media_or_document": "media"
+          }
+        }
+      ],
+      "source_table": [
+        {
+          "source_id": "agency_ois::page::https_www_mcso_org_critical-incidents_2024-MCSO-009",
+          "url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+          "title": "Critical Incident Briefing 2024-MCSO-009",
+          "snippet": "On 2024-09-22 Maricopa County Sheriff's Office deputies responded to a residence in unincorporated Maricopa County. The subject, Renee Example, was charged with multiple offenses and pleaded guilty in 2024 to case number 2024-MCSO-009. Body-worn camera (BWC) footage from the resp",
+          "raw_text": "On 2024-09-22 Maricopa County Sheriff's Office deputies responded to a residence in unincorporated Maricopa County. The subject, Renee Example, was charged with multiple offenses and pleaded guilty in 2024 to case number 2024-MCSO-009. Body-worn camera (BWC) footage from the responding deputies is included in the briefing video below.",
+          "source_type": "incident_detail",
+          "source_authority": "official",
+          "source_roles": [
+            "identity_source",
+            "outcome_source"
+          ],
+          "api_name": "agency_ois",
+          "discovered_via": "agency_ois_fixture",
+          "retrieved_at": "2026-05-03T17:09:32Z",
+          "case_input_id": "Renee Example",
+          "metadata": {
+            "agency": "Maricopa County Sheriff's Office",
+            "case_number": "2024-MCSO-009",
+            "incident_date": "2024-09-22",
+            "subjects": [
+              "Renee Example"
+            ],
+            "outcome_text": "subject pleaded guilty 2024",
+            "fixture_kind": "agency_page"
+          },
+          "cost_estimate": 0.0,
+          "confidence_signals": {
+            "official_agency_page": true,
+            "subjects_named": true,
+            "outcome_text_present": true,
+            "claim_language_present": false
+          },
+          "matched_case_fields": [
+            "defendant_full_name",
+            "case_number",
+            "agency"
+          ]
+        },
+        {
+          "source_id": "agency_ois::media::https_www_mcso_org_critical-incidents_2024-MCSO-009::0",
+          "url": "https://www.mcso.org/critical-incidents/media/2024-MCSO-009-briefing.mp4",
+          "title": "Critical Incident Briefing video",
+          "snippet": "Critical Incident Briefing video",
+          "raw_text": "Critical Incident Briefing video",
+          "source_type": "agency_media:bodycam_briefing",
+          "source_authority": "official",
+          "source_roles": [
+            "possible_artifact_source"
+          ],
+          "api_name": "agency_ois",
+          "discovered_via": "agency_ois_fixture",
+          "retrieved_at": "2026-05-03T17:09:32Z",
+          "case_input_id": "Renee Example",
+          "metadata": {
+            "agency": "Maricopa County Sheriff's Office",
+            "case_number": "2024-MCSO-009",
+            "host_page_url": "https://www.mcso.org/critical-incidents/2024-MCSO-009",
+            "media_link_type": "bodycam_briefing",
+            "risk_flags": [],
+            "fixture_kind": "agency_media_link"
+          },
+          "cost_estimate": 0.0,
+          "confidence_signals": {
+            "official_host": true,
+            "concrete_url_present": true,
+            "looks_protected": false
+          },
+          "matched_case_fields": [
+            "agency"
+          ]
+        }
+      ],
+      "next_actions": [
+        "Find identity_source corroborating defendant, jurisdiction, and incident details.",
+        "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status."
+      ],
+      "risk_flags": [
+        "identity_not_locked",
+        "no_verified_artifacts",
+        "conflicting_outcome_signals"
+      ]
+    }
+  },
+  "portal_replay": {
+    "portal_profile_id": "agency_ois_detail",
+    "fixture_path": "tests/fixtures/agency_ois/incident_detail_sheriff_bodycam_video.json",
+    "source_records_count": 2,
+    "artifact_claims_count": 1,
+    "candidate_urls_count": 1,
+    "rejected_urls_count": 0,
+    "executor_status": "completed",
+    "executor_risk_flags": [],
+    "executor_next_actions": [
+      "Run metadata-only resolver on candidate public artifact URLs."
+    ],
+    "manifest_entry": {
+      "case_id": 38,
+      "manifest_path": "tests/fixtures/portal_replay/portal_replay_manifest.json"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "muckrock_184113_waterbury_captivity",
+  "source_evidence_type": "bodycam",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_184113_waterbury_captivity/media/_Clip_1.1__Redaction__2_Blake_St._Fire_2500017163_.mp4",
+  "transcript": [
+    {
+      "start_sec": 17.86,
+      "end_sec": 28.98,
+      "text": "Come over here, go down the road, come down, who else is in the house, who else is in",
+      "confidence": 0.753
+    },
+    {
+      "start_sec": 45.04,
+      "end_sec": 58.96,
+      "text": "the house, who else is in the house, who else is in the house, who else is in the house,",
+      "confidence": 0.483
+    }
+  ],
+  "silence_map": [],
+  "original_duration_sec": 89.005,
+  "processed_duration_sec": 89.005,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 36.6
+  },
+  "source_label": "waterbury_captivity_bwc1"
+}

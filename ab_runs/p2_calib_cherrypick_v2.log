@@ -1,0 +1,105 @@
+FlameOn AutoResearch Evaluation
+==================================================
+Cases: 38 | Time budget: 3600s
+Tiers: 15 ENOUGH, 5 BORDERLINE, 18 INSUFFICIENT
+
+  [1/38] Researching: Keonte Gathron... done (53.7s, 13 sources, medium confidence)
+  [2/38] Researching: Min Jian Guan... done (47.7s, 7 sources, medium confidence)
+  [3/38] Researching: Roger Dale Boshers... done (44.7s, 0 sources, low confidence)
+  [4/38] Researching: Kitt Crenshaw, Arthur Gerrans, James Cro... done (45.2s, 36 sources, low confidence)
+  [5/38] Researching: Christa Gail Pike, Tadaryl Shipp, Shadol... done (45.5s, 50 sources, high confidence)
+  [6/38] Researching: Manuel Marin, Roberto "Bam Bam" Isaac, A... done (47.8s, 45 sources, high confidence)
+  [7/38] Researching: Braulio Gonzalez... done (46.9s, 37 sources, high confidence)
+  [8/38] Researching: Armando Botell... done (48.2s, 8 sources, low confidence)
+  [9/38] Researching: Jorge Barahona... done (50.5s, 48 sources, high confidence)
+  [10/38] Researching: Julius Dwight Mozie... done (56.4s, 9 sources, medium confidence)
+  [11/38] Researching: Keivon McBride... done (47.6s, 8 sources, medium confidence)
+  [12/38] Researching: Steven Dexter Gangoo... done (47.9s, 5 sources, low confidence)
+  [13/38] Researching: Antonio Glass, Jerimaine Bryant, Curtis ... done (50.1s, 38 sources, low confidence)
+  [14/38] Researching: Carmen Barahona, Jorge Barahona... done (54.6s, 48 sources, high confidence)
+  [15/38] Researching: Dr. Prentiss Madden... done (46.6s, 16 sources, medium confidence)
+  [16/38] Researching: William D. Foster... done (47.6s, 46 sources, low confidence)
+  [17/38] Researching: Mariam Coulibaly... done (43.8s, 30 sources, medium confidence)
+  [18/38] Researching: Jeffrey Epstein, Ghislaine Maxwell, Sara... done (63.8s, 117 sources, high confidence)
+  [19/38] Researching: Michael Edwin Harding... done (35.7s, 28 sources, medium confidence)
+  [20/38] Researching: Jeffrey Epstein, Nadia Marcinkova, Sarah... done (50.4s, 107 sources, high confidence)
+  [21/38] Researching: Joseph Concialdi... done (46.6s, 15 sources, medium confidence)
+  [22/38] Researching: William James McElroy Jr.... done (44.7s, 22 sources, low confidence)
+  [23/38] Researching: Robert Hood... done (64.2s, 50 sources, high confidence)
+  [24/38] Researching: Miguel Antonio Mondaca... done (45.3s, 1 sources, low confidence)
+  [25/38] Researching: Louis Broadway-Phillips... done (47.7s, 2 sources, medium confidence)
+  [26/38] Researching: Kyle Matthew Thompson... done (49.2s, 16 sources, medium confidence)
+  [27/38] Researching: William Bracy, Murray Hooper, Ed McCall,... done (44.5s, 49 sources, medium confidence)
+  [28/38] Researching: Alan Matthew Champagne... done (35.8s, 36 sources, high confidence)
+  [29/38] Researching: Thomas Michael Riley... done (43.5s, 30 sources, high confidence)
+  [30/38] Researching: Angela D. McAnulty... done (35.4s, 27 sources, low confidence)
+  [31/38] Researching: Miguel Antonio Mondaca... done (44.7s, 3 sources, low confidence)
+  [32/38] Researching: Marvin G. Johnson... done (45.7s, 59 sources, low confidence)
+  [33/38] Researching: Letecia Stauch... done (44.2s, 67 sources, high confidence)
+  [34/38] Researching: Carla Marie Faith, Christina Swauger... done (43.5s, 37 sources, high confidence)
+  [35/38] Researching: Joshua Carrier... done (47.8s, 33 sources, high confidence)
+  [36/38] Researching: Katelynne Dianna Leigh Nelson, Carla Fai... done (45.9s, 15 sources, low confidence)
+  [37/38] Researching: Anthony Darrell Dugard Hines... done (45.0s, 15 sources, medium confidence)
+  [38/38] Researching: Ashley Traister, Brooke Shoemaker, Eliza... done (50.8s, 2 sources, low confidence)
+
+==================================================
+Scoring (38/38 cases researched, 1810.0s total)
+
+  Evidence Recall:    69.33 (x40%)
+  Source Discovery:   59.46 (x30%)
+  Precision:          52.89 (x20%)
+  Tier Accuracy:      67.11 (x10%)
+  ────────────────────────────────────────
+  RESEARCH SCORE:     62.86 / 100
+
+  ────────────────────────────────────────
+  EFFICIENCY REPORT
+  API calls:    MR=0 CL=0 Brave=0 YT=0 (free)
+  Est. cost:    $0.00
+  Score/call:   0.000
+  Score/$:      ∞ (free)
+  Time:         1810s (47.6s/case)
+
+==================================================
+Per-case breakdown:
+
+  Keonte Gathron                        [INSUFFICIENT] conf=medium sources=13  bod:N✓ int:N✓ cou:Y✗ doc:Y✗ dis:N✓
+  Min Jian Guan                         [ENOUGH      ] conf=medium sources=7   bod:N✗ int:N✗ cou:Y✓ doc:Y✓ dis:N✓
+  Roger Dale Boshers                    [INSUFFICIENT] conf=low    sources=0   bod:N✓ int:N✓ cou:N✓ doc:N✓ dis:N✓
+  Kitt Crenshaw, Arthur Gerrans, Jame   [INSUFFICIENT] conf=low    sources=36  bod:N✓ int:Y✗ cou:Y✗ doc:Y✓ dis:Y✗
+  Christa Gail Pike, Tadaryl Shipp, S   [ENOUGH      ] conf=high   sources=50  bod:N✗ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Manuel Marin, Roberto "Bam Bam" Isa   [ENOUGH      ] conf=high   sources=45  bod:Y✓ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Braulio Gonzalez                      [INSUFFICIENT] conf=high   sources=37  bod:Y✓ int:N✗ cou:Y✗ doc:Y✗ dis:Y✗
+  Armando Botell                        [INSUFFICIENT] conf=low    sources=8   bod:N✓ int:N✓ cou:N✓ doc:N✓ dis:N✓
+  Jorge Barahona                        [BORDERLINE  ] conf=high   sources=48  bod:Y✗ int:Y✓ cou:Y✗ doc:Y✓ dis:Y✗
+  Julius Dwight Mozie                   [INSUFFICIENT] conf=medium sources=9   bod:Y✗ int:N✓ cou:N✓ doc:Y✓ dis:N✓
+  Keivon McBride                        [INSUFFICIENT] conf=medium sources=8   bod:N✓ int:N✓ cou:N✓ doc:Y✓ dis:N✓
+  Steven Dexter Gangoo                  [INSUFFICIENT] conf=low    sources=5   bod:Y✗ int:N✓ cou:Y✗ doc:N✓ dis:N✓
+  Antonio Glass, Jerimaine Bryant, Cu   [INSUFFICIENT] conf=low    sources=38  bod:Y✗ int:N✓ cou:Y✗ doc:Y✗ dis:N✓
+  Carmen Barahona, Jorge Barahona       [INSUFFICIENT] conf=high   sources=48  bod:Y✗ int:Y✓ cou:Y✗ doc:Y✓ dis:N✓
+  Dr. Prentiss Madden                   [ENOUGH      ] conf=medium sources=16  bod:N✗ int:N✗ cou:Y✓ doc:Y✓ dis:N✓
+  William D. Foster                     [ENOUGH      ] conf=low    sources=46  bod:Y✓ int:N✗ cou:N✗ doc:Y✓ dis:N✗
+  Mariam Coulibaly                      [INSUFFICIENT] conf=medium sources=30  bod:N✓ int:N✓ cou:Y✓ doc:Y✗ dis:N✓
+  Jeffrey Epstein, Ghislaine Maxwell,   [ENOUGH      ] conf=high   sources=117 bod:Y✗ int:Y✓ cou:Y✓ doc:Y✓ dis:Y✗
+  Michael Edwin Harding                 [ENOUGH      ] conf=medium sources=28  bod:N✗ int:N✗ cou:Y✓ doc:Y✓ dis:N✓
+  Jeffrey Epstein, Nadia Marcinkova,    [ENOUGH      ] conf=high   sources=107 bod:Y✗ int:Y✓ cou:Y✓ doc:Y✓ dis:Y✗
+  Joseph Concialdi                      [BORDERLINE  ] conf=medium sources=15  bod:N✗ int:N✗ cou:Y✓ doc:Y✓ dis:N✓
+  William James McElroy Jr.             [ENOUGH      ] conf=low    sources=22  bod:Y✓ int:Y✓ cou:N✗ doc:Y✓ dis:N✓
+  Robert Hood                           [ENOUGH      ] conf=high   sources=50  bod:Y✗ int:Y✓ cou:Y✓ doc:Y✓ dis:Y✓
+  Miguel Antonio Mondaca                [INSUFFICIENT] conf=low    sources=1   bod:N✗ int:N✓ cou:N✓ doc:Y✓ dis:N✓
+  Louis Broadway-Phillips               [INSUFFICIENT] conf=medium sources=2   bod:N✗ int:N✓ cou:Y✗ doc:N✓ dis:N✓
+  Kyle Matthew Thompson                 [BORDERLINE  ] conf=medium sources=16  bod:N✗ int:N✗ cou:N✗ doc:Y✓ dis:N✗
+  William Bracy, Murray Hooper, Ed Mc   [INSUFFICIENT] conf=medium sources=49  bod:N✓ int:N✓ cou:Y✗ doc:Y✓ dis:N✓
+  Alan Matthew Champagne                [ENOUGH      ] conf=high   sources=36  bod:Y✓ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Thomas Michael Riley                  [BORDERLINE  ] conf=high   sources=30  bod:N✗ int:Y✓ cou:Y✓ doc:Y✓ dis:N✗
+  Angela D. McAnulty                    [ENOUGH      ] conf=low    sources=27  bod:N✓ int:N✗ cou:Y✓ doc:Y✓ dis:N✗
+  Miguel Antonio Mondaca                [INSUFFICIENT] conf=low    sources=3   bod:N✗ int:N✓ cou:N✓ doc:Y✗ dis:N✓
+  Marvin G. Johnson                     [ENOUGH      ] conf=low    sources=59  bod:Y✓ int:Y✓ cou:Y✓ doc:Y✓ dis:N✓
+  Letecia Stauch                        [ENOUGH      ] conf=high   sources=67  bod:Y✓ int:Y✓ cou:Y✓ doc:Y✓ dis:Y✓
+  Carla Marie Faith, Christina Swauge   [BORDERLINE  ] conf=high   sources=37  bod:Y✓ int:Y✗ cou:Y✗ doc:Y✓ dis:N✓
+  Joshua Carrier                        [INSUFFICIENT] conf=high   sources=33  bod:N✓ int:Y✗ cou:Y✗ doc:Y✗ dis:N✓
+  Katelynne Dianna Leigh Nelson, Carl   [INSUFFICIENT] conf=low    sources=15  bod:N✓ int:Y✗ cou:Y✗ doc:Y✓ dis:N✓
+  Anthony Darrell Dugard Hines          [ENOUGH      ] conf=medium sources=15  bod:N✓ int:N✗ cou:N✗ doc:Y✓ dis:N✓
+  Ashley Traister, Brooke Shoemaker,    [INSUFFICIENT] conf=low    sources=2   bod:N✗ int:Y✗ cou:N✗ doc:N✓ dis:N✓
+
+Logged experiment #34 → results.tsv

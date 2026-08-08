@@ -1,0 +1,100 @@
+{
+  "video_id": "7xboEsXt_a0",
+  "channel": "EXPLORE WITH US",
+  "title": "Cops Discover Bodies in Woman's Trunk During Traffic Stop",
+  "view_count": 40783286,
+  "duration_sec": 2982,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.015,
+        "description": "Cold open with officers reacting to a foul smell and discovering a disturbing object in the trunk."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.015,
+        "end_pct": 0.095,
+        "description": "Narrator establishes the routine traffic stop, fake tags, and initial interaction with Nicole and BB."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.095,
+        "end_pct": 0.175,
+        "description": "Backup arrives, officers investigate the putrid odor, and begin cutting through layers of trash bags in the trunk."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.175,
+        "end_pct": 0.2,
+        "description": "The suitcase is opened, revealing a decomposing child's body, leading to immediate arrests."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.2,
+        "end_pct": 0.3,
+        "description": "Officers struggle with visceral shock and trauma while securing the scene and transporting suspects."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.3,
+        "end_pct": 0.39,
+        "description": "Processing at the station, BB's confusion, and Nicole's isolated muttering and guilt."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.39,
+        "end_pct": 0.45,
+        "description": "Suspects are moved to interrogation rooms as the overwhelming odor forces the use of air scrubbers."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.45,
+        "end_pct": 0.65,
+        "description": "Detectives interview Nicole, uncovering a second child's remains and her initial admissions of abuse."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.65,
+        "end_pct": 0.85,
+        "description": "Detailed timeline of neglect, medical examiner findings, and contradictions in Nicole's story emerge."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.85,
+        "end_pct": 1.0,
+        "description": "Legal proceedings, guilty plea, sentencing, and family fallout conclude the case."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 3,
+    "emotional_peak": 4,
+    "procedural_violation": 0,
+    "reveal": 4,
+    "detail_noticed": 4,
+    "callback": 2,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.06,
+    "total_segments": 1447,
+    "bodycam_pct": 0.4,
+    "narration_pct": 0.2,
+    "interrogation_pct": 0.35,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration",
+    "documents"
+  ],
+  "_analysis_metadata": {
+    "model": "qwen/qwen3.6-plus:free",
+    "transcript_segments": 1447,
+    "transcript_preview": "That don't smell like dirty clothes. >> What do you mean? >> I'm about to show you been sitting there for months and months and months and months and months. >> You have to open that up all the way. What is that? >> Huh? >> What is that? >> No. Open. Pull it out. What the >> Get the push. >> What begins as a routine traffic stop takes a horrifying turn when officers detect a strange putrid smell coming from the vehicle. The search that follows uncovers a secret so disturbing it defies belief, leaving multiple officers visibly shaken, physically ill, and utterly enraged by one of the most ..."
+  }
+}

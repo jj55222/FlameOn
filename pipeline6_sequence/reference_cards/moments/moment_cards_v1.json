@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "card_set_id": "tcdr_moment_cards_v1",
+  "analysis_date": "2026-07-26",
+  "cards": [
+    {
+      "moment_type": "contradiction",
+      "strong_signals": [
+        "two claims that cannot both be true",
+        "conflicting language preserved verbatim",
+        "audience knows who is speaking and why it matters",
+        "objective evidence or questioning exposes the conflict"
+      ],
+      "weak_signals": [
+        "two statements merely concern the same subject",
+        "missing context creates the apparent inconsistency",
+        "the difference has no consequence",
+        "the edit has to explain why it is supposedly contradictory"
+      ],
+      "machine_checks": [
+        "two_claims_present",
+        "speaker_identified_both",
+        "verbatim_quotes_present",
+        "mutual_exclusivity_asserted_with_evidence"
+      ],
+      "disqualifiers": [
+        "single_claim_only",
+        "paraphrased_quote",
+        "topical_overlap_only"
+      ],
+      "notes": "The Winding Oak failure: handgun-vs-handgun statements were topical, not mutually exclusive."
+    },
+    {
+      "moment_type": "tactical_planning",
+      "strong_signals": [
+        "a decision is spoken",
+        "a danger or constraint is identified",
+        "responsibility is assigned",
+        "the plan changes what happens next"
+      ],
+      "weak_signals": [
+        "officers stand in formation",
+        "no clear decision is audible",
+        "nothing changes",
+        "an editorial label claims planning is happening"
+      ],
+      "machine_checks": [
+        "spoken_decision_present",
+        "outcome_changes_after",
+        "speaker_role_identified"
+      ],
+      "disqualifiers": [
+        "silent_formation",
+        "label_only_no_audio"
+      ],
+      "notes": "Kills the hallway-waiting dead-space failure."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "strong_signals": [
+        "genuine distress/fear/grief audible or visible on an identified person",
+        "the moment advances stakes"
+      ],
+      "weak_signals": [
+        "ambient noise mistaken for emotion",
+        "emotion with no stakes or context"
+      ],
+      "machine_checks": [
+        "identified_subject",
+        "audible_or_visible_affect"
+      ],
+      "disqualifiers": [
+        "unidentified_subject",
+        "no_stakes"
+      ],
+      "notes": ""
+    },
+    {
+      "moment_type": "rescue",
+      "strong_signals": [
+        "an at-risk person is aided on camera",
+        "the outcome of the aid is shown or stated"
+      ],
+      "weak_signals": [
+        "aftermath only",
+        "aid claimed but not shown"
+      ],
+      "machine_checks": [
+        "on_camera_aid",
+        "outcome_shown_or_stated"
+      ],
+      "disqualifiers": [
+        "aftermath_only"
+      ],
+      "notes": ""
+    },
+    {
+      "moment_type": "escalation",
+      "strong_signals": [
+        "a clear change from calm to force/threat",
+        "cause and effect visible"
+      ],
+      "weak_signals": [
+        "jump-cut implies escalation not present",
+        "escalation asserted by VO only"
+      ],
+      "machine_checks": [
+        "state_change_visible",
+        "cause_effect_present"
+      ],
+      "disqualifiers": [
+        "vo_only_assertion"
+      ],
+      "notes": ""
+    },
+    {
+      "moment_type": "witness_account",
+      "strong_signals": [
+        "identified witness describes a specific event the audience understands",
+        "account is anchored to the incident timeline"
+      ],
+      "weak_signals": [
+        "unidentified witness",
+        "account with no temporal/factual anchor to the incident"
+      ],
+      "machine_checks": [
+        "witness_identified",
+        "temporal_anchor_present"
+      ],
+      "disqualifiers": [
+        "unidentified_witness",
+        "floating_account"
+      ],
+      "notes": "Pairs with the 911_requires_temporal_relation veto."
+    },
+    {
+      "moment_type": "interrogation_admission",
+      "strong_signals": [
+        "a consequential statement made under questioning by an identified subject, verbatim",
+        "it bears on guilt/knowledge/intent"
+      ],
+      "weak_signals": [
+        "small talk",
+        "statement with no bearing on the case",
+        "paraphrased"
+      ],
+      "machine_checks": [
+        "identified_subject",
+        "verbatim",
+        "consequential_to_case"
+      ],
+      "disqualifiers": [
+        "paraphrased",
+        "irrelevant"
+      ],
+      "notes": ""
+    }
+  ]
+}

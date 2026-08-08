@@ -1,0 +1,28 @@
+{
+  "experiment_id": "LIVE8-media-yield-pilot-live-smoke",
+  "timestamp": "2026-05-01T00:10:44Z",
+  "case_id": "media_case_christa_gail_pike",
+  "api_calls": {
+    "brave": 0,
+    "firecrawl": 0,
+    "llm": 0,
+    "courtlistener": 0,
+    "muckrock": 0,
+    "documentcloud": 0,
+    "youtube": 1
+  },
+  "wallclock_seconds": 1.8847,
+  "source_record_count": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 5,
+  "document_artifact_count": 0,
+  "estimated_cost_usd": 0.0,
+  "verdict": "PRODUCE",
+  "research_completeness_score": 69.5,
+  "production_actionability_score": 89.0,
+  "actionability_score": 82.17,
+  "notes": [
+    "LIVE8",
+    "pilot=media_case_christa_gail_pike_pilot"
+  ]
+}

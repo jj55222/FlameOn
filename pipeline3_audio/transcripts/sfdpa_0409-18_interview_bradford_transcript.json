@@ -1,0 +1,4661 @@
+{
+  "case_id": "sfdpa_0409-18",
+  "source_evidence_type": "interrogation",
+  "source_url": "case_0409-18/0409-18 DPA Interview of Sergeant Bradford _4199 - Redacted.mp3",
+  "transcript": [
+    {
+      "start_sec": 1.0,
+      "end_sec": 11.54,
+      "text": "This interview is regarding DPA case number 0409-18 and is taking place at the Department of Police Accountability on July 5th, 2019 at 12.45pm.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 12.02,
+      "end_sec": 14.46,
+      "text": "Conducting this interview is Senior Investigator Christina Campany.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 14.84,
+      "end_sec": 19.6,
+      "text": "I work for the Department of Police Accountability and I have been designated by the Police Commission to conduct this investigation.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 20.22,
+      "end_sec": 26.04,
+      "text": "The member being interviewed is Sergeant Brent Bradford, star number 4199, who is a *** officer on this matter.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 26.04,
+      "end_sec": 29.96,
+      "text": "Mike Hinckley.",
+      "confidence": 0.712
+    },
+    {
+      "start_sec": 30.64,
+      "end_sec": 36.36,
+      "text": "This interview is regarding an incident that occurred on July 9, 2018 at approximately 12.30 a.m.",
+      "confidence": 0.712
+    },
+    {
+      "start_sec": 36.68,
+      "end_sec": 39.04,
+      "text": "The SFPD case number assigned is...",
+      "confidence": 0.712
+    },
+    {
+      "start_sec": 39.04,
+      "end_sec": 45.04,
+      "text": "The computer-aided dispatch, otherwise known as CAD associated with the incident, is number...",
+      "confidence": 0.712
+    },
+    {
+      "start_sec": 47.56,
+      "end_sec": 50.78,
+      "text": "...begins at 22, 53, and 41 seconds.",
+      "confidence": 0.712
+    },
+    {
+      "start_sec": 51.7,
+      "end_sec": 57.76,
+      "text": "And, Sergeant, have you read the Form 293 form and the allegation form and the letter from the...",
+      "confidence": 0.687
+    },
+    {
+      "start_sec": 57.76,
+      "end_sec": 58.86,
+      "text": "I have.",
+      "confidence": 0.687
+    },
+    {
+      "start_sec": 58.98,
+      "end_sec": 59.26,
+      "text": "Okay.",
+      "confidence": 0.687
+    },
+    {
+      "start_sec": 75.2,
+      "end_sec": 75.6,
+      "text": "Okay.",
+      "confidence": 0.687
+    },
+    {
+      "start_sec": 75.6,
+      "end_sec": 81.06,
+      "text": "And also, I noticed that you did sign the administrative interview advisements along with your",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 81.06,
+      "end_sec": 83.0,
+      "text": "and that will be kept in the file.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 83.78,
+      "end_sec": 87.38,
+      "text": "And with all of these advisements in mind, is there any reason you cannot go forward?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 87.7,
+      "end_sec": 88.16,
+      "text": "No reason.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 88.38,
+      "end_sec": 89.3,
+      "text": "Okay, excellent.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 90.16,
+      "end_sec": 92.48,
+      "text": "What have you reviewed in preparation for this interview?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 92.88,
+      "end_sec": 96.22,
+      "text": "I reviewed body-worn camera footage and the incident record.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 96.64,
+      "end_sec": 98.38,
+      "text": "And whose body-worn camera footage?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 98.68,
+      "end_sec": 101.06,
+      "text": "Myself and a couple of other officers involved.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 101.62,
+      "end_sec": 103.0,
+      "text": "Just kind of skimmed through it.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 103.0,
+      "end_sec": 106.2,
+      "text": "Did you review Officer Nicholas Sherry's body-worn camera video?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 108.64,
+      "end_sec": 113.4,
+      "text": "Nick's I saw some time ago, I believe the morning after the incident.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 114.0,
+      "end_sec": 114.28,
+      "text": "Okay.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 115.14,
+      "end_sec": 117.56,
+      "text": "But you did not review his specifically for this interview?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 117.58,
+      "end_sec": 118.12,
+      "text": "No, specifically.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 119.36,
+      "end_sec": 123.22,
+      "text": "Did you review any DGOs, DBs, or manuals in preparation?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 123.82,
+      "end_sec": 125.92,
+      "text": "Just more than over 5.01 briefly.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 126.14,
+      "end_sec": 126.36,
+      "text": "Okay.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 127.82,
+      "end_sec": 131.34,
+      "text": "And are you currently on any medication that could impair your memory?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 131.58,
+      "end_sec": 131.84,
+      "text": "No.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 131.84,
+      "end_sec": 132.32,
+      "text": "Okay.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 133.0,
+      "end_sec": 136.3,
+      "text": "And did you speak with anyone about this interview other than your ******?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 136.74,
+      "end_sec": 137.06,
+      "text": "No.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 137.4,
+      "end_sec": 137.6,
+      "text": "Okay.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 138.1,
+      "end_sec": 141.28,
+      "text": "And have you been interviewed by anyone else regarding this case?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 141.44,
+      "end_sec": 141.74,
+      "text": "No.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 142.56,
+      "end_sec": 143.0,
+      "text": "Okay.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 144.6,
+      "end_sec": 147.1,
+      "text": "So how long have you been a police officer?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 147.22,
+      "end_sec": 149.68,
+      "text": "Our records say ****** 2002.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 149.92,
+      "end_sec": 150.26,
+      "text": "Correct.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 150.48,
+      "end_sec": 150.84,
+      "text": "All right.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 151.26,
+      "end_sec": 152.46,
+      "text": "And you're a Q52?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 152.82,
+      "end_sec": 153.12,
+      "text": "I am.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 153.12,
+      "end_sec": 155.92,
+      "text": "Did you have law enforcement experience prior to joining SFPD?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 156.24,
+      "end_sec": 156.44,
+      "text": "No.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 157.04,
+      "end_sec": 158.12,
+      "text": "Any military experience?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 158.38,
+      "end_sec": 158.6,
+      "text": "Yes.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 158.84,
+      "end_sec": 159.62,
+      "text": "And what branch?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 159.76,
+      "end_sec": 159.96,
+      "text": "Army.",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 160.7,
+      "end_sec": 162.06,
+      "text": "And how long were you in the Army?",
+      "confidence": 0.743
+    },
+    {
+      "start_sec": 162.42,
+      "end_sec": 163.14,
+      "text": "Ten years.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 163.62,
+      "end_sec": 163.86,
+      "text": "Okay.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 164.12,
+      "end_sec": 165.04,
+      "text": "And what was your specialty?",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 165.5,
+      "end_sec": 167.36,
+      "text": "Special Forces Communications Sergeant.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 167.6,
+      "end_sec": 171.39,
+      "text": "And thank you for your service.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 171.51,
+      "end_sec": 171.83,
+      "text": "Thank you.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 172.53,
+      "end_sec": 176.75,
+      "text": "And you did attend the regular basic course at the SF Police Academy?",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 176.93,
+      "end_sec": 177.27,
+      "text": "I did.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 177.67,
+      "end_sec": 178.83,
+      "text": "And this was post-certified?",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 179.01,
+      "end_sec": 179.33,
+      "text": "Yes.",
+      "confidence": 0.786
+    },
+    {
+      "start_sec": 194.77,
+      "end_sec": 224.75,
+      "text": "Thank you.",
+      "confidence": 0.483
+    },
+    {
+      "start_sec": 224.77,
+      "end_sec": 254.75,
+      "text": "Thank you.",
+      "confidence": 0.564
+    },
+    {
+      "start_sec": 254.77,
+      "end_sec": 284.75,
+      "text": "Thank you.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 284.77,
+      "end_sec": 301.45,
+      "text": "All right.",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 302.07,
+      "end_sec": 303.59,
+      "text": "And are you CIT trained?",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 303.75,
+      "end_sec": 304.07,
+      "text": "I am.",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 304.29,
+      "end_sec": 304.47,
+      "text": "Okay.",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 305.27,
+      "end_sec": 307.01,
+      "text": "And when were you promoted to sergeant?",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 308.99,
+      "end_sec": 310.51,
+      "text": "November 2017.",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 311.13,
+      "end_sec": 311.47,
+      "text": "Okay.",
+      "confidence": 0.624
+    },
+    {
+      "start_sec": 311.47,
+      "end_sec": 316.07,
+      "text": "And did you need to take additional training when you were promoted?",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 317.97,
+      "end_sec": 319.73,
+      "text": "We did two weeks of training.",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 320.61,
+      "end_sec": 324.27,
+      "text": "I think if it was anything, I guess there was some additional training, yeah.",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 324.51,
+      "end_sec": 328.31,
+      "text": "Okay, is it like a formalized, are you sent anywhere, or what does it look like?",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 328.31,
+      "end_sec": 335.83,
+      "text": "There's two weeks at the academy, and then you're required to do another two-week class outside of the academy for California Post.",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 335.83,
+      "end_sec": 341.59,
+      "text": "Ah, and so is the two weeks at the academy, is that what's called sergeant school at MIRD?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 341.77,
+      "end_sec": 341.99,
+      "text": "Yes.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 342.49,
+      "end_sec": 348.61,
+      "text": "And then the two weeks post-training, what would that have to do with leadership, that type of thing?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 348.79,
+      "end_sec": 351.39,
+      "text": "A lot of classroom lecture of leadership, yes.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 351.69,
+      "end_sec": 352.33,
+      "text": "Yeah, okay.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 353.77,
+      "end_sec": 355.29,
+      "text": "Basically everything you learned in the military?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 355.69,
+      "end_sec": 355.95,
+      "text": "Yes.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 361.41,
+      "end_sec": 364.77,
+      "text": "I was going to make a joke and say, but dumbed down.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 364.77,
+      "end_sec": 366.63,
+      "text": "I don't know about it.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 367.35,
+      "end_sec": 368.99,
+      "text": "It's the same thing but with longer lunches.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 370.59,
+      "end_sec": 373.43,
+      "text": "Full disclosure, my husband was career military.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 373.97,
+      "end_sec": 376.53,
+      "text": "I know about the training.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 376.79,
+      "end_sec": 379.67,
+      "text": "I wish I had had such good leadership training, quite frankly.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 380.51,
+      "end_sec": 383.29,
+      "text": "All right, so getting back to your sergeant training.",
+      "confidence": 0.741
+    },
+    {
+      "start_sec": 394.77,
+      "end_sec": 424.75,
+      "text": "Thank you.",
+      "confidence": 0.517
+    },
+    {
+      "start_sec": 424.77,
+      "end_sec": 454.75,
+      "text": "Thank you.",
+      "confidence": 0.455
+    },
+    {
+      "start_sec": 454.77,
+      "end_sec": 455.27,
+      "text": "you",
+      "confidence": 0.484
+    },
+    {
+      "start_sec": 484.77,
+      "end_sec": 485.27,
+      "text": "you",
+      "confidence": 0.478
+    },
+    {
+      "start_sec": 514.77,
+      "end_sec": 520.45,
+      "text": "Gagada",
+      "confidence": 0.009
+    },
+    {
+      "start_sec": 544.77,
+      "end_sec": 574.75,
+      "text": "Thank you.",
+      "confidence": 0.533
+    },
+    {
+      "start_sec": 574.77,
+      "end_sec": 578.91,
+      "text": "Mash What theし",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 578.91,
+      "end_sec": 579.49,
+      "text": "retienned",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 579.49,
+      "end_sec": 581.83,
+      "text": "Mash",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 581.83,
+      "end_sec": 584.01,
+      "text": "Fundetized",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 584.01,
+      "end_sec": 590.33,
+      "text": "Worm",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 590.33,
+      "end_sec": 593.69,
+      "text": "��",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 593.69,
+      "end_sec": 598.31,
+      "text": "Hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 598.31,
+      "end_sec": 600.01,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 600.01,
+      "end_sec": 602.23,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 602.23,
+      "end_sec": 602.31,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 602.31,
+      "end_sec": 602.49,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 602.49,
+      "end_sec": 602.69,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 602.69,
+      "end_sec": 603.09,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 603.09,
+      "end_sec": 604.75,
+      "text": "hay",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 604.75,
+      "end_sec": 634.73,
+      "text": "Thank you.",
+      "confidence": 0.53
+    },
+    {
+      "start_sec": 634.75,
+      "end_sec": 636.75,
+      "text": "You",
+      "confidence": 0.398
+    },
+    {
+      "start_sec": 664.75,
+      "end_sec": 684.27,
+      "text": "Please visit us at our site www.able targeting.pro하는데.",
+      "confidence": 0.016
+    },
+    {
+      "start_sec": 684.27,
+      "end_sec": 692.61,
+      "text": "Good evening at half.",
+      "confidence": 0.016
+    },
+    {
+      "start_sec": 692.61,
+      "end_sec": 722.59,
+      "text": "Thank you.",
+      "confidence": 0.767
+    },
+    {
+      "start_sec": 722.61,
+      "end_sec": 752.59,
+      "text": "Thank you.",
+      "confidence": 0.524
+    },
+    {
+      "start_sec": 752.61,
+      "end_sec": 754.61,
+      "text": "You",
+      "confidence": 0.388
+    },
+    {
+      "start_sec": 782.61,
+      "end_sec": 783.47,
+      "text": "Thank you.",
+      "confidence": 0.241
+    },
+    {
+      "start_sec": 812.61,
+      "end_sec": 842.59,
+      "text": "Thank you.",
+      "confidence": 0.571
+    },
+    {
+      "start_sec": 842.61,
+      "end_sec": 872.59,
+      "text": "Thank you.",
+      "confidence": 0.51
+    },
+    {
+      "start_sec": 872.61,
+      "end_sec": 873.11,
+      "text": "you",
+      "confidence": 0.399
+    },
+    {
+      "start_sec": 902.61,
+      "end_sec": 932.59,
+      "text": "Thank you.",
+      "confidence": 0.526
+    },
+    {
+      "start_sec": 932.61,
+      "end_sec": 962.59,
+      "text": "Thank you.",
+      "confidence": 0.514
+    },
+    {
+      "start_sec": 962.61,
+      "end_sec": 963.61,
+      "text": "'s",
+      "confidence": 0.052
+    },
+    {
+      "start_sec": 992.61,
+      "end_sec": 994.33,
+      "text": "you",
+      "confidence": 0.116
+    },
+    {
+      "start_sec": 1023.05,
+      "end_sec": 1023.97,
+      "text": "I'm a superstar in Charlotte.",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1024.21,
+      "end_sec": 1026.19,
+      "text": "I'm a superstar in a future world.",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1026.79,
+      "end_sec": 1027.27,
+      "text": "I'm a superstar in her best friend,",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1027.39,
+      "end_sec": 1029.11,
+      "text": "in a Hong Kong,",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1029.65,
+      "end_sec": 1031.85,
+      "text": "who has a very strong and copper",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1033.05,
+      "end_sec": 1036.25,
+      "text": "to bring it to simmer in late at the beginning.",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1041.37,
+      "end_sec": 1044.17,
+      "text": "Also,",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1046.37,
+      "end_sec": 1049.23,
+      "text": "I've seen that highly successful",
+      "confidence": 0.022
+    },
+    {
+      "start_sec": 1049.23,
+      "end_sec": 1079.21,
+      "text": "Thank you.",
+      "confidence": 0.752
+    },
+    {
+      "start_sec": 1079.23,
+      "end_sec": 1109.877,
+      "text": "Thank you",
+      "confidence": 0.633
+    },
+    {
+      "start_sec": 1109.897,
+      "end_sec": 1139.877,
+      "text": "Thank you.",
+      "confidence": 0.676
+    },
+    {
+      "start_sec": 1139.897,
+      "end_sec": 1169.877,
+      "text": "Thank you.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 1169.897,
+      "end_sec": 1199.877,
+      "text": "Thank you.",
+      "confidence": 0.61
+    },
+    {
+      "start_sec": 1199.897,
+      "end_sec": 1229.877,
+      "text": "Thank you.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 1229.897,
+      "end_sec": 1259.877,
+      "text": "Thank you.",
+      "confidence": 0.615
+    },
+    {
+      "start_sec": 1259.897,
+      "end_sec": 1289.877,
+      "text": "Thank you.",
+      "confidence": 0.599
+    },
+    {
+      "start_sec": 1289.897,
+      "end_sec": 1319.877,
+      "text": "Thank you.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 1319.897,
+      "end_sec": 1349.877,
+      "text": "Thank you.",
+      "confidence": 0.614
+    },
+    {
+      "start_sec": 1349.897,
+      "end_sec": 1379.877,
+      "text": "Thank you.",
+      "confidence": 0.587
+    },
+    {
+      "start_sec": 1379.897,
+      "end_sec": 1409.877,
+      "text": "Thank you.",
+      "confidence": 0.746
+    },
+    {
+      "start_sec": 1409.897,
+      "end_sec": 1424.637,
+      "text": "They look very similar to me on the cover, though.",
+      "confidence": 0.739
+    },
+    {
+      "start_sec": 1424.637,
+      "end_sec": 1430.297,
+      "text": "They do, but then one of them has pictures, and the other doesn't really.",
+      "confidence": 0.739
+    },
+    {
+      "start_sec": 1430.497,
+      "end_sec": 1430.857,
+      "text": "Okay.",
+      "confidence": 0.739
+    },
+    {
+      "start_sec": 1431.097,
+      "end_sec": 1433.217,
+      "text": "So, it is what it is.",
+      "confidence": 0.739
+    },
+    {
+      "start_sec": 1433.297,
+      "end_sec": 1433.537,
+      "text": "Right.",
+      "confidence": 0.739
+    },
+    {
+      "start_sec": 1433.537,
+      "end_sec": 1440.497,
+      "text": "Okay. All right. So we're sort of clear on the materials that we'll be referring to during the interview.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1442.377,
+      "end_sec": 1451.937,
+      "text": "Oh, actually, there's one more. And that is, oh, are you familiar with Department General Order 8.03?",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1452.337,
+      "end_sec": 1453.217,
+      "text": "Mm-hmm. Yes.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1453.217,
+      "end_sec": 1460.417,
+      "text": "And this is a Department Bulletin, or I'm sorry, a General Order about cloud control. All right.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1460.857,
+      "end_sec": 1462.557,
+      "text": "So are you currently assigned to Central?",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1462.777,
+      "end_sec": 1463.057,
+      "text": "Yes.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 1463.537,
+      "end_sec": 1466.777,
+      "text": "And you were assigned to Central on the date of the incident, right?",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1466.877,
+      "end_sec": 1467.217,
+      "text": "Correct.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1467.557,
+      "end_sec": 1467.877,
+      "text": "Okay.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1468.497,
+      "end_sec": 1475.017,
+      "text": "And as previously stated, the incident we'll be discussing today occurred during the evening of July 8th and 9th, 2018,",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1475.277,
+      "end_sec": 1480.737,
+      "text": "when SFPD arrested members of the Occupy ICE protest on Washington Street between Sansom and Battery.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1481.437,
+      "end_sec": 1485.057,
+      "text": "So my questions will be referring to that time frame unless I say otherwise.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1485.877,
+      "end_sec": 1489.757,
+      "text": "If you don't know or remember an answer to a question, just say I don't know or I don't recall.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1489.837,
+      "end_sec": 1491.157,
+      "text": "I don't want you to guess or speculate.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 1491.157,
+      "end_sec": 1495.757,
+      "text": "If I ask you a question and you answer, I'm going to assume you understood the meaning of my question.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1495.957,
+      "end_sec": 1497.557,
+      "text": "So if you don't, just ask me to clarify.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1500.737,
+      "end_sec": 1502.477,
+      "text": "So you were on duty that evening?",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1502.957,
+      "end_sec": 1503.237,
+      "text": "Correct.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1503.497,
+      "end_sec": 1503.777,
+      "text": "Okay.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1503.857,
+      "end_sec": 1505.417,
+      "text": "And do you recall your unit designation?",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1506.857,
+      "end_sec": 1507.717,
+      "text": "Adam 94.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1508.137,
+      "end_sec": 1508.377,
+      "text": "Okay.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1508.877,
+      "end_sec": 1513.457,
+      "text": "And did you know going into your shift that evening that you would be part of this operation?",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1513.837,
+      "end_sec": 1514.137,
+      "text": "Yes.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1516.477,
+      "end_sec": 1517.157,
+      "text": "All right.",
+      "confidence": 0.792
+    },
+    {
+      "start_sec": 1517.157,
+      "end_sec": 1522.377,
+      "text": "And when did you first become aware of these Occupy ICE protesters?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1523.077,
+      "end_sec": 1524.757,
+      "text": "I believe the night it started.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1525.197,
+      "end_sec": 1528.337,
+      "text": "I came on midnight shift and heard that there was a protest",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1528.337,
+      "end_sec": 1530.977,
+      "text": "and there were still some tents down on Washington.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1531.597,
+      "end_sec": 1534.177,
+      "text": "So you're talking way back when it began, like July 2nd?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1534.177,
+      "end_sec": 1534.937,
+      "text": "The 2nd, I believe.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1535.497,
+      "end_sec": 1538.937,
+      "text": "And in fact, you were involved in admonishing the group throughout the week?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1539.037,
+      "end_sec": 1539.277,
+      "text": "Correct.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1539.277,
+      "end_sec": 1539.757,
+      "text": "Okay.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1540.337,
+      "end_sec": 1544.437,
+      "text": "And what was the admonishment, do you recall?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 1544.437,
+      "end_sec": 1550.697,
+      "text": "Not an exact quote, but along the lines of San Francisco Police Department,",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1550.837,
+      "end_sec": 1553.037,
+      "text": "identify myself, Sergeant Bradford, San Francisco Police Department,",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1553.497,
+      "end_sec": 1558.537,
+      "text": "violation of 647E, illegal lodging, penal code, you're subject to arrest, citation, or both.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1559.117,
+      "end_sec": 1560.017,
+      "text": "And were they receptive?",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1560.537,
+      "end_sec": 1561.997,
+      "text": "I wouldn't use the word receptive.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1563.637,
+      "end_sec": 1566.177,
+      "text": "You heard responses, but nothing I'm going to repeat.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1567.137,
+      "end_sec": 1567.437,
+      "text": "Right.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1569.517,
+      "end_sec": 1570.377,
+      "text": "Lower left.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1570.817,
+      "end_sec": 1571.637,
+      "text": "Okay, thank you.",
+      "confidence": 0.775
+    },
+    {
+      "start_sec": 1571.637,
+      "end_sec": 1579.477,
+      "text": "So on July 8th and 9th, you know, around midnight, is when the mass arrest occurred.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1579.937,
+      "end_sec": 1583.837,
+      "text": "So what made SFPD do it that night as opposed to any of the other nights?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1583.897,
+      "end_sec": 1584.297,
+      "text": "Do you know?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1584.457,
+      "end_sec": 1585.037,
+      "text": "Did anything happen?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1585.037,
+      "end_sec": 1585.937,
+      "text": "That's above my pay grade.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1586.057,
+      "end_sec": 1586.297,
+      "text": "Yeah.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1586.857,
+      "end_sec": 1588.197,
+      "text": "Seems to be the stock answer.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1589.077,
+      "end_sec": 1589.337,
+      "text": "Okay.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1590.477,
+      "end_sec": 1593.017,
+      "text": "So you don't know what prompted that particular night.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1595.257,
+      "end_sec": 1596.657,
+      "text": "It's like the money, though, right?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1596.737,
+      "end_sec": 1597.037,
+      "text": "Yeah.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1597.037,
+      "end_sec": 1598.377,
+      "text": "There was no money.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1598.597,
+      "end_sec": 1599.837,
+      "text": "That was my normal night on.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1601.637,
+      "end_sec": 1604.697,
+      "text": "And I understand there were two briefings.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1604.937,
+      "end_sec": 1606.477,
+      "text": "Did you attend one of those briefings?",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1606.577,
+      "end_sec": 1606.817,
+      "text": "Yes.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1606.937,
+      "end_sec": 1608.097,
+      "text": "And did you attend the one at Central?",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1608.337,
+      "end_sec": 1608.657,
+      "text": "Yes.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1609.217,
+      "end_sec": 1609.677,
+      "text": "All right.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1610.177,
+      "end_sec": 1616.057,
+      "text": "And if you could just briefly give an overview, who gave the briefings, who was at the briefing,",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1616.337,
+      "end_sec": 1620.937,
+      "text": "what was the substance, and was there any PowerPoint or whiteboard demonstrations?",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1621.137,
+      "end_sec": 1622.077,
+      "text": "How was it conducted?",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1622.077,
+      "end_sec": 1625.397,
+      "text": "It was in the garage of Central Station.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1625.937,
+      "end_sec": 1631.497,
+      "text": "Because Central is a very small station, the idea of a PowerPoint is not going to happen.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1631.637,
+      "end_sec": 1634.637,
+      "text": "So it was basically a verbal briefing.",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1635.797,
+      "end_sec": 1640.097,
+      "text": "I connected part of it with Lieutenant Frost, connected part of it,",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1640.517,
+      "end_sec": 1645.437,
+      "text": "and we kind of gave the officers a general concept of what was happening",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1645.437,
+      "end_sec": 1652.937,
+      "text": "and just a briefing of our mission, our job, and what we had encountered.",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1652.937,
+      "end_sec": 1656.697,
+      "text": "Because a lot of these people from outside of districts, so they didn't know there was an Occupy Ice.",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1656.757,
+      "end_sec": 1658.277,
+      "text": "Some of them didn't know, so we had to kind of tell them.",
+      "confidence": 0.8
+    },
+    {
+      "start_sec": 1658.277,
+      "end_sec": 1661.557,
+      "text": "and some of the information we're getting about that",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1661.557,
+      "end_sec": 1664.137,
+      "text": "and some information that might be of officer safety nature.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1664.317,
+      "end_sec": 1665.557,
+      "text": "So we told people about that as well.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1665.937,
+      "end_sec": 1667.957,
+      "text": "So you were one of the leaders at the briefing?",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1668.437,
+      "end_sec": 1669.517,
+      "text": "I guess so, yes.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1669.637,
+      "end_sec": 1669.957,
+      "text": "Okay.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1670.397,
+      "end_sec": 1672.737,
+      "text": "And so what did you do to prep yourself for that briefing?",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1672.877,
+      "end_sec": 1676.197,
+      "text": "Was there a smaller briefing that was with higher ranking?",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1677.197,
+      "end_sec": 1681.517,
+      "text": "Myself as a lieutenant went over just manpower, squad size,",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1681.837,
+      "end_sec": 1683.337,
+      "text": "and responsibilities and coordination.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1683.637,
+      "end_sec": 1683.897,
+      "text": "Okay.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 1683.897,
+      "end_sec": 1688.897,
+      "text": "and you mentioned that the mission was discussed",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1688.897,
+      "end_sec": 1689.777,
+      "text": "what was the mission?",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1690.377,
+      "end_sec": 1693.817,
+      "text": "our particular mission was just to make sure no one left Washington Street",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1693.817,
+      "end_sec": 1697.497,
+      "text": "once we had arrived on scene",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1697.497,
+      "end_sec": 1699.277,
+      "text": "make sure no one left Washington",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1699.277,
+      "end_sec": 1702.617,
+      "text": "because of the week long of admonishments",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1702.617,
+      "end_sec": 1706.477,
+      "text": "everyone was aware that they were in violation of the law",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1706.477,
+      "end_sec": 1709.477,
+      "text": "so our particular piece of it",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1709.477,
+      "end_sec": 1711.757,
+      "text": "would basically hold Washington Street",
+      "confidence": 0.841
+    },
+    {
+      "start_sec": 1711.757,
+      "end_sec": 1717.837,
+      "text": "and the other side would maneuver to effect an arrest for those remaining inside.",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 1718.337,
+      "end_sec": 1718.697,
+      "text": "All right.",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 1719.337,
+      "end_sec": 1728.757,
+      "text": "And did you provide the officers with any intelligence that had been gathered from these occupiers?",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 1728.757,
+      "end_sec": 1731.597,
+      "text": "Yeah, just based upon what we could see from the street level.",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 1732.277,
+      "end_sec": 1737.237,
+      "text": "You had what appeared to be some barbed wire, some safety, some tripping hazards.",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 1737.237,
+      "end_sec": 1742.237,
+      "text": "There was intelligence that they had made statements to the fire department that they were not going to leave,",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1742.297,
+      "end_sec": 1744.257,
+      "text": "and they had projectiles and things.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1744.537,
+      "end_sec": 1748.937,
+      "text": "So we got, you know, there's definitely some concerns that were brought up.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1748.977,
+      "end_sec": 1750.157,
+      "text": "It wasn't just a crowd.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1750.297,
+      "end_sec": 1752.437,
+      "text": "It was a crowd that had been there for a while, kind of fortified.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1753.057,
+      "end_sec": 1757.677,
+      "text": "And, again, the barbed wire and stuff, and a lot of unknowns, you know, inside there.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1758.037,
+      "end_sec": 1762.777,
+      "text": "And then we also had the threat about projectiles based upon what they said to do, a fire department member.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 1762.777,
+      "end_sec": 1769.617,
+      "text": "And was there any intelligence or were you aware whether or not this crowd was hostile towards police?",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1769.997,
+      "end_sec": 1773.997,
+      "text": "Based on my interaction with them, I would say they're less than happy with the police.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1775.257,
+      "end_sec": 1779.777,
+      "text": "There are a lot of fuck yous and flip-offs when we drive by.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1780.037,
+      "end_sec": 1788.017,
+      "text": "You know, we drive by there constantly just because it was a somewhat big thing in the district at that point.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1788.017,
+      "end_sec": 1790.457,
+      "text": "So every time you drive by, you get some middle fingers.",
+      "confidence": 0.852
+    },
+    {
+      "start_sec": 1792.777,
+      "end_sec": 1793.677,
+      "text": "All right.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1794.037,
+      "end_sec": 1795.117,
+      "text": "Not so friendly words.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1796.937,
+      "end_sec": 1803.457,
+      "text": "So during the briefing, was using force touched upon with the officers,",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1803.557,
+      "end_sec": 1806.077,
+      "text": "whether or not they could use force, under what conditions?",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1806.857,
+      "end_sec": 1811.897,
+      "text": "You know, basically we've given the mission of make sure Washington is closed,",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1811.897,
+      "end_sec": 1816.197,
+      "text": "and we've got to make sure no one wants to be able to.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1816.817,
+      "end_sec": 1820.737,
+      "text": "Once that line is made across Washington, no one's leaving.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 1821.357,
+      "end_sec": 1826.677,
+      "text": "So verbally tell them if you can, but if it's based upon the time that they're leaving",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1826.677,
+      "end_sec": 1829.917,
+      "text": "or if they're running out of you or something like that, if that's not an option,",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1830.037,
+      "end_sec": 1832.617,
+      "text": "you obviously have a right to defend yourself and to use force.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1833.097,
+      "end_sec": 1833.377,
+      "text": "Okay.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1835.517,
+      "end_sec": 1842.417,
+      "text": "All right, so I'm going to show you, and I don't know if this is a PowerPoint or what,",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1842.417,
+      "end_sec": 1845.277,
+      "text": "but slipping through it, do you recognize this document?",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1845.477,
+      "end_sec": 1850.697,
+      "text": "And the title is basically SFPD and the event is Occupy ICE Protests.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 1850.737,
+      "end_sec": 1852.757,
+      "text": "Right. That's from the tactical and the spec team.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1852.917,
+      "end_sec": 1854.557,
+      "text": "So you did not see this beforehand?",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1855.137,
+      "end_sec": 1863.097,
+      "text": "I don't remember seeing that, no, because I was briefing with guys at Central while TAC and specs did their brief at TAC.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1863.637,
+      "end_sec": 1870.597,
+      "text": "So I turned to the execution page, and it says here regarding an SOG means special operations group.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1871.177,
+      "end_sec": 1876.357,
+      "text": "Okay. So the SOG squads were going to conduct an encirclement around the protesters.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1877.357,
+      "end_sec": 1879.957,
+      "text": "You had a SOG, you call it SOG?",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 1879.957,
+      "end_sec": 1881.757,
+      "text": "Special Operation Group, yeah, SOG.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1881.917,
+      "end_sec": 1882.177,
+      "text": "Oh, SOG.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1882.177,
+      "end_sec": 1883.077,
+      "text": "We say SOG.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1883.177,
+      "end_sec": 1887.157,
+      "text": "Okay, so the SOG platoon had a skirmish line at Washington and Battery,",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1887.457,
+      "end_sec": 1890.977,
+      "text": "and the station platoon had the skirmish line at Washington and Sansom.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1891.257,
+      "end_sec": 1893.857,
+      "text": "And so were you in charge of the station platoon?",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1894.037,
+      "end_sec": 1894.277,
+      "text": "Correct.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1894.397,
+      "end_sec": 1894.597,
+      "text": "Okay.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1895.497,
+      "end_sec": 1898.217,
+      "text": "All right, so you didn't see this.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1898.297,
+      "end_sec": 1900.997,
+      "text": "I really won't go through it then.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1902.517,
+      "end_sec": 1903.437,
+      "text": "Let's see.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1905.337,
+      "end_sec": 1906.637,
+      "text": "Oh, another thing.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1906.637,
+      "end_sec": 1909.317,
+      "text": "So there was something called an executive summary.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 1909.317,
+      "end_sec": 1911.957,
+      "text": "These are just records that I obtained during the course of discovery.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1912.857,
+      "end_sec": 1915.037,
+      "text": "But this looks like a list.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1915.257,
+      "end_sec": 1919.597,
+      "text": "It's sort of titled the SFPD Tactical Company Specialist Teams,",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1919.717,
+      "end_sec": 1922.877,
+      "text": "but then it also goes into other teams.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1923.157,
+      "end_sec": 1924.257,
+      "text": "Did you see this?",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1924.877,
+      "end_sec": 1925.997,
+      "text": "Not in that format.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1926.157,
+      "end_sec": 1928.457,
+      "text": "I knew the station personnel, but I never saw.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1929.157,
+      "end_sec": 1929.677,
+      "text": "Excuse me.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1929.977,
+      "end_sec": 1930.657,
+      "text": "Oh, this format.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1930.677,
+      "end_sec": 1931.637,
+      "text": "I printed out version of it.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1931.777,
+      "end_sec": 1932.057,
+      "text": "Okay.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1932.237,
+      "end_sec": 1935.177,
+      "text": "And my only question, so we have Officer Sherry here.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 1935.177,
+      "end_sec": 1940.137,
+      "text": "So this seems to be the patrol.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1941.097,
+      "end_sec": 1941.917,
+      "text": "What is it?",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1942.037,
+      "end_sec": 1942.677,
+      "text": "It's not the patrol.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1942.777,
+      "end_sec": 1943.297,
+      "text": "Station platoon.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1943.357,
+      "end_sec": 1944.057,
+      "text": "Station platoon.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1944.177,
+      "end_sec": 1944.577,
+      "text": "Thank you.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1944.977,
+      "end_sec": 1946.577,
+      "text": "So were you in charge of all of these?",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1946.657,
+      "end_sec": 1949.837,
+      "text": "I was assigned to Adam 94.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1950.637,
+      "end_sec": 1951.217,
+      "text": "Company A?",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1951.597,
+      "end_sec": 1952.077,
+      "text": "Correct.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1953.037,
+      "end_sec": 1960.077,
+      "text": "But I knew I was kind of overall running it as well just based on experience with stuff.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1960.197,
+      "end_sec": 1960.457,
+      "text": "Sure.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1960.457,
+      "end_sec": 1964.457,
+      "text": "And also because it was in my district that I'd be riding it as well.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1964.577,
+      "end_sec": 1964.857,
+      "text": "Okay.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 1964.857,
+      "end_sec": 1965.437,
+      "text": "I got it.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1965.757,
+      "end_sec": 1970.457,
+      "text": "Because there were many more than six officers in that line, right?",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1970.777,
+      "end_sec": 1972.437,
+      "text": "There were more.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1972.777,
+      "end_sec": 1975.737,
+      "text": "Well, yeah, so that line is built upon multiple squads.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1975.857,
+      "end_sec": 1976.757,
+      "text": "Okay, got it.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1980.277,
+      "end_sec": 1984.677,
+      "text": "All right, and so I just did an aerial map,",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1984.677,
+      "end_sec": 1988.177,
+      "text": "and I don't know if it's going to be helpful or not.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1988.737,
+      "end_sec": 1990.977,
+      "text": "If you ride on it, of course, I'd ask you to sign.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1991.397,
+      "end_sec": 1993.417,
+      "text": "So we're looking at Washington Street.",
+      "confidence": 0.82
+    },
+    {
+      "start_sec": 1993.417,
+      "end_sec": 1996.437,
+      "text": "You've got Battery on one side, Sansom on the other.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 1997.177,
+      "end_sec": 2002.577,
+      "text": "And so my understanding is that you had the TAC and specialist guys coming in on Battery Street,",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2002.977,
+      "end_sec": 2008.817,
+      "text": "pushing the occupiers, corralling them, really, to an area towards Sansom,",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2008.917,
+      "end_sec": 2010.317,
+      "text": "and that's when the arrests happened.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2010.437,
+      "end_sec": 2011.497,
+      "text": "They would take them away.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2011.677,
+      "end_sec": 2011.877,
+      "text": "Correct.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2012.157,
+      "end_sec": 2014.717,
+      "text": "And so your job, correct me if I'm wrong,",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2015.157,
+      "end_sec": 2020.717,
+      "text": "is you were heading up a line of officers to run across Washington Street on Sansom",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 2020.717,
+      "end_sec": 2024.337,
+      "text": "and create a skirmish line whereas nobody could leave.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2024.457,
+      "end_sec": 2024.697,
+      "text": "Correct.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2024.957,
+      "end_sec": 2025.197,
+      "text": "Okay.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2031.437,
+      "end_sec": 2035.157,
+      "text": "Okay, other than not allowing anybody to leave,",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2035.357,
+      "end_sec": 2039.357,
+      "text": "were there any other goals or purpose for that skirmish line?",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2039.777,
+      "end_sec": 2042.337,
+      "text": "Trying to give intelligence updates.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2042.337,
+      "end_sec": 2045.857,
+      "text": "So we saw something that they couldn't see because of the amount of debris.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2046.197,
+      "end_sec": 2048.497,
+      "text": "And the lighting wasn't great there at nighttime anyway,",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2048.657,
+      "end_sec": 2050.097,
+      "text": "but the amount of debris and stuff there.",
+      "confidence": 0.807
+    },
+    {
+      "start_sec": 2050.717,
+      "end_sec": 2055.717,
+      "text": "If we have objects there that they can't see, that we see, they'd alert to me,",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2055.797,
+      "end_sec": 2059.037,
+      "text": "and I'd broadcast it or just take note of it.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2059.277,
+      "end_sec": 2060.557,
+      "text": "So you were eyes on?",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2061.157,
+      "end_sec": 2065.577,
+      "text": "The officers were the eyes on, and they were just trying to give us intelligence or updates",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2065.577,
+      "end_sec": 2068.717,
+      "text": "so that if we were to see anything, we could alert the attack and spec squads.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2069.057,
+      "end_sec": 2069.477,
+      "text": "All right.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2071.917,
+      "end_sec": 2076.837,
+      "text": "And during the briefing regarding the formulation of this skirmish line,",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 2076.837,
+      "end_sec": 2085.737,
+      "text": "how critical was it for that line the head of the line to get to the other building line i mean",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 2085.737,
+      "end_sec": 2093.177,
+      "text": "vital it was vital and very much so so if we we had given them a demonstrators right so they know",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 2093.177,
+      "end_sec": 2098.337,
+      "text": "that they're arrested within it or one of my biggest fears is always with any practical issue",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 2098.337,
+      "end_sec": 2103.097,
+      "text": "you have a large contingency that pours out well our objective is to get to that line as soon as",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 2103.097,
+      "end_sec": 2107.137,
+      "text": "possible. Now if you have a large objective here, now you just multiply your problems because you",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2107.137,
+      "end_sec": 2111.137,
+      "text": "have a crowd in here. You also have these folks that ran away that",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2111.137,
+      "end_sec": 2114.577,
+      "text": "start throwing stuff and be the outliers, if you will.",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2115.137,
+      "end_sec": 2119.257,
+      "text": "So we are always very critical of getting to that building line as soon as possible",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2119.257,
+      "end_sec": 2122.377,
+      "text": "to prevent any...it just makes the whole thing easier",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2122.377,
+      "end_sec": 2127.157,
+      "text": "so we don't have to deal with two different entities. Right, and I understand that.",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2127.157,
+      "end_sec": 2131.437,
+      "text": "And so with that in mind, was use of force",
+      "confidence": 0.878
+    },
+    {
+      "start_sec": 2131.437,
+      "end_sec": 2135.017,
+      "text": "authorized to get that skirmish line to the building line?",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2135.577,
+      "end_sec": 2138.917,
+      "text": "It was put out that we need to get that line as soon as possible.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2140.137,
+      "end_sec": 2143.297,
+      "text": "As we're coming across, if they're running away, we don't chase them.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2143.397,
+      "end_sec": 2145.697,
+      "text": "They let them leave, but we need to get that skirmish line.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2146.157,
+      "end_sec": 2149.657,
+      "text": "We need to get to that building line, if you will, as soon as possible.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2149.997,
+      "end_sec": 2150.397,
+      "text": "All right.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2150.817,
+      "end_sec": 2155.037,
+      "text": "Was the idea of the whole operation to surprise these occupiers?",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2155.777,
+      "end_sec": 2159.037,
+      "text": "I don't say surprise in the fact that because they have been given",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 2159.037,
+      "end_sec": 2160.157,
+      "text": "in the moshmish for a week.",
+      "confidence": 0.746
+    },
+    {
+      "start_sec": 2160.937,
+      "end_sec": 2172.064,
+      "text": "But at the same time again because of how the complexity can grow if we are to go slow and kind of nonchalant about it",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 2172.504,
+      "end_sec": 2179.724,
+      "text": "we do want to, once it's time for it to kick off, we go fairly fast just because it makes everything smoother.",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 2180.284,
+      "end_sec": 2186.544,
+      "text": "It's safer for us to get it where we're not just walking down the street in a big Congo line of people",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 2186.544,
+      "end_sec": 2191.764,
+      "text": "where projectiles would come at us, so we kind of try to use somewhat of a quick movement.",
+      "confidence": 0.881
+    },
+    {
+      "start_sec": 2192.084,
+      "end_sec": 2193.084,
+      "text": "Mm-hmm. Okay.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2197.264,
+      "end_sec": 2199.904,
+      "text": "Did you have an on-scene supervisor at all?",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2201.264,
+      "end_sec": 2206.684,
+      "text": "Lieutenant Frost was in the area, so I guess there's always, you've always got a supervisor, I guess.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2206.724,
+      "end_sec": 2208.204,
+      "text": "Right, but you had your mission.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2208.364,
+      "end_sec": 2208.644,
+      "text": "I did.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2208.804,
+      "end_sec": 2209.144,
+      "text": "Okay.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2209.224,
+      "end_sec": 2209.364,
+      "text": "Right.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2210.244,
+      "end_sec": 2212.684,
+      "text": "All right, and you were wearing your full uniform.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2213.044,
+      "end_sec": 2213.384,
+      "text": "Correct.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2213.764,
+      "end_sec": 2215.664,
+      "text": "And you were equipped with a body-worn camera.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2215.864,
+      "end_sec": 2216.184,
+      "text": "Correct.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2216.324,
+      "end_sec": 2217.724,
+      "text": "And you activated that camera.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2217.904,
+      "end_sec": 2218.244,
+      "text": "Correct.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2218.244,
+      "end_sec": 2218.644,
+      "text": "Okay.",
+      "confidence": 0.745
+    },
+    {
+      "start_sec": 2218.644,
+      "end_sec": 2231.984,
+      "text": "Okay. All right. So I'm going to go ahead and I'll show Officer Sherry's body worn video footage, just, you know, a few seconds of it during his use of force.",
+      "confidence": 0.873
+    },
+    {
+      "start_sec": 2231.984,
+      "end_sec": 2238.244,
+      "text": "If you want, I've got yours as well, but I think Officer Sherry shows it the best.",
+      "confidence": 0.873
+    },
+    {
+      "start_sec": 2239.084,
+      "end_sec": 2245.444,
+      "text": "If you want me to actually, I want to show it once and then I want to show it on slow motion once and then we'll discuss.",
+      "confidence": 0.873
+    },
+    {
+      "start_sec": 2245.444,
+      "end_sec": 2245.884,
+      "text": "Okay?",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2248.444,
+      "end_sec": 2249.684,
+      "text": "At least.",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2253.284,
+      "end_sec": 2257.144,
+      "text": "And I think we're just going to start it from the get-go.",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2263.664,
+      "end_sec": 2264.924,
+      "text": "What the heck?",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2269.744,
+      "end_sec": 2271.284,
+      "text": "I practiced it.",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2271.864,
+      "end_sec": 2272.624,
+      "text": "Hold on.",
+      "confidence": 0.619
+    },
+    {
+      "start_sec": 2275.444,
+      "end_sec": 2288.163,
+      "text": "It's in your office right across the hall.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2288.803,
+      "end_sec": 2289.523,
+      "text": "It is.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2290.803,
+      "end_sec": 2292.903,
+      "text": "I don't know what she does, but she knows what she does.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2292.903,
+      "end_sec": 2293.383,
+      "text": "It's up.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2293.463,
+      "end_sec": 2294.003,
+      "text": "I'm sorry.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2294.303,
+      "end_sec": 2295.263,
+      "text": "Oh, it's already up.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2295.343,
+      "end_sec": 2295.743,
+      "text": "It's up.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2295.863,
+      "end_sec": 2296.063,
+      "text": "Okay.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2296.583,
+      "end_sec": 2297.703,
+      "text": "So, all right.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2297.763,
+      "end_sec": 2303.043,
+      "text": "So I'll be referring, if I need to use a time stamp, I think this is the GMT time stamp.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2303.323,
+      "end_sec": 2303.863,
+      "text": "Yeah, Zulotime.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2303.863,
+      "end_sec": 2304.663,
+      "text": "What is it?",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2304.843,
+      "end_sec": 2305.343,
+      "text": "Zulotime.",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2305.923,
+      "end_sec": 2307.263,
+      "text": "Z-U-L-U?",
+      "confidence": 0.722
+    },
+    {
+      "start_sec": 2307.263,
+      "end_sec": 2309.523,
+      "text": "Yeah, Zulu or GMT is kind of the same thing.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2309.723,
+      "end_sec": 2310.983,
+      "text": "Zulu is a military time.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2311.163,
+      "end_sec": 2314.883,
+      "text": "It's one that's international, one time in the world.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2315.143,
+      "end_sec": 2316.263,
+      "text": "So everyone is on the same.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2317.063,
+      "end_sec": 2317.703,
+      "text": "Got it.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2317.803,
+      "end_sec": 2318.743,
+      "text": "Okay, thank you.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2319.623,
+      "end_sec": 2320.043,
+      "text": "All right.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2321.203,
+      "end_sec": 2323.603,
+      "text": "So here you guys are rolling up to the scene.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2323.823,
+      "end_sec": 2327.983,
+      "text": "And realistically, I mean, the occupiers probably saw all these police cars, right?",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2328.043,
+      "end_sec": 2328.923,
+      "text": "Because there were several.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2329.303,
+      "end_sec": 2333.963,
+      "text": "These, at times, will have little, as you call them, scouts on the perimeter.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2334.983,
+      "end_sec": 2335.323,
+      "text": "Yeah.",
+      "confidence": 0.808
+    },
+    {
+      "start_sec": 2337.263,
+      "end_sec": 2368.779,
+      "text": "Is that you in the footage?",
+      "confidence": 0.683
+    },
+    {
+      "start_sec": 2369.019,
+      "end_sec": 2369.259,
+      "text": "Yes.",
+      "confidence": 0.683
+    },
+    {
+      "start_sec": 2369.259,
+      "end_sec": 2369.659,
+      "text": "Okay.",
+      "confidence": 0.683
+    },
+    {
+      "start_sec": 2381.168,
+      "end_sec": 2383.368,
+      "text": "Sounds like they got an idea in there.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 2383.368,
+      "end_sec": 2384.368,
+      "text": "Mm-hmm.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 2388.368,
+      "end_sec": 2402.528,
+      "text": "All right.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 2402.888,
+      "end_sec": 2406.708,
+      "text": "And now I'm going to mute it and just watch it in slow-mo.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 2411.168,
+      "end_sec": 2445.793,
+      "text": "Significantly more dramatic.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 2446.533,
+      "end_sec": 2477.88,
+      "text": "All right, I'll go ahead and stop it at 073737 seconds.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 2479.36,
+      "end_sec": 2480.32,
+      "text": "All right.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 2481.0,
+      "end_sec": 2486.08,
+      "text": "So did you notice that man in the blue prior to Officer Cherry striking him?",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 2486.08,
+      "end_sec": 2489.84,
+      "text": "I saw him as we were approaching",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2489.84,
+      "end_sec": 2491.78,
+      "text": "and",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2491.78,
+      "end_sec": 2493.8,
+      "text": "did you think to yourself",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2493.8,
+      "end_sec": 2495.74,
+      "text": "that man's gotta go",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2495.74,
+      "end_sec": 2496.34,
+      "text": "he's",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2496.34,
+      "end_sec": 2497.78,
+      "text": "you know",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2497.78,
+      "end_sec": 2500.1,
+      "text": "he's gotta be moved immediately",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2500.1,
+      "end_sec": 2503.84,
+      "text": "my objective was",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2503.84,
+      "end_sec": 2505.82,
+      "text": "we need to get to that building line ASAP",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2505.82,
+      "end_sec": 2507.8,
+      "text": "the way it looks like he was",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2507.8,
+      "end_sec": 2509.88,
+      "text": "kind of right in the way there",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2509.88,
+      "end_sec": 2511.86,
+      "text": "and they obviously could see us there",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2511.86,
+      "end_sec": 2512.66,
+      "text": "and I think he was",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2512.66,
+      "end_sec": 2515.8,
+      "text": "standing just kind of nonchalant about us",
+      "confidence": 0.858
+    },
+    {
+      "start_sec": 2515.8,
+      "end_sec": 2519.0,
+      "text": "25 cops running up",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2519.0,
+      "end_sec": 2520.96,
+      "text": "Did you",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2520.96,
+      "end_sec": 2523.02,
+      "text": "I know it must have been split second",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2523.02,
+      "end_sec": 2523.96,
+      "text": "Did you notice",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2523.96,
+      "end_sec": 2525.94,
+      "text": "Whether",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2525.94,
+      "end_sec": 2529.56,
+      "text": "I mean did you think he was an occupier",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2529.56,
+      "end_sec": 2533.46,
+      "text": "Part of that group",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2533.46,
+      "end_sec": 2535.22,
+      "text": "At that time of night I would have to think",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2535.22,
+      "end_sec": 2537.02,
+      "text": "He's part of their group",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2537.02,
+      "end_sec": 2537.48,
+      "text": "Yes",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2537.48,
+      "end_sec": 2542.54,
+      "text": "And so",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2542.54,
+      "end_sec": 2546.898,
+      "text": "Why",
+      "confidence": 0.766
+    },
+    {
+      "start_sec": 2546.898,
+      "end_sec": 2549.558,
+      "text": "Why was it important that he got out of the way?",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2550.378,
+      "end_sec": 2553.498,
+      "text": "Like I was saying earlier, we have to get building line to building line.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2554.958,
+      "end_sec": 2560.698,
+      "text": "And the direct line where he's at is in that corner of that building line where we're trying to get to.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2561.238,
+      "end_sec": 2561.618,
+      "text": "Okay.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2562.338,
+      "end_sec": 2564.158,
+      "text": "Was he inside the perimeter?",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2566.298,
+      "end_sec": 2567.898,
+      "text": "At that point, we didn't have a perimeter.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2567.898,
+      "end_sec": 2572.218,
+      "text": "That's what Officer Sherry needs to get there so we can establish a perimeter.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2572.378,
+      "end_sec": 2574.678,
+      "text": "Otherwise, we don't have one.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2575.178,
+      "end_sec": 2575.218,
+      "text": "Right.",
+      "confidence": 0.814
+    },
+    {
+      "start_sec": 2575.218,
+      "end_sec": 2581.878,
+      "text": "Okay. And so was the perimeter, if you know, was it going to be like the corner of the building there?",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 2582.918,
+      "end_sec": 2587.418,
+      "text": "The intent was, yeah, building line to building line is always what we get after.",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 2587.738,
+      "end_sec": 2593.278,
+      "text": "So as much as we can from corner to corner of the firehouse to whatever the highest building.",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 2593.718,
+      "end_sec": 2594.058,
+      "text": "Okay.",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 2594.058,
+      "end_sec": 2600.438,
+      "text": "I just asked that when you're answering, just to like, because there's like two sets of things that happen.",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 2600.438,
+      "end_sec": 2606.398,
+      "text": "You watch this real slow and fast, everything right now, so you can make an assessment based on this.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2606.838,
+      "end_sec": 2614.438,
+      "text": "But then there was also, when it happened, what you saw and what you understood was happening about this then.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2615.138,
+      "end_sec": 2618.838,
+      "text": "I'm guessing they're not the same thing, but they could be.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2619.278,
+      "end_sec": 2623.258,
+      "text": "But just to be cognizant of that when you're answering her questions.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2623.298,
+      "end_sec": 2623.498,
+      "text": "Sure.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2624.498,
+      "end_sec": 2626.978,
+      "text": "And my questions are at the time, too.",
+      "confidence": 0.783
+    },
+    {
+      "start_sec": 2626.978,
+      "end_sec": 2632.038,
+      "text": "at the time, and hopefully this will refresh your recollection and bring you back there.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2632.278,
+      "end_sec": 2632.438,
+      "text": "Yeah.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2632.578,
+      "end_sec": 2635.858,
+      "text": "So did you order Officer Sherry to use the force on that man?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2636.398,
+      "end_sec": 2637.478,
+      "text": "I didn't order him, no.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2637.478,
+      "end_sec": 2641.758,
+      "text": "And did you, in fact, see him strike him?",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2642.998,
+      "end_sec": 2645.138,
+      "text": "I saw an impact.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2645.558,
+      "end_sec": 2647.978,
+      "text": "I wasn't looking at Officer Sherry when this happened.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2648.198,
+      "end_sec": 2649.098,
+      "text": "I'm looking back.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2649.178,
+      "end_sec": 2651.438,
+      "text": "I'm making sure we have all of our personnel there.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2652.818,
+      "end_sec": 2655.298,
+      "text": "My job is, you know, overall kind of control.",
+      "confidence": 0.817
+    },
+    {
+      "start_sec": 2655.998,
+      "end_sec": 2658.178,
+      "text": "So I gave Officer Sherry my instruction.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2658.338,
+      "end_sec": 2659.338,
+      "text": "We need to get to that bill in line.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2659.638,
+      "end_sec": 2659.838,
+      "text": "Yeah.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2659.938,
+      "end_sec": 2663.518,
+      "text": "And, you know, I believe he did what we asked him to do.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2663.798,
+      "end_sec": 2664.058,
+      "text": "Okay.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2665.478,
+      "end_sec": 2670.478,
+      "text": "Did you see Officer Sherry, well, first there was the strike,",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2670.478,
+      "end_sec": 2675.978,
+      "text": "and then did you see him push the man with his baton afterwards?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2676.738,
+      "end_sec": 2678.958,
+      "text": "You asked me on this tape right now, did I see this?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2679.038,
+      "end_sec": 2679.238,
+      "text": "Yes.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2679.318,
+      "end_sec": 2680.538,
+      "text": "Did you see it at the time?",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2680.698,
+      "end_sec": 2680.918,
+      "text": "No.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2681.178,
+      "end_sec": 2681.878,
+      "text": "No, you did not.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2681.998,
+      "end_sec": 2682.178,
+      "text": "Okay.",
+      "confidence": 0.802
+    },
+    {
+      "start_sec": 2685.298,
+      "end_sec": 2690.758,
+      "text": "And do you know who was yelling orders to clear the area?",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2691.818,
+      "end_sec": 2691.978,
+      "text": "Were you?",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2691.978,
+      "end_sec": 2693.618,
+      "text": "We all were at different times.",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2693.778,
+      "end_sec": 2695.178,
+      "text": "We were given instructions, yes.",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2695.398,
+      "end_sec": 2695.698,
+      "text": "Okay.",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2697.278,
+      "end_sec": 2705.279,
+      "text": "And it appears just from the video, and I don't know if you thought about this at the time,",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2705.279,
+      "end_sec": 2712.239,
+      "text": "do you think that the amount of time you gave that man to move was sufficient for him to do so?",
+      "confidence": 0.849
+    },
+    {
+      "start_sec": 2712.979,
+      "end_sec": 2720.259,
+      "text": "Well, I mean, if you look at it, the officers were there just before we came down the street and gave a dispersal order.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2720.999,
+      "end_sec": 2721.999,
+      "text": "And I think that was reasonable.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2722.139,
+      "end_sec": 2726.879,
+      "text": "And we told them, you know, you're subject to arrest on this block if you don't leave the area.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2726.979,
+      "end_sec": 2729.319,
+      "text": "There was an admonishment right before we came in.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2729.479,
+      "end_sec": 2730.599,
+      "text": "Over the bullhorn, you mean?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2730.659,
+      "end_sec": 2730.979,
+      "text": "Correct.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2731.099,
+      "end_sec": 2732.239,
+      "text": "And do you know who gave that one?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2732.339,
+      "end_sec": 2732.959,
+      "text": "Was that Chan?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2733.039,
+      "end_sec": 2734.179,
+      "text": "Yeah, it was Sergeant Chan.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2734.619,
+      "end_sec": 2735.239,
+      "text": "Sergeant Chan?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2735.279,
+      "end_sec": 2735.459,
+      "text": "Yeah.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2735.939,
+      "end_sec": 2738.519,
+      "text": "And was he, which end was he on, though?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2738.639,
+      "end_sec": 2739.459,
+      "text": "Battery or sandpaper?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2739.459,
+      "end_sec": 2740.079,
+      "text": "He was on battery.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2740.399,
+      "end_sec": 2740.759,
+      "text": "Battery.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 2740.759,
+      "end_sec": 2743.539,
+      "text": "Did you hear that from where you were?",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2743.699,
+      "end_sec": 2745.019,
+      "text": "We were staged up on Broadway.",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2745.799,
+      "end_sec": 2748.299,
+      "text": "Okay, so how do you know that that was given?",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2748.839,
+      "end_sec": 2751.879,
+      "text": "That was part of our plan, that he was given an admonishment.",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2752.279,
+      "end_sec": 2754.059,
+      "text": "Okay, all right.",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2754.919,
+      "end_sec": 2760.019,
+      "text": "And if you know, where was that man supposed to go?",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2760.019,
+      "end_sec": 2765.939,
+      "text": "If he did the right thing to avoid getting hit, what do you envision that would have been?",
+      "confidence": 0.806
+    },
+    {
+      "start_sec": 2765.939,
+      "end_sec": 2771.319,
+      "text": "If he continued past the firehouse, I would say south on Samson.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2772.459,
+      "end_sec": 2774.999,
+      "text": "Or, yeah, I think south would probably be the more appropriate.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2775.359,
+      "end_sec": 2781.279,
+      "text": "If you saw 20-something cops coming down from northbound, he'd probably southbound.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2781.359,
+      "end_sec": 2781.739,
+      "text": "It'd probably be good.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2782.379,
+      "end_sec": 2782.599,
+      "text": "Okay.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2783.819,
+      "end_sec": 2785.959,
+      "text": "And did he appear to understand the orders?",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2786.779,
+      "end_sec": 2789.119,
+      "text": "He made eye contact with us as we were approaching him.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2790.119,
+      "end_sec": 2790.599,
+      "text": "Mm-hmm.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2792.319,
+      "end_sec": 2794.019,
+      "text": "Do you know if he had a weapon?",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2794.479,
+      "end_sec": 2795.399,
+      "text": "I don't know.",
+      "confidence": 0.789
+    },
+    {
+      "start_sec": 2795.939,
+      "end_sec": 2801.299,
+      "text": "It appears in the video that he had his hands in his pockets.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2801.479,
+      "end_sec": 2803.899,
+      "text": "Did you realize he had his hands in his pockets?",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2804.239,
+      "end_sec": 2806.119,
+      "text": "Again, I wasn't staring at him.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2806.279,
+      "end_sec": 2809.959,
+      "text": "I was kind of let it up and then kind of backed off a little bit.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2810.459,
+      "end_sec": 2811.999,
+      "text": "I was looking around the area.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2812.179,
+      "end_sec": 2814.799,
+      "text": "I don't remember saying specifically his actions.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2814.799,
+      "end_sec": 2815.279,
+      "text": "Okay.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2816.959,
+      "end_sec": 2821.219,
+      "text": "And, you know, you may have already answered this by just saying what you said,",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 2821.219,
+      "end_sec": 2826.979,
+      "text": "but did you think that he was aggressive towards you or anybody else?",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2828.319,
+      "end_sec": 2833.079,
+      "text": "I would say, based on our statements of telling people to leave the area,",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2833.859,
+      "end_sec": 2835.819,
+      "text": "I would say he was noncompliant.",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2837.019,
+      "end_sec": 2838.759,
+      "text": "He was noncompliant with the orders?",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2838.919,
+      "end_sec": 2839.139,
+      "text": "Yeah.",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2839.439,
+      "end_sec": 2841.879,
+      "text": "And in your opinion, he had enough time to comply?",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2842.279,
+      "end_sec": 2843.039,
+      "text": "I believe so.",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2843.319,
+      "end_sec": 2843.679,
+      "text": "Okay.",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2845.419,
+      "end_sec": 2848.719,
+      "text": "The other gentlemen that are with him did.",
+      "confidence": 0.803
+    },
+    {
+      "start_sec": 2848.719,
+      "end_sec": 2852.259,
+      "text": "and they're yelling out as we're approaching that the cops are coming",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2852.259,
+      "end_sec": 2854.299,
+      "text": "and he kind of stands there.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2854.859,
+      "end_sec": 2858.579,
+      "text": "Everyone else is leaving the area and then he stands there.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2859.779,
+      "end_sec": 2862.779,
+      "text": "Do you recall seeing him look confused?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2863.199,
+      "end_sec": 2863.699,
+      "text": "I don't recall.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2863.979,
+      "end_sec": 2864.319,
+      "text": "Okay.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2866.519,
+      "end_sec": 2869.259,
+      "text": "Did he appear under the influence of drugs or alcohol?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2869.679,
+      "end_sec": 2870.299,
+      "text": "I don't know.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2871.219,
+      "end_sec": 2871.639,
+      "text": "All right.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2871.999,
+      "end_sec": 2876.119,
+      "text": "And so doing what he did, how would you describe that level of resistance?",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2877.079,
+      "end_sec": 2878.119,
+      "text": "Non-compliant.",
+      "confidence": 0.763
+    },
+    {
+      "start_sec": 2878.719,
+      "end_sec": 2879.659,
+      "text": "So like a passive?",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2881.139,
+      "end_sec": 2882.999,
+      "text": "Yeah, I guess somewhat passive, yeah.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2883.279,
+      "end_sec": 2883.579,
+      "text": "Okay.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2884.599,
+      "end_sec": 2887.599,
+      "text": "Did you personally feel like he posed a threat to you?",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2888.599,
+      "end_sec": 2890.299,
+      "text": "He did not pose a threat to me,",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2891.499,
+      "end_sec": 2898.379,
+      "text": "but I'd say he definitely was posing a threat to our operation as far as our objective.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2899.059,
+      "end_sec": 2901.059,
+      "text": "But to me, it's a Brian Bradford now.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2901.359,
+      "end_sec": 2901.559,
+      "text": "Okay.",
+      "confidence": 0.759
+    },
+    {
+      "start_sec": 2901.559,
+      "end_sec": 2910.519,
+      "text": "Okay. And did you recall whether or not he, well, do you know what happened after the use of force with him?",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 2911.599,
+      "end_sec": 2914.859,
+      "text": "I believe you're kind of leaving the area.",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 2915.279,
+      "end_sec": 2918.559,
+      "text": "Yeah. And you touched on this earlier, but...",
+      "confidence": 0.791
+    },
+    {
+      "start_sec": 2931.559,
+      "end_sec": 2961.539,
+      "text": "Thank you.",
+      "confidence": 0.488
+    },
+    {
+      "start_sec": 2961.559,
+      "end_sec": 2991.539,
+      "text": "Thank you.",
+      "confidence": 0.545
+    },
+    {
+      "start_sec": 2991.559,
+      "end_sec": 2998.139,
+      "text": "Here, I've got a shortened version.",
+      "confidence": 0.725
+    },
+    {
+      "start_sec": 2999.819,
+      "end_sec": 3005.059,
+      "text": "And this is your statement just as it relates to this incident that night.",
+      "confidence": 0.725
+    },
+    {
+      "start_sec": 3005.139,
+      "end_sec": 3006.799,
+      "text": "You had a few other statements in here.",
+      "confidence": 0.725
+    },
+    {
+      "start_sec": 3008.179,
+      "end_sec": 3012.179,
+      "text": "So if you look at the very bottom paragraph,",
+      "confidence": 0.725
+    },
+    {
+      "start_sec": 3015.839,
+      "end_sec": 3018.179,
+      "text": "it says, second sentence,",
+      "confidence": 0.725
+    },
+    {
+      "start_sec": 3018.179,
+      "end_sec": 3021.099,
+      "text": "Officer Sherry attempted a Yawara strike on the individual,",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3021.299,
+      "end_sec": 3024.419,
+      "text": "which was effective as the subject fell to the ground.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3024.899,
+      "end_sec": 3025.079,
+      "text": "So.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3027.199,
+      "end_sec": 3029.459,
+      "text": "But I believe it was attempted.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3032.239,
+      "end_sec": 3037.219,
+      "text": "Well, did he do a Yawara strike or hit him with his baton?",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3037.299,
+      "end_sec": 3037.899,
+      "text": "What did he do?",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3038.959,
+      "end_sec": 3040.619,
+      "text": "Looked more like a shoulder check.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3040.719,
+      "end_sec": 3045.564,
+      "text": "I'm sorry.",
+      "confidence": 0.73
+    },
+    {
+      "start_sec": 3045.564,
+      "end_sec": 3050.024,
+      "text": "from that night?",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3053.144,
+      "end_sec": 3056.184,
+      "text": "You're describing what did it look like to you that night?",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3057.184,
+      "end_sec": 3059.584,
+      "text": "When you saw the impact?",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3060.644,
+      "end_sec": 3064.364,
+      "text": "Or you're describing what you saw on video?",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3065.024,
+      "end_sec": 3068.024,
+      "text": "I can't see a straight war strike on the video.",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3070.364,
+      "end_sec": 3071.984,
+      "text": "Attempts to war strike on the video.",
+      "confidence": 0.63
+    },
+    {
+      "start_sec": 3075.564,
+      "end_sec": 3087.084,
+      "text": "Do you have Sherry's statement?",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3087.084,
+      "end_sec": 3088.424,
+      "text": "Oh, yeah.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3088.424,
+      "end_sec": 3090.324,
+      "text": "Let me see if I can.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3096.544,
+      "end_sec": 3097.304,
+      "text": "Oh, yeah.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3097.724,
+      "end_sec": 3099.924,
+      "text": "So this is Officer Sherry's statement.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3099.924,
+      "end_sec": 3101.544,
+      "text": "I'm handing the sergeant.",
+      "confidence": 0.565
+    },
+    {
+      "start_sec": 3105.564,
+      "end_sec": 3159.403,
+      "text": "Thank you.",
+      "confidence": 0.726
+    },
+    {
+      "start_sec": 3159.423,
+      "end_sec": 3181.759,
+      "text": "The other way I interpreted it at the time of the incident was there was an attempted",
+      "confidence": 0.696
+    },
+    {
+      "start_sec": 3181.759,
+      "end_sec": 3189.439,
+      "text": "war strike which ended up making contact with his shoulder, like a shoulder push if you",
+      "confidence": 0.696
+    },
+    {
+      "start_sec": 3189.439,
+      "end_sec": 3190.439,
+      "text": "will.",
+      "confidence": 0.696
+    },
+    {
+      "start_sec": 3193.759,
+      "end_sec": 3223.739,
+      "text": "Thank you.",
+      "confidence": 0.601
+    },
+    {
+      "start_sec": 3223.759,
+      "end_sec": 3253.739,
+      "text": "Thank you.",
+      "confidence": 0.611
+    },
+    {
+      "start_sec": 3253.759,
+      "end_sec": 3283.739,
+      "text": "Thank you.",
+      "confidence": 0.638
+    },
+    {
+      "start_sec": 3283.759,
+      "end_sec": 3313.739,
+      "text": "Thank you.",
+      "confidence": 0.58
+    },
+    {
+      "start_sec": 3313.759,
+      "end_sec": 3343.739,
+      "text": "Thank you.",
+      "confidence": 0.626
+    },
+    {
+      "start_sec": 3343.759,
+      "end_sec": 3375.066,
+      "text": "But this was the two wedges that I concluded on my reference Thank you",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 3375.086,
+      "end_sec": 3405.066,
+      "text": "Thank you.",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 3405.086,
+      "end_sec": 3435.066,
+      "text": "Thank you.",
+      "confidence": 0.614
+    },
+    {
+      "start_sec": 3435.086,
+      "end_sec": 3465.066,
+      "text": "Thank you.",
+      "confidence": 0.689
+    },
+    {
+      "start_sec": 3465.086,
+      "end_sec": 3486.406,
+      "text": "And you were there when they videotaped the scene, right?",
+      "confidence": 0.727
+    },
+    {
+      "start_sec": 3487.066,
+      "end_sec": 3488.206,
+      "text": "Who videotaped?",
+      "confidence": 0.727
+    },
+    {
+      "start_sec": 3488.206,
+      "end_sec": 3497.626,
+      "text": "An officer videotaped, did a walkthrough where identifying weapons, weapon-like devices.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3497.886,
+      "end_sec": 3499.046,
+      "text": "So you were part of that, right?",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3499.066,
+      "end_sec": 3499.566,
+      "text": "I was still there.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3499.566,
+      "end_sec": 3504.426,
+      "text": "And sort of a non sequitur, but that's the first time I've seen that camera used for the walkthrough.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3505.746,
+      "end_sec": 3507.126,
+      "text": "Have you seen the videos?",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3507.806,
+      "end_sec": 3510.326,
+      "text": "I never saw the videos that they took.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3510.506,
+      "end_sec": 3512.366,
+      "text": "But it was a camera on a stick, right?",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3513.306,
+      "end_sec": 3513.866,
+      "text": "Do you remember?",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3514.006,
+      "end_sec": 3515.946,
+      "text": "I don't remember seeing it on a stick.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3516.326,
+      "end_sec": 3517.126,
+      "text": "I have it.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3517.186,
+      "end_sec": 3517.426,
+      "text": "Okay.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 3517.426,
+      "end_sec": 3520.226,
+      "text": "The quality is incredible.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3520.746,
+      "end_sec": 3523.546,
+      "text": "It's like, I think, what do they call it, 5G now or whatever?",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3523.546,
+      "end_sec": 3523.886,
+      "text": "Oh, okay.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3524.086,
+      "end_sec": 3526.986,
+      "text": "But, I mean, and it was the first time I had seen that camera used,",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3527.066,
+      "end_sec": 3531.906,
+      "text": "so I was just wondering if you guys ever use it or what you use it for.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3532.886,
+      "end_sec": 3535.486,
+      "text": "I've never seen the video unit come out,",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3535.586,
+      "end_sec": 3538.646,
+      "text": "but I honestly don't remember what video camera they were using.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3538.846,
+      "end_sec": 3539.646,
+      "text": "Right, right.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3540.186,
+      "end_sec": 3544.346,
+      "text": "But I do realize that you were there well after this incident, so it was back.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3544.426,
+      "end_sec": 3546.126,
+      "text": "Did you do it from Central Station then?",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3546.126,
+      "end_sec": 3546.426,
+      "text": "Yes.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3546.566,
+      "end_sec": 3547.226,
+      "text": "Okay, great.",
+      "confidence": 0.832
+    },
+    {
+      "start_sec": 3547.426,
+      "end_sec": 3549.426,
+      "text": "Alright.",
+      "confidence": 0.513
+    },
+    {
+      "start_sec": 3577.426,
+      "end_sec": 3607.406,
+      "text": "Thank you.",
+      "confidence": 0.486
+    },
+    {
+      "start_sec": 3607.426,
+      "end_sec": 3637.406,
+      "text": "Thank you.",
+      "confidence": 0.651
+    },
+    {
+      "start_sec": 3637.426,
+      "end_sec": 3667.406,
+      "text": "Thank you.",
+      "confidence": 0.529
+    },
+    {
+      "start_sec": 3667.426,
+      "end_sec": 3669.426,
+      "text": "You",
+      "confidence": 0.414
+    },
+    {
+      "start_sec": 3697.426,
+      "end_sec": 3727.406,
+      "text": "Thank you.",
+      "confidence": 0.74
+    },
+    {
+      "start_sec": 3727.426,
+      "end_sec": 3757.406,
+      "text": "Honor 5",
+      "confidence": 0.024
+    },
+    {
+      "start_sec": 3757.426,
+      "end_sec": 3759.426,
+      "text": "So",
+      "confidence": 0.211
+    },
+    {
+      "start_sec": 3787.426,
+      "end_sec": 3817.406,
+      "text": "Thank you.",
+      "confidence": 0.586
+    },
+    {
+      "start_sec": 3817.426,
+      "end_sec": 3847.406,
+      "text": "Thank you.",
+      "confidence": 0.54
+    },
+    {
+      "start_sec": 3847.426,
+      "end_sec": 3877.406,
+      "text": "Thank you.",
+      "confidence": 0.493
+    },
+    {
+      "start_sec": 3877.426,
+      "end_sec": 3907.406,
+      "text": "Thank you.",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 3907.426,
+      "end_sec": 3907.926,
+      "text": "you",
+      "confidence": 0.371
+    },
+    {
+      "start_sec": 3937.426,
+      "end_sec": 3967.406,
+      "text": "Thank you.",
+      "confidence": 0.602
+    },
+    {
+      "start_sec": 3967.426,
+      "end_sec": 3967.926,
+      "text": "you",
+      "confidence": 0.391
+    },
+    {
+      "start_sec": 3997.426,
+      "end_sec": 4007.226,
+      "text": "F",
+      "confidence": 0.032
+    },
+    {
+      "start_sec": 4027.746,
+      "end_sec": 4032.386,
+      "text": "listen or listen.",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4032.866,
+      "end_sec": 4034.826,
+      "text": "please",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4035.046,
+      "end_sec": 4036.346,
+      "text": "then",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4037.706,
+      "end_sec": 4043.826,
+      "text": "yes",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4045.746,
+      "end_sec": 4048.746,
+      "text": "my",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4052.746,
+      "end_sec": 4055.706,
+      "text": "provide",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 4055.706,
+      "end_sec": 4085.686,
+      "text": "Thank you.",
+      "confidence": 0.778
+    },
+    {
+      "start_sec": 4085.706,
+      "end_sec": 4099.946,
+      "text": "Was the man overtly aggressive is my question.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 4101.426,
+      "end_sec": 4108.826,
+      "text": "As far as overtly, that's a hard classification to overtly aggressive.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 4111.406,
+      "end_sec": 4114.906,
+      "text": "As far as the short distance from the officer, I would say at that point, yes.",
+      "confidence": 0.823
+    },
+    {
+      "start_sec": 4115.706,
+      "end_sec": 4121.386,
+      "text": "overtly is a hard subject for me to really grasp overtly aggressive.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4122.206,
+      "end_sec": 4123.386,
+      "text": "I think outwardly maybe.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4123.466,
+      "end_sec": 4123.646,
+      "text": "Yeah.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4124.606,
+      "end_sec": 4129.546,
+      "text": "I mean, the guy from the video, he appears he was just sort of standing there with his hands in his pocket.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4129.786,
+      "end_sec": 4132.346,
+      "text": "So to me, it does not look overtly aggressive.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4133.106,
+      "end_sec": 4134.126,
+      "text": "Passive resistance.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4134.286,
+      "end_sec": 4134.726,
+      "text": "Passive resistance.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4134.846,
+      "end_sec": 4135.126,
+      "text": "Okay.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4135.786,
+      "end_sec": 4137.686,
+      "text": "So you would agree passive resistance then?",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4138.486,
+      "end_sec": 4140.266,
+      "text": "Non-compliance, I guess, is what you said.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4140.266,
+      "end_sec": 4141.286,
+      "text": "Yeah, I think it was a compliance.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4141.726,
+      "end_sec": 4142.726,
+      "text": "I don't think we did passive.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4143.086,
+      "end_sec": 4145.346,
+      "text": "Non-compliance was my term.",
+      "confidence": 0.733
+    },
+    {
+      "start_sec": 4145.706,
+      "end_sec": 4146.746,
+      "text": "that I would use.",
+      "confidence": 0.785
+    },
+    {
+      "start_sec": 4175.706,
+      "end_sec": 4186.546,
+      "text": "I guess that would probably go pass a noncompliance then.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4186.586,
+      "end_sec": 4186.746,
+      "text": "Okay.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4187.466,
+      "end_sec": 4187.866,
+      "text": "All right.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4188.166,
+      "end_sec": 4188.666,
+      "text": "All right.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4188.726,
+      "end_sec": 4189.486,
+      "text": "Thank you for that.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4190.246,
+      "end_sec": 4190.786,
+      "text": "All right.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4190.886,
+      "end_sec": 4195.886,
+      "text": "You stated that the man ran away.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4196.146,
+      "end_sec": 4198.946,
+      "text": "Did you notice whether or not he appeared to be injured?",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4200.426,
+      "end_sec": 4200.706,
+      "text": "I did.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4201.126,
+      "end_sec": 4203.446,
+      "text": "Nothing that would alert me that he was injured.",
+      "confidence": 0.717
+    },
+    {
+      "start_sec": 4203.446,
+      "end_sec": 4209.566,
+      "text": "I don't see a gentleman with a severe limp or any kind of blood or anything along those lines.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4209.926,
+      "end_sec": 4210.426,
+      "text": "Sure, sure.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4210.566,
+      "end_sec": 4213.086,
+      "text": "And did he say anything at any time, do you remember?",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4213.646,
+      "end_sec": 4214.186,
+      "text": "I don't recall.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4214.406,
+      "end_sec": 4215.566,
+      "text": "Not to me directly.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4216.226,
+      "end_sec": 4222.286,
+      "text": "Did he say anything like a grunt or a groan or anything like that?",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4222.346,
+      "end_sec": 4222.926,
+      "text": "I don't recall.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4223.426,
+      "end_sec": 4223.806,
+      "text": "Okay.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4224.286,
+      "end_sec": 4226.286,
+      "text": "And did you see him at all the rest of the night?",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4227.546,
+      "end_sec": 4228.926,
+      "text": "Not that I know of.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4229.126,
+      "end_sec": 4229.506,
+      "text": "Okay.",
+      "confidence": 0.818
+    },
+    {
+      "start_sec": 4229.506,
+      "end_sec": 4233.466,
+      "text": "And did you keep an eye out for him by any chance?",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 4234.146,
+      "end_sec": 4240.566,
+      "text": "I told the officers that were looking anywhere besides eastbound in Washington just to watch out for people.",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 4240.926,
+      "end_sec": 4241.106,
+      "text": "Yeah.",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 4241.246,
+      "end_sec": 4243.926,
+      "text": "And I didn't say specifically blue jacket guy or anything.",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 4244.046,
+      "end_sec": 4246.126,
+      "text": "I just said, you know, watch right back for people.",
+      "confidence": 0.805
+    },
+    {
+      "start_sec": 4259.506,
+      "end_sec": 4289.486,
+      "text": "Thank you.",
+      "confidence": 0.707
+    },
+    {
+      "start_sec": 4289.506,
+      "end_sec": 4308.186,
+      "text": "All right, and I think I'm towards the end of my questions,",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 4308.186,
+      "end_sec": 4311.866,
+      "text": "but just to kind of put everything together,",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 4312.066,
+      "end_sec": 4318.626,
+      "text": "do you believe that Officer Sherry's, that he had a legal reason to use force?",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 4318.746,
+      "end_sec": 4318.966,
+      "text": "Yes.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 4319.346,
+      "end_sec": 4321.566,
+      "text": "And do you still believe that the force was reasonable?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4321.966,
+      "end_sec": 4322.226,
+      "text": "Yes.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4322.966,
+      "end_sec": 4326.166,
+      "text": "Do you believe that he was in compliance with all policies,",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4326.346,
+      "end_sec": 4328.786,
+      "text": "or did you think he was out of compliance with any policy?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4328.786,
+      "end_sec": 4330.826,
+      "text": "I would never describe it as him being out of compliance",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4330.826,
+      "end_sec": 4336.546,
+      "text": "or a non-lawful detention or arrest, no, or attempted.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4337.026,
+      "end_sec": 4338.406,
+      "text": "Okay, very good.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4339.226,
+      "end_sec": 4341.986,
+      "text": "All right, Mr. Hinckley, I don't think I have any more questions.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4342.246,
+      "end_sec": 4342.926,
+      "text": "Do you have anything?",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4343.146,
+      "end_sec": 4344.046,
+      "text": "Just real quick.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 4344.046,
+      "end_sec": 4364.026,
+      "text": "So the gentleman that we're talking about with the blue jacket, whether or not he knew, understood the commands of move, move, move, move, get out of the way.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4364.106,
+      "end_sec": 4364.286,
+      "text": "Right.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4365.206,
+      "end_sec": 4369.086,
+      "text": "If he didn't understand them, was he allowed to stand there?",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4370.046,
+      "end_sec": 4372.146,
+      "text": "If he didn't understand the command.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4372.146,
+      "end_sec": 4377.446,
+      "text": "Does his understanding, one way or the other, change the fact that he needs to not be there?",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4377.486,
+      "end_sec": 4378.106,
+      "text": "He needs to move.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4378.106,
+      "end_sec": 4378.406,
+      "text": "Okay.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4379.006,
+      "end_sec": 4390.546,
+      "text": "And is there, under this circumstance, would there be time to stop and negotiate with him?",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4390.646,
+      "end_sec": 4391.206,
+      "text": "Absolutely not.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4391.726,
+      "end_sec": 4397.506,
+      "text": "And that's whether or not he had any, maybe if he had questions or, nonetheless,",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 4397.506,
+      "end_sec": 4401.626,
+      "text": "that we can't allow the momentum of the team moving in",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4401.626,
+      "end_sec": 4406.586,
+      "text": "because we are timing this with the other element of guys on Battery Street.",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4410.906,
+      "end_sec": 4425.252,
+      "text": "That's it?",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4425.552,
+      "end_sec": 4426.312,
+      "text": "All right.",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4427.572,
+      "end_sec": 4431.192,
+      "text": "Sergeant, is there any other statement relevant to this incident",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4431.192,
+      "end_sec": 4432.632,
+      "text": "that you wish to make at this time?",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4433.052,
+      "end_sec": 4433.392,
+      "text": "No.",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4433.712,
+      "end_sec": 4434.072,
+      "text": "Okay.",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4434.152,
+      "end_sec": 4436.872,
+      "text": "Are there any witnesses or other evidence relevant to this case",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4436.872,
+      "end_sec": 4438.512,
+      "text": "that you intend to submit on your behalf?",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4438.992,
+      "end_sec": 4439.472,
+      "text": "No.",
+      "confidence": 0.797
+    },
+    {
+      "start_sec": 4439.472,
+      "end_sec": 4444.252,
+      "text": "Okay. All right. The time is 1.59 p.m.",
+      "confidence": 0.847
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 167.667,
+      "original_end_sec": 170.377,
+      "duration_sec": 2.71
+    },
+    {
+      "original_start_sec": 2284.537,
+      "original_end_sec": 2286.656,
+      "duration_sec": 2.119
+    },
+    {
+      "original_start_sec": 2362.415,
+      "original_end_sec": 2367.311,
+      "duration_sec": 4.897
+    },
+    {
+      "original_start_sec": 2371.032,
+      "original_end_sec": 2375.247,
+      "duration_sec": 4.215
+    },
+    {
+      "original_start_sec": 2375.727,
+      "original_end_sec": 2377.978,
+      "duration_sec": 2.25
+    },
+    {
+      "original_start_sec": 2378.086,
+      "original_end_sec": 2380.629,
+      "duration_sec": 2.543
+    },
+    {
+      "original_start_sec": 2417.458,
+      "original_end_sec": 2421.925,
+      "duration_sec": 4.467
+    },
+    {
+      "original_start_sec": 2424.054,
+      "original_end_sec": 2426.791,
+      "duration_sec": 2.737
+    },
+    {
+      "original_start_sec": 2428.852,
+      "original_end_sec": 2436.064,
+      "duration_sec": 7.212
+    },
+    {
+      "original_start_sec": 2436.085,
+      "original_end_sec": 2438.966,
+      "duration_sec": 2.881
+    },
+    {
+      "original_start_sec": 2438.97,
+      "original_end_sec": 2443.158,
+      "duration_sec": 4.188
+    },
+    {
+      "original_start_sec": 2446.58,
+      "original_end_sec": 2464.156,
+      "duration_sec": 17.577
+    },
+    {
+      "original_start_sec": 2464.156,
+      "original_end_sec": 2473.127,
+      "duration_sec": 8.971
+    },
+    {
+      "original_start_sec": 2542.711,
+      "original_end_sec": 2544.849,
+      "duration_sec": 2.138
+    },
+    {
+      "original_start_sec": 2697.417,
+      "original_end_sec": 2699.598,
+      "duration_sec": 2.18
+    },
+    {
+      "original_start_sec": 3040.727,
+      "original_end_sec": 3044.972,
+      "duration_sec": 4.246
+    },
+    {
+      "original_start_sec": 3119.065,
+      "original_end_sec": 3122.499,
+      "duration_sec": 3.434
+    },
+    {
+      "original_start_sec": 3124.233,
+      "original_end_sec": 3137.787,
+      "duration_sec": 13.554
+    },
+    {
+      "original_start_sec": 3138.647,
+      "original_end_sec": 3143.341,
+      "duration_sec": 4.693
+    },
+    {
+      "original_start_sec": 3143.385,
+      "original_end_sec": 3145.562,
+      "duration_sec": 2.178
+    },
+    {
+      "original_start_sec": 3160.28,
+      "original_end_sec": 3162.312,
+      "duration_sec": 2.033
+    },
+    {
+      "original_start_sec": 3163.541,
+      "original_end_sec": 3165.845,
+      "duration_sec": 2.304
+    },
+    {
+      "original_start_sec": 4411.412,
+      "original_end_sec": 4423.938,
+      "duration_sec": 12.526
+    }
+  ],
+  "original_duration_sec": 4444.709,
+  "processed_duration_sec": 4328.658,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "whisper-large-v3-turbo",
+    "whisper_backend": "groq",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 395.6
+  },
+  "source_label": "sfdpa_0409-18_interview_bradford"
+}

@@ -1,0 +1,669 @@
+[
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_22_019_0741",
+    "agency": "San José Police Department",
+    "title": "Press Conference 1-21-2022  Officer involved Shooting Case #22-019-0741",
+    "case_url": "https://www.youtube.com/watch?v=hIx7seNUDPg",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Press Conference 1-21-2022  Officer involved Shooting Case #22-019-0741"
+    },
+    "titles": [
+      "Press Conference 1-21-2022  Officer involved Shooting Case #22-019-0741"
+    ],
+    "media_files": [
+      {
+        "name": "Press Conference 1-21-2022  Officer involved Shooting Case #22-019-0741",
+        "url": "https://www.youtube.com/watch?v=hIx7seNUDPg",
+        "browse_url": "https://www.youtube.com/watch?v=hIx7seNUDPg",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "hIx7seNUDPg",
+        "duration": 528.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=hIx7seNUDPg"
+    ],
+    "duration_sec": 528.0,
+    "keyword_score": 7,
+    "score": 13,
+    "hits": [
+      "+6 officer involved",
+      "+5 shooting",
+      "-4 press conference"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_19_304_0546",
+    "agency": "San José Police Department",
+    "title": "Case # 19-304-0546 OIS Francis Rey Calonge",
+    "case_url": "https://www.youtube.com/watch?v=xMSRsRM1Oto",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case # 19-304-0546 OIS Francis Rey Calonge"
+    },
+    "titles": [
+      "Case # 19-304-0546 OIS Francis Rey Calonge"
+    ],
+    "media_files": [
+      {
+        "name": "Case # 19-304-0546 OIS Francis Rey Calonge",
+        "url": "https://www.youtube.com/watch?v=xMSRsRM1Oto",
+        "browse_url": "https://www.youtube.com/watch?v=xMSRsRM1Oto",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "xMSRsRM1Oto",
+        "duration": 566.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=xMSRsRM1Oto"
+    ],
+    "duration_sec": 566.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_19_313_0553",
+    "agency": "San José Police Department",
+    "title": "Case #19-313-0553 OIS Andrew Joseph Roberts",
+    "case_url": "https://www.youtube.com/watch?v=IlaPhpwVjLs",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #19-313-0553 OIS Andrew Joseph Roberts"
+    },
+    "titles": [
+      "Case #19-313-0553 OIS Andrew Joseph Roberts"
+    ],
+    "media_files": [
+      {
+        "name": "Case #19-313-0553 OIS Andrew Joseph Roberts",
+        "url": "https://www.youtube.com/watch?v=IlaPhpwVjLs",
+        "browse_url": "https://www.youtube.com/watch?v=IlaPhpwVjLs",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "IlaPhpwVjLs",
+        "duration": 595.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=IlaPhpwVjLs"
+    ],
+    "duration_sec": 595.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_20_004_0185",
+    "agency": "San José Police Department",
+    "title": "Case #20-004-0185 OIS Jose Antonio Delossantos",
+    "case_url": "https://www.youtube.com/watch?v=ncHknmIoChQ",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #20-004-0185 OIS Jose Antonio Delossantos"
+    },
+    "titles": [
+      "Case #20-004-0185 OIS Jose Antonio Delossantos"
+    ],
+    "media_files": [
+      {
+        "name": "Case #20-004-0185 OIS Jose Antonio Delossantos",
+        "url": "https://www.youtube.com/watch?v=ncHknmIoChQ",
+        "browse_url": "https://www.youtube.com/watch?v=ncHknmIoChQ",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "ncHknmIoChQ",
+        "duration": 803.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=ncHknmIoChQ"
+    ],
+    "duration_sec": 803.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_20_122_0866",
+    "agency": "San José Police Department",
+    "title": "Case #20-122-0866 OIS  -  Cristoban Martinez-Lima on 05-01-20",
+    "case_url": "https://www.youtube.com/watch?v=TmrF4ycQcuI",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #20-122-0866 OIS  -  Cristoban Martinez-Lima on 05-01-20"
+    },
+    "titles": [
+      "Case #20-122-0866 OIS  -  Cristoban Martinez-Lima on 05-01-20"
+    ],
+    "media_files": [
+      {
+        "name": "Case #20-122-0866 OIS  -  Cristoban Martinez-Lima on 05-01-20",
+        "url": "https://www.youtube.com/watch?v=TmrF4ycQcuI",
+        "browse_url": "https://www.youtube.com/watch?v=TmrF4ycQcuI",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "TmrF4ycQcuI",
+        "duration": 313.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=TmrF4ycQcuI"
+    ],
+    "duration_sec": 313.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_20_124_0229",
+    "agency": "San José Police Department",
+    "title": "Case #20-124-0229 OIS Armando_Salvatierra 5/3/20",
+    "case_url": "https://www.youtube.com/watch?v=7uBuwdCMa_k",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #20-124-0229 OIS Armando_Salvatierra 5/3/20"
+    },
+    "titles": [
+      "Case #20-124-0229 OIS Armando_Salvatierra 5/3/20"
+    ],
+    "media_files": [
+      {
+        "name": "Case #20-124-0229 OIS Armando_Salvatierra 5/3/20",
+        "url": "https://www.youtube.com/watch?v=7uBuwdCMa_k",
+        "browse_url": "https://www.youtube.com/watch?v=7uBuwdCMa_k",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "7uBuwdCMa_k",
+        "duration": 744.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=7uBuwdCMa_k"
+    ],
+    "duration_sec": 744.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_20_154_0878",
+    "agency": "San José Police Department",
+    "title": "#20-154-0878 OIS Yurida Ochoa",
+    "case_url": "https://www.youtube.com/watch?v=j04Uo9vb-SY",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "#20-154-0878 OIS Yurida Ochoa"
+    },
+    "titles": [
+      "#20-154-0878 OIS Yurida Ochoa"
+    ],
+    "media_files": [
+      {
+        "name": "#20-154-0878 OIS Yurida Ochoa",
+        "url": "https://www.youtube.com/watch?v=j04Uo9vb-SY",
+        "browse_url": "https://www.youtube.com/watch?v=j04Uo9vb-SY",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "j04Uo9vb-SY",
+        "duration": 442.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=j04Uo9vb-SY"
+    ],
+    "duration_sec": 442.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_20_230_0116",
+    "agency": "San José Police Department",
+    "title": "Case# 20 230 0116 OIS Trevon Richardson on 08/17/2020",
+    "case_url": "https://www.youtube.com/watch?v=8uB29vV0FAY",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case# 20 230 0116 OIS Trevon Richardson on 08/17/2020"
+    },
+    "titles": [
+      "Case# 20 230 0116 OIS Trevon Richardson on 08/17/2020"
+    ],
+    "media_files": [
+      {
+        "name": "Case# 20 230 0116 OIS Trevon Richardson on 08/17/2020",
+        "url": "https://www.youtube.com/watch?v=8uB29vV0FAY",
+        "browse_url": "https://www.youtube.com/watch?v=8uB29vV0FAY",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "8uB29vV0FAY",
+        "duration": 476.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=8uB29vV0FAY"
+    ],
+    "duration_sec": 476.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_21_021_0129",
+    "agency": "San José Police Department",
+    "title": "Case #21-021-0129 OIS David Lee Tovar 1-21-21",
+    "case_url": "https://www.youtube.com/watch?v=4irBBgIRVCc",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #21-021-0129 OIS David Lee Tovar 1-21-21"
+    },
+    "titles": [
+      "Case #21-021-0129 OIS David Lee Tovar 1-21-21"
+    ],
+    "media_files": [
+      {
+        "name": "Case #21-021-0129 OIS David Lee Tovar 1-21-21",
+        "url": "https://www.youtube.com/watch?v=4irBBgIRVCc",
+        "browse_url": "https://www.youtube.com/watch?v=4irBBgIRVCc",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "4irBBgIRVCc",
+        "duration": 828.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=4irBBgIRVCc"
+    ],
+    "duration_sec": 828.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_21_151_0821",
+    "agency": "San José Police Department",
+    "title": "Case #21-151-0821 OIS Demetrius Stanley - on 05-31-2021",
+    "case_url": "https://www.youtube.com/watch?v=DJ_I0ptBikg",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "Case #21-151-0821 OIS Demetrius Stanley - on 05-31-2021"
+    },
+    "titles": [
+      "Case #21-151-0821 OIS Demetrius Stanley - on 05-31-2021"
+    ],
+    "media_files": [
+      {
+        "name": "Case #21-151-0821 OIS Demetrius Stanley - on 05-31-2021",
+        "url": "https://www.youtube.com/watch?v=DJ_I0ptBikg",
+        "browse_url": "https://www.youtube.com/watch?v=DJ_I0ptBikg",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "DJ_I0ptBikg",
+        "duration": 388.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=DJ_I0ptBikg"
+    ],
+    "duration_sec": 388.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_XLpquXpwlk8",
+    "agency": "San José Police Department",
+    "title": "OIS 4 2024",
+    "case_url": "https://www.youtube.com/watch?v=XLpquXpwlk8",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "OIS 4 2024"
+    },
+    "titles": [
+      "OIS 4 2024"
+    ],
+    "media_files": [
+      {
+        "name": "OIS 4 2024",
+        "url": "https://www.youtube.com/watch?v=XLpquXpwlk8",
+        "browse_url": "https://www.youtube.com/watch?v=XLpquXpwlk8",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "XLpquXpwlk8",
+        "duration": 713.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=XLpquXpwlk8"
+    ],
+    "duration_sec": 713.0,
+    "keyword_score": 6,
+    "score": 12,
+    "hits": [
+      "+6 ois"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_24_089_0106",
+    "agency": "San José Police Department",
+    "title": "OIS Press Conference 3-29-24 Case# 24-089-0106",
+    "case_url": "https://www.youtube.com/watch?v=PD6VPm5Sx84",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "OIS Press Conference 3-29-24 Case# 24-089-0106"
+    },
+    "titles": [
+      "OIS Press Conference 3-29-24 Case# 24-089-0106"
+    ],
+    "media_files": [
+      {
+        "name": "OIS Press Conference 3-29-24 Case# 24-089-0106",
+        "url": "https://www.youtube.com/watch?v=PD6VPm5Sx84",
+        "browse_url": "https://www.youtube.com/watch?v=PD6VPm5Sx84",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "PD6VPm5Sx84",
+        "duration": 489.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=PD6VPm5Sx84"
+    ],
+    "duration_sec": 489.0,
+    "keyword_score": 2,
+    "score": 8,
+    "hits": [
+      "+6 ois",
+      "-4 press conference"
+    ],
+    "platform": "youtube"
+  },
+  {
+    "source": "sjpd_civ",
+    "case_id": "sjpd_civ_24_140_0546",
+    "agency": "San José Police Department",
+    "title": "OIS #3 Press Conference 24-140-0546",
+    "case_url": "https://www.youtube.com/watch?v=Yuo-uCip11I",
+    "n_video": 1,
+    "n_audio": 0,
+    "n_docs": 0,
+    "n_photos": 0,
+    "n_other": 0,
+    "has_video": true,
+    "has_mp3": false,
+    "has_pdf": false,
+    "is_bwc": true,
+    "is_interrogation": false,
+    "artifact_kinds": 1,
+    "tier": "C",
+    "downloadable": null,
+    "pivot": {
+      "agency": "San José Police Department",
+      "case_title": "OIS #3 Press Conference 24-140-0546"
+    },
+    "titles": [
+      "OIS #3 Press Conference 24-140-0546"
+    ],
+    "media_files": [
+      {
+        "name": "OIS #3 Press Conference 24-140-0546",
+        "url": "https://www.youtube.com/watch?v=Yuo-uCip11I",
+        "browse_url": "https://www.youtube.com/watch?v=Yuo-uCip11I",
+        "ext": ".youtube",
+        "mime_type": "video/youtube",
+        "kind": "video",
+        "evidence_type": "bodycam",
+        "youtube_id": "Yuo-uCip11I",
+        "duration": 1059.0
+      }
+    ],
+    "doc_files": [],
+    "urls": [
+      "https://www.youtube.com/watch?v=Yuo-uCip11I"
+    ],
+    "duration_sec": 1059.0,
+    "keyword_score": 2,
+    "score": 8,
+    "hits": [
+      "+6 ois",
+      "-4 press conference"
+    ],
+    "platform": "youtube"
+  }
+]

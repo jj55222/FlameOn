@@ -1,0 +1,575 @@
+{
+ "schema_version": 1,
+ "rule_set_id": "tcdr_taste_rules_v1",
+ "description": "Operator-authored craft + finishing constraints. REJECT = reject the cut/config, never the case (worth is upstream).",
+ "verdicts": [
+  "SHIP",
+  "REVISE",
+  "ABSTAIN",
+  "REJECT"
+ ],
+ "rules": [
+  {
+   "rule_id": "no_trace_language",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "forbidden_text",
+    "fields": [
+     "cards.text",
+     "narration.text",
+     "captions.text",
+     "overlays.text"
+    ],
+    "parameters": {
+     "patterns": [
+      "this case packet",
+      "the available packet",
+      "transcript checked",
+      "mlx",
+      "large-v3",
+      "paper edit",
+      "reference treatment",
+      "the next words loop back",
+      "moment_objects",
+      "evidence pack"
+     ]
+    }
+   },
+   "on_fail": "REJECT",
+   "reason": "Internal research/production reasoning cannot appear in audience-facing content.",
+   "source_refs": [
+    "operator_critique.trace_language"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "short_requires_visual_story",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "minimum_visual_story_beats",
+    "fields": [
+     "timeline"
+    ],
+    "parameters": {
+     "minimum_count": 1,
+     "accepted_functions": [
+      "hook",
+      "reveal",
+      "climax",
+      "payoff"
+     ],
+     "audio_graphic_does_not_count": true,
+     "document_card_does_not_count": true
+    }
+   },
+   "on_fail": "REJECT",
+   "reason": "A 911 call, radio transmission or waveform cannot be the entire short.",
+   "source_refs": [
+    "operator_critique.no_911_only_short"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "no_blur_only_short",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "maximum_consecutive_duration",
+    "fields": [
+     "timeline.blur_segments"
+    ],
+    "parameters": {
+     "max_consecutive_sec": 3.0,
+     "applies_to": "central_visual",
+     "platform_scope": [
+      "tiktok",
+      "instagram"
+     ]
+    }
+   },
+   "on_fail": "REJECT",
+   "reason": "Never a short whose central visual is blur.",
+   "source_refs": [
+    "operator_critique.jazmir_all_blur"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "no_extended_fullframe_blur_youtube",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "maximum_consecutive_duration",
+    "fields": [
+     "timeline.blur_segments"
+    ],
+    "parameters": {
+     "max_consecutive_sec": 6.0,
+     "blur_kind": "full_frame",
+     "platform_scope": [
+      "youtube"
+     ]
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "Full-frame blur beyond a few seconds on YouTube; use a localized/tracked mask.",
+   "source_refs": [
+    "operator_critique.privacy_treatment_overreach"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "accountability_requires_disposition_source",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "blueprint",
+   "check": {
+    "type": "source_citation_required",
+    "fields": [
+     "incident.disposition",
+     "integrity_ledger",
+     "narration"
+    ],
+    "parameters": {
+     "trigger_routes": [
+      "accountability_prosecution",
+      "interrogation_contradiction"
+     ],
+     "required_source_types": [
+      "prosecutor_decision",
+      "court_record",
+      "ia_finding",
+      "disciplinary_record"
+     ]
+    }
+   },
+   "on_fail": "ABSTAIN",
+   "reason": "The accountability direction lacks a cited legal/administrative outcome.",
+   "source_refs": [
+    "defamation_rail.disposition",
+    "ledger.attribution_corrected"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "single_caption_authority",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "maximum_caption_authorities",
+    "fields": [
+     "timeline"
+    ],
+    "parameters": {
+     "max_authorities_per_zone": 1,
+     "zones": [
+      "lower_third",
+      "center"
+     ]
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "A pull quote and transcript captions cannot both render in the same zone.",
+   "source_refs": [
+    "operator_critique.double_captions"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "unidentified_interview_subject",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "identity_context_required",
+    "fields": [
+     "timeline.interview_beats"
+    ],
+    "parameters": {
+     "require_identity_before_use": true
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "An interview subject must be identified before their dialogue becomes story.",
+   "source_refs": [
+    "operator_critique.el_cajon_misframed"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "911_requires_temporal_relation",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "temporal_relation_required",
+    "fields": [
+     "timeline.call_beats"
+    ],
+    "parameters": {
+     "require_temporal_anchor": true
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "A 911 call needs its temporal/factual relationship to the incident established.",
+   "source_refs": [
+    "operator_critique.el_cajon_misframed"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "silent_footage_requires_progression",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "progression_required",
+    "fields": [
+     "timeline.clip_beats"
+    ],
+    "parameters": {
+     "max_static_sec": 3.0,
+     "needs_any": [
+      "visual_progression",
+      "narration",
+      "consequential_atmosphere"
+     ]
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "No silent footage without visual progression, narration, or consequential atmosphere.",
+   "source_refs": [
+    "operator_critique.jason_dead_space",
+    "ledger.held_project_cold_open"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "required_beat_not_card_substituted",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "blueprint",
+   "check": {
+    "type": "required_evidence_slot",
+    "fields": [
+     "blueprint.acts"
+    ],
+    "parameters": {
+     "forbid_card_substitution_when": "card_substitution_allowed==false"
+    }
+   },
+   "on_fail": "REJECT",
+   "reason": "A required reference beat cannot be replaced by a label claiming that beat occurred.",
+   "source_refs": [
+    "operator_critique.editorial_label_substitutes"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "verbatim_quotes_only",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "forbidden_text",
+    "fields": [
+     "captions.text",
+     "cards.pull_quote"
+    ],
+    "parameters": {
+     "assert_verbatim_against": "transcript",
+     "on_mismatch": true
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "On-screen quotes must be verbatim from the transcript (no paraphrase in quotation marks).",
+   "source_refs": [
+    "ledger.quote_paraphrase_pending_v2",
+    "ledger.quote_form_nit"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "self_harm_method_not_onscreen",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "forbidden_text",
+    "fields": [
+     "captions.text",
+     "cards.text",
+     "narration.text"
+    ],
+    "parameters": {
+     "category": "self_harm_method",
+     "note": "platform-fatal even when verbatim-accurate"
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "Self-harm method text is platform-fatal; hold/omit even if accurate.",
+   "source_refs": [
+    "ledger.held_self_harm_method"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "promise_payoff_immediate",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "promise_payoff_latency",
+    "fields": [
+     "timeline"
+    ],
+    "parameters": {
+     "max_intervening": 0
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "After a setup that promises a specific payoff, the next beat must BE the payoff, not more exposition.",
+   "source_refs": [
+    "operator_critique.zenobia.setup_then_immediate_payoff"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "no_blur_after_redaction",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "redundant_blur",
+    "fields": [
+     "timeline.blur_segments"
+    ],
+    "parameters": {
+     "stale_after_sec": 40.0
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "Blur must not persist once the sensitive subject is already redacted/removed; unneeded blur is a defect.",
+   "source_refs": [
+    "operator_critique.zenobia.blur_past_redaction"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "dr_spoken_as_doctor",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "required_text",
+    "fields": [
+     "narration.text",
+     "cards.text"
+    ],
+    "parameters": {
+     "forbid": [
+      "d-r",
+      "d r"
+     ]
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "Brand: 'Dr.' is spoken and written as 'Doctor' \u2014 never the letters D-R (TTS + card normalization).",
+   "source_refs": [
+    "operator_critique.zenobia.dr_means_doctor"
+   ],
+   "exceptions": []
+  },
+  {
+   "rule_id": "cta_slot_required",
+   "enabled": true,
+   "scope": {
+    "formats": [
+     "longform",
+     "shortform"
+    ],
+    "platforms": [
+     "youtube",
+     "tiktok",
+     "instagram"
+    ]
+   },
+   "stage": "paper_edit",
+   "check": {
+    "type": "required_text",
+    "fields": [
+     "overlays.text",
+     "cta.slot"
+    ],
+    "parameters": {
+     "require_any": [
+      "DR.",
+      "subscribe",
+      "like +"
+     ]
+    }
+   },
+   "on_fail": "REVISE",
+   "reason": "Every cut carries the DR. CTA logo (like+subscribe), bottom-middle, all formats and platforms.",
+   "source_refs": [
+    "operator_critique.zenobia.cta_all_formats"
+   ],
+   "exceptions": []
+  }
+ ]
+}

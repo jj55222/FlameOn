@@ -1,0 +1,45 @@
+{
+  "case_id": "muckrock_69147_sb_1421_oakland_pd",
+  "source_evidence_type": "bodycam",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_69147_sb_1421_police_complaints_oakland_pd/media/PICT0007_2015.06.06_15.44.40.AVI",
+  "transcript": [
+    {
+      "start_sec": 19.88,
+      "end_sec": 24.94,
+      "text": "It's open. So it's the 1848 just grabbing my waters inside there.",
+      "confidence": 0.827
+    },
+    {
+      "start_sec": 73.9,
+      "end_sec": 75.26,
+      "text": "Just stay there, I'm going to get you out.",
+      "confidence": 0.821
+    },
+    {
+      "start_sec": 76.26,
+      "end_sec": 89.26,
+      "text": "It's just a part of me.",
+      "confidence": 0.449
+    },
+    {
+      "start_sec": 91.08,
+      "end_sec": 94.44,
+      "text": "It's kind of open.",
+      "confidence": 0.353
+    }
+  ],
+  "silence_map": [],
+  "original_duration_sec": 95.83,
+  "processed_duration_sec": 95.83,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 8.6
+  },
+  "source_label": "oakland_sb1421_01"
+}

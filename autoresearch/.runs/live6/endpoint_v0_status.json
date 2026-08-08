@@ -1,0 +1,32 @@
+{
+  "experiment_id": "LIVE6-known-case-pilot-live-smoke",
+  "pilot_id": "mpv_documentcloud_pilot",
+  "connector_used": "documentcloud",
+  "queries_used": "Jordan Example",
+  "live_calls_used": 1,
+  "source_records_returned": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 0,
+  "document_artifact_count": 5,
+  "verified_artifact_urls": [
+    "https://www.documentcloud.org/documents/24533216-example/",
+    "https://www.documentcloud.org/documents/25993922-example/",
+    "https://www.documentcloud.org/documents/22685990-jordan/",
+    "https://www.documentcloud.org/documents/4599726-example-policy-pdf/",
+    "https://www.documentcloud.org/documents/2086589-fatigue-example/"
+  ],
+  "verdict": "SKIP",
+  "identity_confidence": "low",
+  "outcome_status": "unknown",
+  "estimated_cost_usd": 0.0,
+  "endpoint_v0_conditions": {
+    "cond1_validation_passes": true,
+    "cond2_pilot_readiness": true,
+    "cond3_live_pilot_artifact": true,
+    "cond3_run_bundle_written": true,
+    "cond3_ledger_entry_generated": true,
+    "cond3_dry_vs_live_comparison": true,
+    "cond4_media_doc_distinction": true,
+    "cond5_no_safety_gate_breaks": true
+  }
+}

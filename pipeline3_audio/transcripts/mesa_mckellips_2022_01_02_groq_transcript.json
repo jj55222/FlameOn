@@ -1,0 +1,707 @@
+{
+  "case_id": "mesa_mckellips_2022_01_02_groq",
+  "source_evidence_type": "bodycam",
+  "source_url": "https://www.youtube.com/watch?v=t8Kx1AH6Vbk",
+  "transcript": [
+    {
+      "start_sec": 4.318,
+      "end_sec": 8.818,
+      "text": "Hello everyone, I'm Detective Brandi George with the Mesa Police Department.",
+      "confidence": 0.851
+    },
+    {
+      "start_sec": 9.578,
+      "end_sec": 17.458,
+      "text": "This critical incident community briefing will provide you with information about an officer-involved shooting that occurred here in Mesa.",
+      "confidence": 0.851
+    },
+    {
+      "start_sec": 18.138,
+      "end_sec": 30.258,
+      "text": "You are about to see relevant video footage and learn about evidence and police procedures related to this case so you can better understand what happened based on what we know right now.",
+      "confidence": 0.851
+    },
+    {
+      "start_sec": 30.258,
+      "end_sec": 35.258,
+      "text": "Mesa Police Department conducts thorough use of force investigations.",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 35.258,
+      "end_sec": 41.258,
+      "text": "Typically, investigators interview multiple witnesses, view numerous hours of video footage,",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 41.258,
+      "end_sec": 45.258,
+      "text": "and analyze a significant amount of forensic evidence.",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 45.258,
+      "end_sec": 55.258,
+      "text": "These investigations take time to complete, which means things could change as additional evidence is collected, analyzed, and reviewed.",
+      "confidence": 0.87
+    },
+    {
+      "start_sec": 55.258,
+      "end_sec": 65.358,
+      "text": "This video will not draw any conclusions about whether these officers acted consistent with our policy until all the facts are known and the investigation is complete.",
+      "confidence": 0.857
+    },
+    {
+      "start_sec": 65.958,
+      "end_sec": 76.298,
+      "text": "In this video, we will be sharing our officers' body-worn camera videos, as well as 911 calls, and any other surveillance video obtained as part of this investigation.",
+      "confidence": 0.857
+    },
+    {
+      "start_sec": 76.298,
+      "end_sec": 89.558,
+      "text": "We do want to warn you, anytime a police officer uses force, the images and information can be graphic, disturbing, and difficult to watch, and the video may contain strong language.",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 90.438,
+      "end_sec": 96.718,
+      "text": "Viewer discretion is strongly advised, especially for young children and sensitive viewers.",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 97.938,
+      "end_sec": 102.738,
+      "text": "I'm Detective Richard Encinas, Public Information Officer for the Mesa Police Department.",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 102.738,
+      "end_sec": 109.998,
+      "text": "The following incident happened on January 3, 2022 in the 600 block of West McKellips.",
+      "confidence": 0.678
+    },
+    {
+      "start_sec": 109.998,
+      "end_sec": 114.198,
+      "text": "Officers received a call reporting a man with a knife walking up and down the street.",
+      "confidence": 0.678
+    },
+    {
+      "start_sec": 114.198,
+      "end_sec": 115.198,
+      "text": "911 emergency.",
+      "confidence": 0.678
+    },
+    {
+      "start_sec": 115.198,
+      "end_sec": 128.165,
+      "text": "Yes I calling because the guy that landed my house is coming with the knife and the hand I don know why but I used to block my phone What the address",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 132.066,
+      "end_sec": 134.586,
+      "text": "West Michaelitz, number 188.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 136.246,
+      "end_sec": 137.266,
+      "text": "That's where you're at?",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 139.126,
+      "end_sec": 139.686,
+      "text": "Yes.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 139.966,
+      "end_sec": 140.266,
+      "text": "Okay.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 140.546,
+      "end_sec": 142.385,
+      "text": "And he came to your door with the knife?",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 143.506,
+      "end_sec": 144.026,
+      "text": "No.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 144.026,
+      "end_sec": 146.866,
+      "text": "My husband is working outside in the house, in the car.",
+      "confidence": 0.636
+    },
+    {
+      "start_sec": 146.866,
+      "end_sec": 156.225,
+      "text": "So the guy that filmed the pilot is coming and with the knife in the hand and broken my windshield.",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 156.986,
+      "end_sec": 158.046,
+      "text": "He broke your windshield?",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 159.145,
+      "end_sec": 160.766,
+      "text": "Yeah, my car.",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 162.086,
+      "end_sec": 163.746,
+      "text": "Okay, but the guy with the knife did it?",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 164.526,
+      "end_sec": 170.925,
+      "text": "Yeah, the guy is working on that now. The guy in that shirt red and the shirt black.",
+      "confidence": 0.642
+    },
+    {
+      "start_sec": 170.925,
+      "end_sec": 176.366,
+      "text": "While officers were en route, dispatch received another call from a neighbor who identified",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 176.366,
+      "end_sec": 181.526,
+      "text": "the man as Caleb Stanford and stated that he was holding a knife and her husband, who",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 181.526,
+      "end_sec": 184.165,
+      "text": "had a gun, was warning him to drop it.",
+      "confidence": 0.782
+    },
+    {
+      "start_sec": 184.165,
+      "end_sec": 186.165,
+      "text": "F**kin' NICE!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 186.165,
+      "end_sec": 187.165,
+      "text": "THE NICE!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 187.165,
+      "end_sec": 188.165,
+      "text": "Help me, right now.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 188.165,
+      "end_sec": 190.165,
+      "text": "5-6-25-5!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 190.165,
+      "end_sec": 193.165,
+      "text": "That guy, Caleb, is it right now.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 193.165,
+      "end_sec": 195.165,
+      "text": "He's got a knife.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 195.165,
+      "end_sec": 197.165,
+      "text": "What unit number are you, ma'am?",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 197.165,
+      "end_sec": 199.165,
+      "text": "Stop that f**kin' NICE!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 201.165,
+      "end_sec": 202.165,
+      "text": "Stop it!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 202.165,
+      "end_sec": 203.165,
+      "text": "As long as we got yelling at him.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 203.165,
+      "end_sec": 204.165,
+      "text": "What the f**kin' NICE!",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 204.165,
+      "end_sec": 209.165,
+      "text": "That's my husband, he's got a gun on him right now, because he's got a f**kin' NICE.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 209.165,
+      "end_sec": 211.165,
+      "text": "Alright, we are here now.",
+      "confidence": 0.647
+    },
+    {
+      "start_sec": 211.165,
+      "end_sec": 227.686,
+      "text": "When officers arrived, they saw Caleb standing in the middle of the street holding a large",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 227.686,
+      "end_sec": 229.366,
+      "text": "knife and cell phone.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 229.366,
+      "end_sec": 234.286,
+      "text": "Caleb initially complied with officer commands to lay down on his stomach but would not release",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 234.286,
+      "end_sec": 235.286,
+      "text": "the knife.",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 235.286,
+      "end_sec": 250.653,
+      "text": "Here is body worn camera video from one of the officers on scene Go back in your house Go inside Caleb",
+      "confidence": 0.583
+    },
+    {
+      "start_sec": 250.653,
+      "end_sec": 255.653,
+      "text": "Get down on your hands and knees now!",
+      "confidence": 0.583
+    },
+    {
+      "start_sec": 255.653,
+      "end_sec": 258.653,
+      "text": "Roger Stilbert!",
+      "confidence": 0.583
+    },
+    {
+      "start_sec": 258.653,
+      "end_sec": 263.653,
+      "text": "Put your hands out!",
+      "confidence": 0.583
+    },
+    {
+      "start_sec": 263.653,
+      "end_sec": 268.653,
+      "text": "Hey, we got Caleb proned out right now on the Nola Street.",
+      "confidence": 0.583
+    },
+    {
+      "start_sec": 268.653,
+      "end_sec": 278.413,
+      "text": "As officers tried to talk to him, Caleb suddenly stood up and began walking toward them.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 278.413,
+      "end_sec": 281.413,
+      "text": "Officers ordered him to stop walking and dropped the knife.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 281.413,
+      "end_sec": 286.053,
+      "text": "Hey, you back there, get inside, get out of our fire!",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 286.053,
+      "end_sec": 287.053,
+      "text": "Get out of our fire!",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 287.053,
+      "end_sec": 291.053,
+      "text": "Get down on the ground!",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 291.053,
+      "end_sec": 294.493,
+      "text": "Caleb, get down on the ground now!",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 294.493,
+      "end_sec": 297.293,
+      "text": "Drop the knife.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 298.013,
+      "end_sec": 299.113,
+      "text": "Get that on the ground.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 302.413,
+      "end_sec": 304.613,
+      "text": "Caleb, drop it.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 309.353,
+      "end_sec": 312.113,
+      "text": "Caleb, I need you to drop the knife.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 312.353,
+      "end_sec": 313.393,
+      "text": "Got less lethal on him?",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 314.073,
+      "end_sec": 314.953,
+      "text": "Listen to me, okay?",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 315.353,
+      "end_sec": 316.953,
+      "text": "I don't have less lethal on him.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 317.373,
+      "end_sec": 318.313,
+      "text": "We want to help you.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 318.973,
+      "end_sec": 319.913,
+      "text": "Caleb, come on.",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 319.913,
+      "end_sec": 322.333,
+      "text": "Before you do that, I need you to drop the knife, okay?",
+      "confidence": 0.688
+    },
+    {
+      "start_sec": 324.493,
+      "end_sec": 331.933,
+      "text": "Caleb, please just do me a favor and drop the knife, and then you and I can have a conversation, alright?",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 333.933,
+      "end_sec": 335.493,
+      "text": "Hey, we got a car behind us.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 336.513,
+      "end_sec": 339.593,
+      "text": "Caleb, just drop the knife for me.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 342.293,
+      "end_sec": 343.853,
+      "text": "Can we beanbag him, please?",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 345.473,
+      "end_sec": 346.153,
+      "text": "Drop it.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 346.293,
+      "end_sec": 348.933,
+      "text": "Drop the knife on the ground, and you and I can have a conversation.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 349.373,
+      "end_sec": 350.313,
+      "text": "Drop it, Caleb.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 350.913,
+      "end_sec": 351.353,
+      "text": "Caleb.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 352.353,
+      "end_sec": 352.793,
+      "text": "Caleb.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 352.793,
+      "end_sec": 358.573,
+      "text": "Caleb did not respond to officers instructions and quickly advanced toward the officers with",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 358.573,
+      "end_sec": 360.453,
+      "text": "the knife in his right hand.",
+      "confidence": 0.719
+    },
+    {
+      "start_sec": 360.453,
+      "end_sec": 373.961,
+      "text": "That when the officer involved shooting occurred Drop the knife on the ground and you and I can have a car to safety Drop it Caleb Caleb Keep going Caleb Stop Stop",
+      "confidence": 0.635
+    },
+    {
+      "start_sec": 380.981,
+      "end_sec": 382.821,
+      "text": "Hey we got a car behind us.",
+      "confidence": 0.635
+    },
+    {
+      "start_sec": 382.821,
+      "end_sec": 386.821,
+      "text": "Caleb. Drop the knife for me.",
+      "confidence": 0.635
+    },
+    {
+      "start_sec": 386.821,
+      "end_sec": 393.06,
+      "text": "Drop it.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 393.06,
+      "end_sec": 397.221,
+      "text": "Drop it, Caleb.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 397.88,
+      "end_sec": 398.64,
+      "text": "He's coming.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 399.401,
+      "end_sec": 400.961,
+      "text": "Stop!",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 402.18,
+      "end_sec": 402.781,
+      "text": "Stop!",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 403.44,
+      "end_sec": 404.02,
+      "text": "Stop!",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 411.18,
+      "end_sec": 412.141,
+      "text": "Drop it.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 412.921,
+      "end_sec": 413.701,
+      "text": "Anyone have beanbag?",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 414.021,
+      "end_sec": 414.421,
+      "text": "We're waiting.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 415.421,
+      "end_sec": 416.481,
+      "text": "You take over verbals.",
+      "confidence": 0.427
+    },
+    {
+      "start_sec": 416.481,
+      "end_sec": 420.481,
+      "text": "Caleb, I need you to drop the knife, alright man?",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 420.481,
+      "end_sec": 422.481,
+      "text": "Listen to me, okay?",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 422.481,
+      "end_sec": 425.481,
+      "text": "We do not want to hurt you, we want to help you.",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 425.481,
+      "end_sec": 429.481,
+      "text": "But in order for us to do that, I need you to drop the knife, okay?",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 429.481,
+      "end_sec": 439.481,
+      "text": "Caleb, please just do me a favor and drop the knife, and then you and I can have a conversation, alright?",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 439.481,
+      "end_sec": 442.481,
+      "text": "Hey, we got a car blind.",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 442.481,
+      "end_sec": 447.481,
+      "text": "Caleb, just drop the knife for me.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 451.481,
+      "end_sec": 456.481,
+      "text": "Just drop the knife on the ground and you and I can have a conversation.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 456.481,
+      "end_sec": 460.481,
+      "text": "Just stop, don't look forward. Don't look forward.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 460.481,
+      "end_sec": 462.481,
+      "text": "Caleb, don't look forward.",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 462.481,
+      "end_sec": 464.481,
+      "text": "Stop! Stop!",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 467.481,
+      "end_sec": 471.481,
+      "text": "Officers and medics from Mesa Fire rendered aid and transported Caleb to the hospital",
+      "confidence": 0.761
+    },
+    {
+      "start_sec": 471.481,
+      "end_sec": 474.72,
+      "text": "Caleb to the hospital where he was pronounced deceased.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 474.72,
+      "end_sec": 479.521,
+      "text": "The four officers involved have been with the department for two and a half years.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 479.521,
+      "end_sec": 483.8,
+      "text": "No officers were injured and once complete the investigation will be turned over to the",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 483.8,
+      "end_sec": 487.1,
+      "text": "Maricopa County Attorney's Office for review.",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 487.1,
+      "end_sec": 490.86,
+      "text": "Thank you for taking the time to watch this community briefing and thank you for your",
+      "confidence": 0.826
+    },
+    {
+      "start_sec": 490.86,
+      "end_sec": 491.86,
+      "text": "continued support.",
+      "confidence": 0.826
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 4.318,
+      "duration_sec": 4.318
+    },
+    {
+      "original_start_sec": 377.561,
+      "original_end_sec": 380.421,
+      "duration_sec": 2.86
+    },
+    {
+      "original_start_sec": 407.921,
+      "original_end_sec": 410.581,
+      "duration_sec": 2.66
+    },
+    {
+      "original_start_sec": 492.508,
+      "original_end_sec": 498.368,
+      "duration_sec": 5.86
+    }
+  ],
+  "original_duration_sec": 498.368,
+  "processed_duration_sec": 482.67,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "whisper-large-v3-turbo",
+    "whisper_backend": "groq",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 55.7
+  }
+}

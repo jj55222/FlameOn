@@ -1,0 +1,102 @@
+{
+  "case_id": "muckrock_181169_kolb",
+  "verdict": "HOLD",
+  "narrative_score": 30.0,
+  "confidence": 0.7,
+  "key_moments": [
+    {
+      "moment_type": "contradiction",
+      "source_idx": 5,
+      "timestamp_sec": 149,
+      "end_timestamp_sec": 161,
+      "description": "Interrogator reveals that Corey's account of the incident contradicts the subject's account",
+      "importance": "critical",
+      "transcript_excerpt": "And Cory, she has no idea what you guys were arguing about and that nothing happened. You guys made up and that she just requested to be let out of McDonald's and nothing else happened."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 5,
+      "timestamp_sec": 216,
+      "end_timestamp_sec": 222,
+      "description": "Subject admits to coaching Corey on what to say to police",
+      "importance": "critical",
+      "transcript_excerpt": "No, he's holding back because I told him not to say anything. That's right. I don't want him to be a part of it because he's not."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 3,
+      "timestamp_sec": 309,
+      "end_timestamp_sec": 336,
+      "description": "Subject characterizes missing person as a pathological liar who makes false rape claims",
+      "importance": "high",
+      "transcript_excerpt": "She came up to Illinois and when she went back out to Texas she admitted to a psychiatrist but she lied about it. So it's very well known that she's a pathological liar."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 3,
+      "timestamp_sec": 646,
+      "end_timestamp_sec": 654,
+      "description": "Subject claims Adrienne was talking about 'running trains' with Corey and a babysitter",
+      "importance": "high",
+      "transcript_excerpt": "she kept talking about running trains with Corey and this guy. And they were like, whoa, you know, back up."
+    },
+    {
+      "moment_type": "callback",
+      "source_idx": 5,
+      "timestamp_sec": 136,
+      "end_timestamp_sec": 143,
+      "description": "Interrogator references subject's earlier claim about not lying to highlight inconsistency",
+      "importance": "high",
+      "transcript_excerpt": "You said the key is to not lie because that's how we got here in the first place. Right. What did you mean by that?"
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 6,
+      "timestamp_sec": 53,
+      "end_timestamp_sec": 57,
+      "description": "Subject provides motive for Andrew breaking up with Adrienne",
+      "importance": "medium",
+      "transcript_excerpt": "They dated for, like, a week. And then he broke up with her because she was driving him nuts."
+    }
+  ],
+  "content_pitch": "Strong interrogation dynamics with critical contradictions and witness coaching reveals, but extremely low moment density and a single artifact type limit the narrative scope — hold for additional footage or case files to build out the timeline.",
+  "narrative_arc_recommendation": "escalation",
+  "estimated_runtime_min": 12.6,
+  "artifact_completeness": {
+    "available": [
+      "interrogation"
+    ],
+    "missing_recommended": []
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 1.99,
+    "arc_similarity_score": 50.0,
+    "artifact_completeness_score": 50.0,
+    "uniqueness_score": 42.0
+  },
+  "transcript_refs": [
+    "pipeline3_audio/transcripts/kolb_CALL_1_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_2_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_1_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_2_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_3_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_4_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_5_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_6_2_transcript.json",
+    "pipeline3_audio/transcripts/kolb_CALL_3_7_2_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "HOLD",
+    "reasoning_summary": "The case features compelling interrogation moments and clear adversarial dynamics, but the deterministic scores show critically low moment density (2.0) and a marginal narrative score (30.0), indicating insufficient material for a full video. Additional artifacts or timeline expansion are needed to meet production thresholds.",
+    "degraded": false,
+    "n_sources": 10,
+    "n_pass1_moments": 6,
+    "n_final_moments": 6,
+    "scored_at": "2026-06-27T19:44:43.620254Z"
+  }
+}

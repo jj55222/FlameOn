@@ -1,0 +1,171 @@
+{
+  "video_id": "fsL0ag9ySao",
+  "channel": "EXPLORE WITH US",
+  "title": "6-Year-Old Leads Cops to Her Secret Prison",
+  "view_count": 9344890,
+  "duration_sec": 2733,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.02,
+        "description": "Opens with dramatic bodycam audio of deputy discovering a 6-year-old girl locked in a shed with a poop bucket, no water, extreme heat."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.02,
+        "end_pct": 0.04,
+        "description": "Narrator sets up the case: a shocking tip about a girl locked in a rusty shed in New Mexico, warning about graphic content and naming conventions."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.04,
+        "end_pct": 0.12,
+        "description": "Deputy arrives at property, finds the shed, and establishes contact with 6-year-old Ava through the window; she says she's alone and her parents left."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.12,
+        "end_pct": 0.22,
+        "description": "Backup arrives, deputies tear open the shed wall, rescue Ava; they discover a locked door, a bucket for waste, and no amenities; EMTs find bruises and a black eye."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.22,
+        "end_pct": 0.3,
+        "description": "Mother Samantha arrives and is detained; she claims Ava was supposed to be at a friend's house; stepfather Bruce arrives and becomes aggressive, ranting about Ava being a 'problem.'"
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.3,
+        "end_pct": 0.4,
+        "description": "Bruce is taken to the station, has a rage episode in the holding cell, then feigns a stroke; Samantha is interrogated and admits she was scared of Bruce."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.4,
+        "end_pct": 0.55,
+        "description": "Samantha reveals in interrogation that Bruce frequently locked Ava in the shed as punishment, that she was left there for hours in extreme heat, and that Bruce had punched and kicked her."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.55,
+        "end_pct": 0.7,
+        "description": "Bruce is interrogated; he denies locking Ava in, claims she was 'touching' his daughter, and blames Samantha for injuries; detectives confront him with evidence of cigarette burns and a deformed wrist."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.7,
+        "end_pct": 0.85,
+        "description": "Samantha explains why she didn't leave: fear of Bruce, who she says tried to shoot her before; both are arrested and charged; children placed in protective custody."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.85,
+        "end_pct": 0.95,
+        "description": "Narrator summarizes charges: Bruce faces multiple counts including false imprisonment; Samantha charged with child abuse; both held without bond; case ongoing."
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.95,
+        "end_pct": 1.0,
+        "description": "Channel call to action: Patreon and membership offers for early access and extra footage."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 5,
+    "emotional_peak": 4,
+    "procedural_violation": 0,
+    "reveal": 6,
+    "detail_noticed": 3,
+    "callback": 1,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.2,
+    "total_segments": 1243,
+    "bodycam_pct": 0.35,
+    "narration_pct": 0.25,
+    "interrogation_pct": 0.35,
+    "other_pct": 0.05
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "narration"
+  ],
+  "moments_by_artifact": {
+    "bodycam": {
+      "contradiction": 1,
+      "emotional_peak": 2,
+      "procedural_violation": 0,
+      "reveal": 1,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 2
+    },
+    "interrogation": {
+      "contradiction": 4,
+      "emotional_peak": 2,
+      "procedural_violation": 0,
+      "reveal": 3,
+      "detail_noticed": 1,
+      "callback": 1,
+      "tension_shift": 2
+    },
+    "911_audio": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "court_video": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "news_clips": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "documents": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "narration": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 2,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 0
+    }
+  },
+  "_llm_model": "deepseek/deepseek-v4-flash",
+  "_analysis_metadata": {
+    "model": "deepseek/deepseek-v4-flash",
+    "transcript_segments": 1243,
+    "transcript_preview": "Sheriff's office. Anybody here? >> Yes, I'm here. >> Where? >> Just Where's your header? >> It's uh >> a poop bucket. >> And there's no way for her to get out. Huh? >> No. >> Today's one of the odd days. It's been at 102, 103. Today it's 104. >> Yeah, I knew it was bad. >> No running water. Nothing hard. >> No. She steals food. And how much can you feed a kid? >> I don't play games. She >> Uh-uh. You tell me how she got in that shed. ..."
+  }
+}

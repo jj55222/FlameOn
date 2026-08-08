@@ -1,0 +1,44 @@
+{
+  "moment_weights": {
+    "contradiction": 0.1544,
+    "emotional_peak": 0.1544,
+    "procedural_violation": 0.0263,
+    "reveal": 0.1965,
+    "detail_noticed": 0.1877,
+    "callback": 0.1123,
+    "tension_shift": 0.1684
+  },
+  "arc_patterns": [
+    {
+      "structure_type": "cold_open",
+      "frequency": 0.8276,
+      "avg_view_count": 10235613
+    },
+    {
+      "structure_type": "escalation",
+      "frequency": 0.069,
+      "avg_view_count": 6376928
+    },
+    {
+      "structure_type": "reveal_structure",
+      "frequency": 0.069,
+      "avg_view_count": 8132997
+    },
+    {
+      "structure_type": "parallel_timeline",
+      "frequency": 0.0345,
+      "avg_view_count": 9603918
+    }
+  ],
+  "artifact_value": {
+    "bodycam+court_video+documents+interrogation+narration": 0.4065,
+    "911_audio+bodycam+documents+interrogation+narration+news_clips": 0.301,
+    "911_audio+bodycam+documents+interrogation+narration": 0.575,
+    "bodycam+documents+interrogation+narration": 1.0,
+    "911_audio+bodycam+interrogation+narration": 0.5856,
+    "911_audio+bodycam+narration": 0.5135,
+    "bodycam+interrogation+narration": 0.5277,
+    "bodycam+documents+interrogation+narration+news_clips": 0.7178,
+    "911_audio+bodycam+court_video+documents+interrogation+narration+news_clips": 0.4028
+  }
+}

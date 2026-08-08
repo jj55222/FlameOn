@@ -1,0 +1,3052 @@
+{
+  "experiment_id": "MEDIA2",
+  "scanned_sources": [
+    "autoresearch\\calibration_data.json",
+    "pipeline2_discovery\\calibration_data.json",
+    "tests\\fixtures\\casegraph_scenarios",
+    "tests\\fixtures\\pilot_cases"
+  ],
+  "candidate_count": 26,
+  "fixture_signal_hits": [
+    {
+      "case_id": "scenario_charged_with_media_hold",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\charged_with_media_hold.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\charged_with_media_hold.json"
+    },
+    {
+      "case_id": "scenario_media_rich_produce",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\media_rich_produce.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\media_rich_produce.json"
+    },
+    {
+      "case_id": "scenario_multi_artifact_premium_produce",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\multi_artifact_premium_produce.json",
+      "media_signal_terms": [
+        "bodycam",
+        "interrogation"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\multi_artifact_premium_produce.json"
+    },
+    {
+      "case_id": "scenario_structured_conflicting_source_not_produce",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\structured_conflicting_source_not_produce.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\structured_conflicting_source_not_produce.json"
+    },
+    {
+      "case_id": "scenario_structured_official_bodycam_claim_hold",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\structured_official_bodycam_claim_hold.json",
+      "media_signal_terms": [
+        "bodycam",
+        "critical incident"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\structured_official_bodycam_claim_hold.json"
+    },
+    {
+      "case_id": "scenario_structured_verified_bodycam_produce",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\structured_verified_bodycam_produce.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\structured_verified_bodycam_produce.json"
+    },
+    {
+      "case_id": "scenario_transcript_artifact_claim_hold",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\transcript_artifact_claim_hold.json",
+      "media_signal_terms": [
+        "bodycam",
+        "911 call"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\transcript_artifact_claim_hold.json"
+    },
+    {
+      "case_id": "scenario_transcript_corroborated_media_produce",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\transcript_corroborated_media_produce.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\transcript_corroborated_media_produce.json"
+    },
+    {
+      "case_id": "scenario_weak_identity_media_blocked",
+      "fixture_path": "tests\\fixtures\\casegraph_scenarios\\weak_identity_media_blocked.json",
+      "media_signal_terms": [
+        "youtube"
+      ],
+      "source": "tests\\fixtures\\casegraph_scenarios\\weak_identity_media_blocked.json"
+    }
+  ],
+  "summary": {
+    "candidates_with_youtube_media": 22,
+    "total_known_media_urls": 48
+  },
+  "candidates": [
+    {
+      "case_id": 4,
+      "name": "Christa Gail Pike, Tadaryl Shipp, Shadolla Peterson",
+      "jurisdiction": "Knoxville, Knox County, Tennessee",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=t4QUDU1wiyM",
+        "https://www.youtube.com/watch?v=gQLjD37ir20",
+        "https://www.youtube.com/watch?v=_lEh979uBNA",
+        "https://www.youtube.com/watch?v=0R0GopbRbKk",
+        "https://www.tiktok.com/discover/christa-gail-pike-interview?lang=en",
+        "https://archive.knoxnews.com/news/local/pike-weeps-as-she-relives-her-murder-confession-ep-411814911-359926981.html",
+        "https://www.youtube.com/watch?v=tI9Rw5eIyGI",
+        "https://caselaw.findlaw.com/court/tn-supreme-court/1130311.html"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=t4QUDU1wiyM",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=gQLjD37ir20",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=_lEh979uBNA",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=0R0GopbRbKk",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tiktok.com/discover/christa-gail-pike-interview?lang=en",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://archive.knoxnews.com/news/local/pike-weeps-as-she-relives-her-murder-confession-ep-411814911-359926981.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=tI9Rw5eIyGI",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/tn-supreme-court/1130311.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 5,
+        "document_count": 0,
+        "rejected_count": 3
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Christa Gail Pike\"",
+        "\"Christa Gail Pike\" Knoxville",
+        "\"Christa Gail Pike\" sentencing",
+        "\"Christa Gail Pike\" bodycam"
+      ],
+      "media_confidence_score": 105,
+      "risk_flags": []
+    },
+    {
+      "case_id": 15,
+      "name": "William D. Foster",
+      "jurisdiction": "Miami, Miami-Dade, Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+        "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+        "https://www.youtube.com/watch?v=5i88VDrI3VA",
+        "https://www.youtube.com/watch?v=zIOuCD54wjM",
+        "https://www.youtube.com/watch?v=5BPmujjSUUE",
+        "https://www.courtlistener.com/docket/16840417/united-states-v-foster/",
+        "https://caselaw.findlaw.com/court/oh-supreme-court/1190226.html",
+        "https://caselaw.findlaw.com/court/ca-court-of-appeal/1240195.html"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=5i88VDrI3VA",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=zIOuCD54wjM",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=5BPmujjSUUE",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courtlistener.com/docket/16840417/united-states-v-foster/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/oh-supreme-court/1190226.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/ca-court-of-appeal/1240195.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 4,
+        "document_count": 0,
+        "rejected_count": 4
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"William D. Foster\"",
+        "\"William D. Foster\" Miami",
+        "\"William D. Foster\" sentencing",
+        "\"William D. Foster\" bodycam"
+      ],
+      "media_confidence_score": 93,
+      "risk_flags": []
+    },
+    {
+      "case_id": 5,
+      "name": "Manuel Marin, Roberto \"Bam Bam\" Isaac, Alexis Vila Perdomo, Ariel Gandulla",
+      "jurisdiction": "Miami, Miami-Dade County, Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=yTQWdBi2aF8",
+        "https://www.youtube.com/watch?v=9aFP2Z9X-2w",
+        "https://www.youtube.com/watch?v=3gW-ojZsQTc",
+        "https://www.youtube.com/watch?v=OSwrkXDOwj4",
+        "https://casetext.com/case/marin-v-state-2039"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=yTQWdBi2aF8",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=9aFP2Z9X-2w",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=3gW-ojZsQTc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=OSwrkXDOwj4",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://casetext.com/case/marin-v-state-2039",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 4,
+        "document_count": 0,
+        "rejected_count": 1
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Manuel Marin\"",
+        "\"Manuel Marin\" Miami",
+        "\"Manuel Marin\" sentencing",
+        "\"Manuel Marin\" bodycam"
+      ],
+      "media_confidence_score": 93,
+      "risk_flags": []
+    },
+    {
+      "case_id": 27,
+      "name": "Alan Matthew Champagne",
+      "jurisdiction": ", Maricopa, Arizona",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=TlbnKMyfq-k",
+        "https://www.youtube.com/watch?v=AaHAHbrSZMY",
+        "https://www.abc15.com/news/region-phoenix-metro/central-phoenix/trial-set-for-alan-mathew-champagne-man-accused-of-killing-couple-burying-bodies",
+        "https://www.azcentral.com/story/news/local/phoenix/2017/04/03/alan-champagne-accused-killing-burying-bodies/99982274/",
+        "https://www.azcentral.com/story/news/local/phoenix-breaking/2017/08/14/penalty-phase-continues-alan-champagne-convicted-phoenix-couples-murder-2011/565523001/",
+        "https://certpool.com/dockets/19-7091",
+        "https://www.azcourts.gov/Portals/0/OpinionFiles/Supreme/2019/State%20v.%20Champagne%20FILED.pdf"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=TlbnKMyfq-k",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=AaHAHbrSZMY",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.abc15.com/news/region-phoenix-metro/central-phoenix/trial-set-for-alan-mathew-champagne-man-accused-of-killing-couple-burying-bodies",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.azcentral.com/story/news/local/phoenix/2017/04/03/alan-champagne-accused-killing-burying-bodies/99982274/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.azcentral.com/story/news/local/phoenix-breaking/2017/08/14/penalty-phase-continues-alan-champagne-convicted-phoenix-couples-murder-2011/565523001/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://certpool.com/dockets/19-7091",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.azcourts.gov/Portals/0/OpinionFiles/Supreme/2019/State%20v.%20Champagne%20FILED.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 1,
+        "rejected_count": 4
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Alan Matthew Champagne\"",
+        "\"Alan Matthew Champagne\" sentencing",
+        "\"Alan Matthew Champagne\" bodycam"
+      ],
+      "media_confidence_score": 72,
+      "risk_flags": []
+    },
+    {
+      "case_id": 1,
+      "name": "Min Jian Guan",
+      "jurisdiction": "San Francisco, San Francisco, CA",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=ytap7WQnLK4",
+        "https://www.youtube.com/watch?v=u0DRn51fR0s",
+        "https://www.youtube.com/watch?v=dWkzJWse_dc",
+        "https://en.wikipedia.org/wiki/Gui_Minhai",
+        "https://www.tiktok.com/@chispcx/video/7419723892278742305",
+        "https://www.justia.com/criminal/procedure/arrests-and-arrest-warrants/probable-cause-and-probable-cause-hearings/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=ytap7WQnLK4",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=u0DRn51fR0s",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=dWkzJWse_dc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Gui_Minhai",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tiktok.com/@chispcx/video/7419723892278742305",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.justia.com/criminal/procedure/arrests-and-arrest-warrants/probable-cause-and-probable-cause-hearings/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 3,
+        "document_count": 0,
+        "rejected_count": 3
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Min Jian Guan\"",
+        "\"Min Jian Guan\" San Francisco",
+        "\"Min Jian Guan\" sentencing",
+        "\"Min Jian Guan\" bodycam"
+      ],
+      "media_confidence_score": 71,
+      "risk_flags": []
+    },
+    {
+      "case_id": 14,
+      "name": "Dr. Prentiss Madden",
+      "jurisdiction": "Aventura, Miami-Dade, Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=LsT1qRBhe6Q",
+        "https://www.youtube.com/watch?v=qfN6ZuXkO0o",
+        "https://www.youtube.com/watch?v=M0yHauybTqg",
+        "https://www.cbsnews.com/miami/news/aventura-veterinarian-madden-pleads-guilty-to-child-porn-sex-with-dogs/",
+        "https://www.scribd.com/document/499319973/Prentiss-Madden-Criminal-Complaint",
+        "https://pdfcoffee.com/prentiss-madden-criminal-complaint-pdf-free.html"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=LsT1qRBhe6Q",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=qfN6ZuXkO0o",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=M0yHauybTqg",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.cbsnews.com/miami/news/aventura-veterinarian-madden-pleads-guilty-to-child-porn-sex-with-dogs/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.scribd.com/document/499319973/Prentiss-Madden-Criminal-Complaint",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://pdfcoffee.com/prentiss-madden-criminal-complaint-pdf-free.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 3,
+        "document_count": 0,
+        "rejected_count": 3
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Dr. Prentiss Madden\"",
+        "\"Dr. Prentiss Madden\" Aventura",
+        "\"Dr. Prentiss Madden\" sentencing",
+        "\"Dr. Prentiss Madden\" bodycam"
+      ],
+      "media_confidence_score": 71,
+      "risk_flags": []
+    },
+    {
+      "case_id": 32,
+      "name": "Letecia Stauch",
+      "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=ZrdCRNQU98U",
+        "https://www.tiktok.com/@lawandcrime/video/7219423697906535723",
+        "https://www.facebook.com/courttv/videos/bodycam-audio-letecia-stauch-on-stepsons-disappearance/1178032979551184/",
+        "https://www.youtube.com/watch?v=tOYvzsMNEKU",
+        "https://www.courttv.com/news/law-enforcement-testify-in-letecia-stauch-murder-trial/",
+        "https://www.courts.state.co.us/Courts/County/Case_Details.cfm?Case_ID=3348",
+        "https://www.youtube.com/watch?v=DsFGXIieWAY"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=ZrdCRNQU98U",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tiktok.com/@lawandcrime/video/7219423697906535723",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.facebook.com/courttv/videos/bodycam-audio-letecia-stauch-on-stepsons-disappearance/1178032979551184/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=tOYvzsMNEKU",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courttv.com/news/law-enforcement-testify-in-letecia-stauch-murder-trial/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courts.state.co.us/Courts/County/Case_Details.cfm?Case_ID=3348",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=DsFGXIieWAY",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 3,
+        "document_count": 0,
+        "rejected_count": 4
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Letecia Stauch\"",
+        "\"Letecia Stauch\" Colorado Springs",
+        "\"Letecia Stauch\" sentencing",
+        "\"Letecia Stauch\" bodycam"
+      ],
+      "media_confidence_score": 71,
+      "risk_flags": []
+    },
+    {
+      "case_id": 21,
+      "name": "William James McElroy Jr.",
+      "jurisdiction": "Phoenix, Maricopa County, Arizona",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+        "https://www.firstcoastnews.com/article/news/crime/body-camera-jacksonville-traffic-stop-jso-video-william-mcneil/77-fbb3f3e8-251b-4f09-9070-c4c282150619",
+        "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+        "https://www.azcentral.com/story/news/local/phoenix-breaking/2021/11/05/willie-mcelroy-jr-convicted-child-sex-trafficking-sentenced-over-141-years-prison/6293789001/",
+        "https://www.reddit.com/r/Documentaries/comments/vb9hwp/russell_williams_the_confession_2014_the_fifth/",
+        "https://www.jmdlaw.com/criminal-prosecutions/",
+        "https://www.youtube.com/watch?v=Ccg_obzOrfo",
+        "https://www.courthousenews.com/james-mcelroy/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.reddit.com/r/ThisIsButter/comments/1m68xk7/jacksonville_sheriff_releases_officer_bodycam/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.firstcoastnews.com/article/news/crime/body-camera-jacksonville-traffic-stop-jso-video-william-mcneil/77-fbb3f3e8-251b-4f09-9070-c4c282150619",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=2TBm9RuwrRc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.azcentral.com/story/news/local/phoenix-breaking/2021/11/05/willie-mcelroy-jr-convicted-child-sex-trafficking-sentenced-over-141-years-prison/6293789001/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.reddit.com/r/Documentaries/comments/vb9hwp/russell_williams_the_confession_2014_the_fifth/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.jmdlaw.com/criminal-prosecutions/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Ccg_obzOrfo",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courthousenews.com/james-mcelroy/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 0,
+        "rejected_count": 6
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"William James McElroy\"",
+        "\"William James McElroy\" Phoenix",
+        "\"William James McElroy\" sentencing",
+        "\"William James McElroy\" bodycam"
+      ],
+      "media_confidence_score": 59,
+      "risk_flags": []
+    },
+    {
+      "case_id": 19,
+      "name": "Jeffrey Epstein, Nadia Marcinkova, Sarah Kellen",
+      "jurisdiction": "Palm Beach, Palm Beach County, Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://abcnews.go.com/images/WNT/Palm_Beach_Records_Epstein.pdf",
+        "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+        "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+        "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+        "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+        "https://www.cbsnews.com/live-updates/epstein-files-released-doj-2026/",
+        "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+        "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://abcnews.go.com/images/WNT/Palm_Beach_Records_Epstein.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.cbsnews.com/live-updates/epstein-files-released-doj-2026/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 2,
+        "rejected_count": 4
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Jeffrey Epstein\"",
+        "\"Jeffrey Epstein\" Palm Beach",
+        "\"Jeffrey Epstein\" sentencing",
+        "\"Jeffrey Epstein\" bodycam"
+      ],
+      "media_confidence_score": 55,
+      "risk_flags": []
+    },
+    {
+      "case_id": 17,
+      "name": "Jeffrey Epstein, Ghislaine Maxwell, Sarah Kellen Vickers",
+      "jurisdiction": "Palm Beach, Palm Beach County, Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+        "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+        "https://timesofindia.indiatimes.com/videos/international/epsteins-unseen-video-interview-released-watch-big-confessions-on-sexual-crimes-us-news-doj/videoshow/127928465.cms",
+        "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+        "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+        "https://www.nytimes.com/live/2025/12/19/us/epstein-files-release",
+        "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+        "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=mxBV2ILmi2Q",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=w2WzvxvEbk8",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://timesofindia.indiatimes.com/videos/international/epsteins-unseen-video-interview-released-watch-big-confessions-on-sexual-crimes-us-news-doj/videoshow/127928465.cms",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.pbs.org/newshour/politics/a-timeline-of-the-jeffrey-epstein-investigation-and-the-fight-to-make-the-governments-files-public",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.bbc.com/news/articles/cn0k65pnxjxo",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.nytimes.com/live/2025/12/19/us/epstein-files-release",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://medialaw.org/wp-content/uploads/2023/06/06.29.23epstein.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courthousenews.com/florida-newspaper-seeks-grand-jury-records-from-epstein-case/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 1,
+        "rejected_count": 5
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Jeffrey Epstein\"",
+        "\"Jeffrey Epstein\" Palm Beach",
+        "\"Jeffrey Epstein\" sentencing",
+        "\"Jeffrey Epstein\" bodycam"
+      ],
+      "media_confidence_score": 52,
+      "risk_flags": []
+    },
+    {
+      "case_id": 25,
+      "name": "Kyle Matthew Thompson",
+      "jurisdiction": "Mohave Valley, Mohave County, Arizona",
+      "tier": "BORDERLINE",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=FUED9aYcNHU",
+        "https://www.youtube.com/watch?v=tRi2g1s5Vyw",
+        "https://www.youtube.com/watch?v=JeunnmAIUUc"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=FUED9aYcNHU",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=tRi2g1s5Vyw",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=JeunnmAIUUc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 3,
+        "document_count": 0,
+        "rejected_count": 0
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Kyle Matthew Thompson\"",
+        "\"Kyle Matthew Thompson\" Mohave Valley",
+        "\"Kyle Matthew Thompson\" sentencing",
+        "\"Kyle Matthew Thompson\" bodycam"
+      ],
+      "media_confidence_score": 48,
+      "risk_flags": []
+    },
+    {
+      "case_id": 22,
+      "name": "Robert Hood",
+      "jurisdiction": "Phoenix, , Arizona",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=J3e3lsSe0YQ",
+        "https://law.justia.com/cases/north-carolina/supreme-court/1992/15a92-0.html",
+        "https://caselaw.findlaw.com/court/ca-court-of-appeal/1390128.html",
+        "https://www.courtlistener.com/opinion/1055566/state-of-tennessee-v-robert-hood/",
+        "https://www.co.hood.tx.us/640/Docket-Listing",
+        "https://hoodcounty.texas.gov/courts/county_clerk/court_records.php",
+        "https://6park.news/southcarolina/robert-hood-sentenced-to-prison-for-killing-jaiden-hammond.html"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=J3e3lsSe0YQ",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://law.justia.com/cases/north-carolina/supreme-court/1992/15a92-0.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/ca-court-of-appeal/1390128.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courtlistener.com/opinion/1055566/state-of-tennessee-v-robert-hood/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.co.hood.tx.us/640/Docket-Listing",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://hoodcounty.texas.gov/courts/county_clerk/court_records.php",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://6park.news/southcarolina/robert-hood-sentenced-to-prison-for-killing-jaiden-hammond.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 6
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Robert Hood\"",
+        "\"Robert Hood\" Phoenix",
+        "\"Robert Hood\" sentencing",
+        "\"Robert Hood\" bodycam"
+      ],
+      "media_confidence_score": 47,
+      "risk_flags": []
+    },
+    {
+      "case_id": 36,
+      "name": "Anthony Darrell Dugard Hines",
+      "jurisdiction": "Kingston Springs, Cheatham County, Tennessee",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=8703tQkTQDc",
+        "https://www.tncourts.gov/courts/court-criminal-appeals/opinions/2008/01/29/anthony-darrell-hines-v-state-tennessee",
+        "https://caselaw.findlaw.com/court/us-6th-circuit/2065651.html",
+        "https://tncourts.gov/sites/default/files/docs/Motion-Set%20Execution%20Date%20(14)-Anthony%20Darrell%20Dugard%20Hines.pdf",
+        "https://tncourts.gov/sites/default/files/docs/Order%20setting%20execution%20(17)%20-%20Anthony%20Darrell%20Dugard%20Hines.pdf",
+        "https://www.tncourts.gov/sites/default/files/OPINIONS/tcca/PDF/041/HinesAn.pdf"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=8703tQkTQDc",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tncourts.gov/courts/court-criminal-appeals/opinions/2008/01/29/anthony-darrell-hines-v-state-tennessee",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/us-6th-circuit/2065651.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://tncourts.gov/sites/default/files/docs/Motion-Set%20Execution%20Date%20(14)-Anthony%20Darrell%20Dugard%20Hines.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://tncourts.gov/sites/default/files/docs/Order%20setting%20execution%20(17)%20-%20Anthony%20Darrell%20Dugard%20Hines.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tncourts.gov/sites/default/files/OPINIONS/tcca/PDF/041/HinesAn.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 3,
+        "rejected_count": 2
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Anthony Darrell Dugard Hines\"",
+        "\"Anthony Darrell Dugard Hines\" Kingston Springs",
+        "\"Anthony Darrell Dugard Hines\" sentencing",
+        "\"Anthony Darrell Dugard Hines\" bodycam"
+      ],
+      "media_confidence_score": 46,
+      "risk_flags": []
+    },
+    {
+      "case_id": 29,
+      "name": "Angela D. McAnulty",
+      "jurisdiction": ", Lane County / Washington County, Oregon",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "court_video",
+        "interrogation",
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES",
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://dpic-cdn.org/production/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+        "https://caselaw.findlaw.com/court/or-supreme-court/1682383.html",
+        "https://case-law.vlex.com/vid/state-v-mcanulty-cc-891679955",
+        "https://files.deathpenaltyinfo.org/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+        "https://www.klcc.org/crime-law-justice/2019-07-11/judge-may-overturn-angela-mcanultys-death-sentence",
+        "http://www.clipsyndicate.com/video/play/2210021/disturbing_details_in_angela_mcanulty_sentencing_trial",
+        "https://p1cdn4static.civiclive.com/UserFiles/Servers/Server_3585797/File/McAnultyPCRPressRelease%20(002)%20(002).pdf",
+        "https://www.seattleweekly.com/news/when-angela-mcanulty-spoke-to-a-jury-on-thursday-she-promised-them/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://dpic-cdn.org/production/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/or-supreme-court/1682383.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://case-law.vlex.com/vid/state-v-mcanulty-cc-891679955",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://files.deathpenaltyinfo.org/documents/McAnulty_PCR_Order_2019_09_10.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.klcc.org/crime-law-justice/2019-07-11/judge-may-overturn-angela-mcanultys-death-sentence",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "http://www.clipsyndicate.com/video/play/2210021/disturbing_details_in_angela_mcanulty_sentencing_trial",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://p1cdn4static.civiclive.com/UserFiles/Servers/Server_3585797/File/McAnultyPCRPressRelease%20(002)%20(002).pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.seattleweekly.com/news/when-angela-mcanulty-spoke-to-a-jury-on-thursday-she-promised-them/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 0,
+        "document_count": 3,
+        "rejected_count": 5
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Angela D. McAnulty\"",
+        "\"Angela D. McAnulty\" sentencing",
+        "\"Angela D. McAnulty\" bodycam"
+      ],
+      "media_confidence_score": 44,
+      "risk_flags": []
+    },
+    {
+      "case_id": 18,
+      "name": "Michael Edwin Harding",
+      "jurisdiction": ", Southern District of Florida (federal jurisdiction), Florida",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.dailymotion.com/video/x8mn0al",
+        "https://www.dailymotion.com/video/x8ifs7z",
+        "https://www.courtlistener.com/docket/4237159/united-states-v-harding/",
+        "https://www.pacermonitor.com/public/case/24286828/USA_v_Harding",
+        "https://dockets.justia.com/docket/circuit-courts/ca11/21-14133"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.dailymotion.com/video/x8mn0al",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.dailymotion.com/video/x8ifs7z",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.courtlistener.com/docket/4237159/united-states-v-harding/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.pacermonitor.com/public/case/24286828/USA_v_Harding",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://dockets.justia.com/docket/circuit-courts/ca11/21-14133",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 0,
+        "document_count": 0,
+        "rejected_count": 5
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Michael Edwin Harding\"",
+        "\"Michael Edwin Harding\" sentencing",
+        "\"Michael Edwin Harding\" bodycam"
+      ],
+      "media_confidence_score": 35,
+      "risk_flags": []
+    },
+    {
+      "case_id": 31,
+      "name": "Marvin G. Johnson",
+      "jurisdiction": "Cambridge, Guernsey County, Ohio",
+      "tier": "ENOUGH",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "bodycam",
+        "court_video",
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES",
+        "autoresearch\\calibration_data.json.ground_truth.court_video=YES",
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.chicago.gov/city/en/depts/mayor/press_room/press_releases/2024/april/March-21-shooting.html",
+        "https://caselaw.findlaw.com/court/fl-supreme-court/116366912.html",
+        "https://law.justia.com/cases/federal/appellate-courts/F3/185/765/609204/",
+        "https://law.justia.com/cases/florida/supreme-court/1988/72238-0.html",
+        "https://law.justia.com/cases/federal/appellate-courts/F2/938/1166/294126/",
+        "https://dockets.justia.com/docket/california/cacdce/2:2017cv03564/677960"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.chicago.gov/city/en/depts/mayor/press_room/press_releases/2024/april/March-21-shooting.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://caselaw.findlaw.com/court/fl-supreme-court/116366912.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://law.justia.com/cases/federal/appellate-courts/F3/185/765/609204/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://law.justia.com/cases/florida/supreme-court/1988/72238-0.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://law.justia.com/cases/federal/appellate-courts/F2/938/1166/294126/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://dockets.justia.com/docket/california/cacdce/2:2017cv03564/677960",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 0,
+        "document_count": 0,
+        "rejected_count": 6
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Marvin G. Johnson\"",
+        "\"Marvin G. Johnson\" Cambridge",
+        "\"Marvin G. Johnson\" sentencing",
+        "\"Marvin G. Johnson\" bodycam"
+      ],
+      "media_confidence_score": 35,
+      "risk_flags": []
+    },
+    {
+      "case_id": 35,
+      "name": "Katelynne Dianna Leigh Nelson, Carla Faith, Christina Swauger",
+      "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.courttv.com/title/6-19-19-fl-v-nelson-police-interrogation-video-released/",
+        "https://www.youtube.com/watch?v=Jc8YYpnc148",
+        "https://www.youtube.com/watch?v=a1ZbuPW7Xow",
+        "https://ewscripps.brightspotcdn.com/e3/a3/cf8b319349019bb95aba33d71f2a/nelson-affidavit.pdf"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.courttv.com/title/6-19-19-fl-v-nelson-police-interrogation-video-released/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Jc8YYpnc148",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=a1ZbuPW7Xow",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://ewscripps.brightspotcdn.com/e3/a3/cf8b319349019bb95aba33d71f2a/nelson-affidavit.pdf",
+          "is_media": false,
+          "is_document": true,
+          "artifact_type": "docket_docs",
+          "format": "pdf",
+          "risk_flags": [],
+          "verification_method": "public_pdf_extension",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 1,
+        "rejected_count": 1
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Katelynne Dianna Leigh Nelson\"",
+        "\"Katelynne Dianna Leigh Nelson\" Colorado Springs",
+        "\"Katelynne Dianna Leigh Nelson\" sentencing",
+        "\"Katelynne Dianna Leigh Nelson\" bodycam"
+      ],
+      "media_confidence_score": 27,
+      "risk_flags": []
+    },
+    {
+      "case_id": 11,
+      "name": "Steven Dexter Gangoo",
+      "jurisdiction": "Miami, Broward, Florida",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=okHhiS91geA",
+        "https://www.youtube.com/watch?v=n68TcWxWoG0"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=okHhiS91geA",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=n68TcWxWoG0",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 0,
+        "rejected_count": 0
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Steven Dexter Gangoo\"",
+        "\"Steven Dexter Gangoo\" Miami",
+        "\"Steven Dexter Gangoo\" sentencing",
+        "\"Steven Dexter Gangoo\" bodycam"
+      ],
+      "media_confidence_score": 24,
+      "risk_flags": []
+    },
+    {
+      "case_id": 28,
+      "name": "Thomas Michael Riley",
+      "jurisdiction": "Buckeye, Maricopa, Arizona",
+      "tier": "BORDERLINE",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "dispatch_911"
+      ],
+      "desired_artifact_types": [
+        "dispatch_911"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.dispatch_911=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=glUF2mnWz-E"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=glUF2mnWz-E",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 0
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Thomas Michael Riley\"",
+        "\"Thomas Michael Riley\" Buckeye",
+        "\"Thomas Michael Riley\" sentencing",
+        "\"Thomas Michael Riley\" bodycam"
+      ],
+      "media_confidence_score": 24,
+      "risk_flags": []
+    },
+    {
+      "case_id": 30,
+      "name": "Miguel Antonio Mondaca",
+      "jurisdiction": "Spokane, , Washington",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.facebook.com/pelon241993/videos/police-bodycam-pov/948999804955390/",
+        "https://www.youtube.com/watch?v=2P_PNrIcb2s",
+        "https://www.youtube.com/watch?v=gG9KujODZfU",
+        "https://fallriverreporter.com/fall-river-mans-sentencing-date-revealed-after-being-found-guilty-in-murder-of-jovaughn-antonio-mills-miguel-sanjurjo/",
+        "https://www.kens5.com/article/news/crime/2-men-deadly-migrant-tragedy-quintana-road-sentenced-san-antonio-trailer/273-bfbc5ef6-20b3-4800-afae-10939a681a9b"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.facebook.com/pelon241993/videos/police-bodycam-pov/948999804955390/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=2P_PNrIcb2s",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=gG9KujODZfU",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://fallriverreporter.com/fall-river-mans-sentencing-date-revealed-after-being-found-guilty-in-murder-of-jovaughn-antonio-mills-miguel-sanjurjo/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.kens5.com/article/news/crime/2-men-deadly-migrant-tragedy-quintana-road-sentenced-san-antonio-trailer/273-bfbc5ef6-20b3-4800-afae-10939a681a9b",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 0,
+        "rejected_count": 3
+      },
+      "likely_connector_path": [
+        "youtube",
+        "agency_ois",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Miguel Antonio Mondaca\"",
+        "\"Miguel Antonio Mondaca\" Spokane",
+        "\"Miguel Antonio Mondaca\" sentencing",
+        "\"Miguel Antonio Mondaca\" bodycam"
+      ],
+      "media_confidence_score": 24,
+      "risk_flags": []
+    },
+    {
+      "case_id": 37,
+      "name": "Ashley Traister, Brooke Shoemaker, Elizabeth Thompson, Kathryn Green, Adora Perez, Emily Akers, Cherie Mason, Brittney Poolaw",
+      "jurisdiction": "Multiple (Lawton OK, Auburn AL, Chapin SC, etc.), , Multiple (Oklahoma, Alabama, South Carolina, California)",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.youtube.com/shorts/c94_qRmeTFM",
+        "https://www.instagram.com/reel/DThC6CODzfU/",
+        "https://www.youtube.com/watch?v=5QETiuKV4_I",
+        "https://www.tiktok.com/@courtroomconsequences9/video/7364813043328503083"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/shorts/c94_qRmeTFM",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.instagram.com/reel/DThC6CODzfU/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=5QETiuKV4_I",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tiktok.com/@courtroomconsequences9/video/7364813043328503083",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 2,
+        "document_count": 0,
+        "rejected_count": 2
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Ashley Traister\"",
+        "\"Ashley Traister\" Multiple (Lawton OK",
+        "\"Ashley Traister\" sentencing",
+        "\"Ashley Traister\" bodycam"
+      ],
+      "media_confidence_score": 24,
+      "risk_flags": []
+    },
+    {
+      "case_id": 13,
+      "name": "Carmen Barahona, Jorge Barahona",
+      "jurisdiction": "Miami, Miami-Dade, Florida",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "interrogation"
+      ],
+      "desired_artifact_types": [
+        "interrogation"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.interrogation=YES"
+      ],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+        "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 1
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Carmen Barahona\"",
+        "\"Carmen Barahona\" Miami",
+        "\"Carmen Barahona\" sentencing",
+        "\"Carmen Barahona\" bodycam"
+      ],
+      "media_confidence_score": 22,
+      "risk_flags": []
+    },
+    {
+      "case_id": 8,
+      "name": "Jorge Barahona",
+      "jurisdiction": "Miami, Miami-Dade County, Florida",
+      "tier": "BORDERLINE",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+        "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/",
+        "https://abcnews.go.com/US/florida-father-pleads-guilty-attempted-murder-acid-attack/story?id=12949156"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=rsQ-QLUsPQ4",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://www.wflx.com/story/14209367/cause-of-nubia-barahonas-death-released/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://abcnews.go.com/US/florida-father-pleads-guilty-attempted-murder-acid-attack/story?id=12949156",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 2
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Jorge Barahona\"",
+        "\"Jorge Barahona\" Miami",
+        "\"Jorge Barahona\" sentencing",
+        "\"Jorge Barahona\" bodycam"
+      ],
+      "media_confidence_score": 14,
+      "risk_flags": []
+    },
+    {
+      "case_id": 2,
+      "name": "Roger Dale Boshers",
+      "jurisdiction": "San Francisco, Contra Costa, California",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=6_MBlyEnu8s",
+        "https://law.justia.com/cases/texas/thirteenth-court-of-appeals/2001/11604.html"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=6_MBlyEnu8s",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        },
+        {
+          "url": "https://law.justia.com/cases/texas/thirteenth-court-of-appeals/2001/11604.html",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 1
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Roger Dale Boshers\"",
+        "\"Roger Dale Boshers\" San Francisco",
+        "\"Roger Dale Boshers\" sentencing",
+        "\"Roger Dale Boshers\" bodycam"
+      ],
+      "media_confidence_score": 12,
+      "risk_flags": []
+    },
+    {
+      "case_id": 33,
+      "name": "Carla Marie Faith, Christina Swauger",
+      "jurisdiction": "Colorado Springs, El Paso County, Colorado",
+      "tier": "BORDERLINE",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [
+        "bodycam"
+      ],
+      "desired_artifact_types": [
+        "bodycam"
+      ],
+      "source_fields": [
+        "autoresearch\\calibration_data.json.ground_truth.bodycam=YES"
+      ],
+      "known_urls": [
+        "https://www.tiktok.com/@robandhaley/video/7511354353928686891",
+        "https://www.tiktok.com/discover/carla-marie-faith",
+        "https://trellis.law/doc/165241368/filing-other-related-document-defendant-countrepoints-position-on-joint-motion-to-dismiss-plaintiffs-claims-against-defendant-colorado-education-group",
+        "https://gazette.com/2021/08/26/colorado-springs-daycare-provider-carla-faith-found-guilty-on-all-counts-9086c1c4-06af-11ec-b2b2-17a50aa56044/"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.tiktok.com/@robandhaley/video/7511354353928686891",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://www.tiktok.com/discover/carla-marie-faith",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://trellis.law/doc/165241368/filing-other-related-document-defendant-countrepoints-position-on-joint-motion-to-dismiss-plaintiffs-claims-against-defendant-colorado-education-group",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        },
+        {
+          "url": "https://gazette.com/2021/08/26/colorado-springs-daycare-provider-carla-faith-found-guilty-on-all-counts-9086c1c4-06af-11ec-b2b2-17a50aa56044/",
+          "is_media": false,
+          "is_document": false,
+          "artifact_type": null,
+          "format": null,
+          "risk_flags": [
+            "no_media_indicator"
+          ],
+          "verification_method": null,
+          "rejected": true,
+          "rejection_reason": "no_media_indicator",
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 0,
+        "document_count": 0,
+        "rejected_count": 4
+      },
+      "likely_connector_path": [
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Carla Marie Faith\"",
+        "\"Carla Marie Faith\" Colorado Springs",
+        "\"Carla Marie Faith\" sentencing",
+        "\"Carla Marie Faith\" bodycam"
+      ],
+      "media_confidence_score": 12,
+      "risk_flags": []
+    },
+    {
+      "case_id": 6,
+      "name": "Braulio Gonzalez",
+      "jurisdiction": "Miami, Miami-Dade, Florida",
+      "tier": "INSUFFICIENT",
+      "source": "autoresearch\\calibration_data.json",
+      "media_signal_terms": [],
+      "desired_artifact_types": [],
+      "source_fields": [],
+      "known_urls": [
+        "https://www.youtube.com/watch?v=3bvp5QYAp70"
+      ],
+      "classified_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=3bvp5QYAp70",
+          "is_media": true,
+          "is_document": false,
+          "artifact_type": "video_footage",
+          "format": "video",
+          "risk_flags": [],
+          "verification_method": "public_video_host:youtube",
+          "rejected": false,
+          "rejection_reason": null,
+          "hint_used": null
+        }
+      ],
+      "url_classification_summary": {
+        "media_count": 1,
+        "document_count": 0,
+        "rejected_count": 0
+      },
+      "likely_connector_path": [
+        "youtube",
+        "documentcloud",
+        "courtlistener",
+        "muckrock"
+      ],
+      "candidate_query_strings": [
+        "\"Braulio Gonzalez\"",
+        "\"Braulio Gonzalez\" Miami",
+        "\"Braulio Gonzalez\" sentencing",
+        "\"Braulio Gonzalez\" bodycam"
+      ],
+      "media_confidence_score": 12,
+      "risk_flags": []
+    }
+  ]
+}

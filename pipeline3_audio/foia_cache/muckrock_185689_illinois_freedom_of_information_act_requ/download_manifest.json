@@ -1,0 +1,42 @@
+[
+  {
+    "kind": "media",
+    "name": "_Clip_2_1_Aggravated_Battery_to_PO",
+    "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_2_1_Aggravated_Battery_to_PO.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Clip_2_1_Aggravated_Battery_to_PO.mp4",
+    "bytes": 6324295,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "_Clip_1_1_Agg_Batt_to_PO",
+    "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Agg_Batt_to_PO.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Clip_1_1_Agg_Batt_to_PO.mp4",
+    "bytes": 18594302,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "_Clip_1_1_Aggravated_Battery_to_PO",
+    "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Clip_1_1_Aggravated_Battery_to_PO.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Clip_1_1_Aggravated_Battery_to_PO.mp4",
+    "bytes": 109067871,
+    "status": "downloaded"
+  },
+  {
+    "kind": "media",
+    "name": "_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_",
+    "url": "https://cdn.muckrock.com/foia_files/2025/05/27/_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_.mp4",
+    "path": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/media/_Extraction_1_1_Clip_1_1_Agg_Batt_to_PO__3_.mp4",
+    "bytes": 178359851,
+    "status": "downloaded"
+  },
+  {
+    "kind": "doc",
+    "name": "Recurrent_Requester",
+    "url": "https://cdn.muckrock.com/foia_files/2025/05/01/Recurrent_Requester.doc",
+    "path": "pipeline3_audio/foia_cache/muckrock_185689_illinois_freedom_of_information_act_requ/docs/Recurrent_Requester.doc",
+    "bytes": 142336,
+    "status": "downloaded"
+  }
+]

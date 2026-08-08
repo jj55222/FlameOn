@@ -1,0 +1,21 @@
+{
+  "page_type": "incident_detail",
+  "agency": "Phoenix Police Department",
+  "agency_url_root": "https://www.phoenix.gov",
+  "url": "https://www.phoenix.gov/newsroom/police-department-news/3369.html",
+  "title": "Critical Incident Briefing - February 12, 2025 - 2400 S Higley Rd.",
+  "narrative": "Phoenix Police Department Critical Incident Briefing. Title: Critical Incident Briefing - February 12, 2025 - 2400 S Higley Rd.. Incident date: 2025-02-12. Release date: 2025-02-26. The briefing video includes Body-Worn Camera (BWC) footage and is published on the official City of Phoenix Newsroom.",
+  "subjects": [],
+  "incident_date": "2025-02-12",
+  "case_number": "",
+  "outcome_text": null,
+  "media_links": [
+    {
+      "url": "https://www.youtube.com/watch?v=gAoDdfgTSi8",
+      "label": "Critical Incident Briefing video (Phoenix Newsroom)",
+      "type": "bodycam_briefing"
+    }
+  ],
+  "document_links": [],
+  "claims": []
+}

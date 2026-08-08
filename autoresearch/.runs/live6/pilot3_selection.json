@@ -1,0 +1,83 @@
+{
+  "selected_pilot_id": "mpv_documentcloud_pilot",
+  "no_ready_pilot": false,
+  "candidate_count": 5,
+  "selection_score": 130,
+  "fixture_path": "tests/fixtures/structured_inputs/mpv_complete.json",
+  "input_type": "structured",
+  "allowed_connectors": [
+    "documentcloud"
+  ],
+  "max_live_calls": 1,
+  "max_results_per_connector": 5,
+  "expected_verdict_without_live": "SKIP",
+  "actual_dry_verdict": "SKIP",
+  "expected_minimum": {
+    "identity_lock_required": true,
+    "outcome_required": true,
+    "media_required_for_produce": true,
+    "artifact_types_desired": [
+      "docket_docs"
+    ]
+  },
+  "missing_gates": [
+    "concluded_outcome",
+    "identity_high",
+    "media_artifact_present"
+  ],
+  "selected_pilot_result": {
+    "id": "mpv_documentcloud_pilot",
+    "input_type": "structured",
+    "seed_fixture_path": "tests/fixtures/structured_inputs/mpv_complete.json",
+    "expected_minimum": {
+      "identity_lock_required": true,
+      "outcome_required": true,
+      "media_required_for_produce": true,
+      "artifact_types_desired": [
+        "docket_docs"
+      ]
+    },
+    "expected_verdict_without_live": "SKIP",
+    "actual_dry_verdict": "SKIP",
+    "verdict_match": true,
+    "research_completeness_score": 21.0,
+    "production_actionability_score": 0.0,
+    "actionability_score": 7.35,
+    "verified_artifact_count": 0,
+    "media_artifact_count": 0,
+    "document_artifact_count": 0,
+    "identity_confidence": "low",
+    "outcome_status": "unknown",
+    "satisfied_gates": {
+      "identity_high": false,
+      "concluded_outcome": false,
+      "media_artifact_present": false
+    },
+    "missing_gates": [
+      "concluded_outcome",
+      "identity_high",
+      "media_artifact_present"
+    ],
+    "allowed_connectors": [
+      "documentcloud"
+    ],
+    "max_live_calls": 1,
+    "max_results_per_connector": 5,
+    "policy_violations": [],
+    "budget_violations": [],
+    "readiness_status": "ready_for_live_smoke",
+    "next_actions": [
+      "schedule_live_smoke_under_declared_budget",
+      "target_gate_via_live:concluded_outcome",
+      "target_gate_via_live:identity_high",
+      "target_gate_via_live:media_artifact_present"
+    ]
+  },
+  "rationale": [
+    "selected 'mpv_documentcloud_pilot' with score 130 out of 5 ready candidate(s)",
+    "uses a connector in PROVEN_ARTIFACT_CONNECTORS (documentcloud) - higher artifact-yield expectation",
+    "max_live_calls=1, max_results_per_connector=5",
+    "expected_verdict_without_live='SKIP'; actual_dry_verdict='SKIP'",
+    "missing gates that live data may help fill: ['concluded_outcome', 'identity_high', 'media_artifact_present']"
+  ]
+}

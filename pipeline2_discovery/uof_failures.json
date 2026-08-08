@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Jeremy Lopez-Robledo",
+    "jurisdiction": "Las Cruces, Dona Ana, NM",
+    "agency": "",
+    "gt_video_link": "",
+    "n_sources_found": 0,
+    "elapsed_sec": 42.3,
+    "bodycam_recall": {
+      "applicable": true,
+      "mode": "flag",
+      "found_video_source": false,
+      "score": 0.0
+    },
+    "source_domain_recall": {
+      "applicable": false,
+      "score": 0.0
+    },
+    "precision": {
+      "applicable": false,
+      "score": 0.0
+    },
+    "confidence": "low"
+  }
+]

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "treatment_id": "contradiction_short_v1",
+  "label": "Contradiction short \u2014 the contradiction IS the whole payoff",
+  "format": "shortform",
+  "platform": "tiktok",
+  "route_id": "interrogation_contradiction",
+  "structure_only": true,
+  "provenance": {
+    "reference_ids": [],
+    "channels": [],
+    "sample_count": 0,
+    "analysis_date": "2026-07-26",
+    "allow_wording_transfer": false,
+    "note": "Retention finding: loop endings beat CTA endings; hook must land <=3s; 35-45s target."
+  },
+  "applicability": {
+    "required_case_features": [
+      "two_mutually_exclusive_verbatim_claims",
+      "identified_speakers"
+    ],
+    "forbidden_case_features": [
+      "audio_only",
+      "blur_only_central_visual"
+    ],
+    "required_media_kinds_any": [
+      "bodycam",
+      "dashcam",
+      "surveillance"
+    ],
+    "supporting_media_kinds": [
+      "911_audio",
+      "radio",
+      "interview",
+      "document"
+    ],
+    "required_fact_fields": [
+      "incident.summary"
+    ]
+  },
+  "global_rules": {
+    "runtime_minutes_range": [
+      0.55,
+      0.75
+    ],
+    "vo_word_share_range": [
+      0.15,
+      0.35
+    ],
+    "max_unmotivated_dead_space_sec": 1.0,
+    "max_same_modality_run_sec": 20,
+    "central_payoff_required": true,
+    "legal_cover_on_accusations": true,
+    "loop_ending_required": true,
+    "cta_in_pinned_comment_not_end": true,
+    "fallback_treatment_id": null
+  },
+  "acts": [
+    {
+      "id": "hook",
+      "title": "Hook (<=3s)",
+      "phase": "incident",
+      "function": "hook",
+      "span_pct": [
+        0,
+        10
+      ],
+      "beat_functions": [
+        "reveal"
+      ],
+      "vo_moves": [
+        "hook"
+      ],
+      "required_beats": [
+        "claim_a"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "claim_a",
+          "required": true,
+          "accepted_moment_types": [
+            "contradiction",
+            "interrogation_admission"
+          ],
+          "accepted_media_kinds": [
+            "interview",
+            "bodycam"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Wait, what did they just say?",
+      "promise": "Open on the first claim, verbatim, visual.",
+      "payoff": "Claim B breaks it.",
+      "narration_role": "No setup; the quote IS the hook.",
+      "original_audio_share_range": [
+        0.6,
+        0.95
+      ],
+      "max_dead_space_sec": 0.5,
+      "transition": "To the contradicting claim.",
+      "forbidden_failures": [
+        "slow_start",
+        "audio_only_open"
+      ]
+    },
+    {
+      "id": "turn",
+      "title": "The Contradiction",
+      "phase": "incident",
+      "function": "climax",
+      "span_pct": [
+        10,
+        70
+      ],
+      "beat_functions": [
+        "contradiction"
+      ],
+      "vo_moves": [
+        "contradiction"
+      ],
+      "required_beats": [
+        "claim_b",
+        "exposure"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "claim_b",
+          "required": true,
+          "accepted_moment_types": [
+            "contradiction"
+          ],
+          "accepted_media_kinds": [
+            "interview",
+            "bodycam",
+            "document"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "exposure",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "contradiction"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "bodycam"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Which is the lie?",
+      "promise": "Two mutually-exclusive verbatim claims + the exposure.",
+      "payoff": "The whole short.",
+      "narration_role": "Two claims that can't both be true, identified, exposed.",
+      "original_audio_share_range": [
+        0.6,
+        0.95
+      ],
+      "max_dead_space_sec": 0.5,
+      "transition": "Loop to the hook.",
+      "forbidden_failures": [
+        "topical_not_exclusive_contradiction",
+        "the_contradiction_is_weak",
+        "label_asserts_contradiction"
+      ]
+    },
+    {
+      "id": "loop",
+      "title": "Loop Seam",
+      "phase": "incident",
+      "function": "close",
+      "span_pct": [
+        70,
+        100
+      ],
+      "beat_functions": [
+        "reveal"
+      ],
+      "vo_moves": [
+        "stakes"
+      ],
+      "required_beats": [
+        "loop_back"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "loop_back",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "emotional_peak"
+          ],
+          "accepted_media_kinds": [
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "interview"
+          ],
+          "visual_requirement": "required",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "(re-watch)",
+      "promise": "Seam back to the hook.",
+      "payoff": "\u2014",
+      "narration_role": "No end CTA; loop.",
+      "original_audio_share_range": [
+        0.5,
+        0.9
+      ],
+      "max_dead_space_sec": 0.5,
+      "transition": "Loop.",
+      "forbidden_failures": [
+        "end_cta",
+        "dead_tail"
+      ]
+    }
+  ]
+}

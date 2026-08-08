@@ -1,0 +1,37 @@
+{
+  "route_id": "standoff_tactical",
+  "label": "Tactical standoff / active-scene with captured resolution",
+  "when_to_use": [
+    "central event reads chronologically on tape",
+    "peaks in a tactical resolution (standoff/OIS/pursuit/barricade)"
+  ],
+  "reject_when": [
+    "central event off-camera",
+    "perimeter footage only, no resolution captured"
+  ],
+  "required_source_material": [
+    "incident bodycam or dashcam covering the resolution"
+  ],
+  "optional_supporting_material": [
+    "911",
+    "radio",
+    "negotiation audio",
+    "incident report"
+  ],
+  "minimum_visual_coverage": "resolution moment visible on at least one camera",
+  "necessary_outcome_documents": [
+    "incident report"
+  ],
+  "suitable_treatments": {
+    "longform": [
+      "standoff_tactical_longform_v1"
+    ],
+    "shortform": [
+      "direct_event_short_v1"
+    ]
+  },
+  "common_false_positives": [
+    "a briefing/summary edit mistaken for raw incident footage",
+    "aftermath-only footage"
+  ]
+}

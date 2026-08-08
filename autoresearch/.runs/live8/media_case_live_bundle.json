@@ -1,0 +1,363 @@
+{
+  "experiment_id": "LIVE8-media-yield-pilot-live-smoke",
+  "mode": "live",
+  "wallclock_seconds": 1.8847,
+  "input_summary": {
+    "input_type": "manual",
+    "defendant_names": [
+      "Christa Gail Pike"
+    ],
+    "agency": "Knoxville Police Department",
+    "jurisdiction": {
+      "city": "Knoxville",
+      "county": "Knox",
+      "state": "Tennessee"
+    },
+    "incident_date": null,
+    "candidate_query_count": 3,
+    "missing_field_count": 0
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 5,
+    "by_api": {
+      "youtube_yt_dlp": 5
+    },
+    "by_role": {
+      "possible_artifact_source": 5
+    },
+    "source_ids": [
+      "youtube_rqDhXKrNs4Q",
+      "youtube_vrezPLWYUC0",
+      "youtube_or_MDJnmihc",
+      "youtube_M7m8qAzz-go",
+      "youtube_b90GQUmOhNY"
+    ]
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": {
+    "connector": "youtube",
+    "query": "Christa Gail Pike bodycam",
+    "endpoint": null,
+    "status_code": null,
+    "error": null,
+    "result_count": 5,
+    "verified_artifact_count": 0,
+    "wallclock_seconds": 1.8846,
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 1
+    },
+    "estimated_cost_usd": 0.0,
+    "notes": []
+  },
+  "identity": {
+    "defendant_names": [
+      "Christa Gail Pike"
+    ],
+    "victim_names": [],
+    "agency": "Knoxville Police Department",
+    "jurisdiction": {
+      "city": "Knoxville",
+      "county": "Knox",
+      "state": "Tennessee"
+    },
+    "incident_date": "1995-01-12",
+    "case_numbers": [],
+    "charges": [
+      "first-degree murder"
+    ],
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "agency"
+    ]
+  },
+  "outcome": {
+    "outcome_status": "convicted",
+    "charges": [
+      "first-degree murder"
+    ],
+    "case_numbers": []
+  },
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "youtube_youtube_rqdhxkrns4q_1_watch",
+      "artifact_type": "video_footage",
+      "artifact_url": "https://www.youtube.com/watch?v=rqDhXKrNs4Q",
+      "source_authority": "third_party",
+      "downloadable": false,
+      "format": "video",
+      "source_url": "https://www.youtube.com/watch?v=rqDhXKrNs4Q",
+      "matched_case_fields": [],
+      "confidence": 0.7,
+      "claim_source_url": "https://www.youtube.com/watch?v=rqDhXKrNs4Q",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "public_video_host:youtube",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "youtube_rqDhXKrNs4Q",
+        "host_page_url": "https://www.youtube.com/watch?v=rqDhXKrNs4Q",
+        "channel": "FilmRise True Crime",
+        "duration_seconds": null,
+        "media_or_document": "media",
+        "hint_used": "Youngest Woman on Death Row: Christa Pike |  World\u2019s Most Evil Prisoners | At 18, Christa Pike commits a brutal murder and becomes one of the youngest women ever sent to death row. Once behind bars\u00a0..."
+      }
+    },
+    {
+      "artifact_id": "youtube_youtube_vrezplwyuc0_2_watch",
+      "artifact_type": "video_footage",
+      "artifact_url": "https://www.youtube.com/watch?v=vrezPLWYUC0",
+      "source_authority": "third_party",
+      "downloadable": false,
+      "format": "video",
+      "source_url": "https://www.youtube.com/watch?v=vrezPLWYUC0",
+      "matched_case_fields": [],
+      "confidence": 0.7,
+      "claim_source_url": "https://www.youtube.com/watch?v=vrezPLWYUC0",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "public_video_host:youtube",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "youtube_vrezPLWYUC0",
+        "host_page_url": "https://www.youtube.com/watch?v=vrezPLWYUC0",
+        "channel": "Breanna Heim x Hot on the Case",
+        "duration_seconds": null,
+        "media_or_document": "media",
+        "hint_used": "The Youngest Girl On Death Row | In this week's investigation Hot On The Case dives into the youngest women in America to be sentenced to death row. In 1995\u00a0..."
+      }
+    },
+    {
+      "artifact_id": "youtube_youtube_or_mdjnmihc_3_watch",
+      "artifact_type": "video_footage",
+      "artifact_url": "https://www.youtube.com/watch?v=or_MDJnmihc",
+      "source_authority": "news",
+      "downloadable": false,
+      "format": "video",
+      "source_url": "https://www.youtube.com/watch?v=or_MDJnmihc",
+      "matched_case_fields": [],
+      "confidence": 0.7,
+      "claim_source_url": "https://www.youtube.com/watch?v=or_MDJnmihc",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "public_video_host:youtube",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "youtube_or_MDJnmihc",
+        "host_page_url": "https://www.youtube.com/watch?v=or_MDJnmihc",
+        "channel": "CBS News",
+        "duration_seconds": null,
+        "media_or_document": "media",
+        "hint_used": "Defendant collapses in court after guilty verdict | Diana Lovejoy collapsed in a California courtroom Monday after she was convicted in what authorities call a botched\u00a0..."
+      }
+    },
+    {
+      "artifact_id": "youtube_youtube_m7m8qazz_go_4_watch",
+      "artifact_type": "video_footage",
+      "artifact_url": "https://www.youtube.com/watch?v=M7m8qAzz-go",
+      "source_authority": "third_party",
+      "downloadable": false,
+      "format": "video",
+      "source_url": "https://www.youtube.com/watch?v=M7m8qAzz-go",
+      "matched_case_fields": [],
+      "confidence": 0.7,
+      "claim_source_url": "https://www.youtube.com/watch?v=M7m8qAzz-go",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "public_video_host:youtube",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "youtube_M7m8qAzz-go",
+        "host_page_url": "https://www.youtube.com/watch?v=M7m8qAzz-go",
+        "channel": "11Alive",
+        "duration_seconds": null,
+        "media_or_document": "media",
+        "hint_used": "Tiffany Moss reacts as jury recommends death penalty | She's accused of starving her stepdaughter to death and then burning the body to conceal the death. On April 30, 2019, the jury\u00a0..."
+      }
+    },
+    {
+      "artifact_id": "youtube_youtube_b90gqumohny_5_watch",
+      "artifact_type": "court_video",
+      "artifact_url": "https://www.youtube.com/watch?v=b90GQUmOhNY",
+      "source_authority": "third_party",
+      "downloadable": false,
+      "format": "video",
+      "source_url": "https://www.youtube.com/watch?v=b90GQUmOhNY",
+      "matched_case_fields": [],
+      "confidence": 0.7,
+      "claim_source_url": "https://www.youtube.com/watch?v=b90GQUmOhNY",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "public_video_host:youtube",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "youtube_b90GQUmOhNY",
+        "host_page_url": "https://www.youtube.com/watch?v=b90GQUmOhNY",
+        "channel": "WIVBTV",
+        "duration_seconds": null,
+        "media_or_document": "media",
+        "hint_used": "Teen cries out during sentencing | Friday was a very dramatic day in court as a young man learned his fate. He beat his girlfriend's little boy to death because he\u00a0..."
+      }
+    }
+  ],
+  "result": {
+    "verdict": "PRODUCE",
+    "research_completeness_score": 69.5,
+    "production_actionability_score": 89.0,
+    "actionability_score": 82.17,
+    "component_scores": {
+      "identity": 20.0,
+      "outcome": 13.0,
+      "artifact_claims": 0.0,
+      "verified_media_artifacts": 40.0,
+      "verified_document_artifacts": 0.0,
+      "artifact_portfolio": 12.0,
+      "downstream_readiness": 4.0,
+      "research_documents": 9.0,
+      "source_quality_diversity": 7.5,
+      "gap_clarity": 10.0
+    },
+    "artifact_category_counts": {
+      "video_footage": 4,
+      "court_video": 1
+    },
+    "reason_codes": [
+      "high_identity",
+      "sentenced_or_convicted",
+      "media_artifact_present",
+      "multiple_media_artifacts",
+      "artifact_portfolio_strong",
+      "court_video_present",
+      "production_score_threshold_met"
+    ],
+    "risk_flags": [],
+    "next_actions": []
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 1,
+      "HOLD": 0,
+      "SKIP": 0
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 0,
+      "document_only_holds": 0,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 0,
+      "no_verified_media_blocks": 0
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {
+        "court_video": 1,
+        "video_footage": 4
+      },
+      "media_only_cases": 1,
+      "document_only_cases": 0,
+      "no_artifact_cases": 0,
+      "multi_media_cases": 1,
+      "multi_artifact_premium_cases": 1
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 69.5,
+        "max": 69.5,
+        "mean": 69.5,
+        "median": 69.5,
+        "p90": 69.5
+      },
+      "production_actionability": {
+        "min": 89.0,
+        "max": 89.0,
+        "mean": 89.0,
+        "median": 89.0,
+        "p90": 89.0
+      },
+      "actionability": {
+        "min": 82.17,
+        "max": 82.17,
+        "mean": 82.17,
+        "median": 82.17,
+        "p90": 82.17
+      }
+    },
+    "risk_flag_counts": {},
+    "reason_code_counts": {
+      "artifact_portfolio_strong": 1,
+      "court_video_present": 1,
+      "high_identity": 1,
+      "media_artifact_present": 1,
+      "multiple_media_artifacts": 1,
+      "production_score_threshold_met": 1,
+      "sentenced_or_convicted": 1
+    },
+    "input_type_breakdown": {
+      "manual": 1
+    },
+    "produce_eligible_inventory": [
+      {
+        "case_id": "media_case_christa_gail_pike",
+        "production_actionability_score": 89.0,
+        "media_categories": [
+          "court_video",
+          "video_footage"
+        ],
+        "reason_codes": [
+          "high_identity",
+          "sentenced_or_convicted",
+          "media_artifact_present",
+          "multiple_media_artifacts",
+          "artifact_portfolio_strong",
+          "court_video_present",
+          "production_score_threshold_met"
+        ]
+      }
+    ]
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "LIVE8-media-yield-pilot-live-smoke",
+    "timestamp": "2026-05-01T00:10:44Z",
+    "case_id": "media_case_christa_gail_pike",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 1
+    },
+    "wallclock_seconds": 1.8847,
+    "source_record_count": 5,
+    "verified_artifact_count": 5,
+    "media_artifact_count": 5,
+    "document_artifact_count": 0,
+    "estimated_cost_usd": 0.0,
+    "verdict": "PRODUCE",
+    "research_completeness_score": 69.5,
+    "production_actionability_score": 89.0,
+    "actionability_score": 82.17,
+    "notes": [
+      "LIVE8",
+      "pilot=media_case_christa_gail_pike_pilot",
+      "connector=youtube",
+      "max_queries=1",
+      "max_results=5",
+      "real_case=true",
+      "endpoint_v1_attempt"
+    ]
+  },
+  "next_actions": [],
+  "risk_flags": []
+}

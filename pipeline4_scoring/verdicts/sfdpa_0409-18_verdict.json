@@ -1,0 +1,82 @@
+{
+  "case_id": "sfdpa_0409-18",
+  "verdict": "SKIP",
+  "narrative_score": 14.96,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 2445,
+      "end_timestamp_sec": 2460,
+      "description": "Bradford admits he did not see the specific strike by Sherry, only the impact.",
+      "importance": "critical",
+      "transcript_excerpt": "I saw an impact. I wasn't looking at Officer Sherry when this happened."
+    },
+    {
+      "moment_type": "reveal",
+      "source_idx": 3,
+      "timestamp_sec": 1916,
+      "end_timestamp_sec": 1936,
+      "description": "Sherry states Captain Yep authorized force 'by whatever means necessary'.",
+      "importance": "critical",
+      "transcript_excerpt": "Whatever means necessary."
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 3,
+      "timestamp_sec": 2160,
+      "end_timestamp_sec": 2178,
+      "description": "Sherry admits he struck the subject in Zone 1, which is generally discouraged.",
+      "importance": "high",
+      "transcript_excerpt": "I Yawara striked him to zone one, and he fell to the ground."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 4080,
+      "end_timestamp_sec": 4140,
+      "description": "Investigator challenges Bradford on whether the subject was 'overtly aggressive'.",
+      "importance": "high",
+      "transcript_excerpt": "Was the man overtly aggressive is my question."
+    }
+  ],
+  "content_pitch": "Low narrative score and limited artifact diversity; focuses on administrative use-of-force review during a protest rather than a clear criminal narrative.",
+  "narrative_arc_recommendation": "parallel_timeline",
+  "estimated_runtime_min": 8.4,
+  "artifact_completeness": {
+    "available": [
+      "bodycam",
+      "interrogation"
+    ],
+    "missing_recommended": [
+      "documents",
+      "narration"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 1.28,
+    "arc_similarity_score": 4.15,
+    "artifact_completeness_score": 50.0,
+    "uniqueness_score": 32.0
+  },
+  "transcript_refs": [
+    "..\\pipeline3_audio\\transcripts\\sfdpa_0409-18_interview_bradford_transcript.json",
+    "..\\pipeline3_audio\\transcripts\\sfdpa_0409-18_bwc_bradford_transcript.json",
+    "..\\pipeline3_audio\\transcripts\\sfdpa_0409-18_bwc_sherry_transcript.json",
+    "..\\pipeline3_audio\\transcripts\\sfdpa_0409-18_interview_sherry_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus:free",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "SKIP",
+    "reasoning_summary": "The combined narrative score of 15.0 falls well below the 35 threshold for production, and the case centers on an administrative use-of-force inquiry rather than a compelling criminal narrative. With only two artifact types and minimal emotional escalation, it lacks the structural depth required for a FlameOn video.",
+    "degraded": false,
+    "n_sources": 4,
+    "n_pass1_moments": 4,
+    "n_final_moments": 4,
+    "scored_at": "2026-04-05T13:08:59.539013Z"
+  }
+}

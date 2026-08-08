@@ -1,0 +1,28 @@
+{
+  "experiment_id": "LIVE7-real-case-pilot-live-smoke",
+  "timestamp": "2026-04-30T23:46:47Z",
+  "case_id": "real_case_min_jian_guan",
+  "api_calls": {
+    "brave": 0,
+    "firecrawl": 0,
+    "llm": 0,
+    "courtlistener": 0,
+    "muckrock": 0,
+    "documentcloud": 1,
+    "youtube": 0
+  },
+  "wallclock_seconds": 2.2158,
+  "source_record_count": 5,
+  "verified_artifact_count": 5,
+  "media_artifact_count": 0,
+  "document_artifact_count": 5,
+  "estimated_cost_usd": 0.0,
+  "verdict": "HOLD",
+  "research_completeness_score": 81.0,
+  "production_actionability_score": 40.0,
+  "actionability_score": 54.35,
+  "notes": [
+    "LIVE7",
+    "pilot=real_case_min_jian_guan_pilot"
+  ]
+}

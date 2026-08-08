@@ -1,0 +1,63 @@
+{
+  "stamp": "20260424_185728",
+  "hypothesis": "NextRequest portal harness wired into research_case (SF case — max portal-benefit case)",
+  "baseline": {
+    "research_score": 45.07,
+    "components": {
+      "evidence_recall": 60.0,
+      "source_discovery": 25.0,
+      "precision": 42.86,
+      "tier_accuracy": 50.0
+    },
+    "api_calls": {
+      "muckrock": 0,
+      "courtlistener": 0,
+      "brave": 0,
+      "youtube": 0
+    },
+    "est_cost_usd": 0.0,
+    "label": "baseline",
+    "elapsed_sec": 89.7,
+    "exit_code": 0,
+    "source_file": "C:\\FlameON\\FlameOn-main\\ab_runs\\.baseline_pre_portals.py",
+    "hypothesis": "NextRequest portal harness wired into research_case (SF case — max portal-benefit case)"
+  },
+  "candidate": {
+    "research_score": 39.83,
+    "components": {
+      "evidence_recall": 60.0,
+      "source_discovery": 25.0,
+      "precision": 16.67,
+      "tier_accuracy": 50.0
+    },
+    "api_calls": {
+      "muckrock": 0,
+      "courtlistener": 0,
+      "brave": 0,
+      "youtube": 0
+    },
+    "est_cost_usd": 0.0,
+    "label": "candidate",
+    "elapsed_sec": 80.4,
+    "exit_code": 0,
+    "source_file": "C:\\FlameON\\FlameOn-main\\pipeline2_discovery\\research.py",
+    "hypothesis": "NextRequest portal harness wired into research_case (SF case — max portal-benefit case)"
+  },
+  "delta": {
+    "research_score": -5.24,
+    "components": {
+      "source_discovery": 0.0,
+      "evidence_recall": 0.0,
+      "precision": -26.19,
+      "tier_accuracy": 0.0
+    },
+    "est_cost_usd": 0.0,
+    "api_calls": {
+      "youtube": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "brave": 0
+    }
+  },
+  "summary": "BASELINE WINS (candidate -5.24 pts)"
+}

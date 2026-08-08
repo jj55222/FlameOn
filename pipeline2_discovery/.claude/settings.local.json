@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/README.md\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/program.md\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/CLAUDE.md\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/requirements.txt\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/results.tsv\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/research.py\")",
+      "Bash(unzip -p \"C:/Users/Diner/OneDrive/Desktop/FlameOn-main.zip\" \"FlameOn-main/autoresearch/evaluate.py\")",
+      "Bash(pip install:*)",
+      "Bash(python evaluate.py --verbose --log --hypothesis \"baseline\" --changes \"none\")",
+      "Bash(tasklist)",
+      "Bash(taskkill //PID 9596 //F)",
+      "Bash(python evaluate.py --verbose --log --hypothesis \"baseline\" --changes \"added load_dotenv\")",
+      "Bash(python -c \":*)",
+      "Read(//c/FlameON/FlameOn-main/autoresearch/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(python \"C:/FlameON/FlameOn-main/autoresearch/sync_to_gdoc.py\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\(''C:/Users/Diner/.claude/settings.json''\\)\\); hooks=d[''hooks''][''PostToolUse'']; h=next\\(x for x in hooks if x[''matcher'']==''Write|Edit''\\)[''hooks''][0]; print\\(h[''command'']\\)\")",
+      "Bash(ls -la \"C:/FlameON/FlameOn-main/autoresearch/\"gdoc_credentials*)",
+      "Bash(python -c \"import zipfile; zipfile.ZipFile\\(''FlameOn-blitz.zip''\\).extractall\\(''FlameOn-blitz''\\)\")"
+    ]
+  }
+}

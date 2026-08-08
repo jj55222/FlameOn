@@ -1,0 +1,161 @@
+{
+  "experiment_ids": {
+    "dry": "LIVE6-pilot3-dry",
+    "enriched": "LIVE6-known-case-pilot-live-smoke"
+  },
+  "modes": {
+    "dry": "multi_source_dry_run",
+    "enriched": "live"
+  },
+  "query_plan_delta": {
+    "dry_connector_count": 0,
+    "enriched_connector_count": 0,
+    "delta_connector_count": 0,
+    "connectors": {
+      "added": [],
+      "removed": [],
+      "shared": []
+    },
+    "queries": {
+      "added": [],
+      "removed": [],
+      "shared": []
+    }
+  },
+  "source_count_delta": {
+    "dry": 0,
+    "enriched": 5,
+    "delta": 5,
+    "by_api": {
+      "documentcloud": {
+        "dry": 0,
+        "enriched": 5,
+        "delta": 5
+      }
+    }
+  },
+  "provider_yield_delta": {
+    "by_provider": {
+      "brave": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "courtlistener": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "documentcloud": {
+        "dry": 0,
+        "enriched": 1,
+        "delta": 1
+      },
+      "firecrawl": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "llm": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "muckrock": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      },
+      "youtube": {
+        "dry": 0,
+        "enriched": 0,
+        "delta": 0
+      }
+    },
+    "total_calls": {
+      "dry": 0,
+      "enriched": 1,
+      "delta": 1
+    }
+  },
+  "artifact_yield_delta": {
+    "dry_total": 0,
+    "enriched_total": 5,
+    "delta": 5,
+    "by_type": {
+      "docket_docs": {
+        "dry": 0,
+        "enriched": 5,
+        "delta": 5
+      }
+    },
+    "media_delta": {
+      "dry": 0,
+      "enriched": 0,
+      "delta": 0
+    },
+    "document_delta": {
+      "dry": 0,
+      "enriched": 5,
+      "delta": 5
+    }
+  },
+  "cost_delta": {
+    "dry": 0.0,
+    "enriched": 0.0,
+    "delta": 0.0
+  },
+  "runtime_delta": {
+    "dry": 0.0,
+    "enriched": 2.6349,
+    "delta": 2.6349
+  },
+  "verdict_change": {
+    "dry": "SKIP",
+    "enriched": "SKIP",
+    "changed": false
+  },
+  "reason_code_delta": {
+    "added": [
+      "document_only_hold",
+      "supporting_documents_present"
+    ],
+    "removed": [],
+    "shared": [
+      "low_identity",
+      "no_verified_media"
+    ]
+  },
+  "risk_flag_delta": {
+    "added": [
+      "document_only"
+    ],
+    "removed": [],
+    "shared": [
+      "artifact_verification_required",
+      "candidate_fields_not_identity_lock",
+      "dataset:mapping_police_violence",
+      "identity_unconfirmed",
+      "insufficient_identity_anchors",
+      "no_verified_media",
+      "outcome_verification_required",
+      "structured_dataset_candidate_only",
+      "structured_dataset_query_plan_only",
+      "structured_input_preliminary_packet",
+      "weak_identity"
+    ]
+  },
+  "why_not_produce": {
+    "verdict": "SKIP",
+    "blocking_risk_flags": [
+      "no_verified_media",
+      "weak_identity"
+    ],
+    "blocking_reason_codes": [
+      "document_only_hold"
+    ],
+    "missing_media_artifacts": true,
+    "missing_high_identity": true,
+    "missing_concluded_outcome": true
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "video_id": "JBRHS5vErpg",
+  "channel": "EXPLORE WITH US",
+  "title": "OnlyFans Mom Leaves Toddler to Starve With Dead Baby",
+  "view_count": 5554894,
+  "duration_sec": 3022,
+  "narrative_arc": {
+    "structure_type": "cold_open",
+    "beats": [
+      {
+        "beat_type": "hook",
+        "start_pct": 0.0,
+        "end_pct": 0.011,
+        "description": "Opening with dramatic soundbites: mother claims baby was murdered, warning about KK, and narrator sets up a house of unimaginable horror."
+      },
+      {
+        "beat_type": "setup",
+        "start_pct": 0.011,
+        "end_pct": 0.045,
+        "description": "Narrator introduces the case: 911 call leads to discovery of abandoned children, missing mother posts desperate video. Date and location established (Yakima, WA, Feb 25, 2025)."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.045,
+        "end_pct": 0.085,
+        "description": "911 call from concerned friend; Kylia's Snapchat video playing; police dispatched to her home."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.085,
+        "end_pct": 0.145,
+        "description": "Police enter the home, find deceased 7-month-old Cherry in bassinet with signs of decay; discover alive but severely malnourished 2-year-old in crib."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.145,
+        "end_pct": 0.175,
+        "description": "Kylia continues filming, blames babysitter KK; police locate her at Squall Rock Resort and arrest her."
+      },
+      {
+        "beat_type": "context",
+        "start_pct": 0.175,
+        "end_pct": 0.22,
+        "description": "Details of Kylia's arrest at McDonald's on Feb 24; timeline of her activities with friends Brad and Emma; she claims kids were with sitter."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.22,
+        "end_pct": 0.27,
+        "description": "Friends and parents express doubt about KK's existence; Kylia's history of neglect described by multiple witnesses (diaper rash, feeding issues)."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.27,
+        "end_pct": 0.33,
+        "description": "Hospital photos show toddler's emaciated condition; Kylia's parents reveal they called CPS but were dismissed; Kylia admits to OnlyFans and drug use."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.33,
+        "end_pct": 0.38,
+        "description": "Interrogation: Kylia's timeline is incoherent; she admits to finding Cherry dead but leaving without calling 911, then overdosing on cocaine."
+      },
+      {
+        "beat_type": "climax",
+        "start_pct": 0.38,
+        "end_pct": 0.42,
+        "description": "KK is identified as Cara, who has been in jail for 3 weeks — impossible for her to have babysat. Kylia's story collapses."
+      },
+      {
+        "beat_type": "reveal",
+        "start_pct": 0.42,
+        "end_pct": 0.46,
+        "description": "Kylia's parents visited on Feb 23 but were kept from the bedroom; Kylia texted lies about the kids sleeping. Detective shows photos of toddler's emaciation."
+      },
+      {
+        "beat_type": "escalation",
+        "start_pct": 0.46,
+        "end_pct": 0.5,
+        "description": "Kylia's ex-boyfriend Rock reveals she previously let two dogs starve (one died, one rescued); pattern of abandonment confirmed."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.5,
+        "end_pct": 0.55,
+        "description": "Autopsy confirms Cherry died of malnutrition/dehydration; timeline shows Kylia was partying while toddler starved; TikTok posts during the period."
+      },
+      {
+        "beat_type": "emotional_peak",
+        "start_pct": 0.55,
+        "end_pct": 0.6,
+        "description": "Friends and family express devastation; Kylia's mother confronts her on phone: 'Your daughter is dead and the other might not survive.'"
+      },
+      {
+        "beat_type": "transition",
+        "start_pct": 0.6,
+        "end_pct": 0.62,
+        "description": "Narrator summarizes charges: first-degree manslaughter, family abandonment, criminal mistreatment, animal cruelty. Kylia pleads not guilty."
+      },
+      {
+        "beat_type": "aftermath",
+        "start_pct": 0.62,
+        "end_pct": 0.65,
+        "description": "Trial scheduled for June 2026; toddler survived against odds; channel promotion for Patreon and early access."
+      }
+    ]
+  },
+  "moment_types": {
+    "contradiction": 4,
+    "emotional_peak": 5,
+    "procedural_violation": 0,
+    "reveal": 6,
+    "detail_noticed": 3,
+    "callback": 2,
+    "tension_shift": 4
+  },
+  "segment_stats": {
+    "avg_segment_length_sec": 2.23,
+    "total_segments": 1355,
+    "bodycam_pct": 0.15,
+    "narration_pct": 0.4,
+    "interrogation_pct": 0.25,
+    "other_pct": 0.2
+  },
+  "artifact_combination": [
+    "bodycam",
+    "interrogation",
+    "911_audio",
+    "news_clips",
+    "narration"
+  ],
+  "moments_by_artifact": {
+    "bodycam": {
+      "contradiction": 1,
+      "emotional_peak": 2,
+      "procedural_violation": 0,
+      "reveal": 1,
+      "detail_noticed": 1,
+      "callback": 0,
+      "tension_shift": 1
+    },
+    "interrogation": {
+      "contradiction": 2,
+      "emotional_peak": 2,
+      "procedural_violation": 0,
+      "reveal": 3,
+      "detail_noticed": 1,
+      "callback": 1,
+      "tension_shift": 2
+    },
+    "911_audio": {
+      "contradiction": 0,
+      "emotional_peak": 1,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "court_video": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "news_clips": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "documents": {
+      "contradiction": 0,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 0,
+      "detail_noticed": 0,
+      "callback": 0,
+      "tension_shift": 0
+    },
+    "narration": {
+      "contradiction": 1,
+      "emotional_peak": 0,
+      "procedural_violation": 0,
+      "reveal": 2,
+      "detail_noticed": 1,
+      "callback": 1,
+      "tension_shift": 1
+    }
+  },
+  "_llm_model": "deepseek/deepseek-v4-flash",
+  "_analysis_metadata": {
+    "model": "deepseek/deepseek-v4-flash",
+    "transcript_segments": 1355,
+    "transcript_preview": "I swear to God, my baby was just murdered. Okay. >> If a sitter left your kid to die, you would air out the sitter's name. She's a liar. >> Watch out for KK. If you know who KK is, shoot that. >> So, it's really hard to think that she would actually do that. >> My heart goes out to the police officers. >> Yeah. >> I cannot even imagine. I don't know. No dead baby jokes. They're not funny anymore. >> A chilling 911 call leads police to a house of unimaginable horror where two abandoned children are found in a heartbreaking scene that defies explanation. ..."
+  },
+  "_validation_errors": [
+    "Beat 13: invalid beat_type 'emotional_peak'"
+  ]
+}

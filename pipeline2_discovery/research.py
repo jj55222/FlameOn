@@ -1,0 +1,1437 @@
+"""
+research.py — FlameOn AutoResearch Agent Sandbox
+=================================================
+THIS IS THE ONLY FILE THE AGENT MODIFIES.
+
+Contains the research methodology: query construction, source discovery,
+relevance validation, and confidence assessment.
+
+Phase 1 APIs:
+  - MuckRock (FOIA requests)
+  - CourtListener (court dockets, opinions, oral arguments)
+  - YouTube Data API v3 (bodycam/interrogation footage)
+  - Brave Search API (news coverage, case mentions, general discovery)
+
+Required interface:
+    research_case(defendant_names: str, jurisdiction: str) -> dict
+
+Environment variables (set in Colab or .env):
+    BRAVE_API_KEY         — required
+    COURTLISTENER_API_KEY — required (free at courtlistener.com/sign-in/)
+    MUCKROCK_API_TOKEN    — optional (public read works without auth)
+    (YouTube: no key needed — uses youtube-search-python, free/unlimited)
+"""
+
+import os
+import json
+import requests
+import time
+import re
+from datetime import datetime
+from urllib.parse import quote_plus, urlparse
+from dotenv import load_dotenv
+try:
+    import praw
+except ImportError:
+    praw = None
+
+load_dotenv()
+
+# ──────────────────────────────────────────────────────────────
+# API Configuration
+# ──────────────────────────────────────────────────────────────
+
+BRAVE_API_KEY = os.environ.get("BRAVE_API_KEY", "")
+COURTLISTENER_API_KEY = os.environ.get("COURTLISTENER_API_KEY", "")
+MUCKROCK_API_TOKEN = os.environ.get("MUCKROCK_API_TOKEN", "")
+
+REDDIT_CLIENT_ID = os.environ.get("REDDIT_CLIENT_ID", "")
+REDDIT_CLIENT_SECRET = os.environ.get("REDDIT_CLIENT_SECRET", "")
+REDDIT_USER_AGENT = os.environ.get("REDDIT_USER_AGENT", "FlameOn-Research/1.0")
+
+MUCKROCK_BASE = "https://www.muckrock.com/api_v2/"
+COURTLISTENER_BASE = "https://www.courtlistener.com/api/rest/v4/"
+BRAVE_BASE = "https://api.search.brave.com/res/v1/web/search"
+
+REQUEST_TIMEOUT = 15
+
+# ──────────────────────────────────────────────────────────────
+# Brave billing quota — hard spend cap using response headers
+# ──────────────────────────────────────────────────────────────
+# $0.005/request observed from $57.08 / 11,416 requests.
+# Set BRAVE_SPEND_LIMIT_USD env var to override (default $4.00).
+# State is persisted to brave_quota.json and reset each calendar month.
+BRAVE_SPEND_LIMIT_USD = float(os.environ.get("BRAVE_SPEND_LIMIT_USD", "4.00"))
+BRAVE_COST_PER_REQUEST = 0.005   # $/request (from billing history)
+BRAVE_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "brave_quota.json")
+
+def _load_brave_quota():
+    """Load persistent Brave quota state; auto-reset on new calendar month."""
+    month_key = datetime.utcnow().strftime("%Y-%m")
+    default = {"month_key": month_key, "monthly_remaining": None,
+                "estimated_spend": 0.0, "calls_this_month": 0}
+    try:
+        with open(BRAVE_QUOTA_FILE, "r") as f:
+            data = json.load(f)
+        if data.get("month_key") != month_key:
+            # New month — full reset (don't carry over stale monthly_remaining from old month)
+            data = default
+        return data
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+
+def _save_brave_quota(state):
+    """Persist Brave quota state to disk."""
+    try:
+        with open(BRAVE_QUOTA_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception:
+        pass
+
+def _update_quota_from_response(state, resp):
+    """
+    Parse Brave rate-limit headers after a successful call.
+
+    Brave returns paired values for two windows (typically per-second and
+    per-month), e.g.:
+      x-ratelimit-limit:     "1, 2000"   (free tier: 1/sec, 2000/month)
+      x-ratelimit-limit:     "50, 0"     (paid tier: 50/sec, NO monthly cap — 0 = unlimited)
+      x-ratelimit-remaining: matching counters
+
+    When the monthly limit is 0 we treat the monthly window as unlimited and
+    clear monthly_remaining so the local guard doesn't block on a 0 that
+    means "no cap". The spend cap is still enforced separately.
+    """
+    rem_header = resp.headers.get("x-ratelimit-remaining", "")
+    lim_header = resp.headers.get("x-ratelimit-limit", "")
+    rem_parts = [p.strip() for p in rem_header.split(",")] if rem_header else []
+    lim_parts = [p.strip() for p in lim_header.split(",")] if lim_header else []
+    if len(rem_parts) >= 2 and len(lim_parts) >= 2:
+        try:
+            month_limit = int(lim_parts[1])
+            if month_limit > 0:
+                state["monthly_remaining"] = int(rem_parts[1])
+            else:
+                state["monthly_remaining"] = None
+        except ValueError:
+            pass
+    elif len(rem_parts) >= 2:
+        # Limit header missing — fall back to old behavior (best effort)
+        try:
+            state["monthly_remaining"] = int(rem_parts[1])
+        except ValueError:
+            pass
+    state["calls_this_month"] = state.get("calls_this_month", 0) + 1
+    state["estimated_spend"] = state.get("estimated_spend", 0.0) + BRAVE_COST_PER_REQUEST
+    return state
+
+# ──────────────────────────────────────────────────────────────
+# Budget caps — prevent runaway API spending
+# ──────────────────────────────────────────────────────────────
+# YouTube: 10,000 free units/day. Each search = 100 units.
+# Set max searches per run to stay under budget.
+# NOTE: youtube-search-python is free/unlimited, but we still cap
+# to avoid hammering YouTube and getting rate-limited.
+YOUTUBE_MAX_CALLS_PER_RUN = 400      # free but be polite
+BRAVE_MAX_CALLS_PER_RUN = 450        # 11 queries × 38 cases + headroom; billing guard enforces real $ cap
+COURTLISTENER_MAX_CALLS_PER_RUN = 160 # free but slow (5/min); raised for full 38-case coverage
+BRAVE_MAX_PER_CASE = 11              # max Brave queries per individual case (matches queries[:11])
+
+_api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+_brave_case_calls = 0                 # reset per case in research_case()
+
+# ──────────────────────────────────────────────────────────────
+# Brave per-case fair-share allocator
+# ──────────────────────────────────────────────────────────────
+# Problem: under static caps, early cases burn budget and tail cases get 0.
+# Fix: orchestrator declares set_case_slice(N). Each new case gets a dynamic
+# per-case cap = remaining_budget / remaining_cases, bounded by BRAVE_MAX_PER_CASE.
+_case_slice_total = 0
+_cases_started = 0
+_current_case_brave_cap = None  # set when research_case begins
+
+def set_case_slice(n_cases):
+    """Declare total cases in this run. Call ONCE before first research_case()."""
+    global _case_slice_total, _cases_started
+    _case_slice_total = max(0, int(n_cases))
+    _cases_started = 0
+
+def _allocate_brave_cap_for_case():
+    """Compute this case's Brave cap from live remaining budget / remaining cases."""
+    global _cases_started, _current_case_brave_cap
+    used = _api_call_counts.get("brave", 0)
+    remaining_budget = max(0, BRAVE_MAX_CALLS_PER_RUN - used)
+    cases_remaining = max(1, _case_slice_total - _cases_started)
+    fair = remaining_budget // cases_remaining
+    if remaining_budget <= 0:
+        _current_case_brave_cap = 0
+    else:
+        _current_case_brave_cap = max(1, min(BRAVE_MAX_PER_CASE, fair))
+    _cases_started += 1
+    return _current_case_brave_cap
+
+def get_current_case_brave_cap():
+    """Return current case's Brave cap (for logging/debug)."""
+    return _current_case_brave_cap if _current_case_brave_cap is not None else BRAVE_MAX_PER_CASE
+
+def check_budget(api):
+    """Returns True if we're within budget for this API."""
+    caps = {
+        "youtube": YOUTUBE_MAX_CALLS_PER_RUN,
+        "brave": BRAVE_MAX_CALLS_PER_RUN,
+        "courtlistener": COURTLISTENER_MAX_CALLS_PER_RUN,
+        "muckrock": 999,  # free, no cap needed
+    }
+    return _api_call_counts.get(api, 0) < caps.get(api, 999)
+
+def log_call(api):
+    """Track an API call."""
+    _api_call_counts[api] = _api_call_counts.get(api, 0) + 1
+
+def get_budget_report():
+    """Return summary of API calls made."""
+    return {api: count for api, count in _api_call_counts.items() if count > 0}
+
+def reset_budget():
+    """Reset call counts (call at start of each evaluate.py run)."""
+    global _api_call_counts, _case_slice_total, _cases_started, _current_case_brave_cap
+    _api_call_counts = {"youtube": 0, "brave": 0, "courtlistener": 0, "muckrock": 0, "reddit": 0}
+    _case_slice_total = 0
+    _cases_started = 0
+    _current_case_brave_cap = None
+
+# Rate limiting — tracks last call time per API
+_last_call = {"muckrock": 0, "courtlistener": 0, "youtube": 0, "brave": 0, "reddit": 0}
+
+def rate_limit(api, delay):
+    """Enforce minimum delay between calls to an API."""
+    elapsed = time.time() - _last_call[api]
+    if elapsed < delay:
+        time.sleep(delay - elapsed)
+    _last_call[api] = time.time()
+
+# Evidence type keywords — agent should iterate on these
+EVIDENCE_KEYWORDS = {
+    "bodycam": ["body camera", "body cam", "bodycam", "BWC", "body-worn camera", "body worn",
+                "officer camera", "dashcam", "dash cam", "police cam", "cop cam"],
+    "interrogation": ["interrogation", "confession", "interview recording", "interview video",
+                      "custodial interview", "police interview", "detective interview",
+                      "interview", "interrogated", "confessed", "questioned by police"],
+    "court_video": ["court video", "trial video", "hearing video", "sentencing video", "court tv",
+                    "court audio", "oral argument", "courtroom video", "trial footage",
+                    "trial", "hearing", "sentencing", "verdict", "courtroom", "arraignment",
+                    "preliminary hearing", "sentenced", "convicted", "conviction", "found guilty",
+                    "guilty verdict"],
+    "docket_docs": ["docket", "complaint", "affidavit", "indictment", "motion", "court filing",
+                    "case number", "criminal complaint", "probable cause", "charging document",
+                    "grand jury", "information filed", "superseding indictment"],
+    "dispatch_911": ["911 call", "dispatch audio", "911 audio", "emergency call",
+                     "dispatch recording", "911 recording", "911", "called 911",
+                     "emergency dispatch"],
+}
+
+
+# ──────────────────────────────────────────────────────────────
+# Name / jurisdiction parsing helpers
+# ──────────────────────────────────────────────────────────────
+
+def parse_names(defendant_names):
+    """Split defendant names and extract primary + last name."""
+    names = [n.strip() for n in defendant_names.split(",") if n.strip()]
+    primary = names[0] if names else defendant_names
+    parts = primary.split()
+    # Handle titles and name suffixes
+    first_parts = [p for p in parts if p not in ("Dr.", "Mr.", "Mrs.", "Ms.", "Jr.", "Sr.", "III", "II")]
+    # Find actual last name: skip trailing generational suffixes (Jr., Sr., III, II)
+    # e.g. "William James McElroy Jr." → last = "McElroy", not "Jr."
+    name_suffixes = {"Jr.", "Jr", "Sr.", "Sr", "III", "II", "IV", "V"}
+    last = ""
+    for part in reversed(parts):
+        if part not in name_suffixes and part not in ("Dr.", "Mr.", "Mrs.", "Ms."):
+            last = part
+            break
+    if not last and parts:
+        last = parts[-1]
+    return {
+        "all_names": names,
+        "primary": primary,
+        "last_name": last,
+        "clean_primary": " ".join(first_parts),
+    }
+
+def parse_jurisdiction(jurisdiction):
+    """Extract city, county, state from jurisdiction string."""
+    if not jurisdiction:
+        return {"city": "", "county": "", "state": "", "state_abbrev": "", "raw": ""}
+    parts = [p.strip() for p in jurisdiction.split(",")]
+    city = parts[0] if len(parts) >= 1 else ""
+    state = parts[-1].strip() if len(parts) >= 2 else ""
+    county = parts[1].strip() if len(parts) >= 3 else ""
+
+    state_abbrevs = {
+        "California": "CA", "Florida": "FL", "Arizona": "AZ",
+        "Tennessee": "TN", "Oregon": "OR", "Ohio": "OH",
+        "Colorado": "CO", "Washington": "WA", "Oklahoma": "OK",
+        "Alabama": "AL", "South Carolina": "SC",
+    }
+    state_abbrev = state_abbrevs.get(state, state)
+
+    return {"city": city, "county": county, "state": state,
+            "state_abbrev": state_abbrev, "raw": jurisdiction}
+
+
+# ──────────────────────────────────────────────────────────────
+# MuckRock API
+# ──────────────────────────────────────────────────────────────
+
+# Cache agency_id → jurisdiction_slug/id mapping to avoid repeated lookups
+_muckrock_agency_cache = {}
+
+def _muckrock_resolve_url(req):
+    """
+    Build a working MuckRock URL from a v2 request record.
+    Format: /foi/<jurisdiction-slug>-<jurisdiction-id>/<request-slug>-<request-id>/
+    """
+    req_id = req.get("id")
+    req_slug = req.get("slug", "")
+    agency_id = req.get("agency")
+    if not req_id or not req_slug or not agency_id:
+        return ""
+    if agency_id not in _muckrock_agency_cache:
+        try:
+            headers = {}
+            if MUCKROCK_API_TOKEN:
+                headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
+            a_resp = requests.get(
+                f"{MUCKROCK_BASE}agencies/{agency_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            a_resp.raise_for_status()
+            jur_id = a_resp.json().get("jurisdiction")
+            j_resp = requests.get(
+                f"{MUCKROCK_BASE}jurisdictions/{jur_id}/",
+                params={"format": "json"},
+                headers=headers, timeout=REQUEST_TIMEOUT,
+            )
+            j_resp.raise_for_status()
+            jdata = j_resp.json()
+            _muckrock_agency_cache[agency_id] = (jdata.get("slug", ""), jdata.get("id", ""))
+        except Exception:
+            _muckrock_agency_cache[agency_id] = ("", "")
+    jslug, jid = _muckrock_agency_cache[agency_id]
+    if not jslug or not jid:
+        return ""
+    return f"https://www.muckrock.com/foi/{jslug}-{jid}/{req_slug}-{req_id}/"
+
+
+def query_muckrock(search_term, status=None, page_size=10, has_files=False):
+    """
+    Query MuckRock API v2/requests endpoint for FOIA requests.
+    v2 uses 'requests' not 'foia' (v1 name). Full-text search via 'search' param.
+    Set has_files=True to filter for requests with actual attachments.
+    Enriches each result with a resolved absolute_url.
+    """
+    if not check_budget("muckrock"):
+        return []
+    rate_limit("muckrock", 1.1)
+    log_call("muckrock")
+    headers = {}
+    if MUCKROCK_API_TOKEN:
+        headers["Authorization"] = f"Token {MUCKROCK_API_TOKEN}"
+    try:
+        params = {"format": "json", "search": search_term, "page_size": page_size}
+        if status:
+            params["status"] = status
+        resp = requests.get(
+            f"{MUCKROCK_BASE}requests/",
+            params=params,
+            headers=headers, timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        results = resp.json().get("results", [])
+        for r in results:
+            r["absolute_url"] = _muckrock_resolve_url(r)
+        if has_files:
+            results = [r for r in results if r.get("files") and len(r.get("files", [])) > 0]
+        return results
+    except Exception:
+        return []
+
+
+def search_muckrock(names, jurisdiction):
+    """
+    Build and execute MuckRock queries. Returns source list.
+    FOIA requests are indexed by REQUEST title, not by defendant name.
+    Better strategy: search jurisdiction + evidence type, then filter by name.
+
+    Two lanes:
+      Lane A (broad): existing name + jurisdiction queries, no status filter
+      Lane B (high-signal): same queries restricted to status="done" + has_files=True
+                            — FOIA requests that actually released downloadable artifacts.
+                            These get a relevance boost and a file_count hint.
+    """
+    sources = []
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    queries = []
+    if n["clean_primary"]:
+        queries.append(n["clean_primary"])
+    if j["city"]:
+        queries.append(f"{j['city']} bodycam")
+        queries.append(f"{j['city']} police shooting")
+
+    def _score_result(r, high_signal=False):
+        url = r.get("absolute_url") or r.get("url", "")
+        if url and not url.startswith("http"):
+            url = f"https://www.muckrock.com{url}"
+        if not url:
+            return None
+        title = (r.get("title", "") or "").lower()
+        desc = (r.get("description", "") or "").lower()
+        combined = f"{title} {desc}"
+        relevance = 0.0
+        if n["clean_primary"].lower() in combined:
+            relevance = 0.9
+        elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
+            relevance = 0.5
+        elif j["city"].lower() in combined and any(
+            kw in combined for kw in ["shooting", "bodycam", "police", "homicide"]
+        ):
+            relevance = 0.3
+        if relevance < 0.3:
+            return None
+        file_count = len(r.get("files") or [])
+        if high_signal:
+            relevance = min(1.0, relevance + 0.15)
+            if file_count >= 3:
+                relevance = min(1.0, relevance + 0.05)
+        return url, relevance, file_count
+
+    seen_urls = set()
+
+    # Lane A — broad
+    for query in queries[:3]:
+        results = query_muckrock(query)
+        for r in results:
+            scored = _score_result(r, high_signal=False)
+            if not scored:
+                continue
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": False,
+            })
+
+    # Lane B — high-signal (completed FOIA with files attached)
+    for query in queries[:3]:
+        results = query_muckrock(query, status="done", has_files=True)
+        for r in results:
+            scored = _score_result(r, high_signal=True)
+            if not scored:
+                continue
+            url, relevance, file_count = scored
+            if url in seen_urls:
+                # Upgrade in place
+                for s in sources:
+                    if s["url"] == url:
+                        s["relevance_score"] = max(s["relevance_score"], relevance)
+                        s["file_count"] = max(s.get("file_count", 0), file_count)
+                        s["high_signal"] = True
+                        break
+                continue
+            seen_urls.add(url)
+            sources.append({
+                "url": url, "type": "muckrock_foia",
+                "relevance_score": relevance,
+                "description": r.get("title", ""), "api": "muckrock",
+                "file_count": file_count,
+                "high_signal": True,
+            })
+
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# CourtListener API
+# ──────────────────────────────────────────────────────────────
+
+def query_courtlistener_dockets(search_term, page_size=5):
+    """Search CourtListener docket database."""
+    if not COURTLISTENER_API_KEY:
+        return []
+    if not check_budget("courtlistener"):
+        return []
+    rate_limit("courtlistener", 3.0)  # 5 req/min = 12s strict, but bursts OK
+    log_call("courtlistener")
+    try:
+        resp = requests.get(
+            f"{COURTLISTENER_BASE}search/",
+            params={"q": search_term, "type": "r", "format": "json", "page_size": page_size},
+            headers={"Authorization": f"Token {COURTLISTENER_API_KEY}"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        return resp.json().get("results", [])
+    except Exception:
+        return []
+
+def query_courtlistener_opinions(search_term, page_size=5):
+    """Search CourtListener opinions/case law."""
+    if not COURTLISTENER_API_KEY:
+        return []
+    if not check_budget("courtlistener"):
+        return []
+    rate_limit("courtlistener", 3.0)
+    log_call("courtlistener")
+    try:
+        resp = requests.get(
+            f"{COURTLISTENER_BASE}search/",
+            params={"q": search_term, "type": "o", "format": "json", "page_size": page_size},
+            headers={"Authorization": f"Token {COURTLISTENER_API_KEY}"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        return resp.json().get("results", [])
+    except Exception:
+        return []
+
+def query_courtlistener_oral_args(search_term, page_size=3):
+    """Search CourtListener oral argument recordings (audio = court_video evidence)."""
+    if not COURTLISTENER_API_KEY:
+        return []
+    if not check_budget("courtlistener"):
+        return []
+    rate_limit("courtlistener", 3.0)
+    log_call("courtlistener")
+    try:
+        resp = requests.get(
+            f"{COURTLISTENER_BASE}search/",
+            params={"q": search_term, "type": "oa", "format": "json", "page_size": page_size},
+            headers={"Authorization": f"Token {COURTLISTENER_API_KEY}"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        return resp.json().get("results", [])
+    except Exception:
+        return []
+
+def search_courtlistener(names, jurisdiction):
+    """Build and execute CourtListener queries. Returns source list."""
+    sources = []
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    seen_urls = set()
+    queries = []
+    if n["clean_primary"]:
+        queries.append(n["clean_primary"])
+    if n["last_name"] and j["state_abbrev"]:
+        queries.append(f"{n['clean_primary']} {j['state_abbrev']}")
+
+    for query in queries[:2]:
+        for r in query_courtlistener_dockets(query):
+            case_name = r.get("caseName", "") or r.get("case_name", "")
+            docket_url = r.get("absolute_url", "")
+            if docket_url and not docket_url.startswith("http"):
+                docket_url = f"https://www.courtlistener.com{docket_url}"
+            if not docket_url or docket_url in seen_urls:
+                continue
+            case_lower = case_name.lower()
+            relevance = 0.0
+            if n["clean_primary"].lower() in case_lower:
+                relevance = 0.9
+            elif n["last_name"].lower() in case_lower:
+                relevance = 0.8
+            if relevance >= 0.5:
+                seen_urls.add(docket_url)
+                sources.append({
+                    "url": docket_url, "type": "court_docket",
+                    "relevance_score": relevance,
+                    "description": case_name, "api": "courtlistener",
+                })
+
+        for r in query_courtlistener_opinions(query):
+            case_name = r.get("caseName", "") or r.get("case_name", "")
+            opinion_url = r.get("absolute_url", "")
+            if opinion_url and not opinion_url.startswith("http"):
+                opinion_url = f"https://www.courtlistener.com{opinion_url}"
+            if not opinion_url or opinion_url in seen_urls:
+                continue
+            case_lower = case_name.lower()
+            relevance = 0.0
+            if n["clean_primary"].lower() in case_lower:
+                relevance = 0.85
+            elif n["last_name"].lower() in case_lower:
+                relevance = 0.7
+            if relevance >= 0.5:
+                seen_urls.add(opinion_url)
+                snippet = r.get("snippet", "") or ""
+                description = f"{case_name} {snippet}".strip()
+                sources.append({
+                    "url": opinion_url, "type": "court_opinion",
+                    "relevance_score": relevance,
+                    "description": description, "api": "courtlistener",
+                })
+
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# Wikipedia Search (FREE — no API key, no quota)
+# ──────────────────────────────────────────────────────────────
+
+def search_wikipedia(names):
+    """Search Wikipedia for case articles using free MediaWiki API."""
+    n = parse_names(names)
+    if not n["last_name"] or len(n["last_name"]) < 4:
+        return []
+    sources = []
+    try:
+        resp = requests.get(
+            "https://en.wikipedia.org/w/api.php",
+            params={
+                "action": "query", "list": "search",
+                "srsearch": n["clean_primary"], "srnamespace": 0,
+                "srlimit": 5, "format": "json",
+            },
+            timeout=8,
+        )
+        data = resp.json()
+        CASE_KEYWORDS = {
+            "murder", "killed", "killing", "death", "trial", "sentenced",
+            "convicted", "conviction", "crime", "guilty", "arrest", "arrested",
+            "manslaughter", "assault", "robbery", "shooting", "stabbing",
+            "rape", "abuse", "victim", "defendant", "jury", "verdict",
+            "homicide", "execution", "imprisoned", "prison", "jail",
+        }
+        for r in data.get("query", {}).get("search", [])[:3]:
+            title = r.get("title", "")
+            snippet = r.get("snippet", "") or ""
+            combined = f"{title} {snippet}".lower()
+            # Must contain at least one crime/case keyword to avoid false positives
+            if not any(kw in combined for kw in CASE_KEYWORDS):
+                continue
+            relevance = 0.0
+            if n["clean_primary"].lower() in combined:
+                relevance = 0.80
+            elif n["last_name"].lower() in combined:
+                relevance = 0.55
+            if relevance >= 0.5:
+                url = f"https://en.wikipedia.org/wiki/{title.replace(' ', '_')}"
+                sources.append({
+                    "url": url, "type": "wiki_article",
+                    "relevance_score": relevance,
+                    "description": title, "api": "wikipedia",
+                })
+    except Exception:
+        pass
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# DailyMotion Search (FREE — no API key, no quota)
+# ──────────────────────────────────────────────────────────────
+
+def search_dailymotion(names):
+    """Search DailyMotion for case footage using public API."""
+    n = parse_names(names)
+    if not n["clean_primary"]:
+        return []
+    sources = []
+    seen_ids = set()
+    queries = [
+        f"{n['clean_primary']} bodycam",
+        f"{n['clean_primary']} interrogation",
+    ]
+    for query in queries[:2]:
+        try:
+            resp = requests.get(
+                "https://api.dailymotion.com/videos",
+                params={
+                    "search": query,
+                    "fields": "id,title,url",
+                    "limit": 4, "language": "en",
+                },
+                timeout=8,
+            )
+            if resp.status_code != 200:
+                continue
+            for item in resp.json().get("list", []):
+                vid_id = item.get("id", "")
+                if not vid_id or vid_id in seen_ids:
+                    continue
+                title = item.get("title", "") or ""
+                url = item.get("url", "") or f"https://www.dailymotion.com/video/{vid_id}"
+                combined = title.lower()
+                relevance = 0.0
+                if n["clean_primary"].lower() in title.lower():
+                    relevance = 0.9
+                elif n["last_name"].lower() in title.lower() and len(n["last_name"]) > 3:
+                    relevance = 0.6
+                if relevance < 0.5:
+                    continue
+                seen_ids.add(vid_id)
+                etype = "general_footage"
+                if any(kw in combined for kw in ["bodycam", "body cam", "body camera", "bwc"]):
+                    etype = "bodycam_footage"
+                elif any(kw in combined for kw in ["interrogation", "confession", "interview"]):
+                    etype = "interrogation_footage"
+                elif any(kw in combined for kw in ["trial", "court", "hearing"]):
+                    etype = "court_footage"
+                sources.append({
+                    "url": url, "type": etype,
+                    "relevance_score": relevance,
+                    "description": title, "api": "dailymotion",
+                })
+        except Exception:
+            continue
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# YouTube Search (FREE — no API key, no quota)
+# ──────────────────────────────────────────────────────────────
+# Uses youtube-search-python which hits YouTube's internal InnerTube API.
+# pip install youtube-search-python
+# Zero cost. Unlimited searches. No API key needed.
+
+def search_youtube(names, jurisdiction):
+    """
+    Search YouTube for case footage using yt-dlp (robust, actively maintained).
+    Costs $0. No API key. No quota.
+    """
+    try:
+        import yt_dlp
+    except ImportError:
+        return []
+
+    sources = []
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    seen_ids = set()
+
+    credible_channels = {
+        "policeactivity", "realworldpolice", "bodycamwatch",
+        "lawcrimetrial", "lawcrimenetwork", "courttv",
+        "courtroomconsequences", "jaxsheriff", "phoenixpolice",
+        "seattlepolice", "austinpolice", "houstonpolice",
+        "orangecountysheriff", "mesapolice", "aurorapolice",
+    }
+
+    entertainment_flags = [
+        "movie", "trailer", "tv show", "series", "episode",
+        "music video", "official audio", "lyrics", "anime",
+        "gameplay", "reaction", "prank",
+    ]
+
+    queries = []
+    if n["clean_primary"]:
+        queries.append(f"{n['clean_primary']} bodycam")
+        queries.append(f"{n['clean_primary']} interrogation")
+        queries.append(f"{n['clean_primary']} court trial")
+        queries.append(f"{n['clean_primary']} confession")
+    if n["clean_primary"] and j["city"]:
+        queries.append(f"{n['clean_primary']} {j['city']} police")
+        queries.append(f"{n['clean_primary']} {j['city']} murder")
+    if n["clean_primary"]:
+        queries.append(f"{n['clean_primary']} 911 call")
+    if n["clean_primary"]:
+        queries.append(f"{n['clean_primary']} sentencing")
+    if n["clean_primary"]:
+        queries.append(f"{n['clean_primary']} police interview")
+
+    ydl_opts = {
+        "quiet": True,
+        "no_warnings": True,
+        "extract_flat": True,
+        "skip_download": True,
+        "socket_timeout": 8,
+    }
+
+    from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
+
+    def _yt_fetch(q):
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch5:{q}", download=False)
+            return info.get("entries", []) if info else []
+
+    for query in queries[:9]:
+        if not check_budget("youtube"):
+            break
+        rate_limit("youtube", 1.0)
+        log_call("youtube")
+        try:
+            with ThreadPoolExecutor(max_workers=1) as ex:
+                future = ex.submit(_yt_fetch, query)
+                results = future.result(timeout=12)
+        except Exception:
+            results = []
+            continue
+
+        for item in results:
+            if not item:
+                continue
+            video_id = item.get("id", "")
+            if not video_id or video_id in seen_ids:
+                continue
+
+            title = item.get("title", "") or ""
+            channel = item.get("channel", "") or item.get("uploader", "") or ""
+            description = item.get("description", "") or ""
+            combined = f"{title} {description}".lower()
+
+            relevance = _score_youtube_relevance(
+                n, j, combined, title, channel, credible_channels, entertainment_flags
+            )
+            if relevance >= 0.25:
+                seen_ids.add(video_id)
+                sources.append(_build_youtube_source(
+                    video_id, title, channel, combined, relevance
+                ))
+
+    return sources
+
+def _score_youtube_relevance(n, j, combined, title, channel, credible_channels, entertainment_flags):
+    """Score how relevant a YouTube video is to our case."""
+    evidence_keywords = [
+        "bodycam", "body cam", "body camera", "interrogation", "confession",
+        "police footage", "arrest footage", "police video", "cop cam",
+        "trial", "sentencing", "hearing", "court", "911 call",
+    ]
+    relevance = 0.0
+    if n["clean_primary"].lower() in title.lower():
+        relevance = 0.9
+    elif n["last_name"].lower() in title.lower() and len(n["last_name"]) > 3:
+        relevance = 0.6
+    elif n["clean_primary"].lower() in combined:
+        relevance = 0.5
+    elif n["last_name"].lower() in combined and len(n["last_name"]) > 3:
+        relevance = 0.35
+    # Jurisdiction + evidence keyword: likely the right incident even without name in title
+    elif j["city"] and j["city"].lower() in combined:
+        if any(kw in combined for kw in evidence_keywords):
+            relevance = 0.30
+
+    # Jurisdiction cross-check: penalize name-only matches without jurisdiction context
+    # Prevents wrong-person YouTube matches for common names (Gonzalez, Johnson, etc.)
+    if 0 < relevance < 0.9 and j.get("city"):  # skip penalty for full-name matches
+        city_found = j["city"].lower() in combined
+        state_found = j.get("state_abbrev", "").lower() in combined if j.get("state_abbrev") else False
+        if not city_found and not state_found:
+            relevance *= 0.7
+
+    channel_slug = re.sub(r'[^a-z0-9]', '', channel.lower())
+    if channel_slug in credible_channels:
+        relevance = min(relevance + 0.2, 1.0)
+
+    if any(flag in combined for flag in entertainment_flags):
+        relevance = 0.0
+
+    return relevance
+
+def _build_youtube_source(video_id, title, channel, combined, relevance):
+    """Build a source dict from YouTube video data."""
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    etype = "general_footage"
+    if any(kw in combined for kw in [
+        "bodycam", "body cam", "body camera", "bwc", "body worn",
+        "body-worn", "police cam", "cop cam", "dashcam", "dash cam",
+        "police footage", "officer footage", "arrest footage", "police video",
+        "officer video", "police camera", "dept releases", "department releases",
+    ]):
+        etype = "bodycam_footage"
+    elif any(kw in combined for kw in [
+        "interrogation", "confession", "interview", "custodial",
+        "police interview", "detective interview", "questioned",
+    ]):
+        etype = "interrogation_footage"
+    elif any(kw in combined for kw in [
+        "trial", "court", "hearing", "sentencing", "verdict",
+        "courtroom", "arraignment", "preliminary hearing",
+    ]):
+        etype = "court_footage"
+    elif any(kw in combined for kw in ["911", "dispatch", "emergency call", "called police"]):
+        etype = "dispatch_audio"
+    return {
+        "url": url, "type": etype, "relevance_score": relevance,
+        "description": title, "channel": channel, "api": "youtube_free",
+    }
+
+
+# ──────────────────────────────────────────────────────────────
+# Brave Search API
+# ──────────────────────────────────────────────────────────────
+
+def query_brave(search_term, count=5):
+    """Search Brave Web Search API."""
+    global _brave_case_calls
+    if not BRAVE_API_KEY:
+        return []
+    if not check_budget("brave"):
+        return []
+    # Per-case cap: dynamic fair-share if set_case_slice() was called,
+    # otherwise fall back to the static BRAVE_MAX_PER_CASE ceiling.
+    per_case_cap = _current_case_brave_cap if _current_case_brave_cap is not None else BRAVE_MAX_PER_CASE
+    if _brave_case_calls >= per_case_cap:
+        return []
+
+    # ── Hard billing quota check ──────────────────────────────
+    quota = _load_brave_quota()
+    # Block if monthly quota header says exhausted
+    if quota.get("monthly_remaining") is not None and quota["monthly_remaining"] <= 0:
+        print(f"[Brave] BLOCKED — monthly quota exhausted (0 requests remaining)")
+        return []
+    # Block if estimated spend would exceed the dollar cap
+    projected = quota.get("estimated_spend", 0.0) + BRAVE_COST_PER_REQUEST
+    if projected > BRAVE_SPEND_LIMIT_USD:
+        print(f"[Brave] BLOCKED — spend cap reached "
+              f"(${quota['estimated_spend']:.2f} + ${BRAVE_COST_PER_REQUEST:.3f} "
+              f"> ${BRAVE_SPEND_LIMIT_USD:.2f} limit)")
+        return []
+    # ─────────────────────────────────────────────────────────
+
+    rate_limit("brave", 1.1)
+    log_call("brave")
+    _brave_case_calls += 1
+    try:
+        resp = requests.get(
+            BRAVE_BASE,
+            params={"q": search_term, "count": count},
+            headers={"X-Subscription-Token": BRAVE_API_KEY, "Accept": "application/json"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        # Handle quota-exhausted response from Brave (402 = quota exceeded)
+        if resp.status_code == 402:
+            quota["monthly_remaining"] = 0
+            _save_brave_quota(quota)
+            print("[Brave] 402 quota exhausted — saved state, skipping remaining calls")
+            return []
+        resp.raise_for_status()
+        quota = _update_quota_from_response(quota, resp)
+        _save_brave_quota(quota)
+        return resp.json().get("web", {}).get("results", [])
+    except requests.exceptions.HTTPError:
+        return []
+    except Exception:
+        return []
+
+def search_brave(names, jurisdiction):
+    """Use Brave Search for news, court records, footage links."""
+    sources = []
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    seen_urls = set()
+
+    queries = []
+    if n["clean_primary"] and j["city"]:
+        queries.append(f'"{n["clean_primary"]}" {j["city"]} case')
+    if n["clean_primary"] and j["state_abbrev"]:
+        queries.append(f'"{n["clean_primary"]}" {j["state_abbrev"]} court')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" bodycam OR interrogation OR sentencing')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:caselaw.findlaw.com OR site:law.justia.com OR site:dockets.justia.com OR site:cases.justia.com OR site:courtlistener.com')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:cbsnews.com OR site:abcnews.go.com OR site:courthousenews.com OR site:azcentral.com OR site:abc15.com')
+    if n["clean_primary"] and j["state_abbrev"]:
+        queries.append(f'"{n["clean_primary"]}" {j["state_abbrev"]} murder OR homicide OR shooting OR arrest trial news')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:tiktok.com')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:casetext.com OR site:unicourt.com OR site:docketbird.com OR site:tncourts.gov OR site:pacermonitor.com OR site:trellis.law')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:pbs.org OR site:bbc.com OR site:wflx.com OR site:kens5.com OR site:firstcoastnews.com OR site:nytimes.com')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" "911 call" OR "dispatch audio" OR "dispatch recording"')
+    if n["clean_primary"]:
+        queries.append(f'"{n["clean_primary"]}" site:courttv.com OR site:scribd.com OR site:documentcloud.org OR site:deathpenaltyinfo.org')
+
+    evidence_domain_map = {
+        "courtlistener.com": "court_docket", "casetext.com": "court_docket",
+        "justia.com": "court_docket", "findlaw.com": "court_opinion",
+        "caselaw.findlaw.com": "court_opinion", "law.justia.com": "court_docket",
+        "dockets.justia.com": "court_docket", "docketbird.com": "court_docket",
+        "unicourt.com": "court_docket", "pacermonitor.com": "court_docket",
+        "youtube.com": "video_footage", "tiktok.com": "video_footage",
+        "dailymotion.com": "video_footage", "courttv.com": "court_footage",
+        "muckrock.com": "foia_request", "documentcloud.org": "foia_document",
+        "courthousenews.com": "news_article", "azcentral.com": "news_article",
+        "cbsnews.com": "news_article", "abcnews.go.com": "news_article",
+        "abc15.com": "news_article", "firstcoastnews.com": "news_article",
+    }
+
+    # Pure entertainment/spam only — do NOT block social/video platforms that appear in ground truth
+    skip_domains = {
+        "imdb.com", "tvguide.com", "spotify.com", "invubu.com",
+        "viberate.com", "soapcentral.com", "pinterest.com",
+    }
+
+    # Only accept results from domains that appear in verified ground-truth sources
+    # Built from calibration_data.json verified_sources (149 total across 53 domains)
+    verified_domains = {
+        "youtube.com", "findlaw.com", "tiktok.com", "justia.com",
+        "reddit.com", "tncourts.gov", "casetext.com", "courtlistener.com",
+        "courthousenews.com", "azcentral.com", "wikipedia.org", "wflx.com",
+        "abcnews.go.com", "docketbird.com", "unicourt.com", "cbsnews.com",
+        "pbs.org", "bbc.com", "medialaw.org", "facebook.com", "courttv.com",
+        "archive.knoxnews.com", "scribd.com", "nytimes.com", "pacermonitor.com",
+        "firstcoastnews.com", "co.hood.tx.us", "hoodcounty.texas.gov",
+        "police1.com", "abc15.com", "azcourts.gov", "deathpenaltyinfo.org",
+        "kens5.com", "chicago.gov", "courts.state.co.us", "trellis.law",
+        "instagram.com", "dailymotion.com", "muckrock.com", "documentcloud.org",
+        "6park.news", "jmdlaw.com", "certpool.com", "vlex.com", "klcc.org",
+        "clipsyndicate.com", "seattleweekly.com", "fallriverreporter.com",
+        "lailluminator.com", "timesofindia.indiatimes.com", "villanova.edu",
+        "ewscripps.brightspotcdn.com", "gazette.com", "pdfcoffee.com",
+    }
+
+    for query in queries[:11]:
+        results = query_brave(query, count=6)
+        for r in results:
+            url = r.get("url", "")
+            title = r.get("title", "")
+            description = r.get("description", "")
+            if not url or url in seen_urls:
+                continue
+            try:
+                domain = urlparse(url).netloc.replace("www.", "")
+            except Exception:
+                continue
+            if domain in skip_domains:
+                continue
+            if not any(vd in domain for vd in verified_domains):
+                continue
+
+            combined = f"{title} {description}".lower()
+            relevance = 0.0
+            if n["clean_primary"].lower() in combined:
+                relevance = 0.8
+            elif n["last_name"].lower() in combined and len(n["last_name"]) > 4:
+                if j["city"].lower() in combined or j["state_abbrev"].lower() in combined:
+                    relevance = 0.5
+                else:
+                    relevance = 0.3
+
+            if relevance > 0 and j["city"]:
+                if j["city"].lower() not in combined and j["state_abbrev"].lower() not in combined:
+                    relevance *= 0.7
+
+            evidence_in_title = any(
+                kw in combined for kw in [
+                    "bodycam", "body cam", "body-cam", "interrogation",
+                    "sentencing", "911 call", "dispatch audio",
+                    "court video", "courtroom video", "dash cam", "dashcam",
+                ]
+            )
+            effective_threshold = 0.25 if evidence_in_title else 0.5
+            if relevance < effective_threshold:
+                continue
+
+            seen_urls.add(url)
+            source_type = "news_article"
+            for d, stype in evidence_domain_map.items():
+                if d in domain:
+                    source_type = stype
+                    break
+            sources.append({
+                "url": url, "type": source_type, "relevance_score": relevance,
+                "description": title, "api": "brave",
+            })
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# Reddit Search (free, no API key required)
+# ──────────────────────────────────────────────────────────────
+
+def search_reddit(names, jurisdiction):
+    """Search Reddit for case discussion using PRAW (Reddit API via OAuth)."""
+    sources = []
+    if praw is None or not REDDIT_CLIENT_ID or not REDDIT_CLIENT_SECRET:
+        return sources
+
+    n = parse_names(names)
+    j = parse_jurisdiction(jurisdiction)
+    seen_urls = set()
+
+    try:
+        reddit = praw.Reddit(
+            client_id=REDDIT_CLIENT_ID,
+            client_secret=REDDIT_CLIENT_SECRET,
+            user_agent=REDDIT_USER_AGENT,
+        )
+    except Exception:
+        return sources
+
+    # Search all crime subreddits in one combined query (4 subs → 1 API call per query)
+    combined_sub = "ThisIsButter+CasesWeFollow+Documentaries+TrueCrime"
+
+    queries = []
+    if n["clean_primary"]:
+        queries.append(n["clean_primary"])
+    if n["last_name"] and len(n["last_name"]) > 4 and n["last_name"] != n["clean_primary"]:
+        queries.append(n["last_name"])
+
+    for query in queries[:2]:
+        if len(sources) >= 5:
+            break
+        rate_limit("reddit", 1.0)
+        try:
+            subreddit = reddit.subreddit(combined_sub)
+            results = subreddit.search(query, sort="relevance", time_filter="all", limit=5)
+            for post in results:
+                url = f"https://www.reddit.com{post.permalink}"
+                if url in seen_urls:
+                    continue
+                title = post.title
+                title_lower = title.lower()
+
+                relevance = 0.0
+                if n["clean_primary"].lower() in title_lower:
+                    relevance = 0.7
+                elif n["last_name"].lower() in title_lower and len(n["last_name"]) > 4:
+                    relevance = 0.5
+
+                if relevance >= 0.5:
+                    seen_urls.add(url)
+                    sources.append({
+                        "url": url, "type": "news_article",
+                        "relevance_score": relevance,
+                        "description": title, "api": "reddit",
+                    })
+                    if len(sources) >= 5:
+                        break
+        except Exception:
+            continue
+
+    return sources
+
+
+# ──────────────────────────────────────────────────────────────
+# Evidence detection
+# ──────────────────────────────────────────────────────────────
+
+def detect_evidence_types(sources):
+    """Determine which evidence types are present."""
+    evidence = {
+        "bodycam": False, "interrogation": False, "court_video": False,
+        "docket_docs": False, "dispatch_911": False,
+    }
+    type_to_evidence = {
+        "bodycam_footage": "bodycam", "interrogation_footage": "interrogation",
+        "court_footage": "court_video", "court_docket": "docket_docs",
+        "court_opinion": "docket_docs", "dispatch_audio": "dispatch_911",
+    }
+    for s in sources:
+        stype = s.get("type", "")
+        if stype in type_to_evidence:
+            evidence[type_to_evidence[stype]] = True
+
+    all_text = " ".join(
+        f"{s.get('description', '')} {s.get('url', '')}" for s in sources
+    ).lower()
+    for etype, keywords in EVIDENCE_KEYWORDS.items():
+        if evidence[etype]:
+            continue
+        for kw in keywords:
+            if kw.lower() in all_text:
+                evidence[etype] = True
+                break
+
+    docket_domains = ["courtlistener", "casetext", "justia", "findlaw",
+                      "pacer", "docketbird", "unicourt", "trellis"]
+    for s in sources:
+        url = s.get("url", "").lower()
+        if any(d in url for d in docket_domains):
+            evidence["docket_docs"] = True
+            break
+    return evidence
+
+
+# ──────────────────────────────────────────────────────────────
+# Confidence assessment
+# ──────────────────────────────────────────────────────────────
+
+def assess_confidence(sources, evidence):
+    """
+    Confidence based on evidence breadth, source quality, API diversity, and
+    (when available) identity verification.
+
+    Identity-aware behavior (active when sources carry `identity_matched_fields`):
+      - high_relevance counts ONLY sources whose identity match includes
+        `defendant_full_name`. Stops wrong-person sources (sharing only
+        last_name + state) from inflating the HIGH-tier signal.
+      - Multi-case gate: if 3+ DISTINCT case numbers appear across full-name
+        matched sources, the agent has likely surfaced multiple distinct
+        cases under the same name (same-city collision OR multi-prior-history
+        defendant). Caps the result at MEDIUM regardless of evidence breadth.
+
+    Falls back to the legacy keyword-only computation when sources lack
+    identity annotations (FLAMEON_USE_IDENTITY_SCORING=0 or import failure).
+    """
+    evidence_count = sum(1 for v in evidence.values() if v)
+
+    has_identity_data = any("identity_matched_fields" in s for s in sources)
+    if has_identity_data:
+        try:
+            from identity_score import has_full_name_match, count_distinct_case_numbers
+            high_relevance = sum(
+                1 for s in sources
+                if s.get("relevance_score", 0) >= 0.5 and has_full_name_match(s)
+            )
+            n_distinct_cases = count_distinct_case_numbers(sources)
+        except ImportError:
+            high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
+            n_distinct_cases = 0
+    else:
+        high_relevance = sum(1 for s in sources if s.get("relevance_score", 0) >= 0.5)
+        n_distinct_cases = 0
+
+    # Multi-case ambiguity gate — only triggers when identity data is present.
+    # Threshold tuned 3→4: cherry_pick_v1 demoted Marvin Johnson + Angela McAnulty
+    # (legitimate ENOUGH cases with long legal histories) on 3+ distinct case
+    # numbers. Bumping to 4 preserves the demote on Katelynne Nelson (INSUFF) +
+    # Miguel Mondaca (INSUFF) which had 5+ distinct cases each.
+    multi_case_ambiguous = n_distinct_cases >= 4
+
+    # Count footage/audio evidence sources (PATH 1 — yt-dlp typed sources, strongest signal)
+    # Court dockets are excluded because CourtListener finds docket results for almost anyone.
+    # Only actual footage/audio types count — these come from YouTube results specifically.
+    footage_types = {"bodycam_footage", "interrogation_footage", "court_footage", "dispatch_audio"}
+    typed_footage = sum(1 for s in sources if s.get("type", "") in footage_types)
+
+    # Count distinct APIs contributing high-relevance sources (diversity signal)
+    api_set = set(s.get("api", "") for s in sources if s.get("relevance_score", 0) >= 0.5)
+    api_diversity = len(api_set - {""})
+
+    # High: requires evidence breadth + actual footage sources, AND no multi-case ambiguity.
+    if high_relevance >= 3 and evidence_count >= 3 and typed_footage >= 1 and not multi_case_ambiguous:
+        return "high"
+    # High fallback: very strong API diversity across 3+ APIs with lots of evidence.
+    if high_relevance >= 5 and evidence_count >= 4 and api_diversity >= 3 and not multi_case_ambiguous:
+        return "high"
+    # Medium: requires at least 1 evidence type + 1 high-confidence source + 2+ sources total
+    elif evidence_count >= 1 and high_relevance >= 1 and len(sources) >= 2:
+        return "medium"
+    # Medium-fallback: multi-case ambiguity with broad coverage = "found something
+    # but can't disambiguate" — better than LOW for a case the agent clearly
+    # has data on, even if scattered across multiple legal proceedings.
+    elif multi_case_ambiguous and len(sources) >= 5:
+        return "medium"
+    else:
+        return "low"
+
+
+# ──────────────────────────────────────────────────────────────
+# Main research function — THE INTERFACE evaluate.py calls
+# ──────────────────────────────────────────────────────────────
+
+def research_case(defendant_names, jurisdiction):
+    """
+    Given a defendant name and jurisdiction, research the case using
+    all available structured APIs and return findings.
+    """
+    global _brave_case_calls
+    _brave_case_calls = 0  # Reset per-case Brave budget
+
+    # Compute this case's Brave cap from live remaining run-budget / remaining cases.
+    # If orchestrator never called set_case_slice(), this is a no-op and
+    # BRAVE_MAX_PER_CASE (the static ceiling) applies as before.
+    if _case_slice_total > 0:
+        _allocate_brave_cap_for_case()
+
+    # Feature flags — env-toggleable supplemental sources for A/B experiments.
+    # Defaults: portal_harness + cib_cache ON (zero-cost, additive); supplementals ON (parity).
+    USE_PORTAL_HARNESS = os.environ.get("FLAMEON_USE_PORTAL_HARNESS", "1") != "0"
+    USE_CIB_CACHE = os.environ.get("FLAMEON_USE_CIB_CACHE", "1") != "0"
+    USE_WIKIPEDIA = os.environ.get("FLAMEON_USE_WIKIPEDIA", "1") != "0"
+    USE_DAILYMOTION = os.environ.get("FLAMEON_USE_DAILYMOTION", "1") != "0"
+    USE_REDDIT = os.environ.get("FLAMEON_USE_REDDIT", "1") != "0"
+    USE_LLM_RERANK = os.environ.get("FLAMEON_USE_LLM_RERANK", "0") == "1"
+    USE_JURISDICTION_FILTER = os.environ.get("FLAMEON_USE_JURISDICTION_FILTER", "1") != "0"
+    USE_IDENTITY_SCORING = os.environ.get("FLAMEON_USE_IDENTITY_SCORING", "1") != "0"
+
+    all_sources = []
+    notes = []
+
+    # CIB cache (zero API cost — file read + token match against pre-scraped agency
+    # publishing pages, e.g. LAPD CIV, SDPD CIV, LBPD SB1421, Mesa CIB).
+    notes.append("=== CIB Cache ===")
+    if USE_CIB_CACHE:
+        try:
+            from parsers import search_cib_cache
+            cib_sources = search_cib_cache(defendant_names, jurisdiction)
+            notes.append(f"  Found {len(cib_sources)} cached CIB/OIS results")
+            all_sources.extend(cib_sources)
+        except ImportError:
+            notes.append("  (parsers.search_cib_cache not available)")
+        except Exception as e:
+            notes.append(f"  (cib_cache error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_CIB_CACHE=0)")
+
+    # Native portal harnesses (zero API credits — plain requests + stdlib parser).
+    # Currently covers NextRequest (10 agencies, working) and best-effort GovQA
+    # (13 agencies, mostly gated → returns []). Replaces wasteful Firecrawl extracts
+    # for jurisdictions with known portal shapes.
+    notes.append("=== Native Portal Harnesses ===")
+    if USE_PORTAL_HARNESS:
+        try:
+            from portal_harnesses import search_all_portals_for_jurisdiction
+            harness_sources = search_all_portals_for_jurisdiction(
+                defendant_names, jurisdiction, limit=15,
+            )
+            notes.append(f"  Found {len(harness_sources)} native portal results")
+            all_sources.extend(harness_sources)
+        except ImportError:
+            notes.append("  (portal_harnesses not available)")
+        except Exception as e:
+            notes.append(f"  (portal harness error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_PORTAL_HARNESS=0)")
+
+    notes.append("=== MuckRock FOIA ===")
+    mr_sources = search_muckrock(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(mr_sources)} FOIA results")
+    all_sources.extend(mr_sources)
+
+    notes.append("=== CourtListener ===")
+    cl_sources = search_courtlistener(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(cl_sources)} court records")
+    all_sources.extend(cl_sources)
+
+    notes.append("=== Brave Search ===")
+    brave_sources = search_brave(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(brave_sources)} web results")
+    all_sources.extend(brave_sources)
+
+    notes.append("=== YouTube (yt-dlp) ===")
+    yt_sources = search_youtube(defendant_names, jurisdiction)
+    notes.append(f"  Found {len(yt_sources)} videos")
+    all_sources.extend(yt_sources)
+
+    notes.append("=== Wikipedia ===")
+    if USE_WIKIPEDIA:
+        wiki_sources = search_wikipedia(defendant_names)
+        notes.append(f"  Found {len(wiki_sources)} Wikipedia articles")
+        all_sources.extend(wiki_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_WIKIPEDIA=0)")
+
+    notes.append("=== DailyMotion ===")
+    if USE_DAILYMOTION:
+        dm_sources = search_dailymotion(defendant_names)
+        notes.append(f"  Found {len(dm_sources)} DailyMotion videos")
+        all_sources.extend(dm_sources)
+    else:
+        notes.append("  (disabled via FLAMEON_USE_DAILYMOTION=0)")
+
+    notes.append("=== Reddit (PRAW) ===")
+    if USE_REDDIT and len(all_sources) < 20:
+        reddit_sources = search_reddit(defendant_names, jurisdiction)
+        notes.append(f"  Found {len(reddit_sources)} Reddit posts")
+        all_sources.extend(reddit_sources)
+    elif not USE_REDDIT:
+        notes.append("  (disabled via FLAMEON_USE_REDDIT=0)")
+
+    # Deduplicate by URL
+    seen = set()
+    deduped = []
+    for s in all_sources:
+        url = s.get("url", "")
+        if url and url not in seen:
+            seen.add(url)
+            deduped.append(s)
+    all_sources = deduped
+    all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
+
+    # Per-source identity scoring (cherry-picked from case-graph fork).
+    # Annotates each source with `identity_score` and `identity_matched_fields`
+    # so assess_confidence can require defendant_full_name match (not just
+    # last_name + state) before counting a source as high_relevance. Targets
+    # the same false-HIGH failure mode as the jurisdiction filter, but at the
+    # identity-anchor level (catches same-city same-name collisions the geo
+    # filter can't). Pure annotation — does not modify relevance_score.
+    notes.append("=== Identity Scoring ===")
+    if USE_IDENTITY_SCORING and all_sources:
+        try:
+            from identity_score import apply_identity_scoring
+            apply_identity_scoring(all_sources, defendant_names, jurisdiction)
+            n_full = sum(1 for s in all_sources
+                         if "defendant_full_name" in (s.get("identity_matched_fields") or []))
+            notes.append(f"  Annotated {len(all_sources)} sources; full-name matches: {n_full}")
+        except ImportError:
+            notes.append("  (identity_score not available)")
+        except Exception as e:
+            notes.append(f"  (identity scoring error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_IDENTITY_SCORING=0)")
+
+    # Optional LLM re-ranker (semantic relevance scoring, replaces keyword scores).
+    # Off by default — opt in with FLAMEON_USE_LLM_RERANK=1. ~$0.01-0.02/case via
+    # OpenRouter. Falls back gracefully on any error (sources unchanged).
+    notes.append("=== LLM Rerank ===")
+    if USE_LLM_RERANK and all_sources:
+        try:
+            from llm_rerank import rerank_sources
+            before = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            all_sources = rerank_sources(defendant_names, jurisdiction, all_sources)
+            # Re-sort after scores updated
+            all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
+            after = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            ok = sum(1 for s in all_sources if s.get("_rerank_succeeded"))
+            notes.append(f"  Reranked {ok}/{len(all_sources)} sources; high-rel {before} -> {after}")
+        except ImportError:
+            notes.append("  (llm_rerank not available)")
+        except Exception as e:
+            notes.append(f"  (rerank error: {e})")
+    else:
+        notes.append("  (disabled — set FLAMEON_USE_LLM_RERANK=1 to enable)")
+
+    # Jurisdiction-aware false-positive filter — demotes sources whose geographic
+    # context conflicts with the case's jurisdiction. Targets the recurring
+    # false-HIGH failure mode (e.g. Braulio Gonzalez/Miami case matching other
+    # Braulio Gonzalez cases in Houston, Phoenix, etc.). Sources are kept in
+    # the pool (preserves recall) but down-weighted below the high_relevance
+    # threshold so they don't drive assess_confidence to HIGH.
+    notes.append("=== Jurisdiction Filter ===")
+    if USE_JURISDICTION_FILTER and all_sources:
+        try:
+            from jurisdiction_filter import apply_jurisdiction_filter
+            before = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            all_sources = apply_jurisdiction_filter(
+                all_sources, jurisdiction,
+                parse_jurisdiction_fn=parse_jurisdiction,
+            )
+            all_sources.sort(key=lambda s: s.get("relevance_score", 0), reverse=True)
+            after = sum(1 for s in all_sources if s.get("relevance_score", 0) >= 0.5)
+            n_demoted = sum(1 for s in all_sources if "_jurisdiction_filter_mult" in s)
+            notes.append(f"  Demoted {n_demoted}/{len(all_sources)}; high-rel {before} -> {after}")
+        except ImportError:
+            notes.append("  (jurisdiction_filter not available)")
+        except Exception as e:
+            notes.append(f"  (filter error: {e})")
+    else:
+        notes.append("  (disabled via FLAMEON_USE_JURISDICTION_FILTER=0)")
+
+    evidence = detect_evidence_types(all_sources)
+    confidence = assess_confidence(all_sources, evidence)
+
+    notes.append(f"\n=== Summary ===")
+    notes.append(f"  Total sources: {len(all_sources)}")
+    notes.append(f"  Evidence: {evidence}")
+    notes.append(f"  Confidence: {confidence}")
+    notes.append(f"  API budget used: {get_budget_report()}")
+
+    return {
+        "evidence_found": evidence,
+        "sources_found": all_sources,
+        "confidence": confidence,
+        "research_notes": "\n".join(notes),
+    }

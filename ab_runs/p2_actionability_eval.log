@@ -1,0 +1,1000 @@
+FlameOn Case-Graph Actionability Evaluation
+==========================================================
+Cases: 38
+[1/38] Keonte Gathron... 24.8s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[2/38] Min Jian Guan... 23.3s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[3/38] Roger Dale Boshers... 23.8s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[4/38] Kitt Crenshaw, Arthur Gerrans, James Crowley... 25.5s | id=high claims=2 verified=1 dl=0 conf=medium score=55.0
+[5/38] Christa Gail Pike, Tadaryl Shipp, Shadolla Pe... 25.2s | id=high claims=2 verified=36 dl=20 conf=high score=90.0
+[6/38] Manuel Marin, Roberto "Bam Bam" Isaac, Alexis... 24.9s | id=high claims=2 verified=27 dl=14 conf=high score=90.0
+[7/38] Braulio Gonzalez... 23.7s | id=high claims=1 verified=13 dl=5 conf=high score=35.0
+[8/38] Armando Botell... 23.0s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[9/38] Jorge Barahona... 28.3s | id=high claims=2 verified=28 dl=19 conf=high score=90.0
+[10/38] Julius Dwight Mozie... 27.4s | id=high claims=2 verified=0 dl=0 conf=medium score=35.0
+[11/38] Keivon McBride... 22.8s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[12/38] Steven Dexter Gangoo... 22.2s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[13/38] Antonio Glass, Jerimaine Bryant, Curtis Bryan... 23.8s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[14/38] Carmen Barahona, Jorge Barahona... 25.1s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[15/38] Dr. Prentiss Madden... 25.6s | id=high claims=2 verified=3 dl=1 conf=high score=85.0
+[16/38] William D. Foster... 25.7s | id=high claims=3 verified=29 dl=0 conf=medium score=75.0
+[17/38] Mariam Coulibaly... 23.7s | id=high claims=1 verified=7 dl=6 conf=high score=35.0
+[18/38] Jeffrey Epstein, Ghislaine Maxwell, Sarah Kel... 25.3s | id=high claims=8 verified=123 dl=53 conf=high score=100.0
+[19/38] Michael Edwin Harding... 24.0s | id=high claims=1 verified=3 dl=0 conf=medium score=65.0
+[20/38] Jeffrey Epstein, Nadia Marcinkova, Sarah Kell... 24.3s | id=high claims=8 verified=126 dl=56 conf=high score=100.0
+[21/38] Joseph Concialdi... 25.1s | id=high claims=2 verified=8 dl=4 conf=high score=90.0
+[22/38] William James McElroy Jr.... 23.6s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[23/38] Robert Hood... 24.6s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[24/38] Miguel Antonio Mondaca... 21.6s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[25/38] Louis Broadway-Phillips... 22.8s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[26/38] Kyle Matthew Thompson... 26.3s | id=high claims=3 verified=4 dl=0 conf=medium score=75.0
+[27/38] William Bracy, Murray Hooper, Ed McCall, Robe... 24.0s | id=high claims=1 verified=21 dl=1 conf=high score=35.0
+[28/38] Alan Matthew Champagne... 23.8s | id=high claims=1 verified=4 dl=1 conf=high score=85.0
+[29/38] Thomas Michael Riley... 25.8s | id=high claims=2 verified=12 dl=1 conf=high score=90.0
+[30/38] Angela D. McAnulty... 22.9s | id=medium claims=1 verified=3 dl=2 conf=medium score=85.0
+[31/38] Miguel Antonio Mondaca... 22.1s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[32/38] Marvin G. Johnson... 23.0s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+[33/38] Letecia Stauch... 25.1s | id=high claims=16 verified=76 dl=69 conf=high score=100.0
+[34/38] Carla Marie Faith, Christina Swauger... 25.6s | id=high claims=4 verified=6 dl=3 conf=high score=95.0
+[35/38] Joshua Carrier... 23.8s | id=high claims=1 verified=13 dl=5 conf=high score=35.0
+[36/38] Katelynne Dianna Leigh Nelson, Carla Faith, C... 25.0s | id=high claims=1 verified=1 dl=0 conf=medium score=45.0
+[37/38] Anthony Darrell Dugard Hines... 23.6s | id=high claims=1 verified=8 dl=5 conf=high score=85.0
+[38/38] Ashley Traister, Brooke Shoemaker, Elizabeth ... 17.7s | id=high claims=0 verified=0 dl=0 conf=low score=25.0
+
+==========================================================
+Summary
+{
+  "cases": 38,
+  "avg_actionability_score": 53.95,
+  "identity_lock_rate": 100.0,
+  "artifact_claim_rate": 60.53,
+  "verified_artifact_rate": 57.89,
+  "downloadable_artifact_rate": 44.74,
+  "enough_downloadable_rate": 60.0,
+  "insufficient_false_high_count": 4
+}
+
+Per-case rows
+[
+  {
+    "case_id": 0,
+    "name": "Keonte Gathron",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 1,
+    "name": "Min Jian Guan",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 2,
+    "name": "Roger Dale Boshers",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 3,
+    "name": "Kitt Crenshaw, Arthur Gerrans, James Crowley",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "date",
+      "outcome:convicted"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 1,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 1,
+    "confidence": "medium",
+    "artifact_status": "located",
+    "score": 55.0,
+    "artifact_domains": [
+      "courtlistener.com"
+    ]
+  },
+  {
+    "case_id": 4,
+    "name": "Christa Gail Pike, Tadaryl Shipp, Shadolla Peterson",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 36,
+    "downloadable_count": 20,
+    "official_or_court_or_foia_count": 22,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 90.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "govinfo.gov",
+      "tncourts.gov",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 5,
+    "name": "Manuel Marin, Roberto \"Bam Bam\" Isaac, Alexis Vila Perdomo, Ariel Gandulla",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 27,
+    "downloadable_count": 14,
+    "official_or_court_or_foia_count": 13,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 90.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "courttv.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 6,
+    "name": "Braulio Gonzalez",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 13,
+    "downloadable_count": 5,
+    "official_or_court_or_foia_count": 8,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 35.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 7,
+    "name": "Armando Botell",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 8,
+    "name": "Jorge Barahona",
+    "tier": "BORDERLINE",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 28,
+    "downloadable_count": 19,
+    "official_or_court_or_foia_count": 6,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 90.0,
+    "artifact_domains": [
+      "caselaw.findlaw.com",
+      "cbsnews.com",
+      "courtlistener.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 9,
+    "name": "Julius Dwight Mozie",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "medium",
+    "artifact_status": "claimed",
+    "score": 35.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 10,
+    "name": "Keivon McBride",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 11,
+    "name": "Steven Dexter Gangoo",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 12,
+    "name": "Antonio Glass, Jerimaine Bryant, Curtis Bryant, Samuel Hayes, Mario Rodriguez, Michael Walker, Reginald Graham, Daniel Jones, Levi Bryant, Torivis Reginald Ingram",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:convicted"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 13,
+    "name": "Carmen Barahona, Jorge Barahona",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 14,
+    "name": "Dr. Prentiss Madden",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 3,
+    "downloadable_count": 1,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 85.0,
+    "artifact_domains": [
+      "dreamindemon.com",
+      "miaminewtimes.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 15,
+    "name": "William D. Foster",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 3,
+    "verified_artifact_count": 29,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 29,
+    "confidence": "medium",
+    "artifact_status": "located",
+    "score": 75.0,
+    "artifact_domains": [
+      "courtlistener.com"
+    ]
+  },
+  {
+    "case_id": 16,
+    "name": "Mariam Coulibaly",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 7,
+    "downloadable_count": 6,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 35.0,
+    "artifact_domains": [
+      "hudl.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 17,
+    "name": "Jeffrey Epstein, Ghislaine Maxwell, Sarah Kellen Vickers",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "outcome:sentenced"
+    ],
+    "claim_count": 8,
+    "verified_artifact_count": 123,
+    "downloadable_count": 53,
+    "official_or_court_or_foia_count": 66,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 100.0,
+    "artifact_domains": [
+      "bbc.com",
+      "cbsnews.com",
+      "courtlistener.com",
+      "d.newsweek.com",
+      "govinfo.gov",
+      "justice.gov",
+      "medialaw.org",
+      "oig.justice.gov",
+      "theguardian.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 18,
+    "name": "Michael Edwin Harding",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 3,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 3,
+    "confidence": "medium",
+    "artifact_status": "located",
+    "score": 65.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "ice.gov"
+    ]
+  },
+  {
+    "case_id": 19,
+    "name": "Jeffrey Epstein, Nadia Marcinkova, Sarah Kellen",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "outcome:sentenced"
+    ],
+    "claim_count": 8,
+    "verified_artifact_count": 126,
+    "downloadable_count": 56,
+    "official_or_court_or_foia_count": 66,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 100.0,
+    "artifact_domains": [
+      "bbc.com",
+      "cbsnews.com",
+      "courtlistener.com",
+      "d.newsweek.com",
+      "govinfo.gov",
+      "justice.gov",
+      "medialaw.org",
+      "oig.justice.gov",
+      "theguardian.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 20,
+    "name": "Joseph Concialdi",
+    "tier": "BORDERLINE",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:charged"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 8,
+    "downloadable_count": 4,
+    "official_or_court_or_foia_count": 4,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 90.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 21,
+    "name": "William James McElroy Jr.",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 22,
+    "name": "Robert Hood",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 23,
+    "name": "Miguel Antonio Mondaca",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 24,
+    "name": "Louis Broadway-Phillips",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "agency",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 25,
+    "name": "Kyle Matthew Thompson",
+    "tier": "BORDERLINE",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 3,
+    "verified_artifact_count": 4,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 4,
+    "confidence": "medium",
+    "artifact_status": "located",
+    "score": 75.0,
+    "artifact_domains": [
+      "courtlistener.com"
+    ]
+  },
+  {
+    "case_id": 26,
+    "name": "William Bracy, Murray Hooper, Ed McCall, Robert Cruz, Arnold Merrill",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 21,
+    "downloadable_count": 1,
+    "official_or_court_or_foia_count": 20,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 35.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 27,
+    "name": "Alan Matthew Champagne",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 4,
+    "downloadable_count": 1,
+    "official_or_court_or_foia_count": 4,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 85.0,
+    "artifact_domains": [
+      "azcourts.gov",
+      "courtlistener.com"
+    ]
+  },
+  {
+    "case_id": 28,
+    "name": "Thomas Michael Riley",
+    "tier": "BORDERLINE",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 2,
+    "verified_artifact_count": 12,
+    "downloadable_count": 1,
+    "official_or_court_or_foia_count": 11,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 90.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "supremecourt.gov",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 29,
+    "name": "Angela D. McAnulty",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "medium",
+    "identity_anchors": [
+      "jurisdiction",
+      "authoritative_source",
+      "case_number"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 3,
+    "downloadable_count": 2,
+    "official_or_court_or_foia_count": 1,
+    "confidence": "medium",
+    "artifact_status": "downloadable",
+    "score": 85.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "files.deathpenaltyinfo.org",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 30,
+    "name": "Miguel Antonio Mondaca",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 31,
+    "name": "Marvin G. Johnson",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "outcome:convicted"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  },
+  {
+    "case_id": 32,
+    "name": "Letecia Stauch",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 16,
+    "verified_artifact_count": 76,
+    "downloadable_count": 69,
+    "official_or_court_or_foia_count": 1,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 100.0,
+    "artifact_domains": [
+      "courttv.com",
+      "facebook.com",
+      "fox21news.com",
+      "reddit.com",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 33,
+    "name": "Carla Marie Faith, Christina Swauger",
+    "tier": "BORDERLINE",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "case_number",
+      "agency",
+      "outcome:sentenced"
+    ],
+    "claim_count": 4,
+    "verified_artifact_count": 6,
+    "downloadable_count": 3,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 95.0,
+    "artifact_domains": [
+      "tiktok.com",
+      "youtube.com",
+      "ytscribe.com"
+    ]
+  },
+  {
+    "case_id": 34,
+    "name": "Joshua Carrier",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 13,
+    "downloadable_count": 5,
+    "official_or_court_or_foia_count": 8,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 35.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "trellis.law",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 35,
+    "name": "Katelynne Dianna Leigh Nelson, Carla Faith, Christina Swauger",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "case_number",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 1,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "medium",
+    "artifact_status": "located",
+    "score": 45.0,
+    "artifact_domains": [
+      "denver7.com"
+    ]
+  },
+  {
+    "case_id": 36,
+    "name": "Anthony Darrell Dugard Hines",
+    "tier": "ENOUGH",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "jurisdiction",
+      "authoritative_source",
+      "case_number",
+      "date",
+      "outcome:sentenced"
+    ],
+    "claim_count": 1,
+    "verified_artifact_count": 8,
+    "downloadable_count": 5,
+    "official_or_court_or_foia_count": 4,
+    "confidence": "high",
+    "artifact_status": "downloadable",
+    "score": 85.0,
+    "artifact_domains": [
+      "courtlistener.com",
+      "tncourts.gov",
+      "youtube.com"
+    ]
+  },
+  {
+    "case_id": 37,
+    "name": "Ashley Traister, Brooke Shoemaker, Elizabeth Thompson, Kathryn Green, Adora Perez, Emily Akers, Cherie Mason, Brittney Poolaw",
+    "tier": "INSUFFICIENT",
+    "identity_locked": true,
+    "identity_confidence": "high",
+    "identity_anchors": [
+      "full_name",
+      "case_number",
+      "agency",
+      "outcome:convicted"
+    ],
+    "claim_count": 0,
+    "verified_artifact_count": 0,
+    "downloadable_count": 0,
+    "official_or_court_or_foia_count": 0,
+    "confidence": "low",
+    "artifact_status": "none",
+    "score": 25.0,
+    "artifact_domains": []
+  }
+]

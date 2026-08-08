@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "treatment_id": "accountability_prosecution_longform_v1",
+  "label": "Accountability / prosecution reframe for a disputed or off-camera central event",
+  "format": "longform",
+  "platform": "youtube",
+  "route_id": "accountability_prosecution",
+  "structure_only": true,
+  "provenance": {
+    "reference_ids": [],
+    "channels": [],
+    "sample_count": 0,
+    "analysis_date": "2026-07-26",
+    "allow_wording_transfer": false,
+    "note": "insufficient_corpus (n<25) \u2014 STRUCTURE-ONLY, conservative defaults. No mined wording."
+  },
+  "applicability": {
+    "required_case_features": [
+      "central_event_disputed_or_off_camera",
+      "officer_account_or_witness_exists",
+      "legal_or_administrative_reasoning_available"
+    ],
+    "forbidden_case_features": [
+      "no_legal_disposition",
+      "aftermath_footage_only",
+      "officer_role_unclear",
+      "story_is_pure_speculation"
+    ],
+    "required_media_kinds_any": [
+      "interview",
+      "document"
+    ],
+    "supporting_media_kinds": [
+      "bodycam",
+      "dashcam",
+      "surveillance",
+      "911_audio",
+      "radio"
+    ],
+    "required_fact_fields": [
+      "incident.summary",
+      "incident.disposition",
+      "incident.disposition_source"
+    ]
+  },
+  "global_rules": {
+    "runtime_minutes_range": [
+      8,
+      16
+    ],
+    "vo_word_share_range": [
+      0.3,
+      0.45
+    ],
+    "max_unmotivated_dead_space_sec": 3.0,
+    "max_same_modality_run_sec": 40,
+    "central_payoff_required": true,
+    "legal_cover_on_accusations": true,
+    "fallback_treatment_id": null
+  },
+  "acts": [
+    {
+      "id": "cold_open",
+      "title": "The Disputed Decision",
+      "phase": "incident",
+      "function": "hook",
+      "span_pct": [
+        0,
+        6
+      ],
+      "beat_functions": [
+        "reveal",
+        "tension_shift"
+      ],
+      "vo_moves": [
+        "hook",
+        "stakes",
+        "foreshadow"
+      ],
+      "required_beats": [
+        "disputed_decision",
+        "central_question"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "disputed_decision",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "tension_shift"
+          ],
+          "accepted_media_kinds": [
+            "interview",
+            "document",
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "central_question",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "interview"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "Was this decision justified?",
+      "promise": "Pose the disputed question, not an answer.",
+      "payoff": "The reasoning act answers it.",
+      "narration_role": "Frame as a QUESTION; never assert a conclusion up front.",
+      "original_audio_share_range": [
+        0.3,
+        0.7
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the officer's account.",
+      "forbidden_failures": [
+        "asserts_guilt_or_innocence_upfront",
+        "accusation_without_cited_source"
+      ]
+    },
+    {
+      "id": "officer_account",
+      "title": "The Officer's Account",
+      "phase": "investigation",
+      "function": "establish",
+      "span_pct": [
+        6,
+        28
+      ],
+      "beat_functions": [
+        "character",
+        "reveal"
+      ],
+      "vo_moves": [
+        "context",
+        "procedure"
+      ],
+      "required_beats": [
+        "officer_account"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "officer_account",
+          "required": true,
+          "accepted_moment_types": [
+            "interrogation_admission",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "interview"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": true,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What does the officer say happened?",
+      "promise": "Let the officer's own words stand.",
+      "payoff": "Sets up the evidence test.",
+      "narration_role": "Present verbatim; do not editorialize the account.",
+      "original_audio_share_range": [
+        0.4,
+        0.8
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the objective evidence.",
+      "forbidden_failures": [
+        "paraphrased_as_quote",
+        "account_uncontextualized"
+      ]
+    },
+    {
+      "id": "objective_evidence",
+      "title": "The Objective Evidence",
+      "phase": "investigation",
+      "function": "escalate",
+      "span_pct": [
+        28,
+        55
+      ],
+      "beat_functions": [
+        "reveal",
+        "contradiction"
+      ],
+      "vo_moves": [
+        "context",
+        "foreshadow"
+      ],
+      "required_beats": [
+        "objective_evidence"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "objective_evidence",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal",
+            "detail_noticed",
+            "contradiction"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "bodycam",
+            "dashcam",
+            "surveillance",
+            "911_audio"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What does the physical/recorded evidence show?",
+      "promise": "Test the account against evidence.",
+      "payoff": "Exposes agreement or conflict.",
+      "narration_role": "Let evidence speak; VO connects, doesn't conclude.",
+      "original_audio_share_range": [
+        0.35,
+        0.75
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the governing law/policy.",
+      "forbidden_failures": [
+        "evidence_cherry_picked",
+        "conclusion_stated_as_fact"
+      ]
+    },
+    {
+      "id": "law_policy",
+      "title": "Governing Law & Policy",
+      "phase": "investigation",
+      "function": "contextualize",
+      "span_pct": [
+        55,
+        68
+      ],
+      "beat_functions": [
+        "reveal"
+      ],
+      "vo_moves": [
+        "context",
+        "transition"
+      ],
+      "required_beats": [
+        "governing_standard"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "governing_standard",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What standard applies here?",
+      "promise": "State the legal/policy standard.",
+      "payoff": "Frames the reasoning.",
+      "narration_role": "Cite the standard from the record.",
+      "original_audio_share_range": [
+        0.2,
+        0.6
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the reasoning.",
+      "forbidden_failures": [
+        "invented_legal_standard"
+      ]
+    },
+    {
+      "id": "reasoning",
+      "title": "Points of Agreement & Conflict",
+      "phase": "investigation",
+      "function": "climax",
+      "span_pct": [
+        68,
+        86
+      ],
+      "beat_functions": [
+        "contradiction",
+        "reveal"
+      ],
+      "vo_moves": [
+        "contradiction",
+        "stakes"
+      ],
+      "required_beats": [
+        "reconciliation",
+        "prosecutorial_reasoning"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "reconciliation",
+          "required": true,
+          "accepted_moment_types": [
+            "contradiction",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document",
+            "interview",
+            "bodycam",
+            "dashcam",
+            "surveillance"
+          ],
+          "visual_requirement": "preferred",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        },
+        {
+          "slot_id": "prosecutorial_reasoning",
+          "required": true,
+          "accepted_moment_types": [
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "How did decision-makers resolve the conflict?",
+      "promise": "Deliver the reasoning that answers the cold-open question.",
+      "payoff": "This is the payoff.",
+      "narration_role": "This is where the cited disposition source is REQUIRED.",
+      "original_audio_share_range": [
+        0.3,
+        0.7
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "To the outcome.",
+      "forbidden_failures": [
+        "accountability_conclusion_without_cited_disposition",
+        "speculation_as_finding"
+      ]
+    },
+    {
+      "id": "outcome",
+      "title": "Outcome & Consequence",
+      "phase": "outcome",
+      "function": "resolve",
+      "span_pct": [
+        86,
+        100
+      ],
+      "beat_functions": [
+        "consequence"
+      ],
+      "vo_moves": [
+        "verdict",
+        "stakes"
+      ],
+      "required_beats": [
+        "documented_outcome"
+      ],
+      "evidence_slots": [
+        {
+          "slot_id": "documented_outcome",
+          "required": true,
+          "accepted_moment_types": [
+            "consequence",
+            "reveal"
+          ],
+          "accepted_media_kinds": [
+            "document"
+          ],
+          "visual_requirement": "none",
+          "minimum_count": 1,
+          "must_have_source": true,
+          "must_be_verbatim": false,
+          "card_substitution_allowed": false
+        }
+      ],
+      "audience_question": "What actually happened as a result?",
+      "promise": "State the documented outcome.",
+      "payoff": "Closes the loop.",
+      "narration_role": "Only documented outcomes; UNKNOWN stays UNKNOWN.",
+      "original_audio_share_range": [
+        0.25,
+        0.65
+      ],
+      "max_dead_space_sec": 3.0,
+      "transition": "End / loop.",
+      "forbidden_failures": [
+        "outcome_asserted_without_source",
+        "overlong_outro"
+      ]
+    }
+  ]
+}

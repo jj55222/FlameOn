@@ -1,0 +1,63 @@
+{
+  "experiment_id": "REAL2-real-case-dry-run",
+  "real_case_pilot_id": "real_case_min_jian_guan_pilot",
+  "seed_fixture_path": "tests/fixtures/pilot_cases/real_case_min_jian_guan.json",
+  "dry_bundle_path": "autoresearch\\.runs\\live7\\real_case_dry_bundle.json",
+  "selected_for_live7": true,
+  "selection_score": 132,
+  "expected_connectors": [
+    "documentcloud"
+  ],
+  "max_live_calls": 1,
+  "max_results_per_connector": 5,
+  "candidate_count": 6,
+  "rationale": [
+    "selected 'real_case_min_jian_guan_pilot' with score 132 out of 6 ready candidate(s)",
+    "uses a connector in PROVEN_ARTIFACT_CONNECTORS (documentcloud) - higher artifact-yield expectation",
+    "max_live_calls=1, max_results_per_connector=5",
+    "expected_verdict_without_live='HOLD'; actual_dry_verdict='HOLD'",
+    "missing gates that live data may help fill: ['media_artifact_present']"
+  ],
+  "dry_run_outcome": {
+    "verdict": "HOLD",
+    "reason_codes": [
+      "high_identity",
+      "sentenced_or_convicted",
+      "no_verified_media"
+    ],
+    "risk_flags": [
+      "no_verified_media"
+    ],
+    "research_completeness_score": 68.0,
+    "production_actionability_score": 35.0,
+    "actionability_score": 46.55
+  },
+  "gate_forecast": {
+    "identity_state": "high (pre-locked from seed anchors: full_name + jurisdiction + agency + case_number)",
+    "outcome_state": "concluded (sentenced)",
+    "media_gate_state": "OPEN: no media artifact yet; live data may add documents but is not expected to add media",
+    "produce_eligible_with_documents_only": false,
+    "produce_eligible_with_media": true,
+    "expected_dry_verdict": "HOLD",
+    "expected_live_verdict_with_documents": "HOLD",
+    "expected_live_verdict_with_no_yield": "HOLD"
+  },
+  "endpoint_v0_forecast": {
+    "cond1_validation_passes": true,
+    "cond2_pilot_readiness": true,
+    "cond3a_identity_locked_high": true,
+    "cond3b_concluded_outcome": true,
+    "cond3c_verified_artifact_url": "depends_on_live_yield",
+    "cond3d_artifact_type_classified": "depends_on_live_yield",
+    "cond3e_run_bundle_written": true,
+    "cond3f_ledger_entry_will_be_generated": true,
+    "cond3g_dry_vs_live_comparison_will_be_generated": true,
+    "cond4_media_doc_distinction": true,
+    "cond5_no_safety_gate_breaks_forecast": true
+  },
+  "likely_blockers": [
+    "media_gate: dry verdict HOLD due to no_verified_media; documentcloud likely yields documents only, not media; verdict will remain HOLD on best-case live yield",
+    "missing_gate:media_artifact_present - condition 3 'classified type' will be 'document' rather than 'media'"
+  ],
+  "scoreboard_warnings": []
+}

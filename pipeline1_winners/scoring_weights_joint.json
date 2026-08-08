@@ -1,0 +1,197 @@
+{
+  "moment_weights": {
+    "contradiction": 0.1544,
+    "emotional_peak": 0.1544,
+    "procedural_violation": 0.0263,
+    "reveal": 0.1965,
+    "detail_noticed": 0.1877,
+    "callback": 0.1123,
+    "tension_shift": 0.1684
+  },
+  "arc_patterns": [
+    {
+      "structure_type": "cold_open",
+      "frequency": 0.8276,
+      "avg_view_count": 10235613
+    },
+    {
+      "structure_type": "escalation",
+      "frequency": 0.069,
+      "avg_view_count": 6376928
+    },
+    {
+      "structure_type": "reveal_structure",
+      "frequency": 0.069,
+      "avg_view_count": 8132997
+    },
+    {
+      "structure_type": "parallel_timeline",
+      "frequency": 0.0345,
+      "avg_view_count": 9603918
+    }
+  ],
+  "artifact_value": {
+    "bodycam+court_video+documents+interrogation+narration": 0.4065,
+    "911_audio+bodycam+documents+interrogation+narration+news_clips": 0.301,
+    "911_audio+bodycam+documents+interrogation+narration": 0.575,
+    "bodycam+documents+interrogation+narration": 1.0,
+    "911_audio+bodycam+interrogation+narration": 0.5856,
+    "911_audio+bodycam+narration": 0.5135,
+    "bodycam+interrogation+narration": 0.5277,
+    "bodycam+documents+interrogation+narration+news_clips": 0.7178,
+    "911_audio+bodycam+court_video+documents+interrogation+narration+news_clips": 0.4028
+  },
+  "moment_artifact_weights": {
+    "bodycam": {
+      "contradiction": 0.1535,
+      "emotional_peak": 0.1808,
+      "procedural_violation": 0.0333,
+      "reveal": 0.1854,
+      "detail_noticed": 0.1861,
+      "callback": 0.0751,
+      "tension_shift": 0.1858
+    },
+    "interrogation": {
+      "contradiction": 0.1934,
+      "emotional_peak": 0.1471,
+      "procedural_violation": 0.0333,
+      "reveal": 0.2096,
+      "detail_noticed": 0.1405,
+      "callback": 0.1086,
+      "tension_shift": 0.1675
+    },
+    "911_audio": {
+      "contradiction": 0.1381,
+      "emotional_peak": 0.21,
+      "procedural_violation": 0.0143,
+      "reveal": 0.2008,
+      "detail_noticed": 0.1371,
+      "callback": 0.0769,
+      "tension_shift": 0.2227
+    },
+    "court_video": {
+      "contradiction": 0.0484,
+      "emotional_peak": 0.6935,
+      "procedural_violation": 0.0161,
+      "reveal": 0.0806,
+      "detail_noticed": 0.0645,
+      "callback": 0.0484,
+      "tension_shift": 0.0484
+    },
+    "news_clips": {
+      "contradiction": 0.1465,
+      "emotional_peak": 0.1592,
+      "procedural_violation": 0.0446,
+      "reveal": 0.2006,
+      "detail_noticed": 0.1783,
+      "callback": 0.1115,
+      "tension_shift": 0.1592
+    },
+    "documents": {
+      "contradiction": 0.1572,
+      "emotional_peak": 0.1005,
+      "procedural_violation": 0.034,
+      "reveal": 0.2938,
+      "detail_noticed": 0.2363,
+      "callback": 0.0729,
+      "tension_shift": 0.1052
+    },
+    "narration": {
+      "contradiction": 0.1163,
+      "emotional_peak": 0.1389,
+      "procedural_violation": 0.0231,
+      "reveal": 0.2634,
+      "detail_noticed": 0.1941,
+      "callback": 0.1023,
+      "tension_shift": 0.162
+    }
+  },
+  "moment_artifact_lift": {
+    "bodycam": {
+      "contradiction": 0.978,
+      "emotional_peak": 1.14,
+      "procedural_violation": 1.108,
+      "reveal": 0.854,
+      "detail_noticed": 1.082,
+      "callback": 0.803,
+      "tension_shift": 1.081
+    },
+    "interrogation": {
+      "contradiction": 1.232,
+      "emotional_peak": 0.928,
+      "procedural_violation": 1.108,
+      "reveal": 0.966,
+      "detail_noticed": 0.817,
+      "callback": 1.162,
+      "tension_shift": 0.974
+    },
+    "911_audio": {
+      "contradiction": 0.88,
+      "emotional_peak": 1.324,
+      "procedural_violation": 0.476,
+      "reveal": 0.925,
+      "detail_noticed": 0.797,
+      "callback": 0.823,
+      "tension_shift": 1.295
+    },
+    "court_video": {
+      "contradiction": 0.308,
+      "emotional_peak": 4.373,
+      "procedural_violation": 0.536,
+      "reveal": 0.371,
+      "detail_noticed": 0.375,
+      "callback": 0.518,
+      "tension_shift": 0.281
+    },
+    "news_clips": {
+      "contradiction": 0.934,
+      "emotional_peak": 1.004,
+      "procedural_violation": 1.484,
+      "reveal": 0.924,
+      "detail_noticed": 1.037,
+      "callback": 1.193,
+      "tension_shift": 0.926
+    },
+    "documents": {
+      "contradiction": 1.002,
+      "emotional_peak": 0.634,
+      "procedural_violation": 1.131,
+      "reveal": 1.354,
+      "detail_noticed": 1.374,
+      "callback": 0.78,
+      "tension_shift": 0.612
+    },
+    "narration": {
+      "contradiction": 0.741,
+      "emotional_peak": 0.876,
+      "procedural_violation": 0.769,
+      "reveal": 1.214,
+      "detail_noticed": 1.129,
+      "callback": 1.094,
+      "tension_shift": 0.942
+    }
+  },
+  "moment_artifact_baseline": {
+    "contradiction": 0.1569,
+    "emotional_peak": 0.1586,
+    "procedural_violation": 0.0301,
+    "reveal": 0.217,
+    "detail_noticed": 0.172,
+    "callback": 0.0935,
+    "tension_shift": 0.172
+  },
+  "artifact_observation_totals": {
+    "bodycam": 199.3,
+    "interrogation": 203.97,
+    "911_audio": 21.74,
+    "court_video": 1.55,
+    "news_clips": 2.62,
+    "documents": 18.12,
+    "narration": 151.7
+  },
+  "_joint_metadata": {
+    "profiles_total": 29,
+    "profiles_explicit": 8,
+    "profiles_distributed": 21
+  }
+}

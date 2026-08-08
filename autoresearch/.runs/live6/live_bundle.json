@@ -1,0 +1,403 @@
+{
+  "experiment_id": "LIVE6-known-case-pilot-live-smoke",
+  "mode": "live",
+  "wallclock_seconds": 2.6349,
+  "input_summary": {
+    "input_type": "dataset_row",
+    "defendant_names": [
+      "Jordan Example"
+    ],
+    "agency": "Memphis Police Department",
+    "jurisdiction": {
+      "city": "Memphis",
+      "county": "Shelby County",
+      "state": "TN"
+    },
+    "incident_date": "2022-07-30",
+    "candidate_query_count": 12,
+    "missing_field_count": 5
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 5,
+    "by_api": {
+      "documentcloud": 5
+    },
+    "by_role": {
+      "claim_source": 5,
+      "possible_artifact_source": 5
+    },
+    "source_ids": [
+      "documentcloud_24533216",
+      "documentcloud_25993922",
+      "documentcloud_22685990",
+      "documentcloud_4599726",
+      "documentcloud_2086589"
+    ]
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": {
+    "connector": "documentcloud",
+    "query": "Jordan Example",
+    "endpoint": "https://api.www.documentcloud.org/api/documents/search/",
+    "status_code": 200,
+    "error": null,
+    "result_count": 5,
+    "verified_artifact_count": 0,
+    "wallclock_seconds": 2.6316,
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 1,
+      "youtube": 0
+    },
+    "estimated_cost_usd": 0.0,
+    "notes": []
+  },
+  "identity": {
+    "defendant_names": [
+      "Jordan Example"
+    ],
+    "victim_names": [],
+    "agency": "Memphis Police Department",
+    "jurisdiction": {
+      "city": "Memphis",
+      "county": "Shelby County",
+      "state": "TN"
+    },
+    "incident_date": "2022-07-30",
+    "case_numbers": [],
+    "charges": [],
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "outcome": {
+    "outcome_status": "unknown",
+    "charges": [],
+    "case_numbers": []
+  },
+  "artifact_claims": [],
+  "verified_artifacts": [
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_24533216_1_documents_24533216_example",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/24533216-example/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/24533216-example/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/24533216-example/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_24533216",
+        "documentcloud_id": "24533216",
+        "publisher": "Department of Corrections, Mississippi",
+        "published_date": "2024-04-05T13:30:57.269Z",
+        "page_count": 2,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_25993922_1_documents_25993922_example",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/25993922-example/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/25993922-example/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/25993922-example/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_25993922",
+        "documentcloud_id": "25993922",
+        "publisher": null,
+        "published_date": "2025-07-09T13:54:17.285Z",
+        "page_count": 1,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_22685990_1_documents_22685990_jordan",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/22685990-jordan/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/22685990-jordan/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/22685990-jordan/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_22685990",
+        "documentcloud_id": "22685990",
+        "publisher": "CIA CREST Database",
+        "published_date": "2022-09-22T23:08:29.990Z",
+        "page_count": 34,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_4599726_1_documents_4599726_example_policy_pdf",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/4599726-example-policy-pdf/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/4599726-example-policy-pdf/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/4599726-example-policy-pdf/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_4599726",
+        "documentcloud_id": "4599726",
+        "publisher": "William Pierce",
+        "published_date": "2018-07-14T04:20:08.745Z",
+        "page_count": 22,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    },
+    {
+      "artifact_id": "documentcloud_doc_documentcloud_2086589_1_documents_2086589_fatigue_example",
+      "artifact_type": "docket_docs",
+      "artifact_url": "https://www.documentcloud.org/documents/2086589-fatigue-example/",
+      "source_authority": "documentcloud",
+      "downloadable": false,
+      "format": "document",
+      "source_url": "https://www.documentcloud.org/documents/2086589-fatigue-example/",
+      "matched_case_fields": [],
+      "confidence": 0.75,
+      "claim_source_url": "https://www.documentcloud.org/documents/2086589-fatigue-example/",
+      "duration_sec": null,
+      "requires_manual_download": false,
+      "verification_method": "documentcloud_canonical_url",
+      "risk_flags": [],
+      "metadata": {
+        "source_id": "documentcloud_2086589",
+        "documentcloud_id": "2086589",
+        "publisher": null,
+        "published_date": "2015-05-23T13:38:30.689Z",
+        "page_count": 82,
+        "language": "eng",
+        "link_metadata": {
+          "key": "canonical_url",
+          "access": "public"
+        }
+      }
+    }
+  ],
+  "result": {
+    "verdict": "SKIP",
+    "research_completeness_score": 41.0,
+    "production_actionability_score": 5.0,
+    "actionability_score": 17.6,
+    "component_scores": {
+      "identity": 0.0,
+      "outcome": 0.0,
+      "artifact_claims": 0.0,
+      "verified_media_artifacts": 0.0,
+      "verified_document_artifacts": 20.0,
+      "artifact_portfolio": 3.0,
+      "downstream_readiness": 2.0,
+      "research_documents": 20.0,
+      "source_quality_diversity": 6.0,
+      "gap_clarity": 10.0
+    },
+    "artifact_category_counts": {
+      "docket_docs": 5
+    },
+    "reason_codes": [
+      "low_identity",
+      "supporting_documents_present",
+      "document_only_hold",
+      "no_verified_media"
+    ],
+    "risk_flags": [
+      "structured_input_preliminary_packet",
+      "candidate_fields_not_identity_lock",
+      "dataset:mapping_police_violence",
+      "structured_dataset_candidate_only",
+      "artifact_verification_required",
+      "outcome_verification_required",
+      "structured_dataset_query_plan_only",
+      "weak_identity",
+      "insufficient_identity_anchors",
+      "identity_unconfirmed",
+      "no_verified_media",
+      "document_only"
+    ],
+    "next_actions": [
+      "Corroborate structured-row candidate fields with identity_source records.",
+      "Resolve artifact claims into public artifact URLs before production.",
+      "Fill missing structured-row fields: incident_type, case_numbers, charges, outcome_status, verified_artifacts.",
+      "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status.",
+      "Locate verified media/audio/video artifact before production.",
+      "Corroborate identity with date, agency, victim, case number, or official source.",
+      "Confirm concluded outcome before production."
+    ]
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 0,
+      "HOLD": 0,
+      "SKIP": 1
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 1,
+      "document_only_holds": 1,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 1,
+      "no_verified_media_blocks": 1
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {
+        "docket_docs": 5
+      },
+      "media_only_cases": 0,
+      "document_only_cases": 1,
+      "no_artifact_cases": 0,
+      "multi_media_cases": 0,
+      "multi_artifact_premium_cases": 0
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 41.0,
+        "max": 41.0,
+        "mean": 41.0,
+        "median": 41.0,
+        "p90": 41.0
+      },
+      "production_actionability": {
+        "min": 5.0,
+        "max": 5.0,
+        "mean": 5.0,
+        "median": 5.0,
+        "p90": 5.0
+      },
+      "actionability": {
+        "min": 17.6,
+        "max": 17.6,
+        "mean": 17.6,
+        "median": 17.6,
+        "p90": 17.6
+      }
+    },
+    "risk_flag_counts": {
+      "artifact_verification_required": 1,
+      "candidate_fields_not_identity_lock": 1,
+      "dataset:mapping_police_violence": 1,
+      "document_only": 1,
+      "identity_unconfirmed": 1,
+      "insufficient_identity_anchors": 1,
+      "no_verified_media": 1,
+      "outcome_verification_required": 1,
+      "structured_dataset_candidate_only": 1,
+      "structured_dataset_query_plan_only": 1,
+      "structured_input_preliminary_packet": 1,
+      "weak_identity": 1
+    },
+    "reason_code_counts": {
+      "document_only_hold": 1,
+      "low_identity": 1,
+      "no_verified_media": 1,
+      "supporting_documents_present": 1
+    },
+    "input_type_breakdown": {
+      "dataset_row": 1
+    },
+    "produce_eligible_inventory": []
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "LIVE6-known-case-pilot-live-smoke",
+    "timestamp": "2026-04-30T23:28:15Z",
+    "case_id": "mapping_police_violence_jordan_example_memphis_police_department_memphis_tn_2022_07_30",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 1,
+      "youtube": 0
+    },
+    "wallclock_seconds": 2.6349,
+    "source_record_count": 5,
+    "verified_artifact_count": 5,
+    "media_artifact_count": 0,
+    "document_artifact_count": 5,
+    "estimated_cost_usd": 0.0,
+    "verdict": "SKIP",
+    "research_completeness_score": 41.0,
+    "production_actionability_score": 5.0,
+    "actionability_score": 17.6,
+    "notes": [
+      "LIVE6",
+      "pilot=mpv_documentcloud_pilot",
+      "connector=documentcloud",
+      "max_queries=1",
+      "max_results=5"
+    ]
+  },
+  "next_actions": [
+    "Corroborate structured-row candidate fields with identity_source records.",
+    "Resolve artifact claims into public artifact URLs before production.",
+    "Fill missing structured-row fields: incident_type, case_numbers, charges, outcome_status, verified_artifacts.",
+    "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status.",
+    "Locate verified media/audio/video artifact before production.",
+    "Corroborate identity with date, agency, victim, case number, or official source.",
+    "Confirm concluded outcome before production."
+  ],
+  "risk_flags": [
+    "structured_input_preliminary_packet",
+    "candidate_fields_not_identity_lock",
+    "dataset:mapping_police_violence",
+    "structured_dataset_candidate_only",
+    "artifact_verification_required",
+    "outcome_verification_required",
+    "structured_dataset_query_plan_only",
+    "weak_identity",
+    "insufficient_identity_anchors",
+    "identity_unconfirmed",
+    "no_verified_media",
+    "document_only"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "case_id": "mesa_mckellips_2022_01_02_groq",
+  "verdict": "SKIP",
+  "narrative_score": 12.18,
+  "confidence": 0.95,
+  "key_moments": [
+    {
+      "moment_type": "reveal",
+      "source_idx": 0,
+      "timestamp_sec": 360,
+      "end_timestamp_sec": 365,
+      "description": "Officer-involved shooting occurs",
+      "importance": "critical",
+      "transcript_excerpt": "That when the officer involved shooting occurred"
+    },
+    {
+      "moment_type": "detail_noticed",
+      "source_idx": 0,
+      "timestamp_sec": 229,
+      "end_timestamp_sec": 234,
+      "description": "Suspect complies with prone command but retains weapon",
+      "importance": "high",
+      "transcript_excerpt": "Caleb initially complied with officer commands to lay down on his stomach but would not release the knife."
+    },
+    {
+      "moment_type": "tension_shift",
+      "source_idx": 0,
+      "timestamp_sec": 306,
+      "end_timestamp_sec": 315,
+      "description": "Officers realize lack of less-lethal options on scene",
+      "importance": "critical",
+      "transcript_excerpt": "Got less lethal on him? I don't have less lethal on him."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 352,
+      "end_timestamp_sec": 360,
+      "description": "Suspect advances toward officers with knife",
+      "importance": "critical",
+      "transcript_excerpt": "Caleb did not respond to officers instructions and quickly advanced toward the officers with the knife in his right hand."
+    },
+    {
+      "moment_type": "emotional_peak",
+      "source_idx": 0,
+      "timestamp_sec": 180,
+      "end_timestamp_sec": 209,
+      "description": "Neighbor reports husband is armed and confronting suspect",
+      "importance": "critical",
+      "transcript_excerpt": "That's my husband, he's got a gun on him right now, because he's got a f**kin' NICE."
+    }
+  ],
+  "content_pitch": "Narrative score is too low (12.2) and lacks artifact diversity (only bodycam), making it unsuitable for a full video production.",
+  "narrative_arc_recommendation": "chronological",
+  "estimated_runtime_min": 14.7,
+  "artifact_completeness": {
+    "available": [
+      "bodycam"
+    ],
+    "missing_recommended": [
+      "documents",
+      "interrogation",
+      "narration"
+    ]
+  },
+  "scoring_breakdown": {
+    "moment_density_score": 4.94,
+    "arc_similarity_score": 0.0,
+    "artifact_completeness_score": 25.0,
+    "uniqueness_score": 52.0
+  },
+  "transcript_refs": [
+    "..\\pipeline3_audio\\transcripts\\mesa_mckellips_2022_01_02_groq_transcript.json"
+  ],
+  "source_refs": [],
+  "_pipeline4_metadata": {
+    "pass1_model": "google/gemini-3.1-flash-lite-preview",
+    "pass2_model": "qwen/qwen3.6-plus:free",
+    "deterministic_verdict": "SKIP",
+    "llm_verdict": "SKIP",
+    "reasoning_summary": "The combined narrative score of 12.2 falls well below the 35-point threshold for production, and the case relies solely on bodycam footage without the multi-artifact diversity needed for high engagement. While it contains critical tension moments, the straightforward chronological structure and low moment density do not justify the production effort.",
+    "degraded": false,
+    "n_sources": 1,
+    "n_pass1_moments": 7,
+    "n_final_moments": 5,
+    "scored_at": "2026-04-05T13:07:30.567720Z"
+  }
+}

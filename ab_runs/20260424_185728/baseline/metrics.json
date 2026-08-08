@@ -1,0 +1,21 @@
+{
+  "research_score": 45.07,
+  "components": {
+    "evidence_recall": 60.0,
+    "source_discovery": 25.0,
+    "precision": 42.86,
+    "tier_accuracy": 50.0
+  },
+  "api_calls": {
+    "muckrock": 0,
+    "courtlistener": 0,
+    "brave": 0,
+    "youtube": 0
+  },
+  "est_cost_usd": 0.0,
+  "label": "baseline",
+  "elapsed_sec": 89.7,
+  "exit_code": 0,
+  "source_file": "C:\\FlameON\\FlameOn-main\\ab_runs\\.baseline_pre_portals.py",
+  "hypothesis": "NextRequest portal harness wired into research_case (SF case — max portal-benefit case)"
+}

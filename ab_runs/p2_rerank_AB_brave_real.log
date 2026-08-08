@@ -1,0 +1,66 @@
+Loaded 1,769 MPV records with video_link
+Sampling 15 records  (seed=42, free_only=False)
+
+  [1/15] Beau Wilson                     ()
+    MISS  sources=42  sd=0.00  pr=0.55  (84.5s)
+
+  [2/15] Jeremy Lopez-Robledo            ()
+    MISS  sources=0  sd=0.00  pr=0.00  (85.5s)
+
+  [3/15] Scott Beech                     ()
+    MISS  sources=41  sd=0.00  pr=0.47  (83.4s)
+
+  [4/15] Edwin Joey Villegas             ()
+    MISS  sources=2  sd=0.00  pr=0.00  (91.5s)
+
+  [5/15] John Feggins                    ()
+    MISS  sources=9  sd=0.00  pr=0.43  (91.5s)
+
+  [6/15] Donald Davis, Jr.               ()
+    MISS  sources=72  sd=0.00  pr=0.03  (83.0s)
+
+  [7/15] Antonio Arce                    ()
+    MISS  sources=66  sd=0.00  pr=0.45  (83.3s)
+
+  [8/15] Kyle Scott Rushing              ()
+    MISS  sources=8  sd=0.00  pr=0.25  (86.1s)
+
+  [9/15] Matthew Robert Williams         ()
+    MISS  sources=48  sd=0.00  pr=0.45  (59.3s)
+
+  [10/15] Luke Smith                      ()
+    MISS  sources=63  sd=0.00  pr=0.81  (42.6s)
+
+  [11/15] Alfred Shawntez Cole            ()
+    MISS  sources=5  sd=0.00  pr=0.00  (43.4s)
+
+  [12/15] Jorge Cardenas                  ()
+    MISS  sources=59  sd=0.00  pr=0.54  (41.8s)
+
+  [13/15] Bryan Richardson                ()
+    MISS  sources=54  sd=0.00  pr=0.55  (42.8s)
+
+  [14/15] Kole B. Knight                  ()
+    MISS  sources=11  sd=0.00  pr=0.50  (44.9s)
+
+  [15/15] Ira Wright                      ()
+    MISS  sources=32  sd=0.00  pr=0.47  (43.2s)
+
+============================================================
+  UOF DISCOVERY BENCHMARK
+  Sample size:           15
+  Bodycam-applicable:    15
+  --------------------------------------------------
+  Bodycam recall:        93.33%
+    Exact URL hits:      0
+    Same video_id hits:  0
+    Same domain hits:    0
+  Source domain recall:  0.00%
+  Precision:             42.31%
+  --------------------------------------------------
+  Total time:            1006.8s (67.1s/case)
+C:\FlameON\FlameOn-main\pipeline2_discovery\uof_benchmark.py:429: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+
+  Experiment 4 logged to uof_results.tsv
+  1 bodycam-recall failures saved to uof_failures.json

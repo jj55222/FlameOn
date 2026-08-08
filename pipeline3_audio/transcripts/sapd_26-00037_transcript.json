@@ -1,0 +1,600 @@
+{
+  "case_id": "sapd_26-00037",
+  "source_evidence_type": "bodycam",
+  "source_url": "pipeline3_audio/foia_cache/sapd_26-00037.m4a",
+  "transcript": [
+    {
+      "start_sec": 13.407,
+      "end_sec": 17.087,
+      "text": "Hello, I'm Commander Gary Cuso of the Santa Ana Police Department.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 18.087,
+      "end_sec": 22.407,
+      "text": "What you are about to view is a critical incident community video briefing.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 22.407,
+      "end_sec": 34.207,
+      "text": "In the event of a critical incident, we strive to disseminate as much information as possible at the earliest opportunity contingent upon the progress of the investigation.",
+      "confidence": 0.859
+    },
+    {
+      "start_sec": 34.207,
+      "end_sec": 43.607,
+      "text": "These briefings intend to provide the public with open and transparent communication regarding officer-involved critical incidents.",
+      "confidence": 0.816
+    },
+    {
+      "start_sec": 44.387,
+      "end_sec": 48.547,
+      "text": "These briefings are based on the facts we know at the time of the video briefing.",
+      "confidence": 0.816
+    },
+    {
+      "start_sec": 49.647,
+      "end_sec": 60.267,
+      "text": "They contain information obtained from numerous sources including, but not limited to, dispatch audio, video evidence, and witness or victim statements.",
+      "confidence": 0.816
+    },
+    {
+      "start_sec": 60.267,
+      "end_sec": 74.767,
+      "text": "The Santa Ana Police Department takes any use of force by its officers very seriously and conducts thorough investigations into these incidents, often in conjunction with other investigative agencies.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 75.827,
+      "end_sec": 86.907,
+      "text": "These investigations typically require interviews with numerous witnesses, the review of video and audio evidence, and analyzing extensive amounts of forensic evidence.",
+      "confidence": 0.856
+    },
+    {
+      "start_sec": 86.907,
+      "end_sec": 91.747,
+      "text": "As a result, these investigations can take up to a year to complete.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 92.847,
+      "end_sec": 101.087,
+      "text": "At this point in the investigation, no conclusion has been drawn whether our officers acted consistently with our policies and the law.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 102.387,
+      "end_sec": 107.967,
+      "text": "Please be advised, critical incidents are often high stress and emotional for those involved.",
+      "confidence": 0.844
+    },
+    {
+      "start_sec": 107.967,
+      "end_sec": 115.227,
+      "text": "As a result of the stress and emotion, audio and video recordings may contain strong language,",
+      "confidence": 0.813
+    },
+    {
+      "start_sec": 115.867,
+      "end_sec": 118.287,
+      "text": "and digital images may be graphic.",
+      "confidence": 0.813
+    },
+    {
+      "start_sec": 118.727,
+      "end_sec": 124.227,
+      "text": "Warning, some viewers may find these videos disturbing and unsuitable for children.",
+      "confidence": 0.813
+    },
+    {
+      "start_sec": 133.359,
+      "end_sec": 147.372,
+      "text": "Good evening I am Officer Natalie Garcia the Public Information Officer for the SAM Police Department I wish to provide you with a brief overview of an officer shooting that occurred on January 1st 2026 At 5 35 p",
+      "confidence": 0.904
+    },
+    {
+      "start_sec": 147.372,
+      "end_sec": 152.672,
+      "text": "San Ana Police gang detectives were patrolling the area of 1600 South Evergreen Street due to",
+      "confidence": 0.904
+    },
+    {
+      "start_sec": 152.672,
+      "end_sec": 158.692,
+      "text": "ongoing gang-related criminal activities affecting the community. As detectives entered the parking",
+      "confidence": 0.904
+    },
+    {
+      "start_sec": 158.692,
+      "end_sec": 163.832,
+      "text": "lot adjacent to the east alley of 1600 South Evergreen Street, they observed a male in the",
+      "confidence": 0.904
+    },
+    {
+      "start_sec": 163.832,
+      "end_sec": 169.252,
+      "text": "parking lot. The male noticed the marked Santa police vehicle and immediately turned the opposite",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 169.252,
+      "end_sec": 174.892,
+      "text": "direction and began to flee. One of the detectives exited the passenger side of the police vehicle",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 174.892,
+      "end_sec": 180.692,
+      "text": "and was involved in a foot pursuit. His partner continued driving the police vehicle. During the",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 180.692,
+      "end_sec": 185.352,
+      "text": "foot pursuit, the detective identified himself as a police officer and ordered the male to stop.",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 185.712,
+      "end_sec": 190.912,
+      "text": "The male disobeyed the detective's commands. The detective then observed the male holding a gun in",
+      "confidence": 0.941
+    },
+    {
+      "start_sec": 190.912,
+      "end_sec": 195.672,
+      "text": "his right hand and repeatedly gave commands to drop the gun. However, the male disobeyed",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 195.672,
+      "end_sec": 200.992,
+      "text": "the officer's commands and remained armed. The male suddenly turned in between two parked",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 200.992,
+      "end_sec": 206.472,
+      "text": "vehicles, lowered his body to the ground, and presented the gun at the detective. To",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 206.472,
+      "end_sec": 211.032,
+      "text": "de-escalate the situation, the detective made several verbal commands to the male to drop",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 211.032,
+      "end_sec": 216.852,
+      "text": "the gun. Thereafter, an officer-involved shooting occurred. It was determined that the male was",
+      "confidence": 0.926
+    },
+    {
+      "start_sec": 216.852,
+      "end_sec": 222.772,
+      "text": "not struck by gunfire. You will see segments of the body-worn camera footage. The identity and",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 222.772,
+      "end_sec": 232.265,
+      "text": "personal identifying information of the reporting party has been redacted for privacy. Officers from",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 232.265,
+      "end_sec": 236.105,
+      "text": "the San Antonio Police Department are issued body-worn cameras to be worn at chest level to",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 236.105,
+      "end_sec": 241.865,
+      "text": "provide a general perspective of the officer. When the body-worn camera is activated, it goes back 30",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 241.865,
+      "end_sec": 247.625,
+      "text": "seconds and starts recording. During this pre-record buffer, audio is not captured. This feature is",
+      "confidence": 0.916
+    },
+    {
+      "start_sec": 247.625,
+      "end_sec": 250.765,
+      "text": "is designed to capture police activity that occurs suddenly.",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 250.765,
+      "end_sec": 253.285,
+      "text": "It is important to understand that an officer's actions",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 253.285,
+      "end_sec": 256.325,
+      "text": "can sometimes obscure the body-worn camera.",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 256.325,
+      "end_sec": 258.525,
+      "text": "You will now see relevant body-worn camera footage",
+      "confidence": 0.729
+    },
+    {
+      "start_sec": 258.525,
+      "end_sec": 294.566,
+      "text": "from the involved officer He up son Hey bro stop officer",
+      "confidence": 0.108
+    },
+    {
+      "start_sec": 321.518,
+      "end_sec": 328.389,
+      "text": "Drop it, drop it, drop it, drop it, drop it!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 333.389,
+      "end_sec": 335.389,
+      "text": "Put the f*** hands up!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 337.389,
+      "end_sec": 342.389,
+      "text": "024 Alpha 998 1722 South Avenue Green",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 342.389,
+      "end_sec": 344.389,
+      "text": "Put your hands on the ground!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 345.389,
+      "end_sec": 346.389,
+      "text": "Say on the f***!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 347.389,
+      "end_sec": 349.389,
+      "text": "Face down! Face down!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 349.389,
+      "end_sec": 351.389,
+      "text": "Face down! Hey, stop! Face!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 351.389,
+      "end_sec": 354.389,
+      "text": "Hey! Face the f*** on the ground!",
+      "confidence": 0.658
+    },
+    {
+      "start_sec": 356.389,
+      "end_sec": 359.329,
+      "text": "Get the f***ing on the face of the f***ing ground.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 361.229,
+      "end_sec": 363.409,
+      "text": "Leo, I'm Salta, Salta, 1722.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 364.329,
+      "end_sec": 367.089,
+      "text": "Say, hey, put your f***ing face on the ground.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 367.549,
+      "end_sec": 369.009,
+      "text": "Lay down on the f***ing ground.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 369.109,
+      "end_sec": 370.289,
+      "text": "Babe, I love you, okay?",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 371.089,
+      "end_sec": 371.709,
+      "text": "I love you.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 372.709,
+      "end_sec": 373.549,
+      "text": "I love you.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 375.949,
+      "end_sec": 378.369,
+      "text": "No, face the f***ing on the ground.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 378.429,
+      "end_sec": 379.469,
+      "text": "You're getting busted, baby.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 379.609,
+      "end_sec": 380.829,
+      "text": "Face the f***ing on the ground.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 381.149,
+      "end_sec": 383.009,
+      "text": "Put your hands on your f***ing head.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 384.089,
+      "end_sec": 384.429,
+      "text": "Catch.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 385.009,
+      "end_sec": 386.329,
+      "text": "Hey, he tossed the 417.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 386.389,
+      "end_sec": 390.389,
+      "text": "Get down.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 390.389,
+      "end_sec": 392.389,
+      "text": "Get down.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 392.389,
+      "end_sec": 394.389,
+      "text": "Get down.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 394.389,
+      "end_sec": 396.389,
+      "text": "Get down.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 396.389,
+      "end_sec": 398.389,
+      "text": "Take away the custody.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 398.389,
+      "end_sec": 400.389,
+      "text": "Babe help.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 400.389,
+      "end_sec": 402.389,
+      "text": "Help.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 402.389,
+      "end_sec": 404.389,
+      "text": "I'm not doing .",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 404.389,
+      "end_sec": 406.389,
+      "text": "I'm not doing .",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 406.389,
+      "end_sec": 408.389,
+      "text": "We have one.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 408.389,
+      "end_sec": 410.389,
+      "text": "We have one.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 410.389,
+      "end_sec": 412.389,
+      "text": "I can't beat.",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 412.389,
+      "end_sec": 414.389,
+      "text": "Get the .",
+      "confidence": 0.579
+    },
+    {
+      "start_sec": 414.389,
+      "end_sec": 428.902,
+      "text": "Get back get back Get off of him Okay I sorry sir camp sites Get back Get back Get back Shortly after the officer shooting the detective partner arrived and assisted",
+      "confidence": 0.686
+    },
+    {
+      "start_sec": 428.902,
+      "end_sec": 433.902,
+      "text": "in taking the suspect into custody during which a minor use of force occurred.",
+      "confidence": 0.686
+    },
+    {
+      "start_sec": 433.902,
+      "end_sec": 439.902,
+      "text": "Sanana Police Dispatch was advised of the officer-involved shooting and additional officers responded to assist.",
+      "confidence": 0.686
+    },
+    {
+      "start_sec": 439.902,
+      "end_sec": 445.902,
+      "text": "Orange County Fire Authority were also dispatched to the scene to administer medical aid to the suspect.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 446.902,
+      "end_sec": 450.002,
+      "text": "The suspect was taken to an area hospital for medical care.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 451.502,
+      "end_sec": 454.662,
+      "text": "You will now view images of the firearm recovered at the scene.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 455.062,
+      "end_sec": 457.762,
+      "text": "The weapon was a .38 Smith & Wesson revolver.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 457.862,
+      "end_sec": 465.337,
+      "text": "The suspect has been identified as a 17-year-old male who was subsequently booked at Juvenile Hall.",
+      "confidence": 0.863
+    },
+    {
+      "start_sec": 465.337,
+      "end_sec": 474.519,
+      "text": "The Santa Ana Police Department is committed to transparency and aims to keep the public informed about critical incidents.",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 475.599,
+      "end_sec": 481.259,
+      "text": "Over the impending months, three concurrent independent investigations will be undertaken.",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 482.199,
+      "end_sec": 488.019,
+      "text": "The Orange County District Attorney's Office, responsible for investigating officer-involved shootings,",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 488.539,
+      "end_sec": 494.319,
+      "text": "will continue its investigation into any potential criminal conduct by the officers involved.",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 494.319,
+      "end_sec": 507.919,
+      "text": "Simultaneously, the Santa Ana Police Department's Internal Affairs Division will conduct an administrative investigation to assess whether the officers adhere to department policies and procedures",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 509.299,
+      "end_sec": 518.019,
+      "text": "Additionally, the Santa Ana Police Department's Crimes Against Persons Division will investigate any alleged criminal conduct by the suspect",
+      "confidence": 0.882
+    },
+    {
+      "start_sec": 518.019,
+      "end_sec": 525.419,
+      "text": "These investigative units will interview any witnesses and conduct any necessary forensic testing.",
+      "confidence": 0.833
+    },
+    {
+      "start_sec": 525.419,
+      "end_sec": 537.119,
+      "text": "Upon the completion of the District Attorney's investigation, their office will issue a determination as to whether charges should be filed against the involved officers.",
+      "confidence": 0.833
+    },
+    {
+      "start_sec": 537.119,
+      "end_sec": 542.799,
+      "text": "Thank you for taking the time to view this Critical Incident Community Briefing.",
+      "confidence": 0.833
+    }
+  ],
+  "silence_map": [
+    {
+      "original_start_sec": 0.0,
+      "original_end_sec": 13.407,
+      "duration_sec": 13.407
+    },
+    {
+      "original_start_sec": 124.324,
+      "original_end_sec": 133.136,
+      "duration_sec": 8.812
+    },
+    {
+      "original_start_sec": 227.038,
+      "original_end_sec": 231.731,
+      "duration_sec": 4.693
+    },
+    {
+      "original_start_sec": 259.867,
+      "original_end_sec": 286.174,
+      "duration_sec": 26.307
+    },
+    {
+      "original_start_sec": 311.269,
+      "original_end_sec": 317.541,
+      "duration_sec": 6.273
+    },
+    {
+      "original_start_sec": 322.113,
+      "original_end_sec": 326.984,
+      "duration_sec": 4.871
+    },
+    {
+      "original_start_sec": 457.898,
+      "original_end_sec": 460.273,
+      "duration_sec": 2.375
+    },
+    {
+      "original_start_sec": 465.466,
+      "original_end_sec": 467.528,
+      "duration_sec": 2.062
+    },
+    {
+      "original_start_sec": 542.852,
+      "original_end_sec": 556.28,
+      "duration_sec": 13.429
+    }
+  ],
+  "original_duration_sec": 556.28,
+  "processed_duration_sec": 474.053,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "whisper-large-v3-turbo",
+    "whisper_backend": "groq",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 25.1
+  }
+}

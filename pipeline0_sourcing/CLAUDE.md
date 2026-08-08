@@ -1,0 +1,82 @@
+# Pipeline 0 — FOIA sourcing (top of funnel)
+
+**Turns public news/OSINT signals into a ranked queue of FOIA requests to file.** The stage
+UPSTREAM of P2: where P2+ source from records that are *already released*, P0 finds serious incidents
+whose records likely exist but aren't public yet, and drafts the request to obtain them. Design +
+rationale: [/docs/plans/P0_foia_sourcing.md](../docs/plans/P0_foia_sourcing.md). Root: [/CLAUDE.md](../CLAUDE.md).
+
+## Flow & modules
+`ingest → cluster → extract → score → draft → report`
+
+| Module | Job |
+|--------|-----|
+| `ingest.py` | Pull signals from FREE keyless sources (Google News RSS + GDELT 2.0). Graceful on network failure. |
+| `cluster.py` | Dedupe multi-outlet coverage into one incident. Pure stdlib; state-aware blocking (different states never merge). |
+| `extract.py` | Incident → structured record (agency, state, severity, likely record types, EWU shape). LLM (OpenRouter) or offline `--mock` heuristic. |
+| `score.py` | `foia_worth = severity × records × jurisdiction_access × filing_window` (+contradiction mult). Reads the state table; gates on severity, sunshine-state tier, residency. |
+| `draft.py` | FILE incidents → a submit-ready FOIA write-up + request letter with the correct state statute cite + caveats. Deterministic (no LLM). |
+| `sourcing_run.py` | **Orchestrator / entry point.** Chains it all; writes `foia_queue.md` + `.json`. |
+
+## Run
+```
+source ../.venv/bin/activate
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# offline smoke test — no network, no key (uses bundled fixtures):
+python sourcing_run.py --mock --signals fixtures/sample_signals.json --include-watch --out .tmp/p0
+
+# live: free ingestion + cheap LLM extraction (needs OPENROUTER_API_KEY in ../.env):
+python sourcing_run.py --since 3 --limit 40 --tier1-only --seen .tmp/p0/seen.json --out .tmp/p0
+
+# plan only (touches nothing):
+python sourcing_run.py --dry-run
+```
+Output: `<out>/foia_queue.md` (human — review, fill `[BRACKETS]`, submit by hand), `foia_queue.json`
+(machine), `scored.json` (all incidents + components). Append `&& open <out>/foia_queue.md`.
+
+## Autonomy — daily launchd job (WS2, live-validated 2026-07-02)
+`--seen <store.json>` makes each run surface only NEW incidents, so P0 is safe to schedule. The
+production loop is **DAILY ingest, WEEKLY human review** (news links + BWC retention clocks decay
+fast; FOIA responses take weeks):
+- **`run_daily.sh`** — one autonomous pass (brew shellenv + venv + `sourcing_run.py --since 3
+  --tier1-only --seen .tmp/p0/seen.json --out .tmp/p0`), always exits 0, logs to `.tmp/p0/run.log`.
+  Pure Python — no Claude in the loop. Keys auto-load from `../.env` inside `extract.py`.
+- **`com.flameon.p0.plist`** — launchd agent, 07:30 daily. Install/reload with
+  `./install_launchd.sh` (idempotent; `--uninstall` to remove). launchd survives sleep/wake and
+  coalesces a missed 07:30 → next wake.
+- **Weekly review (operator, ~15 min, Fri):** `open .tmp/p0/foia_queue.md` → confirm each row's
+  agency + jurisdiction, resolve `verify_before_send` rows against RCFP, fill `[BRACKETS]`, submit
+  by hand. **P0 drafts only — it never files.**
+- **`sourcing_run.py` writes `.tmp/p0/run_history.jsonl`** (one line/run: ts, mock flag, counts,
+  `seen_total`) — the audit trail proving live daily autonomy over time.
+- **Health check:** `python ../goals/ws2_p0_health.py` (exit 0 = live+fresh queue, seen grew across
+  ≥2 live runs, launchd loaded, top-5 rows pass required-field assertions).
+
+## Key facts / tunables
+- **Reads** `../discovered_cases/foia/state_access_profiles.json` for `jurisdiction_access` + statute
+  + residency. Those rows are `verified: false` — the queue flags `verify_before_send` until a human
+  checks them against RCFP.
+- Tunables at the top of `score.py`: `SEV_GATE` (50), `FILE_THRESHOLD` (35), `WATCH_THRESHOLD` (18),
+  record weights. Default search terms (10, EWU-shape, FOIA-anchored) at the top of `ingest.py`.
+- **Extraction model:** `extract.DEFAULT_MODEL` = `google/gemini-2.5-flash-lite` (OpenRouter, ~$0.10/M,
+  validated live 0/106 parse errors). `extract_incident_llm` retries once on a JSON parse failure so a
+  transient truncation never silently defaults a real sev-85 case to a sev-0 SKIP.
+- **GDELT rate-limits hard** under the multi-term fan-out (429s). `ingest.py` throttles GDELT to a
+  5s min interval + backs off on 429 (best-effort — Google News RSS carries the main load). A full
+  live ingest is a few minutes, mostly GDELT spacing; fine for an unattended 07:30 job.
+- **Leads, not findings.** Extraction reads what reporting says + reasons about likely records; it
+  asserts no facts. Letters ask for records by category and must be verified before sending.
+
+## Tests
+`python -m pytest -q` (12 tests, offline/deterministic — clustering, severity gate, sunshine-vs-avoid
+ranking, residency flag, end-to-end mock, statute-cite drafting, LLM retry/fallback robustness,
+run-history append, terms coverage).
+
+## Known limitations (v1)
+- Headline-only clustering; state-aware but can still over/under-merge (a live run showed one Broward
+  deputy-shooting cluster split across a few rows) — a post-extract re-cluster on (state, agency,
+  date) would be more precise. Operator dedupes at weekly review for now.
+- `records_likely` is inferred from reporting, not agency BWC-policy data — some agencies don't wear
+  cameras. `filing_window` uses `incident_date` when present, else a 0.7 default.
+- No auto-filing (by design). If MuckRock exposes a request-create API for the account, step 6 could
+  submit; today it drafts for manual submission.

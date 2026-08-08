@@ -1,0 +1,1287 @@
+{
+  "case_id": "muckrock_69147_sb_1421_oakland_pd",
+  "source_evidence_type": "bodycam",
+  "source_url": "pipeline3_audio/foia_cache/muckrock_69147_sb_1421_police_complaints_oakland_pd/media/PICT0052_2015.06.06_15.07.20201.AVI",
+  "transcript": [
+    {
+      "start_sec": 8.9,
+      "end_sec": 10.3,
+      "text": "Oh",
+      "confidence": 0.003
+    },
+    {
+      "start_sec": 33.1,
+      "end_sec": 35.52,
+      "text": "Yeah, we're bleak, father. We know you're inside the vehicle.",
+      "confidence": 0.708
+    },
+    {
+      "start_sec": 37.64,
+      "end_sec": 38.38,
+      "text": "He's still covered.",
+      "confidence": 0.438
+    },
+    {
+      "start_sec": 39.0,
+      "end_sec": 39.78,
+      "text": "He's still covered?",
+      "confidence": 0.609
+    },
+    {
+      "start_sec": 40.7,
+      "end_sec": 41.46,
+      "text": "I hear you.",
+      "confidence": 0.71
+    },
+    {
+      "start_sec": 41.52,
+      "end_sec": 42.28,
+      "text": "He's still just covered.",
+      "confidence": 0.758
+    },
+    {
+      "start_sec": 42.76,
+      "end_sec": 42.86,
+      "text": "Yeah.",
+      "confidence": 0.253
+    },
+    {
+      "start_sec": 43.78,
+      "end_sec": 45.18,
+      "text": "They've got his video on his phone?",
+      "confidence": 0.706
+    },
+    {
+      "start_sec": 45.4,
+      "end_sec": 45.56,
+      "text": "Yep.",
+      "confidence": 0.68
+    },
+    {
+      "start_sec": 51.48,
+      "end_sec": 57.08,
+      "text": "Hey, Carl.",
+      "confidence": 0.45
+    },
+    {
+      "start_sec": 58.22,
+      "end_sec": 58.66,
+      "text": "Carl.",
+      "confidence": 0.839
+    },
+    {
+      "start_sec": 59.34,
+      "end_sec": 59.98,
+      "text": "He's taking a picture.",
+      "confidence": 0.519
+    },
+    {
+      "start_sec": 59.98,
+      "end_sec": 60.62,
+      "text": "He's taking over commands.",
+      "confidence": 0.516
+    },
+    {
+      "start_sec": 60.84,
+      "end_sec": 62.54,
+      "text": "I did, I already did.",
+      "confidence": 0.819
+    },
+    {
+      "start_sec": 91.44,
+      "end_sec": 96.06,
+      "text": "Put your hands out the driver window and make sure there's nothing in your hands.",
+      "confidence": 0.66
+    },
+    {
+      "start_sec": 97.14,
+      "end_sec": 97.28,
+      "text": "Let's go.",
+      "confidence": 0.804
+    },
+    {
+      "start_sec": 105.68,
+      "end_sec": 111.34,
+      "text": "Listen up. I'm going to have you shoot the bumper of the DMW in about one more warning.",
+      "confidence": 0.838
+    },
+    {
+      "start_sec": 111.64,
+      "end_sec": 111.82,
+      "text": "Okay.",
+      "confidence": 0.467
+    },
+    {
+      "start_sec": 112.14,
+      "end_sec": 112.82,
+      "text": "Okay, two rounds.",
+      "confidence": 0.675
+    },
+    {
+      "start_sec": 114.16,
+      "end_sec": 114.56,
+      "text": "Understand.",
+      "confidence": 0.0
+    },
+    {
+      "start_sec": 118.5,
+      "end_sec": 121.28,
+      "text": "Two rounds to the bumper, Leslethal, in the next warning.",
+      "confidence": 0.877
+    },
+    {
+      "start_sec": 121.9,
+      "end_sec": 124.8,
+      "text": "If he comes back, start yelling commands.",
+      "confidence": 0.885
+    },
+    {
+      "start_sec": 125.0,
+      "end_sec": 125.26,
+      "text": "Let's go.",
+      "confidence": 0.607
+    },
+    {
+      "start_sec": 125.42,
+      "end_sec": 125.54,
+      "text": "Okay.",
+      "confidence": 0.201
+    },
+    {
+      "start_sec": 126.2,
+      "end_sec": 126.38,
+      "text": "All right.",
+      "confidence": 0.662
+    },
+    {
+      "start_sec": 128.28,
+      "end_sec": 129.4,
+      "text": "Hang up for a week.",
+      "confidence": 0.488
+    },
+    {
+      "start_sec": 130.98,
+      "end_sec": 131.58,
+      "text": "Go now.",
+      "confidence": 0.322
+    },
+    {
+      "start_sec": 138.16,
+      "end_sec": 139.42,
+      "text": "He's out of the basket.",
+      "confidence": 0.543
+    },
+    {
+      "start_sec": 143.16,
+      "end_sec": 143.94,
+      "text": "One more warning.",
+      "confidence": 0.007
+    },
+    {
+      "start_sec": 145.52,
+      "end_sec": 147.5,
+      "text": "If he comes back, start yelling commands.",
+      "confidence": 0.045
+    },
+    {
+      "start_sec": 147.82,
+      "end_sec": 148.98,
+      "text": "Drive to the lead back.",
+      "confidence": 0.303
+    },
+    {
+      "start_sec": 149.16,
+      "end_sec": 151.38,
+      "text": "I don't think we're going to watch him come in.",
+      "confidence": 0.484
+    },
+    {
+      "start_sec": 151.62,
+      "end_sec": 152.64,
+      "text": "We just need to be careful.",
+      "confidence": 0.466
+    },
+    {
+      "start_sec": 153.54,
+      "end_sec": 155.8,
+      "text": "When he comes back, he's going to come back.",
+      "confidence": 0.417
+    },
+    {
+      "start_sec": 157.84,
+      "end_sec": 158.56,
+      "text": "Drive hard.",
+      "confidence": 0.344
+    },
+    {
+      "start_sec": 158.74,
+      "end_sec": 159.68,
+      "text": "There you go.",
+      "confidence": 0.55
+    },
+    {
+      "start_sec": 161.2,
+      "end_sec": 162.84,
+      "text": "We know you're in the vehicle.",
+      "confidence": 0.871
+    },
+    {
+      "start_sec": 163.66,
+      "end_sec": 164.74,
+      "text": "We know you're armed.",
+      "confidence": 0.843
+    },
+    {
+      "start_sec": 165.34,
+      "end_sec": 167.5,
+      "text": "Put your hands out the driver's window.",
+      "confidence": 0.458
+    },
+    {
+      "start_sec": 168.0,
+      "end_sec": 169.14,
+      "text": "Put nothing in your hands.",
+      "confidence": 0.692
+    },
+    {
+      "start_sec": 171.7,
+      "end_sec": 172.66,
+      "text": "Do it now.",
+      "confidence": 0.634
+    },
+    {
+      "start_sec": 172.94,
+      "end_sec": 174.32,
+      "text": "Put something in your hands.",
+      "confidence": 0.094
+    },
+    {
+      "start_sec": 174.38,
+      "end_sec": 176.38,
+      "text": "Do it now.",
+      "confidence": 0.663
+    },
+    {
+      "start_sec": 176.38,
+      "end_sec": 177.58,
+      "text": "Take it out.",
+      "confidence": 0.085
+    },
+    {
+      "start_sec": 177.68,
+      "end_sec": 178.64,
+      "text": "Put something in your hands.",
+      "confidence": 0.69
+    },
+    {
+      "start_sec": 178.66,
+      "end_sec": 179.94,
+      "text": "Put nothing in your hands.",
+      "confidence": 0.607
+    },
+    {
+      "start_sec": 180.06,
+      "end_sec": 180.4,
+      "text": "Throw it now.",
+      "confidence": 0.557
+    },
+    {
+      "start_sec": 181.4,
+      "end_sec": 183.36,
+      "text": "Put something in your hands.",
+      "confidence": 0.788
+    },
+    {
+      "start_sec": 183.36,
+      "end_sec": 184.38,
+      "text": "But you can't help seeing the driver.",
+      "confidence": 0.091
+    },
+    {
+      "start_sec": 184.38,
+      "end_sec": 185.64,
+      "text": "We want to make you notice it.",
+      "confidence": 0.26
+    },
+    {
+      "start_sec": 187.48,
+      "end_sec": 188.1,
+      "text": "I don't think it's dangerous.",
+      "confidence": 0.192
+    },
+    {
+      "start_sec": 189.34,
+      "end_sec": 190.42,
+      "text": "Let's challenge the driver.",
+      "confidence": 0.241
+    },
+    {
+      "start_sec": 191.8,
+      "end_sec": 192.74,
+      "text": "One bit too much.",
+      "confidence": 0.107
+    },
+    {
+      "start_sec": 193.24,
+      "end_sec": 194.02,
+      "text": "One bit too much.",
+      "confidence": 0.666
+    },
+    {
+      "start_sec": 194.02,
+      "end_sec": 197.04,
+      "text": "I don't know why I'm so mad about what's going on in here.",
+      "confidence": 0.478
+    },
+    {
+      "start_sec": 201.02,
+      "end_sec": 203.82,
+      "text": "We're on board the BMW, the so-called department.",
+      "confidence": 0.361
+    },
+    {
+      "start_sec": 204.68,
+      "end_sec": 206.68,
+      "text": "We know you are in the car.",
+      "confidence": 0.837
+    },
+    {
+      "start_sec": 207.14,
+      "end_sec": 208.32,
+      "text": "Take out your hand.",
+      "confidence": 0.829
+    },
+    {
+      "start_sec": 208.76,
+      "end_sec": 210.14,
+      "text": "I'll be fine with that.",
+      "confidence": 0.467
+    },
+    {
+      "start_sec": 210.6,
+      "end_sec": 211.48,
+      "text": "We'll cut the internet.",
+      "confidence": 0.561
+    },
+    {
+      "start_sec": 212.28,
+      "end_sec": 213.88,
+      "text": "I don't know what you're talking about.",
+      "confidence": 0.547
+    },
+    {
+      "start_sec": 217.54,
+      "end_sec": 220.9,
+      "text": "I don't know what you're talking about.",
+      "confidence": 0.631
+    },
+    {
+      "start_sec": 223.4,
+      "end_sec": 224.0,
+      "text": "I don't understand.",
+      "confidence": 0.555
+    },
+    {
+      "start_sec": 252.92,
+      "end_sec": 253.82,
+      "text": "Are you kidding?",
+      "confidence": 0.264
+    },
+    {
+      "start_sec": 253.82,
+      "end_sec": 253.98,
+      "text": "I'm not kidding.",
+      "confidence": 0.312
+    },
+    {
+      "start_sec": 253.98,
+      "end_sec": 254.54,
+      "text": "Get on the road!",
+      "confidence": 0.276
+    },
+    {
+      "start_sec": 255.5,
+      "end_sec": 256.58,
+      "text": "Get on the road!",
+      "confidence": 0.704
+    },
+    {
+      "start_sec": 261.1,
+      "end_sec": 263.16,
+      "text": "I need some coffee still, dude.",
+      "confidence": 0.395
+    },
+    {
+      "start_sec": 263.66,
+      "end_sec": 264.58,
+      "text": "I'm going to try the coffee.",
+      "confidence": 0.338
+    },
+    {
+      "start_sec": 267.78,
+      "end_sec": 268.3,
+      "text": "Coffee.",
+      "confidence": 0.005
+    },
+    {
+      "start_sec": 269.66,
+      "end_sec": 270.78,
+      "text": "I'll try it.",
+      "confidence": 0.678
+    },
+    {
+      "start_sec": 272.18,
+      "end_sec": 273.4,
+      "text": "I need some white coffee.",
+      "confidence": 0.461
+    },
+    {
+      "start_sec": 273.86,
+      "end_sec": 274.48,
+      "text": "I want some coffee.",
+      "confidence": 0.386
+    },
+    {
+      "start_sec": 276.4,
+      "end_sec": 277.36,
+      "text": "I'm going to try it with the beer.",
+      "confidence": 0.435
+    },
+    {
+      "start_sec": 277.52,
+      "end_sec": 278.3,
+      "text": "I need some coffee.",
+      "confidence": 0.433
+    },
+    {
+      "start_sec": 279.16,
+      "end_sec": 280.0,
+      "text": "I need some coffee.",
+      "confidence": 0.496
+    },
+    {
+      "start_sec": 280.0,
+      "end_sec": 280.4,
+      "text": "Move!",
+      "confidence": 0.0
+    },
+    {
+      "start_sec": 282.54,
+      "end_sec": 283.46,
+      "text": "No, we've got to go.",
+      "confidence": 0.359
+    },
+    {
+      "start_sec": 284.66,
+      "end_sec": 286.0,
+      "text": "I'm going to have a one-way beer.",
+      "confidence": 0.218
+    },
+    {
+      "start_sec": 294.0,
+      "end_sec": 295.7,
+      "text": "This road is right over there.",
+      "confidence": 0.259
+    },
+    {
+      "start_sec": 296.98,
+      "end_sec": 298.34,
+      "text": "It's the most extreme at this location.",
+      "confidence": 0.184
+    },
+    {
+      "start_sec": 298.86,
+      "end_sec": 298.98,
+      "text": "Alright!",
+      "confidence": 0.027
+    },
+    {
+      "start_sec": 299.12,
+      "end_sec": 300.74,
+      "text": "Are we going to put it on?",
+      "confidence": 0.824
+    },
+    {
+      "start_sec": 302.56,
+      "end_sec": 303.28,
+      "text": "Not yet.",
+      "confidence": 0.499
+    },
+    {
+      "start_sec": 303.82,
+      "end_sec": 305.08,
+      "text": "I don't want to put it on.",
+      "confidence": 0.835
+    },
+    {
+      "start_sec": 305.24,
+      "end_sec": 305.6,
+      "text": "It's fine.",
+      "confidence": 0.165
+    },
+    {
+      "start_sec": 308.6,
+      "end_sec": 310.62,
+      "text": "I think what they did was down.",
+      "confidence": 0.747
+    },
+    {
+      "start_sec": 310.86,
+      "end_sec": 311.66,
+      "text": "Yeah, we downed it.",
+      "confidence": 0.628
+    },
+    {
+      "start_sec": 312.0,
+      "end_sec": 313.1,
+      "text": "Trying to make it happen.",
+      "confidence": 0.49
+    },
+    {
+      "start_sec": 314.04,
+      "end_sec": 317.0,
+      "text": "Yeah, two rifle officers right now.",
+      "confidence": 0.547
+    },
+    {
+      "start_sec": 317.34,
+      "end_sec": 322.22,
+      "text": "Two, two, two, two, two, two, two, two, two, two, two, two, two, two.",
+      "confidence": 0.772
+    },
+    {
+      "start_sec": 322.22,
+      "end_sec": 322.94,
+      "text": "It's all done.",
+      "confidence": 0.126
+    },
+    {
+      "start_sec": 323.24,
+      "end_sec": 324.5,
+      "text": "Can we really play?",
+      "confidence": 0.582
+    },
+    {
+      "start_sec": 324.68,
+      "end_sec": 324.9,
+      "text": "Can we?",
+      "confidence": 0.529
+    },
+    {
+      "start_sec": 326.44,
+      "end_sec": 326.56,
+      "text": "Yeah.",
+      "confidence": 0.054
+    },
+    {
+      "start_sec": 326.56,
+      "end_sec": 327.6,
+      "text": "All right.",
+      "confidence": 0.617
+    },
+    {
+      "start_sec": 329.26,
+      "end_sec": 332.16,
+      "text": "Driver of the BMWs and so far, the Lincoln Markets,",
+      "confidence": 0.292
+    },
+    {
+      "start_sec": 332.8,
+      "end_sec": 334.44,
+      "text": "we know you're in the car.",
+      "confidence": 0.577
+    },
+    {
+      "start_sec": 336.06,
+      "end_sec": 337.12,
+      "text": "We know you are.",
+      "confidence": 0.894
+    },
+    {
+      "start_sec": 338.7,
+      "end_sec": 340.14,
+      "text": "Keep your hand up and down.",
+      "confidence": 0.618
+    },
+    {
+      "start_sec": 340.36,
+      "end_sec": 340.68,
+      "text": "I don't know.",
+      "confidence": 0.481
+    },
+    {
+      "start_sec": 341.06,
+      "end_sec": 343.0,
+      "text": "Put your hand up and down.",
+      "confidence": 0.415
+    },
+    {
+      "start_sec": 344.06,
+      "end_sec": 344.94,
+      "text": "Do it now.",
+      "confidence": 0.762
+    },
+    {
+      "start_sec": 364.1,
+      "end_sec": 366.12,
+      "text": "Five, six, seven, eight.",
+      "confidence": 0.506
+    },
+    {
+      "start_sec": 375.86,
+      "end_sec": 378.98,
+      "text": "Driver of the BMWs and so far, the Lincoln Markets,",
+      "confidence": 0.179
+    },
+    {
+      "start_sec": 379.22,
+      "end_sec": 380.64,
+      "text": "we know you are in the vehicle.",
+      "confidence": 0.489
+    },
+    {
+      "start_sec": 381.7,
+      "end_sec": 383.94,
+      "text": "Keep your hand up and down.",
+      "confidence": 0.161
+    },
+    {
+      "start_sec": 384.46,
+      "end_sec": 384.6,
+      "text": "Put your hand up and down.",
+      "confidence": 0.372
+    },
+    {
+      "start_sec": 385.24,
+      "end_sec": 387.94,
+      "text": "Put your hand up and down.",
+      "confidence": 0.698
+    },
+    {
+      "start_sec": 387.94,
+      "end_sec": 388.74,
+      "text": "We know you're in the car.",
+      "confidence": 0.618
+    },
+    {
+      "start_sec": 389.28,
+      "end_sec": 390.7,
+      "text": "Keep your hand up and down.",
+      "confidence": 0.663
+    },
+    {
+      "start_sec": 392.64,
+      "end_sec": 393.74,
+      "text": "Keep your hand up and down.",
+      "confidence": 0.258
+    },
+    {
+      "start_sec": 393.74,
+      "end_sec": 395.28,
+      "text": "Put your hand up and down the window.",
+      "confidence": 0.592
+    },
+    {
+      "start_sec": 421.88,
+      "end_sec": 423.86,
+      "text": "One, two, three.",
+      "confidence": 0.5
+    },
+    {
+      "start_sec": 436.18,
+      "end_sec": 438.36,
+      "text": "Let us all look at this as well and be in action.",
+      "confidence": 0.297
+    },
+    {
+      "start_sec": 438.94,
+      "end_sec": 439.78,
+      "text": "Give up now.",
+      "confidence": 0.734
+    },
+    {
+      "start_sec": 439.98,
+      "end_sec": 440.92,
+      "text": "We'll release the dog.",
+      "confidence": 0.79
+    },
+    {
+      "start_sec": 444.62,
+      "end_sec": 445.38,
+      "text": "The dog.",
+      "confidence": 0.868
+    },
+    {
+      "start_sec": 445.88,
+      "end_sec": 446.7,
+      "text": "Don't bite you.",
+      "confidence": 0.815
+    },
+    {
+      "start_sec": 446.98,
+      "end_sec": 447.74,
+      "text": "If you're not giving up.",
+      "confidence": 0.603
+    },
+    {
+      "start_sec": 455.24,
+      "end_sec": 456.8,
+      "text": "This dog is going to release the dog.",
+      "confidence": 0.508
+    },
+    {
+      "start_sec": 459.32,
+      "end_sec": 461.78,
+      "text": "The dog won't bite you if you do not give up.",
+      "confidence": 0.874
+    },
+    {
+      "start_sec": 462.44,
+      "end_sec": 466.28,
+      "text": "Take your hand out the door beside the window with something in your hand.",
+      "confidence": 0.697
+    },
+    {
+      "start_sec": 467.8,
+      "end_sec": 469.42,
+      "text": "Driver of the BFW.",
+      "confidence": 0.845
+    },
+    {
+      "start_sec": 470.66,
+      "end_sec": 473.54,
+      "text": "If you want to go around it, we know you're older.",
+      "confidence": 0.787
+    },
+    {
+      "start_sec": 474.1,
+      "end_sec": 475.1,
+      "text": "Do not want to hurt you.",
+      "confidence": 0.912
+    },
+    {
+      "start_sec": 476.58,
+      "end_sec": 478.56,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.662
+    },
+    {
+      "start_sec": 512.36,
+      "end_sec": 513.76,
+      "text": "Give up now.",
+      "confidence": 0.013
+    },
+    {
+      "start_sec": 540.52,
+      "end_sec": 562.0,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.193
+    },
+    {
+      "start_sec": 564.64,
+      "end_sec": 565.08,
+      "text": "Give up now.",
+      "confidence": 0.408
+    },
+    {
+      "start_sec": 582.02,
+      "end_sec": 593.8,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.166
+    },
+    {
+      "start_sec": 593.8,
+      "end_sec": 594.78,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.748
+    },
+    {
+      "start_sec": 619.84,
+      "end_sec": 625.08,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.186
+    },
+    {
+      "start_sec": 625.1,
+      "end_sec": 655.08,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.173
+    },
+    {
+      "start_sec": 658.68,
+      "end_sec": 685.0,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.168
+    },
+    {
+      "start_sec": 685.1,
+      "end_sec": 714.94,
+      "text": "Give up now if you want to release the dog.",
+      "confidence": 0.165
+    },
+    {
+      "start_sec": 716.82,
+      "end_sec": 718.3,
+      "text": "This is the local police department.",
+      "confidence": 0.504
+    },
+    {
+      "start_sec": 723.08,
+      "end_sec": 724.92,
+      "text": "Can you grab the mic and the PH?",
+      "confidence": 0.608
+    },
+    {
+      "start_sec": 725.32,
+      "end_sec": 726.26,
+      "text": "Give it to me.",
+      "confidence": 0.731
+    },
+    {
+      "start_sec": 728.68,
+      "end_sec": 729.68,
+      "text": "You can't reach me.",
+      "confidence": 0.621
+    },
+    {
+      "start_sec": 731.16,
+      "end_sec": 732.44,
+      "text": "This is the local police department.",
+      "confidence": 0.795
+    },
+    {
+      "start_sec": 732.64,
+      "end_sec": 733.94,
+      "text": "Driver of the BFW.",
+      "confidence": 0.265
+    },
+    {
+      "start_sec": 733.94,
+      "end_sec": 734.94,
+      "text": "We know that you're in there.",
+      "confidence": 0.86
+    },
+    {
+      "start_sec": 735.02,
+      "end_sec": 735.78,
+      "text": "We know that you're harm.",
+      "confidence": 0.748
+    },
+    {
+      "start_sec": 737.48,
+      "end_sec": 740.02,
+      "text": "Go down your window with nothing in your hand.",
+      "confidence": 0.673
+    },
+    {
+      "start_sec": 740.14,
+      "end_sec": 741.22,
+      "text": "So both of your hands outside.",
+      "confidence": 0.64
+    },
+    {
+      "start_sec": 741.6,
+      "end_sec": 742.22,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.241
+    },
+    {
+      "start_sec": 749.46,
+      "end_sec": 750.1,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.002
+    },
+    {
+      "start_sec": 750.82,
+      "end_sec": 752.32,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.148
+    },
+    {
+      "start_sec": 752.64,
+      "end_sec": 753.06,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.748
+    },
+    {
+      "start_sec": 753.34,
+      "end_sec": 753.58,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.937
+    },
+    {
+      "start_sec": 755.14,
+      "end_sec": 756.02,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.938
+    },
+    {
+      "start_sec": 756.04,
+      "end_sec": 756.46,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.942
+    },
+    {
+      "start_sec": 757.04,
+      "end_sec": 757.7,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.946
+    },
+    {
+      "start_sec": 757.7,
+      "end_sec": 757.74,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 757.74,
+      "end_sec": 758.02,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.947
+    },
+    {
+      "start_sec": 758.46,
+      "end_sec": 758.82,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.956
+    },
+    {
+      "start_sec": 759.34,
+      "end_sec": 759.6,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.953
+    },
+    {
+      "start_sec": 760.52,
+      "end_sec": 761.22,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.955
+    },
+    {
+      "start_sec": 765.2,
+      "end_sec": 765.76,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.952
+    },
+    {
+      "start_sec": 768.1,
+      "end_sec": 769.06,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.949
+    },
+    {
+      "start_sec": 771.34,
+      "end_sec": 772.6,
+      "text": "Drive the sidewalk.",
+      "confidence": 0.957
+    },
+    {
+      "start_sec": 774.5,
+      "end_sec": 782.26,
+      "text": "Let's wait till morning.",
+      "confidence": 0.357
+    },
+    {
+      "start_sec": 782.92,
+      "end_sec": 783.48,
+      "text": "Stop.",
+      "confidence": 0.161
+    },
+    {
+      "start_sec": 783.76,
+      "end_sec": 783.8,
+      "text": "Stop.",
+      "confidence": 0.164
+    },
+    {
+      "start_sec": 784.3,
+      "end_sec": 784.44,
+      "text": "Stop.",
+      "confidence": 0.008
+    },
+    {
+      "start_sec": 784.78,
+      "end_sec": 785.34,
+      "text": "Stop.",
+      "confidence": 0.04
+    },
+    {
+      "start_sec": 787.36,
+      "end_sec": 789.5,
+      "text": "You know you're inside and we know it's your heart.",
+      "confidence": 0.562
+    },
+    {
+      "start_sec": 790.36,
+      "end_sec": 791.34,
+      "text": "Nothing in your head.",
+      "confidence": 0.862
+    },
+    {
+      "start_sec": 791.86,
+      "end_sec": 793.92,
+      "text": "We're on the driver's side window, so open your head.",
+      "confidence": 0.793
+    },
+    {
+      "start_sec": 794.14,
+      "end_sec": 794.9,
+      "text": "Outside the window.",
+      "confidence": 0.796
+    },
+    {
+      "start_sec": 795.4,
+      "end_sec": 796.18,
+      "text": "You're not your heart.",
+      "confidence": 0.726
+    },
+    {
+      "start_sec": 805.58,
+      "end_sec": 807.9,
+      "text": "Driver with a great chance of being in your complete department.",
+      "confidence": 0.422
+    },
+    {
+      "start_sec": 808.7,
+      "end_sec": 810.38,
+      "text": "You know you're inside and we know it's your heart.",
+      "confidence": 0.958
+    },
+    {
+      "start_sec": 811.9,
+      "end_sec": 813.02,
+      "text": "Nothing in your head.",
+      "confidence": 0.025
+    },
+    {
+      "start_sec": 813.32,
+      "end_sec": 813.92,
+      "text": "But open your head.",
+      "confidence": 0.085
+    },
+    {
+      "start_sec": 814.1,
+      "end_sec": 815.38,
+      "text": "Outside the driver's side window.",
+      "confidence": 0.576
+    },
+    {
+      "start_sec": 815.8,
+      "end_sec": 816.58,
+      "text": "You're not a heart.",
+      "confidence": 0.247
+    },
+    {
+      "start_sec": 825.46,
+      "end_sec": 826.84,
+      "text": "Last week again.",
+      "confidence": 0.391
+    },
+    {
+      "start_sec": 827.5,
+      "end_sec": 828.12,
+      "text": "You want me to switch?",
+      "confidence": 0.726
+    },
+    {
+      "start_sec": 854.3,
+      "end_sec": 855.7,
+      "text": "which",
+      "confidence": 0.066
+    },
+    {
+      "start_sec": 860.56,
+      "end_sec": 862.86,
+      "text": "Let's get out, let's leave them, let's leave them, let's leave them.",
+      "confidence": 0.77
+    },
+    {
+      "start_sec": 888.7,
+      "end_sec": 895.32,
+      "text": "The dog will find you and the dog may bite you. When the dog finds you, don't move or attempt to run because the dog will bite you.",
+      "confidence": 0.906
+    },
+    {
+      "start_sec": 925.3,
+      "end_sec": 930.22,
+      "text": "So again, I'll get a sign on the green ball and then use it to run the truck from the operation.",
+      "confidence": 0.407
+    },
+    {
+      "start_sec": 932.98,
+      "end_sec": 937.92,
+      "text": "I'll get a sign on the green ball and then use it to run the truck from the operation.",
+      "confidence": 0.853
+    },
+    {
+      "start_sec": 954.38,
+      "end_sec": 957.66,
+      "text": "Are you okay? Yeah, it's due to stretch.",
+      "confidence": 0.627
+    },
+    {
+      "start_sec": 961.24,
+      "end_sec": 965.0,
+      "text": "Can you make sure 1C5-3 is blocking traffic?",
+      "confidence": 0.758
+    },
+    {
+      "start_sec": 966.02,
+      "end_sec": 968.7,
+      "text": "I'll try to make sure the traffic is good.",
+      "confidence": 0.261
+    },
+    {
+      "start_sec": 969.2,
+      "end_sec": 971.16,
+      "text": "I'll try to make sure the traffic is good.",
+      "confidence": 0.834
+    },
+    {
+      "start_sec": 974.24,
+      "end_sec": 978.82,
+      "text": "I'll try to make sure the traffic is good.",
+      "confidence": 0.934
+    },
+    {
+      "start_sec": 980.0,
+      "end_sec": 984.14,
+      "text": "Drive through the four doors, Crankman, Southampton, Oakland Police Department.",
+      "confidence": 0.537
+    },
+    {
+      "start_sec": 984.82,
+      "end_sec": 986.98,
+      "text": "Know you're inside and we know that you are large.",
+      "confidence": 0.815
+    },
+    {
+      "start_sec": 987.56,
+      "end_sec": 995.74,
+      "text": "With nothing in your hand, roll down the driver's side window and put both of your hands up the driver's side window. You will not be far.",
+      "confidence": 0.764
+    },
+    {
+      "start_sec": 1010.1,
+      "end_sec": 1021.44,
+      "text": "Drive up the BMW, the great BMW, the infamy-leaf department, K99, you can stop off before I release the dog. The dog will bite you and the dog may bite you.",
+      "confidence": 0.65
+    },
+    {
+      "start_sec": 1021.6,
+      "end_sec": 1025.72,
+      "text": "When the dog finds you, don't move or attempt to run because the dog will bite you.",
+      "confidence": 0.724
+    },
+    {
+      "start_sec": 1025.72,
+      "end_sec": 1028.26,
+      "text": "The dog will bite you and the dog may bite you.",
+      "confidence": 0.232
+    },
+    {
+      "start_sec": 1040.54,
+      "end_sec": 1042.94,
+      "text": "Are you going to pull this leaf to somewhere else for what?",
+      "confidence": 0.623
+    },
+    {
+      "start_sec": 1045.92,
+      "end_sec": 1047.32,
+      "text": "Hey, my PDRD is red.",
+      "confidence": 0.702
+    },
+    {
+      "start_sec": 1052.3,
+      "end_sec": 1057.0,
+      "text": "I'm going to pull this leaf to somewhere else for you.",
+      "confidence": 0.146
+    },
+    {
+      "start_sec": 1057.3,
+      "end_sec": 1063.06,
+      "text": "Drive through the four doors, Crankman, Southampton, Oakland Police Department.",
+      "confidence": 0.227
+    },
+    {
+      "start_sec": 1063.82,
+      "end_sec": 1066.04,
+      "text": "Know you're inside and we know that you are large.",
+      "confidence": 0.543
+    },
+    {
+      "start_sec": 1067.08,
+      "end_sec": 1074.0,
+      "text": "Roll down your driver's side window with nothing in your hand, put both of your hands up the driver's side window. You will not be far.",
+      "confidence": 0.728
+    },
+    {
+      "start_sec": 1074.0,
+      "end_sec": 1081.16,
+      "text": "There it is, so you will be back to the window and then the dog will bite you.",
+      "confidence": 0.446
+    },
+    {
+      "start_sec": 1102.82,
+      "end_sec": 1107.96,
+      "text": "Drive up the four doors, create fuel, draft your yeux to ensure you lock the doors view to your parking.",
+      "confidence": 0.164
+    },
+    {
+      "start_sec": 1108.54,
+      "end_sec": 1110.76,
+      "text": "Know you're inside and we know that you're large.",
+      "confidence": 0.408
+    },
+    {
+      "start_sec": 1111.58,
+      "end_sec": 1112.88,
+      "text": "Put nothing in your hands.",
+      "confidence": 0.709
+    },
+    {
+      "start_sec": 1113.34,
+      "end_sec": 1115.48,
+      "text": "Put both of your hands out the driver's side window",
+      "confidence": 0.874
+    },
+    {
+      "start_sec": 1115.48,
+      "end_sec": 1116.58,
+      "text": "and you will not be harmed.",
+      "confidence": 0.76
+    },
+    {
+      "start_sec": 1117.68,
+      "end_sec": 1118.72,
+      "text": "Stay here to do so.",
+      "confidence": 0.728
+    },
+    {
+      "start_sec": 1119.6,
+      "end_sec": 1120.88,
+      "text": "Don't break your window.",
+      "confidence": 0.752
+    },
+    {
+      "start_sec": 1121.16,
+      "end_sec": 1122.76,
+      "text": "Sit in the door and you will be safe.",
+      "confidence": 0.735
+    }
+  ],
+  "silence_map": [],
+  "original_duration_sec": 1135.543,
+  "processed_duration_sec": 1135.543,
+  "speaker_count": null,
+  "processing_metadata": {
+    "whisper_model": "small",
+    "whisper_backend": "local",
+    "silence_threshold_db": -40,
+    "min_silence_duration_sec": 2.0,
+    "compression_applied": true,
+    "loudness_target_lufs": -16.0,
+    "total_processing_sec": 332.9
+  },
+  "source_label": "oakland_sb1421_02"
+}

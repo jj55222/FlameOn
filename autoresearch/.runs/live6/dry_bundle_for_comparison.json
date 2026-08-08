@@ -1,0 +1,214 @@
+{
+  "experiment_id": "LIVE6-pilot3-dry",
+  "mode": "multi_source_dry_run",
+  "wallclock_seconds": 0.0,
+  "input_summary": {
+    "input_type": "dataset_row",
+    "defendant_names": [
+      "Jordan Example"
+    ],
+    "agency": "Memphis Police Department",
+    "jurisdiction": {
+      "city": "Memphis",
+      "county": "Shelby County",
+      "state": "TN"
+    },
+    "incident_date": "2022-07-30",
+    "candidate_query_count": 12,
+    "missing_field_count": 5
+  },
+  "query_plan": null,
+  "connector_summary": {
+    "total_source_records": 0,
+    "by_api": {},
+    "by_role": {},
+    "source_ids": []
+  },
+  "multi_source_summary": null,
+  "smoke_diagnostics": null,
+  "identity": {
+    "defendant_names": [
+      "Jordan Example"
+    ],
+    "victim_names": [],
+    "agency": "Memphis Police Department",
+    "jurisdiction": {
+      "city": "Memphis",
+      "county": "Shelby County",
+      "state": "TN"
+    },
+    "incident_date": "2022-07-30",
+    "case_numbers": [],
+    "charges": [],
+    "identity_confidence": "low",
+    "identity_anchors": []
+  },
+  "outcome": {
+    "outcome_status": "unknown",
+    "charges": [],
+    "case_numbers": []
+  },
+  "artifact_claims": [],
+  "verified_artifacts": [],
+  "result": {
+    "verdict": "SKIP",
+    "research_completeness_score": 21.0,
+    "production_actionability_score": 0.0,
+    "actionability_score": 7.35,
+    "component_scores": {
+      "identity": 0.0,
+      "outcome": 0.0,
+      "artifact_claims": 0.0,
+      "verified_media_artifacts": 0.0,
+      "verified_document_artifacts": 0.0,
+      "artifact_portfolio": 0.0,
+      "downstream_readiness": 0.0,
+      "research_documents": 6.0,
+      "source_quality_diversity": 0.0,
+      "gap_clarity": 10.0
+    },
+    "artifact_category_counts": {},
+    "reason_codes": [
+      "low_identity",
+      "no_verified_media"
+    ],
+    "risk_flags": [
+      "structured_input_preliminary_packet",
+      "candidate_fields_not_identity_lock",
+      "dataset:mapping_police_violence",
+      "structured_dataset_candidate_only",
+      "artifact_verification_required",
+      "outcome_verification_required",
+      "structured_dataset_query_plan_only",
+      "weak_identity",
+      "insufficient_identity_anchors",
+      "identity_unconfirmed",
+      "no_verified_media"
+    ],
+    "next_actions": [
+      "Corroborate structured-row candidate fields with identity_source records.",
+      "Resolve artifact claims into public artifact URLs before production.",
+      "Fill missing structured-row fields: incident_type, case_numbers, charges, outcome_status, verified_artifacts.",
+      "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status.",
+      "Locate verified media/audio/video artifact before production.",
+      "Corroborate identity with date, agency, victim, case number, or official source.",
+      "Confirm concluded outcome before production."
+    ]
+  },
+  "actionability_report": {
+    "total_cases": 1,
+    "verdict_counts": {
+      "PRODUCE": 0,
+      "HOLD": 0,
+      "SKIP": 1
+    },
+    "false_produce_guards": {
+      "weak_identity_blocks": 1,
+      "document_only_holds": 0,
+      "claim_only_holds": 0,
+      "protected_or_pacer_blocked": 0,
+      "outcome_unconcluded_holds": 1,
+      "no_verified_media_blocks": 1
+    },
+    "artifact_portfolio": {
+      "by_artifact_type": {},
+      "media_only_cases": 0,
+      "document_only_cases": 0,
+      "no_artifact_cases": 1,
+      "multi_media_cases": 0,
+      "multi_artifact_premium_cases": 0
+    },
+    "score_distribution": {
+      "research_completeness": {
+        "min": 21.0,
+        "max": 21.0,
+        "mean": 21.0,
+        "median": 21.0,
+        "p90": 21.0
+      },
+      "production_actionability": {
+        "min": 0.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0
+      },
+      "actionability": {
+        "min": 7.35,
+        "max": 7.35,
+        "mean": 7.35,
+        "median": 7.35,
+        "p90": 7.35
+      }
+    },
+    "risk_flag_counts": {
+      "artifact_verification_required": 1,
+      "candidate_fields_not_identity_lock": 1,
+      "dataset:mapping_police_violence": 1,
+      "identity_unconfirmed": 1,
+      "insufficient_identity_anchors": 1,
+      "no_verified_media": 1,
+      "outcome_verification_required": 1,
+      "structured_dataset_candidate_only": 1,
+      "structured_dataset_query_plan_only": 1,
+      "structured_input_preliminary_packet": 1,
+      "weak_identity": 1
+    },
+    "reason_code_counts": {
+      "low_identity": 1,
+      "no_verified_media": 1
+    },
+    "input_type_breakdown": {
+      "dataset_row": 1
+    },
+    "produce_eligible_inventory": []
+  },
+  "live_yield_report": null,
+  "ledger_entry": {
+    "experiment_id": "LIVE6-pilot3-dry",
+    "timestamp": "2026-04-30T23:28:15Z",
+    "case_id": "mapping_police_violence_jordan_example_memphis_police_department_memphis_tn_2022_07_30",
+    "api_calls": {
+      "brave": 0,
+      "firecrawl": 0,
+      "llm": 0,
+      "courtlistener": 0,
+      "muckrock": 0,
+      "documentcloud": 0,
+      "youtube": 0
+    },
+    "wallclock_seconds": 0.0,
+    "source_record_count": 0,
+    "verified_artifact_count": 0,
+    "media_artifact_count": 0,
+    "document_artifact_count": 0,
+    "estimated_cost_usd": 0.0,
+    "verdict": "SKIP",
+    "research_completeness_score": 21.0,
+    "production_actionability_score": 0.0,
+    "actionability_score": 7.35,
+    "notes": []
+  },
+  "next_actions": [
+    "Corroborate structured-row candidate fields with identity_source records.",
+    "Resolve artifact claims into public artifact URLs before production.",
+    "Fill missing structured-row fields: incident_type, case_numbers, charges, outcome_status, verified_artifacts.",
+    "Find outcome_source confirming charged, convicted, sentenced, closed, dismissed, or acquitted status.",
+    "Locate verified media/audio/video artifact before production.",
+    "Corroborate identity with date, agency, victim, case number, or official source.",
+    "Confirm concluded outcome before production."
+  ],
+  "risk_flags": [
+    "structured_input_preliminary_packet",
+    "candidate_fields_not_identity_lock",
+    "dataset:mapping_police_violence",
+    "structured_dataset_candidate_only",
+    "artifact_verification_required",
+    "outcome_verification_required",
+    "structured_dataset_query_plan_only",
+    "weak_identity",
+    "insufficient_identity_anchors",
+    "identity_unconfirmed",
+    "no_verified_media"
+  ]
+}

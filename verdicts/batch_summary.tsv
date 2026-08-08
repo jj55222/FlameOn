@@ -1,0 +1,5 @@
+case_id	verdict	narrative_score	confidence	n_sources	n_moments	density	arc	artifact	unique	scored_at
+muckrock_181169_kolb	HOLD	30.0	0.70	10	6	2.0	50.0	50.0	42.0	2026-06-27T19:44:43.620254Z
+muckrock_184113_waterbury_captivity	HOLD	46.4	0.75	4	6	3.0	100.0	50.0	52.0	2026-06-27T21:00:30.120804Z
+muckrock_185689_joliet_zavala	SKIP	17.8	0.85	4	5	2.5	8.1	50.0	44.0	2026-06-27T21:06:59.595438Z
+muckrock_69147_sb_1421_oakland_pd	SKIP	16.8	0.95	2	4	2.0	8.1	50.0	35.0	2026-06-27T21:17:35.947300Z

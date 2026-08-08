@@ -1,0 +1,193 @@
+Pipeline 4 AutoResearch Evaluation
+========================================================
+Cases: 10 | Dry run: False
+Pass 1 model: google/gemini-3.1-flash-lite-preview
+Pass 2 model: qwen/qwen3.6-plus
+Weights: loaded (joint; 9 artifact combos)
+Parallelism: 3 workers (per-case concurrency)
+
+
+======================================================================
+======================================================================
+======================================================================
+
+Scoring case: t6h8Uae2Q_E
+  Sources: 6
+  Total duration: 4336s (72.3 min)
+  Segments: 1806
+
+Scoring case: Vn2Wqccg05wScoring case: s6CXNbzKlks
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'news_clips', 'documents', 'narration']
+
+  Sources: 4  Sources: 4  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+
+
+    Prompt size: ~27414 tokens (109,659 chars)  Total duration: 5397s (89.9 min)  Total duration: 2998s (50.0 min)
+
+
+  Segments: 1299  Segments: 2408
+
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration']  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration']
+
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+
+    Prompt size: ~19731 tokens (78,926 chars)
+    Prompt size: ~35124 tokens (140,497 chars)
+    Returned in 13.7s
+  [Pass 1] Extracted: 8 moments, 1 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=75.5 (density=72.7, arc=100.0, artifact=58.6, unique=47.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.807)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2881 tokens (11,526 chars)
+    Returned in 13.9s
+  [Pass 1] Extracted: 6 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=67.5 (density=51.5, arc=100.0, artifact=58.6, unique=52.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.738)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2707 tokens (10,829 chars)
+    Returned in 14.6s
+  [Pass 1] Extracted: 5 moments, 2 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=71.8 (density=46.4, arc=100.0, artifact=100.0, unique=32.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.716)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2780 tokens (11,121 chars)
+    Returned in 69.1s
+  [1/10] t6h8Uae2Q_E          PRODUCE  (gt=PRODUCE) score=71.8 moments=5 [OK] (83.7s)
+
+======================================================================
+Scoring case: QHAYwcCeKms
+  Sources: 7
+  Total duration: 3346s (55.8 min)
+  Segments: 1473
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'court_video', 'news_clips', 'documents', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~22020 tokens (88,083 chars)
+    Returned in 7.1s
+  [Pass 1] Extracted: 5 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=72.8 (density=46.5, arc=100.0, artifact=100.0, unique=42.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.716)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2739 tokens (10,959 chars)
+    Returned in 93.5s
+  [2/10] s6CXNbzKlks          PRODUCE  (gt=PRODUCE) score=67.5 moments=6 [OK] (107.5s)
+
+======================================================================
+Scoring case: 6Ghe55PHc58
+  Sources: 5
+  Total duration: 3314s (55.2 min)
+  Segments: 1681
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'narration', 'documents']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~24213 tokens (96,852 chars)
+    Returned in 95.0s
+  [3/10] Vn2Wqccg05w          PRODUCE  (gt=PRODUCE) score=75.5 moments=8 [OK] (108.7s)
+
+======================================================================
+Scoring case: cgCYon_kKno
+  Sources: 5
+  Total duration: 2892s (48.2 min)
+  Segments: 1333
+  Evidence types: ['bodycam', 'interrogation', 'news_clips', 'documents', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~19792 tokens (79,169 chars)
+    Returned in 7.2s
+  [Pass 1] Extracted: 7 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=78.4 (density=60.6, arc=100.0, artifact=100.0, unique=42.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.777)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2851 tokens (11,406 chars)
+    Returned in 7.6s
+  [Pass 1] Extracted: 5 moments, 2 contradictions, 3 anchors, hint=cold_open
+  [Scoring] narrative_score=71.5 (density=42.5, arc=100.0, artifact=100.0, unique=45.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.699)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2785 tokens (11,140 chars)
+    Returned in 56.2s
+  [4/10] 6Ghe55PHc58          PRODUCE  (gt=PRODUCE) score=78.4 moments=7 [OK] (63.5s)
+
+======================================================================
+Scoring case: JBRHS5vErpg
+  Sources: 5
+  Total duration: 3023s (50.4 min)
+  Segments: 1355
+  Evidence types: ['bodycam', 'interrogation', '911_audio', 'news_clips', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~20267 tokens (81,070 chars)
+    Returned in 80.5s
+  [5/10] QHAYwcCeKms          PRODUCE  (gt=PRODUCE) score=72.8 moments=5 [OK] (87.7s)
+
+======================================================================
+Scoring case: fsL0ag9ySao
+  Sources: 3
+  Total duration: 2734s (45.6 min)
+  Segments: 1243
+  Evidence types: ['bodycam', 'interrogation', 'narration']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~17805 tokens (71,221 chars)
+    Returned in 6.1s
+  [Pass 1] Extracted: 4 moments, 2 contradictions, 2 anchors, hint=cold_open
+  [Scoring] narrative_score=61.3 (density=43.8, arc=100.0, artifact=52.8, unique=32.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.704)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2531 tokens (10,124 chars)
+    Returned in 65.0s
+  [6/10] cgCYon_kKno          PRODUCE  (gt=PRODUCE) score=71.5 moments=5 [OK] (72.6s)
+
+======================================================================
+Scoring case: 29PVkF6hcnw
+  Sources: 6
+  Total duration: 3167s (52.8 min)
+  Segments: 1397
+  Evidence types: ['bodycam', 'interrogation', 'narration', 'documents', 'court_video', '911_audio']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~21237 tokens (84,949 chars)
+    Returned in 11.0s
+  [Pass 1] Extracted: 11 moments, 2 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=77.7 (density=71.3, arc=100.0, artifact=58.6, unique=75.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.82)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~3366 tokens (13,467 chars)
+    Returned in 7.6s
+  [Pass 1] Extracted: 5 moments, 2 contradictions, 4 anchors, hint=cold_open
+  [Scoring] narrative_score=73.5 (density=45.9, arc=100.0, artifact=100.0, unique=52.0)
+  [Scoring] Deterministic verdict: PRODUCE (conf=0.713)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~3362 tokens (13,448 chars)
+    Returned in 56.2s
+  [7/10] fsL0ag9ySao          PRODUCE  (gt=PRODUCE) score=61.3 moments=4 [OK] (62.3s)
+
+======================================================================
+Scoring case: sfdpa_0409-18
+  Sources: 4
+  Total duration: 6963s (116.1 min)
+  Segments: 1519
+  Evidence types: ['interrogation', 'bodycam']
+  [Pass 1] Calling google/gemini-3.1-flash-lite-preview...
+    Prompt size: ~25033 tokens (100,134 chars)
+    Returned in 6.4s
+  [Pass 1] Extracted: 9 moments, 1 contradictions, 3 anchors, hint=escalation
+  [Scoring] narrative_score=37.4 (density=47.5, arc=8.1, artifact=50.0, unique=60.0)
+  [Scoring] Deterministic verdict: HOLD (conf=0.508)
+  [Pass 2] Calling qwen/qwen3.6-plus...
+    Prompt size: ~2784 tokens (11,139 chars)
+    Returned in 74.1s
+  [8/10] JBRHS5vErpg          PRODUCE  (gt=PRODUCE) score=77.7 moments=8 [OK] (85.1s)
+    Returned in 70.1s
+  [9/10] 29PVkF6hcnw          PRODUCE  (gt=PRODUCE) score=73.5 moments=5 [OK] (77.8s)
+    Returned in 90.6s
+  [10/10] sfdpa_0409-18        HOLD     (gt=SKIP) score=37.4 moments=6 [MISS] (97.1s)
+
+========================================================
+  Verdict Accuracy:       90.00 (x40%)
+  Narrative Calibration: 100.00 (x25%)
+  Arc Accuracy:           90.00 (x15%)
+  Moment Coverage:       100.00 (x15%)
+  Artifact Completeness:  88.71 (x5%)
+  ------------------------------------------------
+  NARRATIVE SCORING:      93.94 / 100
+  Cases completed:       10/10
+  Time:                  331s
+C:\FlameON\FlameOn-main\pipeline4_scoring\evaluate.py:578: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+
+  Experiment 14 logged to results.tsv

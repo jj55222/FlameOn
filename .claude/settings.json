@@ -1,0 +1,41 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('FlameOn needs your attention', 'Claude Code')\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"$CLAUDE_PROJECT_DIR/SYSTEM.md\" | head -80; echo '---'; if [ -f \"$CLAUDE_PROJECT_DIR/CLAUDE.md\" ]; then cat \"$CLAUDE_PROJECT_DIR/CLAUDE.md\"; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git add -A && git diff --cached --quiet || git commit -m \"auto: $(date +%H:%M)\" && git push origin main 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python pipeline2_discovery/sync_to_gdrive.py 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

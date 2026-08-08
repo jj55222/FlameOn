@@ -1,0 +1,139 @@
+{
+  "template_id": "solvedfiles_discovery",
+  "label": "SolvedFiles discovery / investigation",
+  "use_for": "case broken by evidence not tactics: a body/scene is discovered, a suspect lies, records + the footage-vs-record contradiction carry the climax",
+  "schema_version": 1,
+  "derived_from": {
+    "channel": "SolvedFiles",
+    "n_videos": 55,
+    "source": ".tmp/creator_catalog/solvedfiles/TEMPLATE_solvedfiles_discovery.json",
+    "grammar": ".tmp/grammar_corpus/grammar/SolvedFiles_grammar.json",
+    "exemplar_ids": ["9tO20tNNW7g", "ZJptMzqWZF8", "v9XdbakPm1c", "aO8Rwzg8hb0"]
+  },
+  "global_rules": {
+    "runtime_min_range": [22, 40],
+    "runtime_min_median_ref": 35.4,
+    "vo_word_share_target": 0.31,
+    "load_bearing_move": "contradiction",
+    "cold_open_variant": "bang_on_discovery",
+    "climax_onset_pct_range": [75, 82],
+    "cta_placement": ["outro", "single_mid_roll_pocket_after_cliffhanger"],
+    "cta_forbidden_span_pct": [75, 83],
+    "outro_max_sec": 20,
+    "records_touchpoints_pct": [18, 69, 97],
+    "multicam_label_by": "place_or_role_never_name",
+    "multicam_intensity": "light_sequential",
+    "legal_cover_on_accusations": true,
+    "structure_predicts_views": false
+  },
+  "no_interrogation_handling": {
+    "lampshade_line": "officers wouldn't bother questioning him — instead they gathered the evidence",
+    "pivot_word": "Eventually,",
+    "motive_slot_maps_to": "on_screen_case_record_excerpts_same_register",
+    "climax_slot_maps_to": "sharpest_footage_vs_record_contradiction_or_admission"
+  },
+  "acts": [
+    {
+      "id": "cold_open",
+      "title": "Cold Open",
+      "phase": "pre_incident",
+      "function": "hook",
+      "span_pct": [0, 5],
+      "beat_functions": ["scene_set", "reveal", "emotional_peak"],
+      "vo_moves": ["scene_set", "hook", "foreshadow"],
+      "required_beats": ["discovery_moment_footage", "vo_stakes_3_sentences", "peaks_montage_4_6_shots", "hook_question", "date_address_line_once"],
+      "notes": "default variant bang_on_discovery: the discovery footage at 0:00, VO stakes ~0.5%, withhold the why"
+    },
+    {
+      "id": "discovery_reveal",
+      "title": "Discovery / Reveal",
+      "phase": "incident",
+      "function": "establish",
+      "span_pct": [5, 20],
+      "beat_functions": ["reveal", "scene_set", "detail_noticed"],
+      "vo_moves": ["scene_set", "context"],
+      "required_beats": ["body_or_scene_found", "what_they_found_was_far_worse", "establish_central_unknown"],
+      "notes": "the reveal the cut is named for"
+    },
+    {
+      "id": "scene_processing",
+      "title": "Scene Processing",
+      "phase": "aftermath",
+      "function": "escalate",
+      "span_pct": [20, 52],
+      "beat_functions": ["detail_noticed", "scene_set", "reveal"],
+      "vo_moves": ["scene_set", "context", "foreshadow"],
+      "required_beats": ["canvass", "on_scene_forensics_line", "first_suspect_signals", "human_thread"],
+      "notes": "sequential scene work; on-scene forensics = touch 1 of the records pattern"
+    },
+    {
+      "id": "the_lie_unravels",
+      "title": "The Lie Unravels",
+      "phase": "investigation",
+      "function": "accountability",
+      "span_pct": [52, 66],
+      "beat_functions": ["contradiction", "tension_shift", "detail_noticed"],
+      "vo_moves": ["scene_set", "contradiction", "transition"],
+      "required_beats": ["suspect_claim", "knock_against_evidence_if_then", "escalating_certainty_ladder"],
+      "notes": "contradiction-forward; the story stops adding up"
+    },
+    {
+      "id": "records_bridge",
+      "title": "Records Bridge",
+      "phase": "investigation",
+      "function": "accountability",
+      "span_pct": [66, 72],
+      "target_sec": 60,
+      "beat_functions": ["record", "contradiction"],
+      "vo_moves": ["transition", "context", "contradiction"],
+      "required_beats": ["autopsy_or_forensic_reveal", "what_to_why_pivot", "case_record_excerpts_on_screen"],
+      "notes": "the pivot the discovery cut turns on; narrated never cited"
+    },
+    {
+      "id": "pivot_to_climax",
+      "title": "Pivot to Climax",
+      "phase": "investigation",
+      "function": "escalate",
+      "span_pct": [72, 75],
+      "beat_functions": ["tension_shift"],
+      "vo_moves": ["foreshadow", "stakes"],
+      "required_beats": ["one_sentence_trigger"],
+      "notes": "single-sentence trigger into the climax"
+    },
+    {
+      "id": "climax_confrontation",
+      "title": "Climax / Confrontation",
+      "phase": "aftermath",
+      "function": "climax",
+      "span_pct": [75, 83],
+      "max_sec": 60,
+      "beat_functions": ["contradiction", "reveal"],
+      "vo_moves": ["contradiction", "scene_set"],
+      "required_beats": ["footage_vs_record_contradiction_or_admission", "resolve_central_unknown"],
+      "notes": "the sharpest contradiction/admission in BWC/911/records; if no interrogation, this is the evidence-montage payoff"
+    },
+    {
+      "id": "resolution",
+      "title": "Resolution",
+      "phase": "outcome",
+      "function": "resolve",
+      "span_pct": [83, 97],
+      "beat_functions": ["verdict", "procedure"],
+      "vo_moves": ["scene_set", "context", "verdict"],
+      "required_beats": ["charges", "records_closeout"],
+      "notes": "outcome + records closeout"
+    },
+    {
+      "id": "outro",
+      "title": "Outro",
+      "phase": "outcome",
+      "function": "resolve",
+      "span_pct": [97, 100],
+      "max_sec": 20,
+      "beat_functions": ["verdict", "record"],
+      "vo_moves": ["verdict", "stakes"],
+      "required_beats": ["evidence_recap", "charge_line_legal_cover", "conviction_or_finding", "hard_stop"],
+      "notes": "facts only; CTA may bundle here but never across the climax"
+    }
+  ]
+}
