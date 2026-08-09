@@ -1,7 +1,7 @@
 {
  "case_id": "copa_2021_0001076",
  "issued": "2026-08-08",
- "revision": 2,
+ "revision": 3,
  "reference_camera": "AXON_BWC_08",
  "reference_wall_start": "16:58:24",
  "offsets_to_reference_ms": {
@@ -127,18 +127,16 @@
    "reference_timeline_in_sec": 95.8,
    "reference_timeline_out_sec": 147.8,
    "timeline_classification": "delayed_radio",
-   "verbatim_text": "We have a 10-1 [...] 10-1 all available units. [...] We have an officer shot. 2451 West 46th Street.",
-   "unclear_spans": [
-    "Weigh in the column of a 10-1-2-4-5-1"
-   ],
+   "verbatim_text": "Houston 10, Houston 9 and Citywide, give me a call on the 10-1. 2451 West 46th Street [...] first officer on scene please advise [...] we have an officer shot.",
+   "unclear_spans": [],
    "narrative_purpose": "escalation",
    "act_id": "act2_rewind",
    "audio_quality": "clean radio",
-   "asr_alignment": "unreliable",
+   "asr_alignment": "corrected",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "Dispatch propagation ref 96-148 \u2014 plays UNDER the 5W rewind as radio bed. Offset audio-verified weak (n=2) \u2014 waveform-confirm."
+   "editor_note": "large-v3 verified. CAUTION: 'Houston 10 / Houston 9' are radio CALLSIGNS - do NOT conflate with Officer Tobias Houston on screen. ICV = Kocerka/Lee squad (FSR Att. 69)."
   },
   {
    "excerpt_id": "E04",
@@ -155,18 +153,16 @@
    "reference_timeline_in_sec": 358.2,
    "reference_timeline_out_sec": 371.0,
    "timeline_classification": "live",
-   "verbatim_text": "[unclear audio] shots fired again [...] shots fired and shot returned by the police.",
-   "unclear_spans": [
-    "custody yet negative you're shooting at the police squad"
-   ],
+   "verbatim_text": "Do we have the offender in custody yet? Negative. He's shooting at the police [...] We got shots fired again at the police [...] shots fired and shots returned by the police. The offender is not in custody.",
+   "unclear_spans": [],
    "narrative_purpose": "escalation",
    "act_id": "act4_containment",
    "audio_quality": "noisy",
-   "asr_alignment": "unreliable",
+   "asr_alignment": "corrected",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "Volley-3 radio wave ref 358-371 (17:04:22). LIVE during act 4 under the corrected chronology."
+   "editor_note": "large-v3 verified; volley-3 radio wave, LIVE."
   },
   {
    "excerpt_id": "E05",
@@ -182,17 +178,17 @@
    "sync_reference_cam": "AXON_BWC_08",
    "reference_timeline_in_sec": 335.5,
    "reference_timeline_out_sec": 367.0,
-   "timeline_classification": "live",
-   "verbatim_text": "Go shoot me! [...] He's just shooting right now. [...] We have shots fired and shots returned by the police.",
+   "timeline_classification": "asr_artifact",
+   "verbatim_text": "[RETIRED]",
    "unclear_spans": [],
-   "narrative_purpose": "escalation",
-   "act_id": "act4_containment",
+   "narrative_purpose": "retired",
+   "act_id": "retired",
    "audio_quality": "usable",
-   "asr_alignment": "corrected",
+   "asr_alignment": "retired",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "ref 335.5-367 \u2014 subject defiance DURING volley 2-3 window. Audibly verify 'Go shoot me!' attribution."
+   "editor_note": "RETIRED: 'Go shoot me!' NOT corroborated by large-v3 (hears 'Oh, it's open, it's open... be careful' + radio). Never caption the triage line. Window remains usable as W09 containment texture."
   },
   {
    "excerpt_id": "E06",
@@ -209,16 +205,16 @@
    "reference_timeline_in_sec": 311.9,
    "reference_timeline_out_sec": 366.0,
    "timeline_classification": "live",
-   "verbatim_text": "Put your hands down! [...] He's just shooting right now. [...] We had shots fired again at the police.",
+   "verbatim_text": "Get on the ground now! He's behind that car. He's got orange shoes on behind that car. [...] Put your hands down! [...] It is bonafide the officer was shot. We are in the yard at 2451. We need the ambulance.",
    "unclear_spans": [],
    "narrative_purpose": "escalation",
    "act_id": "act4_containment",
    "audio_quality": "usable",
-   "asr_alignment": "unreliable",
+   "asr_alignment": "corrected",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "ref 311.9-366 \u2014 volleys 2-3. Offset radio-verified (+66.0, n=27). 'hands down' vs 'hands up' \u2014 audibly verify."
+   "editor_note": "large-v3 verified incl. 'Put your hands down' (prone-out command) + the ORANGE SHOES identifier (ties to restraint frames)."
   },
   {
    "excerpt_id": "E07",
@@ -261,7 +257,7 @@
    "reference_timeline_in_sec": 309.6,
    "reference_timeline_out_sec": 339.0,
    "timeline_classification": "live",
-   "verbatim_text": "Put your hands up. Put your f***ing hands up. [...] We don't want to shoot you. [...] Shots fired.",
+   "verbatim_text": "Get down on the f***ing ground! [...] We got orange shoes on behind that car. Put your hands up! Put your f***ing hands up! [...] Put your hands up, dude! We don't want to shoot you! We don't want to shoot you! Shots fired, shots fired. He's on the right side.",
    "unclear_spans": [],
    "narrative_purpose": "escalation",
    "act_id": "act4_containment",
@@ -270,7 +266,7 @@
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "Densest command audio ref 309.6-339. AUDIO CARRIER ONLY \u2014 BWC 13 visual is pole-blocked (preview verdict); never use as hero visual. Bleep w/ accurate censored caption."
+   "editor_note": "large-v3 verified; profanity authentic - bleep with accurate censored caption, never rewrite. AUDIO CARRIER ONLY."
   },
   {
    "excerpt_id": "E09",
@@ -339,18 +335,16 @@
    "reference_timeline_in_sec": 1047.1,
    "reference_timeline_out_sec": 1054.0,
    "timeline_classification": "recap",
-   "verbatim_text": "We have a security officer shot at the Home Depot [unclear audio]. We also have an officer shot on 46th place, and we have an offender shot.",
-   "unclear_spans": [
-    "at the home deco"
-   ],
+   "verbatim_text": "Once again, guys, citywide is confirming: we have a security officer shot at the Home Depot. We also have an officer shot on 46th Place, and we have an offender shot. - Is that correct? - That's all correct.",
+   "unclear_spans": [],
    "narrative_purpose": "corroboration",
    "act_id": "act6_custody",
    "audio_quality": "usable",
-   "asr_alignment": "unreliable",
+   "asr_alignment": "corrected",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "RECLASSIFIED: citywide RECAP at ref 1047 (wall 17:15:49) \u2014 NOT live dispatch. Use only labeled as later recap, or omit."
+   "editor_note": "large-v3 verified. RECAP at wall 17:15:49 - label as recap or omit."
   },
   {
    "excerpt_id": "E12",
@@ -393,16 +387,16 @@
    "reference_timeline_in_sec": 1002.6,
    "reference_timeline_out_sec": 1012.0,
    "timeline_classification": "live",
-   "verbatim_text": "We need EMS at 25-40 46th [Place] \u2014 one in the chest, one in the right groin [...]",
+   "verbatim_text": "All right, so we need EMS at 2540 46th Place - one in the chest, one in the right groin, and that is the offender.",
    "unclear_spans": [],
    "narrative_purpose": "aftermath",
    "act_id": "act6_custody",
    "audio_quality": "noisy",
-   "asr_alignment": "unreliable",
+   "asr_alignment": "corrected",
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "ref 1002.6 (wall 17:15:07) \u2014 LATE aid phase. Audio under NON-graphic visual only."
+   "editor_note": "large-v3 verified. Audio under NON-graphic visual only."
   },
   {
    "excerpt_id": "E14",
@@ -437,15 +431,15 @@
    "source_file": "Log #2021-0001076 Vimeo BWC 13.mp4",
    "render_file": "Log #2021-0001076 Vimeo BWC 13.mp4",
    "speaker": "officers (closest mic)",
-   "source_in_sec": 289.5,
-   "source_out_sec": 312.0,
+   "source_in_sec": 285.0,
+   "source_out_sec": 316.0,
    "display_timecode": "00:04:49.500-00:05:12.000",
    "source_fps": 29.97002997002997,
    "sync_reference_cam": "AXON_BWC_08",
-   "reference_timeline_in_sec": 468.5,
-   "reference_timeline_out_sec": 491.0,
+   "reference_timeline_in_sec": 464.0,
+   "reference_timeline_out_sec": 495.0,
    "timeline_classification": "live",
-   "verbatim_text": "You don't got a gun in his hand [...] He's behind the white Denali. He's on his stomach now. We don't know where the gun is.",
+   "verbatim_text": "He's on the ground. He's rolling to the left. Don't even do it. Don't even do it. We care about you, bro. Don't do it. He don't got a gun in his hand [...] It looks like he's hit in the stomach. The gun's not in his hand, but we can't see it. [...] He's behind the white car.",
    "unclear_spans": [],
    "narrative_purpose": "aftermath",
    "act_id": "act5_final_exchange",
@@ -454,7 +448,7 @@
    "caption_source": "mlx-whisper triage \u2014 NOT caption-ready",
    "codec_status": "source",
    "privacy_safety": "clear",
-   "editor_note": "NEW: subject-down resolution ref 468.5-491 (17:06:12-31). Audio carrier under hero visual \u2014 the act-5 button."
+   "editor_note": "EXTENDED + large-v3 verified. 'We care about you, bro' = the emotional apex line of the case - protect it (no VO, no music). Audio carrier under hero visual."
   }
  ],
  "continuity_windows": [
@@ -518,12 +512,12 @@
    "reference_timeline_in_sec": 82.0,
    "reference_timeline_out_sec": 110.0,
    "act_id": "act3_officer_down",
-   "visual_purpose": "partner cover/aid to wounded officer",
+   "visual_purpose": "VERIFIED: wounded officer's POV from the ground - partner standing over him, pistol drawn, sky/hoop frame. Emotional centerpiece, non-graphic at strip level.",
    "audio_purpose": "scene audio",
    "original_audio": true,
    "repeated": false,
    "new_detail_if_repeated": "",
-   "redaction_status": "review: wounded officer visible",
+   "redaction_status": "frame-exact QA (no blood at strip level)",
    "sync_confidence": "clock_only \u00b12s"
   },
   {
@@ -603,12 +597,12 @@
    "reference_timeline_in_sec": 327.0,
    "reference_timeline_out_sec": 417.0,
    "act_id": "act4_containment",
-   "visual_purpose": "VISUAL UNVERIFIED \u2014 strip before use",
+   "visual_purpose": "VERIFIED usable: officers taking positions, aim around garage corner, fence-scale movement; select sub-windows",
    "audio_purpose": "Go shoot me! + gun-down commands",
    "original_audio": true,
    "repeated": false,
    "new_detail_if_repeated": "",
-   "redaction_status": "unverified",
+   "redaction_status": "clear",
    "sync_confidence": "clock_verified"
   },
   {
@@ -663,37 +657,20 @@
    "sync_confidence": "clock_verified"
   },
   {
-   "window_id": "W13",
-   "source_id": "DVR_CAMERA_08_SOURCE_23",
-   "source_file": "Log #2021-0001076 Vimeo BWC 23.mp4",
-   "source_in_sec": 0.0,
-   "source_out_sec": 0.0,
-   "reference_timeline_in_sec": null,
-   "reference_timeline_out_sec": null,
-   "act_id": "act5_analytical",
-   "visual_purpose": "3-6s neutral elevated angle of scene \u2014 WINDOW TBD after DVR sync",
-   "audio_purpose": "none (silent DVR)",
-   "original_audio": false,
-   "repeated": false,
-   "new_detail_if_repeated": "",
-   "redaction_status": "review civilians",
-   "sync_confidence": "PENDING DVR reconciliation"
-  },
-  {
    "window_id": "W14",
    "source_id": "AXON_BWC_06",
    "source_file": "Log #2021-0001076 Vimeo BWC 6.mp4",
    "source_in_sec": 840.0,
-   "source_out_sec": 875.0,
+   "source_out_sec": 862.0,
    "reference_timeline_in_sec": 736.0,
-   "reference_timeline_out_sec": 771.0,
+   "reference_timeline_out_sec": 758.0,
    "act_id": "act6_custody",
-   "visual_purpose": "hero POV restraint approach",
+   "visual_purpose": "hero POV restraint approach - TRIMMED: large blood pool enters frame ~866s",
    "audio_purpose": "Don't move wave 1",
    "original_audio": true,
    "repeated": false,
    "new_detail_if_repeated": "",
-   "redaction_status": "REDACTION REVIEW: subject condition",
+   "redaction_status": "MANDATORY subject blur; window ends 862s; blood at 866+ EXCLUDED",
    "sync_confidence": "clock_verified"
   },
   {
@@ -710,7 +687,7 @@
    "original_audio": true,
    "repeated": false,
    "new_detail_if_repeated": "",
-   "redaction_status": "REDACTION REVIEW",
+   "redaction_status": "subject blur required (COPA pre-blurred face; body visible)",
    "sync_confidence": "clock_verified"
   },
   {
@@ -782,6 +759,57 @@
    "sync_confidence": "clock_verified"
   }
  ],
- "direct_footage_pool_sec": 791.0,
- "required_direct_sec_at_10min05_75pct": 454
+ "direct_footage_pool_sec": 778.0,
+ "required_direct_sec_at_10min05_75pct": 454,
+ "w13_removal_note": "DVR_CAMERA_08_SOURCE_23 back-solved from restraint-visible midpoint frame: file begins ~17:06:38-17:08:13 wall - AFTER the final volley (ends 17:06:02). No neutral elevated angle covers the exchange. Usable only as act 6/7 aftermath texture after frame-exact DVR pass.",
+ "attribution": {
+  "AXON_BWC_01": "Officer Kocerka (wounded officer) - FSR Att. 23 'BWC of Officer Kocerka' timestamped 04:59:22PM, 2s from 'I'm shot' on this cam (clock_only +/-2s)",
+  "ICV_16": "Kocerka/Lee squad in-car camera - FSR Att. 69, timestamped 04:53:39PM",
+  "AXON_BWC_04": "Houston-CANDIDATE only (late start 17:05:51 coheres with his sustained late activation AND his Att. 97 statement that he fired) - NOT positive; no on-screen naming until TRR OCR/attachment match",
+  "named_participants_fsr": "Kocerka + Lee (Home Depot responders; Kocerka wounded), Houston (fired - Att. 97; late BWC sustained), Tapling (Att. 17 BWC), Kwa (fired 3x from adjacent yard - Att. 4 TRR), Nunez (Att. 16 BWC), Rosales/Vargas/Apostolou (gangway - subject fired in their direction per Att. 97)",
+  "radio_callsign_caution": "'Houston 10/Houston 9' on dispatch audio are unit callsigns, not Officer Houston"
+ },
+ "action_anchor_impulses": {
+  "method": "2ms envelope, >8x median + 0.35 floor, 350ms clustering; times in REFERENCE seconds",
+  "exchange_1_wounding": {
+   "ref_first": 29.87,
+   "ref_last": 38.35,
+   "AXON_BWC_01_local": [
+    119.87,
+    128.35
+   ],
+   "n_impulses_bwc1": 28
+  },
+  "volley_2": {
+   "ref_window": [
+    318.3,
+    331.5
+   ],
+   "note": "dense on AXON_BWC_13 (local 139.3-152.5)"
+  },
+  "volley_3": {
+   "ref_window": [
+    339.1,
+    356.0
+   ]
+  },
+  "FINAL_exchange": {
+   "ref_first": 442.31,
+   "ref_last": 457.97,
+   "AXON_BWC_06_local": [
+    546.31,
+    561.97
+   ],
+   "AXON_BWC_13_local": [
+    263.31,
+    278.97
+   ],
+   "cross_cam_agreement": "4 cams (6/13/8/9) within ~1-2s at window edges; per-source anchors are ms-precise",
+   "ICV_16": "0 impulses (cabin-insulated) - offset stays audio_verified_weak"
+  },
+  "dvr_families": {
+   "SOURCE_23_family": "~15-17 min slow (restraint-frame back-solve)",
+   "Att124_SOURCE_30_family": "~95 min slow (FSR Att. 124 '15:30:19PM' = Houston/Tapling running the alley)"
+  }
+ }
 }
