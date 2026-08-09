@@ -84,3 +84,46 @@ violations, with the later dispute only over punishment.
 ## RETURNS
 
 (record one-line reasons here — they tune the selector)
+
+---
+
+# ADDENDUM — 2026-08-09 (doc-processing day)
+
+## NEW ORDER — `sfdpa_45130_20` (SFPD OIS 20-003, San Francisco, 2020-10-10)
+
+**PRODUCTION-READY pending the open items in its EDP.**
+Packet: `EDP_sfdpa_45130_20_20260809.md` + `EDP_sfdpa45130_excerpts.json`.
+
+Five gates closed: 2 BWC covering the whole encounter · **muzzle flash frame-verified at
+T06:34:51Z on Roach's camera** · night but legible (subject spotlit standing, then down) ·
+**11.4 hours of officer interviews — DA, IAD and DPA, both officers** · 1.47M chars of certified
+transcripts. Editorial spine is sourced and systemic: *"We don't carry Tasers and we don't have
+any other less than lethal force options"* (Roach to IAD).
+**Hard limitation: NO disposition document in the basket** — the cut may not state an outcome
+for either officer without the operator sourcing it independently.
+
+## DECLINED pending operator direction — `copa_2021_0001112`
+
+Identified during today's doc pass as the **Adam Toledo** case (2021-03-29, 2:36 am, 2356 S.
+Sawyer alley; Officers Eric Stillman and Corina Gallegos; a 13-year-old and a 21-year-old).
+Materially: 12 BWC, 7 cameras carrying confrontation dialogue, 109k-char FSR, 47k-char
+non-concurrence, 25k Request for Review — it would rank near the top on evidence alone.
+**Not selected autonomously.** The victim was a child, and the lane has already declined
+child-content once (`flood_thomas`). This needs an explicit operator decision either way; it is
+recorded here so it is neither quietly produced nor quietly lost.
+
+## BENCH RESOLVED — `copa_2020_0003466` → shorts/segment feedstock
+
+Story-strength audit completed with the newly-readable documents (19-page FSR, **9** TRRs, arrest
+report, court orders): the case is a **two-location incident** ending in an officer-involved
+shooting at the 25th District station itself, four officers found within policy, subject survived
+and was prosecuted. Chased the one thing that could have promoted it — the FSR says an in-car
+camera captured the incident, and two files are 720×480 ICV rather than 848×480 BWC — but
+**BWC 11 is a driving dashcam through a dealership lot** and its acoustic "impulses" are road
+noise. The shooting is genuinely not visible on anything released. Route as shorts/segment.
+
+## OUT — `kcinq_lyles_charleena_517iq9301`
+
+Today's extraction made 106 of its 128 documents readable, but all seven videos are **DICV
+(in-car) only** — no body-worn camera, zero confrontation lines. Fails the BWC hard gate on the
+footage, not on the paperwork.
