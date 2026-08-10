@@ -1,39 +1,26 @@
 Paste this to Codex:
 
-NEW PRODUCTION ORDER — cut this next: sfdpa_45130_20 (SFPD OIS 20-003, San Francisco, 2020-10-10).
+WITHDRAWN — do NOT cut sfdpa_45130_20.
 
-The packet is an EDP, not a menu line. Read it first and follow it:
-  FlameOn-remotion/EDP_sfdpa_45130_20_20260809.md      (editorial plan, rev 2)
-  FlameOn-remotion/EDP_sfdpa45130_excerpts.json        (machine: 15 excerpts + 13 continuity windows)
-Contract: EDP_CONTRACT_2026-08-06.md + EDP_CONTRACT_ADDENDUM_20260808.md (BWC is the spine).
+The order issued earlier today was a mistake on my side: the case is already produced. The ledger
+marks BOTH longform and shorts complete (2026-08-05), and the existing 10:07 production used a
+document/interview-heavy thesis ("Ten seconds, four years of review"). Your packet audit caught
+this correctly.
 
-What you are cutting: two officers answer a carjacking-with-a-knife call at 23:30. They spend
-forty seconds on commands, shoot the man at T06:34:51Z, and then CANNOT REACH HIM for three
-minutes because nobody knows where the knife is — talking to him the whole time ("we want to help
-you, but we can't do it until you put your hands out"), then compressions. Both officers then
-explain themselves separately to the DA, to IAD and to DPA; we hold 11.4 hours of that audio.
-The spine is not a contradiction, it is a consistency: neither officer had a Taser or any
-less-lethal option, and they each say so to all three bodies.
+The EDP files stay on disk as the record of a *possible recut*, not as an order:
+  EDP_sfdpa_45130_20_20260809.md / EDP_sfdpa45130_excerpts.json
+A recut of anything the ledger marks done needs an explicit operator request (NEXT_CUTS rule 4).
+It is not authorised now.
 
-Locked before you start (do not re-decide these):
-  - hero POV for the shot = AXON_BWC_ROACH. Its frame contains the muzzle flash at T06:34:51Z.
-    Delgado's camera whip-pans through the shots -- second angle only.
-  - hero POV for the wait and the aid = AXON_BWC_DELGADO.
-  - sync: delgado_t = roach_t + 35s (burn-in OCR, both cameras, two sample points each).
-  - runtime 9-11 min, >=75% direct footage, <=10% documents, exactly TWO document treatments.
-  - interview audio shares NO timeline with the footage. Never cross-cut it as if synchronous.
-    Use the blue-line audio-card treatment; there is no interview video in this lane.
+If the operator later approves that recut, these defects from your audit must be fixed first:
+  - direct-footage pool was double-counted (575s raw sum vs 365s UNION of the windows); the
+    9-11 min format call is unsupported -- either supply distinct windows or drop to ~7-8 min;
+  - JSON still declares revision 1 and does not machine-encode the proper-conduct disposition
+    or the two locked document treatments;
+  - excerpt rows are missing required contract fields: facts_introduced, redundancy_guard,
+    claim_ids; sources need absolute paths / render-safe derivatives, not bare filenames;
+  - E04 / E06 / E11 still need an audible word-for-word pass;
+  - W07/W08/W10/W11 privacy masking still needs frame-exact QA.
 
-Disposition IS citable: the DPA Complaint Summary Report (inside Production Part A) records
-FINDING: PC -- Proper Conduct -- for both officers on the intentional-discharge allegations.
-State that with the citation. Do not imply it was contested; nothing in the materials says so.
-
-Blocking before a heavy render (EDP section 8): audible caption pass on E04/E06/E11, frame-exact
-redaction QA on W10/W11/W07, visual confirmation of the flash frame, proof frames for both
-document treatments + captions + CTA.
-
-RETURN the packet rather than improvising if the night footage cannot hold 75% direct at delivery
-resolution, or the wait act cannot sustain its runtime without repetition.
-
-Deliver to longform_outbox/sfdpa_45130_20/ (final.mp4 + META.json -> probe-verify -> ledger
---mark -> --check -> READY last).
+No new order is attached to this message. The next pick is being re-derived with a working
+ledger check.
