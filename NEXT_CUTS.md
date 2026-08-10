@@ -14,6 +14,7 @@ RULES (binding):
    911 and documents strengthen a BWC case; they never replace it.
 
 ## LONGFORM — ready now (media on disk)
+- **sacso_23_295175** — **ORDERED 2026-08-09, EDP ISSUED** · cut from `EDP_sacso_23_295175_20260809.md`, not from this line · 23 media + 5 PDFs (incl. Use of Force Report) · K9 apprehension frame-verified on BWC-3 · format call 6-7 min
 - ~~sfdpa_45130_20~~ — **WITHDRAWN 2026-08-09: ALREADY PRODUCED** (ledger: longform + shorts done 2026-08-05). Do not cut. EDP retained as a possible-recut record only; a recut needs an explicit operator request (rule 4).
 - **sacso_23_295175** (rank 76.5) — 23 media + 5 PDFs on disk · card .tmp/sacso_23_295175/CASE_CARD.md · transcripts .tmp/sacso_23_295175/d2/transcripts/
 - **longbeach_officer_involved_shootings_ois_november_2024_5200_atlantic_ave** (rank 63.0) — 126 media + 13 PDFs on disk · card .tmp/longbeach_officer_involved_shootings_ois_november_2024_5200_atlantic_ave/CASE_CARD.md · transcripts .tmp/longbeach_officer_involved_shootings_ois_november_2024_5200_atlantic_ave/d2/transcripts/

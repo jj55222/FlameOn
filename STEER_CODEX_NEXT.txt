@@ -1,26 +1,46 @@
 Paste this to Codex:
 
-WITHDRAWN — do NOT cut sfdpa_45130_20.
+NEW PRODUCTION ORDER — sacso_23_295175 (Sacramento County Sheriff, 2023-09-14).
+(The earlier sfdpa_45130_20 order is WITHDRAWN — that case was already produced. Your audit was
+right; the ledger check in my selection script was broken. Do not cut it.)
 
-The order issued earlier today was a mistake on my side: the case is already produced. The ledger
-marks BOTH longform and shorts complete (2026-08-05), and the existing 10:07 production used a
-document/interview-heavy thesis ("Ten seconds, four years of review"). Your packet audit caught
-this correctly.
+Packet — read it first, it is an EDP not a menu line:
+  FlameOn-remotion/EDP_sacso_23_295175_20260809.md
+  FlameOn-remotion/EDP_sacso295175_excerpts.json      (same revision as the doc, deliberately)
 
-The EDP files stay on disk as the record of a *possible recut*, not as an order:
-  EDP_sfdpa_45130_20_20260809.md / EDP_sfdpa45130_excerpts.json
-A recut of anything the ledger marks done needs an explicit operator request (NEXT_CUTS rule 4).
-It is not authorised now.
+The case: a planned tactical operation at a house. The plan is on tape before anything happens --
+"Do everything. Mark is your shooter." / "Protect you. Shoot gas, throw bangs." Then containment,
+commands, and a K9 apprehension. Afterwards an injury is found on tape ("he's complaining about
+the left thigh... where he's got the abrasions") and the file carries a Use of Force Report.
+Nobody is killed. Keep the stakes proportionate: this is about a planned deployment of gas,
+diversionary devices and a police dog against a barricaded person, and what the paperwork says.
 
-If the operator later approves that recut, these defects from your audit must be fixed first:
-  - direct-footage pool was double-counted (575s raw sum vs 365s UNION of the windows); the
-    9-11 min format call is unsupported -- either supply distinct windows or drop to ~7-8 min;
-  - JSON still declares revision 1 and does not machine-encode the proper-conduct disposition
-    or the two locked document treatments;
-  - excerpt rows are missing required contract fields: facts_introduced, redundancy_guard,
-    claim_ids; sources need absolute paths / render-safe derivatives, not bare filenames;
-  - E04 / E06 / E11 still need an audible word-for-word pass;
-  - W07/W08/W10/W11 privacy masking still needs frame-exact QA.
+Locked before you start:
+  - hero = BWC-3, the K9 HANDLER's camera (Axon X60A46152). It holds the whole apprehension in
+    DAYLIGHT: dog crossing the yard 18:33:20-25, contact ~18:33:26-31, takedown/restraint to
+    18:33:52. Frame-verified at 1fps. BWC-8 only NARRATES the bite (chest-occluded); BWC-4 is
+    perimeter -- neither is the event.
+  - reference camera = BWC-5a (wall start 18:24:39 -0700). Offsets for 6 cameras are burn-in
+    verified and in the JSON.
+  - FOUR offsets are UNRESOLVED (BWC-8 estimated, BWC-4, BWC-16, BWC-1). Do NOT cross-cut those
+    against the timeline until closed. BWC-16 carries the injury line, so Act 6 depends on it.
+  - FORMAT CALL 6-7 MINUTES. The ten supplied windows sum to 415s but their UNION is 296s, which
+    supports ~6.6 min at 75% direct. Alternate angles of the same moment are not new runtime.
+    13 of 23 cameras are unswept; if you want a longer cut, supply distinct new windows and say
+    so -- do not stretch what is here.
+  - NO DISPOSITION EXISTS in this basket. Unlike the SFPD lane there is no findings document.
+    Do not state an outcome.
 
-No new order is attached to this message. The next pick is being re-derived with a working
-ledger check.
+Redaction: the apprehension is dog-bite imagery. Show it, never linger; the agency blur on the
+subject's face is already present -- keep it. Civilian in BWC-13 blurred on publication.
+
+Blocking before a heavy render: audible pass on E05/E07/E08; the four unresolved offsets;
+frame-exact redaction QA on the bite window; proof frames for both document treatments,
+captions and CTA.
+
+RETURN rather than improvise if the union cannot hold 75% at delivery resolution, if the
+apprehension cannot be shown within the redaction constraints, or if any force claim would go on
+screen without its report citation.
+
+Deliver to longform_outbox/sacso_23_295175/ (final.mp4 + META.json -> probe-verify -> ledger
+--mark -> --check -> READY last).
