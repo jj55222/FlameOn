@@ -1,0 +1,39 @@
+Paste this to Codex:
+
+NEW PRODUCTION ORDER — cut this next: sfdpa_45130_20 (SFPD OIS 20-003, San Francisco, 2020-10-10).
+
+The packet is an EDP, not a menu line. Read it first and follow it:
+  FlameOn-remotion/EDP_sfdpa_45130_20_20260809.md      (editorial plan, rev 2)
+  FlameOn-remotion/EDP_sfdpa45130_excerpts.json        (machine: 15 excerpts + 13 continuity windows)
+Contract: EDP_CONTRACT_2026-08-06.md + EDP_CONTRACT_ADDENDUM_20260808.md (BWC is the spine).
+
+What you are cutting: two officers answer a carjacking-with-a-knife call at 23:30. They spend
+forty seconds on commands, shoot the man at T06:34:51Z, and then CANNOT REACH HIM for three
+minutes because nobody knows where the knife is — talking to him the whole time ("we want to help
+you, but we can't do it until you put your hands out"), then compressions. Both officers then
+explain themselves separately to the DA, to IAD and to DPA; we hold 11.4 hours of that audio.
+The spine is not a contradiction, it is a consistency: neither officer had a Taser or any
+less-lethal option, and they each say so to all three bodies.
+
+Locked before you start (do not re-decide these):
+  - hero POV for the shot = AXON_BWC_ROACH. Its frame contains the muzzle flash at T06:34:51Z.
+    Delgado's camera whip-pans through the shots -- second angle only.
+  - hero POV for the wait and the aid = AXON_BWC_DELGADO.
+  - sync: delgado_t = roach_t + 35s (burn-in OCR, both cameras, two sample points each).
+  - runtime 9-11 min, >=75% direct footage, <=10% documents, exactly TWO document treatments.
+  - interview audio shares NO timeline with the footage. Never cross-cut it as if synchronous.
+    Use the blue-line audio-card treatment; there is no interview video in this lane.
+
+Disposition IS citable: the DPA Complaint Summary Report (inside Production Part A) records
+FINDING: PC -- Proper Conduct -- for both officers on the intentional-discharge allegations.
+State that with the citation. Do not imply it was contested; nothing in the materials says so.
+
+Blocking before a heavy render (EDP section 8): audible caption pass on E04/E06/E11, frame-exact
+redaction QA on W10/W11/W07, visual confirmation of the flash frame, proof frames for both
+document treatments + captions + CTA.
+
+RETURN the packet rather than improvising if the night footage cannot hold 75% direct at delivery
+resolution, or the wait act cannot sustain its runtime without repetition.
+
+Deliver to longform_outbox/sfdpa_45130_20/ (final.mp4 + META.json -> probe-verify -> ledger
+--mark -> --check -> READY last).

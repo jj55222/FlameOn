@@ -102,15 +102,29 @@ any other less than lethal force options"* (Roach to IAD).
 **Hard limitation: NO disposition document in the basket** — the cut may not state an outcome
 for either officer without the operator sourcing it independently.
 
-## DECLINED pending operator direction — `copa_2021_0001112`
+## CLEARED BY OPERATOR 2026-08-09 — `copa_2021_0001112` (Adam Toledo)
 
-Identified during today's doc pass as the **Adam Toledo** case (2021-03-29, 2:36 am, 2356 S.
-Sawyer alley; Officers Eric Stillman and Corina Gallegos; a 13-year-old and a 21-year-old).
-Materially: 12 BWC, 7 cameras carrying confrontation dialogue, 109k-char FSR, 47k-char
-non-concurrence, 25k Request for Review — it would rank near the top on evidence alone.
-**Not selected autonomously.** The victim was a child, and the lane has already declined
-child-content once (`flood_thomas`). This needs an explicit operator decision either way; it is
-recorded here so it is neither quietly produced nor quietly lost.
+Flagged on 2026-08-09 as declined-pending-direction because the victim was 13. **Operator ruled:
+child victim is not a selection bar.** The case returns to the selection pool and is live on the
+NEXT_CUTS menu (rank 60.0, 12 media + 9 PDFs on disk).
+
+Case: 2021-03-29, 02:36, alley at 2356 S. Sawyer Ave, Chicago. Officers Eric Stillman (driver)
+and Corina Gallegos responded to a ShotSpotter alert of eight rounds; foot pursuit; Stillman shot
+Adam Toledo. COPA log 2021-1112: 109k-char FSR, 47k-char Non-concurrence, 25k Request for Review,
+Original Case Report. COPA found Stillman had probable cause to seize; Allegation 2 against both
+officers Not Sustained.
+
+No special gate applies beyond the ones every case already carries — but they carry real weight
+here and should be closed explicitly in the EDP rather than at the timeline:
+- the standing visual rule (no visible blood; blur the subject whenever down or bleeding) governs
+  the shooting and aftermath footage;
+- "no fault claim without cited disposition" — this case has both a COPA finding AND a
+  non-concurrence, so the framing must distinguish them exactly, as with copa_2021_0001076;
+- the subject was a minor: name and image handling is an operator decision, not a default.
+
+Selector note: the DECLINED set inside `select_codex_candidates.py` still contains
+`flood_thomas(child-content)`. That entry is now inconsistent with this ruling — leaving it as-is
+until the operator says whether the ruling is case-specific or general.
 
 ## BENCH RESOLVED — `copa_2020_0003466` → shorts/segment feedstock
 
